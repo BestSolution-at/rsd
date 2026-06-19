@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.NilResult;
+import dev.rsdlang.sample.server.model.NilResult;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -13,7 +13,8 @@ public class SimpleLocalDateTimeBodyParamNilHandlerImpl
 		implements BodyParameterTypesServiceImpl.SimpleLocalDateTimeBodyParamNilHandler {
 
 	@Override
-	public NilResult simpleLocalDateTimeBodyParamNil(BuilderFactory _factory, Optional<LocalDateTime> bodyLocalDateTime) {
+	public NilResult simpleLocalDateTimeBodyParamNil(BuilderFactory _factory,
+			Optional<LocalDateTime> bodyLocalDateTime) {
 		return bodyLocalDateTime.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 

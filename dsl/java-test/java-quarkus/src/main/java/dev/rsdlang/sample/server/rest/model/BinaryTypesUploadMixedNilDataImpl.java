@@ -7,10 +7,10 @@ import java.util.OptionalInt;
 
 import jakarta.json.JsonObject;
 
-import dev.rsdlang.sample.server.impl.model.json._BaseDataImpl;
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
-import dev.rsdlang.sample.server.impl.model.json.SimpleRecordDataImpl;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.impl.json._BaseDataImpl;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json.SimpleRecordDataImpl;
+import dev.rsdlang.sample.server.model.SimpleRecord;
 
 public class BinaryTypesUploadMixedNilDataImpl extends _BaseDataImpl {
 	public BinaryTypesUploadMixedNilDataImpl(JsonObject data) {

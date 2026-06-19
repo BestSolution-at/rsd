@@ -3,7 +3,7 @@ package dev.rsdlang.sample.server.service.handler.sample;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 import dev.rsdlang.sample.server.service.impl.SampleServiceServiceImpl;
-import dev.rsdlang.sample.server.service.model.ErrorData;
+import dev.rsdlang.sample.server.model.ErrorData;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

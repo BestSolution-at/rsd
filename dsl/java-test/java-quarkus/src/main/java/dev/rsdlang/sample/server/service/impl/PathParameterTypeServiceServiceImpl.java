@@ -9,9 +9,9 @@ import java.time.ZonedDateTime;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.BuilderFactory;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.ZoneId;
 import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 
 @ApplicationScoped

@@ -208,7 +208,7 @@ function _generateResource(
 				cBody.append(`public ${fqn('jakarta.ws.rs.core.Response')} ${o.name}(${params.join(', ')}) {`, NL);
 				cBody.indent(mBody => {
 					if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
-						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
 						mBody.append(
 							`var $payloadJson = ${_JsonUtils}.parseValue($_payload.filePath(), $_payload.contentType(), ${_JsonUtils}.TypeInfo.value(${Type}.class)).asJsonObject();`,
@@ -227,14 +227,14 @@ function _generateResource(
 							if (p.type === 'file') {
 								if (p.array) {
 									if (p.optional && p.nullable) {
-										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>`;
+										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>`;
 										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.<${type}>nill() : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
 										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
 											NL,
 										);
 									} else {
@@ -245,15 +245,15 @@ function _generateResource(
 									}
 								} else {
 									if (p.optional && p.nullable) {
-										const nillType = fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`);
-										const type = fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`);
+										const nillType = fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`);
+										const type = fqn(`${artifactConfig.rootPackageName}.model.RSDFile`);
 										mBody.append(
 											`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName()));`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
 										mBody.append(
-											`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)}>empty();`,
+											`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>empty();`,
 											NL,
 										);
 									} else {
@@ -266,14 +266,14 @@ function _generateResource(
 							} else {
 								if (p.array) {
 									if (p.optional && p.nullable) {
-										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>`;
+										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>`;
 										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
 										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+											`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
 											NL,
 										);
 									} else {
@@ -284,15 +284,15 @@ function _generateResource(
 									}
 								} else {
 									if (p.optional && p.nullable) {
-										const nillType = fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`);
-										const type = fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`);
+										const nillType = fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`);
+										const type = fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`);
 										mBody.append(
 											`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType()));`,
 											NL,
 										);
 									} else if (p.optional || p.nullable) {
 										mBody.append(
-											`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)}>empty();`,
+											`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>empty();`,
 											NL,
 										);
 									} else {
@@ -498,7 +498,7 @@ function generateResourceMethod(
 			}
 		});
 		if (multiBody) {
-			const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+			const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 			const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
 			mBody.append(`var dto = ${_JsonUtils}.parseObject(data, ${contentTypeText}, ${Type}::new, ${Type}.class);`, NL);
 		}
@@ -540,8 +540,8 @@ function enumParameter(
 	asJSON: boolean,
 	contentTypeText: string,
 ) {
-	const t = fqn(`${artifactConfig.rootPackageName}.service.model.${p.type}`);
-	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`) : '_RestUtils';
+	const t = fqn(`${artifactConfig.rootPackageName}.model.${p.type}`);
+	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -603,7 +603,7 @@ function builtinParameter(
 	asJSON: boolean,
 	contentTypeText: string,
 ) {
-	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`) : '_RestUtils';
+	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -716,11 +716,11 @@ function recordUnionParameter(
 	const type = computeParameterAPIType(
 		p,
 		artifactConfig.nativeTypeSubstitues,
-		`${artifactConfig.rootPackageName}.service.model`,
+		`${artifactConfig.rootPackageName}.model`,
 		fqn,
 		true,
 	);
-	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -877,7 +877,7 @@ function inlineEnumParameter(
 	contentTypeText: string,
 ) {
 	const t = `${Service}.` + toFirstUpper(o.name) + '_' + toFirstUpper(p.name) + '_Param$';
-	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`) : '_RestUtils';
+	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -932,9 +932,9 @@ function scalarParameter(
 	if (artifactConfig.nativeTypeSubstitues && type in artifactConfig.nativeTypeSubstitues) {
 		t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
 	} else {
-		t = fqn(`${artifactConfig.rootPackageName}.service.model.${type}`);
+		t = fqn(`${artifactConfig.rootPackageName}.model.${type}`);
 	}
-	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`) : '_RestUtils';
+	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
@@ -1112,7 +1112,7 @@ function generateServiceData(
 	const fqn = importCollector.importType.bind(importCollector);
 
 	const JsonObject = fqn('jakarta.json.JsonObject');
-	const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
+	const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.json._BaseDataImpl`);
 
 	const node = new CompositeGeneratorNode();
 	node.append(`public class ${s.name}${toFirstUpper(o.name)}DataImpl extends ${_BaseDataImpl} {`, NL);
@@ -1131,14 +1131,14 @@ function generateServiceData(
 						? computeParameterAPITypeNG(
 								p,
 								artifactConfig.nativeTypeSubstitues,
-								`${artifactConfig.rootPackageName}.service.model`,
+								`${artifactConfig.rootPackageName}.model`,
 								fqn,
 								o.name,
 							)
 						: computeParameterAPITypeNG(
 								p,
 								artifactConfig.nativeTypeSubstitues,
-								`${artifactConfig.rootPackageName}.service.model`,
+								`${artifactConfig.rootPackageName}.model`,
 								fqn,
 							);
 				classBody.append(`public ${type} ${p.name}() {`, NL);
@@ -1148,7 +1148,7 @@ function generateServiceData(
 							p,
 							artifactConfig,
 							artifactConfig.nativeTypeSubstitues,
-							`${artifactConfig.rootPackageName}.service.model`,
+							`${artifactConfig.rootPackageName}.model`,
 							fqn,
 							o,
 						),
@@ -1178,7 +1178,7 @@ function generateParameterContent(
 	let mapper: string;
 	const array = prop.array;
 
-	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 
 	if (isMBuiltinType(prop.type)) {
 		if (array) {
@@ -1267,7 +1267,7 @@ function generateParameterContent(
 			}
 		} else {
 			const type = fqn(
-				`${artifactConfig.rootPackageName}.impl.model.json.${prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`}`,
+				`${artifactConfig.rootPackageName}.model.impl.json.${prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`}`,
 			);
 			if (array) {
 				if (prop.optional && prop.nullable) {

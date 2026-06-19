@@ -32,17 +32,17 @@ export function generateJDKHttpClientResponseUtils(
 		importCollector.importType('java.nio.file.Files');
 		importCollector.importType('java.nio.file.Path');
 		importCollector.importType('java.nio.file.StandardCopyOption');
-		importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._BlobImpl`);
+		importCollector.importType(`${artifactConfig.rootPackageName}.model.impl.json._BlobImpl`);
 		importCollector.importType(`${artifactConfig.rootPackageName}.model.RSDBlob`);
 		if (hasFileStreamResult(model)) {
-			importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._FileImpl`);
+			importCollector.importType(`${artifactConfig.rootPackageName}.model.impl.json._FileImpl`);
 			importCollector.importType(`${artifactConfig.rootPackageName}.model.RSDFile`);
 		}
 	}
 
 	importCollector.importType('jakarta.json.JsonObject');
 
-	importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+	importCollector.importType(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 
 	const compilationContent = toNodeTree(`
 public class JDKHttpClientResponseUtils {

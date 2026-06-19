@@ -9,14 +9,14 @@ import {
 import { generateJsonUtilsContent } from '../java-model-json/json-utils.js';
 
 export function generateJsonUtils(artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact {
-	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+	const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 
 	const node = generateJsonUtilsContent(
 		fqn,
-		`${artifactConfig.rootPackageName}.service.model`,
+		`${artifactConfig.rootPackageName}.model`,
 		artifactConfig.contentTypeEncodings,
 	);
 

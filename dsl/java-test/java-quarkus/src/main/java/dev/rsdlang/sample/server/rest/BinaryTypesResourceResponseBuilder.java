@@ -9,13 +9,13 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
-import dev.rsdlang.sample.server.service.model._Base;
-import dev.rsdlang.sample.server.service.model.MixedResult;
-import dev.rsdlang.sample.server.service.model.RSDBlob;
-import dev.rsdlang.sample.server.service.model.RSDFile;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.UploadMixedResult;
+import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.MixedResult;
+import dev.rsdlang.sample.server.model.RSDBlob;
+import dev.rsdlang.sample.server.model.RSDFile;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.UploadMixedResult;
 
 @Singleton
 public class BinaryTypesResourceResponseBuilder {

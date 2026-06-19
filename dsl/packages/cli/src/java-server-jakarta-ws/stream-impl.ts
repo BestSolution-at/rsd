@@ -21,7 +21,7 @@ export function generateStreamImpls(
 ): Artifact[] {
 	const rv: Artifact[] = [];
 	if (hasStream(model)) {
-		const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+		const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 		{
 			const importCollector = new JavaImportsCollector(packageName);
 			const fqn = importCollector.importType.bind(importCollector);
@@ -31,7 +31,7 @@ export function generateStreamImpls(
 					generateCompilationUnit(
 						packageName,
 						importCollector,
-						generateBlobImpl(`${artifactConfig.rootPackageName}.service.model`, fqn),
+						generateBlobImpl(`${artifactConfig.rootPackageName}.model`, fqn),
 					),
 					'\t',
 				),
@@ -48,7 +48,7 @@ export function generateStreamImpls(
 					generateCompilationUnit(
 						packageName,
 						importCollector,
-						generateStreamBlobImpl(`${artifactConfig.rootPackageName}.service.model`, fqn),
+						generateStreamBlobImpl(`${artifactConfig.rootPackageName}.model`, fqn),
 					),
 					'\t',
 				),
@@ -66,7 +66,7 @@ export function generateStreamImpls(
 						generateCompilationUnit(
 							packageName,
 							importCollector,
-							generateFileImpl(`${artifactConfig.rootPackageName}.service.model`, fqn),
+							generateFileImpl(`${artifactConfig.rootPackageName}.model`, fqn),
 						),
 						'\t',
 					),
@@ -83,7 +83,7 @@ export function generateStreamImpls(
 						generateCompilationUnit(
 							packageName,
 							importCollector,
-							generateStreamFileImpl(`${artifactConfig.rootPackageName}.service.model`, fqn),
+							generateStreamFileImpl(`${artifactConfig.rootPackageName}.model`, fqn),
 						),
 						'\t',
 					),

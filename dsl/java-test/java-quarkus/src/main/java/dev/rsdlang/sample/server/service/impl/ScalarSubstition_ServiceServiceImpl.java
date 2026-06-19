@@ -6,10 +6,10 @@ import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
+import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.MyRange;
 import dev.rsdlang.sample.server.service.BuilderFactory;
-import dev.rsdlang.sample.server.service.model._Base;
-import dev.rsdlang.sample.server.service.model.NilResult;
 import dev.rsdlang.sample.server.service.SampleErrorScalarSubException;
 import dev.rsdlang.sample.server.service.ScalarSubstition_ServiceService;
 

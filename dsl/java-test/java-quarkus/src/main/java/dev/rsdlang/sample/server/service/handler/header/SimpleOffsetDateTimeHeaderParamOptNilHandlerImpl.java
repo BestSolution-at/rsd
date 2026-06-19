@@ -4,8 +4,8 @@ import java.time.OffsetDateTime;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.NilResult;
-import dev.rsdlang.sample.server.service.model._Base.Nillable;
+import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model._Base.Nillable;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -13,7 +13,8 @@ public class SimpleOffsetDateTimeHeaderParamOptNilHandlerImpl
 		implements HeaderParameterTypesServiceImpl.SimpleOffsetDateTimeHeaderParamOptNilHandler {
 
 	@Override
-	public NilResult simpleOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory, Nillable<OffsetDateTime> headerValue) {
+	public NilResult simpleOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory,
+			Nillable<OffsetDateTime> headerValue) {
 		if (headerValue.isNull()) {
 			return NilResult.NULL;
 		} else if (headerValue.isUndefined()) {

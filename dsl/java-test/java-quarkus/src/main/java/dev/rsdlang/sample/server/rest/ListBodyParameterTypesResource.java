@@ -14,15 +14,15 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.PUT;
 
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.rest.model.ListBodyParameterTypesListMultiBodyParamDataImpl;
 import dev.rsdlang.sample.server.rest.model.ListBodyParameterTypesListMultiBodyParamNilDataImpl;
 import dev.rsdlang.sample.server.rest.model.ListBodyParameterTypesListMultiBodyParamOptDataImpl;
 import dev.rsdlang.sample.server.rest.model.ListBodyParameterTypesListMultiBodyParamOptNilDataImpl;
 import dev.rsdlang.sample.server.service.ListBodyParameterTypesService;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
 
 @ApplicationScoped
 @Path("/api/listbodyparametertypes")

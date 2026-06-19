@@ -6,10 +6,10 @@ import java.util.OptionalInt;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BinaryTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.RSDBlob;
-import dev.rsdlang.sample.server.service.model.RSDFile;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.UploadMixedResult;
+import dev.rsdlang.sample.server.model.RSDBlob;
+import dev.rsdlang.sample.server.model.RSDFile;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.UploadMixedResult;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

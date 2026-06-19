@@ -16,15 +16,15 @@ import java.util.Objects;
 
 import jakarta.json.Json;
 
-import dev.rsdlang.sample.client.impl.model.json._BaseDataImpl;
-import dev.rsdlang.sample.client.impl.model.json._JsonUtils;
-import dev.rsdlang.sample.client.impl.model.json.ListBodyParameterTypesListMultiBodyParamDataImpl;
-import dev.rsdlang.sample.client.impl.model.json.ListBodyParameterTypesListMultiBodyParamNilDataImpl;
-import dev.rsdlang.sample.client.impl.model.json.ListBodyParameterTypesListMultiBodyParamOptDataImpl;
-import dev.rsdlang.sample.client.impl.model.json.ListBodyParameterTypesListMultiBodyParamOptNilDataImpl;
-import dev.rsdlang.sample.client.impl.model.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListBodyParameterTypesService;
+import dev.rsdlang.sample.client.model.impl.json._BaseDataImpl;
+import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.client.model.impl.json.ListBodyParameterTypesListMultiBodyParamDataImpl;
+import dev.rsdlang.sample.client.model.impl.json.ListBodyParameterTypesListMultiBodyParamNilDataImpl;
+import dev.rsdlang.sample.client.model.impl.json.ListBodyParameterTypesListMultiBodyParamOptDataImpl;
+import dev.rsdlang.sample.client.model.impl.json.ListBodyParameterTypesListMultiBodyParamOptNilDataImpl;
+import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;

@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-import dev.rsdlang.sample.server.service.model._Base;
-import dev.rsdlang.sample.server.service.model.MixedResult;
-import dev.rsdlang.sample.server.service.model.RSDBlob;
-import dev.rsdlang.sample.server.service.model.RSDFile;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.UploadMixedResult;
+import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.MixedResult;
+import dev.rsdlang.sample.server.model.RSDBlob;
+import dev.rsdlang.sample.server.model.RSDFile;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.UploadMixedResult;
 
 public interface BinaryTypesService {
 	public int uploadFile(BuilderFactory _factory, RSDFile data);

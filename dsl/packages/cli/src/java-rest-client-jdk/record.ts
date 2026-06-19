@@ -15,7 +15,7 @@ export function generateRecord(
 	model: MResolvedRSDModel,
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 ): Artifact[] {
-	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+	const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 
 	const result: Artifact[] = [];
 

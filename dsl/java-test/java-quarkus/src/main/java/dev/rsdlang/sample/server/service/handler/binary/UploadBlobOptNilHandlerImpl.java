@@ -2,8 +2,8 @@ package dev.rsdlang.sample.server.service.handler.binary;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BinaryTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.RSDBlob;
-import dev.rsdlang.sample.server.service.model._Base.Nillable;
+import dev.rsdlang.sample.server.model.RSDBlob;
+import dev.rsdlang.sample.server.model._Base.Nillable;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

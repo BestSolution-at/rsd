@@ -16,9 +16,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import dev.rsdlang.sample.client.impl.model.json._JsonUtils;
-import dev.rsdlang.sample.client.impl.model.json._JsonUtils.TypeInfo;
 import dev.rsdlang.sample.client.model._Base;
+import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.client.model.impl.json._JsonUtils.TypeInfo;
 
 public class BaseUtils {
 	private record SearchParam(String key, Object value) {

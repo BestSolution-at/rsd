@@ -71,7 +71,7 @@ function generateStreamResultHelper(
 	fqn: (type: string) => string,
 ) {
 	const StreamingOutput = fqn('jakarta.ws.rs.core.StreamingOutput');
-	const _Blob = fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`);
+	const _Blob = fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`);
 	fqn('java.io.OutputStream');
 	fqn('java.io.IOException');
 	fqn('jakarta.ws.rs.WebApplicationException');
@@ -98,7 +98,7 @@ function generateStreamResultHelper(
 		);
 		mBody.append('var builder = Response.status(status).entity(new FileStreamingOutput()).type(mediaType);', NL);
 		if (hasFileStreamResult(model)) {
-			fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`);
+			fqn(`${artifactConfig.rootPackageName}.model.RSDFile`);
 			mBody.append('if (blob instanceof RSDFile f) {', NL);
 			mBody.indent(block => {
 				block.append('var fileName = f.filename().replace("\\"", "");', NL);
@@ -122,7 +122,7 @@ function toResponse(
 	packageName: string,
 	fqn: (type: string) => string,
 ) {
-	fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+	fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 	fqn(`${artifactConfig.rootPackageName}.service.RSDException`);
 	fqn('jakarta.ws.rs.core.Response');
 	fqn('jakarta.ws.rs.core.MediaType');
@@ -162,8 +162,8 @@ function parseFunctions(artifactConfig: JavaServerJakartaWSGeneratorConfig, fqn:
 	fqn('java.util.regex.Pattern');
 	fqn('java.io.InputStream');
 	fqn('java.io.ByteArrayInputStream');
-	fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
-	fqn(`${artifactConfig.rootPackageName}.impl.model.json._NillableImpl`);
+	fqn(`${artifactConfig.rootPackageName}.model._Base`);
+	fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`);
 	return toNodeTree(`
 private static final Pattern SPLIT_COMMA_PATTERN = Pattern.compile(",");
 private static final Pattern UNESCAPE_PATTERN = Pattern.compile("\\\\\\\\u([0-9a-fA-F]{4})");

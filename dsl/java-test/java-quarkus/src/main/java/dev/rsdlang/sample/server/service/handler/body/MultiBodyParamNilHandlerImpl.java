@@ -5,7 +5,7 @@ import java.util.OptionalInt;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.SimpleRecord;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

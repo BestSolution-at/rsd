@@ -9,7 +9,7 @@ export function generateRecord(
 	model: MResolvedRSDModel,
 	artifactConfig: JavaServerGeneratorConfig,
 ): Artifact | undefined {
-	const packageName = `${artifactConfig.rootPackageName}.service.model`;
+	const packageName = `${artifactConfig.rootPackageName}.model`;
 
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);

@@ -41,7 +41,7 @@ function generateDTOBuilderFactoryContent(
 
 	const Singleton = fqn('jakarta.inject.Singleton');
 	const DTOBuilderFactory = fqn(`${artifactConfig.rootPackageName}.service.BuilderFactory`);
-	const Base = fqn(`${artifactConfig.rootPackageName}.service.model._Base`);
+	const Base = fqn(`${artifactConfig.rootPackageName}.model._Base`);
 	const JsonObject = fqn('jakarta.json.JsonObject');
 
 	node.append(`@${Singleton}`, NL);
@@ -53,7 +53,7 @@ function generateDTOBuilderFactoryContent(
 			mBody.append(generateBuilderMethodBody(model, artifactConfig, fqn));
 		});
 		body.append('}', NL, NL);
-		body.append(`public <T extends _Base.BaseData> T of(Class<T> type, ${JsonObject} data) {`, NL);
+		body.append(`public <T extends ${Base}.BaseData> T of(Class<T> type, ${JsonObject} data) {`, NL);
 		body.indent(mBody => {
 			mBody.append(generateOfMethodBody(model, artifactConfig, fqn));
 		});
@@ -62,22 +62,22 @@ function generateDTOBuilderFactoryContent(
 		if (hasStream(model)) {
 			body.appendNewLine();
 			body.append(
-				`public ${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)} createBlob(${fqn('java.nio.file.Path')} file, String mimeType) {`,
+				`public ${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)} createBlob(${fqn('java.nio.file.Path')} file, String mimeType) {`,
 				NL,
 			);
 			body.indent(mBody => {
-				const BlobImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BlobImpl`);
+				const BlobImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.json._BlobImpl`);
 				mBody.append(`return ${BlobImpl}.of(file, mimeType);`, NL);
 			});
 			body.append('}', NL);
 
 			body.appendNewLine();
 			body.append(
-				`public ${fqn(`${artifactConfig.rootPackageName}.service.model.RSDBlob`)} createBlob(${fqn('java.io.InputStream')} stream, String mimeType) {`,
+				`public ${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)} createBlob(${fqn('java.io.InputStream')} stream, String mimeType) {`,
 				NL,
 			);
 			body.indent(mBody => {
-				const StreamBlobImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._StreamBlobImpl`);
+				const StreamBlobImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.json._StreamBlobImpl`);
 				mBody.append(`return ${StreamBlobImpl}.of(stream, mimeType);`, NL);
 			});
 			body.append('}', NL);
@@ -85,25 +85,25 @@ function generateDTOBuilderFactoryContent(
 			if (hasFileStream(model)) {
 				body.appendNewLine();
 				body.append(
-					`public ${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)} createFile(${fqn(
+					`public ${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)} createFile(${fqn(
 						'java.nio.file.Path',
 					)} file, String mimeType, String filename) {`,
 					NL,
 				);
 				body.indent(mBody => {
-					const FileImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._FileImpl`);
+					const FileImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.json._FileImpl`);
 					mBody.append(`return ${FileImpl}.of(file, mimeType, filename);`, NL);
 				});
 				body.append('}', NL);
 				body.appendNewLine();
 				body.append(
-					`public ${fqn(`${artifactConfig.rootPackageName}.service.model.RSDFile`)} createFile(${fqn(
+					`public ${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)} createFile(${fqn(
 						'java.io.InputStream',
 					)} data, String mimeType, String filename) {`,
 					NL,
 				);
 				body.indent(mBody => {
-					const StreamFileImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._StreamFileImpl`);
+					const StreamFileImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.json._StreamFileImpl`);
 					mBody.append(`return ${StreamFileImpl}.of(data, mimeType, filename);`, NL);
 				});
 				body.append('}', NL);
@@ -122,15 +122,15 @@ function generateBuilderMethodBody(
 ) {
 	const mBody = new CompositeGeneratorNode();
 	model.elements.filter(isMResolvedRecordType).forEach(t => {
-		const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
-		const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${t.name}DataImpl`);
+		const InterfaceType = fqn(`${artifactConfig.rootPackageName}.model.${t.name}`);
+		const ImplType = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${t.name}DataImpl`);
 		mBody.append(`if (type == ${InterfaceType}.DataBuilder.class) {`, NL);
 		mBody.indent(block => {
 			block.append(`return type.cast(${ImplType}.builder());`, NL);
 		});
 		mBody.append('}', NL);
 		if (t.patchable) {
-			const PatchImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${t.name}PatchImpl`);
+			const PatchImplType = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${t.name}PatchImpl`);
 			mBody.append(`if (type == ${InterfaceType}.PatchBuilder.class) {`, NL);
 			mBody.indent(block => {
 				block.append(`return type.cast(${PatchImplType}.builder());`, NL);
@@ -152,16 +152,16 @@ function generateOfMethodBody(
 		.filter(isMResolvedRecordType)
 		//.filter(t => t.resolved.unions.length !== 1)
 		.forEach(t => {
-			const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
-			const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${t.name}DataImpl`);
+			const InterfaceType = fqn(`${artifactConfig.rootPackageName}.model.${t.name}`);
+			const ImplType = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${t.name}DataImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 			mBody.indent(block => {
 				block.append(`return type.cast(${ImplType}.of(data));`, NL);
 			});
 			mBody.append('}', NL);
 			if (t.patchable) {
-				const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${t.name}`);
-				const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${t.name}PatchImpl`);
+				const InterfaceType = fqn(`${artifactConfig.rootPackageName}.model.${t.name}`);
+				const ImplType = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${t.name}PatchImpl`);
 				mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 				mBody.indent(block => {
 					block.append(`return type.cast(${ImplType}.of(data));`, NL);
@@ -170,16 +170,16 @@ function generateOfMethodBody(
 			}
 		});
 	model.elements.filter(isMResolvedUnionType).forEach(u => {
-		const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${u.name}`);
-		const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${u.name}DataImpl`);
+		const InterfaceType = fqn(`${artifactConfig.rootPackageName}.model.${u.name}`);
+		const ImplType = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${u.name}DataImpl`);
 		mBody.append(`if (type == ${InterfaceType}.Data.class) {`, NL);
 		mBody.indent(block => {
 			block.append(`return type.cast(${ImplType}.of(data));`, NL);
 		});
 		mBody.append('}', NL);
 		if (u.resolved.records.find(r => r.patchable)) {
-			const InterfaceType = fqn(`${artifactConfig.rootPackageName}.service.model.${u.name}`);
-			const ImplType = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${u.name}PatchImpl`);
+			const InterfaceType = fqn(`${artifactConfig.rootPackageName}.model.${u.name}`);
+			const ImplType = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${u.name}PatchImpl`);
 			mBody.append(`if (type == ${InterfaceType}.Patch.class) {`, NL);
 			mBody.indent(block => {
 				block.append(`return type.cast(${ImplType}.of(data));`, NL);

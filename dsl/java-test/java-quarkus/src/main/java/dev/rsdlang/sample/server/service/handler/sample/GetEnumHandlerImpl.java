@@ -2,7 +2,7 @@ package dev.rsdlang.sample.server.service.handler.sample;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.SampleServiceServiceImpl;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SampleEnum;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

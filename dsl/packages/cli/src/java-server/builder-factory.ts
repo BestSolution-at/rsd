@@ -22,7 +22,11 @@ export function generateDTOBuilderFactory(
 	return {
 		name: 'BuilderFactory.java',
 		content: toString(
-			generateCompilationUnit(packageName, importCollector, generateDTOBuilderFactoryContent(model, packageName, fqn)),
+			generateCompilationUnit(
+				packageName,
+				importCollector,
+				generateDTOBuilderFactoryContent(model, artifactConfig.rootPackageName, fqn),
+			),
 			'\t',
 		),
 		path: toPath(artifactConfig.targetFolder, packageName),

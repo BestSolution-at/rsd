@@ -9,10 +9,10 @@ import java.time.ZonedDateTime;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.BuilderFactory;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
 import dev.rsdlang.sample.server.service.SampleError2Exception;
 import dev.rsdlang.sample.server.service.SampleErrorBooleanException;
 import dev.rsdlang.sample.server.service.SampleErrorEnumException;

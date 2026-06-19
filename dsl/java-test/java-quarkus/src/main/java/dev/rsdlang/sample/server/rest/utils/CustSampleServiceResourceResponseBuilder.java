@@ -8,9 +8,9 @@ import java.time.ZonedDateTime;
 
 import dev.rsdlang.sample.server.Headers;
 import dev.rsdlang.sample.server.rest.SampleServiceResourceResponseBuilder;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.ZoneId;
-import dev.rsdlang.sample.server.service.model.SimpleRecord.Data;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.ZoneId;
+import dev.rsdlang.sample.server.model.SimpleRecord.Data;
 import jakarta.annotation.Priority;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.inject.Inject;

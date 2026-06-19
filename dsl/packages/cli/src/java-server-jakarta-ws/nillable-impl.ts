@@ -9,12 +9,12 @@ import {
 import { generateNillableContent } from '../java-model-json/nillable-impl.js';
 
 export function generateNillable(artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact {
-	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+	const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 
-	const node = generateNillableContent(fqn, `${artifactConfig.rootPackageName}.service.model`);
+	const node = generateNillableContent(fqn, `${artifactConfig.rootPackageName}.model`);
 	return {
 		name: '_NillableImpl.java',
 		content: toString(generateCompilationUnit(packageName, importCollector, node), '\t'),

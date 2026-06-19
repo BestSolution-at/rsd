@@ -489,7 +489,7 @@ function generateStreamBody(
 			}
 		});
 	if (hasNonStreamBodyParams) {
-		const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
+		const typeName = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
 		methodBody.append(
 			`$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new ${typeName}($jsonPayload.build()), false, this.contentType(), ${typeName}.class), this.contentType());`,
 			NL,
@@ -528,15 +528,15 @@ function jsonPayloadEntry(
 ): string {
 	const key = p.meta?.rest?.name ?? p.name;
 	if (p.variant === 'record' || p.variant === 'union') {
-		const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-		const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
+		const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+		const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.json._BaseDataImpl`);
 		return p.array
 			? `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonValueArray(${p.name}, i -> ((${_BaseDataImpl}) i).data));`
 			: `$jsonPayload.add("${key}", ((${_BaseDataImpl}) ${p.name}).data);`;
 	}
 	if (p.array) {
 		if (isMBuiltinNumericType(p.type) || p.type === 'boolean') {
-			const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+			const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 			if (p.type === 'boolean') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonBooleanArray(${p.name}));`;
 			if (p.type === 'double') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonDoubleArray(${p.name}));`;
 			if (p.type === 'float') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonFloatArray(${p.name}));`;
@@ -581,7 +581,7 @@ function appendEmptyBody(
 	fqn: (type: string) => string,
 ) {
 	const BodyPublishers = fqn('java.net.http.HttpRequest.BodyPublishers');
-	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+	const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 	const defaultContent = multiBodyParam
 		? `${_JsonUtils}.encodeEmptyObject($contentType)`
 		: `${_JsonUtils}.encodeEmptyValue($contentType)`;
@@ -598,7 +598,7 @@ function appendSingleParamBody(
 	const suffix = param.array ? 'List' : '';
 	const optionalEmpty =
 		param.optional && !param.nullable
-			? `${fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`)}.encodeEmptyValue($contentType)`
+			? `${fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`)}.encodeEmptyValue($contentType)`
 			: null;
 
 	let baseCall: string;
@@ -640,9 +640,9 @@ function appendMultiParamBody(
 	methodBody.append(`var $builder = ${Json}.createObjectBuilder();`, NL);
 	bodyParams.forEach(p => {
 		if (p.variant === 'record' || p.variant === 'union') {
-			const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.impl.model.json._BaseDataImpl`);
+			const _BaseDataImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.json._BaseDataImpl`);
 			if (p.array) {
-				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 				appendBuilderAssignment(
 					methodBody,
 					p,
@@ -662,7 +662,7 @@ function appendMultiParamBody(
 			methodBody.append('throw new UnsupportedOperationException();', NL);
 		}
 	});
-	const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
+	const typeName = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
 	methodBody.append(
 		`var $body = ${BodyPublishers}.ofByteArray(BaseUtils.ofObject(new ${typeName}($builder.build()), false, this.contentType(), ${typeName}.class));`,
 		NL,
@@ -824,7 +824,7 @@ function handleOkResult(
 			node.append('var $rv = JDKHttpClientResponseUtils.mapBlob($response);', NL);
 		}
 	} else if (type.variant === 'record' || type.variant === 'union') {
-		const modelPkg = `${artifactConfig.rootPackageName}.impl.model.json`;
+		const modelPkg = `${artifactConfig.rootPackageName}.model.impl.json`;
 		const modelType = fqn(`${modelPkg}.${type.type}DataImpl`);
 		if (type.array) {
 			node.append(
@@ -901,7 +901,7 @@ function handleErrorResult(
 	if (resolvedError?.contentType && resolvedError.resolvedContentType) {
 		const type = resolvedError.resolvedContentType;
 		if (isMResolvedUnionType(type) || isMResolvedRecordType(type)) {
-			const modelPkg = `${artifactConfig.rootPackageName}.impl.model.json`;
+			const modelPkg = `${artifactConfig.rootPackageName}.model.impl.json`;
 			const modelType = fqn(`${modelPkg}.${resolvedError.contentType}DataImpl`);
 			const apiType = toAPIType(
 				resolvedError.resolvedContentType,
@@ -1031,7 +1031,7 @@ function generateServiceData(
 	o: MResolvedOperation,
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 ): Artifact {
-	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+	const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 

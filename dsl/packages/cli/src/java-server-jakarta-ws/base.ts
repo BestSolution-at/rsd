@@ -9,7 +9,7 @@ import {
 import { generateBaseDTOContent } from '../java-model-json/base.js';
 
 export function generateBase(artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact {
-	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+	const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);

@@ -15,7 +15,7 @@ export function generateRecord(
 	model: MResolvedRSDModel,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 ): Artifact[] {
-	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+	const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 
 	const result: Artifact[] = [];
 	{
@@ -32,7 +32,7 @@ export function generateRecord(
 						t,
 						model,
 						artifactConfig.nativeTypeSubstitues,
-						`${artifactConfig.rootPackageName}.service.model`,
+						`${artifactConfig.rootPackageName}.model`,
 						fqn,
 					),
 				),
@@ -56,7 +56,7 @@ export function generateRecord(
 						t,
 						model,
 						artifactConfig.nativeTypeSubstitues,
-						`${artifactConfig.rootPackageName}.service.model`,
+						`${artifactConfig.rootPackageName}.model`,
 						fqn,
 					),
 				),

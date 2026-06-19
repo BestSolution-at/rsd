@@ -21,7 +21,7 @@ export function generateStreamImpls(
 ): Artifact[] {
 	const rv: Artifact[] = [];
 	if (hasStream(model)) {
-		const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+		const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 		{
 			const importCollector = new JavaImportsCollector(packageName);
 			const fqn = importCollector.importType.bind(importCollector);
