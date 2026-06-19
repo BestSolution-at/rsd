@@ -9,7 +9,7 @@ import {
 import { hasFileStreamResult, hasStreamResult, toNodeTree } from '../util.js';
 import { MResolvedRSDModel } from '../model.js';
 
-export function generateServiceUtils(
+export function generateJDKHttpClientResponseUtils(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	model: MResolvedRSDModel,
 ): Artifact {
@@ -18,7 +18,6 @@ export function generateServiceUtils(
 	const importCollector = new JavaImportsCollector(packageName);
 	importCollector.importType('java.io.InputStream');
 
-	importCollector.importType('java.net.URLEncoder');
 	importCollector.importType('java.net.http.HttpResponse');
 	importCollector.importType('java.nio.charset.StandardCharsets');
 	importCollector.importType('java.time.LocalDate');
@@ -27,11 +26,7 @@ export function generateServiceUtils(
 	importCollector.importType('java.time.OffsetDateTime');
 	importCollector.importType('java.time.ZonedDateTime');
 	importCollector.importType('java.util.List');
-	importCollector.importType('java.util.Map');
 	importCollector.importType('java.util.function.Function');
-	importCollector.importType('java.util.stream.Collectors');
-	importCollector.importType('java.util.stream.Stream');
-	importCollector.importType('java.util.ArrayList');
 	importCollector.importType('java.io.IOException');
 	if (hasStreamResult(model)) {
 		importCollector.importType('java.nio.file.Files');
@@ -46,47 +41,11 @@ export function generateServiceUtils(
 	}
 
 	importCollector.importType('jakarta.json.JsonObject');
-	importCollector.importType('java.util.Base64');
-	importCollector.importType('java.util.HexFormat');
 
 	importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
-	importCollector.importType(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils.TypeInfo`);
-	importCollector.importType(`${artifactConfig.rootPackageName}.model._Base`);
 
 	const compilationContent = toNodeTree(`
-public class ServiceUtils {
-	private record SearchParam(String key, Object value) {
-
-	}
-
-	public static class URLSearchParams {
-		private List<SearchParam> params = new ArrayList<>();
-
-		public void append(String key, Object value) {
-			params.add(new SearchParam(key, value));
-		}
-
-		public String toQueryString() {
-			if (params.isEmpty()) {
-				return "";
-			}
-			return "?" + params.stream()
-					.map(e -> "%s=%s".formatted(encodeQueryString(e.key), encodeQueryString(e.value)))
-					.collect(Collectors.joining("&"));
-		}
-	}
-
-	private static String encodeQueryString(Object value) {
-		if (value == null) {
-			return "null";
-		}
-
-		if (value instanceof byte[] bytes) {
-			return encodeBase64(bytes);
-		}
-
-		return URLEncoder.encode(value.toString(), StandardCharsets.UTF_8);
-	}
+public class JDKHttpClientResponseUtils {
 
 	public static String toString(HttpResponse<InputStream> response) {
 		try (var is = response.body()) {
@@ -94,12 +53,6 @@ public class ServiceUtils {
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
-	}
-
-	public static String[] toHeaders(Map<String, String> data) {
-		return data.entrySet().stream()
-				.flatMap(e -> Stream.of(e.getKey(), e.getValue()))
-				.toArray(String[]::new);
 	}
 
 	private static String contentType(HttpResponse<InputStream> response) {
@@ -330,272 +283,6 @@ public class ServiceUtils {
 			throw new IllegalStateException(e);
 		}
 	}
-
-	public static byte[] ofBoolean(
-			Boolean value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.BOOLEAN);
-	}
-
-	public static byte[] ofBooleanList(
-			List<Boolean> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.BOOLEAN.withMulti());
-	}
-
-	public static byte[] ofShort(
-			Short value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.SHORT);
-	}
-
-	public static byte[] ofShortList(
-			List<Short> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.SHORT.withMulti());
-	}
-
-	public static byte[] ofInt(
-			Integer value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.INTEGER);
-	}
-
-	public static byte[] ofIntList(
-			List<Integer> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.INTEGER.withMulti());
-	}
-
-	public static byte[] ofLong(
-			Long value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.LONG);
-	}
-
-	public static byte[] ofLongList(
-			List<Long> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.LONG.withMulti());
-	}
-
-	public static byte[] ofFloat(
-			Float value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.FLOAT);
-	}
-
-	public static byte[] ofFloatList(
-			List<Float> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.FLOAT.withMulti());
-	}
-
-	public static byte[] ofDouble(
-			Double value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.DOUBLE);
-	}
-
-	public static byte[] ofDoubleList(
-			List<Double> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.DOUBLE.withMulti());
-	}
-
-	public static byte[] ofString(
-			String value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
-	}
-
-	public static byte[] ofStringList(
-			List<String> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
-	}
-
-	public static byte[] ofLocalDate(
-			LocalDate value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
-	}
-
-	public static byte[] ofLocalDateList(
-			List<LocalDate> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
-	}
-
-	public static byte[] ofLocalDateTime(
-			LocalDateTime value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
-	}
-
-	public static byte[] ofLocalDateTimeList(
-			List<LocalDateTime> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
-	}
-
-	public static byte[] ofZonedDateTime(
-			ZonedDateTime value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
-	}
-
-	public static byte[] ofZonedDateTimeList(
-			List<ZonedDateTime> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
-	}
-
-	public static byte[] ofLocalTime(
-			LocalTime value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
-	}
-
-	public static byte[] ofLocalTimeList(
-			List<LocalTime> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
-	}
-
-	public static byte[] ofOffsetDateTime(
-			OffsetDateTime value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
-	}
-
-	public static byte[] ofOffsetDateTimeList(
-			List<OffsetDateTime> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
-	}
-
-	public static byte[] ofLiteral(
-			Object value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
-	}
-
-	public static <T> byte[] ofLiteralList(
-			List<T> value,
-			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
-	}
-
-	public static <T extends _Base.BaseData> byte[] ofObject(
-			T value,
-			boolean nullable,
-			String contentType,
-			Class<T> type) {
-		return of(value, nullable, contentType, TypeInfo.value(type));
-	}
-
-	public static <T extends _Base.BaseData> byte[] ofObjectList(
-			List<T> value,
-			boolean nullable,
-			String contentType,
-			Class<T> type) {
-		return of(value, nullable, contentType, TypeInfo.value(type).withMulti());
-	}
-
-	private static byte[] of(
-			Object value,
-			boolean nullable,
-			String contentType,
-			TypeInfo<?> baseTypeInfo) {
-		var typeInfo = baseTypeInfo;
-		if (nullable) {
-			typeInfo = typeInfo.withNullable();
-		}
-
-		return _JsonUtils.encodeValue(value, contentType, typeInfo);
-	}
-
-	public static String encodeAsciiString(String text) {
-		text = text.replace("\\\\u", "\\\\u005Cu"); // Escape existing \\\\u sequences
-		int leading = 0;
-		while (leading < text.length() && text.charAt(leading) == ' ') leading++;
-		if (leading > 0) {
-			text = "\\\\u0020".repeat(leading) + text.substring(leading);
-		}
-		int trailing = 0;
-		int len = text.length();
-		while (trailing < len && text.charAt(len - 1 - trailing) == ' ') trailing++;
-		if (trailing > 0) {
-			text = text.substring(0, len - trailing) + "\\\\u0020".repeat(trailing);
-		}
-		var b = new StringBuilder(text.length());
-		var l = text.length();
-		for (var i = 0; i < l; i++) {
-			var c = text.charAt(i);
-			// Escape non-printable characters, comma and all non-ASCII characters
-			if (c < 32 || c > 126 || c == 44) {
-				b.append(String.format("\\\\u%04x", (int) c));
-			} else {
-				b.append(c);
-			}
-		}
-
-		return b.toString();
-	}
-
-	public static String encodeBase64(byte[] value) {
-		return Base64.getEncoder().encodeToString(value);
-	}
-
-	public static String encodeURIComponent(String value) {
-		var bytes = value.getBytes(StandardCharsets.UTF_8);
-		var result = new StringBuilder();
-
-		HexFormat hex = HexFormat.of().withUpperCase();
-		for (byte b : bytes) {
-			// Unreserved characters according to RFC 3986
-			if ((b >= 'A' && b <= 'Z') // Alpanumeric characters uppercase
-					|| (b >= 'a' && b <= 'z') // Alpanumeric characters lowercase
-					|| (b >= '0' && b <= '9') // Numeric characters
-					|| b == '-' || b == '_' || b == '.' // Unreserved Part 1
-					|| b == '!' || b == '~' || b == '*' // Unreserved Part 2
-					|| b == '\\'' || b == '(' || b == ')' // Unreserved Part 3
-			) {
-				result.append((char) b); // safe as we know this is an ascii character
-			} else {
-				result.append('%');
-				hex.toHexDigits(result, b);
-			}
-		}
-		return result.toString();
-	}
 }`);
 
 	if (hasStreamResult(model)) {
@@ -652,7 +339,7 @@ public static RSDFile mapFile(HttpResponse<InputStream> response) {
 	}
 
 	return {
-		name: 'ServiceUtils.java',
+		name: 'JDKHttpClientResponseUtils.java',
 		content: toString(generateCompilationUnit(packageName, importCollector, compilationContent), '\t'),
 		path: toPath(artifactConfig.targetFolder, packageName),
 	};

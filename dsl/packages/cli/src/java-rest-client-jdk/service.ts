@@ -189,7 +189,7 @@ function appendFormattedPath(
 				} else {
 					const Objects = fqn('java.util.Objects');
 					formatted.append(
-						`ServiceUtils.encodeURIComponent(${Objects}.toString(${v}))${idx + 1 < variables.length ? ',' : ''}`,
+						`BaseUtils.encodeURIComponent(${Objects}.toString(${v}))${idx + 1 < variables.length ? ',' : ''}`,
 						idx + 1 < variables.length ? NL : '',
 					);
 				}
@@ -209,7 +209,7 @@ function appendQueryParams(
 	const queryParams = allParameters.filter(p => p.meta?.rest?.source === 'query');
 	if (queryParams.length === 0) return false;
 
-	methodBody.append(`var $queryParams = new ServiceUtils.URLSearchParams();`, NL);
+	methodBody.append(`var $queryParams = new BaseUtils.URLSearchParams();`, NL);
 	queryParams.forEach(p => {
 		const restName = p.meta?.rest?.name ?? p.name.toLowerCase();
 		let param: string;
@@ -221,7 +221,7 @@ function appendQueryParams(
 				fqn,
 				{ withArray: false, withOptional: false },
 			);
-			param = `ServiceUtils.ofObject(${p.array ? '$q' : p.name}, false, this.contentType(), ${type}.class)`;
+			param = `BaseUtils.ofObject(${p.array ? '$q' : p.name}, false, this.contentType(), ${type}.class)`;
 		} else {
 			param = p.array ? '$q' : p.name;
 		}
@@ -271,10 +271,10 @@ function appendHeaderParams(
 			if (p.variant === 'builtin' || p.variant === 'enum' || p.variant === 'inline-enum' || p.variant === 'scalar') {
 				let toString: string;
 				if (p.type === 'string') {
-					toString = '$v -> ServiceUtils.encodeAsciiString($v)';
+					toString = '$v -> BaseUtils.encodeAsciiString($v)';
 				} else if (p.variant === 'scalar') {
 					const Objects = fqn('java.util.Objects');
-					toString = `$v -> ServiceUtils.encodeAsciiString(${Objects}.toString($v))`;
+					toString = `$v -> BaseUtils.encodeAsciiString(${Objects}.toString($v))`;
 				} else {
 					const Objects = fqn('java.util.Objects');
 					toString = `${Objects}::toString`;
@@ -298,7 +298,7 @@ function appendHeaderParams(
 					fqn,
 					{ withArray: false, withOptional: false },
 				);
-				const toString = `$v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), ${type}.class))`;
+				const toString = `$v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), ${type}.class))`;
 				const codeBlock = `$headerParams.put("${restName}", String.join(",", ${p.name}.stream().map(${toString}).toList()));`;
 				appendWithNullGuard(
 					methodBody,
@@ -319,7 +319,7 @@ function appendHeaderParams(
 						p.name,
 						p.nullable,
 						p.optional,
-						`$headerParams.put("${restName}", ServiceUtils.encodeAsciiString(${p.name}));`,
+						`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${p.name}));`,
 						`$headerParams.put("${restName}", "null");`,
 					);
 				}
@@ -331,7 +331,7 @@ function appendHeaderParams(
 					fqn,
 					{ withArray: false, withOptional: false },
 				);
-				const codeBlock = `$headerParams.put("${restName}", ServiceUtils.encodeBase64(ServiceUtils.ofObject(${p.name}, false, this.contentType(), ${type}.class)));`;
+				const codeBlock = `$headerParams.put("${restName}", BaseUtils.encodeBase64(BaseUtils.ofObject(${p.name}, false, this.contentType(), ${type}.class)));`;
 				appendWithNullGuard(
 					methodBody,
 					p.name,
@@ -345,7 +345,7 @@ function appendHeaderParams(
 			} else if (p.variant === 'scalar') {
 				const Objects = fqn('java.util.Objects');
 				methodBody.append(
-					`$headerParams.put("${restName}", ServiceUtils.encodeAsciiString(${Objects}.toString(${p.name})));`,
+					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${Objects}.toString(${p.name})));`,
 					NL,
 				);
 			} else {
@@ -354,7 +354,7 @@ function appendHeaderParams(
 			}
 		}
 	});
-	methodBody.append('var $headers = ServiceUtils.toHeaders($headerParams);', NL);
+	methodBody.append('var $headers = BaseUtils.toHeaders($headerParams);', NL);
 	methodBody.appendNewLine();
 	return true;
 }
@@ -491,7 +491,7 @@ function generateStreamBody(
 	if (hasNonStreamBodyParams) {
 		const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
 		methodBody.append(
-			`$formDataBuilder.addBytes("_rsdPayload", ServiceUtils.ofObject(new ${typeName}($jsonPayload.build()), false, this.contentType(), ${typeName}.class), this.contentType());`,
+			`$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new ${typeName}($jsonPayload.build()), false, this.contentType(), ${typeName}.class), this.contentType());`,
 			NL,
 		);
 	}
@@ -604,11 +604,11 @@ function appendSingleParamBody(
 	let baseCall: string;
 	let optionalCall: string;
 	if (param.variant === 'builtin') {
-		const method = `ServiceUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${suffix}`;
+		const method = `BaseUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${suffix}`;
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
 		optionalCall = `${method}(${param.name}, false, $contentType)`;
 	} else if (param.variant === 'scalar' || param.variant === 'enum' || param.variant === 'inline-enum') {
-		const method = `ServiceUtils.ofLiteral${suffix}`;
+		const method = `BaseUtils.ofLiteral${suffix}`;
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
 		optionalCall = `${method}(${param.name}, false, $contentType)`;
 	} else {
@@ -619,7 +619,7 @@ function appendSingleParamBody(
 			fqn,
 			{ withArray: false, withOptional: false },
 		);
-		const method = `ServiceUtils.ofObject${suffix}`;
+		const method = `BaseUtils.ofObject${suffix}`;
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, ${type}.class)`;
 		optionalCall = `${method}(${param.name}, false, $contentType, ${type}.class)`;
 	}
@@ -664,7 +664,7 @@ function appendMultiParamBody(
 	});
 	const typeName = fqn(`${artifactConfig.rootPackageName}.impl.model.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
 	methodBody.append(
-		`var $body = ${BodyPublishers}.ofByteArray(ServiceUtils.ofObject(new ${typeName}($builder.build()), false, this.contentType(), ${typeName}.class));`,
+		`var $body = ${BodyPublishers}.ofByteArray(BaseUtils.ofObject(new ${typeName}($builder.build()), false, this.contentType(), ${typeName}.class));`,
 		NL,
 	);
 }
@@ -770,7 +770,7 @@ function generateResponseDispatch(
 
 	const RSDException = fqn(`${artifactConfig.rootPackageName}.RSDException`);
 	methodBody.append(
-		`var $exception = new ${RSDException}(${RSDException}.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), ServiceUtils.toString($response)));`,
+		`var $exception = new ${RSDException}(${RSDException}.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));`,
 		NL,
 	);
 	methodBody.append(
@@ -819,21 +819,21 @@ function handleOkResult(
 	}
 	if (type.variant === 'stream') {
 		if (type.type === 'file') {
-			node.append('var $rv = ServiceUtils.mapFile($response);', NL);
+			node.append('var $rv = JDKHttpClientResponseUtils.mapFile($response);', NL);
 		} else {
-			node.append('var $rv = ServiceUtils.mapBlob($response);', NL);
+			node.append('var $rv = JDKHttpClientResponseUtils.mapBlob($response);', NL);
 		}
 	} else if (type.variant === 'record' || type.variant === 'union') {
 		const modelPkg = `${artifactConfig.rootPackageName}.impl.model.json`;
 		const modelType = fqn(`${modelPkg}.${type.type}DataImpl`);
 		if (type.array) {
 			node.append(
-				`var $rv = ServiceUtils.mapObjects($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
+				`var $rv = JDKHttpClientResponseUtils.mapObjects($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
 				NL,
 			);
 		} else {
 			node.append(
-				`var $rv = ServiceUtils.mapObject($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
+				`var $rv = JDKHttpClientResponseUtils.mapObject($response, ${modelType}::of, ${toResultType(type, artifactConfig, fqn, '', true)}.class);`,
 				NL,
 			);
 		}
@@ -844,22 +844,28 @@ function handleOkResult(
 	} else if (type.variant === 'scalar') {
 		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
 		if (type.array) {
-			node.append(`var $rv = ServiceUtils.mapLiterals($response, ${resolvedType}::of);`, NL);
+			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${resolvedType}::of);`, NL);
 		} else {
-			node.append(`var $rv = ServiceUtils.mapLiteral($response, ${resolvedType}::of);`, NL);
+			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${resolvedType}::of);`, NL);
 		}
 	} else if (type.variant === 'enum') {
 		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
 		if (type.array) {
-			node.append(`var $rv = ServiceUtils.mapLiterals($response, ${resolvedType}::valueOf);`, NL);
+			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${resolvedType}::valueOf);`, NL);
 		} else {
-			node.append(`var $rv = ServiceUtils.mapLiteral($response, ${resolvedType}::valueOf);`, NL);
+			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${resolvedType}::valueOf);`, NL);
 		}
 	} else {
 		if (type.array) {
-			node.append(`var $rv = ServiceUtils.mapLiterals($response, ${toFirstUpper(o.name)}_Result$::valueOf);`, NL);
+			node.append(
+				`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${toFirstUpper(o.name)}_Result$::valueOf);`,
+				NL,
+			);
 		} else {
-			node.append(`var $rv = ServiceUtils.mapLiteral($response, ${toFirstUpper(o.name)}_Result$::valueOf);`, NL);
+			node.append(
+				`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${toFirstUpper(o.name)}_Result$::valueOf);`,
+				NL,
+			);
 		}
 	}
 	node.append(`this.lifecycleHook.onSuccess("${o.name}", $rv, this.client.createResponseAdaptable($response));`, NL);
@@ -881,7 +887,7 @@ function builtinMapExpression(type: MBuiltinType, array: boolean): string {
 		string: 'String',
 		'zoned-date-time': 'ZonedDateTime',
 	};
-	return `ServiceUtils.map${names[type]}${array ? 's' : ''}($response)`;
+	return `JDKHttpClientResponseUtils.map${names[type]}${array ? 's' : ''}($response)`;
 }
 
 function handleErrorResult(
@@ -903,7 +909,10 @@ function handleErrorResult(
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 			);
-			node.append(`var $errorData = ServiceUtils.mapObject($response, ${modelType}::of, ${apiType}.class);`, NL);
+			node.append(
+				`var $errorData = JDKHttpClientResponseUtils.mapObject($response, ${modelType}::of, ${apiType}.class);`,
+				NL,
+			);
 		} else if (isMBuiltinType(type)) {
 			node.append(`var $errorData = ${builtinMapExpression(type, false)};`, NL);
 		} else if (isMScalarType(type)) {
@@ -913,7 +922,7 @@ function handleErrorResult(
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 			);
-			node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::of);`, NL);
+			node.append(`var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ${apiType}::of);`, NL);
 		} else if (isMEnumType(type)) {
 			const apiType = toAPIType(
 				resolvedError.resolvedContentType,
@@ -921,7 +930,7 @@ function handleErrorResult(
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 			);
-			node.append(`var $errorData = ServiceUtils.mapLiteral($response, ${apiType}::valueOf);`, NL);
+			node.append(`var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ${apiType}::valueOf);`, NL);
 		} else {
 			throw new Error(`Unsupported error content type for operation ${o.name}`);
 		}
@@ -935,7 +944,7 @@ function handleErrorResult(
 		);
 	} else {
 		node.append(
-			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(ServiceUtils.toString($response));`,
+			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(JDKHttpClientResponseUtils.toString($response));`,
 			NL,
 		);
 	}

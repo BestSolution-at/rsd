@@ -60,11 +60,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, MyRange::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				this.lifecycleHook.onSuccess("get", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("get", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -98,11 +98,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, MyRange::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, MyRange::of);
 				this.lifecycleHook.onSuccess("list", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("list", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -130,7 +130,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(range, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -142,11 +142,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, MyRange::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				this.lifecycleHook.onSuccess("post", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("post", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -184,11 +184,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -214,7 +214,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(range == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLiteral(range, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(range == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(range, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -226,11 +226,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -256,7 +256,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(range, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -268,11 +268,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -310,11 +310,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -340,7 +340,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteral(range, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -352,11 +352,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -384,7 +384,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteralList(range, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -396,11 +396,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, MyRange::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, MyRange::of);
 				this.lifecycleHook.onSuccess("postList", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postList", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -438,11 +438,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postListOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -468,7 +468,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(range == null ? _JsonUtils.encodeEmptyValue($contentType) : ServiceUtils.ofLiteralList(range, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(range == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(range, false, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -480,11 +480,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postListOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -510,7 +510,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteralList(range, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -522,11 +522,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postListNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -564,11 +564,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postListOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -594,7 +594,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(ServiceUtils.ofLiteralList(range, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, true, $contentType));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -606,11 +606,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("postListOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -635,7 +635,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $path = "%s/api/scalarsubstitution/query".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("range", range);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -649,11 +649,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, MyRange::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				this.lifecycleHook.onSuccess("query", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("query", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -687,11 +687,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -714,7 +714,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $path = "%s/api/scalarsubstitution/queryOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			$queryParams.append("range", range);
 		}
@@ -730,11 +730,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -757,7 +757,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $path = "%s/api/scalarsubstitution/queryNull".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			$queryParams.append("range", range);
 		} else {
@@ -775,11 +775,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -813,11 +813,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -840,7 +840,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $path = "%s/api/scalarsubstitution/queryOptNull".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			$queryParams.append("range", range);
 		} else {
@@ -858,11 +858,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -887,7 +887,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $path = "%s/api/scalarsubstitution/queryList".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		range.stream().forEach($q -> {
 			$queryParams.append("range", $q);
 		});
@@ -903,11 +903,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, MyRange::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, MyRange::of);
 				this.lifecycleHook.onSuccess("queryList", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryList", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -941,11 +941,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryListOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -968,7 +968,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $path = "%s/api/scalarsubstitution/queryListOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			range.stream().forEach($q -> {
 				$queryParams.append("range", $q);
@@ -986,11 +986,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryListOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1013,7 +1013,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $path = "%s/api/scalarsubstitution/queryListNull".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			range.stream().forEach($q -> {
 				$queryParams.append("range", $q);
@@ -1033,11 +1033,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryListNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1071,11 +1071,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryListOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1098,7 +1098,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $path = "%s/api/scalarsubstitution/queryListOptNull".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			range.stream().forEach($q -> {
 				$queryParams.append("range", $q);
@@ -1118,11 +1118,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("queryListOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1148,8 +1148,8 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", ServiceUtils.encodeAsciiString(Objects.toString(range)));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("range", BaseUtils.encodeAsciiString(Objects.toString(range)));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1165,11 +1165,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, MyRange::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				this.lifecycleHook.onSuccess("header", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("header", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1203,11 +1203,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1231,8 +1231,8 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", ServiceUtils.encodeAsciiString(Objects.toString(range)));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("range", BaseUtils.encodeAsciiString(Objects.toString(range)));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1248,11 +1248,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1276,8 +1276,8 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", ServiceUtils.encodeAsciiString(Objects.toString(range)));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("range", BaseUtils.encodeAsciiString(Objects.toString(range)));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1293,11 +1293,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1331,11 +1331,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1359,8 +1359,8 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", ServiceUtils.encodeAsciiString(Objects.toString(range)));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("range", BaseUtils.encodeAsciiString(Objects.toString(range)));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1376,11 +1376,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1406,8 +1406,8 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", String.join(",", range.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1423,11 +1423,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, MyRange::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, MyRange::of);
 				this.lifecycleHook.onSuccess("headerList", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerList", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1461,11 +1461,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerListOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1490,9 +1490,9 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $headerParams = new HashMap<String, String>();
 		if (range != null) {
-			$headerParams.put("range", String.join(",", range.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1508,11 +1508,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerListOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1537,11 +1537,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $headerParams = new HashMap<String, String>();
 		if (range != null) {
-			$headerParams.put("range", String.join(",", range.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		} else {
 			$headerParams.put("range", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1557,11 +1557,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerListNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1595,11 +1595,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerListOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1624,11 +1624,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $headerParams = new HashMap<String, String>();
 		if (range != null) {
-			$headerParams.put("range", String.join(",", range.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		} else {
 			$headerParams.put("range", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1644,11 +1644,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("headerListOptNull", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1690,13 +1690,13 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.lifecycleHook.onSuccess("fail", null, this.client.createResponseAdaptable($response));
 				return;
 			} else if ($response.statusCode() == 400) {
-				var $errorData = ServiceUtils.mapLiteral($response, MyRange::of);
+				var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of fail failed");
 				var exception = new SampleErrorScalarSubException($message, $errorData);
 				this.lifecycleHook.onError("fail", exception, this.client.createResponseAdaptable($response));
 				throw exception;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("fail", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {

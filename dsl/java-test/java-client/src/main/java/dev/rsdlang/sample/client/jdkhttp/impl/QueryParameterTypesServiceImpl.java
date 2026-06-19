@@ -52,7 +52,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -66,11 +66,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapBoolean($response);
+				var $rv = JDKHttpClientResponseUtils.mapBoolean($response);
 				this.lifecycleHook.onSuccess("simpleBooleanQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -104,11 +104,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -131,7 +131,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -147,11 +147,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -174,7 +174,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -188,11 +188,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapShort($response);
+				var $rv = JDKHttpClientResponseUtils.mapShort($response);
 				this.lifecycleHook.onSuccess("simpleShortQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -226,11 +226,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -253,7 +253,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -269,11 +269,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -296,7 +296,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -310,11 +310,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapInt($response);
+				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("simpleIntQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -348,11 +348,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -375,7 +375,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -391,11 +391,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -418,7 +418,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -432,11 +432,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLong($response);
+				var $rv = JDKHttpClientResponseUtils.mapLong($response);
 				this.lifecycleHook.onSuccess("simpleLongQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -470,11 +470,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -497,7 +497,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -513,11 +513,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -540,7 +540,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -554,11 +554,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapFloat($response);
+				var $rv = JDKHttpClientResponseUtils.mapFloat($response);
 				this.lifecycleHook.onSuccess("simpleFloatQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -592,11 +592,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -619,7 +619,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -635,11 +635,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -662,7 +662,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -676,11 +676,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapDouble($response);
+				var $rv = JDKHttpClientResponseUtils.mapDouble($response);
 				this.lifecycleHook.onSuccess("simpleDoubleQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -714,11 +714,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -741,7 +741,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -757,11 +757,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoubleQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -786,7 +786,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -800,11 +800,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapString($response);
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("simpleStringQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -838,11 +838,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -865,7 +865,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -881,11 +881,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -910,7 +910,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -924,11 +924,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalDate($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalDate($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -962,11 +962,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -989,7 +989,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -1005,11 +1005,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1034,7 +1034,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -1048,11 +1048,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalDateTime($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalDateTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1086,11 +1086,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1113,7 +1113,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -1129,11 +1129,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1158,7 +1158,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalTimeQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -1172,11 +1172,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalTime($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalTimeQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1210,11 +1210,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1237,7 +1237,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleLocalTimeQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -1253,11 +1253,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1282,7 +1282,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleOffsetDateTimeQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -1296,11 +1296,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapOffsetDateTime($response);
+				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTime($response);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1334,11 +1334,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1361,7 +1361,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -1377,11 +1377,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1406,7 +1406,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -1420,11 +1420,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapZonedDateTime($response);
+				var $rv = JDKHttpClientResponseUtils.mapZonedDateTime($response);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1458,11 +1458,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1485,7 +1485,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -1501,11 +1501,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1530,7 +1530,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -1544,11 +1544,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("simpleScalarQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1582,11 +1582,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1609,7 +1609,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -1625,11 +1625,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1654,7 +1654,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("queryValue", queryValue);
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -1668,11 +1668,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1706,11 +1706,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1733,7 +1733,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
 			$queryParams.append("queryValue", queryValue);
 		}
@@ -1749,11 +1749,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1778,7 +1778,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/multiQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("valueA", valueA);
 		$queryParams.append("valueB", valueB);
 
@@ -1793,11 +1793,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapString($response);
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("multiQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1831,11 +1831,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapString($response);
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1858,7 +1858,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (valueA != null) {
 			$queryParams.append("valueA", valueA);
 		}
@@ -1874,11 +1874,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapString($response);
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1901,7 +1901,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (valueA != null) {
 			$queryParams.append("valueA", valueA);
 		}
@@ -1920,11 +1920,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapString($response);
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1949,8 +1949,8 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/recordQueryParam".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
-		$queryParams.append("queryValue", ServiceUtils.ofObject(queryValue, false, this.contentType(), SimpleRecord.Data.class));
+		var $queryParams = new BaseUtils.URLSearchParams();
+		$queryParams.append("queryValue", BaseUtils.ofObject(queryValue, false, this.contentType(), SimpleRecord.Data.class));
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try {
@@ -1964,11 +1964,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
+				var $rv = JDKHttpClientResponseUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("recordQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("recordQueryParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2002,11 +2002,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("recordQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2029,9 +2029,9 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $path = "%s/api/queryparametertypes/recordQueryParamOpt".formatted(
 				this.baseURI());
 
-		var $queryParams = new ServiceUtils.URLSearchParams();
+		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
-			$queryParams.append("queryValue", ServiceUtils.ofObject(queryValue, false, this.contentType(), SimpleRecord.Data.class));
+			$queryParams.append("queryValue", BaseUtils.ofObject(queryValue, false, this.contentType(), SimpleRecord.Data.class));
 		}
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -2046,11 +2046,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("recordQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {

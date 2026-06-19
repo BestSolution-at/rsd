@@ -56,7 +56,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -72,11 +72,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapBooleans($response);
+				var $rv = JDKHttpClientResponseUtils.mapBooleans($response);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -110,11 +110,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -141,7 +141,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -157,11 +157,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -190,7 +190,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -206,11 +206,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -244,11 +244,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -277,7 +277,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -293,11 +293,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listBooleanHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -322,7 +322,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -338,11 +338,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapShorts($response);
+				var $rv = JDKHttpClientResponseUtils.mapShorts($response);
 				this.lifecycleHook.onSuccess("listShortHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listShortHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -376,11 +376,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listShortHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -407,7 +407,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -423,11 +423,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listShortHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -456,7 +456,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -472,11 +472,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listShortHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -510,11 +510,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listShortHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -543,7 +543,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -559,11 +559,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listShortHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -588,7 +588,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -604,11 +604,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapInts($response);
+				var $rv = JDKHttpClientResponseUtils.mapInts($response);
 				this.lifecycleHook.onSuccess("listIntHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listIntHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -642,11 +642,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listIntHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -673,7 +673,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -689,11 +689,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listIntHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -722,7 +722,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -738,11 +738,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listIntHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -776,11 +776,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listIntHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -809,7 +809,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -825,11 +825,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listIntHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -854,7 +854,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -870,11 +870,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLongs($response);
+				var $rv = JDKHttpClientResponseUtils.mapLongs($response);
 				this.lifecycleHook.onSuccess("listLongHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLongHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -908,11 +908,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLongHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -939,7 +939,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -955,11 +955,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLongHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -988,7 +988,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1004,11 +1004,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLongHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1042,11 +1042,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLongHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1075,7 +1075,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1091,11 +1091,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLongHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1120,7 +1120,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1136,11 +1136,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapFloats($response);
+				var $rv = JDKHttpClientResponseUtils.mapFloats($response);
 				this.lifecycleHook.onSuccess("listFloatHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1174,11 +1174,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1205,7 +1205,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1221,11 +1221,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1254,7 +1254,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1270,11 +1270,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1308,11 +1308,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1341,7 +1341,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1357,11 +1357,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listFloatHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1386,7 +1386,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1402,11 +1402,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapDoubles($response);
+				var $rv = JDKHttpClientResponseUtils.mapDoubles($response);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1440,11 +1440,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1471,7 +1471,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1487,11 +1487,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1520,7 +1520,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1536,11 +1536,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1574,11 +1574,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1607,7 +1607,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1623,11 +1623,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listDoubleHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1653,8 +1653,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1670,11 +1670,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapStrings($response);
+				var $rv = JDKHttpClientResponseUtils.mapStrings($response);
 				this.lifecycleHook.onSuccess("listStringHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listStringHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1708,11 +1708,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listStringHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1737,9 +1737,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1755,11 +1755,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listStringHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1784,11 +1784,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1804,11 +1804,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listStringHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1842,11 +1842,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listStringHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1871,11 +1871,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1891,11 +1891,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listStringHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1922,7 +1922,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -1938,11 +1938,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalDates($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalDates($response);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -1976,11 +1976,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2007,7 +2007,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2023,11 +2023,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2056,7 +2056,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2072,11 +2072,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2110,11 +2110,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2143,7 +2143,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2159,11 +2159,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2190,7 +2190,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2206,11 +2206,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalDateTimes($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalDateTimes($response);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2244,11 +2244,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2275,7 +2275,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2291,11 +2291,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2324,7 +2324,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2340,11 +2340,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2378,11 +2378,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2411,7 +2411,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2427,11 +2427,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2458,7 +2458,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2474,11 +2474,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalTimes($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalTimes($response);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2512,11 +2512,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2543,7 +2543,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2559,11 +2559,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2592,7 +2592,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2608,11 +2608,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2646,11 +2646,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2679,7 +2679,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2695,11 +2695,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listLocalTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2726,7 +2726,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2742,11 +2742,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapOffsetDateTimes($response);
+				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTimes($response);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2780,11 +2780,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2811,7 +2811,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2827,11 +2827,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2860,7 +2860,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2876,11 +2876,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2914,11 +2914,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2947,7 +2947,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -2963,11 +2963,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listOffsetDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -2994,7 +2994,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3010,11 +3010,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapZonedDateTimes($response);
+				var $rv = JDKHttpClientResponseUtils.mapZonedDateTimes($response);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3048,11 +3048,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3079,7 +3079,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3095,11 +3095,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3128,7 +3128,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3144,11 +3144,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3182,11 +3182,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3215,7 +3215,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3231,11 +3231,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listZonedDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3261,8 +3261,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3278,11 +3278,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("listScalarHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3316,11 +3316,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3345,9 +3345,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3363,11 +3363,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3392,11 +3392,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3412,11 +3412,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3450,11 +3450,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3479,11 +3479,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3499,11 +3499,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listScalarHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3530,7 +3530,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3546,11 +3546,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, SampleEnum::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("listEnumHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3584,11 +3584,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3615,7 +3615,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3631,11 +3631,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3664,7 +3664,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3680,11 +3680,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3718,11 +3718,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3751,7 +3751,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3767,11 +3767,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3798,7 +3798,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3814,11 +3814,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, ListInlineEnumHeaderParam_Result$::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ListInlineEnumHeaderParam_Result$::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3852,11 +3852,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3883,7 +3883,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		if (headerValue != null) {
 			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3899,11 +3899,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3932,7 +3932,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -3948,11 +3948,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -3986,11 +3986,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4019,7 +4019,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4035,11 +4035,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listInlineEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4066,10 +4066,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
-		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4086,11 +4086,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapString($response);
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("listMultiHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4124,11 +4124,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4153,9 +4153,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4171,11 +4171,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4200,12 +4200,12 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		}
 		if (valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4221,11 +4221,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4250,15 +4250,15 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		}
 		if (valueB != null) {
 			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		}
 		if (valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4275,11 +4275,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4304,7 +4304,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4314,11 +4314,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", "null");
 		}
 		if (valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4335,11 +4335,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4373,11 +4373,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4402,11 +4402,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4422,11 +4422,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4451,7 +4451,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4460,7 +4460,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		} else {
 			$headerParams.put("valueB", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4476,11 +4476,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4505,7 +4505,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (valueA != null) {
-			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> ServiceUtils.encodeAsciiString($v)).toList()));
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		} else {
 			$headerParams.put("valueA", "null");
 		}
@@ -4515,11 +4515,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueB", "null");
 		}
 		if (valueC != null) {
-			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4536,11 +4536,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listMultiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4566,8 +4566,8 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4584,11 +4584,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
+				var $rv = JDKHttpClientResponseUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("listRecordHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordHeaderParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4622,11 +4622,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4651,9 +4651,9 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4670,11 +4670,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4699,11 +4699,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4720,11 +4720,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4758,11 +4758,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -4787,11 +4787,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> ServiceUtils.encodeBase64(ServiceUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
-		var $headers = ServiceUtils.toHeaders($headerParams);
+		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
 		try {
@@ -4808,11 +4808,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("listRecordHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
