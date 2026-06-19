@@ -15,8 +15,7 @@ import jakarta.json.JsonObjectBuilder;
 
 import dev.rsdlang.sample.server.model.SimpleRecord_Basic_List_Optional;
 
-public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl
-		implements SimpleRecord_Basic_List_Optional.Data {
+public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl implements SimpleRecord_Basic_List_Optional.Data {
 	SimpleRecord_Basic_List_OptionalDataImpl(JsonObject data) {
 		super(data);
 	}
@@ -183,8 +182,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl
 		}
 
 		@Override
-		public SimpleRecord_Basic_List_Optional.DataBuilder valueOffsetDateTime(
-				List<OffsetDateTime> valueOffsetDateTime) {
+		public SimpleRecord_Basic_List_Optional.DataBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
 			if (valueOffsetDateTime == null) {
 				return this;
 			}

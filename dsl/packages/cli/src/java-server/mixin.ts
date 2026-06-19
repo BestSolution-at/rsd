@@ -5,7 +5,7 @@ import { MResolvedMixinType } from '../model.js';
 import { generateMixinContent as generateMixinContent_ } from '../java-model-api/mixin.js';
 
 export function generateMixin(t: MResolvedMixinType, artifactConfig: JavaServerGeneratorConfig): Artifact {
-	const basePackageName = `${artifactConfig.rootPackageName}.service.model`;
+	const basePackageName = `${artifactConfig.rootPackageName}.model`;
 	const packageName = `${basePackageName}.mixins`;
 
 	const importCollector = new JavaImportsCollector(packageName);

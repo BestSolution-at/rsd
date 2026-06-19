@@ -10,11 +10,11 @@ import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import dev.rsdlang.sample.server.service.BuilderFactory;
-import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.ZoneId;
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 
 @ApplicationScoped
 public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTypesService {
@@ -36,21 +36,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	private final ListMultiQueryParamHandler listMultiQueryParamHandler;
 	private final ListRecordQueryParamHandler listRecordQueryParamHandler;
 
-	public ListQueryParameterTypesServiceImpl(ListBooleanQueryParamHandler listBooleanQueryParamHandler,
-			ListShortQueryParamHandler listShortQueryParamHandler, ListIntQueryParamHandler listIntQueryParamHandler,
-			ListLongQueryParamHandler listLongQueryParamHandler, ListFloatQueryParamHandler listFloatQueryParamHandler,
-			ListDoubleQueryParamHandler listDoubleQueryParamHandler,
-			ListStringQueryParamHandler listStringQueryParamHandler,
-			ListLocalDateQueryParamHandler listLocalDateQueryParamHandler,
-			ListLocalDateTimeQueryParamHandler listLocalDateTimeQueryParamHandler,
-			ListLocalTimeQueryParamHandler listLocalTimeQueryParamHandler,
-			ListOffsetDateTimeQueryParamHandler listOffsetDateTimeQueryParamHandler,
-			ListZonedDateTimeQueryParamHandler listZonedDateTimeQueryParamHandler,
-			ListScalarQueryParamHandler listScalarQueryParamHandler,
-			ListEnumQueryParamHandler listEnumQueryParamHandler,
-			ListInlineEnumQueryParamHandler listInlineEnumQueryParamHandler,
-			ListMultiQueryParamHandler listMultiQueryParamHandler,
-			ListRecordQueryParamHandler listRecordQueryParamHandler) {
+	public ListQueryParameterTypesServiceImpl(ListBooleanQueryParamHandler listBooleanQueryParamHandler, ListShortQueryParamHandler listShortQueryParamHandler, ListIntQueryParamHandler listIntQueryParamHandler, ListLongQueryParamHandler listLongQueryParamHandler, ListFloatQueryParamHandler listFloatQueryParamHandler, ListDoubleQueryParamHandler listDoubleQueryParamHandler, ListStringQueryParamHandler listStringQueryParamHandler, ListLocalDateQueryParamHandler listLocalDateQueryParamHandler, ListLocalDateTimeQueryParamHandler listLocalDateTimeQueryParamHandler, ListLocalTimeQueryParamHandler listLocalTimeQueryParamHandler, ListOffsetDateTimeQueryParamHandler listOffsetDateTimeQueryParamHandler, ListZonedDateTimeQueryParamHandler listZonedDateTimeQueryParamHandler, ListScalarQueryParamHandler listScalarQueryParamHandler, ListEnumQueryParamHandler listEnumQueryParamHandler, ListInlineEnumQueryParamHandler listInlineEnumQueryParamHandler, ListMultiQueryParamHandler listMultiQueryParamHandler, ListRecordQueryParamHandler listRecordQueryParamHandler) {
 		this.listBooleanQueryParamHandler = listBooleanQueryParamHandler;
 		this.listShortQueryParamHandler = listShortQueryParamHandler;
 		this.listIntQueryParamHandler = listIntQueryParamHandler;
@@ -141,14 +127,12 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	@Override
-	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(BuilderFactory _factory,
-			List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
+	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(BuilderFactory _factory, List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
 		return listInlineEnumQueryParamHandler.listInlineEnumQueryParam(_factory, queryValue);
 	}
 
 	@Override
-	public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
-			List<SimpleRecord.Data> valueC) {
+	public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		return listMultiQueryParamHandler.listMultiQueryParam(_factory, valueA, valueB, valueC);
 	}
 
@@ -198,8 +182,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public interface ListOffsetDateTimeQueryParamHandler {
-		public List<OffsetDateTime> listOffsetDateTimeQueryParam(BuilderFactory _factory,
-				List<OffsetDateTime> queryValue);
+		public List<OffsetDateTime> listOffsetDateTimeQueryParam(BuilderFactory _factory, List<OffsetDateTime> queryValue);
 	}
 
 	public interface ListZonedDateTimeQueryParamHandler {
@@ -215,18 +198,15 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public interface ListInlineEnumQueryParamHandler {
-		public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(BuilderFactory _factory,
-				List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
+		public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(BuilderFactory _factory, List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
 	}
 
 	public interface ListMultiQueryParamHandler {
-		public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
-				List<SimpleRecord.Data> valueC);
+		public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
 	}
 
 	public interface ListRecordQueryParamHandler {
-		public List<SimpleRecord.Data> listRecordQueryParam(BuilderFactory _factory,
-				List<SimpleRecord.Data> queryValue);
+		public List<SimpleRecord.Data> listRecordQueryParam(BuilderFactory _factory, List<SimpleRecord.Data> queryValue);
 	}
 
 }

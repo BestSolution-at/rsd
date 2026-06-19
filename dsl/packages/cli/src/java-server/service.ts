@@ -131,14 +131,14 @@ function toParameter(
 	let type = computeParameterAPIType(
 		parameter,
 		artifactConfig.nativeTypeSubstitues,
-		`${artifactConfig.rootPackageName}.service.model`,
+		`${artifactConfig.rootPackageName}.model`,
 		fqn,
 		false,
 		methodName,
 	);
 
 	if (parameter.optional && parameter.nullable) {
-		type = fqn(`${artifactConfig.rootPackageName}.service.model._Base`) + `.Nillable<${type}>`;
+		type = fqn(`${artifactConfig.rootPackageName}.model._Base`) + `.Nillable<${type}>`;
 	} else if (parameter.optional || parameter.nullable) {
 		if (!parameter.array && parameter.type === 'int') {
 			type = fqn('java.util.OptionalInt');
@@ -160,7 +160,7 @@ function toResultType(
 	fqn: (type: string) => string,
 	methodName: string,
 ) {
-	const dtoPkg = `${artifactConfig.rootPackageName}.service.model`;
+	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
 	if (type === undefined) {
 		return 'void';
 	}

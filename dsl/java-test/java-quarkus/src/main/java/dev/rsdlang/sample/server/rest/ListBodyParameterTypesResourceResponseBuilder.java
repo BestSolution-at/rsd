@@ -13,549 +13,354 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
-import dev.rsdlang.sample.server.service.ListBodyParameterTypesService;
 import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.ZoneId;
+import dev.rsdlang.sample.server.service.ListBodyParameterTypesService;
 
 @Singleton
 public class ListBodyParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listBooleanBodyParam(List<Boolean> $result, String $contentType, List<Boolean> bodyBoolean) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listBooleanBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<Boolean>> bodyBoolean) {
+	public ResponseBuilder listBooleanBodyParamOpt(NilResult $result, String $contentType, Optional<List<Boolean>> bodyBoolean) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listBooleanBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<Boolean>> bodyBoolean) {
+	public ResponseBuilder listBooleanBodyParamNil(NilResult $result, String $contentType, Optional<List<Boolean>> bodyBoolean) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listBooleanBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<Boolean>> bodyBoolean) {
+	public ResponseBuilder listBooleanBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Boolean>> bodyBoolean) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listShortBodyParam(List<Short> $result, String $contentType, List<Short> bodyShort) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listShortBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<Short>> bodyShort) {
+	public ResponseBuilder listShortBodyParamOpt(NilResult $result, String $contentType, Optional<List<Short>> bodyShort) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listShortBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<Short>> bodyShort) {
+	public ResponseBuilder listShortBodyParamNil(NilResult $result, String $contentType, Optional<List<Short>> bodyShort) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listShortBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<Short>> bodyShort) {
+	public ResponseBuilder listShortBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Short>> bodyShort) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listIntBodyParam(List<Integer> $result, String $contentType, List<Integer> bodyInt) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listIntBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<Integer>> bodyInt) {
+	public ResponseBuilder listIntBodyParamOpt(NilResult $result, String $contentType, Optional<List<Integer>> bodyInt) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listIntBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<Integer>> bodyInt) {
+	public ResponseBuilder listIntBodyParamNil(NilResult $result, String $contentType, Optional<List<Integer>> bodyInt) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listIntBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<Integer>> bodyInt) {
+	public ResponseBuilder listIntBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Integer>> bodyInt) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLongBodyParam(List<Long> $result, String $contentType, List<Long> bodyLong) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLongBodyParamOpt(NilResult $result, String $contentType, Optional<List<Long>> bodyLong) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLongBodyParamNil(NilResult $result, String $contentType, Optional<List<Long>> bodyLong) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLongBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<Long>> bodyLong) {
+	public ResponseBuilder listLongBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Long>> bodyLong) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listFloatBodyParam(List<Float> $result, String $contentType, List<Float> bodyFloat) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listFloatBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<Float>> bodyFloat) {
+	public ResponseBuilder listFloatBodyParamOpt(NilResult $result, String $contentType, Optional<List<Float>> bodyFloat) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listFloatBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<Float>> bodyFloat) {
+	public ResponseBuilder listFloatBodyParamNil(NilResult $result, String $contentType, Optional<List<Float>> bodyFloat) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listFloatBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<Float>> bodyFloat) {
+	public ResponseBuilder listFloatBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Float>> bodyFloat) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listDoubleBodyParam(List<Double> $result, String $contentType, List<Double> bodyDouble) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listDoubleBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<Double>> bodyDouble) {
+	public ResponseBuilder listDoubleBodyParamOpt(NilResult $result, String $contentType, Optional<List<Double>> bodyDouble) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listDoubleBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<Double>> bodyDouble) {
+	public ResponseBuilder listDoubleBodyParamNil(NilResult $result, String $contentType, Optional<List<Double>> bodyDouble) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listDoubleBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<Double>> bodyDouble) {
+	public ResponseBuilder listDoubleBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Double>> bodyDouble) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listStringBodyParam(List<String> $result, String $contentType, List<String> bodyString) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listStringBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<String>> bodyString) {
+	public ResponseBuilder listStringBodyParamOpt(NilResult $result, String $contentType, Optional<List<String>> bodyString) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listStringBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<String>> bodyString) {
+	public ResponseBuilder listStringBodyParamNil(NilResult $result, String $contentType, Optional<List<String>> bodyString) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listStringBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<String>> bodyString) {
+	public ResponseBuilder listStringBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<String>> bodyString) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalDateBodyParam(List<LocalDate> $result, String $contentType,
-			List<LocalDate> bodyLocalDate) {
+	public ResponseBuilder listLocalDateBodyParam(List<LocalDate> $result, String $contentType, List<LocalDate> bodyLocalDate) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalDateBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<LocalDate>> bodyLocalDate) {
+	public ResponseBuilder listLocalDateBodyParamOpt(NilResult $result, String $contentType, Optional<List<LocalDate>> bodyLocalDate) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalDateBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<LocalDate>> bodyLocalDate) {
+	public ResponseBuilder listLocalDateBodyParamNil(NilResult $result, String $contentType, Optional<List<LocalDate>> bodyLocalDate) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalDateBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<LocalDate>> bodyLocalDate) {
+	public ResponseBuilder listLocalDateBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalDate>> bodyLocalDate) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalDateTimeBodyParam(List<LocalDateTime> $result, String $contentType,
-			List<LocalDateTime> bodyLocalDateTime) {
+	public ResponseBuilder listLocalDateTimeBodyParam(List<LocalDateTime> $result, String $contentType, List<LocalDateTime> bodyLocalDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalDateTimeBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<LocalDateTime>> bodyLocalDateTime) {
+	public ResponseBuilder listLocalDateTimeBodyParamOpt(NilResult $result, String $contentType, Optional<List<LocalDateTime>> bodyLocalDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalDateTimeBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<LocalDateTime>> bodyLocalDateTime) {
+	public ResponseBuilder listLocalDateTimeBodyParamNil(NilResult $result, String $contentType, Optional<List<LocalDateTime>> bodyLocalDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalDateTimeBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
+	public ResponseBuilder listLocalDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalTimeBodyParam(List<LocalTime> $result, String $contentType,
-			List<LocalTime> bodyLocalTime) {
+	public ResponseBuilder listLocalTimeBodyParam(List<LocalTime> $result, String $contentType, List<LocalTime> bodyLocalTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalTimeBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<LocalTime>> bodyLocalTime) {
+	public ResponseBuilder listLocalTimeBodyParamOpt(NilResult $result, String $contentType, Optional<List<LocalTime>> bodyLocalTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalTimeBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<LocalTime>> bodyLocalTime) {
+	public ResponseBuilder listLocalTimeBodyParamNil(NilResult $result, String $contentType, Optional<List<LocalTime>> bodyLocalTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listLocalTimeBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<LocalTime>> bodyLocalTime) {
+	public ResponseBuilder listLocalTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalTime>> bodyLocalTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listOffsetDateTimeBodyParam(List<OffsetDateTime> $result, String $contentType,
-			List<OffsetDateTime> bodyOffsetDateTime) {
+	public ResponseBuilder listOffsetDateTimeBodyParam(List<OffsetDateTime> $result, String $contentType, List<OffsetDateTime> bodyOffsetDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listOffsetDateTimeBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
+	public ResponseBuilder listOffsetDateTimeBodyParamOpt(NilResult $result, String $contentType, Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listOffsetDateTimeBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
+	public ResponseBuilder listOffsetDateTimeBodyParamNil(NilResult $result, String $contentType, Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listOffsetDateTimeBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime) {
+	public ResponseBuilder listOffsetDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listZonedDateTimeBodyParam(List<ZonedDateTime> $result, String $contentType,
-			List<ZonedDateTime> bodyZonedDateTime) {
+	public ResponseBuilder listZonedDateTimeBodyParam(List<ZonedDateTime> $result, String $contentType, List<ZonedDateTime> bodyZonedDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listZonedDateTimeBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<ZonedDateTime>> bodyZonedDateTime) {
+	public ResponseBuilder listZonedDateTimeBodyParamOpt(NilResult $result, String $contentType, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listZonedDateTimeBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<ZonedDateTime>> bodyZonedDateTime) {
+	public ResponseBuilder listZonedDateTimeBodyParamNil(NilResult $result, String $contentType, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listZonedDateTimeBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime) {
+	public ResponseBuilder listZonedDateTimeBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listScalarBodyParam(List<ZoneId> $result, String $contentType, List<ZoneId> bodyScalar) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listScalarBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<ZoneId>> bodyScalar) {
+	public ResponseBuilder listScalarBodyParamOpt(NilResult $result, String $contentType, Optional<List<ZoneId>> bodyScalar) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listScalarBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<ZoneId>> bodyScalar) {
+	public ResponseBuilder listScalarBodyParamNil(NilResult $result, String $contentType, Optional<List<ZoneId>> bodyScalar) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listScalarBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<ZoneId>> bodyScalar) {
+	public ResponseBuilder listScalarBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ZoneId>> bodyScalar) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listEnumBodyParam(List<SampleEnum> $result, String $contentType, List<SampleEnum> bodyEnum) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listEnumBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<SampleEnum>> bodyEnum) {
+	public ResponseBuilder listEnumBodyParamOpt(NilResult $result, String $contentType, Optional<List<SampleEnum>> bodyEnum) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listEnumBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<SampleEnum>> bodyEnum) {
+	public ResponseBuilder listEnumBodyParamNil(NilResult $result, String $contentType, Optional<List<SampleEnum>> bodyEnum) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listEnumBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<SampleEnum>> bodyEnum) {
+	public ResponseBuilder listEnumBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<SampleEnum>> bodyEnum) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listInlineEnumBodyParam(
-			List<ListBodyParameterTypesService.ListInlineEnumBodyParam_Result$> $result, String $contentType,
-			List<ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
+	public ResponseBuilder listInlineEnumBodyParam(List<ListBodyParameterTypesService.ListInlineEnumBodyParam_Result$> $result, String $contentType, List<ListBodyParameterTypesService.ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listInlineEnumBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
+	public ResponseBuilder listInlineEnumBodyParamOpt(NilResult $result, String $contentType, Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listInlineEnumBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
+	public ResponseBuilder listInlineEnumBodyParamNil(NilResult $result, String $contentType, Optional<List<ListBodyParameterTypesService.ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listInlineEnumBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
+	public ResponseBuilder listInlineEnumBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ListBodyParameterTypesService.ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listMultiBodyParam(String $result, String $contentType, List<String> valueA,
-			List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public ResponseBuilder listMultiBodyParam(String $result, String $contentType, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listMultiBodyParamOpt(List<NilResult> $result, String $contentType,
-			Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamOpt(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listMultiBodyParamNil(List<NilResult> $result, String $contentType,
-			Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamNil(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listMultiBodyParamOptNil(List<NilResult> $result, String $contentType,
-			_Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB,
-			_Base.Nillable<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamOptNil(List<NilResult> $result, String $contentType, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listRecordBodyParam(List<SimpleRecord.Data> $result, String $contentType,
-			List<SimpleRecord.Data> bodyRecord) {
+	public ResponseBuilder listRecordBodyParam(List<SimpleRecord.Data> $result, String $contentType, List<SimpleRecord.Data> bodyRecord) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listRecordBodyParamOpt(NilResult $result, String $contentType,
-			Optional<List<SimpleRecord.Data>> bodyRecord) {
+	public ResponseBuilder listRecordBodyParamOpt(NilResult $result, String $contentType, Optional<List<SimpleRecord.Data>> bodyRecord) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listRecordBodyParamNil(NilResult $result, String $contentType,
-			Optional<List<SimpleRecord.Data>> bodyRecord) {
+	public ResponseBuilder listRecordBodyParamNil(NilResult $result, String $contentType, Optional<List<SimpleRecord.Data>> bodyRecord) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listRecordBodyParamOptNil(NilResult $result, String $contentType,
-			_Base.Nillable<List<SimpleRecord.Data>> bodyRecord) {
+	public ResponseBuilder listRecordBodyParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<SimpleRecord.Data>> bodyRecord) {
 		return Response.status(200)
-				.type($contentType)
-				.entity(_RestUtils.toStreamOutput(
-						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
-	}
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 }

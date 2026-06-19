@@ -6,10 +6,10 @@ import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import dev.rsdlang.sample.server.MyRange;
-import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.MyRange;
+import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.SampleErrorScalarSubException;
 import dev.rsdlang.sample.server.service.ScalarSubstition_ServiceService;
 
@@ -43,18 +43,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 	private final HeaderListOptNullHandler headerListOptNullHandler;
 	private final FailHandler failHandler;
 
-	public ScalarSubstition_ServiceServiceImpl(GetHandler getHandler, ListHandler listHandler, PostHandler postHandler,
-			PostOptHandler postOptHandler, PostNullHandler postNullHandler, PostOptNullHandler postOptNullHandler,
-			PostListHandler postListHandler, PostListOptHandler postListOptHandler,
-			PostListNullHandler postListNullHandler, PostListOptNullHandler postListOptNullHandler,
-			QueryHandler queryHandler, QueryOptHandler queryOptHandler, QueryNullHandler queryNullHandler,
-			QueryOptNullHandler queryOptNullHandler, QueryListHandler queryListHandler,
-			QueryListOptHandler queryListOptHandler, QueryListNullHandler queryListNullHandler,
-			QueryListOptNullHandler queryListOptNullHandler, HeaderHandler headerHandler,
-			HeaderOptHandler headerOptHandler, HeaderNullHandler headerNullHandler,
-			HeaderOptNullHandler headerOptNullHandler, HeaderListHandler headerListHandler,
-			HeaderListOptHandler headerListOptHandler, HeaderListNullHandler headerListNullHandler,
-			HeaderListOptNullHandler headerListOptNullHandler, FailHandler failHandler) {
+	public ScalarSubstition_ServiceServiceImpl(GetHandler getHandler, ListHandler listHandler, PostHandler postHandler, PostOptHandler postOptHandler, PostNullHandler postNullHandler, PostOptNullHandler postOptNullHandler, PostListHandler postListHandler, PostListOptHandler postListOptHandler, PostListNullHandler postListNullHandler, PostListOptNullHandler postListOptNullHandler, QueryHandler queryHandler, QueryOptHandler queryOptHandler, QueryNullHandler queryNullHandler, QueryOptNullHandler queryOptNullHandler, QueryListHandler queryListHandler, QueryListOptHandler queryListOptHandler, QueryListNullHandler queryListNullHandler, QueryListOptNullHandler queryListOptNullHandler, HeaderHandler headerHandler, HeaderOptHandler headerOptHandler, HeaderNullHandler headerNullHandler, HeaderOptNullHandler headerOptNullHandler, HeaderListHandler headerListHandler, HeaderListOptHandler headerListOptHandler, HeaderListNullHandler headerListNullHandler, HeaderListOptNullHandler headerListOptNullHandler, FailHandler failHandler) {
 		this.getHandler = getHandler;
 		this.listHandler = listHandler;
 		this.postHandler = postHandler;

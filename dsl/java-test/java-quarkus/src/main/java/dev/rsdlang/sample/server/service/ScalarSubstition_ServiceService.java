@@ -4,9 +4,9 @@ package dev.rsdlang.sample.server.service;
 import java.util.List;
 import java.util.Optional;
 
-import dev.rsdlang.sample.server.MyRange;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.MyRange;
 
 public interface ScalarSubstition_ServiceService {
 	public MyRange get(BuilderFactory _factory);

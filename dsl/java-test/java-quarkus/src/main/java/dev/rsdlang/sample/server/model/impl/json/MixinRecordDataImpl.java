@@ -90,6 +90,7 @@ public class MixinRecordDataImpl extends _BaseDataImpl implements MixinRecord.Da
 			return this;
 		}
 
+
 		public <T extends Union.DataBuilder> DataBuilder withMyUnion(Class<T> clazz, Function<T, Union.Data> block) {
 			Union.DataBuilder b;
 			if (clazz == UnionA.DataBuilder.class) {
@@ -111,8 +112,8 @@ public class MixinRecordDataImpl extends _BaseDataImpl implements MixinRecord.Da
 			return this;
 		}
 
-		public <T extends SimpleRecord.DataBuilder> DataBuilder withMyRecord(Class<T> clazz,
-				Function<T, SimpleRecord.Data> block) {
+
+		public <T extends SimpleRecord.DataBuilder> DataBuilder withMyRecord(Class<T> clazz, Function<T, SimpleRecord.Data> block) {
 			var b = SimpleRecordDataImpl.builder();
 			return myRecord(block.apply(clazz.cast(b)));
 		}

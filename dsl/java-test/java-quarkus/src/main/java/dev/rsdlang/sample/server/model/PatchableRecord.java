@@ -4,8 +4,7 @@ package dev.rsdlang.sample.server.model;
 import java.util.Optional;
 
 public interface PatchableRecord {
-	public interface Builder {
-	}
+	public interface Builder {}
 
 	public interface Data extends _Base.BaseData, PatchableRecord {
 		public String key();

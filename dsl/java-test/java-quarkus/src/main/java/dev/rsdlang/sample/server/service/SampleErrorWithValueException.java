@@ -10,7 +10,6 @@ public class SampleErrorWithValueException extends RSDException.RSDStructuredDat
 		super(Type.SampleErrorWithValue, message);
 		this.data = data;
 	}
-
 	public ErrorData.Data data() {
 		return this.data;
 	}

@@ -9,10 +9,10 @@ import java.time.ZonedDateTime;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.ZoneId;
+import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.SampleError2Exception;
 import dev.rsdlang.sample.server.service.SampleErrorBooleanException;
 import dev.rsdlang.sample.server.service.SampleErrorEnumException;
@@ -51,22 +51,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	private final GetSimpleErrorScalarHandler getSimpleErrorScalarHandler;
 	private final GetSimpleErrorUnionHandler getSimpleErrorUnionHandler;
 
-	public SampleServiceServiceImpl(GetBooleanHandler getBooleanHandler, GetShortHandler getShortHandler,
-			GetIntHandler getIntHandler, GetLongHandler getLongHandler, GetFloatHandler getFloatHandler,
-			GetDoubleHandler getDoubleHandler, GetStringHandler getStringHandler,
-			GetLocalDateHandler getLocalDateHandler, GetLocalDateTimeHandler getLocalDateTimeHandler,
-			GetLocalTimeHandler getLocalTimeHandler, GetOffsetDateTimeHandler getOffsetDateTimeHandler,
-			GetZonedDateTimeHandler getZonedDateTimeHandler, GetScalarHandler getScalarHandler,
-			GetEnumHandler getEnumHandler, VoidOperationHandler voidOperationHandler,
-			ErrorOperationHandler errorOperationHandler, MultiErrorOperationHandler multiErrorOperationHandler,
-			GetSimpleRecordHandler getSimpleRecordHandler,
-			GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler,
-			GetSimpleErrorWithValueHandler getSimpleErrorWithValueHandler,
-			GetSimpleErrorIntHandler getSimpleErrorIntHandler,
-			GetSimpleErrorBooleanHandler getSimpleErrorBooleanHandler,
-			GetSimpleErrorEnumHandler getSimpleErrorEnumHandler,
-			GetSimpleErrorScalarHandler getSimpleErrorScalarHandler,
-			GetSimpleErrorUnionHandler getSimpleErrorUnionHandler) {
+	public SampleServiceServiceImpl(GetBooleanHandler getBooleanHandler, GetShortHandler getShortHandler, GetIntHandler getIntHandler, GetLongHandler getLongHandler, GetFloatHandler getFloatHandler, GetDoubleHandler getDoubleHandler, GetStringHandler getStringHandler, GetLocalDateHandler getLocalDateHandler, GetLocalDateTimeHandler getLocalDateTimeHandler, GetLocalTimeHandler getLocalTimeHandler, GetOffsetDateTimeHandler getOffsetDateTimeHandler, GetZonedDateTimeHandler getZonedDateTimeHandler, GetScalarHandler getScalarHandler, GetEnumHandler getEnumHandler, VoidOperationHandler voidOperationHandler, ErrorOperationHandler errorOperationHandler, MultiErrorOperationHandler multiErrorOperationHandler, GetSimpleRecordHandler getSimpleRecordHandler, GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler, GetSimpleErrorWithValueHandler getSimpleErrorWithValueHandler, GetSimpleErrorIntHandler getSimpleErrorIntHandler, GetSimpleErrorBooleanHandler getSimpleErrorBooleanHandler, GetSimpleErrorEnumHandler getSimpleErrorEnumHandler, GetSimpleErrorScalarHandler getSimpleErrorScalarHandler, GetSimpleErrorUnionHandler getSimpleErrorUnionHandler) {
 		this.getBooleanHandler = getBooleanHandler;
 		this.getShortHandler = getShortHandler;
 		this.getIntHandler = getIntHandler;

@@ -83,42 +83,31 @@ public interface _Base {
 		public boolean isNull();
 
 		/**
-		 * Returns the contained value if it is defined, or the provided default value
-		 * if it is undefined
-		 * or null. This allows for easily retrieving a value from a Nillable while
-		 * providing a fallback
+		 * Returns the contained value if it is defined, or the provided default value if it is undefined
+		 * or null. This allows for easily retrieving a value from a Nillable while providing a fallback 
 		 * in case it is not defined or explicitly null.
 		 * 
 		 * @param defaultValue the value to return if this Nillable is undefined or null
-		 * @return the contained value if defined, or the default value if undefined or
-		 *         null
+		 * @return the contained value if defined, or the default value if undefined or null
 		 */
 		public T orElse(T defaultValue);
 
 		/**
-		 * Returns the contained value if it is defined, or the result of the provided
-		 * supplier function if
-		 * it is undefined or null. This allows for lazily providing a default value
-		 * that is only computed if needed,
-		 * which can be useful for expensive computations or when the default value
-		 * depends on other factors.
+		 * Returns the contained value if it is defined, or the result of the provided supplier function if 
+		 * it is undefined or null. This allows for lazily providing a default value that is only computed if needed, 
+		 * which can be useful for expensive computations or when the default value depends on other factors.
 		 * 
-		 * @param defaultValueSupplier the function to compute the default value if this
-		 *                             Nillable is undefined or null
-		 * @return the contained value if defined, or the result of the supplier
-		 *         function if undefined or null
+		 * @param defaultValueSupplier the function to compute the default value if this Nillable is undefined or null
+		 * @return the contained value if defined, or the result of the supplier function if undefined or null
 		 */
 		public T orElseGet(Supplier<T> defaultValueSupplier);
 
 		/**
-		 * Converts this Nillable to an Optional, where undefined and null states are
-		 * both treated as empty.
-		 * This allows for interoperability with APIs that use Optional to represent
-		 * optional values, while still
+		 * Converts this Nillable to an Optional, where undefined and null states are both treated as empty.
+		 * This allows for interoperability with APIs that use Optional to represent optional values, while still
 		 * preserving the semantics of undefined and null in the original Nillable.
 		 * 
-		 * @return an Optional containing the value if defined, or empty if undefined or
-		 *         null
+		 * @return an Optional containing the value if defined, or empty if undefined or null
 		 */
 		public Optional<T> toOptional();
 	}

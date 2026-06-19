@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PatchableRecordWithUnion {
-	public interface Builder {
-	}
+	public interface Builder {}
 
 	public interface Data extends _Base.BaseData, PatchableRecordWithUnion {
 		public String key();
@@ -39,23 +38,19 @@ public interface PatchableRecordWithUnion {
 
 		public DataBuilder value(PatchableUnion.Data value);
 
-		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue(Class<T> clazz,
-				Function<T, PatchableUnion.Data> block);
+		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue(Class<T> clazz, Function<T, PatchableUnion.Data> block);
 
 		public DataBuilder value_Null(PatchableUnion.Data value_Null);
 
-		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Null(Class<T> clazz,
-				Function<T, PatchableUnion.Data> block);
+		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Null(Class<T> clazz, Function<T, PatchableUnion.Data> block);
 
 		public DataBuilder value_Opt(PatchableUnion.Data value_Opt);
 
-		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz,
-				Function<T, PatchableUnion.Data> block);
+		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableUnion.Data> block);
 
 		public DataBuilder value_Opt_Null(PatchableUnion.Data value_Opt_Null);
 
-		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz,
-				Function<T, PatchableUnion.Data> block);
+		public <T extends PatchableUnion.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz, Function<T, PatchableUnion.Data> block);
 
 		public DataBuilder list(List<PatchableUnion.Data> list);
 
@@ -74,8 +69,7 @@ public interface PatchableRecordWithUnion {
 		public interface ListSetChange extends ListChange, _Base.ListReplace<PatchableUnion.Data> {
 		}
 
-		public interface ListMergeChange
-				extends ListChange, _Base.ListMergeAddRemoveUpdate<PatchableUnion.Data, PatchableUnion.Patch, String> {
+		public interface ListMergeChange extends ListChange, _Base.ListMergeAddRemoveUpdate<PatchableUnion.Data, PatchableUnion.Patch, String> {
 		}
 
 		public interface List_NullChange {
@@ -84,8 +78,7 @@ public interface PatchableRecordWithUnion {
 		public interface List_NullSetChange extends List_NullChange, _Base.ListReplace<PatchableUnion.Data> {
 		}
 
-		public interface List_NullMergeChange extends List_NullChange,
-				_Base.ListMergeAddRemoveUpdate<PatchableUnion.Data, PatchableUnion.Patch, String> {
+		public interface List_NullMergeChange extends List_NullChange, _Base.ListMergeAddRemoveUpdate<PatchableUnion.Data, PatchableUnion.Patch, String> {
 		}
 
 		public interface List_OptChange {
@@ -94,8 +87,7 @@ public interface PatchableRecordWithUnion {
 		public interface List_OptSetChange extends List_OptChange, _Base.ListReplace<PatchableUnion.Data> {
 		}
 
-		public interface List_OptMergeChange extends List_OptChange,
-				_Base.ListMergeAddRemoveUpdate<PatchableUnion.Data, PatchableUnion.Patch, String> {
+		public interface List_OptMergeChange extends List_OptChange, _Base.ListMergeAddRemoveUpdate<PatchableUnion.Data, PatchableUnion.Patch, String> {
 		}
 
 		public interface List_Opt_NullChange {
@@ -104,8 +96,7 @@ public interface PatchableRecordWithUnion {
 		public interface List_Opt_NullSetChange extends List_Opt_NullChange, _Base.ListReplace<PatchableUnion.Data> {
 		}
 
-		public interface List_Opt_NullMergeChange extends List_Opt_NullChange,
-				_Base.ListMergeAddRemoveUpdate<PatchableUnion.Data, PatchableUnion.Patch, String> {
+		public interface List_Opt_NullMergeChange extends List_Opt_NullChange, _Base.ListMergeAddRemoveUpdate<PatchableUnion.Data, PatchableUnion.Patch, String> {
 		}
 
 		public String key();
@@ -136,51 +127,31 @@ public interface PatchableRecordWithUnion {
 		public PatchBuilder version(String version);
 
 		public PatchBuilder value(PatchableUnion value);
-
-		public <T extends PatchableUnion.Builder> PatchBuilder withValue(Class<T> clazz,
-				Function<T, PatchableUnion> block);
+		public <T extends PatchableUnion.Builder> PatchBuilder withValue(Class<T> clazz, Function<T, PatchableUnion> block);
 
 		public PatchBuilder value_Null(PatchableUnion value_Null);
-
-		public <T extends PatchableUnion.Builder> PatchBuilder withValue_Null(Class<T> clazz,
-				Function<T, PatchableUnion> block);
+		public <T extends PatchableUnion.Builder> PatchBuilder withValue_Null(Class<T> clazz, Function<T, PatchableUnion> block);
 
 		public PatchBuilder value_Opt(PatchableUnion value_Opt);
-
-		public <T extends PatchableUnion.Builder> PatchBuilder withValue_Opt(Class<T> clazz,
-				Function<T, PatchableUnion> block);
+		public <T extends PatchableUnion.Builder> PatchBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableUnion> block);
 
 		public PatchBuilder value_Opt_Null(PatchableUnion value_Opt_Null);
-
-		public <T extends PatchableUnion.Builder> PatchBuilder withValue_Opt_Null(Class<T> clazz,
-				Function<T, PatchableUnion> block);
+		public <T extends PatchableUnion.Builder> PatchBuilder withValue_Opt_Null(Class<T> clazz, Function<T, PatchableUnion> block);
 
 		public PatchBuilder list(Patch.ListChange list);
-
-		public PatchBuilder list(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates,
-				List<String> removals);
-
+		public PatchBuilder list(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates, List<String> removals);
 		public PatchBuilder list(List<PatchableUnion.Data> elements);
 
 		public PatchBuilder list_Null(Patch.List_NullChange list_Null);
-
-		public PatchBuilder list_Null(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates,
-				List<String> removals);
-
+		public PatchBuilder list_Null(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates, List<String> removals);
 		public PatchBuilder list_Null(List<PatchableUnion.Data> elements);
 
 		public PatchBuilder list_Opt(Patch.List_OptChange list_Opt);
-
-		public PatchBuilder list_Opt(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates,
-				List<String> removals);
-
+		public PatchBuilder list_Opt(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates, List<String> removals);
 		public PatchBuilder list_Opt(List<PatchableUnion.Data> elements);
 
 		public PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange list_Opt_Null);
-
-		public PatchBuilder list_Opt_Null(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates,
-				List<String> removals);
-
+		public PatchBuilder list_Opt_Null(List<PatchableUnion.Data> additions, List<PatchableUnion.Patch> updates, List<String> removals);
 		public PatchBuilder list_Opt_Null(List<PatchableUnion.Data> elements);
 
 	}

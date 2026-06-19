@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PatchableEnumRecord {
-	public interface Builder {
-	}
+	public interface Builder {}
 
 	public interface Data extends _Base.BaseData, PatchableEnumRecord {
 		public String key();
@@ -70,8 +69,7 @@ public interface PatchableEnumRecord {
 		public interface List_NullSetChange extends List_NullChange, _Base.ListReplace<SampleEnum> {
 		}
 
-		public interface List_NullMergeChange
-				extends List_NullChange, _Base.ListMergeAddRemove<SampleEnum, SampleEnum> {
+		public interface List_NullMergeChange extends List_NullChange, _Base.ListMergeAddRemove<SampleEnum, SampleEnum> {
 		}
 
 		public interface List_OptChange {
@@ -89,8 +87,7 @@ public interface PatchableEnumRecord {
 		public interface List_Opt_NullSetChange extends List_Opt_NullChange, _Base.ListReplace<SampleEnum> {
 		}
 
-		public interface List_Opt_NullMergeChange
-				extends List_Opt_NullChange, _Base.ListMergeAddRemove<SampleEnum, SampleEnum> {
+		public interface List_Opt_NullMergeChange extends List_Opt_NullChange, _Base.ListMergeAddRemove<SampleEnum, SampleEnum> {
 		}
 
 		public String key();
@@ -129,27 +126,19 @@ public interface PatchableEnumRecord {
 		public PatchBuilder value_Opt_Null(SampleEnum value_Opt_Null);
 
 		public PatchBuilder list(Patch.ListChange list);
-
 		public PatchBuilder list(List<SampleEnum> additions, List<SampleEnum> removals);
-
 		public PatchBuilder list(List<SampleEnum> elements);
 
 		public PatchBuilder list_Null(Patch.List_NullChange list_Null);
-
 		public PatchBuilder list_Null(List<SampleEnum> additions, List<SampleEnum> removals);
-
 		public PatchBuilder list_Null(List<SampleEnum> elements);
 
 		public PatchBuilder list_Opt(Patch.List_OptChange list_Opt);
-
 		public PatchBuilder list_Opt(List<SampleEnum> additions, List<SampleEnum> removals);
-
 		public PatchBuilder list_Opt(List<SampleEnum> elements);
 
 		public PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange list_Opt_Null);
-
 		public PatchBuilder list_Opt_Null(List<SampleEnum> additions, List<SampleEnum> removals);
-
 		public PatchBuilder list_Opt_Null(List<SampleEnum> elements);
 
 	}

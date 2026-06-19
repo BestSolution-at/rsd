@@ -26,9 +26,9 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.StreamingOutput;
 import jakarta.ws.rs.WebApplicationException;
 
+import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._NillableImpl;
-import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.RSDBlob;
 import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.service.RSDException;
@@ -764,7 +764,6 @@ public class _RestUtils {
 	public static <T> _Base.Nillable<T> parseNilObject(String value, Function<String, T> parser) {
 		return parseNilLiteral(value, parser);
 	}
-
 	public static Response toResponse(int status, RSDException e) {
 		if (e instanceof RSDException.RSDStructuredDataException s) {
 			return Response.status(status)

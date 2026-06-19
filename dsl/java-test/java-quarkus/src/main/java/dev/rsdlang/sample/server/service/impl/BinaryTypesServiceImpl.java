@@ -7,14 +7,14 @@ import java.util.OptionalInt;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import dev.rsdlang.sample.server.service.BinaryTypesService;
-import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.MixedResult;
 import dev.rsdlang.sample.server.model.RSDBlob;
 import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.UploadMixedResult;
+import dev.rsdlang.sample.server.service.BinaryTypesService;
+import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 
 @ApplicationScoped
@@ -45,19 +45,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	private final DownloadFileHandler downloadFileHandler;
 	private final DownloadBlobHandler downloadBlobHandler;
 
-	public BinaryTypesServiceImpl(UploadFileHandler uploadFileHandler, UploadFileOptHandler uploadFileOptHandler,
-			UploadFileNilHandler uploadFileNilHandler, UploadFileOptNilHandler uploadFileOptNilHandler,
-			UploadBlobHandler uploadBlobHandler, UploadBlobOptHandler uploadBlobOptHandler,
-			UploadBlobNilHandler uploadBlobNilHandler, UploadBlobOptNilHandler uploadBlobOptNilHandler,
-			UploadFileListHandler uploadFileListHandler, UploadFileListOptHandler uploadFileListOptHandler,
-			UploadFileListNilHandler uploadFileListNilHandler, UploadFileListOptNilHandler uploadFileListOptNilHandler,
-			UploadBlobListHandler uploadBlobListHandler, UploadBlobListOptHandler uploadBlobListOptHandler,
-			UploadBlobListNilHandler uploadBlobListNilHandler, UploadBlobListOptNilHandler uploadBlobListOptNilHandler,
-			UploadMixedHandler uploadMixedHandler, UploadMixedOptHandler uploadMixedOptHandler,
-			UploadMixedNilHandler uploadMixedNilHandler, UploadMixedOptNilHandler uploadMixedOptNilHandler,
-			MixedHandler mixedHandler, SingleBodyAdditionHandler singleBodyAdditionHandler,
-			TwoBinariesAdditionHandler twoBinariesAdditionHandler, DownloadFileHandler downloadFileHandler,
-			DownloadBlobHandler downloadBlobHandler) {
+	public BinaryTypesServiceImpl(UploadFileHandler uploadFileHandler, UploadFileOptHandler uploadFileOptHandler, UploadFileNilHandler uploadFileNilHandler, UploadFileOptNilHandler uploadFileOptNilHandler, UploadBlobHandler uploadBlobHandler, UploadBlobOptHandler uploadBlobOptHandler, UploadBlobNilHandler uploadBlobNilHandler, UploadBlobOptNilHandler uploadBlobOptNilHandler, UploadFileListHandler uploadFileListHandler, UploadFileListOptHandler uploadFileListOptHandler, UploadFileListNilHandler uploadFileListNilHandler, UploadFileListOptNilHandler uploadFileListOptNilHandler, UploadBlobListHandler uploadBlobListHandler, UploadBlobListOptHandler uploadBlobListOptHandler, UploadBlobListNilHandler uploadBlobListNilHandler, UploadBlobListOptNilHandler uploadBlobListOptNilHandler, UploadMixedHandler uploadMixedHandler, UploadMixedOptHandler uploadMixedOptHandler, UploadMixedNilHandler uploadMixedNilHandler, UploadMixedOptNilHandler uploadMixedOptNilHandler, MixedHandler mixedHandler, SingleBodyAdditionHandler singleBodyAdditionHandler, TwoBinariesAdditionHandler twoBinariesAdditionHandler, DownloadFileHandler downloadFileHandler, DownloadBlobHandler downloadBlobHandler) {
 		this.uploadFileHandler = uploadFileHandler;
 		this.uploadFileOptHandler = uploadFileOptHandler;
 		this.uploadFileNilHandler = uploadFileNilHandler;
@@ -166,45 +154,28 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	@Override
-	public UploadMixedResult.Data uploadMixed(BuilderFactory _factory, String text, int number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile,
-			RSDBlob dataBlob) {
-		return uploadMixedHandler.uploadMixed(_factory, text, number, rec, textList, numberList, recList, dataFile,
-				dataBlob);
+	public UploadMixedResult.Data uploadMixed(BuilderFactory _factory, String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+		return uploadMixedHandler.uploadMixed(_factory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
 	}
 
 	@Override
-	public UploadMixedResult.Data uploadMixedOpt(BuilderFactory _factory, Optional<String> text, OptionalInt number,
-			Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList,
-			Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
-		return uploadMixedOptHandler.uploadMixedOpt(_factory, text, number, rec, textList, numberList, recList,
-				dataFile, dataBlob);
+	public UploadMixedResult.Data uploadMixedOpt(BuilderFactory _factory, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
+		return uploadMixedOptHandler.uploadMixedOpt(_factory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
 	}
 
 	@Override
-	public UploadMixedResult.Data uploadMixedNil(BuilderFactory _factory, Optional<String> text, OptionalInt number,
-			Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList,
-			Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
-		return uploadMixedNilHandler.uploadMixedNil(_factory, text, number, rec, textList, numberList, recList,
-				dataFile, dataBlob);
+	public UploadMixedResult.Data uploadMixedNil(BuilderFactory _factory, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
+		return uploadMixedNilHandler.uploadMixedNil(_factory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
 	}
 
 	@Override
-	public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text,
-			_Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec,
-			_Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList,
-			_Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile,
-			_Base.Nillable<RSDBlob> dataBlob) {
-		return uploadMixedOptNilHandler.uploadMixedOptNil(_factory, text, number, rec, textList, numberList, recList,
-				dataFile, dataBlob);
+	public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob) {
+		return uploadMixedOptNilHandler.uploadMixedOptNil(_factory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
 	}
 
 	@Override
-	public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString,
-			int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber,
-			SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
-		return mixedHandler.mixed(_factory, pathString, pathNumber, headerString, headerNumber, headerRecord,
-				queryString, queryNumber, queryRecord, dataBlob);
+	public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
+		return mixedHandler.mixed(_factory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
 	}
 
 	@Override
@@ -294,35 +265,23 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 	}
 
 	public interface UploadMixedHandler {
-		public UploadMixedResult.Data uploadMixed(BuilderFactory _factory, String text, int number,
-				SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList,
-				RSDFile dataFile, RSDBlob dataBlob);
+		public UploadMixedResult.Data uploadMixed(BuilderFactory _factory, String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob);
 	}
 
 	public interface UploadMixedOptHandler {
-		public UploadMixedResult.Data uploadMixedOpt(BuilderFactory _factory, Optional<String> text, OptionalInt number,
-				Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList,
-				Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob);
+		public UploadMixedResult.Data uploadMixedOpt(BuilderFactory _factory, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob);
 	}
 
 	public interface UploadMixedNilHandler {
-		public UploadMixedResult.Data uploadMixedNil(BuilderFactory _factory, Optional<String> text, OptionalInt number,
-				Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList,
-				Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob);
+		public UploadMixedResult.Data uploadMixedNil(BuilderFactory _factory, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob);
 	}
 
 	public interface UploadMixedOptNilHandler {
-		public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text,
-				_Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec,
-				_Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList,
-				_Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile,
-				_Base.Nillable<RSDBlob> dataBlob);
+		public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob);
 	}
 
 	public interface MixedHandler {
-		public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString,
-				int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber,
-				SimpleRecord.Data queryRecord, RSDBlob dataBlob);
+		public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
 	}
 
 	public interface SingleBodyAdditionHandler {

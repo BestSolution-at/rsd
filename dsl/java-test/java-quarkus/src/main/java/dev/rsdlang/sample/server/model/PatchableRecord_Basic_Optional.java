@@ -12,8 +12,7 @@ import java.util.OptionalInt;
 import java.util.OptionalLong;
 
 public interface PatchableRecord_Basic_Optional {
-	public interface Builder {
-	}
+	public interface Builder {}
 
 	public interface Data extends _Base.BaseData, PatchableRecord_Basic_Optional {
 		public String key();

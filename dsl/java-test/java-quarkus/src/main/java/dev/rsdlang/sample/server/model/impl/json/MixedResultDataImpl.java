@@ -110,8 +110,8 @@ public class MixedResultDataImpl extends _BaseDataImpl implements MixedResult.Da
 			return this;
 		}
 
-		public <T extends SimpleRecord.DataBuilder> DataBuilder withHeaderRecord(Class<T> clazz,
-				Function<T, SimpleRecord.Data> block) {
+
+		public <T extends SimpleRecord.DataBuilder> DataBuilder withHeaderRecord(Class<T> clazz, Function<T, SimpleRecord.Data> block) {
 			var b = SimpleRecordDataImpl.builder();
 			return headerRecord(block.apply(clazz.cast(b)));
 		}
@@ -140,8 +140,8 @@ public class MixedResultDataImpl extends _BaseDataImpl implements MixedResult.Da
 			return this;
 		}
 
-		public <T extends SimpleRecord.DataBuilder> DataBuilder withQueryRecord(Class<T> clazz,
-				Function<T, SimpleRecord.Data> block) {
+
+		public <T extends SimpleRecord.DataBuilder> DataBuilder withQueryRecord(Class<T> clazz, Function<T, SimpleRecord.Data> block) {
 			var b = SimpleRecordDataImpl.builder();
 			return queryRecord(block.apply(clazz.cast(b)));
 		}

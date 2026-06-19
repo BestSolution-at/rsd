@@ -10,7 +10,6 @@ public class SampleErrorScalarException extends RSDException.RSDStructuredDataEx
 		super(Type.SampleErrorScalar, message);
 		this.data = data;
 	}
-
 	public ZoneId data() {
 		return this.data;
 	}

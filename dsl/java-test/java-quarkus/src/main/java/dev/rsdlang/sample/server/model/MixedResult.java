@@ -37,8 +37,7 @@ public interface MixedResult {
 
 		public DataBuilder headerRecord(SimpleRecord.Data headerRecord);
 
-		public <T extends SimpleRecord.DataBuilder> DataBuilder withHeaderRecord(Class<T> clazz,
-				Function<T, SimpleRecord.Data> block);
+		public <T extends SimpleRecord.DataBuilder> DataBuilder withHeaderRecord(Class<T> clazz, Function<T, SimpleRecord.Data> block);
 
 		public DataBuilder queryString(String queryString);
 
@@ -46,8 +45,7 @@ public interface MixedResult {
 
 		public DataBuilder queryRecord(SimpleRecord.Data queryRecord);
 
-		public <T extends SimpleRecord.DataBuilder> DataBuilder withQueryRecord(Class<T> clazz,
-				Function<T, SimpleRecord.Data> block);
+		public <T extends SimpleRecord.DataBuilder> DataBuilder withQueryRecord(Class<T> clazz, Function<T, SimpleRecord.Data> block);
 
 		public DataBuilder dataBlob(int dataBlob);
 

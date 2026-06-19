@@ -4,8 +4,7 @@ package dev.rsdlang.sample.server.model;
 import java.util.Optional;
 
 public interface PatchableUnionA {
-	public interface Builder {
-	}
+	public interface Builder {}
 
 	public interface Data extends _Base.BaseData, PatchableUnionA, PatchableUnion.Data {
 		public String key();
@@ -18,8 +17,7 @@ public interface PatchableUnionA {
 
 	}
 
-	public interface DataBuilder
-			extends Builder, _Base.BaseDataBuilder<PatchableUnionA.Data>, PatchableUnion.DataBuilder {
+	public interface DataBuilder extends Builder, _Base.BaseDataBuilder<PatchableUnionA.Data>, PatchableUnion.DataBuilder {
 		public DataBuilder key(String key);
 
 		public DataBuilder version(String version);
@@ -41,8 +39,7 @@ public interface PatchableUnionA {
 
 	}
 
-	public interface PatchBuilder
-			extends Builder, _Base.BaseDataBuilder<PatchableUnionA.Patch>, PatchableUnion.PatchBuilder {
+	public interface PatchBuilder extends Builder, _Base.BaseDataBuilder<PatchableUnionA.Patch>, PatchableUnion.PatchBuilder {
 		public PatchBuilder key(String key);
 
 		public PatchBuilder version(String version);

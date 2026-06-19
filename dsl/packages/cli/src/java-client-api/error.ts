@@ -22,7 +22,7 @@ export function generateError(
 			generateCompilationUnit(
 				packageName,
 				importCollector,
-				generateSource(t, artifactConfig, packageName, importCollector.importType.bind(importCollector)),
+				generateSource(t, artifactConfig, importCollector.importType.bind(importCollector)),
 			),
 			'\t',
 		),
@@ -33,17 +33,21 @@ export function generateError(
 function generateSource(
 	t: MResolvedError,
 	artifactConfig: JavaClientAPIGeneratorConfig,
-	packageName: string,
 	fqn: (type: string) => string,
 ): CompositeGeneratorNode {
 	const node = new CompositeGeneratorNode();
 
 	if (t.resolvedContentType) {
-		const type = toAPIType(t.resolvedContentType, artifactConfig.nativeTypeSubstitues, packageName + '.model', fqn);
+		const type = toAPIType(
+			t.resolvedContentType,
+			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.rootPackageName + '.model',
+			fqn,
+		);
 		const objectType = toAPIType(
 			t.resolvedContentType,
 			artifactConfig.nativeTypeSubstitues,
-			packageName + '.model',
+			artifactConfig.rootPackageName + '.model',
 			fqn,
 			{ objectType: true },
 		);

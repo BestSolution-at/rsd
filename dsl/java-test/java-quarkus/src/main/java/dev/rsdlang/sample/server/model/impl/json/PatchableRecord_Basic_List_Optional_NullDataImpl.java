@@ -15,8 +15,7 @@ import jakarta.json.JsonObjectBuilder;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.PatchableRecord_Basic_List_Optional_Null;
 
-public class PatchableRecord_Basic_List_Optional_NullDataImpl extends _BaseDataImpl
-		implements PatchableRecord_Basic_List_Optional_Null.Data {
+public class PatchableRecord_Basic_List_Optional_NullDataImpl extends _BaseDataImpl implements PatchableRecord_Basic_List_Optional_Null.Data {
 	PatchableRecord_Basic_List_Optional_NullDataImpl(JsonObject data) {
 		super(data);
 	}
@@ -195,8 +194,7 @@ public class PatchableRecord_Basic_List_Optional_NullDataImpl extends _BaseDataI
 		}
 
 		@Override
-		public PatchableRecord_Basic_List_Optional_Null.DataBuilder valueLocalDateTime(
-				List<LocalDateTime> valueLocalDateTime) {
+		public PatchableRecord_Basic_List_Optional_Null.DataBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime) {
 			if (valueLocalDateTime == null) {
 				$builder.addNull("valueLocalDateTime");
 				return this;
@@ -216,8 +214,7 @@ public class PatchableRecord_Basic_List_Optional_NullDataImpl extends _BaseDataI
 		}
 
 		@Override
-		public PatchableRecord_Basic_List_Optional_Null.DataBuilder valueOffsetDateTime(
-				List<OffsetDateTime> valueOffsetDateTime) {
+		public PatchableRecord_Basic_List_Optional_Null.DataBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
 			if (valueOffsetDateTime == null) {
 				$builder.addNull("valueOffsetDateTime");
 				return this;
@@ -227,8 +224,7 @@ public class PatchableRecord_Basic_List_Optional_NullDataImpl extends _BaseDataI
 		}
 
 		@Override
-		public PatchableRecord_Basic_List_Optional_Null.DataBuilder valueZonedDateTime(
-				List<ZonedDateTime> valueZonedDateTime) {
+		public PatchableRecord_Basic_List_Optional_Null.DataBuilder valueZonedDateTime(List<ZonedDateTime> valueZonedDateTime) {
 			if (valueZonedDateTime == null) {
 				$builder.addNull("valueZonedDateTime");
 				return this;

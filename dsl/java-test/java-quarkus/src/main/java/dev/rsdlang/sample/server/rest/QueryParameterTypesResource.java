@@ -22,8 +22,8 @@ import dev.rsdlang.sample.server.service.QueryParameterTypesService;
 
 @ApplicationScoped
 @Path("/api/queryparametertypes")
-@Produces({ "application/json", "application/vnd.msgpack" })
-@Consumes({ "application/json", "application/vnd.msgpack" })
+@Produces({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack"})
 public class QueryParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
@@ -32,8 +32,7 @@ public class QueryParameterTypesResource {
 	private final QueryParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public QueryParameterTypesResource(QueryParameterTypesService service,
-			QueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public QueryParameterTypesResource(QueryParameterTypesService service, QueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -64,8 +63,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseBoolean(_queryValue);
 		var result = service.simpleBooleanQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleBooleanQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleBooleanQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -75,8 +73,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptBoolean(_queryValue);
 		var result = service.simpleBooleanQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder
-				.simpleBooleanQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.simpleBooleanQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -86,8 +83,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseShort(_queryValue);
 		var result = service.simpleShortQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleShortQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleShortQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -97,8 +93,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptShort(_queryValue);
 		var result = service.simpleShortQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleShortQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleShortQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -108,8 +103,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseInt(_queryValue);
 		var result = service.simpleIntQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleIntQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleIntQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -119,8 +113,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptInt(_queryValue);
 		var result = service.simpleIntQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleIntQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleIntQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -130,8 +123,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLong(_queryValue);
 		var result = service.simpleLongQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleLongQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleLongQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -141,8 +133,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLong(_queryValue);
 		var result = service.simpleLongQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleLongQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleLongQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -152,8 +143,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseFloat(_queryValue);
 		var result = service.simpleFloatQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleFloatQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleFloatQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -163,8 +153,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptFloat(_queryValue);
 		var result = service.simpleFloatQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleFloatQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleFloatQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -174,8 +163,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseDouble(_queryValue);
 		var result = service.simpleDoubleQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleDoubleQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleDoubleQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -185,8 +173,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptDouble(_queryValue);
 		var result = service.simpleDoubleQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleDoubleQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleDoubleQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -196,8 +183,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseString(_queryValue);
 		var result = service.simpleStringQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleStringQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleStringQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -207,8 +193,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptString(_queryValue);
 		var result = service.simpleStringQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleStringQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleStringQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -218,8 +203,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLocalDate(_queryValue);
 		var result = service.simpleLocalDateQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleLocalDateQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleLocalDateQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -229,8 +213,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLocalDate(_queryValue);
 		var result = service.simpleLocalDateQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder
-				.simpleLocalDateQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.simpleLocalDateQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -240,8 +223,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLocalDateTime(_queryValue);
 		var result = service.simpleLocalDateTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder
-				.simpleLocalDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.simpleLocalDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -251,9 +233,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLocalDateTime(_queryValue);
 		var result = service.simpleLocalDateTimeQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder
-				.simpleLocalDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleLocalDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -263,8 +243,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLocalTime(_queryValue);
 		var result = service.simpleLocalTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleLocalTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleLocalTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -274,8 +253,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLocalTime(_queryValue);
 		var result = service.simpleLocalTimeQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder
-				.simpleLocalTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.simpleLocalTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -285,8 +263,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOffsetDateTime(_queryValue);
 		var result = service.simpleOffsetDateTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder
-				.simpleOffsetDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.simpleOffsetDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -296,9 +273,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptOffsetDateTime(_queryValue);
 		var result = service.simpleOffsetDateTimeQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder
-				.simpleOffsetDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleOffsetDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -308,8 +283,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseZonedDateTime(_queryValue);
 		var result = service.simpleZonedDateTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder
-				.simpleZonedDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.simpleZonedDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -319,9 +293,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptZonedDateTime(_queryValue);
 		var result = service.simpleZonedDateTimeQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder
-				.simpleZonedDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleZonedDateTimeQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -331,8 +303,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLiteral(_queryValue, ZoneId::of);
 		var result = service.simpleScalarQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -342,8 +313,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLiteral(_queryValue, ZoneId::of);
 		var result = service.simpleScalarQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleScalarQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleScalarQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -353,8 +323,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseLiteral(_queryValue, SampleEnum::valueOf);
 		var result = service.simpleEnumQueryParam(builderFactory, queryValue);
-		return responseBuilder.simpleEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -364,8 +333,7 @@ public class QueryParameterTypesResource {
 			@QueryParam("queryValue") String _queryValue) {
 		var queryValue = _RestUtils.parseOptLiteral(_queryValue, SampleEnum::valueOf);
 		var result = service.simpleEnumQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.simpleEnumQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.simpleEnumQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -377,8 +345,7 @@ public class QueryParameterTypesResource {
 		var valueA = _RestUtils.parseString(_valueA);
 		var valueB = _RestUtils.parseInt(_valueB);
 		var result = service.multiQueryParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB)
-				.build();
+		return responseBuilder.multiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
 	}
 
 	@GET
@@ -390,8 +357,7 @@ public class QueryParameterTypesResource {
 		var valueA = _RestUtils.parseOptString(_valueA);
 		var valueB = _RestUtils.parseOptInt(_valueB);
 		var result = service.multiQueryParamOpt(builderFactory, valueA, valueB);
-		return responseBuilder.multiQueryParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB)
-				.build();
+		return responseBuilder.multiQueryParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
 	}
 
 	@GET
@@ -400,10 +366,7 @@ public class QueryParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseObject(_queryValue,
-				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
-						computeRequestContentType($headerQueryContentType),
-						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var queryValue = _RestUtils.parseObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.recordQueryParam(builderFactory, queryValue);
 		return responseBuilder.recordQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
@@ -414,13 +377,9 @@ public class QueryParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseOptObject(_queryValue,
-				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
-						computeRequestContentType($headerQueryContentType),
-						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var queryValue = _RestUtils.parseOptObject(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.recordQueryParamOpt(builderFactory, queryValue);
-		return responseBuilder.recordQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.recordQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 }

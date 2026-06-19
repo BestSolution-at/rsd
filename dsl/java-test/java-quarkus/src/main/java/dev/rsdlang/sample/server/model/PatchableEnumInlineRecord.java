@@ -5,43 +5,36 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PatchableEnumInlineRecord {
-	public interface Builder {
-	}
-
+	public interface Builder {}
 	public enum Value$ {
 		A,
 		B,
 	}
-
 	public enum Value_Null$ {
 		C,
 		D,
 	}
-
 	public enum Value_Opt$ {
 		E,
 		F,
 	}
-
 	public enum Value_Opt_Null$ {
 		G,
 		H,
 	}
-
 	public enum List$ {
 		A,
 		B,
 	}
-
 	public enum List_Null$ {
 		C,
 		D,
 	}
-
 	public enum List_Opt_Null$ {
 		G,
 		H,
 	}
+
 
 	public interface Data extends _Base.BaseData, PatchableEnumInlineRecord {
 		public String key();
@@ -101,8 +94,7 @@ public interface PatchableEnumInlineRecord {
 		public interface List_NullSetChange extends List_NullChange, _Base.ListReplace<List_Null$> {
 		}
 
-		public interface List_NullMergeChange
-				extends List_NullChange, _Base.ListMergeAddRemove<List_Null$, List_Null$> {
+		public interface List_NullMergeChange extends List_NullChange, _Base.ListMergeAddRemove<List_Null$, List_Null$> {
 		}
 
 		public interface List_Opt_NullChange {
@@ -111,8 +103,7 @@ public interface PatchableEnumInlineRecord {
 		public interface List_Opt_NullSetChange extends List_Opt_NullChange, _Base.ListReplace<List_Opt_Null$> {
 		}
 
-		public interface List_Opt_NullMergeChange
-				extends List_Opt_NullChange, _Base.ListMergeAddRemove<List_Opt_Null$, List_Opt_Null$> {
+		public interface List_Opt_NullMergeChange extends List_Opt_NullChange, _Base.ListMergeAddRemove<List_Opt_Null$, List_Opt_Null$> {
 		}
 
 		public String key();
@@ -149,21 +140,15 @@ public interface PatchableEnumInlineRecord {
 		public PatchBuilder value_Opt_Null(Value_Opt_Null$ value_Opt_Null);
 
 		public PatchBuilder list(Patch.ListChange list);
-
 		public PatchBuilder list(List<List$> additions, List<List$> removals);
-
 		public PatchBuilder list(List<List$> elements);
 
 		public PatchBuilder list_Null(Patch.List_NullChange list_Null);
-
 		public PatchBuilder list_Null(List<List_Null$> additions, List<List_Null$> removals);
-
 		public PatchBuilder list_Null(List<List_Null$> elements);
 
 		public PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange list_Opt_Null);
-
 		public PatchBuilder list_Opt_Null(List<List_Opt_Null$> additions, List<List_Opt_Null$> removals);
-
 		public PatchBuilder list_Opt_Null(List<List_Opt_Null$> elements);
 
 	}

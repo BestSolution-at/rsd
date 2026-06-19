@@ -10,7 +10,6 @@ public class SampleErrorEnumException extends RSDException.RSDStructuredDataExce
 		super(Type.SampleErrorEnum, message);
 		this.data = data;
 	}
-
 	public SampleEnum data() {
 		return this.data;
 	}

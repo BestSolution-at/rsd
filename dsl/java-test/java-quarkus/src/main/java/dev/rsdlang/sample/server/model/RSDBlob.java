@@ -54,7 +54,7 @@ public interface RSDBlob {
 	 * @return an {@link Optional} containing the MIME type, or an empty
 	 *         {@link Optional} if the MIME type is not available
 	 * @throws IllegalStateException if the blob has been disposed
-	 */
+	 */	
 	public Optional<String> mimeType();
 
 	/**

@@ -8,8 +8,7 @@ import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
 public interface PatchableRecord_Basic_Optional_Null {
-	public interface Builder {
-	}
+	public interface Builder {}
 
 	public interface Data extends _Base.BaseData, PatchableRecord_Basic_Optional_Null {
 		public String key();

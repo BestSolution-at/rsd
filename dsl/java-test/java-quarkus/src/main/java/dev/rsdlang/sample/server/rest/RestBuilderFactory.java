@@ -7,6 +7,12 @@ import java.nio.file.Path;
 import jakarta.inject.Singleton;
 import jakarta.json.JsonObject;
 
+import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.CyclicNodeA;
+import dev.rsdlang.sample.server.model.CyclicNodeB;
+import dev.rsdlang.sample.server.model.EnumInlineRecord;
+import dev.rsdlang.sample.server.model.EnumRecord;
+import dev.rsdlang.sample.server.model.ErrorData;
 import dev.rsdlang.sample.server.model.impl.json._BlobImpl;
 import dev.rsdlang.sample.server.model.impl.json._FileImpl;
 import dev.rsdlang.sample.server.model.impl.json._StreamBlobImpl;
@@ -74,13 +80,6 @@ import dev.rsdlang.sample.server.model.impl.json.UnionADataImpl;
 import dev.rsdlang.sample.server.model.impl.json.UnionBDataImpl;
 import dev.rsdlang.sample.server.model.impl.json.UnionDataImpl;
 import dev.rsdlang.sample.server.model.impl.json.UploadMixedResultDataImpl;
-import dev.rsdlang.sample.server.service.BuilderFactory;
-import dev.rsdlang.sample.server.model._Base;
-import dev.rsdlang.sample.server.model.CyclicNodeA;
-import dev.rsdlang.sample.server.model.CyclicNodeB;
-import dev.rsdlang.sample.server.model.EnumInlineRecord;
-import dev.rsdlang.sample.server.model.EnumRecord;
-import dev.rsdlang.sample.server.model.ErrorData;
 import dev.rsdlang.sample.server.model.MixedResult;
 import dev.rsdlang.sample.server.model.MixinRecord;
 import dev.rsdlang.sample.server.model.PatchableEnumInlineRecord;
@@ -123,6 +122,7 @@ import dev.rsdlang.sample.server.model.Union;
 import dev.rsdlang.sample.server.model.UnionA;
 import dev.rsdlang.sample.server.model.UnionB;
 import dev.rsdlang.sample.server.model.UploadMixedResult;
+import dev.rsdlang.sample.server.service.BuilderFactory;
 
 @Singleton
 public class RestBuilderFactory implements BuilderFactory {
@@ -504,6 +504,7 @@ public class RestBuilderFactory implements BuilderFactory {
 
 		throw new IllegalArgumentException("Unsupported Builder '%s'".formatted(type));
 	}
+
 
 	public RSDBlob createBlob(Path file, String mimeType) {
 		return _BlobImpl.of(file, mimeType);

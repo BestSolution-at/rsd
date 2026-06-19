@@ -21,23 +21,23 @@ import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._NillableImpl;
+import dev.rsdlang.sample.server.model.RSDBlob;
+import dev.rsdlang.sample.server.model.RSDFile;
+import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesSingleBodyAdditionDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedNilDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedOptDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedOptNilDataImpl;
 import dev.rsdlang.sample.server.service.BinaryTypesService;
-import dev.rsdlang.sample.server.model.RSDBlob;
-import dev.rsdlang.sample.server.model.RSDFile;
-import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
 import org.jboss.resteasy.reactive.RestForm;
 
 @ApplicationScoped
 @Path("/api/binarytypes")
-@Produces({ "application/json", "application/vnd.msgpack" })
-@Consumes({ "application/json", "application/vnd.msgpack" })
+@Produces({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack"})
 public class BinaryTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
@@ -46,8 +46,7 @@ public class BinaryTypesResource {
 	private final BinaryTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public BinaryTypesResource(BinaryTypesService service, BinaryTypesResourceResponseBuilder responseBuilder,
-			RestBuilderFactory builderFactory) {
+	public BinaryTypesResource(BinaryTypesService service, BinaryTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -101,42 +100,30 @@ public class BinaryTypesResource {
 		var result = service.uploadFile(builderFactory, data);
 		return responseBuilder.uploadFile(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@POST
 	@Path("uploadFileOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileOpt(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") FileUpload _data) {
-		var data = _data != null
-				? Optional.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName()))
-				: Optional.<RSDFile>empty();
+	public Response uploadFileOpt(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") FileUpload _data) {
+		var data = _data != null ? Optional.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName())) : Optional.<RSDFile>empty();
 		var result = service.uploadFileOpt(builderFactory, data);
 		return responseBuilder.uploadFileOpt(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@POST
 	@Path("uploadFileNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") FileUpload _data) {
-		var data = _data != null
-				? Optional.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName()))
-				: Optional.<RSDFile>empty();
+	public Response uploadFileNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") FileUpload _data) {
+		var data = _data != null ? Optional.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName())) : Optional.<RSDFile>empty();
 		var result = service.uploadFileNil(builderFactory, data);
 		return responseBuilder.uploadFileNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@POST
 	@Path("uploadFileOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileOptNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") FileUpload _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
-		var data = _data == null ? ($isDataNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined())
-				: _NillableImpl.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName()));
+	public Response uploadFileOptNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") FileUpload _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
+		var data = _data == null ? ($isDataNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined()) : _NillableImpl.of(builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName()));
 		var result = service.uploadFileOptNil(builderFactory, data);
 		return responseBuilder.uploadFileOptNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@POST
 	@Path("uploadBlob")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -145,143 +132,99 @@ public class BinaryTypesResource {
 		var result = service.uploadBlob(builderFactory, data);
 		return responseBuilder.uploadBlob(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@POST
 	@Path("uploadBlobOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobOpt(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") FileUpload _data) {
-		var data = _data != null ? Optional.of(builderFactory.createBlob(_data.filePath(), _data.contentType()))
-				: Optional.<RSDBlob>empty();
+	public Response uploadBlobOpt(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") FileUpload _data) {
+		var data = _data != null ? Optional.of(builderFactory.createBlob(_data.filePath(), _data.contentType())) : Optional.<RSDBlob>empty();
 		var result = service.uploadBlobOpt(builderFactory, data);
 		return responseBuilder.uploadBlobOpt(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@POST
 	@Path("uploadBlobNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") FileUpload _data) {
-		var data = _data != null ? Optional.of(builderFactory.createBlob(_data.filePath(), _data.contentType()))
-				: Optional.<RSDBlob>empty();
+	public Response uploadBlobNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") FileUpload _data) {
+		var data = _data != null ? Optional.of(builderFactory.createBlob(_data.filePath(), _data.contentType())) : Optional.<RSDBlob>empty();
 		var result = service.uploadBlobNil(builderFactory, data);
 		return responseBuilder.uploadBlobNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@POST
 	@Path("uploadBlobOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobOptNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") FileUpload _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
-		var data = _data == null ? ($isDataNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined())
-				: _NillableImpl.of(builderFactory.createBlob(_data.filePath(), _data.contentType()));
+	public Response uploadBlobOptNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") FileUpload _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
+		var data = _data == null ? ($isDataNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined()) : _NillableImpl.of(builderFactory.createBlob(_data.filePath(), _data.contentType()));
 		var result = service.uploadBlobOptNil(builderFactory, data);
 		return responseBuilder.uploadBlobOptNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadFileList")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileList(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") List<FileUpload> _data) {
-		var data = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName()))
-				.toList();
+	public Response uploadFileList(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") List<FileUpload> _data) {
+		var data = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();
 		var result = service.uploadFileList(builderFactory, data);
 		return responseBuilder.uploadFileList(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadFileListOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileListOpt(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDFile>>empty()
-				: Optional.of(_data.stream()
-						.map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
+	public Response uploadFileListOpt(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") List<FileUpload> _data) {
+		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDFile>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListOpt(builderFactory, data);
 		return responseBuilder.uploadFileListOpt(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadFileListNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileListNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDFile>>empty()
-				: Optional.of(_data.stream()
-						.map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
+	public Response uploadFileListNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") List<FileUpload> _data) {
+		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDFile>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListNil(builderFactory, data);
 		return responseBuilder.uploadFileListNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadFileListOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadFileListOptNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") List<FileUpload> _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
-		var data = _data == null || _data.isEmpty()
-				? ($isDataNull ? _NillableImpl.<List<RSDFile>>nill() : _NillableImpl.<List<RSDFile>>undefined())
-				: _NillableImpl.of(_data.stream()
-						.map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
+	public Response uploadFileListOptNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") List<FileUpload> _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
+		var data = _data == null || _data.isEmpty() ? ($isDataNull ? _NillableImpl.<List<RSDFile>>nill() : _NillableImpl.<List<RSDFile>>undefined()) : _NillableImpl.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());
 		var result = service.uploadFileListOptNil(builderFactory, data);
 		return responseBuilder.uploadFileListOptNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadBlobList")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobList(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") List<FileUpload> _data) {
+	public Response uploadBlobList(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") List<FileUpload> _data) {
 		var data = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();
 		var result = service.uploadBlobList(builderFactory, data);
 		return responseBuilder.uploadBlobList(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadBlobListOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobListOpt(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDBlob>>empty()
-				: Optional.of(
-						_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
+	public Response uploadBlobListOpt(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") List<FileUpload> _data) {
+		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDBlob>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListOpt(builderFactory, data);
 		return responseBuilder.uploadBlobListOpt(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadBlobListNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobListNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") List<FileUpload> _data) {
-		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDBlob>>empty()
-				: Optional.of(
-						_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
+	public Response uploadBlobListNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") List<FileUpload> _data) {
+		var data = _data == null || _data.isEmpty() ? Optional.<List<RSDBlob>>empty() : Optional.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListNil(builderFactory, data);
 		return responseBuilder.uploadBlobListNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadBlobListOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadBlobListOptNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("data") List<FileUpload> _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
-		var data = _data == null || _data.isEmpty()
-				? ($isDataNull ? _NillableImpl.<List<RSDBlob>>nill() : _NillableImpl.<List<RSDBlob>>undefined())
-				: _NillableImpl.of(
-						_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
+	public Response uploadBlobListOptNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") List<FileUpload> _data, @RestForm("_rsdNull-data") boolean $isDataNull) {
+		var data = _data == null || _data.isEmpty() ? ($isDataNull ? _NillableImpl.<List<RSDBlob>>nill() : _NillableImpl.<List<RSDBlob>>undefined()) : _NillableImpl.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());
 		var result = service.uploadBlobListOptNil(builderFactory, data);
 		return responseBuilder.uploadBlobListOptNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
-
 	@PUT
 	@Path("uploadMixed")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixed(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile,
-			@RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(),
-				_JsonUtils.TypeInfo.value(BinaryTypesUploadMixedDataImpl.class)).asJsonObject();
+	public Response uploadMixed(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesUploadMixedDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -291,20 +234,14 @@ public class BinaryTypesResource {
 		var recList = $payload.recList();
 		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
-		var result = service.uploadMixed(builderFactory, text, number, rec, textList, numberList, recList, dataFile,
-				dataBlob);
-		return responseBuilder.uploadMixed(result, computeResponseContentType($acceptHeaders), text, number, rec,
-				textList, numberList, recList, dataFile, dataBlob).build();
+		var result = service.uploadMixed(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
+		return responseBuilder.uploadMixed(result, computeResponseContentType($acceptHeaders), text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
-
 	@PUT
 	@Path("uploadMixedOpt")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixedOpt(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile,
-			@RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(),
-				_JsonUtils.TypeInfo.value(BinaryTypesUploadMixedOptDataImpl.class)).asJsonObject();
+	public Response uploadMixedOpt(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesUploadMixedOptDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedOptDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -312,27 +249,16 @@ public class BinaryTypesResource {
 		var textList = $payload.textList();
 		var numberList = $payload.numberList();
 		var recList = $payload.recList();
-		var dataFile = _dataFile != null
-				? Optional.of(
-						builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName()))
-				: Optional.<RSDFile>empty();
-		var dataBlob = _dataBlob != null
-				? Optional.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType()))
-				: Optional.<RSDBlob>empty();
-		var result = service.uploadMixedOpt(builderFactory, text, number, rec, textList, numberList, recList, dataFile,
-				dataBlob);
-		return responseBuilder.uploadMixedOpt(result, computeResponseContentType($acceptHeaders), text, number, rec,
-				textList, numberList, recList, dataFile, dataBlob).build();
+		var dataFile = _dataFile != null ? Optional.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName())) : Optional.<RSDFile>empty();
+		var dataBlob = _dataBlob != null ? Optional.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType())) : Optional.<RSDBlob>empty();
+		var result = service.uploadMixedOpt(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedOpt(result, computeResponseContentType($acceptHeaders), text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
-
 	@PUT
 	@Path("uploadMixedNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixedNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile,
-			@RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(),
-				_JsonUtils.TypeInfo.value(BinaryTypesUploadMixedNilDataImpl.class)).asJsonObject();
+	public Response uploadMixedNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesUploadMixedNilDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedNilDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -340,28 +266,16 @@ public class BinaryTypesResource {
 		var textList = $payload.textList();
 		var numberList = $payload.numberList();
 		var recList = $payload.recList();
-		var dataFile = _dataFile != null
-				? Optional.of(
-						builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName()))
-				: Optional.<RSDFile>empty();
-		var dataBlob = _dataBlob != null
-				? Optional.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType()))
-				: Optional.<RSDBlob>empty();
-		var result = service.uploadMixedNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile,
-				dataBlob);
-		return responseBuilder.uploadMixedNil(result, computeResponseContentType($acceptHeaders), text, number, rec,
-				textList, numberList, recList, dataFile, dataBlob).build();
+		var dataFile = _dataFile != null ? Optional.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName())) : Optional.<RSDFile>empty();
+		var dataBlob = _dataBlob != null ? Optional.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType())) : Optional.<RSDBlob>empty();
+		var result = service.uploadMixedNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedNil(result, computeResponseContentType($acceptHeaders), text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
-
 	@PUT
 	@Path("uploadMixedOptNil")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadMixedOptNil(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile,
-			@RestForm("dataBlob") FileUpload _dataBlob, @RestForm("_rsdNull-dataFile") boolean $isDataFileNull,
-			@RestForm("_rsdNull-dataBlob") boolean $isDataBlobNull) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(),
-				_JsonUtils.TypeInfo.value(BinaryTypesUploadMixedOptNilDataImpl.class)).asJsonObject();
+	public Response uploadMixedOptNil(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataFile") FileUpload _dataFile, @RestForm("dataBlob") FileUpload _dataBlob, @RestForm("_rsdNull-dataFile") boolean $isDataFileNull, @RestForm("_rsdNull-dataBlob") boolean $isDataBlobNull) {
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesUploadMixedOptNilDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesUploadMixedOptNilDataImpl($payloadJson);
 		var text = $payload.text();
 		var number = $payload.number();
@@ -369,74 +283,45 @@ public class BinaryTypesResource {
 		var textList = $payload.textList();
 		var numberList = $payload.numberList();
 		var recList = $payload.recList();
-		var dataFile = _dataFile == null
-				? ($isDataFileNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined())
-				: _NillableImpl.of(
-						builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName()));
-		var dataBlob = _dataBlob == null
-				? ($isDataBlobNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined())
-				: _NillableImpl.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType()));
-		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, textList, numberList, recList,
-				dataFile, dataBlob);
-		return responseBuilder.uploadMixedOptNil(result, computeResponseContentType($acceptHeaders), text, number, rec,
-				textList, numberList, recList, dataFile, dataBlob).build();
+		var dataFile = _dataFile == null ? ($isDataFileNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined()) : _NillableImpl.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName()));
+		var dataBlob = _dataBlob == null ? ($isDataBlobNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined()) : _NillableImpl.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType()));
+		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedOptNil(result, computeResponseContentType($acceptHeaders), text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
 	}
-
 	@POST
 	@Path("mixed/{pathString}/{pathNumber}")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response mixed(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
-			@PathParam("pathString") String _pathString, @PathParam("pathNumber") String _pathNumber,
-			@HeaderParam("headerString") String _headerString, @HeaderParam("headerNumber") String _headerNumber,
-			@HeaderParam("headerRecord") String _headerRecord, @QueryParam("queryString") String _queryString,
-			@QueryParam("queryNumber") String _queryNumber, @QueryParam("queryRecord") String _queryRecord,
-			@RestForm("dataBlob") FileUpload _dataBlob) {
+	public Response mixed(@HeaderParam("Accept") List<String> $acceptHeaders, @HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType, @PathParam("pathString") String _pathString, @PathParam("pathNumber") String _pathNumber, @HeaderParam("headerString") String _headerString, @HeaderParam("headerNumber") String _headerNumber, @HeaderParam("headerRecord") String _headerRecord, @QueryParam("queryString") String _queryString, @QueryParam("queryNumber") String _queryNumber, @QueryParam("queryRecord") String _queryRecord, @RestForm("dataBlob") FileUpload _dataBlob) {
 		var pathString = _RestUtils.parseString(_pathString);
 		var pathNumber = _RestUtils.parseInt(_pathNumber);
 		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var headerNumber = _RestUtils.parseInt(_headerNumber);
-		var headerRecord = _RestUtils.parseObject(_headerRecord,
-				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
-						computeRequestContentType($headerQueryContentType),
-						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var queryString = _RestUtils.parseString(_queryString);
 		var queryNumber = _RestUtils.parseInt(_queryNumber);
-		var queryRecord = _RestUtils.parseObject(_queryRecord,
-				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
-						computeRequestContentType($headerQueryContentType),
-						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
-		var result = service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord,
-				queryString, queryNumber, queryRecord, dataBlob);
-		return responseBuilder.mixed(result, computeResponseContentType($acceptHeaders), pathString, pathNumber,
-				headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob).build();
+		var result = service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
+		return responseBuilder.mixed(result, computeResponseContentType($acceptHeaders), pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob).build();
 	}
-
 	@POST
 	@Path("singleBodyAddition")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response singleBodyAddition(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataBlob") FileUpload _dataBlob) {
-		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(),
-				_JsonUtils.TypeInfo.value(BinaryTypesSingleBodyAdditionDataImpl.class)).asJsonObject();
+	public Response singleBodyAddition(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("_rsdPayload") FileUpload $_payload, @RestForm("dataBlob") FileUpload _dataBlob) {
+		var $payloadJson = _JsonUtils.parseValue($_payload.filePath(), $_payload.contentType(), _JsonUtils.TypeInfo.value(BinaryTypesSingleBodyAdditionDataImpl.class)).asJsonObject();
 		var $payload = new BinaryTypesSingleBodyAdditionDataImpl($payloadJson);
 		var name = $payload.name();
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		var result = service.singleBodyAddition(builderFactory, name, dataBlob);
-		return responseBuilder.singleBodyAddition(result, computeResponseContentType($acceptHeaders), name, dataBlob)
-				.build();
+		return responseBuilder.singleBodyAddition(result, computeResponseContentType($acceptHeaders), name, dataBlob).build();
 	}
-
 	@POST
 	@Path("twoBinariesAddition")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response twoBinariesAddition(@HeaderParam("Accept") List<String> $acceptHeaders,
-			@RestForm("dataBlob") FileUpload _dataBlob, @RestForm("dataFile") FileUpload _dataFile) {
+	public Response twoBinariesAddition(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("dataBlob") FileUpload _dataBlob, @RestForm("dataFile") FileUpload _dataFile) {
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
 		var result = service.twoBinariesAddition(builderFactory, dataBlob, dataFile);
-		return responseBuilder
-				.twoBinariesAddition(result, computeResponseContentType($acceptHeaders), dataBlob, dataFile).build();
+		return responseBuilder.twoBinariesAddition(result, computeResponseContentType($acceptHeaders), dataBlob, dataFile).build();
 	}
 }

@@ -9,36 +9,31 @@ public interface EnumInlineRecord {
 		A,
 		B,
 	}
-
 	public enum Value_Null$ {
 		C,
 		D,
 	}
-
 	public enum Value_Opt$ {
 		E,
 		F,
 	}
-
 	public enum Value_Opt_Null$ {
 		G,
 		H,
 	}
-
 	public enum List$ {
 		A,
 		B,
 	}
-
 	public enum List_Null$ {
 		C,
 		D,
 	}
-
 	public enum List_Opt_Null$ {
 		G,
 		H,
 	}
+
 
 	public interface Data extends _Base.BaseData, EnumInlineRecord {
 		public Value$ value();

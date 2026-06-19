@@ -15,8 +15,7 @@ import jakarta.json.JsonObjectBuilder;
 
 import dev.rsdlang.sample.server.model.PatchableRecord_Basic_List_Null;
 
-public class PatchableRecord_Basic_List_NullDataImpl extends _BaseDataImpl
-		implements PatchableRecord_Basic_List_Null.Data {
+public class PatchableRecord_Basic_List_NullDataImpl extends _BaseDataImpl implements PatchableRecord_Basic_List_Null.Data {
 	PatchableRecord_Basic_List_NullDataImpl(JsonObject data) {
 		super(data);
 	}
@@ -215,8 +214,7 @@ public class PatchableRecord_Basic_List_NullDataImpl extends _BaseDataImpl
 		}
 
 		@Override
-		public PatchableRecord_Basic_List_Null.DataBuilder valueOffsetDateTime(
-				List<OffsetDateTime> valueOffsetDateTime) {
+		public PatchableRecord_Basic_List_Null.DataBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
 			if (valueOffsetDateTime == null) {
 				$builder.addNull("valueOffsetDateTime");
 				return this;

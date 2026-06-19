@@ -17,8 +17,7 @@ import jakarta.json.JsonObjectBuilder;
 
 import dev.rsdlang.sample.server.model.PatchableRecord_Basic_Optional;
 
-public class PatchableRecord_Basic_OptionalDataImpl extends _BaseDataImpl
-		implements PatchableRecord_Basic_Optional.Data {
+public class PatchableRecord_Basic_OptionalDataImpl extends _BaseDataImpl implements PatchableRecord_Basic_Optional.Data {
 	PatchableRecord_Basic_OptionalDataImpl(JsonObject data) {
 		super(data);
 	}

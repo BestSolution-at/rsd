@@ -20,27 +20,22 @@ public interface ListBodyParameterTypesService {
 		A,
 		B,
 	}
-
 	public enum ListInlineEnumBodyParam_BodyEnum_Param$ {
 		A,
 		B,
 	}
-
 	public enum ListInlineEnumBodyParamOpt_BodyEnum_Param$ {
 		A,
 		B,
 	}
-
 	public enum ListInlineEnumBodyParamNil_BodyEnum_Param$ {
 		C,
 		D,
 	}
-
 	public enum ListInlineEnumBodyParamOptNil_BodyEnum_Param$ {
 		C,
 		D,
 	}
-
 	public List<Boolean> listBooleanBodyParam(BuilderFactory _factory, List<Boolean> bodyBoolean);
 
 	public NilResult listBooleanBodyParamOpt(BuilderFactory _factory, Optional<List<Boolean>> bodyBoolean);
@@ -103,20 +98,15 @@ public interface ListBodyParameterTypesService {
 
 	public NilResult listLocalDateBodyParamNil(BuilderFactory _factory, Optional<List<LocalDate>> bodyLocalDate);
 
-	public NilResult listLocalDateBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<LocalDate>> bodyLocalDate);
+	public NilResult listLocalDateBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDate>> bodyLocalDate);
 
-	public List<LocalDateTime> listLocalDateTimeBodyParam(BuilderFactory _factory,
-			List<LocalDateTime> bodyLocalDateTime);
+	public List<LocalDateTime> listLocalDateTimeBodyParam(BuilderFactory _factory, List<LocalDateTime> bodyLocalDateTime);
 
-	public NilResult listLocalDateTimeBodyParamOpt(BuilderFactory _factory,
-			Optional<List<LocalDateTime>> bodyLocalDateTime);
+	public NilResult listLocalDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<LocalDateTime>> bodyLocalDateTime);
 
-	public NilResult listLocalDateTimeBodyParamNil(BuilderFactory _factory,
-			Optional<List<LocalDateTime>> bodyLocalDateTime);
+	public NilResult listLocalDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> bodyLocalDateTime);
 
-	public NilResult listLocalDateTimeBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<LocalDateTime>> bodyLocalDateTime);
+	public NilResult listLocalDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime);
 
 	public List<LocalTime> listLocalTimeBodyParam(BuilderFactory _factory, List<LocalTime> bodyLocalTime);
 
@@ -124,32 +114,23 @@ public interface ListBodyParameterTypesService {
 
 	public NilResult listLocalTimeBodyParamNil(BuilderFactory _factory, Optional<List<LocalTime>> bodyLocalTime);
 
-	public NilResult listLocalTimeBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<LocalTime>> bodyLocalTime);
+	public NilResult listLocalTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalTime>> bodyLocalTime);
 
-	public List<OffsetDateTime> listOffsetDateTimeBodyParam(BuilderFactory _factory,
-			List<OffsetDateTime> bodyOffsetDateTime);
+	public List<OffsetDateTime> listOffsetDateTimeBodyParam(BuilderFactory _factory, List<OffsetDateTime> bodyOffsetDateTime);
 
-	public NilResult listOffsetDateTimeBodyParamOpt(BuilderFactory _factory,
-			Optional<List<OffsetDateTime>> bodyOffsetDateTime);
+	public NilResult listOffsetDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<OffsetDateTime>> bodyOffsetDateTime);
 
-	public NilResult listOffsetDateTimeBodyParamNil(BuilderFactory _factory,
-			Optional<List<OffsetDateTime>> bodyOffsetDateTime);
+	public NilResult listOffsetDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<OffsetDateTime>> bodyOffsetDateTime);
 
-	public NilResult listOffsetDateTimeBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime);
+	public NilResult listOffsetDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime);
 
-	public List<ZonedDateTime> listZonedDateTimeBodyParam(BuilderFactory _factory,
-			List<ZonedDateTime> bodyZonedDateTime);
+	public List<ZonedDateTime> listZonedDateTimeBodyParam(BuilderFactory _factory, List<ZonedDateTime> bodyZonedDateTime);
 
-	public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory,
-			Optional<List<ZonedDateTime>> bodyZonedDateTime);
+	public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> bodyZonedDateTime);
 
-	public NilResult listZonedDateTimeBodyParamNil(BuilderFactory _factory,
-			Optional<List<ZonedDateTime>> bodyZonedDateTime);
+	public NilResult listZonedDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> bodyZonedDateTime);
 
-	public NilResult listZonedDateTimeBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime);
+	public NilResult listZonedDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime);
 
 	public List<ZoneId> listScalarBodyParam(BuilderFactory _factory, List<ZoneId> bodyScalar);
 
@@ -167,29 +148,21 @@ public interface ListBodyParameterTypesService {
 
 	public NilResult listEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SampleEnum>> bodyEnum);
 
-	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(BuilderFactory _factory,
-			List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum);
+	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(BuilderFactory _factory, List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum);
 
-	public NilResult listInlineEnumBodyParamOpt(BuilderFactory _factory,
-			Optional<List<ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum);
+	public NilResult listInlineEnumBodyParamOpt(BuilderFactory _factory, Optional<List<ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum);
 
-	public NilResult listInlineEnumBodyParamNil(BuilderFactory _factory,
-			Optional<List<ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum);
+	public NilResult listInlineEnumBodyParamNil(BuilderFactory _factory, Optional<List<ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum);
 
-	public NilResult listInlineEnumBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum);
+	public NilResult listInlineEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum);
 
-	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
-			List<SimpleRecord.Data> valueC);
+	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
 
-	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA,
-			Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 
-	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA,
-			Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 
-	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA,
-			_Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
 
 	public List<SimpleRecord.Data> listRecordBodyParam(BuilderFactory _factory, List<SimpleRecord.Data> bodyRecord);
 
@@ -197,7 +170,6 @@ public interface ListBodyParameterTypesService {
 
 	public NilResult listRecordBodyParamNil(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> bodyRecord);
 
-	public NilResult listRecordBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<SimpleRecord.Data>> bodyRecord);
+	public NilResult listRecordBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SimpleRecord.Data>> bodyRecord);
 
 }

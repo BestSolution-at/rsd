@@ -17,8 +17,7 @@ public interface CyclicNodeB {
 
 		public DataBuilder nodeA(CyclicNodeA.Data nodeA);
 
-		public <T extends CyclicNodeA.DataBuilder> DataBuilder withNodeA(Class<T> clazz,
-				Function<T, CyclicNodeA.Data> block);
+		public <T extends CyclicNodeA.DataBuilder> DataBuilder withNodeA(Class<T> clazz, Function<T, CyclicNodeA.Data> block);
 
 	}
 }

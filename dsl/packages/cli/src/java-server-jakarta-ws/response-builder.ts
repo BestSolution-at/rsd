@@ -26,7 +26,7 @@ export function generateResponseBuilder(
 			generateCompilationUnit(
 				packageName,
 				importCollector,
-				generateContent(s, model, artifactConfig, `${artifactConfig.rootPackageName}.service.model`, fqn),
+				generateContent(s, model, artifactConfig, `${artifactConfig.rootPackageName}.model`, fqn),
 			),
 			'\t',
 		),
@@ -70,7 +70,7 @@ function generateContent(
 							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
 						}
 					} else {
-						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.impl.model.json._JsonUtils`);
+						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 						const content = toNodeTree(`
 							return ${Response}.status(${code.toFixed()})
 								.type($contentType)
@@ -104,7 +104,7 @@ function toParameter(
 		}
 
 		if (parameter.optional && parameter.nullable) {
-			t = fqn(`${artifactConfig.rootPackageName}.service.model._Base`) + `.Nillable<${t}>`;
+			t = fqn(`${artifactConfig.rootPackageName}.model._Base`) + `.Nillable<${t}>`;
 		} else if (parameter.optional || parameter.nullable) {
 			t = fqn('java.util.Optional') + `<${t}>`;
 		}
@@ -115,14 +115,14 @@ function toParameter(
 	let type = computeParameterAPIType(
 		parameter,
 		artifactConfig.nativeTypeSubstitues,
-		`${artifactConfig.rootPackageName}.service.model`,
+		`${artifactConfig.rootPackageName}.model`,
 		fqn,
 		false,
 		methodName,
 	);
 
 	if (parameter.optional && parameter.nullable) {
-		type = fqn(`${artifactConfig.rootPackageName}.service.model._Base`) + `.Nillable<${type}>`;
+		type = fqn(`${artifactConfig.rootPackageName}.model._Base`) + `.Nillable<${type}>`;
 	} else if (parameter.optional || parameter.nullable) {
 		if (!parameter.array && parameter.type === 'int') {
 			type = fqn('java.util.OptionalInt');
@@ -145,7 +145,7 @@ function toResultType(
 	methodName: string,
 	serviceName: string,
 ) {
-	const dtoPkg = `${artifactConfig.rootPackageName}.service.model`;
+	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
 	if (type === undefined) {
 		return 'void';
 	}

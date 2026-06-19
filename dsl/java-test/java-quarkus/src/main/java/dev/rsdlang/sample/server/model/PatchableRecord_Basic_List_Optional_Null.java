@@ -9,8 +9,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 public interface PatchableRecord_Basic_List_Optional_Null {
-	public interface Builder {
-	}
+	public interface Builder {}
 
 	public interface Data extends _Base.BaseData, PatchableRecord_Basic_List_Optional_Null {
 		public String key();
@@ -81,8 +80,7 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 		public interface ValueBooleanSetChange extends ValueBooleanChange, _Base.ListReplace<Boolean> {
 		}
 
-		public interface ValueBooleanMergeChange
-				extends ValueBooleanChange, _Base.ListMergeAddRemove<Boolean, Boolean> {
+		public interface ValueBooleanMergeChange extends ValueBooleanChange, _Base.ListMergeAddRemove<Boolean, Boolean> {
 		}
 
 		public interface ValueShortChange {
@@ -145,19 +143,16 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 		public interface ValueLocalDateSetChange extends ValueLocalDateChange, _Base.ListReplace<LocalDate> {
 		}
 
-		public interface ValueLocalDateMergeChange
-				extends ValueLocalDateChange, _Base.ListMergeAddRemove<LocalDate, LocalDate> {
+		public interface ValueLocalDateMergeChange extends ValueLocalDateChange, _Base.ListMergeAddRemove<LocalDate, LocalDate> {
 		}
 
 		public interface ValueLocalDateTimeChange {
 		}
 
-		public interface ValueLocalDateTimeSetChange
-				extends ValueLocalDateTimeChange, _Base.ListReplace<LocalDateTime> {
+		public interface ValueLocalDateTimeSetChange extends ValueLocalDateTimeChange, _Base.ListReplace<LocalDateTime> {
 		}
 
-		public interface ValueLocalDateTimeMergeChange
-				extends ValueLocalDateTimeChange, _Base.ListMergeAddRemove<LocalDateTime, LocalDateTime> {
+		public interface ValueLocalDateTimeMergeChange extends ValueLocalDateTimeChange, _Base.ListMergeAddRemove<LocalDateTime, LocalDateTime> {
 		}
 
 		public interface ValueLocalTimeChange {
@@ -166,30 +161,25 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 		public interface ValueLocalTimeSetChange extends ValueLocalTimeChange, _Base.ListReplace<LocalTime> {
 		}
 
-		public interface ValueLocalTimeMergeChange
-				extends ValueLocalTimeChange, _Base.ListMergeAddRemove<LocalTime, LocalTime> {
+		public interface ValueLocalTimeMergeChange extends ValueLocalTimeChange, _Base.ListMergeAddRemove<LocalTime, LocalTime> {
 		}
 
 		public interface ValueOffsetDateTimeChange {
 		}
 
-		public interface ValueOffsetDateTimeSetChange
-				extends ValueOffsetDateTimeChange, _Base.ListReplace<OffsetDateTime> {
+		public interface ValueOffsetDateTimeSetChange extends ValueOffsetDateTimeChange, _Base.ListReplace<OffsetDateTime> {
 		}
 
-		public interface ValueOffsetDateTimeMergeChange
-				extends ValueOffsetDateTimeChange, _Base.ListMergeAddRemove<OffsetDateTime, OffsetDateTime> {
+		public interface ValueOffsetDateTimeMergeChange extends ValueOffsetDateTimeChange, _Base.ListMergeAddRemove<OffsetDateTime, OffsetDateTime> {
 		}
 
 		public interface ValueZonedDateTimeChange {
 		}
 
-		public interface ValueZonedDateTimeSetChange
-				extends ValueZonedDateTimeChange, _Base.ListReplace<ZonedDateTime> {
+		public interface ValueZonedDateTimeSetChange extends ValueZonedDateTimeChange, _Base.ListReplace<ZonedDateTime> {
 		}
 
-		public interface ValueZonedDateTimeMergeChange
-				extends ValueZonedDateTimeChange, _Base.ListMergeAddRemove<ZonedDateTime, ZonedDateTime> {
+		public interface ValueZonedDateTimeMergeChange extends ValueZonedDateTimeChange, _Base.ListMergeAddRemove<ZonedDateTime, ZonedDateTime> {
 		}
 
 		public String key();
@@ -222,82 +212,57 @@ public interface PatchableRecord_Basic_List_Optional_Null {
 
 	}
 
-	public interface PatchBuilder
-			extends Builder, _Base.BaseDataBuilder<PatchableRecord_Basic_List_Optional_Null.Patch> {
+	public interface PatchBuilder extends Builder, _Base.BaseDataBuilder<PatchableRecord_Basic_List_Optional_Null.Patch> {
 		public PatchBuilder key(String key);
 
 		public PatchBuilder version(String version);
 
 		public PatchBuilder valueBoolean(Patch.ValueBooleanChange valueBoolean);
-
 		public PatchBuilder valueBoolean(List<Boolean> additions, List<Boolean> removals);
-
 		public PatchBuilder valueBoolean(List<Boolean> elements);
 
 		public PatchBuilder valueShort(Patch.ValueShortChange valueShort);
-
 		public PatchBuilder valueShort(List<Short> additions, List<Short> removals);
-
 		public PatchBuilder valueShort(List<Short> elements);
 
 		public PatchBuilder valueInt(Patch.ValueIntChange valueInt);
-
 		public PatchBuilder valueInt(List<Integer> additions, List<Integer> removals);
-
 		public PatchBuilder valueInt(List<Integer> elements);
 
 		public PatchBuilder valueLong(Patch.ValueLongChange valueLong);
-
 		public PatchBuilder valueLong(List<Long> additions, List<Long> removals);
-
 		public PatchBuilder valueLong(List<Long> elements);
 
 		public PatchBuilder valueFloat(Patch.ValueFloatChange valueFloat);
-
 		public PatchBuilder valueFloat(List<Float> additions, List<Float> removals);
-
 		public PatchBuilder valueFloat(List<Float> elements);
 
 		public PatchBuilder valueDouble(Patch.ValueDoubleChange valueDouble);
-
 		public PatchBuilder valueDouble(List<Double> additions, List<Double> removals);
-
 		public PatchBuilder valueDouble(List<Double> elements);
 
 		public PatchBuilder valueString(Patch.ValueStringChange valueString);
-
 		public PatchBuilder valueString(List<String> additions, List<String> removals);
-
 		public PatchBuilder valueString(List<String> elements);
 
 		public PatchBuilder valueLocalDate(Patch.ValueLocalDateChange valueLocalDate);
-
 		public PatchBuilder valueLocalDate(List<LocalDate> additions, List<LocalDate> removals);
-
 		public PatchBuilder valueLocalDate(List<LocalDate> elements);
 
 		public PatchBuilder valueLocalDateTime(Patch.ValueLocalDateTimeChange valueLocalDateTime);
-
 		public PatchBuilder valueLocalDateTime(List<LocalDateTime> additions, List<LocalDateTime> removals);
-
 		public PatchBuilder valueLocalDateTime(List<LocalDateTime> elements);
 
 		public PatchBuilder valueLocalTime(Patch.ValueLocalTimeChange valueLocalTime);
-
 		public PatchBuilder valueLocalTime(List<LocalTime> additions, List<LocalTime> removals);
-
 		public PatchBuilder valueLocalTime(List<LocalTime> elements);
 
 		public PatchBuilder valueOffsetDateTime(Patch.ValueOffsetDateTimeChange valueOffsetDateTime);
-
 		public PatchBuilder valueOffsetDateTime(List<OffsetDateTime> additions, List<OffsetDateTime> removals);
-
 		public PatchBuilder valueOffsetDateTime(List<OffsetDateTime> elements);
 
 		public PatchBuilder valueZonedDateTime(Patch.ValueZonedDateTimeChange valueZonedDateTime);
-
 		public PatchBuilder valueZonedDateTime(List<ZonedDateTime> additions, List<ZonedDateTime> removals);
-
 		public PatchBuilder valueZonedDateTime(List<ZonedDateTime> elements);
 
 	}

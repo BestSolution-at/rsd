@@ -24,27 +24,22 @@ public interface BodyParameterTypesService {
 		A,
 		B,
 	}
-
 	public enum SimpleInlineEnumBodyParam_BodyEnum_Param$ {
 		A,
 		B,
 	}
-
 	public enum SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ {
 		A,
 		B,
 	}
-
 	public enum SimpleInlineEnumBodyParamNil_BodyEnum_Param$ {
 		C,
 		D,
 	}
-
 	public enum SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ {
 		C,
 		D,
 	}
-
 	public boolean simpleBooleanBodyParam(BuilderFactory _factory, boolean bodyBoolean);
 
 	public NilResult simpleBooleanBodyParamOpt(BuilderFactory _factory, Optional<Boolean> bodyBoolean);
@@ -111,14 +106,11 @@ public interface BodyParameterTypesService {
 
 	public LocalDateTime simpleLocalDateTimeBodyParam(BuilderFactory _factory, LocalDateTime bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamOpt(BuilderFactory _factory,
-			Optional<LocalDateTime> bodyLocalDateTime);
+	public NilResult simpleLocalDateTimeBodyParamOpt(BuilderFactory _factory, Optional<LocalDateTime> bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamNil(BuilderFactory _factory,
-			Optional<LocalDateTime> bodyLocalDateTime);
+	public NilResult simpleLocalDateTimeBodyParamNil(BuilderFactory _factory, Optional<LocalDateTime> bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<LocalDateTime> bodyLocalDateTime);
+	public NilResult simpleLocalDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<LocalDateTime> bodyLocalDateTime);
 
 	public LocalTime simpleLocalTimeBodyParam(BuilderFactory _factory, LocalTime bodyLocalTime);
 
@@ -130,25 +122,19 @@ public interface BodyParameterTypesService {
 
 	public OffsetDateTime simpleOffsetDateTimeBodyParam(BuilderFactory _factory, OffsetDateTime bodyOffsetDateTime);
 
-	public NilResult simpleOffsetDateTimeBodyParamOpt(BuilderFactory _factory,
-			Optional<OffsetDateTime> bodyOffsetDateTime);
+	public NilResult simpleOffsetDateTimeBodyParamOpt(BuilderFactory _factory, Optional<OffsetDateTime> bodyOffsetDateTime);
 
-	public NilResult simpleOffsetDateTimeBodyParamNil(BuilderFactory _factory,
-			Optional<OffsetDateTime> bodyOffsetDateTime);
+	public NilResult simpleOffsetDateTimeBodyParamNil(BuilderFactory _factory, Optional<OffsetDateTime> bodyOffsetDateTime);
 
-	public NilResult simpleOffsetDateTimeBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<OffsetDateTime> bodyOffsetDateTime);
+	public NilResult simpleOffsetDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<OffsetDateTime> bodyOffsetDateTime);
 
 	public ZonedDateTime simpleZonedDateTimeBodyParam(BuilderFactory _factory, ZonedDateTime bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamOpt(BuilderFactory _factory,
-			Optional<ZonedDateTime> bodyZonedDateTime);
+	public NilResult simpleZonedDateTimeBodyParamOpt(BuilderFactory _factory, Optional<ZonedDateTime> bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamNil(BuilderFactory _factory,
-			Optional<ZonedDateTime> bodyZonedDateTime);
+	public NilResult simpleZonedDateTimeBodyParamNil(BuilderFactory _factory, Optional<ZonedDateTime> bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<ZonedDateTime> bodyZonedDateTime);
+	public NilResult simpleZonedDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<ZonedDateTime> bodyZonedDateTime);
 
 	public ZoneId simpleScalarBodyParam(BuilderFactory _factory, ZoneId bodyScalar);
 
@@ -166,31 +152,23 @@ public interface BodyParameterTypesService {
 
 	public NilResult simpleEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<SampleEnum> bodyEnum);
 
-	public SimpleInlineEnumBodyParam_Result$ simpleInlineEnumBodyParam(BuilderFactory _factory,
-			SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum);
+	public SimpleInlineEnumBodyParam_Result$ simpleInlineEnumBodyParam(BuilderFactory _factory, SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamOpt(BuilderFactory _factory,
-			Optional<SimpleInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum);
+	public NilResult simpleInlineEnumBodyParamOpt(BuilderFactory _factory, Optional<SimpleInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamNil(BuilderFactory _factory,
-			Optional<SimpleInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum);
+	public NilResult simpleInlineEnumBodyParamNil(BuilderFactory _factory, Optional<SimpleInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum);
+	public NilResult simpleInlineEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum);
 
 	public String multiBodyParam(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC);
 
-	public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB,
-			Optional<SimpleRecord.Data> valueC);
+	public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC);
 
-	public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB,
-			Optional<SimpleRecord.Data> valueC);
+	public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC);
 
-	public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA,
-			_Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC);
+	public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC);
 
-	public String multiBodyParamFirst(BuilderFactory _factory, Optional<String> valueA, int valueB,
-			SimpleRecord.Data valueC);
+	public String multiBodyParamFirst(BuilderFactory _factory, Optional<String> valueA, int valueB, SimpleRecord.Data valueC);
 
 	public SimpleRecord.Data recordBodyParam(BuilderFactory _factory, SimpleRecord.Data bodyRecord);
 
@@ -210,13 +188,10 @@ public interface BodyParameterTypesService {
 
 	public PatchableRecord.Data patchableRecordBodyParam(BuilderFactory _factory, PatchableRecord.Patch bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamOpt(BuilderFactory _factory,
-			Optional<PatchableRecord.Patch> bodyRecord);
+	public PatchableRecord.Data patchableRecordBodyParamOpt(BuilderFactory _factory, Optional<PatchableRecord.Patch> bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamNil(BuilderFactory _factory,
-			Optional<PatchableRecord.Patch> bodyRecord);
+	public PatchableRecord.Data patchableRecordBodyParamNil(BuilderFactory _factory, Optional<PatchableRecord.Patch> bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<PatchableRecord.Patch> bodyRecord);
+	public PatchableRecord.Data patchableRecordBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<PatchableRecord.Patch> bodyRecord);
 
 }

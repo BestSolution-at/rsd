@@ -17,12 +17,10 @@ public interface ListQueryParameterTypesService {
 		A,
 		B,
 	}
-
 	public enum ListInlineEnumQueryParam_QueryValue_Param$ {
 		A,
 		B,
 	}
-
 	public List<Boolean> listBooleanQueryParam(BuilderFactory _factory, List<Boolean> queryValue);
 
 	public List<Short> listShortQueryParam(BuilderFactory _factory, List<Short> queryValue);
@@ -51,11 +49,9 @@ public interface ListQueryParameterTypesService {
 
 	public List<SampleEnum> listEnumQueryParam(BuilderFactory _factory, List<SampleEnum> queryValue);
 
-	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(BuilderFactory _factory,
-			List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
+	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(BuilderFactory _factory, List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
 
-	public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
-			List<SimpleRecord.Data> valueC);
+	public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
 
 	public List<SimpleRecord.Data> listRecordQueryParam(BuilderFactory _factory, List<SimpleRecord.Data> queryValue);
 

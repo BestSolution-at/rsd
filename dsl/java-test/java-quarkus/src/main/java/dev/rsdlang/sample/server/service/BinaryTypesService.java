@@ -45,27 +45,15 @@ public interface BinaryTypesService {
 
 	public int uploadBlobListOptNil(BuilderFactory _factory, _Base.Nillable<List<RSDBlob>> data);
 
-	public UploadMixedResult.Data uploadMixed(BuilderFactory _factory, String text, int number, SimpleRecord.Data rec,
-			List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile,
-			RSDBlob dataBlob);
+	public UploadMixedResult.Data uploadMixed(BuilderFactory _factory, String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob);
 
-	public UploadMixedResult.Data uploadMixedOpt(BuilderFactory _factory, Optional<String> text, OptionalInt number,
-			Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList,
-			Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob);
+	public UploadMixedResult.Data uploadMixedOpt(BuilderFactory _factory, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob);
 
-	public UploadMixedResult.Data uploadMixedNil(BuilderFactory _factory, Optional<String> text, OptionalInt number,
-			Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList,
-			Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob);
+	public UploadMixedResult.Data uploadMixedNil(BuilderFactory _factory, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob);
 
-	public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text,
-			_Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec,
-			_Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList,
-			_Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile,
-			_Base.Nillable<RSDBlob> dataBlob);
+	public UploadMixedResult.Data uploadMixedOptNil(BuilderFactory _factory, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob);
 
-	public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString,
-			int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber,
-			SimpleRecord.Data queryRecord, RSDBlob dataBlob);
+	public MixedResult.Data mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob);
 
 	public String singleBodyAddition(BuilderFactory _factory, String name, RSDBlob dataBlob);
 

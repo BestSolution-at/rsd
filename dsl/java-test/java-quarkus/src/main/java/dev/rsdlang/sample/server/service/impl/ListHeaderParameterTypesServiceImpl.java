@@ -11,13 +11,13 @@ import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import dev.rsdlang.sample.server.service.BuilderFactory;
-import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.ZoneId;
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService;
 
 @ApplicationScoped
 public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterTypesService {
@@ -90,74 +90,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	private final ListRecordHeaderParamNilHandler listRecordHeaderParamNilHandler;
 	private final ListRecordHeaderParamOptNilHandler listRecordHeaderParamOptNilHandler;
 
-	public ListHeaderParameterTypesServiceImpl(ListBooleanHeaderParamHandler listBooleanHeaderParamHandler,
-			ListBooleanHeaderParamOptHandler listBooleanHeaderParamOptHandler,
-			ListBooleanHeaderParamNilHandler listBooleanHeaderParamNilHandler,
-			ListBooleanHeaderParamOptNilHandler listBooleanHeaderParamOptNilHandler,
-			ListShortHeaderParamHandler listShortHeaderParamHandler,
-			ListShortHeaderParamOptHandler listShortHeaderParamOptHandler,
-			ListShortHeaderParamNilHandler listShortHeaderParamNilHandler,
-			ListShortHeaderParamOptNilHandler listShortHeaderParamOptNilHandler,
-			ListIntHeaderParamHandler listIntHeaderParamHandler,
-			ListIntHeaderParamOptHandler listIntHeaderParamOptHandler,
-			ListIntHeaderParamNilHandler listIntHeaderParamNilHandler,
-			ListIntHeaderParamOptNilHandler listIntHeaderParamOptNilHandler,
-			ListLongHeaderParamHandler listLongHeaderParamHandler,
-			ListLongHeaderParamOptHandler listLongHeaderParamOptHandler,
-			ListLongHeaderParamNilHandler listLongHeaderParamNilHandler,
-			ListLongHeaderParamOptNilHandler listLongHeaderParamOptNilHandler,
-			ListFloatHeaderParamHandler listFloatHeaderParamHandler,
-			ListFloatHeaderParamOptHandler listFloatHeaderParamOptHandler,
-			ListFloatHeaderParamNilHandler listFloatHeaderParamNilHandler,
-			ListFloatHeaderParamOptNilHandler listFloatHeaderParamOptNilHandler,
-			ListDoubleHeaderParamHandler listDoubleHeaderParamHandler,
-			ListDoubleHeaderParamOptHandler listDoubleHeaderParamOptHandler,
-			ListDoubleHeaderParamNilHandler listDoubleHeaderParamNilHandler,
-			ListDoubleHeaderParamOptNilHandler listDoubleHeaderParamOptNilHandler,
-			ListStringHeaderParamHandler listStringHeaderParamHandler,
-			ListStringHeaderParamOptHandler listStringHeaderParamOptHandler,
-			ListStringHeaderParamNilHandler listStringHeaderParamNilHandler,
-			ListStringHeaderParamOptNilHandler listStringHeaderParamOptNilHandler,
-			ListLocalDateHeaderParamHandler listLocalDateHeaderParamHandler,
-			ListLocalDateHeaderParamOptHandler listLocalDateHeaderParamOptHandler,
-			ListLocalDateHeaderParamNilHandler listLocalDateHeaderParamNilHandler,
-			ListLocalDateHeaderParamOptNilHandler listLocalDateHeaderParamOptNilHandler,
-			ListLocalDateTimeHeaderParamHandler listLocalDateTimeHeaderParamHandler,
-			ListLocalDateTimeHeaderParamOptHandler listLocalDateTimeHeaderParamOptHandler,
-			ListLocalDateTimeHeaderParamNilHandler listLocalDateTimeHeaderParamNilHandler,
-			ListLocalDateTimeHeaderParamOptNilHandler listLocalDateTimeHeaderParamOptNilHandler,
-			ListLocalTimeHeaderParamHandler listLocalTimeHeaderParamHandler,
-			ListLocalTimeHeaderParamOptHandler listLocalTimeHeaderParamOptHandler,
-			ListLocalTimeHeaderParamNilHandler listLocalTimeHeaderParamNilHandler,
-			ListLocalTimeHeaderParamOptNilHandler listLocalTimeHeaderParamOptNilHandler,
-			ListOffsetDateTimeHeaderParamHandler listOffsetDateTimeHeaderParamHandler,
-			ListOffsetDateTimeHeaderParamOptHandler listOffsetDateTimeHeaderParamOptHandler,
-			ListOffsetDateTimeHeaderParamNilHandler listOffsetDateTimeHeaderParamNilHandler,
-			ListOffsetDateTimeHeaderParamOptNilHandler listOffsetDateTimeHeaderParamOptNilHandler,
-			ListZonedDateTimeHeaderParamHandler listZonedDateTimeHeaderParamHandler,
-			ListZonedDateTimeHeaderParamOptHandler listZonedDateTimeHeaderParamOptHandler,
-			ListZonedDateTimeHeaderParamNilHandler listZonedDateTimeHeaderParamNilHandler,
-			ListZonedDateTimeHeaderParamOptNilHandler listZonedDateTimeHeaderParamOptNilHandler,
-			ListScalarHeaderParamHandler listScalarHeaderParamHandler,
-			ListScalarHeaderParamOptHandler listScalarHeaderParamOptHandler,
-			ListScalarHeaderParamNilHandler listScalarHeaderParamNilHandler,
-			ListScalarHeaderParamOptNilHandler listScalarHeaderParamOptNilHandler,
-			ListEnumHeaderParamHandler listEnumHeaderParamHandler,
-			ListEnumHeaderParamOptHandler listEnumHeaderParamOptHandler,
-			ListEnumHeaderParamNilHandler listEnumHeaderParamNilHandler,
-			ListEnumHeaderParamOptNilHandler listEnumHeaderParamOptNilHandler,
-			ListInlineEnumHeaderParamHandler listInlineEnumHeaderParamHandler,
-			ListInlineEnumHeaderParamOptHandler listInlineEnumHeaderParamOptHandler,
-			ListInlineEnumHeaderParamNilHandler listInlineEnumHeaderParamNilHandler,
-			ListInlineEnumHeaderParamOptNilHandler listInlineEnumHeaderParamOptNilHandler,
-			ListMultiHeaderParamHandler listMultiHeaderParamHandler,
-			ListMultiHeaderParamOptHandler listMultiHeaderParamOptHandler,
-			ListMultiHeaderParamNilHandler listMultiHeaderParamNilHandler,
-			ListMultiHeaderParamOptNilHandler listMultiHeaderParamOptNilHandler,
-			ListRecordHeaderParamHandler listRecordHeaderParamHandler,
-			ListRecordHeaderParamOptHandler listRecordHeaderParamOptHandler,
-			ListRecordHeaderParamNilHandler listRecordHeaderParamNilHandler,
-			ListRecordHeaderParamOptNilHandler listRecordHeaderParamOptNilHandler) {
+	public ListHeaderParameterTypesServiceImpl(ListBooleanHeaderParamHandler listBooleanHeaderParamHandler, ListBooleanHeaderParamOptHandler listBooleanHeaderParamOptHandler, ListBooleanHeaderParamNilHandler listBooleanHeaderParamNilHandler, ListBooleanHeaderParamOptNilHandler listBooleanHeaderParamOptNilHandler, ListShortHeaderParamHandler listShortHeaderParamHandler, ListShortHeaderParamOptHandler listShortHeaderParamOptHandler, ListShortHeaderParamNilHandler listShortHeaderParamNilHandler, ListShortHeaderParamOptNilHandler listShortHeaderParamOptNilHandler, ListIntHeaderParamHandler listIntHeaderParamHandler, ListIntHeaderParamOptHandler listIntHeaderParamOptHandler, ListIntHeaderParamNilHandler listIntHeaderParamNilHandler, ListIntHeaderParamOptNilHandler listIntHeaderParamOptNilHandler, ListLongHeaderParamHandler listLongHeaderParamHandler, ListLongHeaderParamOptHandler listLongHeaderParamOptHandler, ListLongHeaderParamNilHandler listLongHeaderParamNilHandler, ListLongHeaderParamOptNilHandler listLongHeaderParamOptNilHandler, ListFloatHeaderParamHandler listFloatHeaderParamHandler, ListFloatHeaderParamOptHandler listFloatHeaderParamOptHandler, ListFloatHeaderParamNilHandler listFloatHeaderParamNilHandler, ListFloatHeaderParamOptNilHandler listFloatHeaderParamOptNilHandler, ListDoubleHeaderParamHandler listDoubleHeaderParamHandler, ListDoubleHeaderParamOptHandler listDoubleHeaderParamOptHandler, ListDoubleHeaderParamNilHandler listDoubleHeaderParamNilHandler, ListDoubleHeaderParamOptNilHandler listDoubleHeaderParamOptNilHandler, ListStringHeaderParamHandler listStringHeaderParamHandler, ListStringHeaderParamOptHandler listStringHeaderParamOptHandler, ListStringHeaderParamNilHandler listStringHeaderParamNilHandler, ListStringHeaderParamOptNilHandler listStringHeaderParamOptNilHandler, ListLocalDateHeaderParamHandler listLocalDateHeaderParamHandler, ListLocalDateHeaderParamOptHandler listLocalDateHeaderParamOptHandler, ListLocalDateHeaderParamNilHandler listLocalDateHeaderParamNilHandler, ListLocalDateHeaderParamOptNilHandler listLocalDateHeaderParamOptNilHandler, ListLocalDateTimeHeaderParamHandler listLocalDateTimeHeaderParamHandler, ListLocalDateTimeHeaderParamOptHandler listLocalDateTimeHeaderParamOptHandler, ListLocalDateTimeHeaderParamNilHandler listLocalDateTimeHeaderParamNilHandler, ListLocalDateTimeHeaderParamOptNilHandler listLocalDateTimeHeaderParamOptNilHandler, ListLocalTimeHeaderParamHandler listLocalTimeHeaderParamHandler, ListLocalTimeHeaderParamOptHandler listLocalTimeHeaderParamOptHandler, ListLocalTimeHeaderParamNilHandler listLocalTimeHeaderParamNilHandler, ListLocalTimeHeaderParamOptNilHandler listLocalTimeHeaderParamOptNilHandler, ListOffsetDateTimeHeaderParamHandler listOffsetDateTimeHeaderParamHandler, ListOffsetDateTimeHeaderParamOptHandler listOffsetDateTimeHeaderParamOptHandler, ListOffsetDateTimeHeaderParamNilHandler listOffsetDateTimeHeaderParamNilHandler, ListOffsetDateTimeHeaderParamOptNilHandler listOffsetDateTimeHeaderParamOptNilHandler, ListZonedDateTimeHeaderParamHandler listZonedDateTimeHeaderParamHandler, ListZonedDateTimeHeaderParamOptHandler listZonedDateTimeHeaderParamOptHandler, ListZonedDateTimeHeaderParamNilHandler listZonedDateTimeHeaderParamNilHandler, ListZonedDateTimeHeaderParamOptNilHandler listZonedDateTimeHeaderParamOptNilHandler, ListScalarHeaderParamHandler listScalarHeaderParamHandler, ListScalarHeaderParamOptHandler listScalarHeaderParamOptHandler, ListScalarHeaderParamNilHandler listScalarHeaderParamNilHandler, ListScalarHeaderParamOptNilHandler listScalarHeaderParamOptNilHandler, ListEnumHeaderParamHandler listEnumHeaderParamHandler, ListEnumHeaderParamOptHandler listEnumHeaderParamOptHandler, ListEnumHeaderParamNilHandler listEnumHeaderParamNilHandler, ListEnumHeaderParamOptNilHandler listEnumHeaderParamOptNilHandler, ListInlineEnumHeaderParamHandler listInlineEnumHeaderParamHandler, ListInlineEnumHeaderParamOptHandler listInlineEnumHeaderParamOptHandler, ListInlineEnumHeaderParamNilHandler listInlineEnumHeaderParamNilHandler, ListInlineEnumHeaderParamOptNilHandler listInlineEnumHeaderParamOptNilHandler, ListMultiHeaderParamHandler listMultiHeaderParamHandler, ListMultiHeaderParamOptHandler listMultiHeaderParamOptHandler, ListMultiHeaderParamNilHandler listMultiHeaderParamNilHandler, ListMultiHeaderParamOptNilHandler listMultiHeaderParamOptNilHandler, ListRecordHeaderParamHandler listRecordHeaderParamHandler, ListRecordHeaderParamOptHandler listRecordHeaderParamOptHandler, ListRecordHeaderParamNilHandler listRecordHeaderParamNilHandler, ListRecordHeaderParamOptNilHandler listRecordHeaderParamOptNilHandler) {
 		this.listBooleanHeaderParamHandler = listBooleanHeaderParamHandler;
 		this.listBooleanHeaderParamOptHandler = listBooleanHeaderParamOptHandler;
 		this.listBooleanHeaderParamNilHandler = listBooleanHeaderParamNilHandler;
@@ -384,8 +317,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<LocalDate>> headerValue) {
+	public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDate>> headerValue) {
 		return listLocalDateHeaderParamOptNilHandler.listLocalDateHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -395,20 +327,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory,
-			Optional<List<LocalDateTime>> headerValue) {
+	public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue) {
 		return listLocalDateTimeHeaderParamOptHandler.listLocalDateTimeHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory,
-			Optional<List<LocalDateTime>> headerValue) {
+	public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue) {
 		return listLocalDateTimeHeaderParamNilHandler.listLocalDateTimeHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<LocalDateTime>> headerValue) {
+	public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> headerValue) {
 		return listLocalDateTimeHeaderParamOptNilHandler.listLocalDateTimeHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -428,32 +357,27 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listLocalTimeHeaderParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<LocalTime>> headerValue) {
+	public NilResult listLocalTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalTime>> headerValue) {
 		return listLocalTimeHeaderParamOptNilHandler.listLocalTimeHeaderParamOptNil(_factory, headerValue);
 	}
 
 	@Override
-	public List<OffsetDateTime> listOffsetDateTimeHeaderParam(BuilderFactory _factory,
-			List<OffsetDateTime> headerValue) {
+	public List<OffsetDateTime> listOffsetDateTimeHeaderParam(BuilderFactory _factory, List<OffsetDateTime> headerValue) {
 		return listOffsetDateTimeHeaderParamHandler.listOffsetDateTimeHeaderParam(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listOffsetDateTimeHeaderParamOpt(BuilderFactory _factory,
-			Optional<List<OffsetDateTime>> headerValue) {
+	public NilResult listOffsetDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<OffsetDateTime>> headerValue) {
 		return listOffsetDateTimeHeaderParamOptHandler.listOffsetDateTimeHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listOffsetDateTimeHeaderParamNil(BuilderFactory _factory,
-			Optional<List<OffsetDateTime>> headerValue) {
+	public NilResult listOffsetDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<OffsetDateTime>> headerValue) {
 		return listOffsetDateTimeHeaderParamNilHandler.listOffsetDateTimeHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<OffsetDateTime>> headerValue) {
+	public NilResult listOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<OffsetDateTime>> headerValue) {
 		return listOffsetDateTimeHeaderParamOptNilHandler.listOffsetDateTimeHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -463,20 +387,17 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory,
-			Optional<List<ZonedDateTime>> headerValue) {
+	public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue) {
 		return listZonedDateTimeHeaderParamOptHandler.listZonedDateTimeHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory,
-			Optional<List<ZonedDateTime>> headerValue) {
+	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue) {
 		return listZonedDateTimeHeaderParamNilHandler.listZonedDateTimeHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<ZonedDateTime>> headerValue) {
+	public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZonedDateTime>> headerValue) {
 		return listZonedDateTimeHeaderParamOptNilHandler.listZonedDateTimeHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -521,50 +442,42 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(BuilderFactory _factory,
-			List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue) {
+	public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(BuilderFactory _factory, List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue) {
 		return listInlineEnumHeaderParamHandler.listInlineEnumHeaderParam(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory,
-			Optional<List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$>> headerValue) {
+	public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$>> headerValue) {
 		return listInlineEnumHeaderParamOptHandler.listInlineEnumHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory,
-			Optional<List<ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue) {
+	public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue) {
 		return listInlineEnumHeaderParamNilHandler.listInlineEnumHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue) {
+	public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue) {
 		return listInlineEnumHeaderParamOptNilHandler.listInlineEnumHeaderParamOptNil(_factory, headerValue);
 	}
 
 	@Override
-	public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
-			List<SimpleRecord.Data> valueC) {
+	public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		return listMultiHeaderParamHandler.listMultiHeaderParam(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA,
-			Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiHeaderParamOptHandler.listMultiHeaderParamOpt(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA,
-			Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiHeaderParamNilHandler.listMultiHeaderParamNil(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA,
-			_Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
 		return listMultiHeaderParamOptNilHandler.listMultiHeaderParamOptNil(_factory, valueA, valueB, valueC);
 	}
 
@@ -584,8 +497,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory,
-			_Base.Nillable<List<SimpleRecord.Data>> headerValue) {
+	public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SimpleRecord.Data>> headerValue) {
 		return listRecordHeaderParamOptNilHandler.listRecordHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -602,8 +514,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListBooleanHeaderParamOptNilHandler {
-		public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<Boolean>> headerValue);
+		public NilResult listBooleanHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<Boolean>> headerValue);
 	}
 
 	public interface ListShortHeaderParamHandler {
@@ -715,28 +626,23 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListLocalDateHeaderParamOptNilHandler {
-		public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<LocalDate>> headerValue);
+		public NilResult listLocalDateHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDate>> headerValue);
 	}
 
 	public interface ListLocalDateTimeHeaderParamHandler {
-		public List<LocalDateTime> listLocalDateTimeHeaderParam(BuilderFactory _factory,
-				List<LocalDateTime> headerValue);
+		public List<LocalDateTime> listLocalDateTimeHeaderParam(BuilderFactory _factory, List<LocalDateTime> headerValue);
 	}
 
 	public interface ListLocalDateTimeHeaderParamOptHandler {
-		public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory,
-				Optional<List<LocalDateTime>> headerValue);
+		public NilResult listLocalDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue);
 	}
 
 	public interface ListLocalDateTimeHeaderParamNilHandler {
-		public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory,
-				Optional<List<LocalDateTime>> headerValue);
+		public NilResult listLocalDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> headerValue);
 	}
 
 	public interface ListLocalDateTimeHeaderParamOptNilHandler {
-		public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<LocalDateTime>> headerValue);
+		public NilResult listLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> headerValue);
 	}
 
 	public interface ListLocalTimeHeaderParamHandler {
@@ -752,48 +658,39 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListLocalTimeHeaderParamOptNilHandler {
-		public NilResult listLocalTimeHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<LocalTime>> headerValue);
+		public NilResult listLocalTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalTime>> headerValue);
 	}
 
 	public interface ListOffsetDateTimeHeaderParamHandler {
-		public List<OffsetDateTime> listOffsetDateTimeHeaderParam(BuilderFactory _factory,
-				List<OffsetDateTime> headerValue);
+		public List<OffsetDateTime> listOffsetDateTimeHeaderParam(BuilderFactory _factory, List<OffsetDateTime> headerValue);
 	}
 
 	public interface ListOffsetDateTimeHeaderParamOptHandler {
-		public NilResult listOffsetDateTimeHeaderParamOpt(BuilderFactory _factory,
-				Optional<List<OffsetDateTime>> headerValue);
+		public NilResult listOffsetDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<OffsetDateTime>> headerValue);
 	}
 
 	public interface ListOffsetDateTimeHeaderParamNilHandler {
-		public NilResult listOffsetDateTimeHeaderParamNil(BuilderFactory _factory,
-				Optional<List<OffsetDateTime>> headerValue);
+		public NilResult listOffsetDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<OffsetDateTime>> headerValue);
 	}
 
 	public interface ListOffsetDateTimeHeaderParamOptNilHandler {
-		public NilResult listOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<OffsetDateTime>> headerValue);
+		public NilResult listOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<OffsetDateTime>> headerValue);
 	}
 
 	public interface ListZonedDateTimeHeaderParamHandler {
-		public List<ZonedDateTime> listZonedDateTimeHeaderParam(BuilderFactory _factory,
-				List<ZonedDateTime> headerValue);
+		public List<ZonedDateTime> listZonedDateTimeHeaderParam(BuilderFactory _factory, List<ZonedDateTime> headerValue);
 	}
 
 	public interface ListZonedDateTimeHeaderParamOptHandler {
-		public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory,
-				Optional<List<ZonedDateTime>> headerValue);
+		public NilResult listZonedDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue);
 	}
 
 	public interface ListZonedDateTimeHeaderParamNilHandler {
-		public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory,
-				Optional<List<ZonedDateTime>> headerValue);
+		public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue);
 	}
 
 	public interface ListZonedDateTimeHeaderParamOptNilHandler {
-		public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<ZonedDateTime>> headerValue);
+		public NilResult listZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZonedDateTime>> headerValue);
 	}
 
 	public interface ListScalarHeaderParamHandler {
@@ -825,68 +722,55 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListEnumHeaderParamOptNilHandler {
-		public NilResult listEnumHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<SampleEnum>> headerValue);
+		public NilResult listEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SampleEnum>> headerValue);
 	}
 
 	public interface ListInlineEnumHeaderParamHandler {
-		public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(BuilderFactory _factory,
-				List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue);
+		public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(BuilderFactory _factory, List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue);
 	}
 
 	public interface ListInlineEnumHeaderParamOptHandler {
-		public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory,
-				Optional<List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$>> headerValue);
+		public NilResult listInlineEnumHeaderParamOpt(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$>> headerValue);
 	}
 
 	public interface ListInlineEnumHeaderParamNilHandler {
-		public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory,
-				Optional<List<ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue);
+		public NilResult listInlineEnumHeaderParamNil(BuilderFactory _factory, Optional<List<ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue);
 	}
 
 	public interface ListInlineEnumHeaderParamOptNilHandler {
-		public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue);
+		public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue);
 	}
 
 	public interface ListMultiHeaderParamHandler {
-		public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
-				List<SimpleRecord.Data> valueC);
+		public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
 	}
 
 	public interface ListMultiHeaderParamOptHandler {
-		public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA,
-				Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiHeaderParamNilHandler {
-		public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA,
-				Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiHeaderParamOptNilHandler {
-		public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA,
-				_Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListRecordHeaderParamHandler {
-		public List<SimpleRecord.Data> listRecordHeaderParam(BuilderFactory _factory,
-				List<SimpleRecord.Data> headerValue);
+		public List<SimpleRecord.Data> listRecordHeaderParam(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
 	}
 
 	public interface ListRecordHeaderParamOptHandler {
-		public NilResult listRecordHeaderParamOpt(BuilderFactory _factory,
-				Optional<List<SimpleRecord.Data>> headerValue);
+		public NilResult listRecordHeaderParamOpt(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> headerValue);
 	}
 
 	public interface ListRecordHeaderParamNilHandler {
-		public NilResult listRecordHeaderParamNil(BuilderFactory _factory,
-				Optional<List<SimpleRecord.Data>> headerValue);
+		public NilResult listRecordHeaderParamNil(BuilderFactory _factory, Optional<List<SimpleRecord.Data>> headerValue);
 	}
 
 	public interface ListRecordHeaderParamOptNilHandler {
-		public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory,
-				_Base.Nillable<List<SimpleRecord.Data>> headerValue);
+		public NilResult listRecordHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SimpleRecord.Data>> headerValue);
 	}
 
 }

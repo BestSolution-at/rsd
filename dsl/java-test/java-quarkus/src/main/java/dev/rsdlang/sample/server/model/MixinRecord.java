@@ -10,8 +10,7 @@ import dev.rsdlang.sample.server.model.mixins.UnionMixinMixin;
 
 public interface MixinRecord {
 
-	public interface Data extends _Base.BaseData, MixinRecord, SimpleMixinMixin, SimpleMixin2Mixin, UnionMixinMixin,
-			RecordMixinMixin {
+	public interface Data extends _Base.BaseData, MixinRecord, SimpleMixinMixin, SimpleMixin2Mixin, UnionMixinMixin, RecordMixinMixin {
 		public String sample();
 
 		@Override
@@ -41,8 +40,7 @@ public interface MixinRecord {
 
 		public DataBuilder myRecord(SimpleRecord.Data myRecord);
 
-		public <T extends SimpleRecord.DataBuilder> DataBuilder withMyRecord(Class<T> clazz,
-				Function<T, SimpleRecord.Data> block);
+		public <T extends SimpleRecord.DataBuilder> DataBuilder withMyRecord(Class<T> clazz, Function<T, SimpleRecord.Data> block);
 
 	}
 }

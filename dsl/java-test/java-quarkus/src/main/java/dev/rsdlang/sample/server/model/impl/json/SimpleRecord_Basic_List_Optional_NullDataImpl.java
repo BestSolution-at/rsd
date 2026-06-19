@@ -15,8 +15,7 @@ import jakarta.json.JsonObjectBuilder;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.SimpleRecord_Basic_List_Optional_Null;
 
-public class SimpleRecord_Basic_List_Optional_NullDataImpl extends _BaseDataImpl
-		implements SimpleRecord_Basic_List_Optional_Null.Data {
+public class SimpleRecord_Basic_List_Optional_NullDataImpl extends _BaseDataImpl implements SimpleRecord_Basic_List_Optional_Null.Data {
 	SimpleRecord_Basic_List_Optional_NullDataImpl(JsonObject data) {
 		super(data);
 	}
@@ -173,8 +172,7 @@ public class SimpleRecord_Basic_List_Optional_NullDataImpl extends _BaseDataImpl
 		}
 
 		@Override
-		public SimpleRecord_Basic_List_Optional_Null.DataBuilder valueLocalDateTime(
-				List<LocalDateTime> valueLocalDateTime) {
+		public SimpleRecord_Basic_List_Optional_Null.DataBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime) {
 			if (valueLocalDateTime == null) {
 				$builder.addNull("valueLocalDateTime");
 				return this;
@@ -194,8 +192,7 @@ public class SimpleRecord_Basic_List_Optional_NullDataImpl extends _BaseDataImpl
 		}
 
 		@Override
-		public SimpleRecord_Basic_List_Optional_Null.DataBuilder valueOffsetDateTime(
-				List<OffsetDateTime> valueOffsetDateTime) {
+		public SimpleRecord_Basic_List_Optional_Null.DataBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
 			if (valueOffsetDateTime == null) {
 				$builder.addNull("valueOffsetDateTime");
 				return this;
@@ -205,8 +202,7 @@ public class SimpleRecord_Basic_List_Optional_NullDataImpl extends _BaseDataImpl
 		}
 
 		@Override
-		public SimpleRecord_Basic_List_Optional_Null.DataBuilder valueZonedDateTime(
-				List<ZonedDateTime> valueZonedDateTime) {
+		public SimpleRecord_Basic_List_Optional_Null.DataBuilder valueZonedDateTime(List<ZonedDateTime> valueZonedDateTime) {
 			if (valueZonedDateTime == null) {
 				$builder.addNull("valueZonedDateTime");
 				return this;

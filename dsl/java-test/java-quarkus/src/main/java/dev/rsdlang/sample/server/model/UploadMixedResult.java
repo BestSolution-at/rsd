@@ -32,8 +32,7 @@ public interface UploadMixedResult {
 
 		public DataBuilder rec(SimpleRecord.Data rec);
 
-		public <T extends SimpleRecord.DataBuilder> DataBuilder withRec(Class<T> clazz,
-				Function<T, SimpleRecord.Data> block);
+		public <T extends SimpleRecord.DataBuilder> DataBuilder withRec(Class<T> clazz, Function<T, SimpleRecord.Data> block);
 
 		public DataBuilder textList(List<String> textList);
 

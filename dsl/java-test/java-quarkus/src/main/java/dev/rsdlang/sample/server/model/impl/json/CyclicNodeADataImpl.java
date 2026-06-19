@@ -54,8 +54,8 @@ public class CyclicNodeADataImpl extends _BaseDataImpl implements CyclicNodeA.Da
 			return this;
 		}
 
-		public <T extends CyclicNodeB.DataBuilder> DataBuilder withNodeB(Class<T> clazz,
-				Function<T, CyclicNodeB.Data> block) {
+
+		public <T extends CyclicNodeB.DataBuilder> DataBuilder withNodeB(Class<T> clazz, Function<T, CyclicNodeB.Data> block) {
 			var b = CyclicNodeBDataImpl.builder();
 			return nodeB(block.apply(clazz.cast(b)));
 		}

@@ -15,15 +15,15 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
-import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.ZoneId;
+import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 
 @ApplicationScoped
 @Path("/api/listqueryparametertypes")
-@Produces({ "application/json", "application/vnd.msgpack" })
-@Consumes({ "application/json", "application/vnd.msgpack" })
+@Produces({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack"})
 public class ListQueryParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
@@ -32,8 +32,7 @@ public class ListQueryParameterTypesResource {
 	private final ListQueryParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListQueryParameterTypesResource(ListQueryParameterTypesService service,
-			ListQueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListQueryParameterTypesResource(ListQueryParameterTypesService service, ListQueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -64,8 +63,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapBooleans(_queryValue);
 		var result = service.listBooleanQueryParam(builderFactory, queryValue);
-		return responseBuilder.listBooleanQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listBooleanQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -75,8 +73,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapShorts(_queryValue);
 		var result = service.listShortQueryParam(builderFactory, queryValue);
-		return responseBuilder.listShortQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listShortQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -86,8 +83,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapInts(_queryValue);
 		var result = service.listIntQueryParam(builderFactory, queryValue);
-		return responseBuilder.listIntQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listIntQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -97,8 +93,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapLongs(_queryValue);
 		var result = service.listLongQueryParam(builderFactory, queryValue);
-		return responseBuilder.listLongQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listLongQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -108,8 +103,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapFloats(_queryValue);
 		var result = service.listFloatQueryParam(builderFactory, queryValue);
-		return responseBuilder.listFloatQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listFloatQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -119,8 +113,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapDoubles(_queryValue);
 		var result = service.listDoubleQueryParam(builderFactory, queryValue);
-		return responseBuilder.listDoubleQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listDoubleQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -130,8 +123,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapStrings(_queryValue);
 		var result = service.listStringQueryParam(builderFactory, queryValue);
-		return responseBuilder.listStringQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listStringQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -141,8 +133,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapLocalDates(_queryValue);
 		var result = service.listLocalDateQueryParam(builderFactory, queryValue);
-		return responseBuilder.listLocalDateQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listLocalDateQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -152,8 +143,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapLocalDateTimes(_queryValue);
 		var result = service.listLocalDateTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder
-				.listLocalDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.listLocalDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -163,8 +153,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapLocalTimes(_queryValue);
 		var result = service.listLocalTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder.listLocalTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listLocalTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -174,8 +163,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapOffsetDateTimes(_queryValue);
 		var result = service.listOffsetDateTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder
-				.listOffsetDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.listOffsetDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -185,8 +173,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapZonedDateTimes(_queryValue);
 		var result = service.listZonedDateTimeQueryParam(builderFactory, queryValue);
-		return responseBuilder
-				.listZonedDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
+		return responseBuilder.listZonedDateTimeQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -196,8 +183,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapLiterals(_queryValue, ZoneId::of);
 		var result = service.listScalarQueryParam(builderFactory, queryValue);
-		return responseBuilder.listScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -207,8 +193,7 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("queryValue") List<String> _queryValue) {
 		var queryValue = _RestUtils.mapLiterals(_queryValue, SampleEnum::valueOf);
 		var result = service.listEnumQueryParam(builderFactory, queryValue);
-		return responseBuilder.listEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -216,11 +201,9 @@ public class ListQueryParameterTypesResource {
 	public Response listInlineEnumQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapLiterals(_queryValue,
-				ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$::valueOf);
+		var queryValue = _RestUtils.mapLiterals(_queryValue, ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$::valueOf);
 		var result = service.listInlineEnumQueryParam(builderFactory, queryValue);
-		return responseBuilder.listInlineEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listInlineEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 	@GET
@@ -233,14 +216,9 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("valueC") List<String> _valueC) {
 		var valueA = _RestUtils.mapStrings(_valueA);
 		var valueB = _RestUtils.mapInts(_valueB);
-		var valueC = _RestUtils.mapObjects(_valueC,
-				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
-						computeRequestContentType($headerQueryContentType),
-						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC);
-		return responseBuilder
-				.listMultiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC)
-				.build();
+		return responseBuilder.listMultiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -249,13 +227,9 @@ public class ListQueryParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapObjects(_queryValue,
-				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
-						computeRequestContentType($headerQueryContentType),
-						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.listRecordQueryParam(builderFactory, queryValue);
-		return responseBuilder.listRecordQueryParam(result, computeResponseContentType($acceptHeaders), queryValue)
-				.build();
+		return responseBuilder.listRecordQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
 
 }

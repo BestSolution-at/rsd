@@ -5,7 +5,7 @@ import { generateCompilationUnit, JavaImportsCollector, JavaServerGeneratorConfi
 import { generateBaseContent } from '../java-model-api/base.js';
 
 export function generateBaseDTO(artifactConfig: JavaServerGeneratorConfig): Artifact {
-	const packageName = `${artifactConfig.rootPackageName}.service.model`;
+	const packageName = `${artifactConfig.rootPackageName}.model`;
 	const importCollector = new JavaImportsCollector(packageName);
 	const fqn = importCollector.importType.bind(importCollector);
 

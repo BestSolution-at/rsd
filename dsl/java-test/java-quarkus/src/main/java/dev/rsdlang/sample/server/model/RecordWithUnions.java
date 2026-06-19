@@ -41,8 +41,7 @@ public interface RecordWithUnions {
 
 		public DataBuilder value_Opt_Null(Union.Data value_Opt_Null);
 
-		public <T extends Union.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz,
-				Function<T, Union.Data> block);
+		public <T extends Union.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz, Function<T, Union.Data> block);
 
 		public DataBuilder list(List<Union.Data> list);
 

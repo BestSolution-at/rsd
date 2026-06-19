@@ -12,7 +12,7 @@ import { generateUnionContent } from '../java-model-json/union.js';
 import { generateUnionPatchContent } from '../java-model-json/union-patch.js';
 
 export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJakartaWSGeneratorConfig): Artifact[] {
-	const packageName = `${artifactConfig.rootPackageName}.impl.model.json`;
+	const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
 
 	const result: Artifact[] = [];
 	{
@@ -25,12 +25,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
 				generateCompilationUnit(
 					packageName,
 					importCollector,
-					generateUnionContent(
-						t,
-						artifactConfig.nativeTypeSubstitues,
-						`${artifactConfig.rootPackageName}.service.model`,
-						fqn,
-					),
+					generateUnionContent(t, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn),
 				),
 				'\t',
 			),
@@ -51,7 +46,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
 					generateUnionPatchContent(
 						t,
 						artifactConfig.nativeTypeSubstitues,
-						`${artifactConfig.rootPackageName}.service.model`,
+						`${artifactConfig.rootPackageName}.model`,
 						fqn,
 					),
 				),

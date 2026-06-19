@@ -12,7 +12,6 @@ public interface BuilderFactory {
 	public <T extends _Base.BaseDataBuilder<?>> T builder(Class<T> type);
 
 	public RSDBlob createBlob(Path file, String mimeType);
-
 	public RSDBlob createBlob(InputStream stream, String mimeType);
 
 	public RSDFile createFile(Path file, String mimeType, String filename);

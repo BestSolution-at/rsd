@@ -29,23 +29,19 @@ public interface RecordOfRecords {
 	public interface DataBuilder extends _Base.BaseDataBuilder<RecordOfRecords.Data> {
 		public DataBuilder value(SimpleRecord_Basic.Data value);
 
-		public <T extends SimpleRecord_Basic.DataBuilder> DataBuilder withValue(Class<T> clazz,
-				Function<T, SimpleRecord_Basic.Data> block);
+		public <T extends SimpleRecord_Basic.DataBuilder> DataBuilder withValue(Class<T> clazz, Function<T, SimpleRecord_Basic.Data> block);
 
 		public DataBuilder value_Null(SimpleRecord_Basic.Data value_Null);
 
-		public <T extends SimpleRecord_Basic.DataBuilder> DataBuilder withValue_Null(Class<T> clazz,
-				Function<T, SimpleRecord_Basic.Data> block);
+		public <T extends SimpleRecord_Basic.DataBuilder> DataBuilder withValue_Null(Class<T> clazz, Function<T, SimpleRecord_Basic.Data> block);
 
 		public DataBuilder value_Opt(SimpleRecord_Basic.Data value_Opt);
 
-		public <T extends SimpleRecord_Basic.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz,
-				Function<T, SimpleRecord_Basic.Data> block);
+		public <T extends SimpleRecord_Basic.DataBuilder> DataBuilder withValue_Opt(Class<T> clazz, Function<T, SimpleRecord_Basic.Data> block);
 
 		public DataBuilder value_Opt_Null(SimpleRecord_Basic.Data value_Opt_Null);
 
-		public <T extends SimpleRecord_Basic.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz,
-				Function<T, SimpleRecord_Basic.Data> block);
+		public <T extends SimpleRecord_Basic.DataBuilder> DataBuilder withValue_Opt_Null(Class<T> clazz, Function<T, SimpleRecord_Basic.Data> block);
 
 		public DataBuilder list(List<SimpleRecord_Basic.Data> list);
 

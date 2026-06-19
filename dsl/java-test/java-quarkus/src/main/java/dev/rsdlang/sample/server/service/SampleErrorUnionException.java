@@ -10,7 +10,6 @@ public class SampleErrorUnionException extends RSDException.RSDStructuredDataExc
 		super(Type.SampleErrorUnion, message);
 		this.data = data;
 	}
-
 	public Union.Data data() {
 		return this.data;
 	}

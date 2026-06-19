@@ -14,8 +14,7 @@ import jakarta.json.JsonObjectBuilder;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.SimpleRecord_Basic_Optional_Null;
 
-public class SimpleRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl
-		implements SimpleRecord_Basic_Optional_Null.Data {
+public class SimpleRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl implements SimpleRecord_Basic_Optional_Null.Data {
 	SimpleRecord_Basic_Optional_NullDataImpl(JsonObject data) {
 		super(data);
 	}

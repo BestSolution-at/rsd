@@ -8,12 +8,11 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
-import dev.rsdlang.sample.server.MyRange;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.PatchableScalarRecord_Substitution;
+import dev.rsdlang.sample.server.MyRange;
 
-public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl
-		implements PatchableScalarRecord_Substitution.Data {
+public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl implements PatchableScalarRecord_Substitution.Data {
 	PatchableScalarRecord_SubstitutionDataImpl(JsonObject data) {
 		super(data);
 	}

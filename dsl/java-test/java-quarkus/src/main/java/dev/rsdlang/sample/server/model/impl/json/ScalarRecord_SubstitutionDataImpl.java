@@ -8,9 +8,9 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 
-import dev.rsdlang.sample.server.MyRange;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.ScalarRecord_Substitution;
+import dev.rsdlang.sample.server.MyRange;
 
 public class ScalarRecord_SubstitutionDataImpl extends _BaseDataImpl implements ScalarRecord_Substitution.Data {
 	ScalarRecord_SubstitutionDataImpl(JsonObject data) {

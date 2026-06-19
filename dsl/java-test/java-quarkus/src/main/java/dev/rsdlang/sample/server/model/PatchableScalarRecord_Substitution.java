@@ -7,8 +7,7 @@ import java.util.Optional;
 import dev.rsdlang.sample.server.MyRange;
 
 public interface PatchableScalarRecord_Substitution {
-	public interface Builder {
-	}
+	public interface Builder {}
 
 	public interface Data extends _Base.BaseData, PatchableScalarRecord_Substitution {
 		public String key();
@@ -90,8 +89,7 @@ public interface PatchableScalarRecord_Substitution {
 		public interface List_Opt_NullSetChange extends List_Opt_NullChange, _Base.ListReplace<MyRange> {
 		}
 
-		public interface List_Opt_NullMergeChange
-				extends List_Opt_NullChange, _Base.ListMergeAddRemove<MyRange, MyRange> {
+		public interface List_Opt_NullMergeChange extends List_Opt_NullChange, _Base.ListMergeAddRemove<MyRange, MyRange> {
 		}
 
 		public String key();
@@ -130,27 +128,19 @@ public interface PatchableScalarRecord_Substitution {
 		public PatchBuilder value_Opt_Null(MyRange value_Opt_Null);
 
 		public PatchBuilder list(Patch.ListChange list);
-
 		public PatchBuilder list(List<MyRange> additions, List<MyRange> removals);
-
 		public PatchBuilder list(List<MyRange> elements);
 
 		public PatchBuilder list_Null(Patch.List_NullChange list_Null);
-
 		public PatchBuilder list_Null(List<MyRange> additions, List<MyRange> removals);
-
 		public PatchBuilder list_Null(List<MyRange> elements);
 
 		public PatchBuilder list_Opt(Patch.List_OptChange list_Opt);
-
 		public PatchBuilder list_Opt(List<MyRange> additions, List<MyRange> removals);
-
 		public PatchBuilder list_Opt(List<MyRange> elements);
 
 		public PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange list_Opt_Null);
-
 		public PatchBuilder list_Opt_Null(List<MyRange> additions, List<MyRange> removals);
-
 		public PatchBuilder list_Opt_Null(List<MyRange> elements);
 
 	}
