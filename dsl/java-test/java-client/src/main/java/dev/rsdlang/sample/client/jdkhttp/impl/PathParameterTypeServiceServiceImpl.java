@@ -48,7 +48,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	public boolean simpleBooleanPathParam(boolean pathBoolean) {
 		var $path = "%s/api/pathparametertype/boolean/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathBoolean)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathBoolean)));
 
 		var $uri = URI.create($path);
 		try {
@@ -61,11 +61,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapBoolean($response);
+				var $rv = JDKHttpClientResponseUtils.mapBoolean($response);
 				this.lifecycleHook.onSuccess("simpleBooleanPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleBooleanPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -87,7 +87,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	public short simpleShortPathParam(short pathShort) {
 		var $path = "%s/api/pathparametertype/short/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathShort)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathShort)));
 
 		var $uri = URI.create($path);
 		try {
@@ -100,11 +100,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapShort($response);
+				var $rv = JDKHttpClientResponseUtils.mapShort($response);
 				this.lifecycleHook.onSuccess("simpleShortPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleShortPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -126,7 +126,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	public int simpleIntPathParam(int pathInt) {
 		var $path = "%s/api/pathparametertype/int/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathInt)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathInt)));
 
 		var $uri = URI.create($path);
 		try {
@@ -139,11 +139,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapInt($response);
+				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("simpleIntPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleIntPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -165,7 +165,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	public long simpleLongPathParam(long pathLong) {
 		var $path = "%s/api/pathparametertype/long/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathLong)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathLong)));
 
 		var $uri = URI.create($path);
 		try {
@@ -178,11 +178,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLong($response);
+				var $rv = JDKHttpClientResponseUtils.mapLong($response);
 				this.lifecycleHook.onSuccess("simpleLongPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLongPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -204,7 +204,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	public float simpleFloatPathParam(float pathFloat) {
 		var $path = "%s/api/pathparametertype/float/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathFloat)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathFloat)));
 
 		var $uri = URI.create($path);
 		try {
@@ -217,11 +217,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapFloat($response);
+				var $rv = JDKHttpClientResponseUtils.mapFloat($response);
 				this.lifecycleHook.onSuccess("simpleFloatPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleFloatPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -243,7 +243,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	public double simpleDoublePathParam(double pathDouble) {
 		var $path = "%s/api/pathparametertype/double/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathDouble)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathDouble)));
 
 		var $uri = URI.create($path);
 		try {
@@ -256,11 +256,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapDouble($response);
+				var $rv = JDKHttpClientResponseUtils.mapDouble($response);
 				this.lifecycleHook.onSuccess("simpleDoublePathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleDoublePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -284,7 +284,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/string/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathString)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathString)));
 
 		var $uri = URI.create($path);
 		try {
@@ -297,11 +297,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapString($response);
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("simpleStringPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleStringPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -325,7 +325,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/localdate/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathLocalDate)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathLocalDate)));
 
 		var $uri = URI.create($path);
 		try {
@@ -338,11 +338,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalDate($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalDate($response);
 				this.lifecycleHook.onSuccess("simpleLocalDatePathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDatePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -366,7 +366,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/localdatetime/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathLocalDateTime)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathLocalDateTime)));
 
 		var $uri = URI.create($path);
 		try {
@@ -379,11 +379,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalDateTime($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalDateTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -407,7 +407,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/localtime/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathLocalTime)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathLocalTime)));
 
 		var $uri = URI.create($path);
 		try {
@@ -420,11 +420,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLocalTime($response);
+				var $rv = JDKHttpClientResponseUtils.mapLocalTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalTimePathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleLocalTimePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -448,7 +448,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/offsetdatetime/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathOffsetDateTime)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathOffsetDateTime)));
 
 		var $uri = URI.create($path);
 		try {
@@ -461,11 +461,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapOffsetDateTime($response);
+				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTime($response);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleOffsetDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -489,7 +489,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/zoneddatetime/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathZonedDateTime)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathZonedDateTime)));
 
 		var $uri = URI.create($path);
 		try {
@@ -502,11 +502,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapZonedDateTime($response);
+				var $rv = JDKHttpClientResponseUtils.mapZonedDateTime($response);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleZonedDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -530,7 +530,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/scalar/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathScalar)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathScalar)));
 
 		var $uri = URI.create($path);
 		try {
@@ -543,11 +543,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("simpleScalarPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleScalarPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -571,7 +571,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/enum/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(pathEnum)));
+				BaseUtils.encodeURIComponent(Objects.toString(pathEnum)));
 
 		var $uri = URI.create($path);
 		try {
@@ -584,11 +584,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapLiteral($response, SampleEnum::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("simpleEnumPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
@@ -612,8 +612,8 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 		var $path = "%s/api/pathparametertype/multipathparam/%s/%s".formatted(
 				this.baseURI(),
-				ServiceUtils.encodeURIComponent(Objects.toString(valueA)),
-				ServiceUtils.encodeURIComponent(Objects.toString(valueB)));
+				BaseUtils.encodeURIComponent(Objects.toString(valueA)),
+				BaseUtils.encodeURIComponent(Objects.toString(valueB)));
 
 		var $uri = URI.create($path);
 		try {
@@ -626,11 +626,11 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = this.httpClient().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = ServiceUtils.mapString($response);
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiPathParam", $rv, this.client.createResponseAdaptable($response));
 				return $rv;
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), ServiceUtils.toString($response)));
+			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
 			this.lifecycleHook.onError("multiPathParam", $exception, this.client.createResponseAdaptable($response));
 			throw $exception;
 		} catch (Exception e) {
