@@ -6,7 +6,7 @@ import {
 	JavaRestClientJDKGeneratorConfig,
 	toPath,
 } from '../java-gen-utils.js';
-import { generateBaseUtilsContent } from '../java-client-basic/base-utils.js';
+import { generateBaseUtilsContent } from '../java-base/base-utils.js';
 import { MResolvedRSDModel } from '../model.js';
 
 export function generateBaseUtils(
