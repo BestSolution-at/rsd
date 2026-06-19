@@ -330,7 +330,8 @@ public class BaseUtils {
 		}
 		return result.toString();
 	}
-}`);
+}
+`);
 
 	return compilationContent;
 }
