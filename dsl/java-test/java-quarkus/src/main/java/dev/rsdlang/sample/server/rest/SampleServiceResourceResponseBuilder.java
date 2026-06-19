@@ -11,82 +11,110 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 @Singleton
 public class SampleServiceResourceResponseBuilder {
 	public ResponseBuilder getBoolean(boolean $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getShort(short $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getInt(int $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getLong(long $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getFloat(float $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getDouble(double $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getString(String $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getLocalDate(LocalDate $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getLocalDateTime(LocalDateTime $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getLocalTime(LocalTime $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getOffsetDateTime(OffsetDateTime $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getZonedDateTime(ZonedDateTime $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getScalar(ZoneId $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getEnum(SampleEnum $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder voidOperation() {
 		return Response.status(204);
@@ -102,13 +130,17 @@ public class SampleServiceResourceResponseBuilder {
 
 	public ResponseBuilder getSimpleRecord(SimpleRecord.Data $result, String $contentType, String key) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getSimpleRecordWithError(SimpleRecord.Data $result, String $contentType, String key) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder getSimpleErrorWithValue() {
 		return Response.status(204);

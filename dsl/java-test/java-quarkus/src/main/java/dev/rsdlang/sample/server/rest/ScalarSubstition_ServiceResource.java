@@ -16,7 +16,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.MyRange;
 import dev.rsdlang.sample.server.service.SampleErrorScalarSubException;
 import dev.rsdlang.sample.server.service.ScalarSubstition_ServiceService;

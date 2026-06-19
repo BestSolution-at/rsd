@@ -16,11 +16,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.HeaderParameterTypesService;
-import dev.rsdlang.sample.server.service.model._Base;
-import dev.rsdlang.sample.server.service.model.NilResult;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 @ApplicationScoped
 public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesService {
@@ -94,7 +94,72 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	private final RecordHeaderParamOptNilHandler recordHeaderParamOptNilHandler;
 	private final MixedHandler mixedHandler;
 
-	public HeaderParameterTypesServiceImpl(SimpleBooleanHeaderParamHandler simpleBooleanHeaderParamHandler, SimpleBooleanHeaderParamOptHandler simpleBooleanHeaderParamOptHandler, SimpleBooleanHeaderParamNilHandler simpleBooleanHeaderParamNilHandler, SimpleBooleanHeaderParamOptNilHandler simpleBooleanHeaderParamOptNilHandler, SimpleShortHeaderParamHandler simpleShortHeaderParamHandler, SimpleShortHeaderParamOptHandler simpleShortHeaderParamOptHandler, SimpleShortHeaderParamNilHandler simpleShortHeaderParamNilHandler, SimpleShortHeaderParamOptNilHandler simpleShortHeaderParamOptNilHandler, SimpleIntHeaderParamHandler simpleIntHeaderParamHandler, SimpleIntHeaderParamOptHandler simpleIntHeaderParamOptHandler, SimpleIntHeaderParamNilHandler simpleIntHeaderParamNilHandler, SimpleIntHeaderParamOptNilHandler simpleIntHeaderParamOptNilHandler, SimpleLongHeaderParamHandler simpleLongHeaderParamHandler, SimpleLongHeaderParamOptHandler simpleLongHeaderParamOptHandler, SimpleLongHeaderParamNilHandler simpleLongHeaderParamNilHandler, SimpleLongHeaderParamOptNilHandler simpleLongHeaderParamOptNilHandler, SimpleFloatHeaderParamHandler simpleFloatHeaderParamHandler, SimpleFloatHeaderParamOptHandler simpleFloatHeaderParamOptHandler, SimpleFloatHeaderParamNilHandler simpleFloatHeaderParamNilHandler, SimpleFloatHeaderParamOptNilHandler simpleFloatHeaderParamOptNilHandler, SimpleDoubleHeaderParamHandler simpleDoubleHeaderParamHandler, SimpleDoubleHeaderParamOptHandler simpleDoubleHeaderParamOptHandler, SimpleDoubleHeaderParamNilHandler simpleDoubleHeaderParamNilHandler, SimpleDoubleHeaderParamOptNilHandler simpleDoubleHeaderParamOptNilHandler, SimpleStringHeaderParamHandler simpleStringHeaderParamHandler, SimpleStringHeaderParamOptHandler simpleStringHeaderParamOptHandler, SimpleStringHeaderParamNilHandler simpleStringHeaderParamNilHandler, SimpleStringHeaderParamOptNilHandler simpleStringHeaderParamOptNilHandler, SimpleLocalDateHeaderParamHandler simpleLocalDateHeaderParamHandler, SimpleLocalDateHeaderParamOptHandler simpleLocalDateHeaderParamOptHandler, SimpleLocalDateHeaderParamNilHandler simpleLocalDateHeaderParamNilHandler, SimpleLocalDateHeaderParamOptNilHandler simpleLocalDateHeaderParamOptNilHandler, SimpleLocalDateTimeHeaderParamHandler simpleLocalDateTimeHeaderParamHandler, SimpleLocalDateTimeHeaderParamOptHandler simpleLocalDateTimeHeaderParamOptHandler, SimpleLocalDateTimeHeaderParamNilHandler simpleLocalDateTimeHeaderParamNilHandler, SimpleLocalDateTimeHeaderParamOptNilHandler simpleLocalDateTimeHeaderParamOptNilHandler, SimpleLocalTimeHeaderParamHandler simpleLocalTimeHeaderParamHandler, SimpleLocalTimeHeaderParamOptHandler simpleLocalTimeHeaderParamOptHandler, SimpleLocalTimeHeaderParamNilHandler simpleLocalTimeHeaderParamNilHandler, SimpleLocalTimeHeaderParamOptNilHandler simpleLocalTimeHeaderParamOptNilHandler, SimpleOffsetDateTimeHeaderParamHandler simpleOffsetDateTimeHeaderParamHandler, SimpleOffsetDateTimeHeaderParamOptHandler simpleOffsetDateTimeHeaderParamOptHandler, SimpleOffsetDateTimeHeaderParamNilHandler simpleOffsetDateTimeHeaderParamNilHandler, SimpleOffsetDateTimeHeaderParamOptNilHandler simpleOffsetDateTimeHeaderParamOptNilHandler, SimpleZonedDateTimeHeaderParamHandler simpleZonedDateTimeHeaderParamHandler, SimpleZonedDateTimeHeaderParamOptHandler simpleZonedDateTimeHeaderParamOptHandler, SimpleZonedDateTimeHeaderParamNilHandler simpleZonedDateTimeHeaderParamNilHandler, SimpleZonedDateTimeHeaderParamOptNilHandler simpleZonedDateTimeHeaderParamOptNilHandler, SimpleScalarHeaderParamHandler simpleScalarHeaderParamHandler, SimpleScalarHeaderParamOptHandler simpleScalarHeaderParamOptHandler, SimpleScalarHeaderParamNilHandler simpleScalarHeaderParamNilHandler, SimpleScalarHeaderParamOptNilHandler simpleScalarHeaderParamOptNilHandler, SimpleEnumHeaderParamHandler simpleEnumHeaderParamHandler, SimpleEnumHeaderParamOptHandler simpleEnumHeaderParamOptHandler, SimpleEnumHeaderParamNilHandler simpleEnumHeaderParamNilHandler, SimpleEnumHeaderParamOptNilHandler simpleEnumHeaderParamOptNilHandler, SimpleInlineEnumHeaderParamHandler simpleInlineEnumHeaderParamHandler, SimpleInlineEnumHeaderParamOptHandler simpleInlineEnumHeaderParamOptHandler, SimpleInlineEnumHeaderParamNilHandler simpleInlineEnumHeaderParamNilHandler, SimpleInlineEnumHeaderParamOptNilHandler simpleInlineEnumHeaderParamOptNilHandler, MultiHeaderParamHandler multiHeaderParamHandler, MultiHeaderParamOptHandler multiHeaderParamOptHandler, MultiHeaderParamNilHandler multiHeaderParamNilHandler, MultiHeaderParamOptNilHandler multiHeaderParamOptNilHandler, RecordHeaderParamHandler recordHeaderParamHandler, RecordHeaderParamOptHandler recordHeaderParamOptHandler, RecordHeaderParamNilHandler recordHeaderParamNilHandler, RecordHeaderParamOptNilHandler recordHeaderParamOptNilHandler, MixedHandler mixedHandler) {
+	public HeaderParameterTypesServiceImpl(SimpleBooleanHeaderParamHandler simpleBooleanHeaderParamHandler,
+			SimpleBooleanHeaderParamOptHandler simpleBooleanHeaderParamOptHandler,
+			SimpleBooleanHeaderParamNilHandler simpleBooleanHeaderParamNilHandler,
+			SimpleBooleanHeaderParamOptNilHandler simpleBooleanHeaderParamOptNilHandler,
+			SimpleShortHeaderParamHandler simpleShortHeaderParamHandler,
+			SimpleShortHeaderParamOptHandler simpleShortHeaderParamOptHandler,
+			SimpleShortHeaderParamNilHandler simpleShortHeaderParamNilHandler,
+			SimpleShortHeaderParamOptNilHandler simpleShortHeaderParamOptNilHandler,
+			SimpleIntHeaderParamHandler simpleIntHeaderParamHandler,
+			SimpleIntHeaderParamOptHandler simpleIntHeaderParamOptHandler,
+			SimpleIntHeaderParamNilHandler simpleIntHeaderParamNilHandler,
+			SimpleIntHeaderParamOptNilHandler simpleIntHeaderParamOptNilHandler,
+			SimpleLongHeaderParamHandler simpleLongHeaderParamHandler,
+			SimpleLongHeaderParamOptHandler simpleLongHeaderParamOptHandler,
+			SimpleLongHeaderParamNilHandler simpleLongHeaderParamNilHandler,
+			SimpleLongHeaderParamOptNilHandler simpleLongHeaderParamOptNilHandler,
+			SimpleFloatHeaderParamHandler simpleFloatHeaderParamHandler,
+			SimpleFloatHeaderParamOptHandler simpleFloatHeaderParamOptHandler,
+			SimpleFloatHeaderParamNilHandler simpleFloatHeaderParamNilHandler,
+			SimpleFloatHeaderParamOptNilHandler simpleFloatHeaderParamOptNilHandler,
+			SimpleDoubleHeaderParamHandler simpleDoubleHeaderParamHandler,
+			SimpleDoubleHeaderParamOptHandler simpleDoubleHeaderParamOptHandler,
+			SimpleDoubleHeaderParamNilHandler simpleDoubleHeaderParamNilHandler,
+			SimpleDoubleHeaderParamOptNilHandler simpleDoubleHeaderParamOptNilHandler,
+			SimpleStringHeaderParamHandler simpleStringHeaderParamHandler,
+			SimpleStringHeaderParamOptHandler simpleStringHeaderParamOptHandler,
+			SimpleStringHeaderParamNilHandler simpleStringHeaderParamNilHandler,
+			SimpleStringHeaderParamOptNilHandler simpleStringHeaderParamOptNilHandler,
+			SimpleLocalDateHeaderParamHandler simpleLocalDateHeaderParamHandler,
+			SimpleLocalDateHeaderParamOptHandler simpleLocalDateHeaderParamOptHandler,
+			SimpleLocalDateHeaderParamNilHandler simpleLocalDateHeaderParamNilHandler,
+			SimpleLocalDateHeaderParamOptNilHandler simpleLocalDateHeaderParamOptNilHandler,
+			SimpleLocalDateTimeHeaderParamHandler simpleLocalDateTimeHeaderParamHandler,
+			SimpleLocalDateTimeHeaderParamOptHandler simpleLocalDateTimeHeaderParamOptHandler,
+			SimpleLocalDateTimeHeaderParamNilHandler simpleLocalDateTimeHeaderParamNilHandler,
+			SimpleLocalDateTimeHeaderParamOptNilHandler simpleLocalDateTimeHeaderParamOptNilHandler,
+			SimpleLocalTimeHeaderParamHandler simpleLocalTimeHeaderParamHandler,
+			SimpleLocalTimeHeaderParamOptHandler simpleLocalTimeHeaderParamOptHandler,
+			SimpleLocalTimeHeaderParamNilHandler simpleLocalTimeHeaderParamNilHandler,
+			SimpleLocalTimeHeaderParamOptNilHandler simpleLocalTimeHeaderParamOptNilHandler,
+			SimpleOffsetDateTimeHeaderParamHandler simpleOffsetDateTimeHeaderParamHandler,
+			SimpleOffsetDateTimeHeaderParamOptHandler simpleOffsetDateTimeHeaderParamOptHandler,
+			SimpleOffsetDateTimeHeaderParamNilHandler simpleOffsetDateTimeHeaderParamNilHandler,
+			SimpleOffsetDateTimeHeaderParamOptNilHandler simpleOffsetDateTimeHeaderParamOptNilHandler,
+			SimpleZonedDateTimeHeaderParamHandler simpleZonedDateTimeHeaderParamHandler,
+			SimpleZonedDateTimeHeaderParamOptHandler simpleZonedDateTimeHeaderParamOptHandler,
+			SimpleZonedDateTimeHeaderParamNilHandler simpleZonedDateTimeHeaderParamNilHandler,
+			SimpleZonedDateTimeHeaderParamOptNilHandler simpleZonedDateTimeHeaderParamOptNilHandler,
+			SimpleScalarHeaderParamHandler simpleScalarHeaderParamHandler,
+			SimpleScalarHeaderParamOptHandler simpleScalarHeaderParamOptHandler,
+			SimpleScalarHeaderParamNilHandler simpleScalarHeaderParamNilHandler,
+			SimpleScalarHeaderParamOptNilHandler simpleScalarHeaderParamOptNilHandler,
+			SimpleEnumHeaderParamHandler simpleEnumHeaderParamHandler,
+			SimpleEnumHeaderParamOptHandler simpleEnumHeaderParamOptHandler,
+			SimpleEnumHeaderParamNilHandler simpleEnumHeaderParamNilHandler,
+			SimpleEnumHeaderParamOptNilHandler simpleEnumHeaderParamOptNilHandler,
+			SimpleInlineEnumHeaderParamHandler simpleInlineEnumHeaderParamHandler,
+			SimpleInlineEnumHeaderParamOptHandler simpleInlineEnumHeaderParamOptHandler,
+			SimpleInlineEnumHeaderParamNilHandler simpleInlineEnumHeaderParamNilHandler,
+			SimpleInlineEnumHeaderParamOptNilHandler simpleInlineEnumHeaderParamOptNilHandler,
+			MultiHeaderParamHandler multiHeaderParamHandler, MultiHeaderParamOptHandler multiHeaderParamOptHandler,
+			MultiHeaderParamNilHandler multiHeaderParamNilHandler,
+			MultiHeaderParamOptNilHandler multiHeaderParamOptNilHandler,
+			RecordHeaderParamHandler recordHeaderParamHandler, RecordHeaderParamOptHandler recordHeaderParamOptHandler,
+			RecordHeaderParamNilHandler recordHeaderParamNilHandler,
+			RecordHeaderParamOptNilHandler recordHeaderParamOptNilHandler, MixedHandler mixedHandler) {
 		this.simpleBooleanHeaderParamHandler = simpleBooleanHeaderParamHandler;
 		this.simpleBooleanHeaderParamOptHandler = simpleBooleanHeaderParamOptHandler;
 		this.simpleBooleanHeaderParamNilHandler = simpleBooleanHeaderParamNilHandler;
@@ -342,7 +407,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	@Override
-	public NilResult simpleLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<LocalDateTime> headerValue) {
+	public NilResult simpleLocalDateTimeHeaderParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<LocalDateTime> headerValue) {
 		return simpleLocalDateTimeHeaderParamOptNilHandler.simpleLocalDateTimeHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -382,8 +448,10 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	@Override
-	public NilResult simpleOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<OffsetDateTime> headerValue) {
-		return simpleOffsetDateTimeHeaderParamOptNilHandler.simpleOffsetDateTimeHeaderParamOptNil(_factory, headerValue);
+	public NilResult simpleOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<OffsetDateTime> headerValue) {
+		return simpleOffsetDateTimeHeaderParamOptNilHandler.simpleOffsetDateTimeHeaderParamOptNil(_factory,
+				headerValue);
 	}
 
 	@Override
@@ -402,7 +470,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	@Override
-	public NilResult simpleZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<ZonedDateTime> headerValue) {
+	public NilResult simpleZonedDateTimeHeaderParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<ZonedDateTime> headerValue) {
 		return simpleZonedDateTimeHeaderParamOptNilHandler.simpleZonedDateTimeHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -447,22 +516,26 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	@Override
-	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(BuilderFactory _factory, SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue) {
+	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(BuilderFactory _factory,
+			SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue) {
 		return simpleInlineEnumHeaderParamHandler.simpleInlineEnumHeaderParam(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult simpleInlineEnumHeaderParamOpt(BuilderFactory _factory, Optional<SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue) {
+	public NilResult simpleInlineEnumHeaderParamOpt(BuilderFactory _factory,
+			Optional<SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue) {
 		return simpleInlineEnumHeaderParamOptHandler.simpleInlineEnumHeaderParamOpt(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult simpleInlineEnumHeaderParamNil(BuilderFactory _factory, Optional<SimpleInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue) {
+	public NilResult simpleInlineEnumHeaderParamNil(BuilderFactory _factory,
+			Optional<SimpleInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue) {
 		return simpleInlineEnumHeaderParamNilHandler.simpleInlineEnumHeaderParamNil(_factory, headerValue);
 	}
 
 	@Override
-	public NilResult simpleInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue) {
+	public NilResult simpleInlineEnumHeaderParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue) {
 		return simpleInlineEnumHeaderParamOptNilHandler.simpleInlineEnumHeaderParamOptNil(_factory, headerValue);
 	}
 
@@ -482,7 +555,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	@Override
-	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB) {
+	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA,
+			_Base.Nillable<Integer> valueB) {
 		return multiHeaderParamOptNilHandler.multiHeaderParamOptNil(_factory, valueA, valueB);
 	}
 
@@ -507,8 +581,11 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	@Override
-	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber, SimpleRecord.Data queryRecord) {
-		mixedHandler.mixed(_factory, pathString, pathNumber, headerString, headerNumber, headerRecord, body, queryString, queryNumber, queryRecord);
+	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber,
+			SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber,
+			SimpleRecord.Data queryRecord) {
+		mixedHandler.mixed(_factory, pathString, pathNumber, headerString, headerNumber, headerRecord, body,
+				queryString, queryNumber, queryRecord);
 	}
 
 	public interface SimpleBooleanHeaderParamHandler {
@@ -636,7 +713,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface SimpleLocalDateHeaderParamOptNilHandler {
-		public NilResult simpleLocalDateHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<LocalDate> headerValue);
+		public NilResult simpleLocalDateHeaderParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<LocalDate> headerValue);
 	}
 
 	public interface SimpleLocalDateTimeHeaderParamHandler {
@@ -644,15 +722,18 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface SimpleLocalDateTimeHeaderParamOptHandler {
-		public NilResult simpleLocalDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<LocalDateTime> headerValue);
+		public NilResult simpleLocalDateTimeHeaderParamOpt(BuilderFactory _factory,
+				Optional<LocalDateTime> headerValue);
 	}
 
 	public interface SimpleLocalDateTimeHeaderParamNilHandler {
-		public NilResult simpleLocalDateTimeHeaderParamNil(BuilderFactory _factory, Optional<LocalDateTime> headerValue);
+		public NilResult simpleLocalDateTimeHeaderParamNil(BuilderFactory _factory,
+				Optional<LocalDateTime> headerValue);
 	}
 
 	public interface SimpleLocalDateTimeHeaderParamOptNilHandler {
-		public NilResult simpleLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<LocalDateTime> headerValue);
+		public NilResult simpleLocalDateTimeHeaderParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<LocalDateTime> headerValue);
 	}
 
 	public interface SimpleLocalTimeHeaderParamHandler {
@@ -668,7 +749,8 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface SimpleLocalTimeHeaderParamOptNilHandler {
-		public NilResult simpleLocalTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<LocalTime> headerValue);
+		public NilResult simpleLocalTimeHeaderParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<LocalTime> headerValue);
 	}
 
 	public interface SimpleOffsetDateTimeHeaderParamHandler {
@@ -676,15 +758,18 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface SimpleOffsetDateTimeHeaderParamOptHandler {
-		public NilResult simpleOffsetDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<OffsetDateTime> headerValue);
+		public NilResult simpleOffsetDateTimeHeaderParamOpt(BuilderFactory _factory,
+				Optional<OffsetDateTime> headerValue);
 	}
 
 	public interface SimpleOffsetDateTimeHeaderParamNilHandler {
-		public NilResult simpleOffsetDateTimeHeaderParamNil(BuilderFactory _factory, Optional<OffsetDateTime> headerValue);
+		public NilResult simpleOffsetDateTimeHeaderParamNil(BuilderFactory _factory,
+				Optional<OffsetDateTime> headerValue);
 	}
 
 	public interface SimpleOffsetDateTimeHeaderParamOptNilHandler {
-		public NilResult simpleOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<OffsetDateTime> headerValue);
+		public NilResult simpleOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<OffsetDateTime> headerValue);
 	}
 
 	public interface SimpleZonedDateTimeHeaderParamHandler {
@@ -692,15 +777,18 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface SimpleZonedDateTimeHeaderParamOptHandler {
-		public NilResult simpleZonedDateTimeHeaderParamOpt(BuilderFactory _factory, Optional<ZonedDateTime> headerValue);
+		public NilResult simpleZonedDateTimeHeaderParamOpt(BuilderFactory _factory,
+				Optional<ZonedDateTime> headerValue);
 	}
 
 	public interface SimpleZonedDateTimeHeaderParamNilHandler {
-		public NilResult simpleZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<ZonedDateTime> headerValue);
+		public NilResult simpleZonedDateTimeHeaderParamNil(BuilderFactory _factory,
+				Optional<ZonedDateTime> headerValue);
 	}
 
 	public interface SimpleZonedDateTimeHeaderParamOptNilHandler {
-		public NilResult simpleZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<ZonedDateTime> headerValue);
+		public NilResult simpleZonedDateTimeHeaderParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<ZonedDateTime> headerValue);
 	}
 
 	public interface SimpleScalarHeaderParamHandler {
@@ -736,19 +824,23 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface SimpleInlineEnumHeaderParamHandler {
-		public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(BuilderFactory _factory, SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue);
+		public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(BuilderFactory _factory,
+				SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue);
 	}
 
 	public interface SimpleInlineEnumHeaderParamOptHandler {
-		public NilResult simpleInlineEnumHeaderParamOpt(BuilderFactory _factory, Optional<SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue);
+		public NilResult simpleInlineEnumHeaderParamOpt(BuilderFactory _factory,
+				Optional<SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue);
 	}
 
 	public interface SimpleInlineEnumHeaderParamNilHandler {
-		public NilResult simpleInlineEnumHeaderParamNil(BuilderFactory _factory, Optional<SimpleInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue);
+		public NilResult simpleInlineEnumHeaderParamNil(BuilderFactory _factory,
+				Optional<SimpleInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue);
 	}
 
 	public interface SimpleInlineEnumHeaderParamOptNilHandler {
-		public NilResult simpleInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
+		public NilResult simpleInlineEnumHeaderParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
 	}
 
 	public interface MultiHeaderParamHandler {
@@ -756,15 +848,18 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface MultiHeaderParamOptHandler {
-		public List<NilResult> multiHeaderParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
+		public List<NilResult> multiHeaderParamOpt(BuilderFactory _factory, Optional<String> valueA,
+				OptionalInt valueB);
 	}
 
 	public interface MultiHeaderParamNilHandler {
-		public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
+		public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA,
+				OptionalInt valueB);
 	}
 
 	public interface MultiHeaderParamOptNilHandler {
-		public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB);
+		public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA,
+				_Base.Nillable<Integer> valueB);
 	}
 
 	public interface RecordHeaderParamHandler {
@@ -780,11 +875,14 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface RecordHeaderParamOptNilHandler {
-		public NilResult recordHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleRecord.Data> headerValue);
+		public NilResult recordHeaderParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<SimpleRecord.Data> headerValue);
 	}
 
 	public interface MixedHandler {
-		public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber, SimpleRecord.Data queryRecord);
+		public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString,
+				int headerNumber, SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString,
+				double queryNumber, SimpleRecord.Data queryRecord);
 	}
 
 }

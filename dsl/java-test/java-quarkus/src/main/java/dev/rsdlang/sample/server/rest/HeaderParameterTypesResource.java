@@ -17,16 +17,16 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.service.HeaderParameterTypesService;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 @ApplicationScoped
 @Path("/api/headerparametertypes")
-@Produces({"application/json", "application/vnd.msgpack"})
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Produces({ "application/json", "application/vnd.msgpack" })
+@Consumes({ "application/json", "application/vnd.msgpack" })
 public class HeaderParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
@@ -35,7 +35,8 @@ public class HeaderParameterTypesResource {
 	private final HeaderParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public HeaderParameterTypesResource(HeaderParameterTypesService service, HeaderParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public HeaderParameterTypesResource(HeaderParameterTypesService service,
+			HeaderParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -66,7 +67,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseBoolean(_headerValue);
 		var result = service.simpleBooleanHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleBooleanHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleBooleanHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -76,7 +78,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptBoolean(_headerValue);
 		var result = service.simpleBooleanHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleBooleanHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleBooleanHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -86,7 +89,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullBoolean(_headerValue);
 		var result = service.simpleBooleanHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleBooleanHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleBooleanHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -96,7 +100,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilBoolean(_headerValue);
 		var result = service.simpleBooleanHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleBooleanHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleBooleanHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -106,7 +112,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseShort(_headerValue);
 		var result = service.simpleShortHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleShortHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleShortHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -116,7 +123,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptShort(_headerValue);
 		var result = service.simpleShortHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleShortHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleShortHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -126,7 +134,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullShort(_headerValue);
 		var result = service.simpleShortHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleShortHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleShortHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -136,7 +145,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilShort(_headerValue);
 		var result = service.simpleShortHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleShortHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleShortHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -146,7 +156,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseInt(_headerValue);
 		var result = service.simpleIntHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleIntHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleIntHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -156,7 +167,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptInt(_headerValue);
 		var result = service.simpleIntHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleIntHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleIntHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -166,7 +178,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullInt(_headerValue);
 		var result = service.simpleIntHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleIntHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleIntHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -176,7 +189,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilInt(_headerValue);
 		var result = service.simpleIntHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleIntHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleIntHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -186,7 +200,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseLong(_headerValue);
 		var result = service.simpleLongHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleLongHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleLongHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -196,7 +211,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptLong(_headerValue);
 		var result = service.simpleLongHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleLongHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleLongHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -206,7 +222,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullLong(_headerValue);
 		var result = service.simpleLongHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleLongHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleLongHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -216,7 +233,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilLong(_headerValue);
 		var result = service.simpleLongHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleLongHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLongHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -226,7 +244,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseFloat(_headerValue);
 		var result = service.simpleFloatHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleFloatHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleFloatHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -236,7 +255,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptFloat(_headerValue);
 		var result = service.simpleFloatHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleFloatHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleFloatHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -246,7 +266,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullFloat(_headerValue);
 		var result = service.simpleFloatHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleFloatHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleFloatHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -256,7 +277,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilFloat(_headerValue);
 		var result = service.simpleFloatHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleFloatHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleFloatHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -266,7 +288,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseDouble(_headerValue);
 		var result = service.simpleDoubleHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleDoubleHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleDoubleHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -276,7 +299,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptDouble(_headerValue);
 		var result = service.simpleDoubleHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleDoubleHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleDoubleHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -286,7 +310,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullDouble(_headerValue);
 		var result = service.simpleDoubleHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleDoubleHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleDoubleHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -296,7 +321,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilDouble(_headerValue);
 		var result = service.simpleDoubleHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleDoubleHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleDoubleHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -306,7 +332,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var result = service.simpleStringHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleStringHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleStringHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -316,7 +343,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var result = service.simpleStringHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleStringHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleStringHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -326,7 +354,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var result = service.simpleStringHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleStringHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleStringHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -336,7 +365,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilString(_headerValue, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var result = service.simpleStringHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleStringHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleStringHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -346,7 +376,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseLocalDate(_headerValue);
 		var result = service.simpleLocalDateHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleLocalDateHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalDateHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -356,7 +387,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptLocalDate(_headerValue);
 		var result = service.simpleLocalDateHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleLocalDateHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalDateHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -366,7 +398,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullLocalDate(_headerValue);
 		var result = service.simpleLocalDateHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleLocalDateHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalDateHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -376,7 +409,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilLocalDate(_headerValue);
 		var result = service.simpleLocalDateHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleLocalDateHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalDateHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -386,7 +421,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseLocalDateTime(_headerValue);
 		var result = service.simpleLocalDateTimeHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleLocalDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -396,7 +433,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptLocalDateTime(_headerValue);
 		var result = service.simpleLocalDateTimeHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleLocalDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -406,7 +445,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullLocalDateTime(_headerValue);
 		var result = service.simpleLocalDateTimeHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleLocalDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -416,7 +457,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilLocalDateTime(_headerValue);
 		var result = service.simpleLocalDateTimeHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleLocalDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -426,7 +469,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseLocalTime(_headerValue);
 		var result = service.simpleLocalTimeHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleLocalTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -436,7 +480,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptLocalTime(_headerValue);
 		var result = service.simpleLocalTimeHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleLocalTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -446,7 +491,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullLocalTime(_headerValue);
 		var result = service.simpleLocalTimeHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleLocalTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -456,7 +502,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilLocalTime(_headerValue);
 		var result = service.simpleLocalTimeHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleLocalTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleLocalTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -466,7 +514,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOffsetDateTime(_headerValue);
 		var result = service.simpleOffsetDateTimeHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleOffsetDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleOffsetDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -476,7 +526,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptOffsetDateTime(_headerValue);
 		var result = service.simpleOffsetDateTimeHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleOffsetDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleOffsetDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -486,7 +538,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullOffsetDateTime(_headerValue);
 		var result = service.simpleOffsetDateTimeHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleOffsetDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleOffsetDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -496,7 +550,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilOffsetDateTime(_headerValue);
 		var result = service.simpleOffsetDateTimeHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleOffsetDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleOffsetDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -506,7 +562,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseZonedDateTime(_headerValue);
 		var result = service.simpleZonedDateTimeHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleZonedDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleZonedDateTimeHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -516,7 +574,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptZonedDateTime(_headerValue);
 		var result = service.simpleZonedDateTimeHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleZonedDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleZonedDateTimeHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -526,7 +586,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullZonedDateTime(_headerValue);
 		var result = service.simpleZonedDateTimeHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleZonedDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleZonedDateTimeHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -536,7 +598,9 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilZonedDateTime(_headerValue);
 		var result = service.simpleZonedDateTimeHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleZonedDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleZonedDateTimeHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -546,7 +610,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.simpleScalarHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleScalarHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleScalarHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -556,7 +621,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.simpleScalarHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleScalarHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleScalarHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -566,7 +632,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.simpleScalarHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleScalarHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleScalarHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -576,7 +643,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
 		var result = service.simpleScalarHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleScalarHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleScalarHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -586,7 +654,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseLiteral(_headerValue, SampleEnum::valueOf);
 		var result = service.simpleEnumHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleEnumHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleEnumHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -596,7 +665,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseOptLiteral(_headerValue, SampleEnum::valueOf);
 		var result = service.simpleEnumHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleEnumHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleEnumHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -606,7 +676,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNullLiteral(_headerValue, SampleEnum::valueOf);
 		var result = service.simpleEnumHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleEnumHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.simpleEnumHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -616,7 +687,8 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("headerValue") String _headerValue) {
 		var headerValue = _RestUtils.parseNilLiteral(_headerValue, SampleEnum::valueOf);
 		var result = service.simpleEnumHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleEnumHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleEnumHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -624,9 +696,11 @@ public class HeaderParameterTypesResource {
 	public Response simpleInlineEnumHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseLiteral(_headerValue, HeaderParameterTypesService.SimpleInlineEnumHeaderParam_HeaderValue_Param$::valueOf);
+		var headerValue = _RestUtils.parseLiteral(_headerValue,
+				HeaderParameterTypesService.SimpleInlineEnumHeaderParam_HeaderValue_Param$::valueOf);
 		var result = service.simpleInlineEnumHeaderParam(builderFactory, headerValue);
-		return responseBuilder.simpleInlineEnumHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleInlineEnumHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
 
 	@GET
@@ -634,9 +708,12 @@ public class HeaderParameterTypesResource {
 	public Response simpleInlineEnumHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseOptLiteral(_headerValue, HeaderParameterTypesService.SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$::valueOf);
+		var headerValue = _RestUtils.parseOptLiteral(_headerValue,
+				HeaderParameterTypesService.SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$::valueOf);
 		var result = service.simpleInlineEnumHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.simpleInlineEnumHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleInlineEnumHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -644,9 +721,12 @@ public class HeaderParameterTypesResource {
 	public Response simpleInlineEnumHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNullLiteral(_headerValue, HeaderParameterTypesService.SimpleInlineEnumHeaderParamNil_HeaderValue_Param$::valueOf);
+		var headerValue = _RestUtils.parseNullLiteral(_headerValue,
+				HeaderParameterTypesService.SimpleInlineEnumHeaderParamNil_HeaderValue_Param$::valueOf);
 		var result = service.simpleInlineEnumHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.simpleInlineEnumHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleInlineEnumHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -654,9 +734,12 @@ public class HeaderParameterTypesResource {
 	public Response simpleInlineEnumHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNilLiteral(_headerValue, HeaderParameterTypesService.SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$::valueOf);
+		var headerValue = _RestUtils.parseNilLiteral(_headerValue,
+				HeaderParameterTypesService.SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$::valueOf);
 		var result = service.simpleInlineEnumHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.simpleInlineEnumHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder
+				.simpleInlineEnumHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -668,7 +751,8 @@ public class HeaderParameterTypesResource {
 		var valueA = _RestUtils.parseString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseInt(_valueB);
 		var result = service.multiHeaderParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		return responseBuilder.multiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB)
+				.build();
 	}
 
 	@GET
@@ -680,7 +764,8 @@ public class HeaderParameterTypesResource {
 		var valueA = _RestUtils.parseOptString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseOptInt(_valueB);
 		var result = service.multiHeaderParamOpt(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		return responseBuilder.multiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB)
+				.build();
 	}
 
 	@GET
@@ -692,7 +777,8 @@ public class HeaderParameterTypesResource {
 		var valueA = _RestUtils.parseNullString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseNullInt(_valueB);
 		var result = service.multiHeaderParamNil(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		return responseBuilder.multiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB)
+				.build();
 	}
 
 	@GET
@@ -704,7 +790,8 @@ public class HeaderParameterTypesResource {
 		var valueA = _RestUtils.parseNilString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseNilInt(_valueB);
 		var result = service.multiHeaderParamOptNil(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		return responseBuilder
+				.multiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
 	}
 
 	@GET
@@ -713,9 +800,13 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseObject(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var headerValue = _RestUtils.parseObject(_headerValue,
+				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+						computeRequestContentType($headerQueryContentType),
+						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.recordHeaderParam(builderFactory, headerValue);
-		return responseBuilder.recordHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.recordHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -724,9 +815,13 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseOptObject(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var headerValue = _RestUtils.parseOptObject(_headerValue,
+				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+						computeRequestContentType($headerQueryContentType),
+						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.recordHeaderParamOpt(builderFactory, headerValue);
-		return responseBuilder.recordHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.recordHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -735,9 +830,13 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNullObject(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var headerValue = _RestUtils.parseNullObject(_headerValue,
+				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+						computeRequestContentType($headerQueryContentType),
+						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.recordHeaderParamNil(builderFactory, headerValue);
-		return responseBuilder.recordHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.recordHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@GET
@@ -746,9 +845,13 @@ public class HeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNilObject(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var headerValue = _RestUtils.parseNilObject(_headerValue,
+				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+						computeRequestContentType($headerQueryContentType),
+						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.recordHeaderParamOptNil(builderFactory, headerValue);
-		return responseBuilder.recordHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
+		return responseBuilder.recordHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue)
+				.build();
 	}
 
 	@POST
@@ -770,13 +873,22 @@ public class HeaderParameterTypesResource {
 		var pathNumber = _RestUtils.parseInt(_pathNumber);
 		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var headerNumber = _RestUtils.parseInt(_headerNumber);
-		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
-		var body = _JsonUtils.parseObject(_body, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var headerRecord = _RestUtils.parseObject(_headerRecord,
+				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+						computeRequestContentType($headerQueryContentType),
+						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var body = _JsonUtils.parseObject(_body, computeRequestContentType($contentTypeHeader),
+				$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var queryString = _RestUtils.parseString(_queryString);
 		var queryNumber = _RestUtils.parseDouble(_queryNumber);
-		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
-		service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord, body, queryString, queryNumber, queryRecord);
-		return responseBuilder.mixed(pathString, pathNumber, headerString, headerNumber, headerRecord, body, queryString, queryNumber, queryRecord).build();
+		var queryRecord = _RestUtils.parseObject(_queryRecord,
+				$o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o),
+						computeRequestContentType($headerQueryContentType),
+						$j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord, body,
+				queryString, queryNumber, queryRecord);
+		return responseBuilder.mixed(pathString, pathNumber, headerString, headerNumber, headerRecord, body,
+				queryString, queryNumber, queryRecord).build();
 	}
 
 }

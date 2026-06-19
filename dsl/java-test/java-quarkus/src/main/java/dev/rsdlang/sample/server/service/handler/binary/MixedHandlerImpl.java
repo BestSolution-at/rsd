@@ -3,9 +3,9 @@ package dev.rsdlang.sample.server.service.handler.binary;
 import jakarta.enterprise.context.ApplicationScoped;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BinaryTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.MixedResult;
-import dev.rsdlang.sample.server.service.model.RSDBlob;
-import dev.rsdlang.sample.server.service.model.SimpleRecord.Data;
+import dev.rsdlang.sample.server.model.MixedResult;
+import dev.rsdlang.sample.server.model.RSDBlob;
+import dev.rsdlang.sample.server.model.SimpleRecord.Data;
 
 @ApplicationScoped
 public class MixedHandlerImpl implements BinaryTypesServiceImpl.MixedHandler {

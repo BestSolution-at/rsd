@@ -5,7 +5,7 @@ import java.util.List;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.SampleErrorException;
 import dev.rsdlang.sample.server.service.impl.ListSampleServiceServiceImpl;
-import dev.rsdlang.sample.server.service.model.SimpleRecord.Data;
+import dev.rsdlang.sample.server.model.SimpleRecord.Data;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

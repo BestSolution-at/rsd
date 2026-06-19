@@ -10,8 +10,8 @@ import java.time.ZonedDateTime;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 
 @ApplicationScoped
@@ -32,7 +32,19 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 	private final SimpleEnumPathParamHandler simpleEnumPathParamHandler;
 	private final MultiPathParamHandler multiPathParamHandler;
 
-	public PathParameterTypeServiceServiceImpl(SimpleBooleanPathParamHandler simpleBooleanPathParamHandler, SimpleShortPathParamHandler simpleShortPathParamHandler, SimpleIntPathParamHandler simpleIntPathParamHandler, SimpleLongPathParamHandler simpleLongPathParamHandler, SimpleFloatPathParamHandler simpleFloatPathParamHandler, SimpleDoublePathParamHandler simpleDoublePathParamHandler, SimpleStringPathParamHandler simpleStringPathParamHandler, SimpleLocalDatePathParamHandler simpleLocalDatePathParamHandler, SimpleLocalDateTimePathParamHandler simpleLocalDateTimePathParamHandler, SimpleLocalTimePathParamHandler simpleLocalTimePathParamHandler, SimpleOffsetDateTimePathParamHandler simpleOffsetDateTimePathParamHandler, SimpleZonedDateTimePathParamHandler simpleZonedDateTimePathParamHandler, SimpleScalarPathParamHandler simpleScalarPathParamHandler, SimpleEnumPathParamHandler simpleEnumPathParamHandler, MultiPathParamHandler multiPathParamHandler) {
+	public PathParameterTypeServiceServiceImpl(SimpleBooleanPathParamHandler simpleBooleanPathParamHandler,
+			SimpleShortPathParamHandler simpleShortPathParamHandler,
+			SimpleIntPathParamHandler simpleIntPathParamHandler, SimpleLongPathParamHandler simpleLongPathParamHandler,
+			SimpleFloatPathParamHandler simpleFloatPathParamHandler,
+			SimpleDoublePathParamHandler simpleDoublePathParamHandler,
+			SimpleStringPathParamHandler simpleStringPathParamHandler,
+			SimpleLocalDatePathParamHandler simpleLocalDatePathParamHandler,
+			SimpleLocalDateTimePathParamHandler simpleLocalDateTimePathParamHandler,
+			SimpleLocalTimePathParamHandler simpleLocalTimePathParamHandler,
+			SimpleOffsetDateTimePathParamHandler simpleOffsetDateTimePathParamHandler,
+			SimpleZonedDateTimePathParamHandler simpleZonedDateTimePathParamHandler,
+			SimpleScalarPathParamHandler simpleScalarPathParamHandler,
+			SimpleEnumPathParamHandler simpleEnumPathParamHandler, MultiPathParamHandler multiPathParamHandler) {
 		this.simpleBooleanPathParamHandler = simpleBooleanPathParamHandler;
 		this.simpleShortPathParamHandler = simpleShortPathParamHandler;
 		this.simpleIntPathParamHandler = simpleIntPathParamHandler;

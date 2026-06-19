@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.NilResult;
+import dev.rsdlang.sample.server.model.NilResult;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -14,7 +14,8 @@ public class ListZonedDateTimeHeaderParamNilHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListZonedDateTimeHeaderParamNilHandler {
 
 	@Override
-	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> headerValue) {
+	public NilResult listZonedDateTimeHeaderParamNil(BuilderFactory _factory,
+			Optional<List<ZonedDateTime>> headerValue) {
 		return headerValue.isPresent() ? NilResult.DEFINED : NilResult.NULL;
 	}
 

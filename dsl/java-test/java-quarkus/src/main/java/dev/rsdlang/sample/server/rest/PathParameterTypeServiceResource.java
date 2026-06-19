@@ -14,14 +14,14 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 
 @ApplicationScoped
 @Path("/api/pathparametertype")
-@Produces({"application/json", "application/vnd.msgpack"})
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Produces({ "application/json", "application/vnd.msgpack" })
+@Consumes({ "application/json", "application/vnd.msgpack" })
 public class PathParameterTypeServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
@@ -30,7 +30,8 @@ public class PathParameterTypeServiceResource {
 	private final PathParameterTypeServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public PathParameterTypeServiceResource(PathParameterTypeServiceService service, PathParameterTypeServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public PathParameterTypeServiceResource(PathParameterTypeServiceService service,
+			PathParameterTypeServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -61,7 +62,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathBoolean") String _pathBoolean) {
 		var pathBoolean = _RestUtils.parseBoolean(_pathBoolean);
 		var result = service.simpleBooleanPathParam(builderFactory, pathBoolean);
-		return responseBuilder.simpleBooleanPathParam(result, computeResponseContentType($acceptHeaders), pathBoolean).build();
+		return responseBuilder.simpleBooleanPathParam(result, computeResponseContentType($acceptHeaders), pathBoolean)
+				.build();
 	}
 
 	@GET
@@ -71,7 +73,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathShort") String _pathShort) {
 		var pathShort = _RestUtils.parseShort(_pathShort);
 		var result = service.simpleShortPathParam(builderFactory, pathShort);
-		return responseBuilder.simpleShortPathParam(result, computeResponseContentType($acceptHeaders), pathShort).build();
+		return responseBuilder.simpleShortPathParam(result, computeResponseContentType($acceptHeaders), pathShort)
+				.build();
 	}
 
 	@GET
@@ -91,7 +94,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathLong") String _pathLong) {
 		var pathLong = _RestUtils.parseLong(_pathLong);
 		var result = service.simpleLongPathParam(builderFactory, pathLong);
-		return responseBuilder.simpleLongPathParam(result, computeResponseContentType($acceptHeaders), pathLong).build();
+		return responseBuilder.simpleLongPathParam(result, computeResponseContentType($acceptHeaders), pathLong)
+				.build();
 	}
 
 	@GET
@@ -101,7 +105,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathFloat") String _pathFloat) {
 		var pathFloat = _RestUtils.parseFloat(_pathFloat);
 		var result = service.simpleFloatPathParam(builderFactory, pathFloat);
-		return responseBuilder.simpleFloatPathParam(result, computeResponseContentType($acceptHeaders), pathFloat).build();
+		return responseBuilder.simpleFloatPathParam(result, computeResponseContentType($acceptHeaders), pathFloat)
+				.build();
 	}
 
 	@GET
@@ -111,7 +116,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathDouble") String _pathDouble) {
 		var pathDouble = _RestUtils.parseDouble(_pathDouble);
 		var result = service.simpleDoublePathParam(builderFactory, pathDouble);
-		return responseBuilder.simpleDoublePathParam(result, computeResponseContentType($acceptHeaders), pathDouble).build();
+		return responseBuilder.simpleDoublePathParam(result, computeResponseContentType($acceptHeaders), pathDouble)
+				.build();
 	}
 
 	@GET
@@ -121,7 +127,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathString") String _pathString) {
 		var pathString = _RestUtils.parseString(_pathString);
 		var result = service.simpleStringPathParam(builderFactory, pathString);
-		return responseBuilder.simpleStringPathParam(result, computeResponseContentType($acceptHeaders), pathString).build();
+		return responseBuilder.simpleStringPathParam(result, computeResponseContentType($acceptHeaders), pathString)
+				.build();
 	}
 
 	@GET
@@ -131,7 +138,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathLocalDate") String _pathLocalDate) {
 		var pathLocalDate = _RestUtils.parseLocalDate(_pathLocalDate);
 		var result = service.simpleLocalDatePathParam(builderFactory, pathLocalDate);
-		return responseBuilder.simpleLocalDatePathParam(result, computeResponseContentType($acceptHeaders), pathLocalDate).build();
+		return responseBuilder
+				.simpleLocalDatePathParam(result, computeResponseContentType($acceptHeaders), pathLocalDate).build();
 	}
 
 	@GET
@@ -141,7 +149,9 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathLocalDateTime") String _pathLocalDateTime) {
 		var pathLocalDateTime = _RestUtils.parseLocalDateTime(_pathLocalDateTime);
 		var result = service.simpleLocalDateTimePathParam(builderFactory, pathLocalDateTime);
-		return responseBuilder.simpleLocalDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathLocalDateTime).build();
+		return responseBuilder
+				.simpleLocalDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathLocalDateTime)
+				.build();
 	}
 
 	@GET
@@ -151,7 +161,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathLocalTime") String _pathLocalTime) {
 		var pathLocalTime = _RestUtils.parseLocalTime(_pathLocalTime);
 		var result = service.simpleLocalTimePathParam(builderFactory, pathLocalTime);
-		return responseBuilder.simpleLocalTimePathParam(result, computeResponseContentType($acceptHeaders), pathLocalTime).build();
+		return responseBuilder
+				.simpleLocalTimePathParam(result, computeResponseContentType($acceptHeaders), pathLocalTime).build();
 	}
 
 	@GET
@@ -161,7 +172,9 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathOffsetDateTime") String _pathOffsetDateTime) {
 		var pathOffsetDateTime = _RestUtils.parseOffsetDateTime(_pathOffsetDateTime);
 		var result = service.simpleOffsetDateTimePathParam(builderFactory, pathOffsetDateTime);
-		return responseBuilder.simpleOffsetDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathOffsetDateTime).build();
+		return responseBuilder
+				.simpleOffsetDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathOffsetDateTime)
+				.build();
 	}
 
 	@GET
@@ -171,7 +184,9 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathZonedDateTime") String _pathZonedDateTime) {
 		var pathZonedDateTime = _RestUtils.parseZonedDateTime(_pathZonedDateTime);
 		var result = service.simpleZonedDateTimePathParam(builderFactory, pathZonedDateTime);
-		return responseBuilder.simpleZonedDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathZonedDateTime).build();
+		return responseBuilder
+				.simpleZonedDateTimePathParam(result, computeResponseContentType($acceptHeaders), pathZonedDateTime)
+				.build();
 	}
 
 	@GET
@@ -181,7 +196,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathScalar") String _pathScalar) {
 		var pathScalar = _RestUtils.parseLiteral(_pathScalar, ZoneId::of);
 		var result = service.simpleScalarPathParam(builderFactory, pathScalar);
-		return responseBuilder.simpleScalarPathParam(result, computeResponseContentType($acceptHeaders), pathScalar).build();
+		return responseBuilder.simpleScalarPathParam(result, computeResponseContentType($acceptHeaders), pathScalar)
+				.build();
 	}
 
 	@GET
@@ -191,7 +207,8 @@ public class PathParameterTypeServiceResource {
 			@PathParam("pathEnum") String _pathEnum) {
 		var pathEnum = _RestUtils.parseLiteral(_pathEnum, SampleEnum::valueOf);
 		var result = service.simpleEnumPathParam(builderFactory, pathEnum);
-		return responseBuilder.simpleEnumPathParam(result, computeResponseContentType($acceptHeaders), pathEnum).build();
+		return responseBuilder.simpleEnumPathParam(result, computeResponseContentType($acceptHeaders), pathEnum)
+				.build();
 	}
 
 	@GET
@@ -203,7 +220,8 @@ public class PathParameterTypeServiceResource {
 		var valueA = _RestUtils.parseString(_valueA);
 		var valueB = _RestUtils.parseInt(_valueB);
 		var result = service.multiPathParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiPathParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		return responseBuilder.multiPathParam(result, computeResponseContentType($acceptHeaders), valueA, valueB)
+				.build();
 	}
 
 }

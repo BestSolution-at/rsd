@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.NilResult;
-import dev.rsdlang.sample.server.service.model.SimpleRecord.Data;
+import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model.SimpleRecord.Data;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

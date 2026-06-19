@@ -7,9 +7,9 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 public interface SampleServiceService {
 	public boolean getBoolean(BuilderFactory _factory);

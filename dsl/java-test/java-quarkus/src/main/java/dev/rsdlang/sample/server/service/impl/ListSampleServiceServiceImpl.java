@@ -12,9 +12,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListSampleServiceService;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.SampleErrorException;
 
 @ApplicationScoped
@@ -36,7 +36,14 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 	private final ListSimpleRecordHandler listSimpleRecordHandler;
 	private final ListSimpleRecordWithErrorHandler listSimpleRecordWithErrorHandler;
 
-	public ListSampleServiceServiceImpl(ListBooleanHandler listBooleanHandler, ListShortHandler listShortHandler, ListIntHandler listIntHandler, ListLongHandler listLongHandler, ListFloatHandler listFloatHandler, ListDoubleHandler listDoubleHandler, ListStringHandler listStringHandler, ListLocalDateHandler listLocalDateHandler, ListLocalDateTimeHandler listLocalDateTimeHandler, ListLocalTimeHandler listLocalTimeHandler, ListOffsetDateTimeHandler listOffsetDateTimeHandler, ListZonedDateTimeHandler listZonedDateTimeHandler, ListScalarHandler listScalarHandler, ListEnumHandler listEnumHandler, ListSimpleRecordHandler listSimpleRecordHandler, ListSimpleRecordWithErrorHandler listSimpleRecordWithErrorHandler) {
+	public ListSampleServiceServiceImpl(ListBooleanHandler listBooleanHandler, ListShortHandler listShortHandler,
+			ListIntHandler listIntHandler, ListLongHandler listLongHandler, ListFloatHandler listFloatHandler,
+			ListDoubleHandler listDoubleHandler, ListStringHandler listStringHandler,
+			ListLocalDateHandler listLocalDateHandler, ListLocalDateTimeHandler listLocalDateTimeHandler,
+			ListLocalTimeHandler listLocalTimeHandler, ListOffsetDateTimeHandler listOffsetDateTimeHandler,
+			ListZonedDateTimeHandler listZonedDateTimeHandler, ListScalarHandler listScalarHandler,
+			ListEnumHandler listEnumHandler, ListSimpleRecordHandler listSimpleRecordHandler,
+			ListSimpleRecordWithErrorHandler listSimpleRecordWithErrorHandler) {
 		this.listBooleanHandler = listBooleanHandler;
 		this.listShortHandler = listShortHandler;
 		this.listIntHandler = listIntHandler;

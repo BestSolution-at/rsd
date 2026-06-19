@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.QueryParameterTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.NilResult;
+import dev.rsdlang.sample.server.model.NilResult;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

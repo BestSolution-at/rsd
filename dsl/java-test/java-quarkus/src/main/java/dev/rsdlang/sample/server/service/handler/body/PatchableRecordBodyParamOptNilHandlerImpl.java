@@ -4,8 +4,8 @@ import java.util.function.Function;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BodyParameterTypesServiceImpl;
-import dev.rsdlang.sample.server.service.model.PatchableRecord;
-import dev.rsdlang.sample.server.service.model._Base.Nillable;
+import dev.rsdlang.sample.server.model.PatchableRecord;
+import dev.rsdlang.sample.server.model._Base.Nillable;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

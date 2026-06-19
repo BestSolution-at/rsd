@@ -13,11 +13,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListBodyParameterTypesService;
-import dev.rsdlang.sample.server.service.model._Base;
-import dev.rsdlang.sample.server.service.model.NilResult;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 @ApplicationScoped
 public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService {
@@ -90,7 +90,71 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	private final ListRecordBodyParamNilHandler listRecordBodyParamNilHandler;
 	private final ListRecordBodyParamOptNilHandler listRecordBodyParamOptNilHandler;
 
-	public ListBodyParameterTypesServiceImpl(ListBooleanBodyParamHandler listBooleanBodyParamHandler, ListBooleanBodyParamOptHandler listBooleanBodyParamOptHandler, ListBooleanBodyParamNilHandler listBooleanBodyParamNilHandler, ListBooleanBodyParamOptNilHandler listBooleanBodyParamOptNilHandler, ListShortBodyParamHandler listShortBodyParamHandler, ListShortBodyParamOptHandler listShortBodyParamOptHandler, ListShortBodyParamNilHandler listShortBodyParamNilHandler, ListShortBodyParamOptNilHandler listShortBodyParamOptNilHandler, ListIntBodyParamHandler listIntBodyParamHandler, ListIntBodyParamOptHandler listIntBodyParamOptHandler, ListIntBodyParamNilHandler listIntBodyParamNilHandler, ListIntBodyParamOptNilHandler listIntBodyParamOptNilHandler, ListLongBodyParamHandler listLongBodyParamHandler, ListLongBodyParamOptHandler listLongBodyParamOptHandler, ListLongBodyParamNilHandler listLongBodyParamNilHandler, ListLongBodyParamOptNilHandler listLongBodyParamOptNilHandler, ListFloatBodyParamHandler listFloatBodyParamHandler, ListFloatBodyParamOptHandler listFloatBodyParamOptHandler, ListFloatBodyParamNilHandler listFloatBodyParamNilHandler, ListFloatBodyParamOptNilHandler listFloatBodyParamOptNilHandler, ListDoubleBodyParamHandler listDoubleBodyParamHandler, ListDoubleBodyParamOptHandler listDoubleBodyParamOptHandler, ListDoubleBodyParamNilHandler listDoubleBodyParamNilHandler, ListDoubleBodyParamOptNilHandler listDoubleBodyParamOptNilHandler, ListStringBodyParamHandler listStringBodyParamHandler, ListStringBodyParamOptHandler listStringBodyParamOptHandler, ListStringBodyParamNilHandler listStringBodyParamNilHandler, ListStringBodyParamOptNilHandler listStringBodyParamOptNilHandler, ListLocalDateBodyParamHandler listLocalDateBodyParamHandler, ListLocalDateBodyParamOptHandler listLocalDateBodyParamOptHandler, ListLocalDateBodyParamNilHandler listLocalDateBodyParamNilHandler, ListLocalDateBodyParamOptNilHandler listLocalDateBodyParamOptNilHandler, ListLocalDateTimeBodyParamHandler listLocalDateTimeBodyParamHandler, ListLocalDateTimeBodyParamOptHandler listLocalDateTimeBodyParamOptHandler, ListLocalDateTimeBodyParamNilHandler listLocalDateTimeBodyParamNilHandler, ListLocalDateTimeBodyParamOptNilHandler listLocalDateTimeBodyParamOptNilHandler, ListLocalTimeBodyParamHandler listLocalTimeBodyParamHandler, ListLocalTimeBodyParamOptHandler listLocalTimeBodyParamOptHandler, ListLocalTimeBodyParamNilHandler listLocalTimeBodyParamNilHandler, ListLocalTimeBodyParamOptNilHandler listLocalTimeBodyParamOptNilHandler, ListOffsetDateTimeBodyParamHandler listOffsetDateTimeBodyParamHandler, ListOffsetDateTimeBodyParamOptHandler listOffsetDateTimeBodyParamOptHandler, ListOffsetDateTimeBodyParamNilHandler listOffsetDateTimeBodyParamNilHandler, ListOffsetDateTimeBodyParamOptNilHandler listOffsetDateTimeBodyParamOptNilHandler, ListZonedDateTimeBodyParamHandler listZonedDateTimeBodyParamHandler, ListZonedDateTimeBodyParamOptHandler listZonedDateTimeBodyParamOptHandler, ListZonedDateTimeBodyParamNilHandler listZonedDateTimeBodyParamNilHandler, ListZonedDateTimeBodyParamOptNilHandler listZonedDateTimeBodyParamOptNilHandler, ListScalarBodyParamHandler listScalarBodyParamHandler, ListScalarBodyParamOptHandler listScalarBodyParamOptHandler, ListScalarBodyParamNilHandler listScalarBodyParamNilHandler, ListScalarBodyParamOptNilHandler listScalarBodyParamOptNilHandler, ListEnumBodyParamHandler listEnumBodyParamHandler, ListEnumBodyParamOptHandler listEnumBodyParamOptHandler, ListEnumBodyParamNilHandler listEnumBodyParamNilHandler, ListEnumBodyParamOptNilHandler listEnumBodyParamOptNilHandler, ListInlineEnumBodyParamHandler listInlineEnumBodyParamHandler, ListInlineEnumBodyParamOptHandler listInlineEnumBodyParamOptHandler, ListInlineEnumBodyParamNilHandler listInlineEnumBodyParamNilHandler, ListInlineEnumBodyParamOptNilHandler listInlineEnumBodyParamOptNilHandler, ListMultiBodyParamHandler listMultiBodyParamHandler, ListMultiBodyParamOptHandler listMultiBodyParamOptHandler, ListMultiBodyParamNilHandler listMultiBodyParamNilHandler, ListMultiBodyParamOptNilHandler listMultiBodyParamOptNilHandler, ListRecordBodyParamHandler listRecordBodyParamHandler, ListRecordBodyParamOptHandler listRecordBodyParamOptHandler, ListRecordBodyParamNilHandler listRecordBodyParamNilHandler, ListRecordBodyParamOptNilHandler listRecordBodyParamOptNilHandler) {
+	public ListBodyParameterTypesServiceImpl(ListBooleanBodyParamHandler listBooleanBodyParamHandler,
+			ListBooleanBodyParamOptHandler listBooleanBodyParamOptHandler,
+			ListBooleanBodyParamNilHandler listBooleanBodyParamNilHandler,
+			ListBooleanBodyParamOptNilHandler listBooleanBodyParamOptNilHandler,
+			ListShortBodyParamHandler listShortBodyParamHandler,
+			ListShortBodyParamOptHandler listShortBodyParamOptHandler,
+			ListShortBodyParamNilHandler listShortBodyParamNilHandler,
+			ListShortBodyParamOptNilHandler listShortBodyParamOptNilHandler,
+			ListIntBodyParamHandler listIntBodyParamHandler, ListIntBodyParamOptHandler listIntBodyParamOptHandler,
+			ListIntBodyParamNilHandler listIntBodyParamNilHandler,
+			ListIntBodyParamOptNilHandler listIntBodyParamOptNilHandler,
+			ListLongBodyParamHandler listLongBodyParamHandler, ListLongBodyParamOptHandler listLongBodyParamOptHandler,
+			ListLongBodyParamNilHandler listLongBodyParamNilHandler,
+			ListLongBodyParamOptNilHandler listLongBodyParamOptNilHandler,
+			ListFloatBodyParamHandler listFloatBodyParamHandler,
+			ListFloatBodyParamOptHandler listFloatBodyParamOptHandler,
+			ListFloatBodyParamNilHandler listFloatBodyParamNilHandler,
+			ListFloatBodyParamOptNilHandler listFloatBodyParamOptNilHandler,
+			ListDoubleBodyParamHandler listDoubleBodyParamHandler,
+			ListDoubleBodyParamOptHandler listDoubleBodyParamOptHandler,
+			ListDoubleBodyParamNilHandler listDoubleBodyParamNilHandler,
+			ListDoubleBodyParamOptNilHandler listDoubleBodyParamOptNilHandler,
+			ListStringBodyParamHandler listStringBodyParamHandler,
+			ListStringBodyParamOptHandler listStringBodyParamOptHandler,
+			ListStringBodyParamNilHandler listStringBodyParamNilHandler,
+			ListStringBodyParamOptNilHandler listStringBodyParamOptNilHandler,
+			ListLocalDateBodyParamHandler listLocalDateBodyParamHandler,
+			ListLocalDateBodyParamOptHandler listLocalDateBodyParamOptHandler,
+			ListLocalDateBodyParamNilHandler listLocalDateBodyParamNilHandler,
+			ListLocalDateBodyParamOptNilHandler listLocalDateBodyParamOptNilHandler,
+			ListLocalDateTimeBodyParamHandler listLocalDateTimeBodyParamHandler,
+			ListLocalDateTimeBodyParamOptHandler listLocalDateTimeBodyParamOptHandler,
+			ListLocalDateTimeBodyParamNilHandler listLocalDateTimeBodyParamNilHandler,
+			ListLocalDateTimeBodyParamOptNilHandler listLocalDateTimeBodyParamOptNilHandler,
+			ListLocalTimeBodyParamHandler listLocalTimeBodyParamHandler,
+			ListLocalTimeBodyParamOptHandler listLocalTimeBodyParamOptHandler,
+			ListLocalTimeBodyParamNilHandler listLocalTimeBodyParamNilHandler,
+			ListLocalTimeBodyParamOptNilHandler listLocalTimeBodyParamOptNilHandler,
+			ListOffsetDateTimeBodyParamHandler listOffsetDateTimeBodyParamHandler,
+			ListOffsetDateTimeBodyParamOptHandler listOffsetDateTimeBodyParamOptHandler,
+			ListOffsetDateTimeBodyParamNilHandler listOffsetDateTimeBodyParamNilHandler,
+			ListOffsetDateTimeBodyParamOptNilHandler listOffsetDateTimeBodyParamOptNilHandler,
+			ListZonedDateTimeBodyParamHandler listZonedDateTimeBodyParamHandler,
+			ListZonedDateTimeBodyParamOptHandler listZonedDateTimeBodyParamOptHandler,
+			ListZonedDateTimeBodyParamNilHandler listZonedDateTimeBodyParamNilHandler,
+			ListZonedDateTimeBodyParamOptNilHandler listZonedDateTimeBodyParamOptNilHandler,
+			ListScalarBodyParamHandler listScalarBodyParamHandler,
+			ListScalarBodyParamOptHandler listScalarBodyParamOptHandler,
+			ListScalarBodyParamNilHandler listScalarBodyParamNilHandler,
+			ListScalarBodyParamOptNilHandler listScalarBodyParamOptNilHandler,
+			ListEnumBodyParamHandler listEnumBodyParamHandler, ListEnumBodyParamOptHandler listEnumBodyParamOptHandler,
+			ListEnumBodyParamNilHandler listEnumBodyParamNilHandler,
+			ListEnumBodyParamOptNilHandler listEnumBodyParamOptNilHandler,
+			ListInlineEnumBodyParamHandler listInlineEnumBodyParamHandler,
+			ListInlineEnumBodyParamOptHandler listInlineEnumBodyParamOptHandler,
+			ListInlineEnumBodyParamNilHandler listInlineEnumBodyParamNilHandler,
+			ListInlineEnumBodyParamOptNilHandler listInlineEnumBodyParamOptNilHandler,
+			ListMultiBodyParamHandler listMultiBodyParamHandler,
+			ListMultiBodyParamOptHandler listMultiBodyParamOptHandler,
+			ListMultiBodyParamNilHandler listMultiBodyParamNilHandler,
+			ListMultiBodyParamOptNilHandler listMultiBodyParamOptNilHandler,
+			ListRecordBodyParamHandler listRecordBodyParamHandler,
+			ListRecordBodyParamOptHandler listRecordBodyParamOptHandler,
+			ListRecordBodyParamNilHandler listRecordBodyParamNilHandler,
+			ListRecordBodyParamOptNilHandler listRecordBodyParamOptNilHandler) {
 		this.listBooleanBodyParamHandler = listBooleanBodyParamHandler;
 		this.listBooleanBodyParamOptHandler = listBooleanBodyParamOptHandler;
 		this.listBooleanBodyParamNilHandler = listBooleanBodyParamNilHandler;
@@ -317,27 +381,32 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public NilResult listLocalDateBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDate>> bodyLocalDate) {
+	public NilResult listLocalDateBodyParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<List<LocalDate>> bodyLocalDate) {
 		return listLocalDateBodyParamOptNilHandler.listLocalDateBodyParamOptNil(_factory, bodyLocalDate);
 	}
 
 	@Override
-	public List<LocalDateTime> listLocalDateTimeBodyParam(BuilderFactory _factory, List<LocalDateTime> bodyLocalDateTime) {
+	public List<LocalDateTime> listLocalDateTimeBodyParam(BuilderFactory _factory,
+			List<LocalDateTime> bodyLocalDateTime) {
 		return listLocalDateTimeBodyParamHandler.listLocalDateTimeBodyParam(_factory, bodyLocalDateTime);
 	}
 
 	@Override
-	public NilResult listLocalDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<LocalDateTime>> bodyLocalDateTime) {
+	public NilResult listLocalDateTimeBodyParamOpt(BuilderFactory _factory,
+			Optional<List<LocalDateTime>> bodyLocalDateTime) {
 		return listLocalDateTimeBodyParamOptHandler.listLocalDateTimeBodyParamOpt(_factory, bodyLocalDateTime);
 	}
 
 	@Override
-	public NilResult listLocalDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> bodyLocalDateTime) {
+	public NilResult listLocalDateTimeBodyParamNil(BuilderFactory _factory,
+			Optional<List<LocalDateTime>> bodyLocalDateTime) {
 		return listLocalDateTimeBodyParamNilHandler.listLocalDateTimeBodyParamNil(_factory, bodyLocalDateTime);
 	}
 
 	@Override
-	public NilResult listLocalDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
+	public NilResult listLocalDateTimeBodyParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<List<LocalDateTime>> bodyLocalDateTime) {
 		return listLocalDateTimeBodyParamOptNilHandler.listLocalDateTimeBodyParamOptNil(_factory, bodyLocalDateTime);
 	}
 
@@ -357,47 +426,56 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public NilResult listLocalTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalTime>> bodyLocalTime) {
+	public NilResult listLocalTimeBodyParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<List<LocalTime>> bodyLocalTime) {
 		return listLocalTimeBodyParamOptNilHandler.listLocalTimeBodyParamOptNil(_factory, bodyLocalTime);
 	}
 
 	@Override
-	public List<OffsetDateTime> listOffsetDateTimeBodyParam(BuilderFactory _factory, List<OffsetDateTime> bodyOffsetDateTime) {
+	public List<OffsetDateTime> listOffsetDateTimeBodyParam(BuilderFactory _factory,
+			List<OffsetDateTime> bodyOffsetDateTime) {
 		return listOffsetDateTimeBodyParamHandler.listOffsetDateTimeBodyParam(_factory, bodyOffsetDateTime);
 	}
 
 	@Override
-	public NilResult listOffsetDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
+	public NilResult listOffsetDateTimeBodyParamOpt(BuilderFactory _factory,
+			Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
 		return listOffsetDateTimeBodyParamOptHandler.listOffsetDateTimeBodyParamOpt(_factory, bodyOffsetDateTime);
 	}
 
 	@Override
-	public NilResult listOffsetDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
+	public NilResult listOffsetDateTimeBodyParamNil(BuilderFactory _factory,
+			Optional<List<OffsetDateTime>> bodyOffsetDateTime) {
 		return listOffsetDateTimeBodyParamNilHandler.listOffsetDateTimeBodyParamNil(_factory, bodyOffsetDateTime);
 	}
 
 	@Override
-	public NilResult listOffsetDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime) {
+	public NilResult listOffsetDateTimeBodyParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime) {
 		return listOffsetDateTimeBodyParamOptNilHandler.listOffsetDateTimeBodyParamOptNil(_factory, bodyOffsetDateTime);
 	}
 
 	@Override
-	public List<ZonedDateTime> listZonedDateTimeBodyParam(BuilderFactory _factory, List<ZonedDateTime> bodyZonedDateTime) {
+	public List<ZonedDateTime> listZonedDateTimeBodyParam(BuilderFactory _factory,
+			List<ZonedDateTime> bodyZonedDateTime) {
 		return listZonedDateTimeBodyParamHandler.listZonedDateTimeBodyParam(_factory, bodyZonedDateTime);
 	}
 
 	@Override
-	public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
+	public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory,
+			Optional<List<ZonedDateTime>> bodyZonedDateTime) {
 		return listZonedDateTimeBodyParamOptHandler.listZonedDateTimeBodyParamOpt(_factory, bodyZonedDateTime);
 	}
 
 	@Override
-	public NilResult listZonedDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> bodyZonedDateTime) {
+	public NilResult listZonedDateTimeBodyParamNil(BuilderFactory _factory,
+			Optional<List<ZonedDateTime>> bodyZonedDateTime) {
 		return listZonedDateTimeBodyParamNilHandler.listZonedDateTimeBodyParamNil(_factory, bodyZonedDateTime);
 	}
 
 	@Override
-	public NilResult listZonedDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime) {
+	public NilResult listZonedDateTimeBodyParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime) {
 		return listZonedDateTimeBodyParamOptNilHandler.listZonedDateTimeBodyParamOptNil(_factory, bodyZonedDateTime);
 	}
 
@@ -442,42 +520,50 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(BuilderFactory _factory, List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
+	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(BuilderFactory _factory,
+			List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
 		return listInlineEnumBodyParamHandler.listInlineEnumBodyParam(_factory, bodyEnum);
 	}
 
 	@Override
-	public NilResult listInlineEnumBodyParamOpt(BuilderFactory _factory, Optional<List<ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
+	public NilResult listInlineEnumBodyParamOpt(BuilderFactory _factory,
+			Optional<List<ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum) {
 		return listInlineEnumBodyParamOptHandler.listInlineEnumBodyParamOpt(_factory, bodyEnum);
 	}
 
 	@Override
-	public NilResult listInlineEnumBodyParamNil(BuilderFactory _factory, Optional<List<ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
+	public NilResult listInlineEnumBodyParamNil(BuilderFactory _factory,
+			Optional<List<ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum) {
 		return listInlineEnumBodyParamNilHandler.listInlineEnumBodyParamNil(_factory, bodyEnum);
 	}
 
 	@Override
-	public NilResult listInlineEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
+	public NilResult listInlineEnumBodyParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum) {
 		return listInlineEnumBodyParamOptNilHandler.listInlineEnumBodyParamOptNil(_factory, bodyEnum);
 	}
 
 	@Override
-	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
+			List<SimpleRecord.Data> valueC) {
 		return listMultiBodyParamHandler.listMultiBodyParam(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA,
+			Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiBodyParamOptHandler.listMultiBodyParamOpt(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA,
+			Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
 		return listMultiBodyParamNilHandler.listMultiBodyParamNil(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
+	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA,
+			_Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
 		return listMultiBodyParamOptNilHandler.listMultiBodyParamOptNil(_factory, valueA, valueB, valueC);
 	}
 
@@ -497,7 +583,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public NilResult listRecordBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SimpleRecord.Data>> bodyRecord) {
+	public NilResult listRecordBodyParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<List<SimpleRecord.Data>> bodyRecord) {
 		return listRecordBodyParamOptNilHandler.listRecordBodyParamOptNil(_factory, bodyRecord);
 	}
 
@@ -626,23 +713,28 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListLocalDateBodyParamOptNilHandler {
-		public NilResult listLocalDateBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDate>> bodyLocalDate);
+		public NilResult listLocalDateBodyParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<List<LocalDate>> bodyLocalDate);
 	}
 
 	public interface ListLocalDateTimeBodyParamHandler {
-		public List<LocalDateTime> listLocalDateTimeBodyParam(BuilderFactory _factory, List<LocalDateTime> bodyLocalDateTime);
+		public List<LocalDateTime> listLocalDateTimeBodyParam(BuilderFactory _factory,
+				List<LocalDateTime> bodyLocalDateTime);
 	}
 
 	public interface ListLocalDateTimeBodyParamOptHandler {
-		public NilResult listLocalDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<LocalDateTime>> bodyLocalDateTime);
+		public NilResult listLocalDateTimeBodyParamOpt(BuilderFactory _factory,
+				Optional<List<LocalDateTime>> bodyLocalDateTime);
 	}
 
 	public interface ListLocalDateTimeBodyParamNilHandler {
-		public NilResult listLocalDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<LocalDateTime>> bodyLocalDateTime);
+		public NilResult listLocalDateTimeBodyParamNil(BuilderFactory _factory,
+				Optional<List<LocalDateTime>> bodyLocalDateTime);
 	}
 
 	public interface ListLocalDateTimeBodyParamOptNilHandler {
-		public NilResult listLocalDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalDateTime>> bodyLocalDateTime);
+		public NilResult listLocalDateTimeBodyParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<List<LocalDateTime>> bodyLocalDateTime);
 	}
 
 	public interface ListLocalTimeBodyParamHandler {
@@ -658,39 +750,48 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListLocalTimeBodyParamOptNilHandler {
-		public NilResult listLocalTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<LocalTime>> bodyLocalTime);
+		public NilResult listLocalTimeBodyParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<List<LocalTime>> bodyLocalTime);
 	}
 
 	public interface ListOffsetDateTimeBodyParamHandler {
-		public List<OffsetDateTime> listOffsetDateTimeBodyParam(BuilderFactory _factory, List<OffsetDateTime> bodyOffsetDateTime);
+		public List<OffsetDateTime> listOffsetDateTimeBodyParam(BuilderFactory _factory,
+				List<OffsetDateTime> bodyOffsetDateTime);
 	}
 
 	public interface ListOffsetDateTimeBodyParamOptHandler {
-		public NilResult listOffsetDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<OffsetDateTime>> bodyOffsetDateTime);
+		public NilResult listOffsetDateTimeBodyParamOpt(BuilderFactory _factory,
+				Optional<List<OffsetDateTime>> bodyOffsetDateTime);
 	}
 
 	public interface ListOffsetDateTimeBodyParamNilHandler {
-		public NilResult listOffsetDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<OffsetDateTime>> bodyOffsetDateTime);
+		public NilResult listOffsetDateTimeBodyParamNil(BuilderFactory _factory,
+				Optional<List<OffsetDateTime>> bodyOffsetDateTime);
 	}
 
 	public interface ListOffsetDateTimeBodyParamOptNilHandler {
-		public NilResult listOffsetDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime);
+		public NilResult listOffsetDateTimeBodyParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<List<OffsetDateTime>> bodyOffsetDateTime);
 	}
 
 	public interface ListZonedDateTimeBodyParamHandler {
-		public List<ZonedDateTime> listZonedDateTimeBodyParam(BuilderFactory _factory, List<ZonedDateTime> bodyZonedDateTime);
+		public List<ZonedDateTime> listZonedDateTimeBodyParam(BuilderFactory _factory,
+				List<ZonedDateTime> bodyZonedDateTime);
 	}
 
 	public interface ListZonedDateTimeBodyParamOptHandler {
-		public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory, Optional<List<ZonedDateTime>> bodyZonedDateTime);
+		public NilResult listZonedDateTimeBodyParamOpt(BuilderFactory _factory,
+				Optional<List<ZonedDateTime>> bodyZonedDateTime);
 	}
 
 	public interface ListZonedDateTimeBodyParamNilHandler {
-		public NilResult listZonedDateTimeBodyParamNil(BuilderFactory _factory, Optional<List<ZonedDateTime>> bodyZonedDateTime);
+		public NilResult listZonedDateTimeBodyParamNil(BuilderFactory _factory,
+				Optional<List<ZonedDateTime>> bodyZonedDateTime);
 	}
 
 	public interface ListZonedDateTimeBodyParamOptNilHandler {
-		public NilResult listZonedDateTimeBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime);
+		public NilResult listZonedDateTimeBodyParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<List<ZonedDateTime>> bodyZonedDateTime);
 	}
 
 	public interface ListScalarBodyParamHandler {
@@ -726,35 +827,43 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListInlineEnumBodyParamHandler {
-		public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(BuilderFactory _factory, List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum);
+		public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(BuilderFactory _factory,
+				List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum);
 	}
 
 	public interface ListInlineEnumBodyParamOptHandler {
-		public NilResult listInlineEnumBodyParamOpt(BuilderFactory _factory, Optional<List<ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum);
+		public NilResult listInlineEnumBodyParamOpt(BuilderFactory _factory,
+				Optional<List<ListInlineEnumBodyParamOpt_BodyEnum_Param$>> bodyEnum);
 	}
 
 	public interface ListInlineEnumBodyParamNilHandler {
-		public NilResult listInlineEnumBodyParamNil(BuilderFactory _factory, Optional<List<ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum);
+		public NilResult listInlineEnumBodyParamNil(BuilderFactory _factory,
+				Optional<List<ListInlineEnumBodyParamNil_BodyEnum_Param$>> bodyEnum);
 	}
 
 	public interface ListInlineEnumBodyParamOptNilHandler {
-		public NilResult listInlineEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum);
+		public NilResult listInlineEnumBodyParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum);
 	}
 
 	public interface ListMultiBodyParamHandler {
-		public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+		public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB,
+				List<SimpleRecord.Data> valueC);
 	}
 
 	public interface ListMultiBodyParamOptHandler {
-		public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA,
+				Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiBodyParamNilHandler {
-		public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA,
+				Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListMultiBodyParamOptNilHandler {
-		public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA,
+				_Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
 	}
 
 	public interface ListRecordBodyParamHandler {
@@ -770,7 +879,8 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListRecordBodyParamOptNilHandler {
-		public NilResult listRecordBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<SimpleRecord.Data>> bodyRecord);
+		public NilResult listRecordBodyParamOptNil(BuilderFactory _factory,
+				_Base.Nillable<List<SimpleRecord.Data>> bodyRecord);
 	}
 
 }

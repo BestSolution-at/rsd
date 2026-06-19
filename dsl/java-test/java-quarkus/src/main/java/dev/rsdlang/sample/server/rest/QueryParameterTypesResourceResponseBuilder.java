@@ -15,172 +15,254 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
-import dev.rsdlang.sample.server.service.model.NilResult;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 @Singleton
 public class QueryParameterTypesResourceResponseBuilder {
 	public ResponseBuilder simpleBooleanQueryParam(boolean $result, String $contentType, boolean queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleBooleanQueryParamOpt(NilResult $result, String $contentType, Optional<Boolean> queryValue) {
+	public ResponseBuilder simpleBooleanQueryParamOpt(NilResult $result, String $contentType,
+			Optional<Boolean> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleShortQueryParam(short $result, String $contentType, short queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleShortQueryParamOpt(NilResult $result, String $contentType, Optional<Short> queryValue) {
+	public ResponseBuilder simpleShortQueryParamOpt(NilResult $result, String $contentType,
+			Optional<Short> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleIntQueryParam(int $result, String $contentType, int queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleIntQueryParamOpt(NilResult $result, String $contentType, OptionalInt queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleLongQueryParam(long $result, String $contentType, long queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleLongQueryParamOpt(NilResult $result, String $contentType, OptionalLong queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleFloatQueryParam(float $result, String $contentType, float queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleFloatQueryParamOpt(NilResult $result, String $contentType, Optional<Float> queryValue) {
+	public ResponseBuilder simpleFloatQueryParamOpt(NilResult $result, String $contentType,
+			Optional<Float> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleDoubleQueryParam(double $result, String $contentType, double queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleDoubleQueryParamOpt(NilResult $result, String $contentType, OptionalDouble queryValue) {
+	public ResponseBuilder simpleDoubleQueryParamOpt(NilResult $result, String $contentType,
+			OptionalDouble queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleStringQueryParam(String $result, String $contentType, String queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleStringQueryParamOpt(NilResult $result, String $contentType, Optional<String> queryValue) {
+	public ResponseBuilder simpleStringQueryParamOpt(NilResult $result, String $contentType,
+			Optional<String> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleLocalDateQueryParam(LocalDate $result, String $contentType, LocalDate queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleLocalDateQueryParamOpt(NilResult $result, String $contentType, Optional<LocalDate> queryValue) {
+	public ResponseBuilder simpleLocalDateQueryParamOpt(NilResult $result, String $contentType,
+			Optional<LocalDate> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleLocalDateTimeQueryParam(LocalDateTime $result, String $contentType, LocalDateTime queryValue) {
+	public ResponseBuilder simpleLocalDateTimeQueryParam(LocalDateTime $result, String $contentType,
+			LocalDateTime queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleLocalDateTimeQueryParamOpt(NilResult $result, String $contentType, Optional<LocalDateTime> queryValue) {
+	public ResponseBuilder simpleLocalDateTimeQueryParamOpt(NilResult $result, String $contentType,
+			Optional<LocalDateTime> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleLocalTimeQueryParam(LocalTime $result, String $contentType, LocalTime queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleLocalTimeQueryParamOpt(NilResult $result, String $contentType, Optional<LocalTime> queryValue) {
+	public ResponseBuilder simpleLocalTimeQueryParamOpt(NilResult $result, String $contentType,
+			Optional<LocalTime> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleOffsetDateTimeQueryParam(OffsetDateTime $result, String $contentType, OffsetDateTime queryValue) {
+	public ResponseBuilder simpleOffsetDateTimeQueryParam(OffsetDateTime $result, String $contentType,
+			OffsetDateTime queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleOffsetDateTimeQueryParamOpt(NilResult $result, String $contentType, Optional<OffsetDateTime> queryValue) {
+	public ResponseBuilder simpleOffsetDateTimeQueryParamOpt(NilResult $result, String $contentType,
+			Optional<OffsetDateTime> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleZonedDateTimeQueryParam(ZonedDateTime $result, String $contentType, ZonedDateTime queryValue) {
+	public ResponseBuilder simpleZonedDateTimeQueryParam(ZonedDateTime $result, String $contentType,
+			ZonedDateTime queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleZonedDateTimeQueryParamOpt(NilResult $result, String $contentType, Optional<ZonedDateTime> queryValue) {
+	public ResponseBuilder simpleZonedDateTimeQueryParamOpt(NilResult $result, String $contentType,
+			Optional<ZonedDateTime> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleScalarQueryParam(ZoneId $result, String $contentType, ZoneId queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleScalarQueryParamOpt(NilResult $result, String $contentType, Optional<ZoneId> queryValue) {
+	public ResponseBuilder simpleScalarQueryParamOpt(NilResult $result, String $contentType,
+			Optional<ZoneId> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleEnumQueryParam(SampleEnum $result, String $contentType, SampleEnum queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleEnumQueryParamOpt(NilResult $result, String $contentType, Optional<SampleEnum> queryValue) {
+	public ResponseBuilder simpleEnumQueryParamOpt(NilResult $result, String $contentType,
+			Optional<SampleEnum> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder multiQueryParam(String $result, String $contentType, String valueA, int valueB) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder multiQueryParamOpt(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB) {
+	public ResponseBuilder multiQueryParamOpt(String $result, String $contentType, Optional<String> valueA,
+			OptionalInt valueB) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder recordQueryParam(SimpleRecord.Data $result, String $contentType, SimpleRecord.Data queryValue) {
+	public ResponseBuilder recordQueryParam(SimpleRecord.Data $result, String $contentType,
+			SimpleRecord.Data queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder recordQueryParamOpt(NilResult $result, String $contentType, Optional<SimpleRecord.Data> queryValue) {
+	public ResponseBuilder recordQueryParamOpt(NilResult $result, String $contentType,
+			Optional<SimpleRecord.Data> queryValue) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 }

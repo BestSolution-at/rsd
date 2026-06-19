@@ -11,85 +11,118 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 @Singleton
 public class PathParameterTypeServiceResourceResponseBuilder {
 	public ResponseBuilder simpleBooleanPathParam(boolean $result, String $contentType, boolean pathBoolean) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleShortPathParam(short $result, String $contentType, short pathShort) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleIntPathParam(int $result, String $contentType, int pathInt) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleLongPathParam(long $result, String $contentType, long pathLong) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleFloatPathParam(float $result, String $contentType, float pathFloat) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleDoublePathParam(double $result, String $contentType, double pathDouble) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleStringPathParam(String $result, String $contentType, String pathString) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleLocalDatePathParam(LocalDate $result, String $contentType, LocalDate pathLocalDate) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleLocalDateTimePathParam(LocalDateTime $result, String $contentType, LocalDateTime pathLocalDateTime) {
+	public ResponseBuilder simpleLocalDateTimePathParam(LocalDateTime $result, String $contentType,
+			LocalDateTime pathLocalDateTime) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleLocalTimePathParam(LocalTime $result, String $contentType, LocalTime pathLocalTime) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleOffsetDateTimePathParam(OffsetDateTime $result, String $contentType, OffsetDateTime pathOffsetDateTime) {
+	public ResponseBuilder simpleOffsetDateTimePathParam(OffsetDateTime $result, String $contentType,
+			OffsetDateTime pathOffsetDateTime) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder simpleZonedDateTimePathParam(ZonedDateTime $result, String $contentType, ZonedDateTime pathZonedDateTime) {
+	public ResponseBuilder simpleZonedDateTimePathParam(ZonedDateTime $result, String $contentType,
+			ZonedDateTime pathZonedDateTime) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleScalarPathParam(ZoneId $result, String $contentType, ZoneId pathScalar) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder simpleEnumPathParam(SampleEnum $result, String $contentType, SampleEnum pathEnum) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder multiPathParam(String $result, String $contentType, String valueA, int valueB) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 }

@@ -8,142 +8,197 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
-import dev.rsdlang.sample.server.impl.model.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.MyRange;
-import dev.rsdlang.sample.server.service.model._Base;
-import dev.rsdlang.sample.server.service.model.NilResult;
+import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.NilResult;
 
 @Singleton
 public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder get(MyRange $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder list(List<MyRange> $result, String $contentType) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder post(MyRange $result, String $contentType, MyRange range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder postOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder postNull(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder postOptNull(NilResult $result, String $contentType, _Base.Nillable<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder postList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder postListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder postListNull(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder postListOptNull(NilResult $result, String $contentType, _Base.Nillable<List<MyRange>> range) {
+	public ResponseBuilder postListOptNull(NilResult $result, String $contentType,
+			_Base.Nillable<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder query(MyRange $result, String $contentType, MyRange range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder queryOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder queryNull(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder queryOptNull(NilResult $result, String $contentType, _Base.Nillable<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder queryList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder queryListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder queryListNull(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder queryListOptNull(NilResult $result, String $contentType, _Base.Nillable<List<MyRange>> range) {
+	public ResponseBuilder queryListOptNull(NilResult $result, String $contentType,
+			_Base.Nillable<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder header(MyRange $result, String $contentType, MyRange range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder headerOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder headerNull(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder headerOptNull(NilResult $result, String $contentType, _Base.Nillable<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder headerList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder headerListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder headerListNull(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
-	public ResponseBuilder headerListOptNull(NilResult $result, String $contentType, _Base.Nillable<List<MyRange>> range) {
+	public ResponseBuilder headerListOptNull(NilResult $result, String $contentType,
+			_Base.Nillable<List<MyRange>> range) {
 		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+				.type($contentType)
+				.entity(_RestUtils.toStreamOutput(
+						stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));
+	}
 
 	public ResponseBuilder fail() {
 		return Response.status(200);

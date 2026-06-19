@@ -12,33 +12,38 @@ import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
 
-import dev.rsdlang.sample.server.service.model._Base;
-import dev.rsdlang.sample.server.service.model.NilResult;
-import dev.rsdlang.sample.server.service.model.SampleEnum;
-import dev.rsdlang.sample.server.service.model.SimpleRecord;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model.SampleEnum;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 public interface HeaderParameterTypesService {
 	public enum SimpleInlineEnumHeaderParam_Result$ {
 		A,
 		B,
 	}
+
 	public enum SimpleInlineEnumHeaderParam_HeaderValue_Param$ {
 		A,
 		B,
 	}
+
 	public enum SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$ {
 		A,
 		B,
 	}
+
 	public enum SimpleInlineEnumHeaderParamNil_HeaderValue_Param$ {
 		C,
 		D,
 	}
+
 	public enum SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$ {
 		C,
 		D,
 	}
+
 	public boolean simpleBooleanHeaderParam(BuilderFactory _factory, boolean headerValue);
 
 	public NilResult simpleBooleanHeaderParamOpt(BuilderFactory _factory, Optional<Boolean> headerValue);
@@ -109,7 +114,8 @@ public interface HeaderParameterTypesService {
 
 	public NilResult simpleLocalDateTimeHeaderParamNil(BuilderFactory _factory, Optional<LocalDateTime> headerValue);
 
-	public NilResult simpleLocalDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<LocalDateTime> headerValue);
+	public NilResult simpleLocalDateTimeHeaderParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<LocalDateTime> headerValue);
 
 	public LocalTime simpleLocalTimeHeaderParam(BuilderFactory _factory, LocalTime headerValue);
 
@@ -125,7 +131,8 @@ public interface HeaderParameterTypesService {
 
 	public NilResult simpleOffsetDateTimeHeaderParamNil(BuilderFactory _factory, Optional<OffsetDateTime> headerValue);
 
-	public NilResult simpleOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<OffsetDateTime> headerValue);
+	public NilResult simpleOffsetDateTimeHeaderParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<OffsetDateTime> headerValue);
 
 	public ZonedDateTime simpleZonedDateTimeHeaderParam(BuilderFactory _factory, ZonedDateTime headerValue);
 
@@ -133,7 +140,8 @@ public interface HeaderParameterTypesService {
 
 	public NilResult simpleZonedDateTimeHeaderParamNil(BuilderFactory _factory, Optional<ZonedDateTime> headerValue);
 
-	public NilResult simpleZonedDateTimeHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<ZonedDateTime> headerValue);
+	public NilResult simpleZonedDateTimeHeaderParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<ZonedDateTime> headerValue);
 
 	public ZoneId simpleScalarHeaderParam(BuilderFactory _factory, ZoneId headerValue);
 
@@ -151,13 +159,17 @@ public interface HeaderParameterTypesService {
 
 	public NilResult simpleEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<SampleEnum> headerValue);
 
-	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(BuilderFactory _factory, SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue);
+	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(BuilderFactory _factory,
+			SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue);
 
-	public NilResult simpleInlineEnumHeaderParamOpt(BuilderFactory _factory, Optional<SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue);
+	public NilResult simpleInlineEnumHeaderParamOpt(BuilderFactory _factory,
+			Optional<SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue);
 
-	public NilResult simpleInlineEnumHeaderParamNil(BuilderFactory _factory, Optional<SimpleInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue);
+	public NilResult simpleInlineEnumHeaderParamNil(BuilderFactory _factory,
+			Optional<SimpleInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue);
 
-	public NilResult simpleInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
+	public NilResult simpleInlineEnumHeaderParamOptNil(BuilderFactory _factory,
+			_Base.Nillable<SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
 
 	public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB);
 
@@ -165,7 +177,8 @@ public interface HeaderParameterTypesService {
 
 	public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
 
-	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB);
+	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA,
+			_Base.Nillable<Integer> valueB);
 
 	public SimpleRecord.Data recordHeaderParam(BuilderFactory _factory, SimpleRecord.Data headerValue);
 
@@ -175,6 +188,8 @@ public interface HeaderParameterTypesService {
 
 	public NilResult recordHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleRecord.Data> headerValue);
 
-	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber, SimpleRecord.Data queryRecord);
+	public void mixed(BuilderFactory _factory, String pathString, int pathNumber, String headerString, int headerNumber,
+			SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber,
+			SimpleRecord.Data queryRecord);
 
 }

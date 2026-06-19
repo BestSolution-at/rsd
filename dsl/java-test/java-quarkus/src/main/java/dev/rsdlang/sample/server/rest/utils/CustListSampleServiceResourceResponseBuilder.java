@@ -4,7 +4,7 @@ import java.util.List;
 
 import dev.rsdlang.sample.server.Headers;
 import dev.rsdlang.sample.server.rest.ListSampleServiceResourceResponseBuilder;
-import dev.rsdlang.sample.server.service.model.ZoneId;
+import dev.rsdlang.sample.server.model.ZoneId;
 import jakarta.annotation.Priority;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.inject.Inject;
@@ -177,7 +177,7 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 	}
 
 	@Override
-	public ResponseBuilder listEnum(List<dev.rsdlang.sample.server.service.model.SampleEnum> $result,
+	public ResponseBuilder listEnum(List<dev.rsdlang.sample.server.model.SampleEnum> $result,
 			String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
@@ -190,7 +190,7 @@ public class CustListSampleServiceResourceResponseBuilder extends ListSampleServ
 	}
 
 	@Override
-	public ResponseBuilder listSimpleRecord(List<dev.rsdlang.sample.server.service.model.SimpleRecord.Data> $result,
+	public ResponseBuilder listSimpleRecord(List<dev.rsdlang.sample.server.model.SimpleRecord.Data> $result,
 			String contentType) {
 		if (headers.isUnknownStatus()) {
 			return Response.status(400).entity("Sample Invalid response").type(MediaType.TEXT_PLAIN);
