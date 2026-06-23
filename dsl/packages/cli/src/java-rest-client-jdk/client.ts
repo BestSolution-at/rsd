@@ -82,10 +82,10 @@ export function generateClient(
 				}
 			}
 
-			public class HttpCLientSupplier implements Supplier<HttpClient>, AutoCloseable {
+			public class HttpClientSupplier implements Supplier<HttpClient>, AutoCloseable {
 				private final HttpClient client;
 
-				public HttpCLientSupplier() {
+				public HttpClientSupplier() {
 					this.client = httpClientProvider.acquire();
 				}
 
@@ -253,8 +253,8 @@ export function generateClient(
 			return this.contentTypeEncoding;
 		}
 		
-		public HttpCLientSupplier httpClientSupplier() {
-			return new HttpCLientSupplier();
+		public HttpClientSupplier httpClientSupplier() {
+			return new HttpClientSupplier();
 		}
 				
 		public URI baseURI() {

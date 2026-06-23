@@ -177,10 +177,10 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		}
 	}
 
-	public class HttpCLientSupplier implements Supplier<HttpClient>, AutoCloseable {
+	public class HttpClientSupplier implements Supplier<HttpClient>, AutoCloseable {
 		private final HttpClient client;
 
-		public HttpCLientSupplier() {
+		public HttpClientSupplier() {
 			this.client = httpClientProvider.acquire();
 		}
 
@@ -370,8 +370,8 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		return this.contentTypeEncoding;
 	}
 
-	public HttpCLientSupplier httpClientSupplier() {
-		return new HttpCLientSupplier();
+	public HttpClientSupplier httpClientSupplier() {
+		return new HttpClientSupplier();
 	}
 
 	public URI baseURI() {
