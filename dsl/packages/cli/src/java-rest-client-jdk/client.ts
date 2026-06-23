@@ -39,10 +39,7 @@ export function generateClient(
 	const Optional = fqn('java.util.Optional');
 
 	const content = new CompositeGeneratorNode();
-	content.append(
-		`public class JDK${toCamelCaseIdentifier(generatorConfig.name)}Client implements ${Client}, AutoCloseable {`,
-		NL,
-	);
+	content.append(`public class JDK${toCamelCaseIdentifier(generatorConfig.name)}Client implements ${Client} {`, NL);
 	content.indent(classBody => {
 		const contentEncodings =
 			artifactConfig.contentTypeEncodings === undefined || artifactConfig.contentTypeEncodings.length === 0
@@ -66,9 +63,46 @@ export function generateClient(
 		classBody.appendNewLine();
 
 		const builder = toNodeTree(`
+			public interface HttpClientProvider {
+				public HttpClient acquire();
+
+				public void release(HttpClient client);
+			}
+
+			public static class DefaultHttpClientProvider implements HttpClientProvider {
+
+				@Override
+				public HttpClient acquire() {
+					return HttpClient.newBuilder().build();
+				}
+
+				@Override
+				public void release(HttpClient client) {
+					client.close();
+				}
+			}
+
+			public class HttpClientSupplier implements Supplier<HttpClient>, AutoCloseable {
+				private final HttpClient client;
+
+				public HttpClientSupplier() {
+					this.client = httpClientProvider.acquire();
+				}
+
+				@Override
+				public HttpClient get() {
+					return client;
+				}
+
+				@Override
+				public void close() {
+					httpClientProvider.release(client);
+				}
+			}
+
 			public static class Builder {
 				private URI baseURI;
-				private Supplier<HttpClient> httpClientSupplier;
+				private HttpClientProvider httpClientProvider;
 				private ContentTypeEncoding contentTypeEncoding;
 
 				public Builder baseURI(URI baseURI) {
@@ -77,11 +111,21 @@ export function generateClient(
 				}
 
 				public Builder httpClient(HttpClient httpClient) {
-					return httpClientSupplier(() -> httpClient);
+					return httpClientProvider(new HttpClientProvider() {
+						@Override
+						public HttpClient acquire() {
+							return httpClient;
+						}
+
+						@Override
+						public void release(HttpClient client) {
+							// no-op
+						}
+					});
 				}
 
-				public Builder httpClientSupplier(Supplier<HttpClient> httpClientSupplier) {
-					this.httpClientSupplier = httpClientSupplier;
+				public Builder httpClientProvider(HttpClientProvider httpClientProvider) {
+					this.httpClientProvider = httpClientProvider;
 					return this;
 				}
 
@@ -95,19 +139,10 @@ export function generateClient(
 						throw new IllegalStateException("baseURI must be set");
 					}
 					var contentType = contentTypeEncoding == null ? ContentTypeEncoding.${toEnumLiteral(contentEncodings[0])} : contentTypeEncoding;
-					if (httpClientSupplier == null) {
-						return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, new InternalClientSupplier(), contentType);
+					if (httpClientProvider == null) {
+						return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, new DefaultHttpClientProvider(), contentType);
 					}
-					return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, httpClientSupplier, contentType);
-				}
-			}
-
-			static class InternalClientSupplier implements Supplier<HttpClient> {
-				private final HttpClient client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).build();
-
-				@Override
-				public HttpClient get() {
-					return client;
+					return new JDK${toCamelCaseIdentifier(generatorConfig.name)}Client(baseURI, httpClientProvider, contentType);
 				}
 			}
 
@@ -197,18 +232,18 @@ export function generateClient(
 		clBody.append('}', NL);
 		clBody.appendNewLine();
 		clBody.append(`private final ${URI} baseURI;`, NL);
-		clBody.append(`private final ${Supplier}<${HttpClient}> httpClientSupplier;`, NL);
+		clBody.append(`private final HttpClientProvider httpClientProvider;`, NL);
 		clBody.append(`private final ContentTypeEncoding contentTypeEncoding;`, NL);
 		clBody.appendNewLine();
 		clBody.append(
 			`JDK${toCamelCaseIdentifier(
 				generatorConfig.name,
-			)}Client(${URI} baseURI, ${Supplier}<${HttpClient}> httpClientSupplier, ContentTypeEncoding contentTypeEncoding) {`,
+			)}Client(${URI} baseURI, HttpClientProvider httpClientProvider, ContentTypeEncoding contentTypeEncoding) {`,
 			NL,
 		);
 		clBody.indent(initBlock => {
 			initBlock.append('this.baseURI = baseURI;', NL);
-			initBlock.append('this.httpClientSupplier = httpClientSupplier;', NL);
+			initBlock.append('this.httpClientProvider = httpClientProvider;', NL);
 			initBlock.append('this.contentTypeEncoding = contentTypeEncoding;', NL);
 		});
 		clBody.append('}', NL);
@@ -218,8 +253,8 @@ export function generateClient(
 			return this.contentTypeEncoding;
 		}
 		
-		public HttpClient httpClient() {
-			return this.httpClientSupplier.get();
+		public HttpClientSupplier httpClientSupplier() {
+			return new HttpClientSupplier();
 		}
 				
 		public URI baseURI() {
@@ -367,24 +402,6 @@ export function generateClient(
 		}
 	});
 
-	const autoClose = toNodeTree(`
-		@Override
-		public void close() {
-			if (this.httpClientSupplier instanceof InternalClientSupplier) {
-				var client = this.httpClientSupplier.get();
-				client.close();
-			} else if (this.httpClientSupplier instanceof AutoCloseable closeable) {
-			 	try {
-					closeable.close();
-				} catch (Exception e) {
-					throw new IllegalStateException(e);
-				}
-			}
-		}`);
-	content.indent(clBody => {
-		clBody.appendNewLine();
-		clBody.append(autoClose, NL);
-	});
 	content.append('}', NL);
 
 	return {
