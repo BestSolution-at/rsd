@@ -34,223 +34,223 @@ public interface HeaderParameterTypesService extends BaseService {
 		C,
 		D,
 	}
-	public boolean simpleBooleanHeaderParam(boolean headerValue);
+	public Result<Boolean, RSDError.$GenericError> simpleBooleanHeaderParam(boolean headerValue);
 
-	public NilResult simpleBooleanHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamOpt();
 
-	public NilResult simpleBooleanHeaderParamOpt(Boolean headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamOpt(Boolean headerValue);
 
-	public NilResult simpleBooleanHeaderParamNil(Boolean headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamNil(Boolean headerValue);
 
-	public NilResult simpleBooleanHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamOptNil();
 
-	public NilResult simpleBooleanHeaderParamOptNil(Boolean headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamOptNil(Boolean headerValue);
 
-	public short simpleShortHeaderParam(short headerValue);
+	public Result<Short, RSDError.$GenericError> simpleShortHeaderParam(short headerValue);
 
-	public NilResult simpleShortHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamOpt();
 
-	public NilResult simpleShortHeaderParamOpt(Short headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamOpt(Short headerValue);
 
-	public NilResult simpleShortHeaderParamNil(Short headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamNil(Short headerValue);
 
-	public NilResult simpleShortHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamOptNil();
 
-	public NilResult simpleShortHeaderParamOptNil(Short headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamOptNil(Short headerValue);
 
-	public int simpleIntHeaderParam(int headerValue);
+	public Result<Integer, RSDError.$GenericError> simpleIntHeaderParam(int headerValue);
 
-	public NilResult simpleIntHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamOpt();
 
-	public NilResult simpleIntHeaderParamOpt(Integer headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamOpt(Integer headerValue);
 
-	public NilResult simpleIntHeaderParamNil(Integer headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamNil(Integer headerValue);
 
-	public NilResult simpleIntHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamOptNil();
 
-	public NilResult simpleIntHeaderParamOptNil(Integer headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamOptNil(Integer headerValue);
 
-	public long simpleLongHeaderParam(long headerValue);
+	public Result<Long, RSDError.$GenericError> simpleLongHeaderParam(long headerValue);
 
-	public NilResult simpleLongHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamOpt();
 
-	public NilResult simpleLongHeaderParamOpt(Long headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamOpt(Long headerValue);
 
-	public NilResult simpleLongHeaderParamNil(Long headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamNil(Long headerValue);
 
-	public NilResult simpleLongHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamOptNil();
 
-	public NilResult simpleLongHeaderParamOptNil(Long headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamOptNil(Long headerValue);
 
-	public float simpleFloatHeaderParam(float headerValue);
+	public Result<Float, RSDError.$GenericError> simpleFloatHeaderParam(float headerValue);
 
-	public NilResult simpleFloatHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamOpt();
 
-	public NilResult simpleFloatHeaderParamOpt(Float headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamOpt(Float headerValue);
 
-	public NilResult simpleFloatHeaderParamNil(Float headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamNil(Float headerValue);
 
-	public NilResult simpleFloatHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamOptNil();
 
-	public NilResult simpleFloatHeaderParamOptNil(Float headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamOptNil(Float headerValue);
 
-	public double simpleDoubleHeaderParam(double headerValue);
+	public Result<Double, RSDError.$GenericError> simpleDoubleHeaderParam(double headerValue);
 
-	public NilResult simpleDoubleHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamOpt();
 
-	public NilResult simpleDoubleHeaderParamOpt(Double headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamOpt(Double headerValue);
 
-	public NilResult simpleDoubleHeaderParamNil(Double headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamNil(Double headerValue);
 
-	public NilResult simpleDoubleHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamOptNil();
 
-	public NilResult simpleDoubleHeaderParamOptNil(Double headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamOptNil(Double headerValue);
 
-	public String simpleStringHeaderParam(String headerValue);
+	public Result<String, RSDError.$GenericError> simpleStringHeaderParam(String headerValue);
 
-	public NilResult simpleStringHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamOpt();
 
-	public NilResult simpleStringHeaderParamOpt(String headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamOpt(String headerValue);
 
-	public NilResult simpleStringHeaderParamNil(String headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamNil(String headerValue);
 
-	public NilResult simpleStringHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamOptNil();
 
-	public NilResult simpleStringHeaderParamOptNil(String headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamOptNil(String headerValue);
 
-	public LocalDate simpleLocalDateHeaderParam(LocalDate headerValue);
+	public Result<LocalDate, RSDError.$GenericError> simpleLocalDateHeaderParam(LocalDate headerValue);
 
-	public NilResult simpleLocalDateHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamOpt();
 
-	public NilResult simpleLocalDateHeaderParamOpt(LocalDate headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamOpt(LocalDate headerValue);
 
-	public NilResult simpleLocalDateHeaderParamNil(LocalDate headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamNil(LocalDate headerValue);
 
-	public NilResult simpleLocalDateHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamOptNil();
 
-	public NilResult simpleLocalDateHeaderParamOptNil(LocalDate headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamOptNil(LocalDate headerValue);
 
-	public LocalDateTime simpleLocalDateTimeHeaderParam(LocalDateTime headerValue);
+	public Result<LocalDateTime, RSDError.$GenericError> simpleLocalDateTimeHeaderParam(LocalDateTime headerValue);
 
-	public NilResult simpleLocalDateTimeHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamOpt();
 
-	public NilResult simpleLocalDateTimeHeaderParamOpt(LocalDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamOpt(LocalDateTime headerValue);
 
-	public NilResult simpleLocalDateTimeHeaderParamNil(LocalDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamNil(LocalDateTime headerValue);
 
-	public NilResult simpleLocalDateTimeHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamOptNil();
 
-	public NilResult simpleLocalDateTimeHeaderParamOptNil(LocalDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamOptNil(LocalDateTime headerValue);
 
-	public LocalTime simpleLocalTimeHeaderParam(LocalTime headerValue);
+	public Result<LocalTime, RSDError.$GenericError> simpleLocalTimeHeaderParam(LocalTime headerValue);
 
-	public NilResult simpleLocalTimeHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamOpt();
 
-	public NilResult simpleLocalTimeHeaderParamOpt(LocalTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamOpt(LocalTime headerValue);
 
-	public NilResult simpleLocalTimeHeaderParamNil(LocalTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamNil(LocalTime headerValue);
 
-	public NilResult simpleLocalTimeHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamOptNil();
 
-	public NilResult simpleLocalTimeHeaderParamOptNil(LocalTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamOptNil(LocalTime headerValue);
 
-	public OffsetDateTime simpleOffsetDateTimeHeaderParam(OffsetDateTime headerValue);
+	public Result<OffsetDateTime, RSDError.$GenericError> simpleOffsetDateTimeHeaderParam(OffsetDateTime headerValue);
 
-	public NilResult simpleOffsetDateTimeHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamOpt();
 
-	public NilResult simpleOffsetDateTimeHeaderParamOpt(OffsetDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamOpt(OffsetDateTime headerValue);
 
-	public NilResult simpleOffsetDateTimeHeaderParamNil(OffsetDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamNil(OffsetDateTime headerValue);
 
-	public NilResult simpleOffsetDateTimeHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamOptNil();
 
-	public NilResult simpleOffsetDateTimeHeaderParamOptNil(OffsetDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamOptNil(OffsetDateTime headerValue);
 
-	public ZonedDateTime simpleZonedDateTimeHeaderParam(ZonedDateTime headerValue);
+	public Result<ZonedDateTime, RSDError.$GenericError> simpleZonedDateTimeHeaderParam(ZonedDateTime headerValue);
 
-	public NilResult simpleZonedDateTimeHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamOpt();
 
-	public NilResult simpleZonedDateTimeHeaderParamOpt(ZonedDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamOpt(ZonedDateTime headerValue);
 
-	public NilResult simpleZonedDateTimeHeaderParamNil(ZonedDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamNil(ZonedDateTime headerValue);
 
-	public NilResult simpleZonedDateTimeHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamOptNil();
 
-	public NilResult simpleZonedDateTimeHeaderParamOptNil(ZonedDateTime headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamOptNil(ZonedDateTime headerValue);
 
-	public ZoneId simpleScalarHeaderParam(ZoneId headerValue);
+	public Result<ZoneId, RSDError.$GenericError> simpleScalarHeaderParam(ZoneId headerValue);
 
-	public NilResult simpleScalarHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamOpt();
 
-	public NilResult simpleScalarHeaderParamOpt(ZoneId headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamOpt(ZoneId headerValue);
 
-	public NilResult simpleScalarHeaderParamNil(ZoneId headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamNil(ZoneId headerValue);
 
-	public NilResult simpleScalarHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamOptNil();
 
-	public NilResult simpleScalarHeaderParamOptNil(ZoneId headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamOptNil(ZoneId headerValue);
 
-	public SampleEnum simpleEnumHeaderParam(SampleEnum headerValue);
+	public Result<SampleEnum, RSDError.$GenericError> simpleEnumHeaderParam(SampleEnum headerValue);
 
-	public NilResult simpleEnumHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamOpt();
 
-	public NilResult simpleEnumHeaderParamOpt(SampleEnum headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamOpt(SampleEnum headerValue);
 
-	public NilResult simpleEnumHeaderParamNil(SampleEnum headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamNil(SampleEnum headerValue);
 
-	public NilResult simpleEnumHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamOptNil();
 
-	public NilResult simpleEnumHeaderParamOptNil(SampleEnum headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamOptNil(SampleEnum headerValue);
 
-	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue);
+	public Result<SimpleInlineEnumHeaderParam_Result$, RSDError.$GenericError> simpleInlineEnumHeaderParam(SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue);
 
-	public NilResult simpleInlineEnumHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamOpt();
 
-	public NilResult simpleInlineEnumHeaderParamOpt(SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$ headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamOpt(SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$ headerValue);
 
-	public NilResult simpleInlineEnumHeaderParamNil(SimpleInlineEnumHeaderParamNil_HeaderValue_Param$ headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamNil(SimpleInlineEnumHeaderParamNil_HeaderValue_Param$ headerValue);
 
-	public NilResult simpleInlineEnumHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamOptNil();
 
-	public NilResult simpleInlineEnumHeaderParamOptNil(SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$ headerValue);
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamOptNil(SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$ headerValue);
 
-	public String multiHeaderParam(
+	public Result<String, RSDError.$GenericError> multiHeaderParam(
 			String valueA, 
 			int valueB);
 
-	public List<NilResult> multiHeaderParamOpt();
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt();
 
-	public List<NilResult> multiHeaderParamOpt(String valueA);
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt(String valueA);
 
-	public List<NilResult> multiHeaderParamOpt(
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt(
 			String valueA, 
 			Integer valueB);
 
-	public List<NilResult> multiHeaderParamNil(
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamNil(
 			String valueA, 
 			Integer valueB);
 
-	public List<NilResult> multiHeaderParamOptNil();
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil();
 
-	public List<NilResult> multiHeaderParamOptNil(String valueA);
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil(String valueA);
 
-	public List<NilResult> multiHeaderParamOptNil(
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil(
 			String valueA, 
 			Integer valueB);
 
-	public SimpleRecord.Data recordHeaderParam(SimpleRecord.Data headerValue);
+	public Result<SimpleRecord.Data, RSDError.$GenericError> recordHeaderParam(SimpleRecord.Data headerValue);
 
-	public NilResult recordHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamOpt();
 
-	public NilResult recordHeaderParamOpt(SimpleRecord.Data headerValue);
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamOpt(SimpleRecord.Data headerValue);
 
-	public NilResult recordHeaderParamNil(SimpleRecord.Data headerValue);
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamNil(SimpleRecord.Data headerValue);
 
-	public NilResult recordHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamOptNil();
 
-	public NilResult recordHeaderParamOptNil(SimpleRecord.Data headerValue);
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamOptNil(SimpleRecord.Data headerValue);
 
-	public void mixed(
+	public Result<Void, RSDError.$GenericError> mixed(
 			String pathString, 
 			int pathNumber, 
 			String headerString, 

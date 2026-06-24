@@ -48,43 +48,43 @@ public class ListSampleServiceServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listBoolean(ListSampleServiceService service) {
-		assertEquals(List.of(true, false, true), service.listBoolean());
+		assertEquals(List.of(true, false, true), service.listBoolean().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listShort(ListSampleServiceService service) {
-		assertEquals(List.of((short) 123, (short) 456, (short) 789), service.listShort());
+		assertEquals(List.of((short) 123, (short) 456, (short) 789), service.listShort().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listInt(ListSampleServiceService service) {
-		assertEquals(List.of(123456, 789012, 345678), service.listInt());
+		assertEquals(List.of(123456, 789012, 345678), service.listInt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listLong(ListSampleServiceService service) {
-		assertEquals(List.of(1234567890123L, 2345678901234L, 3456789012345L), service.listLong());
+		assertEquals(List.of(1234567890123L, 2345678901234L, 3456789012345L), service.listLong().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listFloat(ListSampleServiceService service) {
-		assertEquals(List.of(12.34f, 56.78f, 90.12f), service.listFloat());
+		assertEquals(List.of(12.34f, 56.78f, 90.12f), service.listFloat().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listDouble(ListSampleServiceService service) {
-		assertEquals(List.of(12.3456789, 98.7654321, 54.3210987), service.listDouble());
+		assertEquals(List.of(12.3456789, 98.7654321, 54.3210987), service.listDouble().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listString(ListSampleServiceService service) {
-		assertEquals(List.of("first", "second", "third"), service.listString());
+		assertEquals(List.of("first", "second", "third"), service.listString().orThrow());
 	}
 
 	@ParameterizedTest
@@ -92,7 +92,7 @@ public class ListSampleServiceServiceTest {
 	public void listLocalDate(ListSampleServiceService service) {
 		assertEquals(
 				List.of(LocalDate.parse("2020-01-01"), LocalDate.parse("2021-02-02"), LocalDate.parse("2022-03-03")),
-				service.listLocalDate());
+				service.listLocalDate().orThrow());
 	}
 
 	@ParameterizedTest
@@ -101,7 +101,7 @@ public class ListSampleServiceServiceTest {
 		assertEquals(
 				List.of(LocalDateTime.parse("2020-01-01T10:00:00"), LocalDateTime.parse("2021-02-02T11:30:00"),
 						LocalDateTime.parse("2022-03-03T12:45:00")),
-				service.listLocalDateTime());
+				service.listLocalDateTime().orThrow());
 	}
 
 	@ParameterizedTest
@@ -109,7 +109,7 @@ public class ListSampleServiceServiceTest {
 	public void listLocalTime(ListSampleServiceService service) {
 		assertEquals(
 				List.of(LocalTime.parse("10:00:00"), LocalTime.parse("11:30:00"), LocalTime.parse("12:45:00")),
-				service.listLocalTime());
+				service.listLocalTime().orThrow());
 	}
 
 	@ParameterizedTest
@@ -119,7 +119,7 @@ public class ListSampleServiceServiceTest {
 				List.of(OffsetDateTime.parse("2020-01-01T10:00:00+01:00"),
 						OffsetDateTime.parse("2021-02-02T11:30:00+01:00"),
 						OffsetDateTime.parse("2022-03-03T12:45:00+01:00")),
-				service.listOffsetDateTime());
+				service.listOffsetDateTime().orThrow());
 	}
 
 	@ParameterizedTest
@@ -128,7 +128,7 @@ public class ListSampleServiceServiceTest {
 		assertEquals(
 				List.of(ZonedDateTime.parse("2020-01-01T10:00:00Z"), ZonedDateTime.parse("2021-02-02T11:30:00Z"),
 						ZonedDateTime.parse("2022-03-03T12:45:00Z")),
-				service.listZonedDateTime());
+				service.listZonedDateTime().orThrow());
 	}
 
 	@ParameterizedTest
@@ -136,19 +136,19 @@ public class ListSampleServiceServiceTest {
 	public void listScalar(ListSampleServiceService service) {
 		assertEquals(
 				List.of(ZoneId.of("Europe/Vienna"), ZoneId.of("America/New_York"), ZoneId.of("Asia/Tokyo")),
-				service.listScalar());
+				service.listScalar().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listEnum(ListSampleServiceService service) {
-		assertEquals(List.of(SampleEnum.A, SampleEnum.B), service.listEnum());
+		assertEquals(List.of(SampleEnum.A, SampleEnum.B), service.listEnum().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listSimpleRecord(ListSampleServiceService service) {
-		var result = service.listSimpleRecord();
+		var result = service.listSimpleRecord().orThrow();
 		assertEquals(1, result.size());
 		assertEquals("123", result.get(0).key());
 		assertEquals("1", result.get(0).version());
@@ -158,11 +158,11 @@ public class ListSampleServiceServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listSimpleRecordWithError(ListSampleServiceService service) {
-		try {
-			service.listSimpleRecordWithError();
-			fail("Expected SampleErrorException to be thrown");
-		} catch (SampleErrorException e) {
-			assertEquals("My error", e.getMessage());
+		var result = service.listSimpleRecordWithError();
+		switch (result) {
+			case Result.OK(var value) -> fail("Expected SampleError to be thrown");
+			case Result.ERR(SampleError err) -> assertEquals("My error", err.message());
+			default -> fail("Unexpected result: " + result);
 		}
 	}
 

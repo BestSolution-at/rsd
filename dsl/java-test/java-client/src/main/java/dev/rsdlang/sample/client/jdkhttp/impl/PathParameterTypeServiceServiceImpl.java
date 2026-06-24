@@ -16,7 +16,8 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.ZoneId;
 import dev.rsdlang.sample.client.PathParameterTypeServiceService;
-import dev.rsdlang.sample.client.RSDException;
+import dev.rsdlang.sample.client.Result;
+import dev.rsdlang.sample.client.RSDError;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceService {
@@ -45,7 +46,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 		return this.client.contentTypeEncoding().contentType;
 	}
 
-	public boolean simpleBooleanPathParam(boolean pathBoolean) {
+	public Result<Boolean, RSDError.$GenericError> simpleBooleanPathParam(boolean pathBoolean) {
 		var $path = "%s/api/pathparametertype/boolean/%s".formatted(
 				this.baseURI(),
 				BaseUtils.encodeURIComponent(Objects.toString(pathBoolean)));
@@ -63,28 +64,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapBoolean($response);
 				this.lifecycleHook.onSuccess("simpleBooleanPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanPathParam", e);
-			this.lifecycleHook.onCatch("simpleBooleanPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanPathParam", e);
+			this.lifecycleHook.onCatch("simpleBooleanPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanPathParam");
 		}
 	}
 
-	public short simpleShortPathParam(short pathShort) {
+	public Result<Short, RSDError.$GenericError> simpleShortPathParam(short pathShort) {
 		var $path = "%s/api/pathparametertype/short/%s".formatted(
 				this.baseURI(),
 				BaseUtils.encodeURIComponent(Objects.toString(pathShort)));
@@ -102,28 +100,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapShort($response);
 				this.lifecycleHook.onSuccess("simpleShortPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortPathParam", e);
-			this.lifecycleHook.onCatch("simpleShortPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortPathParam", e);
+			this.lifecycleHook.onCatch("simpleShortPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortPathParam");
 		}
 	}
 
-	public int simpleIntPathParam(int pathInt) {
+	public Result<Integer, RSDError.$GenericError> simpleIntPathParam(int pathInt) {
 		var $path = "%s/api/pathparametertype/int/%s".formatted(
 				this.baseURI(),
 				BaseUtils.encodeURIComponent(Objects.toString(pathInt)));
@@ -141,28 +136,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("simpleIntPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntPathParam", e);
-			this.lifecycleHook.onCatch("simpleIntPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntPathParam", e);
+			this.lifecycleHook.onCatch("simpleIntPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntPathParam");
 		}
 	}
 
-	public long simpleLongPathParam(long pathLong) {
+	public Result<Long, RSDError.$GenericError> simpleLongPathParam(long pathLong) {
 		var $path = "%s/api/pathparametertype/long/%s".formatted(
 				this.baseURI(),
 				BaseUtils.encodeURIComponent(Objects.toString(pathLong)));
@@ -180,28 +172,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLong($response);
 				this.lifecycleHook.onSuccess("simpleLongPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongPathParam", e);
-			this.lifecycleHook.onCatch("simpleLongPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongPathParam", e);
+			this.lifecycleHook.onCatch("simpleLongPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongPathParam");
 		}
 	}
 
-	public float simpleFloatPathParam(float pathFloat) {
+	public Result<Float, RSDError.$GenericError> simpleFloatPathParam(float pathFloat) {
 		var $path = "%s/api/pathparametertype/float/%s".formatted(
 				this.baseURI(),
 				BaseUtils.encodeURIComponent(Objects.toString(pathFloat)));
@@ -219,28 +208,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapFloat($response);
 				this.lifecycleHook.onSuccess("simpleFloatPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatPathParam", e);
-			this.lifecycleHook.onCatch("simpleFloatPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatPathParam", e);
+			this.lifecycleHook.onCatch("simpleFloatPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatPathParam");
 		}
 	}
 
-	public double simpleDoublePathParam(double pathDouble) {
+	public Result<Double, RSDError.$GenericError> simpleDoublePathParam(double pathDouble) {
 		var $path = "%s/api/pathparametertype/double/%s".formatted(
 				this.baseURI(),
 				BaseUtils.encodeURIComponent(Objects.toString(pathDouble)));
@@ -258,28 +244,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapDouble($response);
 				this.lifecycleHook.onSuccess("simpleDoublePathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoublePathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoublePathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoublePathParam", e);
-			this.lifecycleHook.onCatch("simpleDoublePathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoublePathParam", e);
+			this.lifecycleHook.onCatch("simpleDoublePathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoublePathParam");
 		}
 	}
 
-	public String simpleStringPathParam(String pathString) {
+	public Result<String, RSDError.$GenericError> simpleStringPathParam(String pathString) {
 		Objects.requireNonNull(pathString, "pathString must not be null");
 
 		var $path = "%s/api/pathparametertype/string/%s".formatted(
@@ -299,28 +282,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("simpleStringPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringPathParam", e);
-			this.lifecycleHook.onCatch("simpleStringPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringPathParam", e);
+			this.lifecycleHook.onCatch("simpleStringPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringPathParam");
 		}
 	}
 
-	public LocalDate simpleLocalDatePathParam(LocalDate pathLocalDate) {
+	public Result<LocalDate, RSDError.$GenericError> simpleLocalDatePathParam(LocalDate pathLocalDate) {
 		Objects.requireNonNull(pathLocalDate, "pathLocalDate must not be null");
 
 		var $path = "%s/api/pathparametertype/localdate/%s".formatted(
@@ -340,28 +320,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDate($response);
 				this.lifecycleHook.onSuccess("simpleLocalDatePathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDatePathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDatePathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDatePathParam", e);
-			this.lifecycleHook.onCatch("simpleLocalDatePathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDatePathParam", e);
+			this.lifecycleHook.onCatch("simpleLocalDatePathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDatePathParam");
 		}
 	}
 
-	public LocalDateTime simpleLocalDateTimePathParam(LocalDateTime pathLocalDateTime) {
+	public Result<LocalDateTime, RSDError.$GenericError> simpleLocalDateTimePathParam(LocalDateTime pathLocalDateTime) {
 		Objects.requireNonNull(pathLocalDateTime, "pathLocalDateTime must not be null");
 
 		var $path = "%s/api/pathparametertype/localdatetime/%s".formatted(
@@ -381,28 +358,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDateTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimePathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimePathParam", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimePathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimePathParam", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimePathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimePathParam");
 		}
 	}
 
-	public LocalTime simpleLocalTimePathParam(LocalTime pathLocalTime) {
+	public Result<LocalTime, RSDError.$GenericError> simpleLocalTimePathParam(LocalTime pathLocalTime) {
 		Objects.requireNonNull(pathLocalTime, "pathLocalTime must not be null");
 
 		var $path = "%s/api/pathparametertype/localtime/%s".formatted(
@@ -422,28 +396,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalTimePathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimePathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimePathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimePathParam", e);
-			this.lifecycleHook.onCatch("simpleLocalTimePathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimePathParam", e);
+			this.lifecycleHook.onCatch("simpleLocalTimePathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimePathParam");
 		}
 	}
 
-	public OffsetDateTime simpleOffsetDateTimePathParam(OffsetDateTime pathOffsetDateTime) {
+	public Result<OffsetDateTime, RSDError.$GenericError> simpleOffsetDateTimePathParam(OffsetDateTime pathOffsetDateTime) {
 		Objects.requireNonNull(pathOffsetDateTime, "pathOffsetDateTime must not be null");
 
 		var $path = "%s/api/pathparametertype/offsetdatetime/%s".formatted(
@@ -463,28 +434,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTime($response);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimePathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimePathParam", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimePathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimePathParam", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimePathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimePathParam");
 		}
 	}
 
-	public ZonedDateTime simpleZonedDateTimePathParam(ZonedDateTime pathZonedDateTime) {
+	public Result<ZonedDateTime, RSDError.$GenericError> simpleZonedDateTimePathParam(ZonedDateTime pathZonedDateTime) {
 		Objects.requireNonNull(pathZonedDateTime, "pathZonedDateTime must not be null");
 
 		var $path = "%s/api/pathparametertype/zoneddatetime/%s".formatted(
@@ -504,28 +472,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapZonedDateTime($response);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimePathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimePathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimePathParam", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimePathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimePathParam", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimePathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimePathParam");
 		}
 	}
 
-	public ZoneId simpleScalarPathParam(ZoneId pathScalar) {
+	public Result<ZoneId, RSDError.$GenericError> simpleScalarPathParam(ZoneId pathScalar) {
 		Objects.requireNonNull(pathScalar, "pathScalar must not be null");
 
 		var $path = "%s/api/pathparametertype/scalar/%s".formatted(
@@ -545,28 +510,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("simpleScalarPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarPathParam", e);
-			this.lifecycleHook.onCatch("simpleScalarPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarPathParam", e);
+			this.lifecycleHook.onCatch("simpleScalarPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarPathParam");
 		}
 	}
 
-	public SampleEnum simpleEnumPathParam(SampleEnum pathEnum) {
+	public Result<SampleEnum, RSDError.$GenericError> simpleEnumPathParam(SampleEnum pathEnum) {
 		Objects.requireNonNull(pathEnum, "pathEnum must not be null");
 
 		var $path = "%s/api/pathparametertype/enum/%s".formatted(
@@ -586,28 +548,25 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumPathParam", e);
-			this.lifecycleHook.onCatch("simpleEnumPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumPathParam", e);
+			this.lifecycleHook.onCatch("simpleEnumPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumPathParam");
 		}
 	}
 
-	public String multiPathParam(String valueA, int valueB) {
+	public Result<String, RSDError.$GenericError> multiPathParam(String valueA, int valueB) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 
 		var $path = "%s/api/pathparametertype/multipathparam/%s/%s".formatted(
@@ -628,22 +587,19 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiPathParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiPathParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiPathParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiPathParam", e);
-			this.lifecycleHook.onCatch("multiPathParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiPathParam", e);
+			this.lifecycleHook.onCatch("multiPathParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiPathParam");
 		}

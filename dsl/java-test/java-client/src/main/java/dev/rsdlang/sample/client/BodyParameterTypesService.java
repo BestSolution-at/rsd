@@ -35,269 +35,269 @@ public interface BodyParameterTypesService extends BaseService {
 		C,
 		D,
 	}
-	public boolean simpleBooleanBodyParam(boolean bodyBoolean);
+	public Result<Boolean, RSDError.$GenericError> simpleBooleanBodyParam(boolean bodyBoolean);
 
-	public NilResult simpleBooleanBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamOpt();
 
-	public NilResult simpleBooleanBodyParamOpt(Boolean bodyBoolean);
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamOpt(Boolean bodyBoolean);
 
-	public NilResult simpleBooleanBodyParamNil(Boolean bodyBoolean);
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamNil(Boolean bodyBoolean);
 
-	public NilResult simpleBooleanBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamOptNil();
 
-	public NilResult simpleBooleanBodyParamOptNil(Boolean bodyBoolean);
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamOptNil(Boolean bodyBoolean);
 
-	public short simpleShortBodyParam(short bodyShort);
+	public Result<Short, RSDError.$GenericError> simpleShortBodyParam(short bodyShort);
 
-	public NilResult simpleShortBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamOpt();
 
-	public NilResult simpleShortBodyParamOpt(Short bodyShort);
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamOpt(Short bodyShort);
 
-	public NilResult simpleShortBodyParamNil(Short bodyShort);
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamNil(Short bodyShort);
 
-	public NilResult simpleShortBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamOptNil();
 
-	public NilResult simpleShortBodyParamOptNil(Short bodyShort);
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamOptNil(Short bodyShort);
 
-	public int simpleIntBodyParam(int bodyInt);
+	public Result<Integer, RSDError.$GenericError> simpleIntBodyParam(int bodyInt);
 
-	public NilResult simpleIntBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamOpt();
 
-	public NilResult simpleIntBodyParamOpt(Integer bodyInt);
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamOpt(Integer bodyInt);
 
-	public NilResult simpleIntBodyParamNil(Integer bodyInt);
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamNil(Integer bodyInt);
 
-	public NilResult simpleIntBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamOptNil();
 
-	public NilResult simpleIntBodyParamOptNil(Integer bodyInt);
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamOptNil(Integer bodyInt);
 
-	public long simpleLongBodyParam(long bodyLong);
+	public Result<Long, RSDError.$GenericError> simpleLongBodyParam(long bodyLong);
 
-	public NilResult simpleLongBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamOpt();
 
-	public NilResult simpleLongBodyParamOpt(Long bodyLong);
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamOpt(Long bodyLong);
 
-	public NilResult simpleLongBodyParamNil(Long bodyLong);
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamNil(Long bodyLong);
 
-	public NilResult simpleLongBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamOptNil();
 
-	public NilResult simpleLongBodyParamOptNil(Long bodyLong);
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamOptNil(Long bodyLong);
 
-	public float simpleFloatBodyParam(float bodyFloat);
+	public Result<Float, RSDError.$GenericError> simpleFloatBodyParam(float bodyFloat);
 
-	public NilResult simpleFloatBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamOpt();
 
-	public NilResult simpleFloatBodyParamOpt(Float bodyFloat);
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamOpt(Float bodyFloat);
 
-	public NilResult simpleFloatBodyParamNil(Float bodyFloat);
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamNil(Float bodyFloat);
 
-	public NilResult simpleFloatBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamOptNil();
 
-	public NilResult simpleFloatBodyParamOptNil(Float bodyFloat);
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamOptNil(Float bodyFloat);
 
-	public double simpleDoubleBodyParam(double bodyDouble);
+	public Result<Double, RSDError.$GenericError> simpleDoubleBodyParam(double bodyDouble);
 
-	public NilResult simpleDoubleBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamOpt();
 
-	public NilResult simpleDoubleBodyParamOpt(Double bodyDouble);
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamOpt(Double bodyDouble);
 
-	public NilResult simpleDoubleBodyParamNil(Double bodyDouble);
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamNil(Double bodyDouble);
 
-	public NilResult simpleDoubleBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamOptNil();
 
-	public NilResult simpleDoubleBodyParamOptNil(Double bodyDouble);
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamOptNil(Double bodyDouble);
 
-	public String simpleStringBodyParam(String bodyString);
+	public Result<String, RSDError.$GenericError> simpleStringBodyParam(String bodyString);
 
-	public NilResult simpleStringBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamOpt();
 
-	public NilResult simpleStringBodyParamOpt(String bodyString);
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamOpt(String bodyString);
 
-	public NilResult simpleStringBodyParamNil(String bodyString);
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamNil(String bodyString);
 
-	public NilResult simpleStringBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamOptNil();
 
-	public NilResult simpleStringBodyParamOptNil(String bodyString);
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamOptNil(String bodyString);
 
-	public LocalDate simpleLocalDateBodyParam(LocalDate bodyLocalDate);
+	public Result<LocalDate, RSDError.$GenericError> simpleLocalDateBodyParam(LocalDate bodyLocalDate);
 
-	public NilResult simpleLocalDateBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamOpt();
 
-	public NilResult simpleLocalDateBodyParamOpt(LocalDate bodyLocalDate);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamOpt(LocalDate bodyLocalDate);
 
-	public NilResult simpleLocalDateBodyParamNil(LocalDate bodyLocalDate);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamNil(LocalDate bodyLocalDate);
 
-	public NilResult simpleLocalDateBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamOptNil();
 
-	public NilResult simpleLocalDateBodyParamOptNil(LocalDate bodyLocalDate);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamOptNil(LocalDate bodyLocalDate);
 
-	public LocalDateTime simpleLocalDateTimeBodyParam(LocalDateTime bodyLocalDateTime);
+	public Result<LocalDateTime, RSDError.$GenericError> simpleLocalDateTimeBodyParam(LocalDateTime bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamOpt();
 
-	public NilResult simpleLocalDateTimeBodyParamOpt(LocalDateTime bodyLocalDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamOpt(LocalDateTime bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamNil(LocalDateTime bodyLocalDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamNil(LocalDateTime bodyLocalDateTime);
 
-	public NilResult simpleLocalDateTimeBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamOptNil();
 
-	public NilResult simpleLocalDateTimeBodyParamOptNil(LocalDateTime bodyLocalDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamOptNil(LocalDateTime bodyLocalDateTime);
 
-	public LocalTime simpleLocalTimeBodyParam(LocalTime bodyLocalTime);
+	public Result<LocalTime, RSDError.$GenericError> simpleLocalTimeBodyParam(LocalTime bodyLocalTime);
 
-	public NilResult simpleLocalTimeBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamOpt();
 
-	public NilResult simpleLocalTimeBodyParamOpt(LocalTime bodyLocalTime);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamOpt(LocalTime bodyLocalTime);
 
-	public NilResult simpleLocalTimeBodyParamNil(LocalTime bodyLocalTime);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamNil(LocalTime bodyLocalTime);
 
-	public NilResult simpleLocalTimeBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamOptNil();
 
-	public NilResult simpleLocalTimeBodyParamOptNil(LocalTime bodyLocalTime);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamOptNil(LocalTime bodyLocalTime);
 
-	public OffsetDateTime simpleOffsetDateTimeBodyParam(OffsetDateTime bodyOffsetDateTime);
+	public Result<OffsetDateTime, RSDError.$GenericError> simpleOffsetDateTimeBodyParam(OffsetDateTime bodyOffsetDateTime);
 
-	public NilResult simpleOffsetDateTimeBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamOpt();
 
-	public NilResult simpleOffsetDateTimeBodyParamOpt(OffsetDateTime bodyOffsetDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamOpt(OffsetDateTime bodyOffsetDateTime);
 
-	public NilResult simpleOffsetDateTimeBodyParamNil(OffsetDateTime bodyOffsetDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamNil(OffsetDateTime bodyOffsetDateTime);
 
-	public NilResult simpleOffsetDateTimeBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamOptNil();
 
-	public NilResult simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime bodyOffsetDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime bodyOffsetDateTime);
 
-	public ZonedDateTime simpleZonedDateTimeBodyParam(ZonedDateTime bodyZonedDateTime);
+	public Result<ZonedDateTime, RSDError.$GenericError> simpleZonedDateTimeBodyParam(ZonedDateTime bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamOpt();
 
-	public NilResult simpleZonedDateTimeBodyParamOpt(ZonedDateTime bodyZonedDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamOpt(ZonedDateTime bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamNil(ZonedDateTime bodyZonedDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamNil(ZonedDateTime bodyZonedDateTime);
 
-	public NilResult simpleZonedDateTimeBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamOptNil();
 
-	public NilResult simpleZonedDateTimeBodyParamOptNil(ZonedDateTime bodyZonedDateTime);
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamOptNil(ZonedDateTime bodyZonedDateTime);
 
-	public ZoneId simpleScalarBodyParam(ZoneId bodyScalar);
+	public Result<ZoneId, RSDError.$GenericError> simpleScalarBodyParam(ZoneId bodyScalar);
 
-	public NilResult simpleScalarBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamOpt();
 
-	public NilResult simpleScalarBodyParamOpt(ZoneId bodyScalar);
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamOpt(ZoneId bodyScalar);
 
-	public NilResult simpleScalarBodyParamNil(ZoneId bodyScalar);
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamNil(ZoneId bodyScalar);
 
-	public NilResult simpleScalarBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamOptNil();
 
-	public NilResult simpleScalarBodyParamOptNil(ZoneId bodyScalar);
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamOptNil(ZoneId bodyScalar);
 
-	public SampleEnum simpleEnumBodyParam(SampleEnum bodyEnum);
+	public Result<SampleEnum, RSDError.$GenericError> simpleEnumBodyParam(SampleEnum bodyEnum);
 
-	public NilResult simpleEnumBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamOpt();
 
-	public NilResult simpleEnumBodyParamOpt(SampleEnum bodyEnum);
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamOpt(SampleEnum bodyEnum);
 
-	public NilResult simpleEnumBodyParamNil(SampleEnum bodyEnum);
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamNil(SampleEnum bodyEnum);
 
-	public NilResult simpleEnumBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamOptNil();
 
-	public NilResult simpleEnumBodyParamOptNil(SampleEnum bodyEnum);
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamOptNil(SampleEnum bodyEnum);
 
-	public SimpleInlineEnumBodyParam_Result$ simpleInlineEnumBodyParam(SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum);
+	public Result<SimpleInlineEnumBodyParam_Result$, RSDError.$GenericError> simpleInlineEnumBodyParam(SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamOpt();
 
-	public NilResult simpleInlineEnumBodyParamOpt(SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ bodyEnum);
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamOpt(SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamNil(SimpleInlineEnumBodyParamNil_BodyEnum_Param$ bodyEnum);
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamNil(SimpleInlineEnumBodyParamNil_BodyEnum_Param$ bodyEnum);
 
-	public NilResult simpleInlineEnumBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamOptNil();
 
-	public NilResult simpleInlineEnumBodyParamOptNil(SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ bodyEnum);
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamOptNil(SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ bodyEnum);
 
-	public String multiBodyParam(
+	public Result<String, RSDError.$GenericError> multiBodyParam(
 			String valueA, 
 			int valueB, 
 			SimpleRecord.Data valueC);
 
-	public String multiBodyParamOpt();
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt();
 
-	public String multiBodyParamOpt(String valueA);
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt(String valueA);
 
-	public String multiBodyParamOpt(
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt(
 			String valueA, 
 			Integer valueB);
 
-	public String multiBodyParamOpt(
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt(
 			String valueA, 
 			Integer valueB, 
 			SimpleRecord.Data valueC);
 
-	public String multiBodyParamNil(
+	public Result<String, RSDError.$GenericError> multiBodyParamNil(
 			String valueA, 
 			Integer valueB, 
 			SimpleRecord.Data valueC);
 
-	public String multiBodyParamOptNil();
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil();
 
-	public String multiBodyParamOptNil(String valueA);
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil(String valueA);
 
-	public String multiBodyParamOptNil(
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil(
 			String valueA, 
 			Integer valueB);
 
-	public String multiBodyParamOptNil(
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil(
 			String valueA, 
 			Integer valueB, 
 			SimpleRecord.Data valueC);
 
-	public String multiBodyParamFirst();
+	public Result<String, RSDError.$GenericError> multiBodyParamFirst();
 
-	public String multiBodyParamFirst(String valueA);
+	public Result<String, RSDError.$GenericError> multiBodyParamFirst(String valueA);
 
-	public String multiBodyParamFirst(
+	public Result<String, RSDError.$GenericError> multiBodyParamFirst(
 			String valueA, 
 			int valueB);
 
-	public String multiBodyParamFirst(
+	public Result<String, RSDError.$GenericError> multiBodyParamFirst(
 			String valueA, 
 			int valueB, 
 			SimpleRecord.Data valueC);
 
-	public SimpleRecord.Data recordBodyParam(SimpleRecord.Data bodyRecord);
+	public Result<SimpleRecord.Data, RSDError.$GenericError> recordBodyParam(SimpleRecord.Data bodyRecord);
 
-	public NilResult recordBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamOpt();
 
-	public NilResult recordBodyParamOpt(SimpleRecord.Data bodyRecord);
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamOpt(SimpleRecord.Data bodyRecord);
 
-	public NilResult recordBodyParamNil(SimpleRecord.Data bodyRecord);
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamNil(SimpleRecord.Data bodyRecord);
 
-	public NilResult recordBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamOptNil();
 
-	public NilResult recordBodyParamOptNil(SimpleRecord.Data bodyRecord);
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamOptNil(SimpleRecord.Data bodyRecord);
 
-	public Union.Data unionBodyParam(Union.Data bodyUnion);
+	public Result<Union.Data, RSDError.$GenericError> unionBodyParam(Union.Data bodyUnion);
 
-	public NilResult unionBodyParamOpt();
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamOpt();
 
-	public NilResult unionBodyParamOpt(Union.Data bodyUnion);
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamOpt(Union.Data bodyUnion);
 
-	public NilResult unionBodyParamNil(Union.Data bodyUnion);
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamNil(Union.Data bodyUnion);
 
-	public NilResult unionBodyParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamOptNil();
 
-	public NilResult unionBodyParamOptNil(Union.Data bodyUnion);
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamOptNil(Union.Data bodyUnion);
 
-	public PatchableRecord.Data patchableRecordBodyParam(PatchableRecord.Patch bodyRecord);
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParam(PatchableRecord.Patch bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamOpt();
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamOpt();
 
-	public PatchableRecord.Data patchableRecordBodyParamOpt(PatchableRecord.Patch bodyRecord);
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamOpt(PatchableRecord.Patch bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamNil(PatchableRecord.Patch bodyRecord);
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamNil(PatchableRecord.Patch bodyRecord);
 
-	public PatchableRecord.Data patchableRecordBodyParamOptNil();
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamOptNil();
 
-	public PatchableRecord.Data patchableRecordBodyParamOptNil(PatchableRecord.Patch bodyRecord);
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamOptNil(PatchableRecord.Patch bodyRecord);
 
 }

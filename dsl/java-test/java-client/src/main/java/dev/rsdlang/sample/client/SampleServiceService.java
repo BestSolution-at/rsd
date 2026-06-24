@@ -12,54 +12,54 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.ZoneId;
 
 public interface SampleServiceService extends BaseService {
-	public boolean getBoolean();
+	public Result<Boolean, RSDError.$GenericError> getBoolean();
 
-	public short getShort();
+	public Result<Short, RSDError.$GenericError> getShort();
 
-	public int getInt();
+	public Result<Integer, RSDError.$GenericError> getInt();
 
-	public long getLong();
+	public Result<Long, RSDError.$GenericError> getLong();
 
-	public float getFloat();
+	public Result<Float, RSDError.$GenericError> getFloat();
 
-	public double getDouble();
+	public Result<Double, RSDError.$GenericError> getDouble();
 
-	public String getString();
+	public Result<String, RSDError.$GenericError> getString();
 
-	public LocalDate getLocalDate();
+	public Result<LocalDate, RSDError.$GenericError> getLocalDate();
 
-	public LocalDateTime getLocalDateTime();
+	public Result<LocalDateTime, RSDError.$GenericError> getLocalDateTime();
 
-	public LocalTime getLocalTime();
+	public Result<LocalTime, RSDError.$GenericError> getLocalTime();
 
-	public OffsetDateTime getOffsetDateTime();
+	public Result<OffsetDateTime, RSDError.$GenericError> getOffsetDateTime();
 
-	public ZonedDateTime getZonedDateTime();
+	public Result<ZonedDateTime, RSDError.$GenericError> getZonedDateTime();
 
-	public ZoneId getScalar();
+	public Result<ZoneId, RSDError.$GenericError> getScalar();
 
-	public SampleEnum getEnum();
+	public Result<SampleEnum, RSDError.$GenericError> getEnum();
 
-	public void voidOperation();
+	public Result<Void, RSDError.$GenericError> voidOperation();
 
-	public void errorOperation() throws SampleErrorException;
+	public Result<Void, RSDError.E1> errorOperation();
 
-	public void multiErrorOperation() throws SampleErrorException, SampleError2Exception;
+	public Result<Void, RSDError.E2> multiErrorOperation();
 
-	public SimpleRecord.Data getSimpleRecord(String key);
+	public Result<SimpleRecord.Data, RSDError.$GenericError> getSimpleRecord(String key);
 
-	public SimpleRecord.Data getSimpleRecordWithError(String key) throws SampleErrorException;
+	public Result<SimpleRecord.Data, RSDError.E1> getSimpleRecordWithError(String key);
 
-	public void getSimpleErrorWithValue() throws SampleErrorWithValueException;
+	public Result<Void, RSDError.E3> getSimpleErrorWithValue();
 
-	public void getSimpleErrorInt() throws SampleErrorIntException;
+	public Result<Void, RSDError.E4> getSimpleErrorInt();
 
-	public void getSimpleErrorBoolean() throws SampleErrorBooleanException;
+	public Result<Void, RSDError.E5> getSimpleErrorBoolean();
 
-	public void getSimpleErrorEnum() throws SampleErrorEnumException;
+	public Result<Void, RSDError.E6> getSimpleErrorEnum();
 
-	public void getSimpleErrorScalar() throws SampleErrorScalarException;
+	public Result<Void, RSDError.E7> getSimpleErrorScalar();
 
-	public void getSimpleErrorUnion() throws SampleErrorUnionException;
+	public Result<Void, RSDError.E8> getSimpleErrorUnion();
 
 }

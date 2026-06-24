@@ -29,7 +29,8 @@ import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.ZoneId;
-import dev.rsdlang.sample.client.RSDException;
+import dev.rsdlang.sample.client.Result;
+import dev.rsdlang.sample.client.RSDError;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService {
@@ -58,7 +59,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		return this.client.contentTypeEncoding().contentType;
 	}
 
-	public List<Boolean> listBooleanBodyParam(List<Boolean> bodyBoolean) {
+	public Result<List<Boolean>, RSDError.$GenericError> listBooleanBodyParam(List<Boolean> bodyBoolean) {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParam".formatted(
 				this.baseURI());
 
@@ -79,28 +80,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapBooleans($response);
 				this.lifecycleHook.onSuccess("listBooleanBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listBooleanBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listBooleanBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanBodyParam", e);
-			this.lifecycleHook.onCatch("listBooleanBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listBooleanBodyParam", e);
+			this.lifecycleHook.onCatch("listBooleanBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listBooleanBodyParam");
 		}
 	}
 
-	public NilResult listBooleanBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listBooleanBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -121,28 +119,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listBooleanBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listBooleanBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listBooleanBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listBooleanBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listBooleanBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listBooleanBodyParamOpt");
 		}
 	}
 
-	public NilResult listBooleanBodyParamOpt(List<Boolean> bodyBoolean) {
+	public Result<NilResult, RSDError.$GenericError> listBooleanBodyParamOpt(List<Boolean> bodyBoolean) {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -163,28 +158,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listBooleanBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listBooleanBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listBooleanBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listBooleanBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listBooleanBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listBooleanBodyParamOpt");
 		}
 	}
 
-	public NilResult listBooleanBodyParamNil(List<Boolean> bodyBoolean) {
+	public Result<NilResult, RSDError.$GenericError> listBooleanBodyParamNil(List<Boolean> bodyBoolean) {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamNil".formatted(
 				this.baseURI());
 
@@ -205,28 +197,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listBooleanBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listBooleanBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanBodyParamNil", e);
-			this.lifecycleHook.onCatch("listBooleanBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listBooleanBodyParamNil", e);
+			this.lifecycleHook.onCatch("listBooleanBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listBooleanBodyParamNil");
 		}
 	}
 
-	public NilResult listBooleanBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listBooleanBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -247,28 +236,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listBooleanBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listBooleanBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listBooleanBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listBooleanBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listBooleanBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listBooleanBodyParamOptNil");
 		}
 	}
 
-	public NilResult listBooleanBodyParamOptNil(List<Boolean> bodyBoolean) {
+	public Result<NilResult, RSDError.$GenericError> listBooleanBodyParamOptNil(List<Boolean> bodyBoolean) {
 		var $path = "%s/api/listbodyparametertypes/listBooleanBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -289,28 +275,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listBooleanBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listBooleanBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listBooleanBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listBooleanBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listBooleanBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listBooleanBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listBooleanBodyParamOptNil");
 		}
 	}
 
-	public List<Short> listShortBodyParam(List<Short> bodyShort) {
+	public Result<List<Short>, RSDError.$GenericError> listShortBodyParam(List<Short> bodyShort) {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParam".formatted(
 				this.baseURI());
 
@@ -331,28 +314,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapShorts($response);
 				this.lifecycleHook.onSuccess("listShortBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listShortBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listShortBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortBodyParam", e);
-			this.lifecycleHook.onCatch("listShortBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listShortBodyParam", e);
+			this.lifecycleHook.onCatch("listShortBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listShortBodyParam");
 		}
 	}
 
-	public NilResult listShortBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listShortBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -373,28 +353,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listShortBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listShortBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listShortBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listShortBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listShortBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listShortBodyParamOpt");
 		}
 	}
 
-	public NilResult listShortBodyParamOpt(List<Short> bodyShort) {
+	public Result<NilResult, RSDError.$GenericError> listShortBodyParamOpt(List<Short> bodyShort) {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -415,28 +392,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listShortBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listShortBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listShortBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listShortBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listShortBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listShortBodyParamOpt");
 		}
 	}
 
-	public NilResult listShortBodyParamNil(List<Short> bodyShort) {
+	public Result<NilResult, RSDError.$GenericError> listShortBodyParamNil(List<Short> bodyShort) {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamNil".formatted(
 				this.baseURI());
 
@@ -457,28 +431,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listShortBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listShortBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortBodyParamNil", e);
-			this.lifecycleHook.onCatch("listShortBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listShortBodyParamNil", e);
+			this.lifecycleHook.onCatch("listShortBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listShortBodyParamNil");
 		}
 	}
 
-	public NilResult listShortBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listShortBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -499,28 +470,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listShortBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listShortBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listShortBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listShortBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listShortBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listShortBodyParamOptNil");
 		}
 	}
 
-	public NilResult listShortBodyParamOptNil(List<Short> bodyShort) {
+	public Result<NilResult, RSDError.$GenericError> listShortBodyParamOptNil(List<Short> bodyShort) {
 		var $path = "%s/api/listbodyparametertypes/listShortBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -541,28 +509,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listShortBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listShortBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listShortBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listShortBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listShortBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listShortBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listShortBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listShortBodyParamOptNil");
 		}
 	}
 
-	public List<Integer> listIntBodyParam(List<Integer> bodyInt) {
+	public Result<List<Integer>, RSDError.$GenericError> listIntBodyParam(List<Integer> bodyInt) {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParam".formatted(
 				this.baseURI());
 
@@ -583,28 +548,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInts($response);
 				this.lifecycleHook.onSuccess("listIntBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listIntBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listIntBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntBodyParam", e);
-			this.lifecycleHook.onCatch("listIntBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listIntBodyParam", e);
+			this.lifecycleHook.onCatch("listIntBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listIntBodyParam");
 		}
 	}
 
-	public NilResult listIntBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listIntBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -625,28 +587,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listIntBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listIntBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listIntBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listIntBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listIntBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listIntBodyParamOpt");
 		}
 	}
 
-	public NilResult listIntBodyParamOpt(List<Integer> bodyInt) {
+	public Result<NilResult, RSDError.$GenericError> listIntBodyParamOpt(List<Integer> bodyInt) {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -667,28 +626,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listIntBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listIntBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listIntBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listIntBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listIntBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listIntBodyParamOpt");
 		}
 	}
 
-	public NilResult listIntBodyParamNil(List<Integer> bodyInt) {
+	public Result<NilResult, RSDError.$GenericError> listIntBodyParamNil(List<Integer> bodyInt) {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamNil".formatted(
 				this.baseURI());
 
@@ -709,28 +665,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listIntBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listIntBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntBodyParamNil", e);
-			this.lifecycleHook.onCatch("listIntBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listIntBodyParamNil", e);
+			this.lifecycleHook.onCatch("listIntBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listIntBodyParamNil");
 		}
 	}
 
-	public NilResult listIntBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listIntBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -751,28 +704,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listIntBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listIntBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listIntBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listIntBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listIntBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listIntBodyParamOptNil");
 		}
 	}
 
-	public NilResult listIntBodyParamOptNil(List<Integer> bodyInt) {
+	public Result<NilResult, RSDError.$GenericError> listIntBodyParamOptNil(List<Integer> bodyInt) {
 		var $path = "%s/api/listbodyparametertypes/listIntBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -793,28 +743,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listIntBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listIntBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listIntBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listIntBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listIntBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listIntBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listIntBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listIntBodyParamOptNil");
 		}
 	}
 
-	public List<Long> listLongBodyParam(List<Long> bodyLong) {
+	public Result<List<Long>, RSDError.$GenericError> listLongBodyParam(List<Long> bodyLong) {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParam".formatted(
 				this.baseURI());
 
@@ -835,28 +782,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLongs($response);
 				this.lifecycleHook.onSuccess("listLongBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLongBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLongBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongBodyParam", e);
-			this.lifecycleHook.onCatch("listLongBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLongBodyParam", e);
+			this.lifecycleHook.onCatch("listLongBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLongBodyParam");
 		}
 	}
 
-	public NilResult listLongBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listLongBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -877,28 +821,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLongBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLongBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listLongBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLongBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listLongBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLongBodyParamOpt");
 		}
 	}
 
-	public NilResult listLongBodyParamOpt(List<Long> bodyLong) {
+	public Result<NilResult, RSDError.$GenericError> listLongBodyParamOpt(List<Long> bodyLong) {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -919,28 +860,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLongBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLongBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listLongBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLongBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listLongBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLongBodyParamOpt");
 		}
 	}
 
-	public NilResult listLongBodyParamNil(List<Long> bodyLong) {
+	public Result<NilResult, RSDError.$GenericError> listLongBodyParamNil(List<Long> bodyLong) {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamNil".formatted(
 				this.baseURI());
 
@@ -961,28 +899,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLongBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLongBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongBodyParamNil", e);
-			this.lifecycleHook.onCatch("listLongBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLongBodyParamNil", e);
+			this.lifecycleHook.onCatch("listLongBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLongBodyParamNil");
 		}
 	}
 
-	public NilResult listLongBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listLongBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1003,28 +938,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLongBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLongBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listLongBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLongBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listLongBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLongBodyParamOptNil");
 		}
 	}
 
-	public NilResult listLongBodyParamOptNil(List<Long> bodyLong) {
+	public Result<NilResult, RSDError.$GenericError> listLongBodyParamOptNil(List<Long> bodyLong) {
 		var $path = "%s/api/listbodyparametertypes/listLongBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1045,28 +977,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLongBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLongBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLongBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLongBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listLongBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLongBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listLongBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLongBodyParamOptNil");
 		}
 	}
 
-	public List<Float> listFloatBodyParam(List<Float> bodyFloat) {
+	public Result<List<Float>, RSDError.$GenericError> listFloatBodyParam(List<Float> bodyFloat) {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParam".formatted(
 				this.baseURI());
 
@@ -1087,28 +1016,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapFloats($response);
 				this.lifecycleHook.onSuccess("listFloatBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listFloatBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listFloatBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatBodyParam", e);
-			this.lifecycleHook.onCatch("listFloatBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listFloatBodyParam", e);
+			this.lifecycleHook.onCatch("listFloatBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listFloatBodyParam");
 		}
 	}
 
-	public NilResult listFloatBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listFloatBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1129,28 +1055,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listFloatBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listFloatBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listFloatBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listFloatBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listFloatBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listFloatBodyParamOpt");
 		}
 	}
 
-	public NilResult listFloatBodyParamOpt(List<Float> bodyFloat) {
+	public Result<NilResult, RSDError.$GenericError> listFloatBodyParamOpt(List<Float> bodyFloat) {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1171,28 +1094,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listFloatBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listFloatBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listFloatBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listFloatBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listFloatBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listFloatBodyParamOpt");
 		}
 	}
 
-	public NilResult listFloatBodyParamNil(List<Float> bodyFloat) {
+	public Result<NilResult, RSDError.$GenericError> listFloatBodyParamNil(List<Float> bodyFloat) {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamNil".formatted(
 				this.baseURI());
 
@@ -1213,28 +1133,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listFloatBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listFloatBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatBodyParamNil", e);
-			this.lifecycleHook.onCatch("listFloatBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listFloatBodyParamNil", e);
+			this.lifecycleHook.onCatch("listFloatBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listFloatBodyParamNil");
 		}
 	}
 
-	public NilResult listFloatBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listFloatBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1255,28 +1172,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listFloatBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listFloatBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listFloatBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listFloatBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listFloatBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listFloatBodyParamOptNil");
 		}
 	}
 
-	public NilResult listFloatBodyParamOptNil(List<Float> bodyFloat) {
+	public Result<NilResult, RSDError.$GenericError> listFloatBodyParamOptNil(List<Float> bodyFloat) {
 		var $path = "%s/api/listbodyparametertypes/listFloatBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1297,28 +1211,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listFloatBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listFloatBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listFloatBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listFloatBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listFloatBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listFloatBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listFloatBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listFloatBodyParamOptNil");
 		}
 	}
 
-	public List<Double> listDoubleBodyParam(List<Double> bodyDouble) {
+	public Result<List<Double>, RSDError.$GenericError> listDoubleBodyParam(List<Double> bodyDouble) {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParam".formatted(
 				this.baseURI());
 
@@ -1339,28 +1250,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapDoubles($response);
 				this.lifecycleHook.onSuccess("listDoubleBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listDoubleBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listDoubleBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleBodyParam", e);
-			this.lifecycleHook.onCatch("listDoubleBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listDoubleBodyParam", e);
+			this.lifecycleHook.onCatch("listDoubleBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listDoubleBodyParam");
 		}
 	}
 
-	public NilResult listDoubleBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listDoubleBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1381,28 +1289,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listDoubleBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listDoubleBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listDoubleBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listDoubleBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listDoubleBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listDoubleBodyParamOpt");
 		}
 	}
 
-	public NilResult listDoubleBodyParamOpt(List<Double> bodyDouble) {
+	public Result<NilResult, RSDError.$GenericError> listDoubleBodyParamOpt(List<Double> bodyDouble) {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1423,28 +1328,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listDoubleBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listDoubleBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listDoubleBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listDoubleBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listDoubleBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listDoubleBodyParamOpt");
 		}
 	}
 
-	public NilResult listDoubleBodyParamNil(List<Double> bodyDouble) {
+	public Result<NilResult, RSDError.$GenericError> listDoubleBodyParamNil(List<Double> bodyDouble) {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamNil".formatted(
 				this.baseURI());
 
@@ -1465,28 +1367,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listDoubleBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listDoubleBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleBodyParamNil", e);
-			this.lifecycleHook.onCatch("listDoubleBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listDoubleBodyParamNil", e);
+			this.lifecycleHook.onCatch("listDoubleBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listDoubleBodyParamNil");
 		}
 	}
 
-	public NilResult listDoubleBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listDoubleBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1507,28 +1406,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listDoubleBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listDoubleBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listDoubleBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listDoubleBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listDoubleBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listDoubleBodyParamOptNil");
 		}
 	}
 
-	public NilResult listDoubleBodyParamOptNil(List<Double> bodyDouble) {
+	public Result<NilResult, RSDError.$GenericError> listDoubleBodyParamOptNil(List<Double> bodyDouble) {
 		var $path = "%s/api/listbodyparametertypes/listDoubleBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1549,28 +1445,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listDoubleBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listDoubleBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listDoubleBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listDoubleBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listDoubleBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listDoubleBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listDoubleBodyParamOptNil");
 		}
 	}
 
-	public List<String> listStringBodyParam(List<String> bodyString) {
+	public Result<List<String>, RSDError.$GenericError> listStringBodyParam(List<String> bodyString) {
 		Objects.requireNonNull(bodyString, "bodyString must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParam".formatted(
@@ -1593,28 +1486,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapStrings($response);
 				this.lifecycleHook.onSuccess("listStringBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listStringBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listStringBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringBodyParam", e);
-			this.lifecycleHook.onCatch("listStringBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listStringBodyParam", e);
+			this.lifecycleHook.onCatch("listStringBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listStringBodyParam");
 		}
 	}
 
-	public NilResult listStringBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listStringBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1635,28 +1525,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listStringBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listStringBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listStringBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listStringBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listStringBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listStringBodyParamOpt");
 		}
 	}
 
-	public NilResult listStringBodyParamOpt(List<String> bodyString) {
+	public Result<NilResult, RSDError.$GenericError> listStringBodyParamOpt(List<String> bodyString) {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1677,28 +1564,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listStringBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listStringBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listStringBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listStringBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listStringBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listStringBodyParamOpt");
 		}
 	}
 
-	public NilResult listStringBodyParamNil(List<String> bodyString) {
+	public Result<NilResult, RSDError.$GenericError> listStringBodyParamNil(List<String> bodyString) {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamNil".formatted(
 				this.baseURI());
 
@@ -1719,28 +1603,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listStringBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listStringBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringBodyParamNil", e);
-			this.lifecycleHook.onCatch("listStringBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listStringBodyParamNil", e);
+			this.lifecycleHook.onCatch("listStringBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listStringBodyParamNil");
 		}
 	}
 
-	public NilResult listStringBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listStringBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1761,28 +1642,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listStringBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listStringBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listStringBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listStringBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listStringBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listStringBodyParamOptNil");
 		}
 	}
 
-	public NilResult listStringBodyParamOptNil(List<String> bodyString) {
+	public Result<NilResult, RSDError.$GenericError> listStringBodyParamOptNil(List<String> bodyString) {
 		var $path = "%s/api/listbodyparametertypes/listStringBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1803,28 +1681,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listStringBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listStringBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listStringBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listStringBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listStringBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listStringBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listStringBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listStringBodyParamOptNil");
 		}
 	}
 
-	public List<LocalDate> listLocalDateBodyParam(List<LocalDate> bodyLocalDate) {
+	public Result<List<LocalDate>, RSDError.$GenericError> listLocalDateBodyParam(List<LocalDate> bodyLocalDate) {
 		Objects.requireNonNull(bodyLocalDate, "bodyLocalDate must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParam".formatted(
@@ -1847,28 +1722,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDates($response);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateBodyParam", e);
-			this.lifecycleHook.onCatch("listLocalDateBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateBodyParam", e);
+			this.lifecycleHook.onCatch("listLocalDateBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateBodyParam");
 		}
 	}
 
-	public NilResult listLocalDateBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1889,28 +1761,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listLocalDateBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listLocalDateBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateBodyParamOpt");
 		}
 	}
 
-	public NilResult listLocalDateBodyParamOpt(List<LocalDate> bodyLocalDate) {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateBodyParamOpt(List<LocalDate> bodyLocalDate) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1931,28 +1800,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listLocalDateBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listLocalDateBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateBodyParamOpt");
 		}
 	}
 
-	public NilResult listLocalDateBodyParamNil(List<LocalDate> bodyLocalDate) {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateBodyParamNil(List<LocalDate> bodyLocalDate) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamNil".formatted(
 				this.baseURI());
 
@@ -1973,28 +1839,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamNil", e);
-			this.lifecycleHook.onCatch("listLocalDateBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamNil", e);
+			this.lifecycleHook.onCatch("listLocalDateBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateBodyParamNil");
 		}
 	}
 
-	public NilResult listLocalDateBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2015,28 +1878,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listLocalDateBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listLocalDateBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateBodyParamOptNil");
 		}
 	}
 
-	public NilResult listLocalDateBodyParamOptNil(List<LocalDate> bodyLocalDate) {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateBodyParamOptNil(List<LocalDate> bodyLocalDate) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2057,28 +1917,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listLocalDateBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listLocalDateBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateBodyParamOptNil");
 		}
 	}
 
-	public List<LocalDateTime> listLocalDateTimeBodyParam(List<LocalDateTime> bodyLocalDateTime) {
+	public Result<List<LocalDateTime>, RSDError.$GenericError> listLocalDateTimeBodyParam(List<LocalDateTime> bodyLocalDateTime) {
 		Objects.requireNonNull(bodyLocalDateTime, "bodyLocalDateTime must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParam".formatted(
@@ -2101,28 +1958,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDateTimes($response);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateTimeBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParam", e);
-			this.lifecycleHook.onCatch("listLocalDateTimeBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParam", e);
+			this.lifecycleHook.onCatch("listLocalDateTimeBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateTimeBodyParam");
 		}
 	}
 
-	public NilResult listLocalDateTimeBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2143,28 +1997,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult listLocalDateTimeBodyParamOpt(List<LocalDateTime> bodyLocalDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeBodyParamOpt(List<LocalDateTime> bodyLocalDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2185,28 +2036,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult listLocalDateTimeBodyParamNil(List<LocalDateTime> bodyLocalDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeBodyParamNil(List<LocalDateTime> bodyLocalDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamNil".formatted(
 				this.baseURI());
 
@@ -2227,28 +2075,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateTimeBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamNil", e);
-			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamNil", e);
+			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateTimeBodyParamNil");
 		}
 	}
 
-	public NilResult listLocalDateTimeBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2269,28 +2114,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateTimeBodyParamOptNil");
 		}
 	}
 
-	public NilResult listLocalDateTimeBodyParamOptNil(List<LocalDateTime> bodyLocalDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeBodyParamOptNil(List<LocalDateTime> bodyLocalDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2311,28 +2153,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listLocalDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalDateTimeBodyParamOptNil");
 		}
 	}
 
-	public List<LocalTime> listLocalTimeBodyParam(List<LocalTime> bodyLocalTime) {
+	public Result<List<LocalTime>, RSDError.$GenericError> listLocalTimeBodyParam(List<LocalTime> bodyLocalTime) {
 		Objects.requireNonNull(bodyLocalTime, "bodyLocalTime must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listLocalTimeBodyParam".formatted(
@@ -2355,28 +2194,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalTimes($response);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalTimeBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParam", e);
-			this.lifecycleHook.onCatch("listLocalTimeBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParam", e);
+			this.lifecycleHook.onCatch("listLocalTimeBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalTimeBodyParam");
 		}
 	}
 
-	public NilResult listLocalTimeBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listLocalTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2397,28 +2233,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listLocalTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listLocalTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult listLocalTimeBodyParamOpt(List<LocalTime> bodyLocalTime) {
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeBodyParamOpt(List<LocalTime> bodyLocalTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2439,28 +2272,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listLocalTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listLocalTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult listLocalTimeBodyParamNil(List<LocalTime> bodyLocalTime) {
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeBodyParamNil(List<LocalTime> bodyLocalTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalTimeBodyParamNil".formatted(
 				this.baseURI());
 
@@ -2481,28 +2311,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalTimeBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamNil", e);
-			this.lifecycleHook.onCatch("listLocalTimeBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamNil", e);
+			this.lifecycleHook.onCatch("listLocalTimeBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalTimeBodyParamNil");
 		}
 	}
 
-	public NilResult listLocalTimeBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listLocalTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2523,28 +2350,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listLocalTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listLocalTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalTimeBodyParamOptNil");
 		}
 	}
 
-	public NilResult listLocalTimeBodyParamOptNil(List<LocalTime> bodyLocalTime) {
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeBodyParamOptNil(List<LocalTime> bodyLocalTime) {
 		var $path = "%s/api/listbodyparametertypes/listLocalTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2565,28 +2389,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listLocalTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listLocalTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listLocalTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listLocalTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listLocalTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listLocalTimeBodyParamOptNil");
 		}
 	}
 
-	public List<OffsetDateTime> listOffsetDateTimeBodyParam(List<OffsetDateTime> bodyOffsetDateTime) {
+	public Result<List<OffsetDateTime>, RSDError.$GenericError> listOffsetDateTimeBodyParam(List<OffsetDateTime> bodyOffsetDateTime) {
 		Objects.requireNonNull(bodyOffsetDateTime, "bodyOffsetDateTime must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listOffsetDateTimeBodyParam".formatted(
@@ -2609,28 +2430,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTimes($response);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listOffsetDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listOffsetDateTimeBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParam", e);
-			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParam", e);
+			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listOffsetDateTimeBodyParam");
 		}
 	}
 
-	public NilResult listOffsetDateTimeBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listOffsetDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2651,28 +2469,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listOffsetDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult listOffsetDateTimeBodyParamOpt(List<OffsetDateTime> bodyOffsetDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeBodyParamOpt(List<OffsetDateTime> bodyOffsetDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listOffsetDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2693,28 +2508,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listOffsetDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult listOffsetDateTimeBodyParamNil(List<OffsetDateTime> bodyOffsetDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeBodyParamNil(List<OffsetDateTime> bodyOffsetDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listOffsetDateTimeBodyParamNil".formatted(
 				this.baseURI());
 
@@ -2735,28 +2547,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listOffsetDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listOffsetDateTimeBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamNil", e);
-			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamNil", e);
+			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listOffsetDateTimeBodyParamNil");
 		}
 	}
 
-	public NilResult listOffsetDateTimeBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listOffsetDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2777,28 +2586,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listOffsetDateTimeBodyParamOptNil");
 		}
 	}
 
-	public NilResult listOffsetDateTimeBodyParamOptNil(List<OffsetDateTime> bodyOffsetDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeBodyParamOptNil(List<OffsetDateTime> bodyOffsetDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listOffsetDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2819,28 +2625,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listOffsetDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listOffsetDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listOffsetDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listOffsetDateTimeBodyParamOptNil");
 		}
 	}
 
-	public List<ZonedDateTime> listZonedDateTimeBodyParam(List<ZonedDateTime> bodyZonedDateTime) {
+	public Result<List<ZonedDateTime>, RSDError.$GenericError> listZonedDateTimeBodyParam(List<ZonedDateTime> bodyZonedDateTime) {
 		Objects.requireNonNull(bodyZonedDateTime, "bodyZonedDateTime must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParam".formatted(
@@ -2863,28 +2666,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapZonedDateTimes($response);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listZonedDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listZonedDateTimeBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParam", e);
-			this.lifecycleHook.onCatch("listZonedDateTimeBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParam", e);
+			this.lifecycleHook.onCatch("listZonedDateTimeBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listZonedDateTimeBodyParam");
 		}
 	}
 
-	public NilResult listZonedDateTimeBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2905,28 +2705,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listZonedDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listZonedDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listZonedDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult listZonedDateTimeBodyParamOpt(List<ZonedDateTime> bodyZonedDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeBodyParamOpt(List<ZonedDateTime> bodyZonedDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2947,28 +2744,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listZonedDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listZonedDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listZonedDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult listZonedDateTimeBodyParamNil(List<ZonedDateTime> bodyZonedDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeBodyParamNil(List<ZonedDateTime> bodyZonedDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamNil".formatted(
 				this.baseURI());
 
@@ -2989,28 +2783,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listZonedDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listZonedDateTimeBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamNil", e);
-			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamNil", e);
+			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listZonedDateTimeBodyParamNil");
 		}
 	}
 
-	public NilResult listZonedDateTimeBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3031,28 +2822,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listZonedDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listZonedDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listZonedDateTimeBodyParamOptNil");
 		}
 	}
 
-	public NilResult listZonedDateTimeBodyParamOptNil(List<ZonedDateTime> bodyZonedDateTime) {
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeBodyParamOptNil(List<ZonedDateTime> bodyZonedDateTime) {
 		var $path = "%s/api/listbodyparametertypes/listZonedDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3073,28 +2861,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listZonedDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listZonedDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listZonedDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listZonedDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listZonedDateTimeBodyParamOptNil");
 		}
 	}
 
-	public List<ZoneId> listScalarBodyParam(List<ZoneId> bodyScalar) {
+	public Result<List<ZoneId>, RSDError.$GenericError> listScalarBodyParam(List<ZoneId> bodyScalar) {
 		Objects.requireNonNull(bodyScalar, "bodyScalar must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParam".formatted(
@@ -3117,28 +2902,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("listScalarBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listScalarBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listScalarBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarBodyParam", e);
-			this.lifecycleHook.onCatch("listScalarBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listScalarBodyParam", e);
+			this.lifecycleHook.onCatch("listScalarBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listScalarBodyParam");
 		}
 	}
 
-	public NilResult listScalarBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listScalarBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3159,28 +2941,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listScalarBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listScalarBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listScalarBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listScalarBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listScalarBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listScalarBodyParamOpt");
 		}
 	}
 
-	public NilResult listScalarBodyParamOpt(List<ZoneId> bodyScalar) {
+	public Result<NilResult, RSDError.$GenericError> listScalarBodyParamOpt(List<ZoneId> bodyScalar) {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3201,28 +2980,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listScalarBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listScalarBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listScalarBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listScalarBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listScalarBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listScalarBodyParamOpt");
 		}
 	}
 
-	public NilResult listScalarBodyParamNil(List<ZoneId> bodyScalar) {
+	public Result<NilResult, RSDError.$GenericError> listScalarBodyParamNil(List<ZoneId> bodyScalar) {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamNil".formatted(
 				this.baseURI());
 
@@ -3243,28 +3019,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listScalarBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listScalarBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarBodyParamNil", e);
-			this.lifecycleHook.onCatch("listScalarBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listScalarBodyParamNil", e);
+			this.lifecycleHook.onCatch("listScalarBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listScalarBodyParamNil");
 		}
 	}
 
-	public NilResult listScalarBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listScalarBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3285,28 +3058,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listScalarBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listScalarBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listScalarBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listScalarBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listScalarBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listScalarBodyParamOptNil");
 		}
 	}
 
-	public NilResult listScalarBodyParamOptNil(List<ZoneId> bodyScalar) {
+	public Result<NilResult, RSDError.$GenericError> listScalarBodyParamOptNil(List<ZoneId> bodyScalar) {
 		var $path = "%s/api/listbodyparametertypes/listScalarBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3327,28 +3097,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listScalarBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listScalarBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listScalarBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listScalarBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listScalarBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listScalarBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listScalarBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listScalarBodyParamOptNil");
 		}
 	}
 
-	public List<SampleEnum> listEnumBodyParam(List<SampleEnum> bodyEnum) {
+	public Result<List<SampleEnum>, RSDError.$GenericError> listEnumBodyParam(List<SampleEnum> bodyEnum) {
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParam".formatted(
@@ -3371,28 +3138,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("listEnumBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listEnumBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listEnumBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumBodyParam", e);
-			this.lifecycleHook.onCatch("listEnumBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listEnumBodyParam", e);
+			this.lifecycleHook.onCatch("listEnumBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listEnumBodyParam");
 		}
 	}
 
-	public NilResult listEnumBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listEnumBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3413,28 +3177,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listEnumBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listEnumBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listEnumBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listEnumBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listEnumBodyParamOpt");
 		}
 	}
 
-	public NilResult listEnumBodyParamOpt(List<SampleEnum> bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> listEnumBodyParamOpt(List<SampleEnum> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3455,28 +3216,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listEnumBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listEnumBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listEnumBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listEnumBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listEnumBodyParamOpt");
 		}
 	}
 
-	public NilResult listEnumBodyParamNil(List<SampleEnum> bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> listEnumBodyParamNil(List<SampleEnum> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamNil".formatted(
 				this.baseURI());
 
@@ -3497,28 +3255,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listEnumBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listEnumBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumBodyParamNil", e);
-			this.lifecycleHook.onCatch("listEnumBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listEnumBodyParamNil", e);
+			this.lifecycleHook.onCatch("listEnumBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listEnumBodyParamNil");
 		}
 	}
 
-	public NilResult listEnumBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listEnumBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3539,28 +3294,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listEnumBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listEnumBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listEnumBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listEnumBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listEnumBodyParamOptNil");
 		}
 	}
 
-	public NilResult listEnumBodyParamOptNil(List<SampleEnum> bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> listEnumBodyParamOptNil(List<SampleEnum> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listEnumBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3581,28 +3333,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listEnumBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listEnumBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listEnumBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listEnumBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listEnumBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listEnumBodyParamOptNil");
 		}
 	}
 
-	public List<ListInlineEnumBodyParam_Result$> listInlineEnumBodyParam(List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
+	public Result<List<ListInlineEnumBodyParam_Result$>, RSDError.$GenericError> listInlineEnumBodyParam(List<ListInlineEnumBodyParam_BodyEnum_Param$> bodyEnum) {
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParam".formatted(
@@ -3625,28 +3374,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ListInlineEnumBodyParam_Result$::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listInlineEnumBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listInlineEnumBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParam", e);
-			this.lifecycleHook.onCatch("listInlineEnumBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParam", e);
+			this.lifecycleHook.onCatch("listInlineEnumBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listInlineEnumBodyParam");
 		}
 	}
 
-	public NilResult listInlineEnumBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3667,28 +3413,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listInlineEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listInlineEnumBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listInlineEnumBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listInlineEnumBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listInlineEnumBodyParamOpt");
 		}
 	}
 
-	public NilResult listInlineEnumBodyParamOpt(List<ListInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumBodyParamOpt(List<ListInlineEnumBodyParamOpt_BodyEnum_Param$> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3709,28 +3452,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listInlineEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listInlineEnumBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listInlineEnumBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listInlineEnumBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listInlineEnumBodyParamOpt");
 		}
 	}
 
-	public NilResult listInlineEnumBodyParamNil(List<ListInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumBodyParamNil(List<ListInlineEnumBodyParamNil_BodyEnum_Param$> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamNil".formatted(
 				this.baseURI());
 
@@ -3751,28 +3491,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listInlineEnumBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listInlineEnumBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamNil", e);
-			this.lifecycleHook.onCatch("listInlineEnumBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamNil", e);
+			this.lifecycleHook.onCatch("listInlineEnumBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listInlineEnumBodyParamNil");
 		}
 	}
 
-	public NilResult listInlineEnumBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3793,28 +3530,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listInlineEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listInlineEnumBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listInlineEnumBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listInlineEnumBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listInlineEnumBodyParamOptNil");
 		}
 	}
 
-	public NilResult listInlineEnumBodyParamOptNil(List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumBodyParamOptNil(List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum) {
 		var $path = "%s/api/listbodyparametertypes/listInlineEnumBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3835,28 +3569,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listInlineEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listInlineEnumBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listInlineEnumBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listInlineEnumBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listInlineEnumBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listInlineEnumBodyParamOptNil");
 		}
 	}
 
-	public String listMultiBodyParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<String, RSDError.$GenericError> listMultiBodyParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
@@ -3884,28 +3615,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("listMultiBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParam", e);
-			this.lifecycleHook.onCatch("listMultiBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParam", e);
+			this.lifecycleHook.onCatch("listMultiBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParam");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOpt() {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3926,28 +3654,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamOpt");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOpt(List<String> valueA) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOpt(List<String> valueA) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3972,28 +3697,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamOpt");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4021,28 +3743,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamOpt");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4073,28 +3792,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamOpt");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamNil".formatted(
 				this.baseURI());
 
@@ -4119,28 +3835,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamNil", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamNil", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamNil");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOptNil() {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4161,28 +3874,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamOptNil");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOptNil(List<String> valueA) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOptNil(List<String> valueA) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4205,28 +3915,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamOptNil");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4250,28 +3957,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamOptNil");
 		}
 	}
 
-	public List<NilResult> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4296,28 +4000,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listMultiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listMultiBodyParamOptNil");
 		}
 	}
 
-	public List<SimpleRecord.Data> listRecordBodyParam(List<SimpleRecord.Data> bodyRecord) {
+	public Result<List<SimpleRecord.Data>, RSDError.$GenericError> listRecordBodyParam(List<SimpleRecord.Data> bodyRecord) {
 		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParam".formatted(
@@ -4340,28 +4041,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("listRecordBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listRecordBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listRecordBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordBodyParam", e);
-			this.lifecycleHook.onCatch("listRecordBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listRecordBodyParam", e);
+			this.lifecycleHook.onCatch("listRecordBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listRecordBodyParam");
 		}
 	}
 
-	public NilResult listRecordBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> listRecordBodyParamOpt() {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4382,28 +4080,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listRecordBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listRecordBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listRecordBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listRecordBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listRecordBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listRecordBodyParamOpt");
 		}
 	}
 
-	public NilResult listRecordBodyParamOpt(List<SimpleRecord.Data> bodyRecord) {
+	public Result<NilResult, RSDError.$GenericError> listRecordBodyParamOpt(List<SimpleRecord.Data> bodyRecord) {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4424,28 +4119,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listRecordBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listRecordBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordBodyParamOpt", e);
-			this.lifecycleHook.onCatch("listRecordBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listRecordBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listRecordBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listRecordBodyParamOpt");
 		}
 	}
 
-	public NilResult listRecordBodyParamNil(List<SimpleRecord.Data> bodyRecord) {
+	public Result<NilResult, RSDError.$GenericError> listRecordBodyParamNil(List<SimpleRecord.Data> bodyRecord) {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamNil".formatted(
 				this.baseURI());
 
@@ -4466,28 +4158,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listRecordBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listRecordBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordBodyParamNil", e);
-			this.lifecycleHook.onCatch("listRecordBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listRecordBodyParamNil", e);
+			this.lifecycleHook.onCatch("listRecordBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listRecordBodyParamNil");
 		}
 	}
 
-	public NilResult listRecordBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> listRecordBodyParamOptNil() {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4508,28 +4197,25 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listRecordBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listRecordBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listRecordBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listRecordBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listRecordBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listRecordBodyParamOptNil");
 		}
 	}
 
-	public NilResult listRecordBodyParamOptNil(List<SimpleRecord.Data> bodyRecord) {
+	public Result<NilResult, RSDError.$GenericError> listRecordBodyParamOptNil(List<SimpleRecord.Data> bodyRecord) {
 		var $path = "%s/api/listbodyparametertypes/listRecordBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4550,22 +4236,19 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("listRecordBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("listRecordBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listRecordBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation listRecordBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("listRecordBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listRecordBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listRecordBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("listRecordBodyParamOptNil");
 		}

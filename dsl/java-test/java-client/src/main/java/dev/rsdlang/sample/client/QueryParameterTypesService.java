@@ -13,106 +13,106 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.ZoneId;
 
 public interface QueryParameterTypesService extends BaseService {
-	public boolean simpleBooleanQueryParam(boolean queryValue);
+	public Result<Boolean, RSDError.$GenericError> simpleBooleanQueryParam(boolean queryValue);
 
-	public NilResult simpleBooleanQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanQueryParamOpt();
 
-	public NilResult simpleBooleanQueryParamOpt(Boolean queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanQueryParamOpt(Boolean queryValue);
 
-	public short simpleShortQueryParam(short queryValue);
+	public Result<Short, RSDError.$GenericError> simpleShortQueryParam(short queryValue);
 
-	public NilResult simpleShortQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleShortQueryParamOpt();
 
-	public NilResult simpleShortQueryParamOpt(Short queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleShortQueryParamOpt(Short queryValue);
 
-	public int simpleIntQueryParam(int queryValue);
+	public Result<Integer, RSDError.$GenericError> simpleIntQueryParam(int queryValue);
 
-	public NilResult simpleIntQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleIntQueryParamOpt();
 
-	public NilResult simpleIntQueryParamOpt(Integer queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleIntQueryParamOpt(Integer queryValue);
 
-	public long simpleLongQueryParam(long queryValue);
+	public Result<Long, RSDError.$GenericError> simpleLongQueryParam(long queryValue);
 
-	public NilResult simpleLongQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLongQueryParamOpt();
 
-	public NilResult simpleLongQueryParamOpt(Long queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLongQueryParamOpt(Long queryValue);
 
-	public float simpleFloatQueryParam(float queryValue);
+	public Result<Float, RSDError.$GenericError> simpleFloatQueryParam(float queryValue);
 
-	public NilResult simpleFloatQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleFloatQueryParamOpt();
 
-	public NilResult simpleFloatQueryParamOpt(Float queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleFloatQueryParamOpt(Float queryValue);
 
-	public double simpleDoubleQueryParam(double queryValue);
+	public Result<Double, RSDError.$GenericError> simpleDoubleQueryParam(double queryValue);
 
-	public NilResult simpleDoubleQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleQueryParamOpt();
 
-	public NilResult simpleDoubleQueryParamOpt(Double queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleQueryParamOpt(Double queryValue);
 
-	public String simpleStringQueryParam(String queryValue);
+	public Result<String, RSDError.$GenericError> simpleStringQueryParam(String queryValue);
 
-	public NilResult simpleStringQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleStringQueryParamOpt();
 
-	public NilResult simpleStringQueryParamOpt(String queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleStringQueryParamOpt(String queryValue);
 
-	public LocalDate simpleLocalDateQueryParam(LocalDate queryValue);
+	public Result<LocalDate, RSDError.$GenericError> simpleLocalDateQueryParam(LocalDate queryValue);
 
-	public NilResult simpleLocalDateQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateQueryParamOpt();
 
-	public NilResult simpleLocalDateQueryParamOpt(LocalDate queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateQueryParamOpt(LocalDate queryValue);
 
-	public LocalDateTime simpleLocalDateTimeQueryParam(LocalDateTime queryValue);
+	public Result<LocalDateTime, RSDError.$GenericError> simpleLocalDateTimeQueryParam(LocalDateTime queryValue);
 
-	public NilResult simpleLocalDateTimeQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeQueryParamOpt();
 
-	public NilResult simpleLocalDateTimeQueryParamOpt(LocalDateTime queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeQueryParamOpt(LocalDateTime queryValue);
 
-	public LocalTime simpleLocalTimeQueryParam(LocalTime queryValue);
+	public Result<LocalTime, RSDError.$GenericError> simpleLocalTimeQueryParam(LocalTime queryValue);
 
-	public NilResult simpleLocalTimeQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeQueryParamOpt();
 
-	public NilResult simpleLocalTimeQueryParamOpt(LocalTime queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeQueryParamOpt(LocalTime queryValue);
 
-	public OffsetDateTime simpleOffsetDateTimeQueryParam(OffsetDateTime queryValue);
+	public Result<OffsetDateTime, RSDError.$GenericError> simpleOffsetDateTimeQueryParam(OffsetDateTime queryValue);
 
-	public NilResult simpleOffsetDateTimeQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeQueryParamOpt();
 
-	public NilResult simpleOffsetDateTimeQueryParamOpt(OffsetDateTime queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeQueryParamOpt(OffsetDateTime queryValue);
 
-	public ZonedDateTime simpleZonedDateTimeQueryParam(ZonedDateTime queryValue);
+	public Result<ZonedDateTime, RSDError.$GenericError> simpleZonedDateTimeQueryParam(ZonedDateTime queryValue);
 
-	public NilResult simpleZonedDateTimeQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeQueryParamOpt();
 
-	public NilResult simpleZonedDateTimeQueryParamOpt(ZonedDateTime queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeQueryParamOpt(ZonedDateTime queryValue);
 
-	public ZoneId simpleScalarQueryParam(ZoneId queryValue);
+	public Result<ZoneId, RSDError.$GenericError> simpleScalarQueryParam(ZoneId queryValue);
 
-	public NilResult simpleScalarQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleScalarQueryParamOpt();
 
-	public NilResult simpleScalarQueryParamOpt(ZoneId queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleScalarQueryParamOpt(ZoneId queryValue);
 
-	public SampleEnum simpleEnumQueryParam(SampleEnum queryValue);
+	public Result<SampleEnum, RSDError.$GenericError> simpleEnumQueryParam(SampleEnum queryValue);
 
-	public NilResult simpleEnumQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> simpleEnumQueryParamOpt();
 
-	public NilResult simpleEnumQueryParamOpt(SampleEnum queryValue);
+	public Result<NilResult, RSDError.$GenericError> simpleEnumQueryParamOpt(SampleEnum queryValue);
 
-	public String multiQueryParam(
+	public Result<String, RSDError.$GenericError> multiQueryParam(
 			String valueA, 
 			int valueB);
 
-	public String multiQueryParamOpt();
+	public Result<String, RSDError.$GenericError> multiQueryParamOpt();
 
-	public String multiQueryParamOpt(String valueA);
+	public Result<String, RSDError.$GenericError> multiQueryParamOpt(String valueA);
 
-	public String multiQueryParamOpt(
+	public Result<String, RSDError.$GenericError> multiQueryParamOpt(
 			String valueA, 
 			Integer valueB);
 
-	public SimpleRecord.Data recordQueryParam(SimpleRecord.Data queryValue);
+	public Result<SimpleRecord.Data, RSDError.$GenericError> recordQueryParam(SimpleRecord.Data queryValue);
 
-	public NilResult recordQueryParamOpt();
+	public Result<NilResult, RSDError.$GenericError> recordQueryParamOpt();
 
-	public NilResult recordQueryParamOpt(SimpleRecord.Data queryValue);
+	public Result<NilResult, RSDError.$GenericError> recordQueryParamOpt(SimpleRecord.Data queryValue);
 
 }

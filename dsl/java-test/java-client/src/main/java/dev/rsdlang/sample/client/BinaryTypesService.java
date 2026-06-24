@@ -10,55 +10,55 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
 
 public interface BinaryTypesService extends BaseService {
-	public int uploadFile(RSDFile data);
+	public Result<Integer, RSDError.$GenericError> uploadFile(RSDFile data);
 
-	public int uploadFileOpt();
+	public Result<Integer, RSDError.$GenericError> uploadFileOpt();
 
-	public int uploadFileOpt(RSDFile data);
+	public Result<Integer, RSDError.$GenericError> uploadFileOpt(RSDFile data);
 
-	public int uploadFileNil(RSDFile data);
+	public Result<Integer, RSDError.$GenericError> uploadFileNil(RSDFile data);
 
-	public int uploadFileOptNil();
+	public Result<Integer, RSDError.$GenericError> uploadFileOptNil();
 
-	public int uploadFileOptNil(RSDFile data);
+	public Result<Integer, RSDError.$GenericError> uploadFileOptNil(RSDFile data);
 
-	public int uploadBlob(RSDBlob data);
+	public Result<Integer, RSDError.$GenericError> uploadBlob(RSDBlob data);
 
-	public int uploadBlobOpt();
+	public Result<Integer, RSDError.$GenericError> uploadBlobOpt();
 
-	public int uploadBlobOpt(RSDBlob data);
+	public Result<Integer, RSDError.$GenericError> uploadBlobOpt(RSDBlob data);
 
-	public int uploadBlobNil(RSDBlob data);
+	public Result<Integer, RSDError.$GenericError> uploadBlobNil(RSDBlob data);
 
-	public int uploadBlobOptNil();
+	public Result<Integer, RSDError.$GenericError> uploadBlobOptNil();
 
-	public int uploadBlobOptNil(RSDBlob data);
+	public Result<Integer, RSDError.$GenericError> uploadBlobOptNil(RSDBlob data);
 
-	public int uploadFileList(List<RSDFile> data);
+	public Result<Integer, RSDError.$GenericError> uploadFileList(List<RSDFile> data);
 
-	public int uploadFileListOpt();
+	public Result<Integer, RSDError.$GenericError> uploadFileListOpt();
 
-	public int uploadFileListOpt(List<RSDFile> data);
+	public Result<Integer, RSDError.$GenericError> uploadFileListOpt(List<RSDFile> data);
 
-	public int uploadFileListNil(List<RSDFile> data);
+	public Result<Integer, RSDError.$GenericError> uploadFileListNil(List<RSDFile> data);
 
-	public int uploadFileListOptNil();
+	public Result<Integer, RSDError.$GenericError> uploadFileListOptNil();
 
-	public int uploadFileListOptNil(List<RSDFile> data);
+	public Result<Integer, RSDError.$GenericError> uploadFileListOptNil(List<RSDFile> data);
 
-	public int uploadBlobList(List<RSDBlob> data);
+	public Result<Integer, RSDError.$GenericError> uploadBlobList(List<RSDBlob> data);
 
-	public int uploadBlobListOpt();
+	public Result<Integer, RSDError.$GenericError> uploadBlobListOpt();
 
-	public int uploadBlobListOpt(List<RSDBlob> data);
+	public Result<Integer, RSDError.$GenericError> uploadBlobListOpt(List<RSDBlob> data);
 
-	public int uploadBlobListNil(List<RSDBlob> data);
+	public Result<Integer, RSDError.$GenericError> uploadBlobListNil(List<RSDBlob> data);
 
-	public int uploadBlobListOptNil();
+	public Result<Integer, RSDError.$GenericError> uploadBlobListOptNil();
 
-	public int uploadBlobListOptNil(List<RSDBlob> data);
+	public Result<Integer, RSDError.$GenericError> uploadBlobListOptNil(List<RSDBlob> data);
 
-	public UploadMixedResult.Data uploadMixed(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixed(
 			String text, 
 			int number, 
 			SimpleRecord.Data rec, 
@@ -68,33 +68,33 @@ public interface BinaryTypesService extends BaseService {
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
-	public UploadMixedResult.Data uploadMixedOpt();
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt();
 
-	public UploadMixedResult.Data uploadMixedOpt(String text);
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text);
 
-	public UploadMixedResult.Data uploadMixedOpt(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number);
 
-	public UploadMixedResult.Data uploadMixedOpt(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec);
 
-	public UploadMixedResult.Data uploadMixedOpt(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
 			List<String> textList);
 
-	public UploadMixedResult.Data uploadMixedOpt(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
 			List<String> textList, 
 			List<Integer> numberList);
 
-	public UploadMixedResult.Data uploadMixedOpt(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
@@ -102,7 +102,7 @@ public interface BinaryTypesService extends BaseService {
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList);
 
-	public UploadMixedResult.Data uploadMixedOpt(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
@@ -111,7 +111,7 @@ public interface BinaryTypesService extends BaseService {
 			List<SimpleRecord.Data> recList, 
 			RSDFile dataFile);
 
-	public UploadMixedResult.Data uploadMixedOpt(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
@@ -121,7 +121,7 @@ public interface BinaryTypesService extends BaseService {
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
-	public UploadMixedResult.Data uploadMixedNil(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
@@ -131,33 +131,33 @@ public interface BinaryTypesService extends BaseService {
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
-	public UploadMixedResult.Data uploadMixedOptNil();
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil();
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text);
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text);
 
-	public UploadMixedResult.Data uploadMixedOptNil(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number);
 
-	public UploadMixedResult.Data uploadMixedOptNil(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec);
 
-	public UploadMixedResult.Data uploadMixedOptNil(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
 			List<String> textList);
 
-	public UploadMixedResult.Data uploadMixedOptNil(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
 			List<String> textList, 
 			List<Integer> numberList);
 
-	public UploadMixedResult.Data uploadMixedOptNil(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
@@ -165,7 +165,7 @@ public interface BinaryTypesService extends BaseService {
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList);
 
-	public UploadMixedResult.Data uploadMixedOptNil(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
@@ -174,7 +174,7 @@ public interface BinaryTypesService extends BaseService {
 			List<SimpleRecord.Data> recList, 
 			RSDFile dataFile);
 
-	public UploadMixedResult.Data uploadMixedOptNil(
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
@@ -184,7 +184,7 @@ public interface BinaryTypesService extends BaseService {
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
-	public MixedResult.Data mixed(
+	public Result<MixedResult.Data, RSDError.$GenericError> mixed(
 			String pathString, 
 			int pathNumber, 
 			String headerString, 
@@ -195,16 +195,16 @@ public interface BinaryTypesService extends BaseService {
 			SimpleRecord.Data queryRecord, 
 			RSDBlob dataBlob);
 
-	public String singleBodyAddition(
+	public Result<String, RSDError.$GenericError> singleBodyAddition(
 			String name, 
 			RSDBlob dataBlob);
 
-	public List<Integer> twoBinariesAddition(
+	public Result<List<Integer>, RSDError.$GenericError> twoBinariesAddition(
 			RSDBlob dataBlob, 
 			RSDFile dataFile);
 
-	public RSDFile downloadFile() throws SampleErrorWithValueException;
+	public Result<RSDFile, RSDError.E3> downloadFile();
 
-	public RSDBlob downloadBlob() throws SampleErrorWithValueException;
+	public Result<RSDBlob, RSDError.E3> downloadBlob();
 
 }

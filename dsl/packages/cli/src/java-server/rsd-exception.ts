@@ -1,16 +1,11 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
-import {
-	generateCompilationUnit,
-	JavaClientAPIGeneratorConfig,
-	JavaImportsCollector,
-	toPath,
-} from '../java-gen-utils.js';
+import { generateCompilationUnit, JavaServerGeneratorConfig, JavaImportsCollector, toPath } from '../java-gen-utils.js';
 import { MError } from '../model.js';
 
 export function generateRSDException(
 	errors: readonly MError[],
-	artifactConfig: JavaClientAPIGeneratorConfig,
+	artifactConfig: JavaServerGeneratorConfig,
 	packageName: string,
 ): Artifact[] {
 	const importCollector = new JavaImportsCollector(packageName);

@@ -29,8 +29,9 @@ import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
-import dev.rsdlang.sample.client.RSDException;
-import dev.rsdlang.sample.client.SampleErrorWithValueException;
+import dev.rsdlang.sample.client.Result;
+import dev.rsdlang.sample.client.RSDError;
+import dev.rsdlang.sample.client.SampleErrorWithValue;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class BinaryTypesServiceImpl implements BinaryTypesService {
@@ -59,7 +60,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		return this.client.contentTypeEncoding().contentType;
 	}
 
-	public int uploadFile(RSDFile data) {
+	public Result<Integer, RSDError.$GenericError> uploadFile(RSDFile data) {
 		Objects.requireNonNull(data, "data must not be null");
 
 		var $path = "%s/api/binarytypes/uploadFile".formatted(
@@ -85,28 +86,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFile", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFile", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFile", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFile", e);
-			this.lifecycleHook.onCatch("uploadFile", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFile", e);
+			this.lifecycleHook.onCatch("uploadFile", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFile");
 		}
 	}
 
-	public int uploadFileOpt() {
+	public Result<Integer, RSDError.$GenericError> uploadFileOpt() {
 		var $path = "%s/api/binarytypes/uploadFileOpt".formatted(
 				this.baseURI());
 
@@ -129,28 +127,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileOpt", e);
-			this.lifecycleHook.onCatch("uploadFileOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileOpt", e);
+			this.lifecycleHook.onCatch("uploadFileOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileOpt");
 		}
 	}
 
-	public int uploadFileOpt(RSDFile data) {
+	public Result<Integer, RSDError.$GenericError> uploadFileOpt(RSDFile data) {
 		var $path = "%s/api/binarytypes/uploadFileOpt".formatted(
 				this.baseURI());
 
@@ -176,28 +171,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileOpt", e);
-			this.lifecycleHook.onCatch("uploadFileOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileOpt", e);
+			this.lifecycleHook.onCatch("uploadFileOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileOpt");
 		}
 	}
 
-	public int uploadFileNil(RSDFile data) {
+	public Result<Integer, RSDError.$GenericError> uploadFileNil(RSDFile data) {
 		var $path = "%s/api/binarytypes/uploadFileNil".formatted(
 				this.baseURI());
 
@@ -223,28 +215,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileNil", e);
-			this.lifecycleHook.onCatch("uploadFileNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileNil", e);
+			this.lifecycleHook.onCatch("uploadFileNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileNil");
 		}
 	}
 
-	public int uploadFileOptNil() {
+	public Result<Integer, RSDError.$GenericError> uploadFileOptNil() {
 		var $path = "%s/api/binarytypes/uploadFileOptNil".formatted(
 				this.baseURI());
 
@@ -267,28 +256,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileOptNil", e);
-			this.lifecycleHook.onCatch("uploadFileOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileOptNil", e);
+			this.lifecycleHook.onCatch("uploadFileOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileOptNil");
 		}
 	}
 
-	public int uploadFileOptNil(RSDFile data) {
+	public Result<Integer, RSDError.$GenericError> uploadFileOptNil(RSDFile data) {
 		var $path = "%s/api/binarytypes/uploadFileOptNil".formatted(
 				this.baseURI());
 
@@ -317,28 +303,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileOptNil", e);
-			this.lifecycleHook.onCatch("uploadFileOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileOptNil", e);
+			this.lifecycleHook.onCatch("uploadFileOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileOptNil");
 		}
 	}
 
-	public int uploadBlob(RSDBlob data) {
+	public Result<Integer, RSDError.$GenericError> uploadBlob(RSDBlob data) {
 		Objects.requireNonNull(data, "data must not be null");
 
 		var $path = "%s/api/binarytypes/uploadBlob".formatted(
@@ -364,28 +347,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlob", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlob", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlob", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlob", e);
-			this.lifecycleHook.onCatch("uploadBlob", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlob", e);
+			this.lifecycleHook.onCatch("uploadBlob", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlob");
 		}
 	}
 
-	public int uploadBlobOpt() {
+	public Result<Integer, RSDError.$GenericError> uploadBlobOpt() {
 		var $path = "%s/api/binarytypes/uploadBlobOpt".formatted(
 				this.baseURI());
 
@@ -408,28 +388,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobOpt", e);
-			this.lifecycleHook.onCatch("uploadBlobOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobOpt", e);
+			this.lifecycleHook.onCatch("uploadBlobOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobOpt");
 		}
 	}
 
-	public int uploadBlobOpt(RSDBlob data) {
+	public Result<Integer, RSDError.$GenericError> uploadBlobOpt(RSDBlob data) {
 		var $path = "%s/api/binarytypes/uploadBlobOpt".formatted(
 				this.baseURI());
 
@@ -455,28 +432,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobOpt", e);
-			this.lifecycleHook.onCatch("uploadBlobOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobOpt", e);
+			this.lifecycleHook.onCatch("uploadBlobOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobOpt");
 		}
 	}
 
-	public int uploadBlobNil(RSDBlob data) {
+	public Result<Integer, RSDError.$GenericError> uploadBlobNil(RSDBlob data) {
 		var $path = "%s/api/binarytypes/uploadBlobNil".formatted(
 				this.baseURI());
 
@@ -502,28 +476,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobNil", e);
-			this.lifecycleHook.onCatch("uploadBlobNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobNil", e);
+			this.lifecycleHook.onCatch("uploadBlobNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobNil");
 		}
 	}
 
-	public int uploadBlobOptNil() {
+	public Result<Integer, RSDError.$GenericError> uploadBlobOptNil() {
 		var $path = "%s/api/binarytypes/uploadBlobOptNil".formatted(
 				this.baseURI());
 
@@ -546,28 +517,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobOptNil", e);
-			this.lifecycleHook.onCatch("uploadBlobOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobOptNil", e);
+			this.lifecycleHook.onCatch("uploadBlobOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobOptNil");
 		}
 	}
 
-	public int uploadBlobOptNil(RSDBlob data) {
+	public Result<Integer, RSDError.$GenericError> uploadBlobOptNil(RSDBlob data) {
 		var $path = "%s/api/binarytypes/uploadBlobOptNil".formatted(
 				this.baseURI());
 
@@ -596,28 +564,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 201) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobOptNil", e);
-			this.lifecycleHook.onCatch("uploadBlobOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobOptNil", e);
+			this.lifecycleHook.onCatch("uploadBlobOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobOptNil");
 		}
 	}
 
-	public int uploadFileList(List<RSDFile> data) {
+	public Result<Integer, RSDError.$GenericError> uploadFileList(List<RSDFile> data) {
 		Objects.requireNonNull(data, "data must not be null");
 
 		var $path = "%s/api/binarytypes/uploadFileList".formatted(
@@ -643,28 +608,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileList", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileList", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileList", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileList", e);
-			this.lifecycleHook.onCatch("uploadFileList", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileList", e);
+			this.lifecycleHook.onCatch("uploadFileList", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileList");
 		}
 	}
 
-	public int uploadFileListOpt() {
+	public Result<Integer, RSDError.$GenericError> uploadFileListOpt() {
 		var $path = "%s/api/binarytypes/uploadFileListOpt".formatted(
 				this.baseURI());
 
@@ -687,28 +649,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListOpt", e);
-			this.lifecycleHook.onCatch("uploadFileListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileListOpt", e);
+			this.lifecycleHook.onCatch("uploadFileListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileListOpt");
 		}
 	}
 
-	public int uploadFileListOpt(List<RSDFile> data) {
+	public Result<Integer, RSDError.$GenericError> uploadFileListOpt(List<RSDFile> data) {
 		var $path = "%s/api/binarytypes/uploadFileListOpt".formatted(
 				this.baseURI());
 
@@ -734,28 +693,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListOpt", e);
-			this.lifecycleHook.onCatch("uploadFileListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileListOpt", e);
+			this.lifecycleHook.onCatch("uploadFileListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileListOpt");
 		}
 	}
 
-	public int uploadFileListNil(List<RSDFile> data) {
+	public Result<Integer, RSDError.$GenericError> uploadFileListNil(List<RSDFile> data) {
 		var $path = "%s/api/binarytypes/uploadFileListNil".formatted(
 				this.baseURI());
 
@@ -781,28 +737,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileListNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileListNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileListNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListNil", e);
-			this.lifecycleHook.onCatch("uploadFileListNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileListNil", e);
+			this.lifecycleHook.onCatch("uploadFileListNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileListNil");
 		}
 	}
 
-	public int uploadFileListOptNil() {
+	public Result<Integer, RSDError.$GenericError> uploadFileListOptNil() {
 		var $path = "%s/api/binarytypes/uploadFileListOptNil".formatted(
 				this.baseURI());
 
@@ -825,28 +778,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileListOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileListOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileListOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListOptNil", e);
-			this.lifecycleHook.onCatch("uploadFileListOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileListOptNil", e);
+			this.lifecycleHook.onCatch("uploadFileListOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileListOptNil");
 		}
 	}
 
-	public int uploadFileListOptNil(List<RSDFile> data) {
+	public Result<Integer, RSDError.$GenericError> uploadFileListOptNil(List<RSDFile> data) {
 		var $path = "%s/api/binarytypes/uploadFileListOptNil".formatted(
 				this.baseURI());
 
@@ -875,28 +825,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadFileListOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadFileListOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadFileListOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadFileListOptNil", e);
-			this.lifecycleHook.onCatch("uploadFileListOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileListOptNil", e);
+			this.lifecycleHook.onCatch("uploadFileListOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadFileListOptNil");
 		}
 	}
 
-	public int uploadBlobList(List<RSDBlob> data) {
+	public Result<Integer, RSDError.$GenericError> uploadBlobList(List<RSDBlob> data) {
 		Objects.requireNonNull(data, "data must not be null");
 
 		var $path = "%s/api/binarytypes/uploadBlobList".formatted(
@@ -922,28 +869,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobList", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobList", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobList", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobList", e);
-			this.lifecycleHook.onCatch("uploadBlobList", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobList", e);
+			this.lifecycleHook.onCatch("uploadBlobList", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobList");
 		}
 	}
 
-	public int uploadBlobListOpt() {
+	public Result<Integer, RSDError.$GenericError> uploadBlobListOpt() {
 		var $path = "%s/api/binarytypes/uploadBlobListOpt".formatted(
 				this.baseURI());
 
@@ -966,28 +910,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListOpt", e);
-			this.lifecycleHook.onCatch("uploadBlobListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobListOpt", e);
+			this.lifecycleHook.onCatch("uploadBlobListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobListOpt");
 		}
 	}
 
-	public int uploadBlobListOpt(List<RSDBlob> data) {
+	public Result<Integer, RSDError.$GenericError> uploadBlobListOpt(List<RSDBlob> data) {
 		var $path = "%s/api/binarytypes/uploadBlobListOpt".formatted(
 				this.baseURI());
 
@@ -1013,28 +954,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListOpt", e);
-			this.lifecycleHook.onCatch("uploadBlobListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobListOpt", e);
+			this.lifecycleHook.onCatch("uploadBlobListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobListOpt");
 		}
 	}
 
-	public int uploadBlobListNil(List<RSDBlob> data) {
+	public Result<Integer, RSDError.$GenericError> uploadBlobListNil(List<RSDBlob> data) {
 		var $path = "%s/api/binarytypes/uploadBlobListNil".formatted(
 				this.baseURI());
 
@@ -1060,28 +998,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobListNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobListNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobListNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListNil", e);
-			this.lifecycleHook.onCatch("uploadBlobListNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobListNil", e);
+			this.lifecycleHook.onCatch("uploadBlobListNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobListNil");
 		}
 	}
 
-	public int uploadBlobListOptNil() {
+	public Result<Integer, RSDError.$GenericError> uploadBlobListOptNil() {
 		var $path = "%s/api/binarytypes/uploadBlobListOptNil".formatted(
 				this.baseURI());
 
@@ -1104,28 +1039,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobListOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobListOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobListOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListOptNil", e);
-			this.lifecycleHook.onCatch("uploadBlobListOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobListOptNil", e);
+			this.lifecycleHook.onCatch("uploadBlobListOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobListOptNil");
 		}
 	}
 
-	public int uploadBlobListOptNil(List<RSDBlob> data) {
+	public Result<Integer, RSDError.$GenericError> uploadBlobListOptNil(List<RSDBlob> data) {
 		var $path = "%s/api/binarytypes/uploadBlobListOptNil".formatted(
 				this.baseURI());
 
@@ -1154,28 +1086,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("uploadBlobListOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadBlobListOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadBlobListOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadBlobListOptNil", e);
-			this.lifecycleHook.onCatch("uploadBlobListOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadBlobListOptNil", e);
+			this.lifecycleHook.onCatch("uploadBlobListOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadBlobListOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixed(String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixed(String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		Objects.requireNonNull(text, "text must not be null");
 		Objects.requireNonNull(rec, "rec must not be null");
 		Objects.requireNonNull(textList, "textList must not be null");
@@ -1215,28 +1144,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixed", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixed", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixed", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixed", e);
-			this.lifecycleHook.onCatch("uploadMixed", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixed", e);
+			this.lifecycleHook.onCatch("uploadMixed", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixed");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt() {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt() {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1261,28 +1187,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1310,28 +1233,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1362,28 +1282,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1417,28 +1334,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1475,28 +1389,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1536,28 +1447,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1600,28 +1508,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1667,28 +1572,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1737,28 +1639,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
-			this.lifecycleHook.onCatch("uploadMixedOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOpt");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedNil".formatted(
 				this.baseURI());
 
@@ -1819,28 +1718,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedNil", e);
-			this.lifecycleHook.onCatch("uploadMixedNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedNil", e);
+			this.lifecycleHook.onCatch("uploadMixedNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil() {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil() {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -1865,28 +1761,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -1916,28 +1809,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -1972,28 +1862,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2033,28 +1920,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2099,28 +1983,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2170,28 +2051,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2246,28 +2124,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2328,28 +2203,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public UploadMixedResult.Data uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2416,28 +2288,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
 				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("uploadMixedOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
-			this.lifecycleHook.onCatch("uploadMixedOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("uploadMixedOptNil");
 		}
 	}
 
-	public MixedResult.Data mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
+	public Result<MixedResult.Data, RSDError.$GenericError> mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, String queryString, int queryNumber, SimpleRecord.Data queryRecord, RSDBlob dataBlob) {
 		Objects.requireNonNull(pathString, "pathString must not be null");
 		Objects.requireNonNull(headerString, "headerString must not be null");
 		Objects.requireNonNull(headerRecord, "headerRecord must not be null");
@@ -2485,28 +2354,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, MixedResultDataImpl::of, MixedResult.Data.class);
 				this.lifecycleHook.onSuccess("mixed", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("mixed", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("mixed", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation mixed", e);
-			this.lifecycleHook.onCatch("mixed", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation mixed", e);
+			this.lifecycleHook.onCatch("mixed", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("mixed");
 		}
 	}
 
-	public String singleBodyAddition(String name, RSDBlob dataBlob) {
+	public Result<String, RSDError.$GenericError> singleBodyAddition(String name, RSDBlob dataBlob) {
 		Objects.requireNonNull(name, "name must not be null");
 		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
 
@@ -2536,28 +2402,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("singleBodyAddition", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("singleBodyAddition", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("singleBodyAddition", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation singleBodyAddition", e);
-			this.lifecycleHook.onCatch("singleBodyAddition", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation singleBodyAddition", e);
+			this.lifecycleHook.onCatch("singleBodyAddition", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("singleBodyAddition");
 		}
 	}
 
-	public List<Integer> twoBinariesAddition(RSDBlob dataBlob, RSDFile dataFile) {
+	public Result<List<Integer>, RSDError.$GenericError> twoBinariesAddition(RSDBlob dataBlob, RSDFile dataFile) {
 		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
 		Objects.requireNonNull(dataFile, "dataFile must not be null");
 
@@ -2585,29 +2448,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInts($response);
 				this.lifecycleHook.onSuccess("twoBinariesAddition", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("twoBinariesAddition", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("twoBinariesAddition", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation twoBinariesAddition", e);
-			this.lifecycleHook.onCatch("twoBinariesAddition", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation twoBinariesAddition", e);
+			this.lifecycleHook.onCatch("twoBinariesAddition", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("twoBinariesAddition");
 		}
 	}
 
-	public RSDFile downloadFile()
-			throws SampleErrorWithValueException {
+	public Result<RSDFile, RSDError.E3> downloadFile() {
 		var $path = "%s/api/binarytypes/downloadFile".formatted(
 				this.baseURI());
 
@@ -2624,35 +2483,31 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapFile($response);
 				this.lifecycleHook.onSuccess("downloadFile", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadFile failed");
-				var exception = new SampleErrorWithValueException($message, $errorData);
-				this.lifecycleHook.onError("downloadFile", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorWithValue($message, $errorData);
+				this.lifecycleHook.onError("downloadFile", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("downloadFile", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("downloadFile", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation downloadFile", e);
-			this.lifecycleHook.onCatch("downloadFile", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation downloadFile", e);
+			this.lifecycleHook.onCatch("downloadFile", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("downloadFile");
 		}
 	}
 
-	public RSDBlob downloadBlob()
-			throws SampleErrorWithValueException {
+	public Result<RSDBlob, RSDError.E3> downloadBlob() {
 		var $path = "%s/api/binarytypes/downloadBlob".formatted(
 				this.baseURI());
 
@@ -2669,28 +2524,25 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapBlob($response);
 				this.lifecycleHook.onSuccess("downloadBlob", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadBlob failed");
-				var exception = new SampleErrorWithValueException($message, $errorData);
-				this.lifecycleHook.onError("downloadBlob", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorWithValue($message, $errorData);
+				this.lifecycleHook.onError("downloadBlob", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("downloadBlob", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("downloadBlob", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation downloadBlob", e);
-			this.lifecycleHook.onCatch("downloadBlob", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation downloadBlob", e);
+			this.lifecycleHook.onCatch("downloadBlob", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("downloadBlob");
 		}
