@@ -79,13 +79,6 @@ export function generateService(
 		classBody.append('}', NL);
 
 		classBody.appendNewLine();
-		classBody.append(`private ${fqn('java.net.http.HttpClient')} httpClient() {`, NL);
-		classBody.indent(httpClientBody => {
-			httpClientBody.append('return this.client.httpClient();', NL);
-		});
-		classBody.append('}', NL);
-
-		classBody.appendNewLine();
 		classBody.append(`private String contentType() {`, NL);
 		classBody.indent(httpClientBody => {
 			httpClientBody.append('return this.client.contentTypeEncoding().contentType;', NL);
@@ -381,7 +374,7 @@ function generateOperationMethod(
 			methodBody.append(`var $uri = ${URI}.create($path);`, NL);
 		}
 
-		methodBody.append('try {', NL);
+		methodBody.append('try(var $clientSupplier = this.client.httpClientSupplier()) {', NL);
 		methodBody.indent(tryBlock => {
 			if (o.parameters.find(p => p.variant === 'stream')) {
 				tryBlock.append('var $formDataBuilder = RSDFormDataPublisherBuilder.create();', NL);
@@ -727,7 +720,7 @@ function generateResponseDispatch(
 	fqn: (type: string) => string,
 ) {
 	const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
-	methodBody.append(`var $response = this.httpClient().send($request, ${BodyHandlers}.ofInputStream());`, NL);
+	methodBody.append(`var $response = $clientSupplier.get().send($request, ${BodyHandlers}.ofInputStream());`, NL);
 	if (o.meta?.rest?.results.length) {
 		o.meta.rest.results.forEach((r, idx) => {
 			methodBody.append(`${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${r.statusCode.toFixed(0)}) {`, NL);

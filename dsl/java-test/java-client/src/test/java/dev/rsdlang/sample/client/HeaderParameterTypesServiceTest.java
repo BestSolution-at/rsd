@@ -38,12 +38,6 @@ public class HeaderParameterTypesServiceTest {
 		MSGPACK = baseBuilder.contentTypeEncoding(ContentTypeEncoding.APPLICATION_VND_MSGPACK).build();
 	}
 
-	@AfterAll
-	static void tearDown() {
-		((JDKSpecSamplesClient) JSON).close();
-		((JDKSpecSamplesClient) MSGPACK).close();
-	}
-
 	static HeaderParameterTypesService[] serviceProvider() {
 		return new HeaderParameterTypesService[] {
 				JSON.service(HeaderParameterTypesService.class),
