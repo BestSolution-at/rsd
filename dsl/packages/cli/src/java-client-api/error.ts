@@ -41,8 +41,8 @@ function generateSource(
 ): CompositeGeneratorNode {
 	const combinations = [...computeServiceErrorCombination(services).values()]
 		.filter(c => c.errorNames.includes(t.name))
-		.map(c => `RSDError.${c.interfaceName}`)
-		.join(', ');
+		.map(c => `RSDError.${c.interfaceName}`);
+	combinations.unshift('RSDError');
 
 	if (t.resolvedContentType) {
 		const type = toAPIType(
@@ -52,7 +52,7 @@ function generateSource(
 			fqn,
 		);
 		return toNodeTree(`
-public record ${t.name}(String message, ${type} data) implements RSDError, ${combinations} {
+public record ${t.name}(String message, ${type} data) implements ${combinations.join(', ')} {
 	@Override
 	public Type type() {
 		return Type.${t.name};
@@ -61,7 +61,7 @@ public record ${t.name}(String message, ${type} data) implements RSDError, ${com
 `);
 	} else {
 		return toNodeTree(`
-public record ${t.name}(String message) implements RSDError, ${combinations} {
+public record ${t.name}(String message) implements ${combinations.join(', ')} {
 	@Override
 	public Type type() {
 		return Type.${t.name};
