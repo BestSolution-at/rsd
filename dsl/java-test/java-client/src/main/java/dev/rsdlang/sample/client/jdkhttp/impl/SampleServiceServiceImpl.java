@@ -74,6 +74,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getBoolean", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getBoolean", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -109,6 +110,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getShort", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getShort", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -144,6 +146,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getInt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getInt", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -179,6 +182,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getLong", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getLong", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -214,6 +218,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getFloat", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getFloat", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -249,6 +254,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getDouble", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getDouble", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -284,6 +290,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getString", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getString", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -319,6 +326,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getLocalDate", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getLocalDate", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -354,6 +362,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getLocalDateTime", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getLocalDateTime", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -389,6 +398,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getLocalTime", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getLocalTime", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -424,6 +434,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getOffsetDateTime", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getOffsetDateTime", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -459,6 +470,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getZonedDateTime", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getZonedDateTime", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -494,6 +506,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getScalar", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getScalar", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -529,6 +542,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getEnum", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getEnum", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -563,6 +577,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("voidOperation", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("voidOperation", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -596,11 +611,15 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				this.lifecycleHook.onSuccess("errorOperation", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("errorOperation", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleError")) {
+					var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
+					this.lifecycleHook.onError("errorOperation", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("errorOperation", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -634,15 +653,22 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				this.lifecycleHook.onSuccess("multiErrorOperation", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("multiErrorOperation", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
-			} else if ($response.statusCode() == 401) {
-				var $error = new SampleError2(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("multiErrorOperation", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleError")) {
+					var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
+					this.lifecycleHook.onError("multiErrorOperation", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+			if ($response.statusCode() == 401) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleError2")) {
+					var $error = new SampleError2(JDKHttpClientResponseUtils.toString($response));
+					this.lifecycleHook.onError("multiErrorOperation", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("multiErrorOperation", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -681,6 +707,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				this.lifecycleHook.onSuccess("getSimpleRecord", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getSimpleRecord", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -718,11 +745,15 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("getSimpleRecordWithError", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
-			} else if ($response.statusCode() == 400) {
-				var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("getSimpleRecordWithError", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleError")) {
+					var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
+					this.lifecycleHook.onError("getSimpleRecordWithError", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getSimpleRecordWithError", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -756,13 +787,17 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorWithValue", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorWithValue failed");
-				var $error = new SampleErrorWithValue($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorWithValue", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorWithValue")) {
+					var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorWithValue failed");
+					var $error = new SampleErrorWithValue($message, $errorData);
+					this.lifecycleHook.onError("getSimpleErrorWithValue", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getSimpleErrorWithValue", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -796,13 +831,17 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorInt", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapInt($response);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorInt failed");
-				var $error = new SampleErrorInt($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorInt", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorInt")) {
+					var $errorData = JDKHttpClientResponseUtils.mapInt($response);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorInt failed");
+					var $error = new SampleErrorInt($message, $errorData);
+					this.lifecycleHook.onError("getSimpleErrorInt", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getSimpleErrorInt", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -836,13 +875,17 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorBoolean", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapBoolean($response);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorBoolean failed");
-				var $error = new SampleErrorBoolean($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorBoolean", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorBoolean")) {
+					var $errorData = JDKHttpClientResponseUtils.mapBoolean($response);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorBoolean failed");
+					var $error = new SampleErrorBoolean($message, $errorData);
+					this.lifecycleHook.onError("getSimpleErrorBoolean", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getSimpleErrorBoolean", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -876,13 +919,17 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorEnum", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorEnum failed");
-				var $error = new SampleErrorEnum($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorEnum", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorEnum")) {
+					var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorEnum failed");
+					var $error = new SampleErrorEnum($message, $errorData);
+					this.lifecycleHook.onError("getSimpleErrorEnum", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getSimpleErrorEnum", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -916,13 +963,17 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorScalar", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorScalar failed");
-				var $error = new SampleErrorScalar($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorScalar", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorScalar")) {
+					var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorScalar failed");
+					var $error = new SampleErrorScalar($message, $errorData);
+					this.lifecycleHook.onError("getSimpleErrorScalar", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getSimpleErrorScalar", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -956,13 +1007,17 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorUnion", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapObject($response, UnionDataImpl::of, Union.Data.class);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorUnion failed");
-				var $error = new SampleErrorUnion($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorUnion", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorUnion")) {
+					var $errorData = JDKHttpClientResponseUtils.mapObject($response, UnionDataImpl::of, Union.Data.class);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorUnion failed");
+					var $error = new SampleErrorUnion($message, $errorData);
+					this.lifecycleHook.onError("getSimpleErrorUnion", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("getSimpleErrorUnion", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -976,6 +1031,67 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleErrorUnion");
+		}
+	}
+
+	public Result<Void, RSDError.E9> multiErrorSameCode(int errorType) {
+		var $path = "%s/api/samplerecords/multi-error".formatted(
+				this.baseURI());
+
+		var $queryParams = new BaseUtils.URLSearchParams();
+		$queryParams.append("errorType", errorType);
+
+		var $uri = URI.create($path + $queryParams.toQueryString());
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			this.lifecycleHook.preRequest("multiErrorSameCode", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 204) {
+				this.lifecycleHook.onSuccess("multiErrorSameCode", null, this.client.createResponseAdaptable($response));
+				return Result.ok(null);
+			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleError")) {
+					var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
+					this.lifecycleHook.onError("multiErrorSameCode", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleError2")) {
+					var $error = new SampleError2(JDKHttpClientResponseUtils.toString($response));
+					this.lifecycleHook.onError("multiErrorSameCode", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorWithValue")) {
+					var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of multiErrorSameCode failed");
+					var $error = new SampleErrorWithValue($message, $errorData);
+					this.lifecycleHook.onError("multiErrorSameCode", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiErrorSameCode", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiErrorSameCode", e);
+			this.lifecycleHook.onCatch("multiErrorSameCode", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("multiErrorSameCode");
 		}
 	}
 }

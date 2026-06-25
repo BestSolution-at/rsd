@@ -672,6 +672,42 @@
         }
       }
     },
+    "/api/samplerecords/multi-error": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_multiErrorSameCode",
+        "parameters": [
+          {
+            "name": "errorType",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/listsamplerecords/boolean": {
       "get": {
         "tags": [

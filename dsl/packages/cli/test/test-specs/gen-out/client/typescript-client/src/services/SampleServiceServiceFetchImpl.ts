@@ -2,7 +2,7 @@
 import { decodeResponse, encodingType, safeExecute, type ServiceProps } from './_fetch-type-utils.js';
 import { api } from '../index.js';
 import { isBoolean, isNumber, isNumeric, isString } from '../_type-utils.js';
-import { isRSDBoolean, isRSDInt, RSDBooleanFromJSON, RSDDoubleFromJSON, RSDFloatFromJSON, RSDIntFromJSON, RSDLocalDateFromJSON, RSDLocalDateTimeFromJSON, RSDLocalTimeFromJSON, RSDLongFromJSON, RSDOffsetDateTimeFromJSON, RSDShortFromJSON, type RSDString, RSDStringFromJSON, RSDZonedDateTimeFromJSON } from '../model/_Builtins.js';
+import { isRSDBoolean, isRSDInt, RSDBooleanFromJSON, RSDDoubleFromJSON, RSDFloatFromJSON, type RSDInt, RSDIntFromJSON, RSDLocalDateFromJSON, RSDLocalDateTimeFromJSON, RSDLocalTimeFromJSON, RSDLongFromJSON, RSDOffsetDateTimeFromJSON, RSDShortFromJSON, type RSDString, RSDStringFromJSON, RSDZonedDateTimeFromJSON } from '../model/_Builtins.js';
 
 export function createSampleServiceService(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService {
 	return {
@@ -31,6 +31,7 @@ export function createSampleServiceService(props: ServiceProps<api.service.Error
 		getSimpleErrorEnum: fnGetSimpleErrorEnum(props),
 		getSimpleErrorScalar: fnGetSimpleErrorScalar(props),
 		getSimpleErrorUnion: fnGetSimpleErrorUnion(props),
+		multiErrorSameCode: fnMultiErrorSameCode(props),
 	};
 }
 function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['getBoolean'] {
@@ -880,6 +881,58 @@ function fnGetSimpleErrorUnion(props: ServiceProps<api.service.ErrorType>): api.
 			return api.result.ERR(err);
 		} finally {
 			final?.('getSimpleErrorUnion');
+		}
+	};
+}
+
+function fnMultiErrorSameCode(props: ServiceProps<api.service.ErrorType>): api.service.SampleServiceService['multiErrorSameCode'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onError, onCatch, final } = lifecycleHandlers;
+	return async (errorType: RSDInt) => {
+		try {
+			const $init = (await preFetch?.('multiErrorSameCode')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props));
+			$headers.append('Content-Type', encodingType(props));
+			$init.headers = $headers;
+
+			const $param = new URLSearchParams();
+			$param.append('errorType', String(errorType));
+			const $path = `${baseUrl}/api/samplerecords/multi-error?${$param.toString()}`;
+			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
+
+			if ($response.status === 204) {
+				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('multiErrorSameCode', api.result.Void));
+			} else if ($response.status === 400) {
+				const err = {
+					_type: 'SampleError',
+					message: await $response.text(),
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
+			} else if ($response.status === 400) {
+				const err = {
+					_type: 'SampleError2',
+					message: await $response.text(),
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
+			} else if ($response.status === 400) {
+				const $data = await decodeResponse($response, api.utils.isRecord);
+				const $result = api.model.ErrorDataFromJSON($data);
+				const err = {
+					_type: 'SampleErrorWithValue',
+					data: $result,
+				} as const;
+				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			return api.result.ERR(err);
+		} catch (e) {
+			onCatch?.('multiErrorSameCode', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			return api.result.ERR(err);
+		} finally {
+			final?.('multiErrorSameCode');
 		}
 	};
 }

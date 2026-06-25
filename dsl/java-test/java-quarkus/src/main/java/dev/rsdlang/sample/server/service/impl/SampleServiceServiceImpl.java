@@ -50,8 +50,9 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	private final GetSimpleErrorEnumHandler getSimpleErrorEnumHandler;
 	private final GetSimpleErrorScalarHandler getSimpleErrorScalarHandler;
 	private final GetSimpleErrorUnionHandler getSimpleErrorUnionHandler;
+	private final MultiErrorSameCodeHandler multiErrorSameCodeHandler;
 
-	public SampleServiceServiceImpl(GetBooleanHandler getBooleanHandler, GetShortHandler getShortHandler, GetIntHandler getIntHandler, GetLongHandler getLongHandler, GetFloatHandler getFloatHandler, GetDoubleHandler getDoubleHandler, GetStringHandler getStringHandler, GetLocalDateHandler getLocalDateHandler, GetLocalDateTimeHandler getLocalDateTimeHandler, GetLocalTimeHandler getLocalTimeHandler, GetOffsetDateTimeHandler getOffsetDateTimeHandler, GetZonedDateTimeHandler getZonedDateTimeHandler, GetScalarHandler getScalarHandler, GetEnumHandler getEnumHandler, VoidOperationHandler voidOperationHandler, ErrorOperationHandler errorOperationHandler, MultiErrorOperationHandler multiErrorOperationHandler, GetSimpleRecordHandler getSimpleRecordHandler, GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler, GetSimpleErrorWithValueHandler getSimpleErrorWithValueHandler, GetSimpleErrorIntHandler getSimpleErrorIntHandler, GetSimpleErrorBooleanHandler getSimpleErrorBooleanHandler, GetSimpleErrorEnumHandler getSimpleErrorEnumHandler, GetSimpleErrorScalarHandler getSimpleErrorScalarHandler, GetSimpleErrorUnionHandler getSimpleErrorUnionHandler) {
+	public SampleServiceServiceImpl(GetBooleanHandler getBooleanHandler, GetShortHandler getShortHandler, GetIntHandler getIntHandler, GetLongHandler getLongHandler, GetFloatHandler getFloatHandler, GetDoubleHandler getDoubleHandler, GetStringHandler getStringHandler, GetLocalDateHandler getLocalDateHandler, GetLocalDateTimeHandler getLocalDateTimeHandler, GetLocalTimeHandler getLocalTimeHandler, GetOffsetDateTimeHandler getOffsetDateTimeHandler, GetZonedDateTimeHandler getZonedDateTimeHandler, GetScalarHandler getScalarHandler, GetEnumHandler getEnumHandler, VoidOperationHandler voidOperationHandler, ErrorOperationHandler errorOperationHandler, MultiErrorOperationHandler multiErrorOperationHandler, GetSimpleRecordHandler getSimpleRecordHandler, GetSimpleRecordWithErrorHandler getSimpleRecordWithErrorHandler, GetSimpleErrorWithValueHandler getSimpleErrorWithValueHandler, GetSimpleErrorIntHandler getSimpleErrorIntHandler, GetSimpleErrorBooleanHandler getSimpleErrorBooleanHandler, GetSimpleErrorEnumHandler getSimpleErrorEnumHandler, GetSimpleErrorScalarHandler getSimpleErrorScalarHandler, GetSimpleErrorUnionHandler getSimpleErrorUnionHandler, MultiErrorSameCodeHandler multiErrorSameCodeHandler) {
 		this.getBooleanHandler = getBooleanHandler;
 		this.getShortHandler = getShortHandler;
 		this.getIntHandler = getIntHandler;
@@ -77,6 +78,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		this.getSimpleErrorEnumHandler = getSimpleErrorEnumHandler;
 		this.getSimpleErrorScalarHandler = getSimpleErrorScalarHandler;
 		this.getSimpleErrorUnionHandler = getSimpleErrorUnionHandler;
+		this.multiErrorSameCodeHandler = multiErrorSameCodeHandler;
 	}
 
 	@Override
@@ -214,6 +216,14 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		getSimpleErrorUnionHandler.getSimpleErrorUnion(_factory);
 	}
 
+	@Override
+	public void multiErrorSameCode(BuilderFactory _factory, int errorType)
+			throws SampleErrorException,
+			SampleError2Exception,
+			SampleErrorWithValueException {
+		multiErrorSameCodeHandler.multiErrorSameCode(_factory, errorType);
+	}
+
 	public interface GetBooleanHandler {
 		public boolean getBoolean(BuilderFactory _factory);
 	}
@@ -322,6 +332,13 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 	public interface GetSimpleErrorUnionHandler {
 		public void getSimpleErrorUnion(BuilderFactory _factory)
 				throws SampleErrorUnionException;
+	}
+
+	public interface MultiErrorSameCodeHandler {
+		public void multiErrorSameCode(BuilderFactory _factory, int errorType)
+				throws SampleErrorException,
+				SampleError2Exception,
+				SampleErrorWithValueException;
 	}
 
 }

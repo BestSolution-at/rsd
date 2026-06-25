@@ -13,6 +13,7 @@ import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.service.SampleError2Exception;
 import dev.rsdlang.sample.server.service.SampleErrorBooleanException;
@@ -275,6 +276,24 @@ public class SampleServiceResource {
 			service.getSimpleErrorUnion(builderFactory);
 			return responseBuilder.getSimpleErrorUnion().build();
 		} catch (SampleErrorUnionException e) {
+			return _RestUtils.toResponse(400, e);
+		}
+	}
+
+	@GET
+	@Path("multi-error")
+	public Response multiErrorSameCode(
+			@HeaderParam("Accept") List<String> $acceptHeaders,
+			@QueryParam("errorType") String _errorType) {
+		var errorType = _RestUtils.parseInt(_errorType);
+		try {
+			service.multiErrorSameCode(builderFactory, errorType);
+			return responseBuilder.multiErrorSameCode(errorType).build();
+		} catch (SampleErrorException e) {
+			return _RestUtils.toResponse(400, e);
+		} catch (SampleError2Exception e) {
+			return _RestUtils.toResponse(400, e);
+		} catch (SampleErrorWithValueException e) {
 			return _RestUtils.toResponse(400, e);
 		}
 	}

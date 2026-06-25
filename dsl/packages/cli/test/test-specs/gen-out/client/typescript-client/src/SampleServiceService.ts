@@ -32,4 +32,5 @@ export interface SampleServiceService {
 	getSimpleErrorEnum(): Promise<Result<VoidType, SampleErrorEnumError | StatusRSDError | NativeRSDError>>;
 	getSimpleErrorScalar(): Promise<Result<VoidType, SampleErrorScalarError | StatusRSDError | NativeRSDError>>;
 	getSimpleErrorUnion(): Promise<Result<VoidType, SampleErrorUnionError | StatusRSDError | NativeRSDError>>;
+	multiErrorSameCode(errorType: RSDInt): Promise<Result<VoidType, SampleErrorError | SampleError2Error | SampleErrorWithValueError | StatusRSDError | NativeRSDError>>;
 }
