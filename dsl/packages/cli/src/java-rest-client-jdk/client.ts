@@ -134,7 +134,7 @@ export function generateClient(
 					return this;
 				}
 
-				public SpecSamplesClient build() {
+				public ${toCamelCaseIdentifier(generatorConfig.name)}Client build() {
 					if (baseURI == null) {
 						throw new IllegalStateException("baseURI must be set");
 					}
