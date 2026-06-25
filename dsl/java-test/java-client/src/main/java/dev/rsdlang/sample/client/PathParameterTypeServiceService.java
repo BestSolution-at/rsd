@@ -11,35 +11,35 @@ import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.ZoneId;
 
 public interface PathParameterTypeServiceService extends BaseService {
-	public boolean simpleBooleanPathParam(boolean pathBoolean);
+	public Result<Boolean, RSDError.$GenericError> simpleBooleanPathParam(boolean pathBoolean);
 
-	public short simpleShortPathParam(short pathShort);
+	public Result<Short, RSDError.$GenericError> simpleShortPathParam(short pathShort);
 
-	public int simpleIntPathParam(int pathInt);
+	public Result<Integer, RSDError.$GenericError> simpleIntPathParam(int pathInt);
 
-	public long simpleLongPathParam(long pathLong);
+	public Result<Long, RSDError.$GenericError> simpleLongPathParam(long pathLong);
 
-	public float simpleFloatPathParam(float pathFloat);
+	public Result<Float, RSDError.$GenericError> simpleFloatPathParam(float pathFloat);
 
-	public double simpleDoublePathParam(double pathDouble);
+	public Result<Double, RSDError.$GenericError> simpleDoublePathParam(double pathDouble);
 
-	public String simpleStringPathParam(String pathString);
+	public Result<String, RSDError.$GenericError> simpleStringPathParam(String pathString);
 
-	public LocalDate simpleLocalDatePathParam(LocalDate pathLocalDate);
+	public Result<LocalDate, RSDError.$GenericError> simpleLocalDatePathParam(LocalDate pathLocalDate);
 
-	public LocalDateTime simpleLocalDateTimePathParam(LocalDateTime pathLocalDateTime);
+	public Result<LocalDateTime, RSDError.$GenericError> simpleLocalDateTimePathParam(LocalDateTime pathLocalDateTime);
 
-	public LocalTime simpleLocalTimePathParam(LocalTime pathLocalTime);
+	public Result<LocalTime, RSDError.$GenericError> simpleLocalTimePathParam(LocalTime pathLocalTime);
 
-	public OffsetDateTime simpleOffsetDateTimePathParam(OffsetDateTime pathOffsetDateTime);
+	public Result<OffsetDateTime, RSDError.$GenericError> simpleOffsetDateTimePathParam(OffsetDateTime pathOffsetDateTime);
 
-	public ZonedDateTime simpleZonedDateTimePathParam(ZonedDateTime pathZonedDateTime);
+	public Result<ZonedDateTime, RSDError.$GenericError> simpleZonedDateTimePathParam(ZonedDateTime pathZonedDateTime);
 
-	public ZoneId simpleScalarPathParam(ZoneId pathScalar);
+	public Result<ZoneId, RSDError.$GenericError> simpleScalarPathParam(ZoneId pathScalar);
 
-	public SampleEnum simpleEnumPathParam(SampleEnum pathEnum);
+	public Result<SampleEnum, RSDError.$GenericError> simpleEnumPathParam(SampleEnum pathEnum);
 
-	public String multiPathParam(
+	public Result<String, RSDError.$GenericError> multiPathParam(
 			String valueA, 
 			int valueB);
 

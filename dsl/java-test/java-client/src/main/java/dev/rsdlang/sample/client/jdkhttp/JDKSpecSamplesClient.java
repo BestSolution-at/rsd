@@ -141,7 +141,7 @@ import dev.rsdlang.sample.client.model.UnionB;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
 import dev.rsdlang.sample.client.PathParameterTypeServiceService;
 import dev.rsdlang.sample.client.QueryParameterTypesService;
-import dev.rsdlang.sample.client.RSDException;
+import dev.rsdlang.sample.client.RSDError;
 import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.ScalarSubstition_ServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
@@ -254,12 +254,12 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		}
 
 		@Override
-		public void onError(String method, RSDException error, Adaptable responseAdapter) {
+		public void onError(String method, RSDError error, Adaptable responseAdapter) {
 			// no-op
 		}
 
 		@Override
-		public void onCatch(String method, RSDException error) {
+		public void onCatch(String method, RSDError error) {
 			// no-op
 		}
 

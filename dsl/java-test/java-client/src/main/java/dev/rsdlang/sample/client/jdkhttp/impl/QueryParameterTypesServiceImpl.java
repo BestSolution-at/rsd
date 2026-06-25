@@ -18,7 +18,8 @@ import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.ZoneId;
 import dev.rsdlang.sample.client.QueryParameterTypesService;
-import dev.rsdlang.sample.client.RSDException;
+import dev.rsdlang.sample.client.Result;
+import dev.rsdlang.sample.client.RSDError;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class QueryParameterTypesServiceImpl implements QueryParameterTypesService {
@@ -43,7 +44,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		return this.client.contentTypeEncoding().contentType;
 	}
 
-	public boolean simpleBooleanQueryParam(boolean queryValue) {
+	public Result<Boolean, RSDError.$GenericError> simpleBooleanQueryParam(boolean queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParam".formatted(
 				this.baseURI());
 
@@ -63,28 +64,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapBoolean($response);
 				this.lifecycleHook.onSuccess("simpleBooleanQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParam", e);
-			this.lifecycleHook.onCatch("simpleBooleanQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParam", e);
+			this.lifecycleHook.onCatch("simpleBooleanQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanQueryParam");
 		}
 	}
 
-	public NilResult simpleBooleanQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -101,28 +99,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleBooleanQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleBooleanQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleBooleanQueryParamOpt(Boolean queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanQueryParamOpt(Boolean queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleBooleanQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -144,28 +139,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleBooleanQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleBooleanQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanQueryParamOpt");
 		}
 	}
 
-	public short simpleShortQueryParam(short queryValue) {
+	public Result<Short, RSDError.$GenericError> simpleShortQueryParam(short queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParam".formatted(
 				this.baseURI());
 
@@ -185,28 +177,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapShort($response);
 				this.lifecycleHook.onSuccess("simpleShortQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortQueryParam", e);
-			this.lifecycleHook.onCatch("simpleShortQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortQueryParam", e);
+			this.lifecycleHook.onCatch("simpleShortQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortQueryParam");
 		}
 	}
 
-	public NilResult simpleShortQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleShortQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -223,28 +212,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleShortQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleShortQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleShortQueryParamOpt(Short queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleShortQueryParamOpt(Short queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleShortQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -266,28 +252,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleShortQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleShortQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortQueryParamOpt");
 		}
 	}
 
-	public int simpleIntQueryParam(int queryValue) {
+	public Result<Integer, RSDError.$GenericError> simpleIntQueryParam(int queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParam".formatted(
 				this.baseURI());
 
@@ -307,28 +290,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("simpleIntQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntQueryParam", e);
-			this.lifecycleHook.onCatch("simpleIntQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntQueryParam", e);
+			this.lifecycleHook.onCatch("simpleIntQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntQueryParam");
 		}
 	}
 
-	public NilResult simpleIntQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleIntQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -345,28 +325,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleIntQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleIntQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleIntQueryParamOpt(Integer queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleIntQueryParamOpt(Integer queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleIntQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -388,28 +365,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleIntQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleIntQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntQueryParamOpt");
 		}
 	}
 
-	public long simpleLongQueryParam(long queryValue) {
+	public Result<Long, RSDError.$GenericError> simpleLongQueryParam(long queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParam".formatted(
 				this.baseURI());
 
@@ -429,28 +403,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLong($response);
 				this.lifecycleHook.onSuccess("simpleLongQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongQueryParam", e);
-			this.lifecycleHook.onCatch("simpleLongQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongQueryParam", e);
+			this.lifecycleHook.onCatch("simpleLongQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongQueryParam");
 		}
 	}
 
-	public NilResult simpleLongQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLongQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -467,28 +438,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLongQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLongQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleLongQueryParamOpt(Long queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLongQueryParamOpt(Long queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLongQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -510,28 +478,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLongQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLongQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongQueryParamOpt");
 		}
 	}
 
-	public float simpleFloatQueryParam(float queryValue) {
+	public Result<Float, RSDError.$GenericError> simpleFloatQueryParam(float queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParam".formatted(
 				this.baseURI());
 
@@ -551,28 +516,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapFloat($response);
 				this.lifecycleHook.onSuccess("simpleFloatQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatQueryParam", e);
-			this.lifecycleHook.onCatch("simpleFloatQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatQueryParam", e);
+			this.lifecycleHook.onCatch("simpleFloatQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatQueryParam");
 		}
 	}
 
-	public NilResult simpleFloatQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -589,28 +551,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleFloatQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleFloatQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleFloatQueryParamOpt(Float queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatQueryParamOpt(Float queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleFloatQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -632,28 +591,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleFloatQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleFloatQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatQueryParamOpt");
 		}
 	}
 
-	public double simpleDoubleQueryParam(double queryValue) {
+	public Result<Double, RSDError.$GenericError> simpleDoubleQueryParam(double queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParam".formatted(
 				this.baseURI());
 
@@ -673,28 +629,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapDouble($response);
 				this.lifecycleHook.onSuccess("simpleDoubleQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParam", e);
-			this.lifecycleHook.onCatch("simpleDoubleQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParam", e);
+			this.lifecycleHook.onCatch("simpleDoubleQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleQueryParam");
 		}
 	}
 
-	public NilResult simpleDoubleQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -711,28 +664,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleDoubleQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleDoubleQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleDoubleQueryParamOpt(Double queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleQueryParamOpt(Double queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleDoubleQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -754,28 +704,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleDoubleQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleDoubleQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleQueryParamOpt");
 		}
 	}
 
-	public String simpleStringQueryParam(String queryValue) {
+	public Result<String, RSDError.$GenericError> simpleStringQueryParam(String queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParam".formatted(
@@ -797,28 +744,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("simpleStringQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringQueryParam", e);
-			this.lifecycleHook.onCatch("simpleStringQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringQueryParam", e);
+			this.lifecycleHook.onCatch("simpleStringQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringQueryParam");
 		}
 	}
 
-	public NilResult simpleStringQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleStringQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -835,28 +779,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleStringQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleStringQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleStringQueryParamOpt(String queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleStringQueryParamOpt(String queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleStringQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -878,28 +819,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleStringQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleStringQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringQueryParamOpt");
 		}
 	}
 
-	public LocalDate simpleLocalDateQueryParam(LocalDate queryValue) {
+	public Result<LocalDate, RSDError.$GenericError> simpleLocalDateQueryParam(LocalDate queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParam".formatted(
@@ -921,28 +859,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDate($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParam", e);
-			this.lifecycleHook.onCatch("simpleLocalDateQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParam", e);
+			this.lifecycleHook.onCatch("simpleLocalDateQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateQueryParam");
 		}
 	}
 
-	public NilResult simpleLocalDateQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -959,28 +894,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateQueryParamOpt(LocalDate queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateQueryParamOpt(LocalDate queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLocalDateQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1002,28 +934,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateQueryParamOpt");
 		}
 	}
 
-	public LocalDateTime simpleLocalDateTimeQueryParam(LocalDateTime queryValue) {
+	public Result<LocalDateTime, RSDError.$GenericError> simpleLocalDateTimeQueryParam(LocalDateTime queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParam".formatted(
@@ -1045,28 +974,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDateTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParam", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParam", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeQueryParam");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1083,28 +1009,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeQueryParamOpt(LocalDateTime queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeQueryParamOpt(LocalDateTime queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLocalDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1126,28 +1049,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeQueryParamOpt");
 		}
 	}
 
-	public LocalTime simpleLocalTimeQueryParam(LocalTime queryValue) {
+	public Result<LocalTime, RSDError.$GenericError> simpleLocalTimeQueryParam(LocalTime queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleLocalTimeQueryParam".formatted(
@@ -1169,28 +1089,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalTimeQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParam", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParam", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeQueryParam");
 		}
 	}
 
-	public NilResult simpleLocalTimeQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleLocalTimeQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1207,28 +1124,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalTimeQueryParamOpt(LocalTime queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeQueryParamOpt(LocalTime queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleLocalTimeQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1250,28 +1164,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeQueryParamOpt");
 		}
 	}
 
-	public OffsetDateTime simpleOffsetDateTimeQueryParam(OffsetDateTime queryValue) {
+	public Result<OffsetDateTime, RSDError.$GenericError> simpleOffsetDateTimeQueryParam(OffsetDateTime queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleOffsetDateTimeQueryParam".formatted(
@@ -1293,28 +1204,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTime($response);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParam", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParam", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeQueryParam");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1331,28 +1239,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeQueryParamOpt(OffsetDateTime queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeQueryParamOpt(OffsetDateTime queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleOffsetDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1374,28 +1279,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeQueryParamOpt");
 		}
 	}
 
-	public ZonedDateTime simpleZonedDateTimeQueryParam(ZonedDateTime queryValue) {
+	public Result<ZonedDateTime, RSDError.$GenericError> simpleZonedDateTimeQueryParam(ZonedDateTime queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParam".formatted(
@@ -1417,28 +1319,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapZonedDateTime($response);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParam", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParam", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeQueryParam");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1455,28 +1354,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeQueryParamOpt(ZonedDateTime queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeQueryParamOpt(ZonedDateTime queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleZonedDateTimeQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1498,28 +1394,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeQueryParamOpt");
 		}
 	}
 
-	public ZoneId simpleScalarQueryParam(ZoneId queryValue) {
+	public Result<ZoneId, RSDError.$GenericError> simpleScalarQueryParam(ZoneId queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParam".formatted(
@@ -1541,28 +1434,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("simpleScalarQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarQueryParam", e);
-			this.lifecycleHook.onCatch("simpleScalarQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarQueryParam", e);
+			this.lifecycleHook.onCatch("simpleScalarQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarQueryParam");
 		}
 	}
 
-	public NilResult simpleScalarQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1579,28 +1469,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleScalarQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleScalarQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleScalarQueryParamOpt(ZoneId queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarQueryParamOpt(ZoneId queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleScalarQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1622,28 +1509,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleScalarQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleScalarQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarQueryParamOpt");
 		}
 	}
 
-	public SampleEnum simpleEnumQueryParam(SampleEnum queryValue) {
+	public Result<SampleEnum, RSDError.$GenericError> simpleEnumQueryParam(SampleEnum queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParam".formatted(
@@ -1665,28 +1549,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumQueryParam", e);
-			this.lifecycleHook.onCatch("simpleEnumQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumQueryParam", e);
+			this.lifecycleHook.onCatch("simpleEnumQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumQueryParam");
 		}
 	}
 
-	public NilResult simpleEnumQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1703,28 +1584,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleEnumQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleEnumQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumQueryParamOpt");
 		}
 	}
 
-	public NilResult simpleEnumQueryParamOpt(SampleEnum queryValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumQueryParamOpt(SampleEnum queryValue) {
 		var $path = "%s/api/queryparametertypes/simpleEnumQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1746,28 +1624,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumQueryParamOpt", e);
-			this.lifecycleHook.onCatch("simpleEnumQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumQueryParamOpt", e);
+			this.lifecycleHook.onCatch("simpleEnumQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumQueryParamOpt");
 		}
 	}
 
-	public String multiQueryParam(String valueA, int valueB) {
+	public Result<String, RSDError.$GenericError> multiQueryParam(String valueA, int valueB) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 
 		var $path = "%s/api/queryparametertypes/multiQueryParam".formatted(
@@ -1790,28 +1665,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiQueryParam", e);
-			this.lifecycleHook.onCatch("multiQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiQueryParam", e);
+			this.lifecycleHook.onCatch("multiQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiQueryParam");
 		}
 	}
 
-	public String multiQueryParamOpt() {
+	public Result<String, RSDError.$GenericError> multiQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1828,28 +1700,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
-			this.lifecycleHook.onCatch("multiQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
+			this.lifecycleHook.onCatch("multiQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiQueryParamOpt");
 		}
 	}
 
-	public String multiQueryParamOpt(String valueA) {
+	public Result<String, RSDError.$GenericError> multiQueryParamOpt(String valueA) {
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1871,28 +1740,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
-			this.lifecycleHook.onCatch("multiQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
+			this.lifecycleHook.onCatch("multiQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiQueryParamOpt");
 		}
 	}
 
-	public String multiQueryParamOpt(String valueA, Integer valueB) {
+	public Result<String, RSDError.$GenericError> multiQueryParamOpt(String valueA, Integer valueB) {
 		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1917,28 +1783,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
-			this.lifecycleHook.onCatch("multiQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
+			this.lifecycleHook.onCatch("multiQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiQueryParamOpt");
 		}
 	}
 
-	public SimpleRecord.Data recordQueryParam(SimpleRecord.Data queryValue) {
+	public Result<SimpleRecord.Data, RSDError.$GenericError> recordQueryParam(SimpleRecord.Data queryValue) {
 		Objects.requireNonNull(queryValue, "queryValue must not be null");
 
 		var $path = "%s/api/queryparametertypes/recordQueryParam".formatted(
@@ -1961,28 +1824,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("recordQueryParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordQueryParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordQueryParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordQueryParam", e);
-			this.lifecycleHook.onCatch("recordQueryParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordQueryParam", e);
+			this.lifecycleHook.onCatch("recordQueryParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordQueryParam");
 		}
 	}
 
-	public NilResult recordQueryParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> recordQueryParamOpt() {
 		var $path = "%s/api/queryparametertypes/recordQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -1999,28 +1859,25 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordQueryParamOpt", e);
-			this.lifecycleHook.onCatch("recordQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordQueryParamOpt", e);
+			this.lifecycleHook.onCatch("recordQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordQueryParamOpt");
 		}
 	}
 
-	public NilResult recordQueryParamOpt(SimpleRecord.Data queryValue) {
+	public Result<NilResult, RSDError.$GenericError> recordQueryParamOpt(SimpleRecord.Data queryValue) {
 		var $path = "%s/api/queryparametertypes/recordQueryParamOpt".formatted(
 				this.baseURI());
 
@@ -2043,22 +1900,19 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordQueryParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordQueryParamOpt", e);
-			this.lifecycleHook.onCatch("recordQueryParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordQueryParamOpt", e);
+			this.lifecycleHook.onCatch("recordQueryParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordQueryParamOpt");
 		}

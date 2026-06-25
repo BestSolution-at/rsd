@@ -23,9 +23,10 @@ import { generateUnion } from './union.js';
 import { generateService } from './service.js';
 import { generateError } from './error.js';
 import { generateMixin } from './mixin.js';
-import { generateRSDException } from './rsd-exception.js';
 import { generateStreamDTO } from './stream-dto.js';
 import { generateScalar } from './scalar.js';
+import { generateResult } from './result.js';
+import { generateServiceErrors } from './service-errors.js';
 
 function generate(
 	model: MResolvedRSDModel,
@@ -40,14 +41,17 @@ function generate(
 	}
 
 	const result = model.elements.map(e => generateType(e, artifactConfig)).filter(isDefined);
-	result.push(...generateRSDException(model.errors, artifactConfig, artifactConfig.rootPackageName));
-	result.push(...model.errors.map(e => generateError(e, artifactConfig, artifactConfig.rootPackageName)));
+	result.push(generateResult(artifactConfig));
+	result.push(generateServiceErrors(artifactConfig, model.services, model.errors));
+	result.push(
+		...model.errors.map(e => generateError(e, model.services, artifactConfig, artifactConfig.rootPackageName)),
+	);
 	result.push(generateBase(artifactConfig));
 	result.push(generateBaseService(generatorConfig, artifactConfig));
 	result.push(generateClient(generatorConfig, artifactConfig, model));
 	result.push(generateFactory(generatorConfig, artifactConfig));
 
-	result.push(...model.services.map(s => generateService(s, artifactConfig)).filter(isDefined));
+	result.push(...model.services.map(s => generateService(s, model.services, artifactConfig)).filter(isDefined));
 	result.push(...generateStreamDTO(artifactConfig, model));
 
 	return result;

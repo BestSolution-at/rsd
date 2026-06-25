@@ -13,36 +13,36 @@ import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.ZoneId;
 
 public interface ListSampleServiceService extends BaseService {
-	public List<Boolean> listBoolean();
+	public Result<List<Boolean>, RSDError.$GenericError> listBoolean();
 
-	public List<Short> listShort();
+	public Result<List<Short>, RSDError.$GenericError> listShort();
 
-	public List<Integer> listInt();
+	public Result<List<Integer>, RSDError.$GenericError> listInt();
 
-	public List<Long> listLong();
+	public Result<List<Long>, RSDError.$GenericError> listLong();
 
-	public List<Float> listFloat();
+	public Result<List<Float>, RSDError.$GenericError> listFloat();
 
-	public List<Double> listDouble();
+	public Result<List<Double>, RSDError.$GenericError> listDouble();
 
-	public List<String> listString();
+	public Result<List<String>, RSDError.$GenericError> listString();
 
-	public List<LocalDate> listLocalDate();
+	public Result<List<LocalDate>, RSDError.$GenericError> listLocalDate();
 
-	public List<LocalDateTime> listLocalDateTime();
+	public Result<List<LocalDateTime>, RSDError.$GenericError> listLocalDateTime();
 
-	public List<LocalTime> listLocalTime();
+	public Result<List<LocalTime>, RSDError.$GenericError> listLocalTime();
 
-	public List<OffsetDateTime> listOffsetDateTime();
+	public Result<List<OffsetDateTime>, RSDError.$GenericError> listOffsetDateTime();
 
-	public List<ZonedDateTime> listZonedDateTime();
+	public Result<List<ZonedDateTime>, RSDError.$GenericError> listZonedDateTime();
 
-	public List<ZoneId> listScalar();
+	public Result<List<ZoneId>, RSDError.$GenericError> listScalar();
 
-	public List<SampleEnum> listEnum();
+	public Result<List<SampleEnum>, RSDError.$GenericError> listEnum();
 
-	public List<SimpleRecord.Data> listSimpleRecord();
+	public Result<List<SimpleRecord.Data>, RSDError.$GenericError> listSimpleRecord();
 
-	public List<SimpleRecord.Data> listSimpleRecordWithError() throws SampleErrorException;
+	public Result<List<SimpleRecord.Data>, RSDError.E1> listSimpleRecordWithError();
 
 }

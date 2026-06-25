@@ -6,82 +6,82 @@ import java.util.List;
 import dev.rsdlang.sample.client.model.NilResult;
 
 public interface ScalarSubstition_ServiceService extends BaseService {
-	public MyRange get();
+	public Result<MyRange, RSDError.$GenericError> get();
 
-	public List<MyRange> list();
+	public Result<List<MyRange>, RSDError.$GenericError> list();
 
-	public MyRange post(MyRange range);
+	public Result<MyRange, RSDError.$GenericError> post(MyRange range);
 
-	public NilResult postOpt();
+	public Result<NilResult, RSDError.$GenericError> postOpt();
 
-	public NilResult postOpt(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> postOpt(MyRange range);
 
-	public NilResult postNull(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> postNull(MyRange range);
 
-	public NilResult postOptNull();
+	public Result<NilResult, RSDError.$GenericError> postOptNull();
 
-	public NilResult postOptNull(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> postOptNull(MyRange range);
 
-	public List<MyRange> postList(List<MyRange> range);
+	public Result<List<MyRange>, RSDError.$GenericError> postList(List<MyRange> range);
 
-	public NilResult postListOpt();
+	public Result<NilResult, RSDError.$GenericError> postListOpt();
 
-	public NilResult postListOpt(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> postListOpt(List<MyRange> range);
 
-	public NilResult postListNull(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> postListNull(List<MyRange> range);
 
-	public NilResult postListOptNull();
+	public Result<NilResult, RSDError.$GenericError> postListOptNull();
 
-	public NilResult postListOptNull(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> postListOptNull(List<MyRange> range);
 
-	public MyRange query(MyRange range);
+	public Result<MyRange, RSDError.$GenericError> query(MyRange range);
 
-	public NilResult queryOpt();
+	public Result<NilResult, RSDError.$GenericError> queryOpt();
 
-	public NilResult queryOpt(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> queryOpt(MyRange range);
 
-	public NilResult queryNull(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> queryNull(MyRange range);
 
-	public NilResult queryOptNull();
+	public Result<NilResult, RSDError.$GenericError> queryOptNull();
 
-	public NilResult queryOptNull(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> queryOptNull(MyRange range);
 
-	public List<MyRange> queryList(List<MyRange> range);
+	public Result<List<MyRange>, RSDError.$GenericError> queryList(List<MyRange> range);
 
-	public NilResult queryListOpt();
+	public Result<NilResult, RSDError.$GenericError> queryListOpt();
 
-	public NilResult queryListOpt(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> queryListOpt(List<MyRange> range);
 
-	public NilResult queryListNull(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> queryListNull(List<MyRange> range);
 
-	public NilResult queryListOptNull();
+	public Result<NilResult, RSDError.$GenericError> queryListOptNull();
 
-	public NilResult queryListOptNull(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> queryListOptNull(List<MyRange> range);
 
-	public MyRange header(MyRange range);
+	public Result<MyRange, RSDError.$GenericError> header(MyRange range);
 
-	public NilResult headerOpt();
+	public Result<NilResult, RSDError.$GenericError> headerOpt();
 
-	public NilResult headerOpt(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> headerOpt(MyRange range);
 
-	public NilResult headerNull(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> headerNull(MyRange range);
 
-	public NilResult headerOptNull();
+	public Result<NilResult, RSDError.$GenericError> headerOptNull();
 
-	public NilResult headerOptNull(MyRange range);
+	public Result<NilResult, RSDError.$GenericError> headerOptNull(MyRange range);
 
-	public List<MyRange> headerList(List<MyRange> range);
+	public Result<List<MyRange>, RSDError.$GenericError> headerList(List<MyRange> range);
 
-	public NilResult headerListOpt();
+	public Result<NilResult, RSDError.$GenericError> headerListOpt();
 
-	public NilResult headerListOpt(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> headerListOpt(List<MyRange> range);
 
-	public NilResult headerListNull(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> headerListNull(List<MyRange> range);
 
-	public NilResult headerListOptNull();
+	public Result<NilResult, RSDError.$GenericError> headerListOptNull();
 
-	public NilResult headerListOptNull(List<MyRange> range);
+	public Result<NilResult, RSDError.$GenericError> headerListOptNull(List<MyRange> range);
 
-	public void fail() throws SampleErrorScalarSubException;
+	public Result<Void, RSDError.E9> fail();
 
 }

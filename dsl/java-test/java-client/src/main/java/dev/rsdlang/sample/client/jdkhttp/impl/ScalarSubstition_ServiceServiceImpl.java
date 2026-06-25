@@ -13,8 +13,9 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.MyRange;
-import dev.rsdlang.sample.client.RSDException;
-import dev.rsdlang.sample.client.SampleErrorScalarSubException;
+import dev.rsdlang.sample.client.Result;
+import dev.rsdlang.sample.client.RSDError;
+import dev.rsdlang.sample.client.SampleErrorScalarSub;
 import dev.rsdlang.sample.client.ScalarSubstition_ServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
@@ -40,7 +41,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		return this.client.contentTypeEncoding().contentType;
 	}
 
-	public MyRange get() {
+	public Result<MyRange, RSDError.$GenericError> get() {
 		var $path = "%s/api/scalarsubstitution/get".formatted(
 				this.baseURI());
 
@@ -57,28 +58,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				this.lifecycleHook.onSuccess("get", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("get", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("get", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation get", e);
-			this.lifecycleHook.onCatch("get", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation get", e);
+			this.lifecycleHook.onCatch("get", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("get");
 		}
 	}
 
-	public List<MyRange> list() {
+	public Result<List<MyRange>, RSDError.$GenericError> list() {
 		var $path = "%s/api/scalarsubstitution/list".formatted(
 				this.baseURI());
 
@@ -95,28 +93,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, MyRange::of);
 				this.lifecycleHook.onSuccess("list", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("list", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("list", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation list", e);
-			this.lifecycleHook.onCatch("list", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation list", e);
+			this.lifecycleHook.onCatch("list", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("list");
 		}
 	}
 
-	public MyRange post(MyRange range) {
+	public Result<MyRange, RSDError.$GenericError> post(MyRange range) {
 		Objects.requireNonNull(range, "range must not be null");
 
 		var $path = "%s/api/scalarsubstitution/post".formatted(
@@ -139,28 +134,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				this.lifecycleHook.onSuccess("post", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("post", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("post", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation post", e);
-			this.lifecycleHook.onCatch("post", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation post", e);
+			this.lifecycleHook.onCatch("post", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("post");
 		}
 	}
 
-	public NilResult postOpt() {
+	public Result<NilResult, RSDError.$GenericError> postOpt() {
 		var $path = "%s/api/scalarsubstitution/postOpt".formatted(
 				this.baseURI());
 
@@ -181,28 +173,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postOpt", e);
-			this.lifecycleHook.onCatch("postOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postOpt", e);
+			this.lifecycleHook.onCatch("postOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postOpt");
 		}
 	}
 
-	public NilResult postOpt(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> postOpt(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/postOpt".formatted(
 				this.baseURI());
 
@@ -223,28 +212,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postOpt", e);
-			this.lifecycleHook.onCatch("postOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postOpt", e);
+			this.lifecycleHook.onCatch("postOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postOpt");
 		}
 	}
 
-	public NilResult postNull(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> postNull(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/postNull".formatted(
 				this.baseURI());
 
@@ -265,28 +251,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postNull", e);
-			this.lifecycleHook.onCatch("postNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postNull", e);
+			this.lifecycleHook.onCatch("postNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postNull");
 		}
 	}
 
-	public NilResult postOptNull() {
+	public Result<NilResult, RSDError.$GenericError> postOptNull() {
 		var $path = "%s/api/scalarsubstitution/postOptNull".formatted(
 				this.baseURI());
 
@@ -307,28 +290,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postOptNull", e);
-			this.lifecycleHook.onCatch("postOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postOptNull", e);
+			this.lifecycleHook.onCatch("postOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postOptNull");
 		}
 	}
 
-	public NilResult postOptNull(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> postOptNull(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/postOptNull".formatted(
 				this.baseURI());
 
@@ -349,28 +329,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postOptNull", e);
-			this.lifecycleHook.onCatch("postOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postOptNull", e);
+			this.lifecycleHook.onCatch("postOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postOptNull");
 		}
 	}
 
-	public List<MyRange> postList(List<MyRange> range) {
+	public Result<List<MyRange>, RSDError.$GenericError> postList(List<MyRange> range) {
 		Objects.requireNonNull(range, "range must not be null");
 
 		var $path = "%s/api/scalarsubstitution/postList".formatted(
@@ -393,28 +370,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, MyRange::of);
 				this.lifecycleHook.onSuccess("postList", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postList", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postList", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postList", e);
-			this.lifecycleHook.onCatch("postList", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postList", e);
+			this.lifecycleHook.onCatch("postList", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postList");
 		}
 	}
 
-	public NilResult postListOpt() {
+	public Result<NilResult, RSDError.$GenericError> postListOpt() {
 		var $path = "%s/api/scalarsubstitution/postListOpt".formatted(
 				this.baseURI());
 
@@ -435,28 +409,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postListOpt", e);
-			this.lifecycleHook.onCatch("postListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postListOpt", e);
+			this.lifecycleHook.onCatch("postListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postListOpt");
 		}
 	}
 
-	public NilResult postListOpt(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> postListOpt(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/postListOpt".formatted(
 				this.baseURI());
 
@@ -477,28 +448,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postListOpt", e);
-			this.lifecycleHook.onCatch("postListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postListOpt", e);
+			this.lifecycleHook.onCatch("postListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postListOpt");
 		}
 	}
 
-	public NilResult postListNull(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> postListNull(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/postListNull".formatted(
 				this.baseURI());
 
@@ -519,28 +487,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postListNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postListNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postListNull", e);
-			this.lifecycleHook.onCatch("postListNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postListNull", e);
+			this.lifecycleHook.onCatch("postListNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postListNull");
 		}
 	}
 
-	public NilResult postListOptNull() {
+	public Result<NilResult, RSDError.$GenericError> postListOptNull() {
 		var $path = "%s/api/scalarsubstitution/postListOptNull".formatted(
 				this.baseURI());
 
@@ -561,28 +526,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postListOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postListOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postListOptNull", e);
-			this.lifecycleHook.onCatch("postListOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postListOptNull", e);
+			this.lifecycleHook.onCatch("postListOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postListOptNull");
 		}
 	}
 
-	public NilResult postListOptNull(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> postListOptNull(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/postListOptNull".formatted(
 				this.baseURI());
 
@@ -603,28 +565,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("postListOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("postListOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("postListOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation postListOptNull", e);
-			this.lifecycleHook.onCatch("postListOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation postListOptNull", e);
+			this.lifecycleHook.onCatch("postListOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("postListOptNull");
 		}
 	}
 
-	public MyRange query(MyRange range) {
+	public Result<MyRange, RSDError.$GenericError> query(MyRange range) {
 		Objects.requireNonNull(range, "range must not be null");
 
 		var $path = "%s/api/scalarsubstitution/query".formatted(
@@ -646,28 +605,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				this.lifecycleHook.onSuccess("query", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("query", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("query", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation query", e);
-			this.lifecycleHook.onCatch("query", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation query", e);
+			this.lifecycleHook.onCatch("query", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("query");
 		}
 	}
 
-	public NilResult queryOpt() {
+	public Result<NilResult, RSDError.$GenericError> queryOpt() {
 		var $path = "%s/api/scalarsubstitution/queryOpt".formatted(
 				this.baseURI());
 
@@ -684,28 +640,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryOpt", e);
-			this.lifecycleHook.onCatch("queryOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryOpt", e);
+			this.lifecycleHook.onCatch("queryOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryOpt");
 		}
 	}
 
-	public NilResult queryOpt(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> queryOpt(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/queryOpt".formatted(
 				this.baseURI());
 
@@ -727,28 +680,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryOpt", e);
-			this.lifecycleHook.onCatch("queryOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryOpt", e);
+			this.lifecycleHook.onCatch("queryOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryOpt");
 		}
 	}
 
-	public NilResult queryNull(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> queryNull(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/queryNull".formatted(
 				this.baseURI());
 
@@ -772,28 +722,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryNull", e);
-			this.lifecycleHook.onCatch("queryNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryNull", e);
+			this.lifecycleHook.onCatch("queryNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryNull");
 		}
 	}
 
-	public NilResult queryOptNull() {
+	public Result<NilResult, RSDError.$GenericError> queryOptNull() {
 		var $path = "%s/api/scalarsubstitution/queryOptNull".formatted(
 				this.baseURI());
 
@@ -810,28 +757,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryOptNull", e);
-			this.lifecycleHook.onCatch("queryOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryOptNull", e);
+			this.lifecycleHook.onCatch("queryOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryOptNull");
 		}
 	}
 
-	public NilResult queryOptNull(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> queryOptNull(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/queryOptNull".formatted(
 				this.baseURI());
 
@@ -855,28 +799,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryOptNull", e);
-			this.lifecycleHook.onCatch("queryOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryOptNull", e);
+			this.lifecycleHook.onCatch("queryOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryOptNull");
 		}
 	}
 
-	public List<MyRange> queryList(List<MyRange> range) {
+	public Result<List<MyRange>, RSDError.$GenericError> queryList(List<MyRange> range) {
 		Objects.requireNonNull(range, "range must not be null");
 
 		var $path = "%s/api/scalarsubstitution/queryList".formatted(
@@ -900,28 +841,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, MyRange::of);
 				this.lifecycleHook.onSuccess("queryList", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryList", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryList", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryList", e);
-			this.lifecycleHook.onCatch("queryList", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryList", e);
+			this.lifecycleHook.onCatch("queryList", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryList");
 		}
 	}
 
-	public NilResult queryListOpt() {
+	public Result<NilResult, RSDError.$GenericError> queryListOpt() {
 		var $path = "%s/api/scalarsubstitution/queryListOpt".formatted(
 				this.baseURI());
 
@@ -938,28 +876,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryListOpt", e);
-			this.lifecycleHook.onCatch("queryListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryListOpt", e);
+			this.lifecycleHook.onCatch("queryListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryListOpt");
 		}
 	}
 
-	public NilResult queryListOpt(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> queryListOpt(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/queryListOpt".formatted(
 				this.baseURI());
 
@@ -983,28 +918,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryListOpt", e);
-			this.lifecycleHook.onCatch("queryListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryListOpt", e);
+			this.lifecycleHook.onCatch("queryListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryListOpt");
 		}
 	}
 
-	public NilResult queryListNull(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> queryListNull(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/queryListNull".formatted(
 				this.baseURI());
 
@@ -1030,28 +962,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryListNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryListNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryListNull", e);
-			this.lifecycleHook.onCatch("queryListNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryListNull", e);
+			this.lifecycleHook.onCatch("queryListNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryListNull");
 		}
 	}
 
-	public NilResult queryListOptNull() {
+	public Result<NilResult, RSDError.$GenericError> queryListOptNull() {
 		var $path = "%s/api/scalarsubstitution/queryListOptNull".formatted(
 				this.baseURI());
 
@@ -1068,28 +997,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryListOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryListOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryListOptNull", e);
-			this.lifecycleHook.onCatch("queryListOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryListOptNull", e);
+			this.lifecycleHook.onCatch("queryListOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryListOptNull");
 		}
 	}
 
-	public NilResult queryListOptNull(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> queryListOptNull(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/queryListOptNull".formatted(
 				this.baseURI());
 
@@ -1115,28 +1041,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("queryListOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("queryListOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("queryListOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation queryListOptNull", e);
-			this.lifecycleHook.onCatch("queryListOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation queryListOptNull", e);
+			this.lifecycleHook.onCatch("queryListOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("queryListOptNull");
 		}
 	}
 
-	public MyRange header(MyRange range) {
+	public Result<MyRange, RSDError.$GenericError> header(MyRange range) {
 		Objects.requireNonNull(range, "range must not be null");
 
 		var $path = "%s/api/scalarsubstitution/header".formatted(
@@ -1162,28 +1085,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				this.lifecycleHook.onSuccess("header", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("header", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("header", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation header", e);
-			this.lifecycleHook.onCatch("header", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation header", e);
+			this.lifecycleHook.onCatch("header", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("header");
 		}
 	}
 
-	public NilResult headerOpt() {
+	public Result<NilResult, RSDError.$GenericError> headerOpt() {
 		var $path = "%s/api/scalarsubstitution/headerOpt".formatted(
 				this.baseURI());
 
@@ -1200,28 +1120,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerOpt", e);
-			this.lifecycleHook.onCatch("headerOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerOpt", e);
+			this.lifecycleHook.onCatch("headerOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerOpt");
 		}
 	}
 
-	public NilResult headerOpt(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> headerOpt(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/headerOpt".formatted(
 				this.baseURI());
 
@@ -1245,28 +1162,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerOpt", e);
-			this.lifecycleHook.onCatch("headerOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerOpt", e);
+			this.lifecycleHook.onCatch("headerOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerOpt");
 		}
 	}
 
-	public NilResult headerNull(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> headerNull(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/headerNull".formatted(
 				this.baseURI());
 
@@ -1290,28 +1204,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerNull", e);
-			this.lifecycleHook.onCatch("headerNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerNull", e);
+			this.lifecycleHook.onCatch("headerNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerNull");
 		}
 	}
 
-	public NilResult headerOptNull() {
+	public Result<NilResult, RSDError.$GenericError> headerOptNull() {
 		var $path = "%s/api/scalarsubstitution/headerOptNull".formatted(
 				this.baseURI());
 
@@ -1328,28 +1239,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerOptNull", e);
-			this.lifecycleHook.onCatch("headerOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerOptNull", e);
+			this.lifecycleHook.onCatch("headerOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerOptNull");
 		}
 	}
 
-	public NilResult headerOptNull(MyRange range) {
+	public Result<NilResult, RSDError.$GenericError> headerOptNull(MyRange range) {
 		var $path = "%s/api/scalarsubstitution/headerOptNull".formatted(
 				this.baseURI());
 
@@ -1373,28 +1281,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerOptNull", e);
-			this.lifecycleHook.onCatch("headerOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerOptNull", e);
+			this.lifecycleHook.onCatch("headerOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerOptNull");
 		}
 	}
 
-	public List<MyRange> headerList(List<MyRange> range) {
+	public Result<List<MyRange>, RSDError.$GenericError> headerList(List<MyRange> range) {
 		Objects.requireNonNull(range, "range must not be null");
 
 		var $path = "%s/api/scalarsubstitution/headerList".formatted(
@@ -1420,28 +1325,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, MyRange::of);
 				this.lifecycleHook.onSuccess("headerList", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerList", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerList", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerList", e);
-			this.lifecycleHook.onCatch("headerList", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerList", e);
+			this.lifecycleHook.onCatch("headerList", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerList");
 		}
 	}
 
-	public NilResult headerListOpt() {
+	public Result<NilResult, RSDError.$GenericError> headerListOpt() {
 		var $path = "%s/api/scalarsubstitution/headerListOpt".formatted(
 				this.baseURI());
 
@@ -1458,28 +1360,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerListOpt", e);
-			this.lifecycleHook.onCatch("headerListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerListOpt", e);
+			this.lifecycleHook.onCatch("headerListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerListOpt");
 		}
 	}
 
-	public NilResult headerListOpt(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> headerListOpt(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/headerListOpt".formatted(
 				this.baseURI());
 
@@ -1505,28 +1404,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerListOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerListOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerListOpt", e);
-			this.lifecycleHook.onCatch("headerListOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerListOpt", e);
+			this.lifecycleHook.onCatch("headerListOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerListOpt");
 		}
 	}
 
-	public NilResult headerListNull(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> headerListNull(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/headerListNull".formatted(
 				this.baseURI());
 
@@ -1554,28 +1450,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerListNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerListNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerListNull", e);
-			this.lifecycleHook.onCatch("headerListNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerListNull", e);
+			this.lifecycleHook.onCatch("headerListNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerListNull");
 		}
 	}
 
-	public NilResult headerListOptNull() {
+	public Result<NilResult, RSDError.$GenericError> headerListOptNull() {
 		var $path = "%s/api/scalarsubstitution/headerListOptNull".formatted(
 				this.baseURI());
 
@@ -1592,28 +1485,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerListOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerListOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerListOptNull", e);
-			this.lifecycleHook.onCatch("headerListOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerListOptNull", e);
+			this.lifecycleHook.onCatch("headerListOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerListOptNull");
 		}
 	}
 
-	public NilResult headerListOptNull(List<MyRange> range) {
+	public Result<NilResult, RSDError.$GenericError> headerListOptNull(List<MyRange> range) {
 		var $path = "%s/api/scalarsubstitution/headerListOptNull".formatted(
 				this.baseURI());
 
@@ -1641,29 +1531,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("headerListOptNull", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("headerListOptNull", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("headerListOptNull", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation headerListOptNull", e);
-			this.lifecycleHook.onCatch("headerListOptNull", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation headerListOptNull", e);
+			this.lifecycleHook.onCatch("headerListOptNull", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerListOptNull");
 		}
 	}
 
-	public void fail()
-			throws SampleErrorScalarSubException {
+	public Result<Void, RSDError.E9> fail() {
 		var $path = "%s/api/scalarsubstitution/fail".formatted(
 				this.baseURI());
 
@@ -1683,28 +1569,25 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				this.lifecycleHook.onSuccess("fail", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of fail failed");
-				var exception = new SampleErrorScalarSubException($message, $errorData);
-				this.lifecycleHook.onError("fail", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorScalarSub($message, $errorData);
+				this.lifecycleHook.onError("fail", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("fail", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("fail", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation fail", e);
-			this.lifecycleHook.onCatch("fail", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation fail", e);
+			this.lifecycleHook.onCatch("fail", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("fail");
 		}

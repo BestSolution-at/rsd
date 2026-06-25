@@ -45,7 +45,7 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listBooleanQueryParam(ListQueryParameterTypesService service) {
-		assertEquals(List.of(true, false, true), service.listBooleanQueryParam(List.of(true, false, true)));
+		assertEquals(List.of(true, false, true), service.listBooleanQueryParam(List.of(true, false, true)).orThrow());
 	}
 
 	// --- Short ---
@@ -54,7 +54,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listShortQueryParam(ListQueryParameterTypesService service) {
 		assertEquals(List.of((short) 1, (short) 2, (short) 42),
-				service.listShortQueryParam(List.of((short) 1, (short) 2, (short) 42)));
+				service.listShortQueryParam(List.of((short) 1, (short) 2, (short) 42)).orThrow());
 	}
 
 	// --- Int ---
@@ -62,7 +62,7 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listIntQueryParam(ListQueryParameterTypesService service) {
-		assertEquals(List.of(1, 2, 123456), service.listIntQueryParam(List.of(1, 2, 123456)));
+		assertEquals(List.of(1, 2, 123456), service.listIntQueryParam(List.of(1, 2, 123456)).orThrow());
 	}
 
 	// --- Long ---
@@ -70,7 +70,8 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listLongQueryParam(ListQueryParameterTypesService service) {
-		assertEquals(List.of(1L, 2L, 1234567890123L), service.listLongQueryParam(List.of(1L, 2L, 1234567890123L)));
+		assertEquals(List.of(1L, 2L, 1234567890123L),
+				service.listLongQueryParam(List.of(1L, 2L, 1234567890123L)).orThrow());
 	}
 
 	// --- Float ---
@@ -78,7 +79,7 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listFloatQueryParam(ListQueryParameterTypesService service) {
-		assertEquals(List.of(1.1f, 2.2f, 123.45f), service.listFloatQueryParam(List.of(1.1f, 2.2f, 123.45f)));
+		assertEquals(List.of(1.1f, 2.2f, 123.45f), service.listFloatQueryParam(List.of(1.1f, 2.2f, 123.45f)).orThrow());
 	}
 
 	// --- Double ---
@@ -86,7 +87,8 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listDoubleQueryParam(ListQueryParameterTypesService service) {
-		assertEquals(List.of(1.1, 2.2, 123.456789), service.listDoubleQueryParam(List.of(1.1, 2.2, 123.456789)));
+		assertEquals(List.of(1.1, 2.2, 123.456789),
+				service.listDoubleQueryParam(List.of(1.1, 2.2, 123.456789)).orThrow());
 	}
 
 	// --- String ---
@@ -94,7 +96,7 @@ public class ListQueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listStringQueryParam(ListQueryParameterTypesService service) {
-		assertEquals(List.of("hello", "world"), service.listStringQueryParam(List.of("hello", "world")));
+		assertEquals(List.of("hello", "world"), service.listStringQueryParam(List.of("hello", "world")).orThrow());
 	}
 
 	// --- LocalDate ---
@@ -103,7 +105,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listLocalDateQueryParam(ListQueryParameterTypesService service) {
 		var dates = List.of(LocalDate.parse("2020-01-01"), LocalDate.parse("2021-06-15"));
-		assertEquals(dates, service.listLocalDateQueryParam(dates));
+		assertEquals(dates, service.listLocalDateQueryParam(dates).orThrow());
 	}
 
 	// --- LocalDateTime ---
@@ -112,7 +114,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listLocalDateTimeQueryParam(ListQueryParameterTypesService service) {
 		var dateTimes = List.of(LocalDateTime.parse("2020-01-01T10:00"), LocalDateTime.parse("2021-06-15T12:30"));
-		assertEquals(dateTimes, service.listLocalDateTimeQueryParam(dateTimes));
+		assertEquals(dateTimes, service.listLocalDateTimeQueryParam(dateTimes).orThrow());
 	}
 
 	// --- LocalTime ---
@@ -121,7 +123,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listLocalTimeQueryParam(ListQueryParameterTypesService service) {
 		var times = List.of(LocalTime.parse("10:00:00"), LocalTime.parse("11:30:00"));
-		assertEquals(times, service.listLocalTimeQueryParam(times));
+		assertEquals(times, service.listLocalTimeQueryParam(times).orThrow());
 	}
 
 	// --- OffsetDateTime ---
@@ -130,7 +132,7 @@ public class ListQueryParameterTypesServiceTest {
 	public void listOffsetDateTimeQueryParam(ListQueryParameterTypesService service) {
 		var times = List.of(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"),
 				OffsetDateTime.parse("2021-02-02T11:30:00+01:00"));
-		assertEquals(times, service.listOffsetDateTimeQueryParam(times));
+		assertEquals(times, service.listOffsetDateTimeQueryParam(times).orThrow());
 	}
 
 	// --- ZonedDateTime ---
@@ -139,7 +141,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listZonedDateTimeQueryParam(ListQueryParameterTypesService service) {
 		var zdts = List.of(ZonedDateTime.parse("2025-01-01T10:00:00Z"), ZonedDateTime.parse("2025-06-15T12:00:00Z"));
-		assertEquals(zdts, service.listZonedDateTimeQueryParam(zdts));
+		assertEquals(zdts, service.listZonedDateTimeQueryParam(zdts).orThrow());
 	}
 
 	// --- Scalar (ZoneId) ---
@@ -148,7 +150,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listScalarQueryParam(ListQueryParameterTypesService service) {
 		var zoneIds = List.of(ZoneId.of("Europe/Vienna"), ZoneId.of("UTC"));
-		assertEquals(zoneIds, service.listScalarQueryParam(zoneIds));
+		assertEquals(zoneIds, service.listScalarQueryParam(zoneIds).orThrow());
 	}
 
 	// --- Enum ---
@@ -157,7 +159,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listEnumQueryParam(ListQueryParameterTypesService service) {
 		assertEquals(List.of(SampleEnum.A, SampleEnum.B),
-				service.listEnumQueryParam(List.of(SampleEnum.A, SampleEnum.B)));
+				service.listEnumQueryParam(List.of(SampleEnum.A, SampleEnum.B)).orThrow());
 	}
 
 	// --- Inline Enum ---
@@ -166,7 +168,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listInlineEnumQueryParam(ListQueryParameterTypesService service) {
 		assertEquals(List.of(ListInlineEnumQueryParam_Result$.A),
-				service.listInlineEnumQueryParam(List.of(ListInlineEnumQueryParam_QueryValue_Param$.A)));
+				service.listInlineEnumQueryParam(List.of(ListInlineEnumQueryParam_QueryValue_Param$.A)).orThrow());
 	}
 
 	// --- Multi List Query Param ---
@@ -175,7 +177,8 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listMultiQueryParam(ListQueryParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.listMultiQueryParam(List.of("hello"), List.of(42), List.of(record)));
+		assertEquals("hello-42-k",
+				service.listMultiQueryParam(List.of("hello"), List.of(42), List.of(record)).orThrow());
 	}
 
 	// --- Record List Query Param ---
@@ -184,7 +187,7 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listRecordQueryParam(ListQueryParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		var result = service.listRecordQueryParam(List.of(record));
+		var result = service.listRecordQueryParam(List.of(record)).orThrow();
 		assertEquals(1, result.size());
 		assertEquals("k", result.get(0).key());
 		assertEquals("1", result.get(0).version());

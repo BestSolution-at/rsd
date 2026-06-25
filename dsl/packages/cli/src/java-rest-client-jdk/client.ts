@@ -33,7 +33,7 @@ export function generateClient(
 	const HttpClient = fqn('java.net.http.HttpClient');
 	const Base = fqn(`${basePackage}.model._Base`);
 	const BaseService = fqn(`${basePackage}.BaseService`);
-	const RSDException = fqn(`${basePackage}.RSDException`);
+	const RSDError = fqn(`${basePackage}.RSDError`);
 	const HttpRequest = fqn('java.net.http.HttpRequest');
 	const HttpResponse = fqn('java.net.http.HttpResponse');
 	const Optional = fqn('java.util.Optional');
@@ -159,12 +159,12 @@ export function generateClient(
 				}
 
 				@Override
-				public void onError(String method, ${RSDException} error, Adaptable responseAdapter) {
+				public void onError(String method, ${RSDError} error, Adaptable responseAdapter) {
 					// no-op
 				}
 
 				@Override
-				public void onCatch(String method, ${RSDException} error) {
+				public void onCatch(String method, ${RSDError} error) {
 					// no-op
 				}
 

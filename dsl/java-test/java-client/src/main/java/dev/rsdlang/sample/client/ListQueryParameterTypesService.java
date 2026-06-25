@@ -21,41 +21,41 @@ public interface ListQueryParameterTypesService extends BaseService {
 		A,
 		B,
 	}
-	public List<Boolean> listBooleanQueryParam(List<Boolean> queryValue);
+	public Result<List<Boolean>, RSDError.$GenericError> listBooleanQueryParam(List<Boolean> queryValue);
 
-	public List<Short> listShortQueryParam(List<Short> queryValue);
+	public Result<List<Short>, RSDError.$GenericError> listShortQueryParam(List<Short> queryValue);
 
-	public List<Integer> listIntQueryParam(List<Integer> queryValue);
+	public Result<List<Integer>, RSDError.$GenericError> listIntQueryParam(List<Integer> queryValue);
 
-	public List<Long> listLongQueryParam(List<Long> queryValue);
+	public Result<List<Long>, RSDError.$GenericError> listLongQueryParam(List<Long> queryValue);
 
-	public List<Float> listFloatQueryParam(List<Float> queryValue);
+	public Result<List<Float>, RSDError.$GenericError> listFloatQueryParam(List<Float> queryValue);
 
-	public List<Double> listDoubleQueryParam(List<Double> queryValue);
+	public Result<List<Double>, RSDError.$GenericError> listDoubleQueryParam(List<Double> queryValue);
 
-	public List<String> listStringQueryParam(List<String> queryValue);
+	public Result<List<String>, RSDError.$GenericError> listStringQueryParam(List<String> queryValue);
 
-	public List<LocalDate> listLocalDateQueryParam(List<LocalDate> queryValue);
+	public Result<List<LocalDate>, RSDError.$GenericError> listLocalDateQueryParam(List<LocalDate> queryValue);
 
-	public List<LocalDateTime> listLocalDateTimeQueryParam(List<LocalDateTime> queryValue);
+	public Result<List<LocalDateTime>, RSDError.$GenericError> listLocalDateTimeQueryParam(List<LocalDateTime> queryValue);
 
-	public List<LocalTime> listLocalTimeQueryParam(List<LocalTime> queryValue);
+	public Result<List<LocalTime>, RSDError.$GenericError> listLocalTimeQueryParam(List<LocalTime> queryValue);
 
-	public List<OffsetDateTime> listOffsetDateTimeQueryParam(List<OffsetDateTime> queryValue);
+	public Result<List<OffsetDateTime>, RSDError.$GenericError> listOffsetDateTimeQueryParam(List<OffsetDateTime> queryValue);
 
-	public List<ZonedDateTime> listZonedDateTimeQueryParam(List<ZonedDateTime> queryValue);
+	public Result<List<ZonedDateTime>, RSDError.$GenericError> listZonedDateTimeQueryParam(List<ZonedDateTime> queryValue);
 
-	public List<ZoneId> listScalarQueryParam(List<ZoneId> queryValue);
+	public Result<List<ZoneId>, RSDError.$GenericError> listScalarQueryParam(List<ZoneId> queryValue);
 
-	public List<SampleEnum> listEnumQueryParam(List<SampleEnum> queryValue);
+	public Result<List<SampleEnum>, RSDError.$GenericError> listEnumQueryParam(List<SampleEnum> queryValue);
 
-	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
+	public Result<List<ListInlineEnumQueryParam_Result$>, RSDError.$GenericError> listInlineEnumQueryParam(List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
 
-	public String listMultiQueryParam(
+	public Result<String, RSDError.$GenericError> listMultiQueryParam(
 			List<String> valueA, 
 			List<Integer> valueB, 
 			List<SimpleRecord.Data> valueC);
 
-	public List<SimpleRecord.Data> listRecordQueryParam(List<SimpleRecord.Data> queryValue);
+	public Result<List<SimpleRecord.Data>, RSDError.$GenericError> listRecordQueryParam(List<SimpleRecord.Data> queryValue);
 
 }

@@ -21,7 +21,8 @@ import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.ZoneId;
-import dev.rsdlang.sample.client.RSDException;
+import dev.rsdlang.sample.client.Result;
+import dev.rsdlang.sample.client.RSDError;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesService {
@@ -46,7 +47,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		return this.client.contentTypeEncoding().contentType;
 	}
 
-	public boolean simpleBooleanHeaderParam(boolean headerValue) {
+	public Result<Boolean, RSDError.$GenericError> simpleBooleanHeaderParam(boolean headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParam".formatted(
 				this.baseURI());
 
@@ -70,28 +71,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapBoolean($response);
 				this.lifecycleHook.onSuccess("simpleBooleanHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleBooleanHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleBooleanHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanHeaderParam");
 		}
 	}
 
-	public NilResult simpleBooleanHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -108,28 +106,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleBooleanHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleBooleanHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleBooleanHeaderParamOpt(Boolean headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamOpt(Boolean headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -153,28 +148,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleBooleanHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleBooleanHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleBooleanHeaderParamNil(Boolean headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamNil(Boolean headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -198,28 +190,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleBooleanHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleBooleanHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleBooleanHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -236,28 +225,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleBooleanHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleBooleanHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleBooleanHeaderParamOptNil(Boolean headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanHeaderParamOptNil(Boolean headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleBooleanHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -281,28 +267,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleBooleanHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleBooleanHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanHeaderParamOptNil");
 		}
 	}
 
-	public short simpleShortHeaderParam(short headerValue) {
+	public Result<Short, RSDError.$GenericError> simpleShortHeaderParam(short headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParam".formatted(
 				this.baseURI());
 
@@ -326,28 +309,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapShort($response);
 				this.lifecycleHook.onSuccess("simpleShortHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleShortHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleShortHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortHeaderParam");
 		}
 	}
 
-	public NilResult simpleShortHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -364,28 +344,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleShortHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleShortHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleShortHeaderParamOpt(Short headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamOpt(Short headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -409,28 +386,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleShortHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleShortHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleShortHeaderParamNil(Short headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamNil(Short headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -454,28 +428,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleShortHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleShortHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleShortHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -492,28 +463,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleShortHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleShortHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleShortHeaderParamOptNil(Short headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleShortHeaderParamOptNil(Short headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleShortHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -537,28 +505,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleShortHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleShortHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortHeaderParamOptNil");
 		}
 	}
 
-	public int simpleIntHeaderParam(int headerValue) {
+	public Result<Integer, RSDError.$GenericError> simpleIntHeaderParam(int headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParam".formatted(
 				this.baseURI());
 
@@ -582,28 +547,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("simpleIntHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleIntHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleIntHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntHeaderParam");
 		}
 	}
 
-	public NilResult simpleIntHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -620,28 +582,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleIntHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleIntHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleIntHeaderParamOpt(Integer headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamOpt(Integer headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -665,28 +624,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleIntHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleIntHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleIntHeaderParamNil(Integer headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamNil(Integer headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -710,28 +666,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleIntHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleIntHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleIntHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -748,28 +701,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleIntHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleIntHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleIntHeaderParamOptNil(Integer headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleIntHeaderParamOptNil(Integer headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleIntHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -793,28 +743,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleIntHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleIntHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntHeaderParamOptNil");
 		}
 	}
 
-	public long simpleLongHeaderParam(long headerValue) {
+	public Result<Long, RSDError.$GenericError> simpleLongHeaderParam(long headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParam".formatted(
 				this.baseURI());
 
@@ -838,28 +785,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLong($response);
 				this.lifecycleHook.onSuccess("simpleLongHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleLongHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleLongHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongHeaderParam");
 		}
 	}
 
-	public NilResult simpleLongHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -876,28 +820,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLongHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLongHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleLongHeaderParamOpt(Long headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamOpt(Long headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -921,28 +862,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLongHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLongHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleLongHeaderParamNil(Long headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamNil(Long headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -966,28 +904,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleLongHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleLongHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleLongHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -1004,28 +939,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLongHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLongHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleLongHeaderParamOptNil(Long headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLongHeaderParamOptNil(Long headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLongHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -1049,28 +981,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLongHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLongHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongHeaderParamOptNil");
 		}
 	}
 
-	public float simpleFloatHeaderParam(float headerValue) {
+	public Result<Float, RSDError.$GenericError> simpleFloatHeaderParam(float headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParam".formatted(
 				this.baseURI());
 
@@ -1094,28 +1023,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapFloat($response);
 				this.lifecycleHook.onSuccess("simpleFloatHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleFloatHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleFloatHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatHeaderParam");
 		}
 	}
 
-	public NilResult simpleFloatHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -1132,28 +1058,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleFloatHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleFloatHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleFloatHeaderParamOpt(Float headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamOpt(Float headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -1177,28 +1100,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleFloatHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleFloatHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleFloatHeaderParamNil(Float headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamNil(Float headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -1222,28 +1142,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleFloatHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleFloatHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleFloatHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -1260,28 +1177,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleFloatHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleFloatHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleFloatHeaderParamOptNil(Float headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatHeaderParamOptNil(Float headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleFloatHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -1305,28 +1219,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleFloatHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleFloatHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatHeaderParamOptNil");
 		}
 	}
 
-	public double simpleDoubleHeaderParam(double headerValue) {
+	public Result<Double, RSDError.$GenericError> simpleDoubleHeaderParam(double headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParam".formatted(
 				this.baseURI());
 
@@ -1350,28 +1261,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapDouble($response);
 				this.lifecycleHook.onSuccess("simpleDoubleHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleDoubleHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleDoubleHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleHeaderParam");
 		}
 	}
 
-	public NilResult simpleDoubleHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -1388,28 +1296,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleDoubleHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleDoubleHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleDoubleHeaderParamOpt(Double headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamOpt(Double headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -1433,28 +1338,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleDoubleHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleDoubleHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleDoubleHeaderParamNil(Double headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamNil(Double headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -1478,28 +1380,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleDoubleHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleDoubleHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleDoubleHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -1516,28 +1415,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleDoubleHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleDoubleHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleDoubleHeaderParamOptNil(Double headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleHeaderParamOptNil(Double headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleDoubleHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -1561,28 +1457,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleDoubleHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleDoubleHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleHeaderParamOptNil");
 		}
 	}
 
-	public String simpleStringHeaderParam(String headerValue) {
+	public Result<String, RSDError.$GenericError> simpleStringHeaderParam(String headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParam".formatted(
@@ -1608,28 +1501,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("simpleStringHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleStringHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleStringHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringHeaderParam");
 		}
 	}
 
-	public NilResult simpleStringHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -1646,28 +1536,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleStringHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleStringHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleStringHeaderParamOpt(String headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamOpt(String headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -1693,28 +1580,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleStringHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleStringHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleStringHeaderParamNil(String headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamNil(String headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -1742,28 +1626,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleStringHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleStringHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleStringHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -1780,28 +1661,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleStringHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleStringHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleStringHeaderParamOptNil(String headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleStringHeaderParamOptNil(String headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleStringHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -1829,28 +1707,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleStringHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleStringHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringHeaderParamOptNil");
 		}
 	}
 
-	public LocalDate simpleLocalDateHeaderParam(LocalDate headerValue) {
+	public Result<LocalDate, RSDError.$GenericError> simpleLocalDateHeaderParam(LocalDate headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParam".formatted(
@@ -1876,28 +1751,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDate($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleLocalDateHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleLocalDateHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateHeaderParam");
 		}
 	}
 
-	public NilResult simpleLocalDateHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -1914,28 +1786,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateHeaderParamOpt(LocalDate headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamOpt(LocalDate headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -1959,28 +1828,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateHeaderParamNil(LocalDate headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamNil(LocalDate headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -2004,28 +1870,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleLocalDateHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -2042,28 +1905,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleLocalDateHeaderParamOptNil(LocalDate headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateHeaderParamOptNil(LocalDate headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -2087,28 +1947,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateHeaderParamOptNil");
 		}
 	}
 
-	public LocalDateTime simpleLocalDateTimeHeaderParam(LocalDateTime headerValue) {
+	public Result<LocalDateTime, RSDError.$GenericError> simpleLocalDateTimeHeaderParam(LocalDateTime headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParam".formatted(
@@ -2134,28 +1991,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDateTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeHeaderParam");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -2172,28 +2026,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeHeaderParamOpt(LocalDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamOpt(LocalDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -2217,28 +2068,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeHeaderParamNil(LocalDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamNil(LocalDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -2262,28 +2110,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -2300,28 +2145,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeHeaderParamOptNil(LocalDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeHeaderParamOptNil(LocalDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalDateTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -2345,28 +2187,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeHeaderParamOptNil");
 		}
 	}
 
-	public LocalTime simpleLocalTimeHeaderParam(LocalTime headerValue) {
+	public Result<LocalTime, RSDError.$GenericError> simpleLocalTimeHeaderParam(LocalTime headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleLocalTimeHeaderParam".formatted(
@@ -2392,28 +2231,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalTimeHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeHeaderParam");
 		}
 	}
 
-	public NilResult simpleLocalTimeHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleLocalTimeHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -2430,28 +2266,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalTimeHeaderParamOpt(LocalTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamOpt(LocalTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalTimeHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -2475,28 +2308,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalTimeHeaderParamNil(LocalTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamNil(LocalTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalTimeHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -2520,28 +2350,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleLocalTimeHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleLocalTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -2558,28 +2385,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleLocalTimeHeaderParamOptNil(LocalTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeHeaderParamOptNil(LocalTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleLocalTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -2603,28 +2427,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeHeaderParamOptNil");
 		}
 	}
 
-	public OffsetDateTime simpleOffsetDateTimeHeaderParam(OffsetDateTime headerValue) {
+	public Result<OffsetDateTime, RSDError.$GenericError> simpleOffsetDateTimeHeaderParam(OffsetDateTime headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleOffsetDateTimeHeaderParam".formatted(
@@ -2650,28 +2471,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTime($response);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeHeaderParam");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleOffsetDateTimeHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -2688,28 +2506,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeHeaderParamOpt(OffsetDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamOpt(OffsetDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleOffsetDateTimeHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -2733,28 +2548,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeHeaderParamNil(OffsetDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamNil(OffsetDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleOffsetDateTimeHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -2778,28 +2590,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleOffsetDateTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -2816,28 +2625,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeHeaderParamOptNil(OffsetDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeHeaderParamOptNil(OffsetDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleOffsetDateTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -2861,28 +2667,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeHeaderParamOptNil");
 		}
 	}
 
-	public ZonedDateTime simpleZonedDateTimeHeaderParam(ZonedDateTime headerValue) {
+	public Result<ZonedDateTime, RSDError.$GenericError> simpleZonedDateTimeHeaderParam(ZonedDateTime headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParam".formatted(
@@ -2908,28 +2711,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapZonedDateTime($response);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeHeaderParam");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -2946,28 +2746,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeHeaderParamOpt(ZonedDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamOpt(ZonedDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -2991,28 +2788,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeHeaderParamNil(ZonedDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamNil(ZonedDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -3036,28 +2830,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -3074,28 +2865,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeHeaderParamOptNil(ZonedDateTime headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeHeaderParamOptNil(ZonedDateTime headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleZonedDateTimeHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -3119,28 +2907,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeHeaderParamOptNil");
 		}
 	}
 
-	public ZoneId simpleScalarHeaderParam(ZoneId headerValue) {
+	public Result<ZoneId, RSDError.$GenericError> simpleScalarHeaderParam(ZoneId headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParam".formatted(
@@ -3166,28 +2951,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("simpleScalarHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleScalarHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleScalarHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarHeaderParam");
 		}
 	}
 
-	public NilResult simpleScalarHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -3204,28 +2986,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleScalarHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleScalarHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleScalarHeaderParamOpt(ZoneId headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamOpt(ZoneId headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -3249,28 +3028,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleScalarHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleScalarHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleScalarHeaderParamNil(ZoneId headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamNil(ZoneId headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -3294,28 +3070,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleScalarHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleScalarHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleScalarHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -3332,28 +3105,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleScalarHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleScalarHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleScalarHeaderParamOptNil(ZoneId headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarHeaderParamOptNil(ZoneId headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleScalarHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -3377,28 +3147,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleScalarHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleScalarHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarHeaderParamOptNil");
 		}
 	}
 
-	public SampleEnum simpleEnumHeaderParam(SampleEnum headerValue) {
+	public Result<SampleEnum, RSDError.$GenericError> simpleEnumHeaderParam(SampleEnum headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParam".formatted(
@@ -3424,28 +3191,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleEnumHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleEnumHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumHeaderParam");
 		}
 	}
 
-	public NilResult simpleEnumHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -3462,28 +3226,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleEnumHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleEnumHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleEnumHeaderParamOpt(SampleEnum headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamOpt(SampleEnum headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -3507,28 +3268,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleEnumHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleEnumHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleEnumHeaderParamNil(SampleEnum headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamNil(SampleEnum headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -3552,28 +3310,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleEnumHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleEnumHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleEnumHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -3590,28 +3345,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleEnumHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleEnumHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleEnumHeaderParamOptNil(SampleEnum headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumHeaderParamOptNil(SampleEnum headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleEnumHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -3635,28 +3387,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleEnumHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleEnumHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumHeaderParamOptNil");
 		}
 	}
 
-	public SimpleInlineEnumHeaderParam_Result$ simpleInlineEnumHeaderParam(SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue) {
+	public Result<SimpleInlineEnumHeaderParam_Result$, RSDError.$GenericError> simpleInlineEnumHeaderParam(SimpleInlineEnumHeaderParam_HeaderValue_Param$ headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParam".formatted(
@@ -3682,28 +3431,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SimpleInlineEnumHeaderParam_Result$::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParam", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParam", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumHeaderParam");
 		}
 	}
 
-	public NilResult simpleInlineEnumHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -3720,28 +3466,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleInlineEnumHeaderParamOpt(SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$ headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamOpt(SimpleInlineEnumHeaderParamOpt_HeaderValue_Param$ headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -3765,28 +3508,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumHeaderParamOpt");
 		}
 	}
 
-	public NilResult simpleInlineEnumHeaderParamNil(SimpleInlineEnumHeaderParamNil_HeaderValue_Param$ headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamNil(SimpleInlineEnumHeaderParamNil_HeaderValue_Param$ headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -3810,28 +3550,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamNil", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamNil", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumHeaderParamNil");
 		}
 	}
 
-	public NilResult simpleInlineEnumHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -3848,28 +3585,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumHeaderParamOptNil");
 		}
 	}
 
-	public NilResult simpleInlineEnumHeaderParamOptNil(SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$ headerValue) {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumHeaderParamOptNil(SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$ headerValue) {
 		var $path = "%s/api/headerparametertypes/simpleInlineEnumHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -3893,28 +3627,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumHeaderParamOptNil");
 		}
 	}
 
-	public String multiHeaderParam(String valueA, int valueB) {
+	public Result<String, RSDError.$GenericError> multiHeaderParam(String valueA, int valueB) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 
 		var $path = "%s/api/headerparametertypes/multiHeaderParam".formatted(
@@ -3941,28 +3672,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiHeaderParam", e);
-			this.lifecycleHook.onCatch("multiHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParam", e);
+			this.lifecycleHook.onCatch("multiHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiHeaderParam");
 		}
 	}
 
-	public List<NilResult> multiHeaderParamOpt() {
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -3979,28 +3707,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("multiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("multiHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("multiHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiHeaderParamOpt");
 		}
 	}
 
-	public List<NilResult> multiHeaderParamOpt(String valueA) {
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt(String valueA) {
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -4026,28 +3751,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("multiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("multiHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("multiHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiHeaderParamOpt");
 		}
 	}
 
-	public List<NilResult> multiHeaderParamOpt(String valueA, Integer valueB) {
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt(String valueA, Integer valueB) {
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -4074,28 +3796,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("multiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("multiHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("multiHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiHeaderParamOpt");
 		}
 	}
 
-	public List<NilResult> multiHeaderParamNil(String valueA, Integer valueB) {
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamNil(String valueA, Integer valueB) {
 		var $path = "%s/api/headerparametertypes/multiHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -4124,28 +3843,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("multiHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiHeaderParamNil", e);
-			this.lifecycleHook.onCatch("multiHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamNil", e);
+			this.lifecycleHook.onCatch("multiHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiHeaderParamNil");
 		}
 	}
 
-	public List<NilResult> multiHeaderParamOptNil() {
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -4162,28 +3878,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("multiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("multiHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("multiHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiHeaderParamOptNil");
 		}
 	}
 
-	public List<NilResult> multiHeaderParamOptNil(String valueA) {
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil(String valueA) {
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -4211,28 +3924,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("multiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("multiHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("multiHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiHeaderParamOptNil");
 		}
 	}
 
-	public List<NilResult> multiHeaderParamOptNil(String valueA, Integer valueB) {
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil(String valueA, Integer valueB) {
 		var $path = "%s/api/headerparametertypes/multiHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -4261,28 +3971,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("multiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("multiHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("multiHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiHeaderParamOptNil");
 		}
 	}
 
-	public SimpleRecord.Data recordHeaderParam(SimpleRecord.Data headerValue) {
+	public Result<SimpleRecord.Data, RSDError.$GenericError> recordHeaderParam(SimpleRecord.Data headerValue) {
 		Objects.requireNonNull(headerValue, "headerValue must not be null");
 
 		var $path = "%s/api/headerparametertypes/recordHeaderParam".formatted(
@@ -4309,28 +4016,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("recordHeaderParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordHeaderParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordHeaderParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordHeaderParam", e);
-			this.lifecycleHook.onCatch("recordHeaderParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordHeaderParam", e);
+			this.lifecycleHook.onCatch("recordHeaderParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordHeaderParam");
 		}
 	}
 
-	public NilResult recordHeaderParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamOpt() {
 		var $path = "%s/api/headerparametertypes/recordHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -4347,28 +4051,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("recordHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("recordHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordHeaderParamOpt");
 		}
 	}
 
-	public NilResult recordHeaderParamOpt(SimpleRecord.Data headerValue) {
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamOpt(SimpleRecord.Data headerValue) {
 		var $path = "%s/api/headerparametertypes/recordHeaderParamOpt".formatted(
 				this.baseURI());
 
@@ -4395,28 +4096,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordHeaderParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordHeaderParamOpt", e);
-			this.lifecycleHook.onCatch("recordHeaderParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("recordHeaderParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordHeaderParamOpt");
 		}
 	}
 
-	public NilResult recordHeaderParamNil(SimpleRecord.Data headerValue) {
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamNil(SimpleRecord.Data headerValue) {
 		var $path = "%s/api/headerparametertypes/recordHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -4445,28 +4143,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordHeaderParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordHeaderParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordHeaderParamNil", e);
-			this.lifecycleHook.onCatch("recordHeaderParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordHeaderParamNil", e);
+			this.lifecycleHook.onCatch("recordHeaderParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordHeaderParamNil");
 		}
 	}
 
-	public NilResult recordHeaderParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamOptNil() {
 		var $path = "%s/api/headerparametertypes/recordHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -4483,28 +4178,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("recordHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("recordHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordHeaderParamOptNil");
 		}
 	}
 
-	public NilResult recordHeaderParamOptNil(SimpleRecord.Data headerValue) {
+	public Result<NilResult, RSDError.$GenericError> recordHeaderParamOptNil(SimpleRecord.Data headerValue) {
 		var $path = "%s/api/headerparametertypes/recordHeaderParamOptNil".formatted(
 				this.baseURI());
 
@@ -4533,28 +4225,25 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordHeaderParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordHeaderParamOptNil", e);
-			this.lifecycleHook.onCatch("recordHeaderParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("recordHeaderParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordHeaderParamOptNil");
 		}
 	}
 
-	public void mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber, SimpleRecord.Data queryRecord) {
+	public Result<Void, RSDError.$GenericError> mixed(String pathString, int pathNumber, String headerString, int headerNumber, SimpleRecord.Data headerRecord, SimpleRecord.Data body, String queryString, double queryNumber, SimpleRecord.Data queryRecord) {
 		Objects.requireNonNull(pathString, "pathString must not be null");
 		Objects.requireNonNull(headerString, "headerString must not be null");
 		Objects.requireNonNull(headerRecord, "headerRecord must not be null");
@@ -4598,22 +4287,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("mixed", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("mixed", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("mixed", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation mixed", e);
-			this.lifecycleHook.onCatch("mixed", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation mixed", e);
+			this.lifecycleHook.onCatch("mixed", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("mixed");
 		}

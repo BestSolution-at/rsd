@@ -9,10 +9,15 @@ import {
 	toPath,
 	computeParameterAPIType,
 } from '../java-gen-utils.js';
-import { MOperation, MParameter, MReturnType, MService } from '../model.js';
+import { MOperation, MOperationError, MParameter, MResolvedService, MReturnType, MService } from '../model.js';
 import { toFirstUpper, toNode } from '../util.js';
+import { computeServiceErrorCombination } from './service-errors.js';
 
-export function generateService(s: MService, artifactConfig: JavaClientAPIGeneratorConfig): Artifact {
+export function generateService(
+	s: MService,
+	services: readonly MResolvedService[],
+	artifactConfig: JavaClientAPIGeneratorConfig,
+): Artifact {
 	const packageName = artifactConfig.rootPackageName;
 
 	const importCollector = new JavaImportsCollector(packageName);
@@ -55,12 +60,12 @@ export function generateService(s: MService, artifactConfig: JavaClientAPIGenera
 		s.operations.forEach(o => {
 			let idx = o.parameters.findIndex(p => p.optional);
 			if (idx === -1) {
-				toMethod(child, o, o.parameters, artifactConfig, fqn);
+				toMethod(child, o, services, o.parameters, artifactConfig, fqn);
 			} else {
 				for (idx; idx <= o.parameters.length; idx++) {
 					const params = [...o.parameters];
 					params.length = idx;
-					toMethod(child, o, params, artifactConfig, fqn);
+					toMethod(child, o, services, params, artifactConfig, fqn);
 				}
 			}
 		});
@@ -77,6 +82,7 @@ export function generateService(s: MService, artifactConfig: JavaClientAPIGenera
 function toMethod(
 	child: IndentNode,
 	o: MOperation,
+	services: readonly MResolvedService[],
 	allParameters: readonly MParameter[],
 	artifactConfig: JavaClientAPIGeneratorConfig,
 	fqn: (type: string) => string,
@@ -85,26 +91,22 @@ function toMethod(
 	if (parameters.length <= 1) {
 		child.append(
 			toNode(
-				[`public ${toResultType(o.resultType, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`],
+				[
+					`public ${toResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`,
+				],
 				false,
 			),
 		);
 	} else {
 		child.append(
 			toNode([
-				`public ${toResultType(o.resultType, artifactConfig, fqn, o.name)} ${o.name}(`,
+				`public ${toResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name)} ${o.name}(`,
 				[parameters.filter((_, idx, arr) => idx + 1 < arr.length).map(p => p + ', ')],
 			]),
 		);
 		child.indent(i1 => i1.indent(i2 => i2.append(parameters[parameters.length - 1] + ')')));
 	}
 
-	if (o.operationErrors.length > 0) {
-		child.append(
-			' throws ' +
-				o.operationErrors.map((e, idx, arr) => fqn(`${artifactConfig.rootPackageName}.${e.error}Exception`)).join(', '),
-		);
-	}
 	child.append(';', NL);
 	child.appendNewLine();
 }
@@ -128,13 +130,18 @@ function toParameter(
 
 function toResultType(
 	type: MReturnType | undefined,
+	errors: readonly MOperationError[],
+	services: readonly MResolvedService[],
 	artifactConfig: JavaClientAPIGeneratorConfig,
 	fqn: (type: string) => string,
 	methodName: string,
 ) {
+	const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
+	const error = computeErrorType(errors, services, artifactConfig, fqn);
+
 	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
 	if (type === undefined) {
-		return 'void';
+		return `${Result}<Void, ${error}>`;
 	}
 
 	let rvType: string;
@@ -157,12 +164,35 @@ function toResultType(
 			rvType = fqn(`${dtoPkg}.${type.type}`);
 		}
 	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, true);
 	}
 
 	if (type.array) {
 		rvType = `${fqn('java.util.List')}<${rvType}>`;
 	}
 
-	return rvType;
+	return `${Result}<${rvType}, ${error}>`;
+}
+
+function computeErrorType(
+	errors: readonly MOperationError[],
+	services: readonly MResolvedService[],
+	artifactConfig: JavaClientAPIGeneratorConfig,
+	fqn: (type: string) => string,
+) {
+	if (errors.length === 0) {
+		return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
+	} else {
+		const combinations = computeServiceErrorCombination(services);
+		const errorNames = errors
+			.map(e => e.error)
+			.sort()
+			.join(',');
+		const errorCombination = combinations.get(errorNames);
+		if (errorCombination) {
+			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + `.${errorCombination.interfaceName}`;
+		} else {
+			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
+		}
+	}
 }

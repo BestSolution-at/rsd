@@ -34,232 +34,232 @@ public interface ListHeaderParameterTypesService extends BaseService {
 		C,
 		D,
 	}
-	public List<Boolean> listBooleanHeaderParam(List<Boolean> headerValue);
+	public Result<List<Boolean>, RSDError.$GenericError> listBooleanHeaderParam(List<Boolean> headerValue);
 
-	public NilResult listBooleanHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listBooleanHeaderParamOpt();
 
-	public NilResult listBooleanHeaderParamOpt(List<Boolean> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listBooleanHeaderParamOpt(List<Boolean> headerValue);
 
-	public NilResult listBooleanHeaderParamNil(List<Boolean> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listBooleanHeaderParamNil(List<Boolean> headerValue);
 
-	public NilResult listBooleanHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listBooleanHeaderParamOptNil();
 
-	public NilResult listBooleanHeaderParamOptNil(List<Boolean> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listBooleanHeaderParamOptNil(List<Boolean> headerValue);
 
-	public List<Short> listShortHeaderParam(List<Short> headerValue);
+	public Result<List<Short>, RSDError.$GenericError> listShortHeaderParam(List<Short> headerValue);
 
-	public NilResult listShortHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listShortHeaderParamOpt();
 
-	public NilResult listShortHeaderParamOpt(List<Short> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listShortHeaderParamOpt(List<Short> headerValue);
 
-	public NilResult listShortHeaderParamNil(List<Short> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listShortHeaderParamNil(List<Short> headerValue);
 
-	public NilResult listShortHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listShortHeaderParamOptNil();
 
-	public NilResult listShortHeaderParamOptNil(List<Short> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listShortHeaderParamOptNil(List<Short> headerValue);
 
-	public List<Integer> listIntHeaderParam(List<Integer> headerValue);
+	public Result<List<Integer>, RSDError.$GenericError> listIntHeaderParam(List<Integer> headerValue);
 
-	public NilResult listIntHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listIntHeaderParamOpt();
 
-	public NilResult listIntHeaderParamOpt(List<Integer> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listIntHeaderParamOpt(List<Integer> headerValue);
 
-	public NilResult listIntHeaderParamNil(List<Integer> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listIntHeaderParamNil(List<Integer> headerValue);
 
-	public NilResult listIntHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listIntHeaderParamOptNil();
 
-	public NilResult listIntHeaderParamOptNil(List<Integer> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listIntHeaderParamOptNil(List<Integer> headerValue);
 
-	public List<Long> listLongHeaderParam(List<Long> headerValue);
+	public Result<List<Long>, RSDError.$GenericError> listLongHeaderParam(List<Long> headerValue);
 
-	public NilResult listLongHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listLongHeaderParamOpt();
 
-	public NilResult listLongHeaderParamOpt(List<Long> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLongHeaderParamOpt(List<Long> headerValue);
 
-	public NilResult listLongHeaderParamNil(List<Long> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLongHeaderParamNil(List<Long> headerValue);
 
-	public NilResult listLongHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listLongHeaderParamOptNil();
 
-	public NilResult listLongHeaderParamOptNil(List<Long> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLongHeaderParamOptNil(List<Long> headerValue);
 
-	public List<Float> listFloatHeaderParam(List<Float> headerValue);
+	public Result<List<Float>, RSDError.$GenericError> listFloatHeaderParam(List<Float> headerValue);
 
-	public NilResult listFloatHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listFloatHeaderParamOpt();
 
-	public NilResult listFloatHeaderParamOpt(List<Float> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listFloatHeaderParamOpt(List<Float> headerValue);
 
-	public NilResult listFloatHeaderParamNil(List<Float> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listFloatHeaderParamNil(List<Float> headerValue);
 
-	public NilResult listFloatHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listFloatHeaderParamOptNil();
 
-	public NilResult listFloatHeaderParamOptNil(List<Float> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listFloatHeaderParamOptNil(List<Float> headerValue);
 
-	public List<Double> listDoubleHeaderParam(List<Double> headerValue);
+	public Result<List<Double>, RSDError.$GenericError> listDoubleHeaderParam(List<Double> headerValue);
 
-	public NilResult listDoubleHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listDoubleHeaderParamOpt();
 
-	public NilResult listDoubleHeaderParamOpt(List<Double> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listDoubleHeaderParamOpt(List<Double> headerValue);
 
-	public NilResult listDoubleHeaderParamNil(List<Double> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listDoubleHeaderParamNil(List<Double> headerValue);
 
-	public NilResult listDoubleHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listDoubleHeaderParamOptNil();
 
-	public NilResult listDoubleHeaderParamOptNil(List<Double> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listDoubleHeaderParamOptNil(List<Double> headerValue);
 
-	public List<String> listStringHeaderParam(List<String> headerValue);
+	public Result<List<String>, RSDError.$GenericError> listStringHeaderParam(List<String> headerValue);
 
-	public NilResult listStringHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listStringHeaderParamOpt();
 
-	public NilResult listStringHeaderParamOpt(List<String> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listStringHeaderParamOpt(List<String> headerValue);
 
-	public NilResult listStringHeaderParamNil(List<String> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listStringHeaderParamNil(List<String> headerValue);
 
-	public NilResult listStringHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listStringHeaderParamOptNil();
 
-	public NilResult listStringHeaderParamOptNil(List<String> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listStringHeaderParamOptNil(List<String> headerValue);
 
-	public List<LocalDate> listLocalDateHeaderParam(List<LocalDate> headerValue);
+	public Result<List<LocalDate>, RSDError.$GenericError> listLocalDateHeaderParam(List<LocalDate> headerValue);
 
-	public NilResult listLocalDateHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listLocalDateHeaderParamOpt();
 
-	public NilResult listLocalDateHeaderParamOpt(List<LocalDate> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalDateHeaderParamOpt(List<LocalDate> headerValue);
 
-	public NilResult listLocalDateHeaderParamNil(List<LocalDate> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalDateHeaderParamNil(List<LocalDate> headerValue);
 
-	public NilResult listLocalDateHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listLocalDateHeaderParamOptNil();
 
-	public NilResult listLocalDateHeaderParamOptNil(List<LocalDate> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalDateHeaderParamOptNil(List<LocalDate> headerValue);
 
-	public List<LocalDateTime> listLocalDateTimeHeaderParam(List<LocalDateTime> headerValue);
+	public Result<List<LocalDateTime>, RSDError.$GenericError> listLocalDateTimeHeaderParam(List<LocalDateTime> headerValue);
 
-	public NilResult listLocalDateTimeHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeHeaderParamOpt();
 
-	public NilResult listLocalDateTimeHeaderParamOpt(List<LocalDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeHeaderParamOpt(List<LocalDateTime> headerValue);
 
-	public NilResult listLocalDateTimeHeaderParamNil(List<LocalDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeHeaderParamNil(List<LocalDateTime> headerValue);
 
-	public NilResult listLocalDateTimeHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeHeaderParamOptNil();
 
-	public NilResult listLocalDateTimeHeaderParamOptNil(List<LocalDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalDateTimeHeaderParamOptNil(List<LocalDateTime> headerValue);
 
-	public List<LocalTime> listLocalTimeHeaderParam(List<LocalTime> headerValue);
+	public Result<List<LocalTime>, RSDError.$GenericError> listLocalTimeHeaderParam(List<LocalTime> headerValue);
 
-	public NilResult listLocalTimeHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeHeaderParamOpt();
 
-	public NilResult listLocalTimeHeaderParamOpt(List<LocalTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeHeaderParamOpt(List<LocalTime> headerValue);
 
-	public NilResult listLocalTimeHeaderParamNil(List<LocalTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeHeaderParamNil(List<LocalTime> headerValue);
 
-	public NilResult listLocalTimeHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeHeaderParamOptNil();
 
-	public NilResult listLocalTimeHeaderParamOptNil(List<LocalTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listLocalTimeHeaderParamOptNil(List<LocalTime> headerValue);
 
-	public List<OffsetDateTime> listOffsetDateTimeHeaderParam(List<OffsetDateTime> headerValue);
+	public Result<List<OffsetDateTime>, RSDError.$GenericError> listOffsetDateTimeHeaderParam(List<OffsetDateTime> headerValue);
 
-	public NilResult listOffsetDateTimeHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeHeaderParamOpt();
 
-	public NilResult listOffsetDateTimeHeaderParamOpt(List<OffsetDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeHeaderParamOpt(List<OffsetDateTime> headerValue);
 
-	public NilResult listOffsetDateTimeHeaderParamNil(List<OffsetDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeHeaderParamNil(List<OffsetDateTime> headerValue);
 
-	public NilResult listOffsetDateTimeHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeHeaderParamOptNil();
 
-	public NilResult listOffsetDateTimeHeaderParamOptNil(List<OffsetDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listOffsetDateTimeHeaderParamOptNil(List<OffsetDateTime> headerValue);
 
-	public List<ZonedDateTime> listZonedDateTimeHeaderParam(List<ZonedDateTime> headerValue);
+	public Result<List<ZonedDateTime>, RSDError.$GenericError> listZonedDateTimeHeaderParam(List<ZonedDateTime> headerValue);
 
-	public NilResult listZonedDateTimeHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeHeaderParamOpt();
 
-	public NilResult listZonedDateTimeHeaderParamOpt(List<ZonedDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeHeaderParamOpt(List<ZonedDateTime> headerValue);
 
-	public NilResult listZonedDateTimeHeaderParamNil(List<ZonedDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeHeaderParamNil(List<ZonedDateTime> headerValue);
 
-	public NilResult listZonedDateTimeHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeHeaderParamOptNil();
 
-	public NilResult listZonedDateTimeHeaderParamOptNil(List<ZonedDateTime> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listZonedDateTimeHeaderParamOptNil(List<ZonedDateTime> headerValue);
 
-	public List<ZoneId> listScalarHeaderParam(List<ZoneId> headerValue);
+	public Result<List<ZoneId>, RSDError.$GenericError> listScalarHeaderParam(List<ZoneId> headerValue);
 
-	public NilResult listScalarHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listScalarHeaderParamOpt();
 
-	public NilResult listScalarHeaderParamOpt(List<ZoneId> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listScalarHeaderParamOpt(List<ZoneId> headerValue);
 
-	public NilResult listScalarHeaderParamNil(List<ZoneId> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listScalarHeaderParamNil(List<ZoneId> headerValue);
 
-	public NilResult listScalarHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listScalarHeaderParamOptNil();
 
-	public NilResult listScalarHeaderParamOptNil(List<ZoneId> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listScalarHeaderParamOptNil(List<ZoneId> headerValue);
 
-	public List<SampleEnum> listEnumHeaderParam(List<SampleEnum> headerValue);
+	public Result<List<SampleEnum>, RSDError.$GenericError> listEnumHeaderParam(List<SampleEnum> headerValue);
 
-	public NilResult listEnumHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listEnumHeaderParamOpt();
 
-	public NilResult listEnumHeaderParamOpt(List<SampleEnum> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listEnumHeaderParamOpt(List<SampleEnum> headerValue);
 
-	public NilResult listEnumHeaderParamNil(List<SampleEnum> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listEnumHeaderParamNil(List<SampleEnum> headerValue);
 
-	public NilResult listEnumHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listEnumHeaderParamOptNil();
 
-	public NilResult listEnumHeaderParamOptNil(List<SampleEnum> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listEnumHeaderParamOptNil(List<SampleEnum> headerValue);
 
-	public List<ListInlineEnumHeaderParam_Result$> listInlineEnumHeaderParam(List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue);
+	public Result<List<ListInlineEnumHeaderParam_Result$>, RSDError.$GenericError> listInlineEnumHeaderParam(List<ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue);
 
-	public NilResult listInlineEnumHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumHeaderParamOpt();
 
-	public NilResult listInlineEnumHeaderParamOpt(List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumHeaderParamOpt(List<ListInlineEnumHeaderParamOpt_HeaderValue_Param$> headerValue);
 
-	public NilResult listInlineEnumHeaderParamNil(List<ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumHeaderParamNil(List<ListInlineEnumHeaderParamNil_HeaderValue_Param$> headerValue);
 
-	public NilResult listInlineEnumHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumHeaderParamOptNil();
 
-	public NilResult listInlineEnumHeaderParamOptNil(List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listInlineEnumHeaderParamOptNil(List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
 
-	public String listMultiHeaderParam(
+	public Result<String, RSDError.$GenericError> listMultiHeaderParam(
 			List<String> valueA, 
 			List<Integer> valueB, 
 			List<SimpleRecord.Data> valueC);
 
-	public List<NilResult> listMultiHeaderParamOpt();
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOpt();
 
-	public List<NilResult> listMultiHeaderParamOpt(List<String> valueA);
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOpt(List<String> valueA);
 
-	public List<NilResult> listMultiHeaderParamOpt(
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOpt(
 			List<String> valueA, 
 			List<Integer> valueB);
 
-	public List<NilResult> listMultiHeaderParamOpt(
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOpt(
 			List<String> valueA, 
 			List<Integer> valueB, 
 			List<SimpleRecord.Data> valueC);
 
-	public List<NilResult> listMultiHeaderParamNil(
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamNil(
 			List<String> valueA, 
 			List<Integer> valueB, 
 			List<SimpleRecord.Data> valueC);
 
-	public List<NilResult> listMultiHeaderParamOptNil();
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOptNil();
 
-	public List<NilResult> listMultiHeaderParamOptNil(List<String> valueA);
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOptNil(List<String> valueA);
 
-	public List<NilResult> listMultiHeaderParamOptNil(
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOptNil(
 			List<String> valueA, 
 			List<Integer> valueB);
 
-	public List<NilResult> listMultiHeaderParamOptNil(
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOptNil(
 			List<String> valueA, 
 			List<Integer> valueB, 
 			List<SimpleRecord.Data> valueC);
 
-	public List<SimpleRecord.Data> listRecordHeaderParam(List<SimpleRecord.Data> headerValue);
+	public Result<List<SimpleRecord.Data>, RSDError.$GenericError> listRecordHeaderParam(List<SimpleRecord.Data> headerValue);
 
-	public NilResult listRecordHeaderParamOpt();
+	public Result<NilResult, RSDError.$GenericError> listRecordHeaderParamOpt();
 
-	public NilResult listRecordHeaderParamOpt(List<SimpleRecord.Data> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listRecordHeaderParamOpt(List<SimpleRecord.Data> headerValue);
 
-	public NilResult listRecordHeaderParamNil(List<SimpleRecord.Data> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listRecordHeaderParamNil(List<SimpleRecord.Data> headerValue);
 
-	public NilResult listRecordHeaderParamOptNil();
+	public Result<NilResult, RSDError.$GenericError> listRecordHeaderParamOptNil();
 
-	public NilResult listRecordHeaderParamOptNil(List<SimpleRecord.Data> headerValue);
+	public Result<NilResult, RSDError.$GenericError> listRecordHeaderParamOptNil(List<SimpleRecord.Data> headerValue);
 
 }

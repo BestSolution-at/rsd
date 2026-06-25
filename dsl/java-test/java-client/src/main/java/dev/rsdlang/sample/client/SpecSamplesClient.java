@@ -205,7 +205,7 @@ public interface SpecSamplesClient {
 		 *                        eg. HttpResponse for JDK HttpClient, Response for
 		 *                        OkHttp, etc.
 		 */
-		void onError(String method, RSDException error, Adaptable responseAdapter);
+		void onError(String method, RSDError error, Adaptable responseAdapter);
 
 		/**
 		 * Called if an exception was thrown during the request (e.g. network error)
@@ -214,7 +214,7 @@ public interface SpecSamplesClient {
 		 *                        (e.g. "getUser", "createUser", etc.)
 		 * @param error           the exception that was thrown during the request
 		 */
-		void onCatch(String method, RSDException error);
+		void onCatch(String method, RSDError error);
 
 		/**
 		 * Called after the request was completed, regardless of the outcome. It can be

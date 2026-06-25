@@ -51,49 +51,49 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleBooleanBodyParam(BodyParameterTypesService service) {
-		assertEquals(true, service.simpleBooleanBodyParam(true));
+		assertEquals(true, service.simpleBooleanBodyParam(true).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleBooleanBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleBooleanBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleBooleanBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleBooleanBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleBooleanBodyParamOpt(true));
+		assertEquals(NilResult.DEFINED, service.simpleBooleanBodyParamOpt(true).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleBooleanBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleBooleanBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleBooleanBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleBooleanBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleBooleanBodyParamNil(true));
+		assertEquals(NilResult.DEFINED, service.simpleBooleanBodyParamNil(true).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleBooleanBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleBooleanBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleBooleanBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleBooleanBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleBooleanBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleBooleanBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleBooleanBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleBooleanBodyParamOptNil(true));
+		assertEquals(NilResult.DEFINED, service.simpleBooleanBodyParamOptNil(true).orThrow());
 	}
 
 	// --- Short ---
@@ -101,49 +101,49 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleShortBodyParam(BodyParameterTypesService service) {
-		assertEquals((short) 42, service.simpleShortBodyParam((short) 42));
+		assertEquals((short) 42, service.simpleShortBodyParam((short) 42).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleShortBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleShortBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleShortBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleShortBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleShortBodyParamOpt((short) 42));
+		assertEquals(NilResult.DEFINED, service.simpleShortBodyParamOpt((short) 42).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleShortBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleShortBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleShortBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleShortBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleShortBodyParamNil((short) 42));
+		assertEquals(NilResult.DEFINED, service.simpleShortBodyParamNil((short) 42).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleShortBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleShortBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleShortBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleShortBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleShortBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleShortBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleShortBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleShortBodyParamOptNil((short) 42));
+		assertEquals(NilResult.DEFINED, service.simpleShortBodyParamOptNil((short) 42).orThrow());
 	}
 
 	// --- Int ---
@@ -151,49 +151,49 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleIntBodyParam(BodyParameterTypesService service) {
-		assertEquals(123456, service.simpleIntBodyParam(123456));
+		assertEquals(123456, service.simpleIntBodyParam(123456).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleIntBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleIntBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleIntBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleIntBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleIntBodyParamOpt(123456));
+		assertEquals(NilResult.DEFINED, service.simpleIntBodyParamOpt(123456).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleIntBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleIntBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleIntBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleIntBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleIntBodyParamNil(123456));
+		assertEquals(NilResult.DEFINED, service.simpleIntBodyParamNil(123456).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleIntBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleIntBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleIntBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleIntBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleIntBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleIntBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleIntBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleIntBodyParamOptNil(123456));
+		assertEquals(NilResult.DEFINED, service.simpleIntBodyParamOptNil(123456).orThrow());
 	}
 
 	// --- Long ---
@@ -201,49 +201,49 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLongBodyParam(BodyParameterTypesService service) {
-		assertEquals(1234567890123L, service.simpleLongBodyParam(1234567890123L));
+		assertEquals(1234567890123L, service.simpleLongBodyParam(1234567890123L).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLongBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleLongBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleLongBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLongBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLongBodyParamOpt(1234567890123L));
+		assertEquals(NilResult.DEFINED, service.simpleLongBodyParamOpt(1234567890123L).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLongBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleLongBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleLongBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLongBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLongBodyParamNil(1234567890123L));
+		assertEquals(NilResult.DEFINED, service.simpleLongBodyParamNil(1234567890123L).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLongBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleLongBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleLongBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLongBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleLongBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleLongBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLongBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLongBodyParamOptNil(1234567890123L));
+		assertEquals(NilResult.DEFINED, service.simpleLongBodyParamOptNil(1234567890123L).orThrow());
 	}
 
 	// --- Float ---
@@ -251,49 +251,49 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleFloatBodyParam(BodyParameterTypesService service) {
-		assertEquals(123.45f, service.simpleFloatBodyParam(123.45f));
+		assertEquals(123.45f, service.simpleFloatBodyParam(123.45f).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleFloatBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleFloatBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleFloatBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleFloatBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleFloatBodyParamOpt(123.45f));
+		assertEquals(NilResult.DEFINED, service.simpleFloatBodyParamOpt(123.45f).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleFloatBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleFloatBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleFloatBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleFloatBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleFloatBodyParamNil(123.45f));
+		assertEquals(NilResult.DEFINED, service.simpleFloatBodyParamNil(123.45f).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleFloatBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleFloatBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleFloatBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleFloatBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleFloatBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleFloatBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleFloatBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleFloatBodyParamOptNil(123.45f));
+		assertEquals(NilResult.DEFINED, service.simpleFloatBodyParamOptNil(123.45f).orThrow());
 	}
 
 	// --- Double ---
@@ -301,49 +301,49 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleDoubleBodyParam(BodyParameterTypesService service) {
-		assertEquals(123.456789, service.simpleDoubleBodyParam(123.456789));
+		assertEquals(123.456789, service.simpleDoubleBodyParam(123.456789).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleDoubleBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleDoubleBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleDoubleBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleDoubleBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleDoubleBodyParamOpt(123.456789));
+		assertEquals(NilResult.DEFINED, service.simpleDoubleBodyParamOpt(123.456789).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleDoubleBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleDoubleBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleDoubleBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleDoubleBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleDoubleBodyParamNil(123.456789));
+		assertEquals(NilResult.DEFINED, service.simpleDoubleBodyParamNil(123.456789).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleDoubleBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleDoubleBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleDoubleBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleDoubleBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleDoubleBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleDoubleBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleDoubleBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleDoubleBodyParamOptNil(123.456789));
+		assertEquals(NilResult.DEFINED, service.simpleDoubleBodyParamOptNil(123.456789).orThrow());
 	}
 
 	// --- String ---
@@ -351,49 +351,49 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleStringBodyParam(BodyParameterTypesService service) {
-		assertEquals("hello world", service.simpleStringBodyParam("hello world"));
+		assertEquals("hello world", service.simpleStringBodyParam("hello world").orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleStringBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleStringBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleStringBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleStringBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleStringBodyParamOpt("hello world"));
+		assertEquals(NilResult.DEFINED, service.simpleStringBodyParamOpt("hello world").orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleStringBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleStringBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleStringBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleStringBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleStringBodyParamNil("hello world"));
+		assertEquals(NilResult.DEFINED, service.simpleStringBodyParamNil("hello world").orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleStringBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleStringBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleStringBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleStringBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleStringBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleStringBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleStringBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleStringBodyParamOptNil("hello world"));
+		assertEquals(NilResult.DEFINED, service.simpleStringBodyParamOptNil("hello world").orThrow());
 	}
 
 	// --- LocalDate ---
@@ -402,49 +402,50 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateBodyParam(BodyParameterTypesService service) {
 		var date = LocalDate.parse("2020-01-01");
-		assertEquals(date, service.simpleLocalDateBodyParam(date));
+		assertEquals(date, service.simpleLocalDateBodyParam(date).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleLocalDateBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalDateBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLocalDateBodyParamOpt(LocalDate.parse("2020-01-01")));
+		assertEquals(NilResult.DEFINED, service.simpleLocalDateBodyParamOpt(LocalDate.parse("2020-01-01")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleLocalDateBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleLocalDateBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLocalDateBodyParamNil(LocalDate.parse("2020-01-01")));
+		assertEquals(NilResult.DEFINED, service.simpleLocalDateBodyParamNil(LocalDate.parse("2020-01-01")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleLocalDateBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalDateBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleLocalDateBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleLocalDateBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLocalDateBodyParamOptNil(LocalDate.parse("2020-01-01")));
+		assertEquals(NilResult.DEFINED,
+				service.simpleLocalDateBodyParamOptNil(LocalDate.parse("2020-01-01")).orThrow());
 	}
 
 	// --- LocalDateTime ---
@@ -453,52 +454,52 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParam(BodyParameterTypesService service) {
 		var dt = LocalDateTime.parse("2020-01-01T10:00");
-		assertEquals(dt, service.simpleLocalDateTimeBodyParam(dt));
+		assertEquals(dt, service.simpleLocalDateTimeBodyParam(dt).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleLocalDateTimeBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalDateTimeBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamOpt_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleLocalDateTimeBodyParamOpt(LocalDateTime.parse("2020-01-01T10:00")));
+				service.simpleLocalDateTimeBodyParamOpt(LocalDateTime.parse("2020-01-01T10:00")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleLocalDateTimeBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleLocalDateTimeBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleLocalDateTimeBodyParamNil(LocalDateTime.parse("2020-01-01T10:00")));
+				service.simpleLocalDateTimeBodyParamNil(LocalDateTime.parse("2020-01-01T10:00")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleLocalDateTimeBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalDateTimeBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleLocalDateTimeBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleLocalDateTimeBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalDateTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleLocalDateTimeBodyParamOptNil(LocalDateTime.parse("2020-01-01T10:00")));
+				service.simpleLocalDateTimeBodyParamOptNil(LocalDateTime.parse("2020-01-01T10:00")).orThrow());
 	}
 
 	// --- LocalTime ---
@@ -507,49 +508,49 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParam(BodyParameterTypesService service) {
 		var t = LocalTime.parse("10:00:00");
-		assertEquals(t, service.simpleLocalTimeBodyParam(t));
+		assertEquals(t, service.simpleLocalTimeBodyParam(t).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamOpt(LocalTime.parse("10:00:00")));
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamOpt(LocalTime.parse("10:00:00")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleLocalTimeBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleLocalTimeBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamNil(LocalTime.parse("10:00:00")));
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamNil(LocalTime.parse("10:00:00")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleLocalTimeBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleLocalTimeBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleLocalTimeBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleLocalTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamOptNil(LocalTime.parse("10:00:00")));
+		assertEquals(NilResult.DEFINED, service.simpleLocalTimeBodyParamOptNil(LocalTime.parse("10:00:00")).orThrow());
 	}
 
 	// --- OffsetDateTime ---
@@ -557,52 +558,53 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParam(BodyParameterTypesService service) {
 		var odt = OffsetDateTime.parse("2025-01-01T10:00:00+01:00");
-		assertEquals(odt, service.simpleOffsetDateTimeBodyParam(odt));
+		assertEquals(odt, service.simpleOffsetDateTimeBodyParam(odt).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleOffsetDateTimeBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleOffsetDateTimeBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamOpt_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleOffsetDateTimeBodyParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+				service.simpleOffsetDateTimeBodyParamOpt(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleOffsetDateTimeBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleOffsetDateTimeBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleOffsetDateTimeBodyParamNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+				service.simpleOffsetDateTimeBodyParamNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleOffsetDateTimeBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleOffsetDateTimeBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleOffsetDateTimeBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleOffsetDateTimeBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleOffsetDateTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00")));
+				service.simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime.parse("2025-01-01T10:00:00+01:00"))
+						.orThrow());
 	}
 
 	// --- ZonedDateTime ---
@@ -611,52 +613,52 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleZonedDateTimeBodyParam(BodyParameterTypesService service) {
 		var zdt = ZonedDateTime.parse("2025-01-01T10:00:00Z");
-		assertEquals(zdt, service.simpleZonedDateTimeBodyParam(zdt));
+		assertEquals(zdt, service.simpleZonedDateTimeBodyParam(zdt).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleZonedDateTimeBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleZonedDateTimeBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleZonedDateTimeBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleZonedDateTimeBodyParamOpt_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleZonedDateTimeBodyParamOpt(ZonedDateTime.parse("2025-01-01T10:00:00Z")));
+				service.simpleZonedDateTimeBodyParamOpt(ZonedDateTime.parse("2025-01-01T10:00:00Z")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleZonedDateTimeBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleZonedDateTimeBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleZonedDateTimeBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleZonedDateTimeBodyParamNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleZonedDateTimeBodyParamNil(ZonedDateTime.parse("2025-01-01T10:00:00Z")));
+				service.simpleZonedDateTimeBodyParamNil(ZonedDateTime.parse("2025-01-01T10:00:00Z")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleZonedDateTimeBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleZonedDateTimeBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleZonedDateTimeBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleZonedDateTimeBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleZonedDateTimeBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleZonedDateTimeBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleZonedDateTimeBodyParamOptNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleZonedDateTimeBodyParamOptNil(ZonedDateTime.parse("2025-01-01T10:00:00Z")));
+				service.simpleZonedDateTimeBodyParamOptNil(ZonedDateTime.parse("2025-01-01T10:00:00Z")).orThrow());
 	}
 
 	// --- Scalar (ZoneId) ---
@@ -665,49 +667,49 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleScalarBodyParam(BodyParameterTypesService service) {
 		var zoneId = ZoneId.of("Europe/Vienna");
-		assertEquals(zoneId, service.simpleScalarBodyParam(zoneId));
+		assertEquals(zoneId, service.simpleScalarBodyParam(zoneId).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleScalarBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleScalarBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleScalarBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleScalarBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleScalarBodyParamOpt(ZoneId.of("Europe/Vienna")));
+		assertEquals(NilResult.DEFINED, service.simpleScalarBodyParamOpt(ZoneId.of("Europe/Vienna")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleScalarBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleScalarBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleScalarBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleScalarBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleScalarBodyParamNil(ZoneId.of("Europe/Vienna")));
+		assertEquals(NilResult.DEFINED, service.simpleScalarBodyParamNil(ZoneId.of("Europe/Vienna")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleScalarBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleScalarBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleScalarBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleScalarBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleScalarBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleScalarBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleScalarBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleScalarBodyParamOptNil(ZoneId.of("Europe/Vienna")));
+		assertEquals(NilResult.DEFINED, service.simpleScalarBodyParamOptNil(ZoneId.of("Europe/Vienna")).orThrow());
 	}
 
 	// --- Enum ---
@@ -715,49 +717,49 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleEnumBodyParam(BodyParameterTypesService service) {
-		assertEquals(SampleEnum.A, service.simpleEnumBodyParam(SampleEnum.A));
+		assertEquals(SampleEnum.A, service.simpleEnumBodyParam(SampleEnum.A).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleEnumBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleEnumBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleEnumBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleEnumBodyParamOpt_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleEnumBodyParamOpt(SampleEnum.B));
+		assertEquals(NilResult.DEFINED, service.simpleEnumBodyParamOpt(SampleEnum.B).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleEnumBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleEnumBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleEnumBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleEnumBodyParamNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleEnumBodyParamNil(SampleEnum.A));
+		assertEquals(NilResult.DEFINED, service.simpleEnumBodyParamNil(SampleEnum.A).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleEnumBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleEnumBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleEnumBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleEnumBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleEnumBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleEnumBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleEnumBodyParamOptNil_defined(BodyParameterTypesService service) {
-		assertEquals(NilResult.DEFINED, service.simpleEnumBodyParamOptNil(SampleEnum.B));
+		assertEquals(NilResult.DEFINED, service.simpleEnumBodyParamOptNil(SampleEnum.B).orThrow());
 	}
 
 	// --- Inline Enum ---
@@ -766,52 +768,52 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void simpleInlineEnumBodyParam(BodyParameterTypesService service) {
 		assertEquals(SimpleInlineEnumBodyParam_Result$.A,
-				service.simpleInlineEnumBodyParam(SimpleInlineEnumBodyParam_BodyEnum_Param$.A));
+				service.simpleInlineEnumBodyParam(SimpleInlineEnumBodyParam_BodyEnum_Param$.A).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleInlineEnumBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleInlineEnumBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.simpleInlineEnumBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleInlineEnumBodyParamOpt_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleInlineEnumBodyParamOpt(SimpleInlineEnumBodyParamOpt_BodyEnum_Param$.A));
+				service.simpleInlineEnumBodyParamOpt(SimpleInlineEnumBodyParamOpt_BodyEnum_Param$.A).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleInlineEnumBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleInlineEnumBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.simpleInlineEnumBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleInlineEnumBodyParamNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleInlineEnumBodyParamNil(SimpleInlineEnumBodyParamNil_BodyEnum_Param$.C));
+				service.simpleInlineEnumBodyParamNil(SimpleInlineEnumBodyParamNil_BodyEnum_Param$.C).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleInlineEnumBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.simpleInlineEnumBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.simpleInlineEnumBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleInlineEnumBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.simpleInlineEnumBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.simpleInlineEnumBodyParamOptNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void simpleInlineEnumBodyParamOptNil_defined(BodyParameterTypesService service) {
 		assertEquals(NilResult.DEFINED,
-				service.simpleInlineEnumBodyParamOptNil(SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$.D));
+				service.simpleInlineEnumBodyParamOptNil(SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$.D).orThrow());
 	}
 
 	// --- Multi Body Param ---
@@ -820,78 +822,78 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void multiBodyParam(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParam("hello", 42, record));
+		assertEquals("hello-42-k", service.multiBodyParam("hello", 42, record).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_allUndefined(BodyParameterTypesService service) {
-		assertEquals("undefined-undefined-undefined", service.multiBodyParamOpt());
+		assertEquals("undefined-undefined-undefined", service.multiBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_valueAOnly(BodyParameterTypesService service) {
-		assertEquals("hello-undefined-undefined", service.multiBodyParamOpt("hello"));
+		assertEquals("hello-undefined-undefined", service.multiBodyParamOpt("hello").orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_valueAAndB(BodyParameterTypesService service) {
-		assertEquals("hello-42-undefined", service.multiBodyParamOpt("hello", 42));
+		assertEquals("hello-42-undefined", service.multiBodyParamOpt("hello", 42).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_allDefined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParamOpt("hello", 42, record));
+		assertEquals("hello-42-k", service.multiBodyParamOpt("hello", 42, record).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamNil_allNull(BodyParameterTypesService service) {
-		assertEquals("null-null-null", service.multiBodyParamNil(null, null, null));
+		assertEquals("null-null-null", service.multiBodyParamNil(null, null, null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamNil_allDefined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParamNil("hello", 42, record));
+		assertEquals("hello-42-k", service.multiBodyParamNil("hello", 42, record).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_allUndefined(BodyParameterTypesService service) {
-		assertEquals("undefined-undefined-undefined", service.multiBodyParamOptNil());
+		assertEquals("undefined-undefined-undefined", service.multiBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_valueANull(BodyParameterTypesService service) {
-		assertEquals("null-undefined-undefined", service.multiBodyParamOptNil((String) null));
+		assertEquals("null-undefined-undefined", service.multiBodyParamOptNil((String) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_allNull(BodyParameterTypesService service) {
 		assertEquals("null-null-null",
-				service.multiBodyParamOptNil((String) null, (Integer) null, (SimpleRecord.Data) null));
+				service.multiBodyParamOptNil((String) null, (Integer) null, (SimpleRecord.Data) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_allDefined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParamOptNil("hello", 42, record));
+		assertEquals("hello-42-k", service.multiBodyParamOptNil("hello", 42, record).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamFirst_allDefined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParamFirst("hello", 42, record));
+		assertEquals("hello-42-k", service.multiBodyParamFirst("hello", 42, record).orThrow());
 	}
 
 	// --- Record Body Param ---
@@ -900,7 +902,7 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void recordBodyParam(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		var result = service.recordBodyParam(record);
+		var result = service.recordBodyParam(record).orThrow();
 		assertEquals("k", result.key());
 		assertEquals("1", result.version());
 		assertEquals("v", result.value());
@@ -909,46 +911,46 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.recordBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.recordBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamOpt_defined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(NilResult.DEFINED, service.recordBodyParamOpt(record));
+		assertEquals(NilResult.DEFINED, service.recordBodyParamOpt(record).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.recordBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.recordBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamNil_defined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(NilResult.DEFINED, service.recordBodyParamNil(record));
+		assertEquals(NilResult.DEFINED, service.recordBodyParamNil(record).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.recordBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.recordBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.recordBodyParamOptNil((SimpleRecord.Data) null));
+		assertEquals(NilResult.NULL, service.recordBodyParamOptNil((SimpleRecord.Data) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void recordBodyParamOptNil_defined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(NilResult.DEFINED, service.recordBodyParamOptNil(record));
+		assertEquals(NilResult.DEFINED, service.recordBodyParamOptNil(record).orThrow());
 	}
 
 	// --- Union Body Param ---
@@ -957,53 +959,53 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void unionBodyParam(BodyParameterTypesService service) {
 		var union = service.client().builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
-		var result = service.unionBodyParam(union);
+		var result = service.unionBodyParam(union).orThrow();
 		assertEquals("shared", result.shared());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamOpt_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.unionBodyParamOpt());
+		assertEquals(NilResult.UNDEFINED, service.unionBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamOpt_defined(BodyParameterTypesService service) {
 		var union = service.client().builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
-		assertEquals(NilResult.DEFINED, service.unionBodyParamOpt(union));
+		assertEquals(NilResult.DEFINED, service.unionBodyParamOpt(union).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.unionBodyParamNil(null));
+		assertEquals(NilResult.NULL, service.unionBodyParamNil(null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamNil_defined(BodyParameterTypesService service) {
 		var union = service.client().builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
-		assertEquals(NilResult.DEFINED, service.unionBodyParamNil(union));
+		assertEquals(NilResult.DEFINED, service.unionBodyParamNil(union).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		assertEquals(NilResult.UNDEFINED, service.unionBodyParamOptNil());
+		assertEquals(NilResult.UNDEFINED, service.unionBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamOptNil_null(BodyParameterTypesService service) {
-		assertEquals(NilResult.NULL, service.unionBodyParamOptNil(null));
+		assertEquals(NilResult.NULL, service.unionBodyParamOptNil((UnionA.Data) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void unionBodyParamOptNil_defined(BodyParameterTypesService service) {
 		var union = service.client().builder(UnionA.DataBuilder.class).shared("shared").valueA("valueA").build();
-		assertEquals(NilResult.DEFINED, service.unionBodyParamOptNil(union));
+		assertEquals(NilResult.DEFINED, service.unionBodyParamOptNil(union).orThrow());
 	}
 
 	// --- Patchable Record Body Param ---
@@ -1013,7 +1015,7 @@ public class BodyParameterTypesServiceTest {
 	public void patchableRecordBodyParam(BodyParameterTypesService service) {
 		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v")
 				.build();
-		var result = service.patchableRecordBodyParam(patch);
+		var result = service.patchableRecordBodyParam(patch).orThrow();
 		assertEquals("k", result.key());
 		assertEquals("1", result.version());
 		assertEquals("v", result.value());
@@ -1022,7 +1024,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamOpt_undefined(BodyParameterTypesService service) {
-		var result = service.patchableRecordBodyParamOpt();
+		var result = service.patchableRecordBodyParamOpt().orThrow();
 		assertEquals("undefined", result.key());
 		assertEquals("undefined", result.value());
 	}
@@ -1032,7 +1034,7 @@ public class BodyParameterTypesServiceTest {
 	public void patchableRecordBodyParamOpt_defined(BodyParameterTypesService service) {
 		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v")
 				.build();
-		var result = service.patchableRecordBodyParamOpt(patch);
+		var result = service.patchableRecordBodyParamOpt(patch).orThrow();
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());
 	}
@@ -1040,7 +1042,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamNil_null(BodyParameterTypesService service) {
-		var result = service.patchableRecordBodyParamNil(null);
+		var result = service.patchableRecordBodyParamNil(null).orThrow();
 		assertEquals("null", result.key());
 		assertEquals("null", result.value());
 	}
@@ -1050,7 +1052,7 @@ public class BodyParameterTypesServiceTest {
 	public void patchableRecordBodyParamNil_defined(BodyParameterTypesService service) {
 		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v")
 				.build();
-		var result = service.patchableRecordBodyParamNil(patch);
+		var result = service.patchableRecordBodyParamNil(patch).orThrow();
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());
 	}
@@ -1058,7 +1060,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamOptNil_undefined(BodyParameterTypesService service) {
-		var result = service.patchableRecordBodyParamOptNil();
+		var result = service.patchableRecordBodyParamOptNil().orThrow();
 		assertEquals("undefined", result.key());
 		assertEquals("undefined", result.value());
 	}
@@ -1066,7 +1068,7 @@ public class BodyParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void patchableRecordBodyParamOptNil_null(BodyParameterTypesService service) {
-		var result = service.patchableRecordBodyParamOptNil((PatchableRecord.Patch) null);
+		var result = service.patchableRecordBodyParamOptNil((PatchableRecord.Patch) null).orThrow();
 		assertEquals("null", result.key());
 		assertEquals("null", result.value());
 	}
@@ -1076,7 +1078,7 @@ public class BodyParameterTypesServiceTest {
 	public void patchableRecordBodyParamOptNil_defined(BodyParameterTypesService service) {
 		var patch = service.client().builder(PatchableRecord.PatchBuilder.class).key("k").version("1").value("v")
 				.build();
-		var result = service.patchableRecordBodyParamOptNil(patch);
+		var result = service.patchableRecordBodyParamOptNil(patch).orThrow();
 		assertEquals("k", result.key());
 		assertEquals("v", result.value());
 	}

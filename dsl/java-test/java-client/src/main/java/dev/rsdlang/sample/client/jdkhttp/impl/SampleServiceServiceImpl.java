@@ -20,15 +20,16 @@ import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.Union;
 import dev.rsdlang.sample.client.model.ZoneId;
-import dev.rsdlang.sample.client.RSDException;
-import dev.rsdlang.sample.client.SampleError2Exception;
-import dev.rsdlang.sample.client.SampleErrorBooleanException;
-import dev.rsdlang.sample.client.SampleErrorEnumException;
-import dev.rsdlang.sample.client.SampleErrorException;
-import dev.rsdlang.sample.client.SampleErrorIntException;
-import dev.rsdlang.sample.client.SampleErrorScalarException;
-import dev.rsdlang.sample.client.SampleErrorUnionException;
-import dev.rsdlang.sample.client.SampleErrorWithValueException;
+import dev.rsdlang.sample.client.Result;
+import dev.rsdlang.sample.client.RSDError;
+import dev.rsdlang.sample.client.SampleError;
+import dev.rsdlang.sample.client.SampleError2;
+import dev.rsdlang.sample.client.SampleErrorBoolean;
+import dev.rsdlang.sample.client.SampleErrorEnum;
+import dev.rsdlang.sample.client.SampleErrorInt;
+import dev.rsdlang.sample.client.SampleErrorScalar;
+import dev.rsdlang.sample.client.SampleErrorUnion;
+import dev.rsdlang.sample.client.SampleErrorWithValue;
 import dev.rsdlang.sample.client.SampleServiceService;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
@@ -54,7 +55,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 		return this.client.contentTypeEncoding().contentType;
 	}
 
-	public boolean getBoolean() {
+	public Result<Boolean, RSDError.$GenericError> getBoolean() {
 		var $path = "%s/api/samplerecords/boolean".formatted(
 				this.baseURI());
 
@@ -71,28 +72,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapBoolean($response);
 				this.lifecycleHook.onSuccess("getBoolean", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getBoolean", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getBoolean", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getBoolean", e);
-			this.lifecycleHook.onCatch("getBoolean", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getBoolean", e);
+			this.lifecycleHook.onCatch("getBoolean", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getBoolean");
 		}
 	}
 
-	public short getShort() {
+	public Result<Short, RSDError.$GenericError> getShort() {
 		var $path = "%s/api/samplerecords/short".formatted(
 				this.baseURI());
 
@@ -109,28 +107,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapShort($response);
 				this.lifecycleHook.onSuccess("getShort", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getShort", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getShort", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getShort", e);
-			this.lifecycleHook.onCatch("getShort", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getShort", e);
+			this.lifecycleHook.onCatch("getShort", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getShort");
 		}
 	}
 
-	public int getInt() {
+	public Result<Integer, RSDError.$GenericError> getInt() {
 		var $path = "%s/api/samplerecords/int".formatted(
 				this.baseURI());
 
@@ -147,28 +142,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("getInt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getInt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getInt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getInt", e);
-			this.lifecycleHook.onCatch("getInt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getInt", e);
+			this.lifecycleHook.onCatch("getInt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getInt");
 		}
 	}
 
-	public long getLong() {
+	public Result<Long, RSDError.$GenericError> getLong() {
 		var $path = "%s/api/samplerecords/long".formatted(
 				this.baseURI());
 
@@ -185,28 +177,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLong($response);
 				this.lifecycleHook.onSuccess("getLong", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getLong", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getLong", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getLong", e);
-			this.lifecycleHook.onCatch("getLong", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getLong", e);
+			this.lifecycleHook.onCatch("getLong", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getLong");
 		}
 	}
 
-	public float getFloat() {
+	public Result<Float, RSDError.$GenericError> getFloat() {
 		var $path = "%s/api/samplerecords/float".formatted(
 				this.baseURI());
 
@@ -223,28 +212,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapFloat($response);
 				this.lifecycleHook.onSuccess("getFloat", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getFloat", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getFloat", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getFloat", e);
-			this.lifecycleHook.onCatch("getFloat", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getFloat", e);
+			this.lifecycleHook.onCatch("getFloat", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getFloat");
 		}
 	}
 
-	public double getDouble() {
+	public Result<Double, RSDError.$GenericError> getDouble() {
 		var $path = "%s/api/samplerecords/double".formatted(
 				this.baseURI());
 
@@ -261,28 +247,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapDouble($response);
 				this.lifecycleHook.onSuccess("getDouble", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getDouble", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getDouble", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getDouble", e);
-			this.lifecycleHook.onCatch("getDouble", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getDouble", e);
+			this.lifecycleHook.onCatch("getDouble", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getDouble");
 		}
 	}
 
-	public String getString() {
+	public Result<String, RSDError.$GenericError> getString() {
 		var $path = "%s/api/samplerecords/string".formatted(
 				this.baseURI());
 
@@ -299,28 +282,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("getString", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getString", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getString", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getString", e);
-			this.lifecycleHook.onCatch("getString", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getString", e);
+			this.lifecycleHook.onCatch("getString", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getString");
 		}
 	}
 
-	public LocalDate getLocalDate() {
+	public Result<LocalDate, RSDError.$GenericError> getLocalDate() {
 		var $path = "%s/api/samplerecords/localdate".formatted(
 				this.baseURI());
 
@@ -337,28 +317,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDate($response);
 				this.lifecycleHook.onSuccess("getLocalDate", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getLocalDate", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getLocalDate", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getLocalDate", e);
-			this.lifecycleHook.onCatch("getLocalDate", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getLocalDate", e);
+			this.lifecycleHook.onCatch("getLocalDate", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getLocalDate");
 		}
 	}
 
-	public LocalDateTime getLocalDateTime() {
+	public Result<LocalDateTime, RSDError.$GenericError> getLocalDateTime() {
 		var $path = "%s/api/samplerecords/localdatetime".formatted(
 				this.baseURI());
 
@@ -375,28 +352,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDateTime($response);
 				this.lifecycleHook.onSuccess("getLocalDateTime", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getLocalDateTime", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getLocalDateTime", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getLocalDateTime", e);
-			this.lifecycleHook.onCatch("getLocalDateTime", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getLocalDateTime", e);
+			this.lifecycleHook.onCatch("getLocalDateTime", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getLocalDateTime");
 		}
 	}
 
-	public LocalTime getLocalTime() {
+	public Result<LocalTime, RSDError.$GenericError> getLocalTime() {
 		var $path = "%s/api/samplerecords/localtime".formatted(
 				this.baseURI());
 
@@ -413,28 +387,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalTime($response);
 				this.lifecycleHook.onSuccess("getLocalTime", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getLocalTime", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getLocalTime", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getLocalTime", e);
-			this.lifecycleHook.onCatch("getLocalTime", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getLocalTime", e);
+			this.lifecycleHook.onCatch("getLocalTime", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getLocalTime");
 		}
 	}
 
-	public OffsetDateTime getOffsetDateTime() {
+	public Result<OffsetDateTime, RSDError.$GenericError> getOffsetDateTime() {
 		var $path = "%s/api/samplerecords/offsetdatetime".formatted(
 				this.baseURI());
 
@@ -451,28 +422,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTime($response);
 				this.lifecycleHook.onSuccess("getOffsetDateTime", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getOffsetDateTime", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getOffsetDateTime", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getOffsetDateTime", e);
-			this.lifecycleHook.onCatch("getOffsetDateTime", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getOffsetDateTime", e);
+			this.lifecycleHook.onCatch("getOffsetDateTime", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getOffsetDateTime");
 		}
 	}
 
-	public ZonedDateTime getZonedDateTime() {
+	public Result<ZonedDateTime, RSDError.$GenericError> getZonedDateTime() {
 		var $path = "%s/api/samplerecords/zoneddatetime".formatted(
 				this.baseURI());
 
@@ -489,28 +457,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapZonedDateTime($response);
 				this.lifecycleHook.onSuccess("getZonedDateTime", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getZonedDateTime", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getZonedDateTime", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getZonedDateTime", e);
-			this.lifecycleHook.onCatch("getZonedDateTime", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getZonedDateTime", e);
+			this.lifecycleHook.onCatch("getZonedDateTime", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getZonedDateTime");
 		}
 	}
 
-	public ZoneId getScalar() {
+	public Result<ZoneId, RSDError.$GenericError> getScalar() {
 		var $path = "%s/api/samplerecords/scalar".formatted(
 				this.baseURI());
 
@@ -527,28 +492,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("getScalar", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getScalar", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getScalar", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getScalar", e);
-			this.lifecycleHook.onCatch("getScalar", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getScalar", e);
+			this.lifecycleHook.onCatch("getScalar", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getScalar");
 		}
 	}
 
-	public SampleEnum getEnum() {
+	public Result<SampleEnum, RSDError.$GenericError> getEnum() {
 		var $path = "%s/api/samplerecords/enum".formatted(
 				this.baseURI());
 
@@ -565,28 +527,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("getEnum", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getEnum", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getEnum", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getEnum", e);
-			this.lifecycleHook.onCatch("getEnum", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getEnum", e);
+			this.lifecycleHook.onCatch("getEnum", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getEnum");
 		}
 	}
 
-	public void voidOperation() {
+	public Result<Void, RSDError.$GenericError> voidOperation() {
 		var $path = "%s/api/samplerecords/voidoperation".formatted(
 				this.baseURI());
 
@@ -602,29 +561,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("voidOperation", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("voidOperation", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("voidOperation", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation voidOperation", e);
-			this.lifecycleHook.onCatch("voidOperation", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation voidOperation", e);
+			this.lifecycleHook.onCatch("voidOperation", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("voidOperation");
 		}
 	}
 
-	public void errorOperation()
-			throws SampleErrorException {
+	public Result<Void, RSDError.E1> errorOperation() {
 		var $path = "%s/api/samplerecords/erroroperation".formatted(
 				this.baseURI());
 
@@ -640,34 +595,29 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				this.lifecycleHook.onSuccess("errorOperation", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
-				var exception = new SampleErrorException(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("errorOperation", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
+				this.lifecycleHook.onError("errorOperation", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("errorOperation", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("errorOperation", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation errorOperation", e);
-			this.lifecycleHook.onCatch("errorOperation", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation errorOperation", e);
+			this.lifecycleHook.onCatch("errorOperation", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("errorOperation");
 		}
 	}
 
-	public void multiErrorOperation()
-			throws SampleErrorException,
-			SampleError2Exception {
+	public Result<Void, RSDError.E2> multiErrorOperation() {
 		var $path = "%s/api/samplerecords/multierroroperation".formatted(
 				this.baseURI());
 
@@ -683,36 +633,33 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
 				this.lifecycleHook.onSuccess("multiErrorOperation", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
-				var exception = new SampleErrorException(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("multiErrorOperation", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
+				this.lifecycleHook.onError("multiErrorOperation", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			} else if ($response.statusCode() == 401) {
-				var exception = new SampleError2Exception(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("multiErrorOperation", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleError2(JDKHttpClientResponseUtils.toString($response));
+				this.lifecycleHook.onError("multiErrorOperation", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiErrorOperation", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiErrorOperation", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiErrorOperation", e);
-			this.lifecycleHook.onCatch("multiErrorOperation", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiErrorOperation", e);
+			this.lifecycleHook.onCatch("multiErrorOperation", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiErrorOperation");
 		}
 	}
 
-	public SimpleRecord.Data getSimpleRecord(String key) {
+	public Result<SimpleRecord.Data, RSDError.$GenericError> getSimpleRecord(String key) {
 		Objects.requireNonNull(key, "key must not be null");
 
 		var $path = "%s/api/samplerecords/simplerecord/%s".formatted(
@@ -732,29 +679,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("getSimpleRecord", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getSimpleRecord", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getSimpleRecord", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleRecord", e);
-			this.lifecycleHook.onCatch("getSimpleRecord", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getSimpleRecord", e);
+			this.lifecycleHook.onCatch("getSimpleRecord", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleRecord");
 		}
 	}
 
-	public SimpleRecord.Data getSimpleRecordWithError(String key)
-			throws SampleErrorException {
+	public Result<SimpleRecord.Data, RSDError.E1> getSimpleRecordWithError(String key) {
 		Objects.requireNonNull(key, "key must not be null");
 
 		var $path = "%s/api/samplerecords/simplerecordwitherror/%s".formatted(
@@ -774,33 +717,29 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("getSimpleRecordWithError", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			} else if ($response.statusCode() == 400) {
-				var exception = new SampleErrorException(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("getSimpleRecordWithError", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
+				this.lifecycleHook.onError("getSimpleRecordWithError", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getSimpleRecordWithError", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getSimpleRecordWithError", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleRecordWithError", e);
-			this.lifecycleHook.onCatch("getSimpleRecordWithError", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getSimpleRecordWithError", e);
+			this.lifecycleHook.onCatch("getSimpleRecordWithError", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleRecordWithError");
 		}
 	}
 
-	public void getSimpleErrorWithValue()
-			throws SampleErrorWithValueException {
+	public Result<Void, RSDError.E3> getSimpleErrorWithValue() {
 		var $path = "%s/api/samplerecords/simpleerrorwithvalue".formatted(
 				this.baseURI());
 
@@ -816,35 +755,31 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorWithValue", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorWithValue failed");
-				var exception = new SampleErrorWithValueException($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorWithValue", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorWithValue($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorWithValue", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getSimpleErrorWithValue", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getSimpleErrorWithValue", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorWithValue", e);
-			this.lifecycleHook.onCatch("getSimpleErrorWithValue", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getSimpleErrorWithValue", e);
+			this.lifecycleHook.onCatch("getSimpleErrorWithValue", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleErrorWithValue");
 		}
 	}
 
-	public void getSimpleErrorInt()
-			throws SampleErrorIntException {
+	public Result<Void, RSDError.E4> getSimpleErrorInt() {
 		var $path = "%s/api/samplerecords/simpleerrorint".formatted(
 				this.baseURI());
 
@@ -860,35 +795,31 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorInt", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapInt($response);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorInt failed");
-				var exception = new SampleErrorIntException($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorInt", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorInt($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorInt", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getSimpleErrorInt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getSimpleErrorInt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorInt", e);
-			this.lifecycleHook.onCatch("getSimpleErrorInt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getSimpleErrorInt", e);
+			this.lifecycleHook.onCatch("getSimpleErrorInt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleErrorInt");
 		}
 	}
 
-	public void getSimpleErrorBoolean()
-			throws SampleErrorBooleanException {
+	public Result<Void, RSDError.E5> getSimpleErrorBoolean() {
 		var $path = "%s/api/samplerecords/simpleerrorboolean".formatted(
 				this.baseURI());
 
@@ -904,35 +835,31 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorBoolean", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapBoolean($response);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorBoolean failed");
-				var exception = new SampleErrorBooleanException($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorBoolean", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorBoolean($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorBoolean", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getSimpleErrorBoolean", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getSimpleErrorBoolean", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorBoolean", e);
-			this.lifecycleHook.onCatch("getSimpleErrorBoolean", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getSimpleErrorBoolean", e);
+			this.lifecycleHook.onCatch("getSimpleErrorBoolean", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleErrorBoolean");
 		}
 	}
 
-	public void getSimpleErrorEnum()
-			throws SampleErrorEnumException {
+	public Result<Void, RSDError.E6> getSimpleErrorEnum() {
 		var $path = "%s/api/samplerecords/simpleerrorenum".formatted(
 				this.baseURI());
 
@@ -948,35 +875,31 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorEnum", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorEnum failed");
-				var exception = new SampleErrorEnumException($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorEnum", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorEnum($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorEnum", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getSimpleErrorEnum", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getSimpleErrorEnum", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorEnum", e);
-			this.lifecycleHook.onCatch("getSimpleErrorEnum", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getSimpleErrorEnum", e);
+			this.lifecycleHook.onCatch("getSimpleErrorEnum", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleErrorEnum");
 		}
 	}
 
-	public void getSimpleErrorScalar()
-			throws SampleErrorScalarException {
+	public Result<Void, RSDError.E7> getSimpleErrorScalar() {
 		var $path = "%s/api/samplerecords/simpleerrorscalar".formatted(
 				this.baseURI());
 
@@ -992,35 +915,31 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorScalar", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorScalar failed");
-				var exception = new SampleErrorScalarException($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorScalar", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorScalar($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorScalar", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getSimpleErrorScalar", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getSimpleErrorScalar", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorScalar", e);
-			this.lifecycleHook.onCatch("getSimpleErrorScalar", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getSimpleErrorScalar", e);
+			this.lifecycleHook.onCatch("getSimpleErrorScalar", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleErrorScalar");
 		}
 	}
 
-	public void getSimpleErrorUnion()
-			throws SampleErrorUnionException {
+	public Result<Void, RSDError.E8> getSimpleErrorUnion() {
 		var $path = "%s/api/samplerecords/simpleerrorunion".formatted(
 				this.baseURI());
 
@@ -1036,28 +955,25 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 204) {
 				this.lifecycleHook.onSuccess("getSimpleErrorUnion", null, this.client.createResponseAdaptable($response));
-				return;
+				return Result.ok(null);
 			} else if ($response.statusCode() == 400) {
 				var $errorData = JDKHttpClientResponseUtils.mapObject($response, UnionDataImpl::of, Union.Data.class);
 				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorUnion failed");
-				var exception = new SampleErrorUnionException($message, $errorData);
-				this.lifecycleHook.onError("getSimpleErrorUnion", exception, this.client.createResponseAdaptable($response));
-				throw exception;
+				var $error = new SampleErrorUnion($message, $errorData);
+				this.lifecycleHook.onError("getSimpleErrorUnion", $error, this.client.createResponseAdaptable($response));
+				return Result.err($error);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("getSimpleErrorUnion", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("getSimpleErrorUnion", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation getSimpleErrorUnion", e);
-			this.lifecycleHook.onCatch("getSimpleErrorUnion", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation getSimpleErrorUnion", e);
+			this.lifecycleHook.onCatch("getSimpleErrorUnion", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("getSimpleErrorUnion");
 		}

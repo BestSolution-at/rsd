@@ -32,7 +32,8 @@ import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.Union;
 import dev.rsdlang.sample.client.model.ZoneId;
-import dev.rsdlang.sample.client.RSDException;
+import dev.rsdlang.sample.client.Result;
+import dev.rsdlang.sample.client.RSDError;
 import dev.rsdlang.sample.client.SpecSamplesClient;
 
 public class BodyParameterTypesServiceImpl implements BodyParameterTypesService {
@@ -57,7 +58,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		return this.client.contentTypeEncoding().contentType;
 	}
 
-	public boolean simpleBooleanBodyParam(boolean bodyBoolean) {
+	public Result<Boolean, RSDError.$GenericError> simpleBooleanBodyParam(boolean bodyBoolean) {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParam".formatted(
 				this.baseURI());
 
@@ -78,28 +79,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapBoolean($response);
 				this.lifecycleHook.onSuccess("simpleBooleanBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParam", e);
-			this.lifecycleHook.onCatch("simpleBooleanBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParam", e);
+			this.lifecycleHook.onCatch("simpleBooleanBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanBodyParam");
 		}
 	}
 
-	public NilResult simpleBooleanBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -120,28 +118,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleBooleanBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleBooleanBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleBooleanBodyParamOpt(Boolean bodyBoolean) {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamOpt(Boolean bodyBoolean) {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -162,28 +157,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleBooleanBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleBooleanBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleBooleanBodyParamNil(Boolean bodyBoolean) {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamNil(Boolean bodyBoolean) {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamNil".formatted(
 				this.baseURI());
 
@@ -204,28 +196,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleBooleanBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleBooleanBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanBodyParamNil");
 		}
 	}
 
-	public NilResult simpleBooleanBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -246,28 +235,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleBooleanBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleBooleanBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleBooleanBodyParamOptNil(Boolean bodyBoolean) {
+	public Result<NilResult, RSDError.$GenericError> simpleBooleanBodyParamOptNil(Boolean bodyBoolean) {
 		var $path = "%s/api/bodyparametertypes/simpleBooleanBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -288,28 +274,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleBooleanBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleBooleanBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleBooleanBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleBooleanBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleBooleanBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleBooleanBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleBooleanBodyParamOptNil");
 		}
 	}
 
-	public short simpleShortBodyParam(short bodyShort) {
+	public Result<Short, RSDError.$GenericError> simpleShortBodyParam(short bodyShort) {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParam".formatted(
 				this.baseURI());
 
@@ -330,28 +313,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapShort($response);
 				this.lifecycleHook.onSuccess("simpleShortBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParam", e);
-			this.lifecycleHook.onCatch("simpleShortBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortBodyParam", e);
+			this.lifecycleHook.onCatch("simpleShortBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortBodyParam");
 		}
 	}
 
-	public NilResult simpleShortBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -372,28 +352,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleShortBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleShortBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleShortBodyParamOpt(Short bodyShort) {
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamOpt(Short bodyShort) {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -414,28 +391,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleShortBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleShortBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleShortBodyParamNil(Short bodyShort) {
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamNil(Short bodyShort) {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamNil".formatted(
 				this.baseURI());
 
@@ -456,28 +430,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleShortBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleShortBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortBodyParamNil");
 		}
 	}
 
-	public NilResult simpleShortBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -498,28 +469,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleShortBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleShortBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleShortBodyParamOptNil(Short bodyShort) {
+	public Result<NilResult, RSDError.$GenericError> simpleShortBodyParamOptNil(Short bodyShort) {
 		var $path = "%s/api/bodyparametertypes/simpleShortBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -540,28 +508,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleShortBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleShortBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleShortBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleShortBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleShortBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleShortBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleShortBodyParamOptNil");
 		}
 	}
 
-	public int simpleIntBodyParam(int bodyInt) {
+	public Result<Integer, RSDError.$GenericError> simpleIntBodyParam(int bodyInt) {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParam".formatted(
 				this.baseURI());
 
@@ -582,28 +547,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapInt($response);
 				this.lifecycleHook.onSuccess("simpleIntBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParam", e);
-			this.lifecycleHook.onCatch("simpleIntBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntBodyParam", e);
+			this.lifecycleHook.onCatch("simpleIntBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntBodyParam");
 		}
 	}
 
-	public NilResult simpleIntBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -624,28 +586,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleIntBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleIntBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleIntBodyParamOpt(Integer bodyInt) {
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamOpt(Integer bodyInt) {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -666,28 +625,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleIntBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleIntBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleIntBodyParamNil(Integer bodyInt) {
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamNil(Integer bodyInt) {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamNil".formatted(
 				this.baseURI());
 
@@ -708,28 +664,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleIntBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleIntBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntBodyParamNil");
 		}
 	}
 
-	public NilResult simpleIntBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -750,28 +703,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleIntBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleIntBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleIntBodyParamOptNil(Integer bodyInt) {
+	public Result<NilResult, RSDError.$GenericError> simpleIntBodyParamOptNil(Integer bodyInt) {
 		var $path = "%s/api/bodyparametertypes/simpleIntBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -792,28 +742,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleIntBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleIntBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleIntBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleIntBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleIntBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleIntBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleIntBodyParamOptNil");
 		}
 	}
 
-	public long simpleLongBodyParam(long bodyLong) {
+	public Result<Long, RSDError.$GenericError> simpleLongBodyParam(long bodyLong) {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParam".formatted(
 				this.baseURI());
 
@@ -834,28 +781,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLong($response);
 				this.lifecycleHook.onSuccess("simpleLongBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParam", e);
-			this.lifecycleHook.onCatch("simpleLongBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongBodyParam", e);
+			this.lifecycleHook.onCatch("simpleLongBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongBodyParam");
 		}
 	}
 
-	public NilResult simpleLongBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -876,28 +820,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLongBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLongBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleLongBodyParamOpt(Long bodyLong) {
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamOpt(Long bodyLong) {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -918,28 +859,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLongBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLongBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleLongBodyParamNil(Long bodyLong) {
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamNil(Long bodyLong) {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamNil".formatted(
 				this.baseURI());
 
@@ -960,28 +898,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleLongBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleLongBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongBodyParamNil");
 		}
 	}
 
-	public NilResult simpleLongBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1002,28 +937,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLongBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLongBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleLongBodyParamOptNil(Long bodyLong) {
+	public Result<NilResult, RSDError.$GenericError> simpleLongBodyParamOptNil(Long bodyLong) {
 		var $path = "%s/api/bodyparametertypes/simpleLongBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1044,28 +976,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLongBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLongBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLongBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLongBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLongBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLongBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLongBodyParamOptNil");
 		}
 	}
 
-	public float simpleFloatBodyParam(float bodyFloat) {
+	public Result<Float, RSDError.$GenericError> simpleFloatBodyParam(float bodyFloat) {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParam".formatted(
 				this.baseURI());
 
@@ -1086,28 +1015,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapFloat($response);
 				this.lifecycleHook.onSuccess("simpleFloatBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParam", e);
-			this.lifecycleHook.onCatch("simpleFloatBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatBodyParam", e);
+			this.lifecycleHook.onCatch("simpleFloatBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatBodyParam");
 		}
 	}
 
-	public NilResult simpleFloatBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1128,28 +1054,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleFloatBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleFloatBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleFloatBodyParamOpt(Float bodyFloat) {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamOpt(Float bodyFloat) {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1170,28 +1093,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleFloatBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleFloatBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleFloatBodyParamNil(Float bodyFloat) {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamNil(Float bodyFloat) {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamNil".formatted(
 				this.baseURI());
 
@@ -1212,28 +1132,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleFloatBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleFloatBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatBodyParamNil");
 		}
 	}
 
-	public NilResult simpleFloatBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1254,28 +1171,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleFloatBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleFloatBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleFloatBodyParamOptNil(Float bodyFloat) {
+	public Result<NilResult, RSDError.$GenericError> simpleFloatBodyParamOptNil(Float bodyFloat) {
 		var $path = "%s/api/bodyparametertypes/simpleFloatBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1296,28 +1210,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleFloatBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleFloatBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleFloatBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleFloatBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleFloatBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleFloatBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleFloatBodyParamOptNil");
 		}
 	}
 
-	public double simpleDoubleBodyParam(double bodyDouble) {
+	public Result<Double, RSDError.$GenericError> simpleDoubleBodyParam(double bodyDouble) {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParam".formatted(
 				this.baseURI());
 
@@ -1338,28 +1249,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapDouble($response);
 				this.lifecycleHook.onSuccess("simpleDoubleBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParam", e);
-			this.lifecycleHook.onCatch("simpleDoubleBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParam", e);
+			this.lifecycleHook.onCatch("simpleDoubleBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleBodyParam");
 		}
 	}
 
-	public NilResult simpleDoubleBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1380,28 +1288,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleDoubleBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleDoubleBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleDoubleBodyParamOpt(Double bodyDouble) {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamOpt(Double bodyDouble) {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1422,28 +1327,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleDoubleBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleDoubleBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleDoubleBodyParamNil(Double bodyDouble) {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamNil(Double bodyDouble) {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamNil".formatted(
 				this.baseURI());
 
@@ -1464,28 +1366,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleDoubleBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleDoubleBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleBodyParamNil");
 		}
 	}
 
-	public NilResult simpleDoubleBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1506,28 +1405,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleDoubleBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleDoubleBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleDoubleBodyParamOptNil(Double bodyDouble) {
+	public Result<NilResult, RSDError.$GenericError> simpleDoubleBodyParamOptNil(Double bodyDouble) {
 		var $path = "%s/api/bodyparametertypes/simpleDoubleBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1548,28 +1444,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleDoubleBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleDoubleBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleDoubleBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleDoubleBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleDoubleBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleDoubleBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleDoubleBodyParamOptNil");
 		}
 	}
 
-	public String simpleStringBodyParam(String bodyString) {
+	public Result<String, RSDError.$GenericError> simpleStringBodyParam(String bodyString) {
 		Objects.requireNonNull(bodyString, "bodyString must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParam".formatted(
@@ -1592,28 +1485,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("simpleStringBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParam", e);
-			this.lifecycleHook.onCatch("simpleStringBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringBodyParam", e);
+			this.lifecycleHook.onCatch("simpleStringBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringBodyParam");
 		}
 	}
 
-	public NilResult simpleStringBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1634,28 +1524,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleStringBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleStringBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleStringBodyParamOpt(String bodyString) {
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamOpt(String bodyString) {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1676,28 +1563,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleStringBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleStringBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleStringBodyParamNil(String bodyString) {
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamNil(String bodyString) {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamNil".formatted(
 				this.baseURI());
 
@@ -1718,28 +1602,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleStringBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleStringBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringBodyParamNil");
 		}
 	}
 
-	public NilResult simpleStringBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1760,28 +1641,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleStringBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleStringBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleStringBodyParamOptNil(String bodyString) {
+	public Result<NilResult, RSDError.$GenericError> simpleStringBodyParamOptNil(String bodyString) {
 		var $path = "%s/api/bodyparametertypes/simpleStringBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -1802,28 +1680,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleStringBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleStringBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleStringBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleStringBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleStringBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleStringBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleStringBodyParamOptNil");
 		}
 	}
 
-	public LocalDate simpleLocalDateBodyParam(LocalDate bodyLocalDate) {
+	public Result<LocalDate, RSDError.$GenericError> simpleLocalDateBodyParam(LocalDate bodyLocalDate) {
 		Objects.requireNonNull(bodyLocalDate, "bodyLocalDate must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParam".formatted(
@@ -1846,28 +1721,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDate($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParam", e);
-			this.lifecycleHook.onCatch("simpleLocalDateBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParam", e);
+			this.lifecycleHook.onCatch("simpleLocalDateBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateBodyParam");
 		}
 	}
 
-	public NilResult simpleLocalDateBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1888,28 +1760,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateBodyParamOpt(LocalDate bodyLocalDate) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamOpt(LocalDate bodyLocalDate) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -1930,28 +1799,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateBodyParamNil(LocalDate bodyLocalDate) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamNil(LocalDate bodyLocalDate) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamNil".formatted(
 				this.baseURI());
 
@@ -1972,28 +1838,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateBodyParamNil");
 		}
 	}
 
-	public NilResult simpleLocalDateBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2014,28 +1877,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleLocalDateBodyParamOptNil(LocalDate bodyLocalDate) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateBodyParamOptNil(LocalDate bodyLocalDate) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2056,28 +1916,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateBodyParamOptNil");
 		}
 	}
 
-	public LocalDateTime simpleLocalDateTimeBodyParam(LocalDateTime bodyLocalDateTime) {
+	public Result<LocalDateTime, RSDError.$GenericError> simpleLocalDateTimeBodyParam(LocalDateTime bodyLocalDateTime) {
 		Objects.requireNonNull(bodyLocalDateTime, "bodyLocalDateTime must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParam".formatted(
@@ -2100,28 +1957,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalDateTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParam", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParam", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeBodyParam");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2142,28 +1996,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeBodyParamOpt(LocalDateTime bodyLocalDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamOpt(LocalDateTime bodyLocalDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2184,28 +2035,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeBodyParamNil(LocalDateTime bodyLocalDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamNil(LocalDateTime bodyLocalDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamNil".formatted(
 				this.baseURI());
 
@@ -2226,28 +2074,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeBodyParamNil");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2268,28 +2113,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleLocalDateTimeBodyParamOptNil(LocalDateTime bodyLocalDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalDateTimeBodyParamOptNil(LocalDateTime bodyLocalDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2310,28 +2152,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalDateTimeBodyParamOptNil");
 		}
 	}
 
-	public LocalTime simpleLocalTimeBodyParam(LocalTime bodyLocalTime) {
+	public Result<LocalTime, RSDError.$GenericError> simpleLocalTimeBodyParam(LocalTime bodyLocalTime) {
 		Objects.requireNonNull(bodyLocalTime, "bodyLocalTime must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParam".formatted(
@@ -2354,28 +2193,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLocalTime($response);
 				this.lifecycleHook.onSuccess("simpleLocalTimeBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParam", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParam", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeBodyParam");
 		}
 	}
 
-	public NilResult simpleLocalTimeBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2396,28 +2232,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalTimeBodyParamOpt(LocalTime bodyLocalTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamOpt(LocalTime bodyLocalTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2438,28 +2271,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleLocalTimeBodyParamNil(LocalTime bodyLocalTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamNil(LocalTime bodyLocalTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamNil".formatted(
 				this.baseURI());
 
@@ -2480,28 +2310,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeBodyParamNil");
 		}
 	}
 
-	public NilResult simpleLocalTimeBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2522,28 +2349,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleLocalTimeBodyParamOptNil(LocalTime bodyLocalTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleLocalTimeBodyParamOptNil(LocalTime bodyLocalTime) {
 		var $path = "%s/api/bodyparametertypes/simpleLocalTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2564,28 +2388,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleLocalTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleLocalTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleLocalTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleLocalTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleLocalTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleLocalTimeBodyParamOptNil");
 		}
 	}
 
-	public OffsetDateTime simpleOffsetDateTimeBodyParam(OffsetDateTime bodyOffsetDateTime) {
+	public Result<OffsetDateTime, RSDError.$GenericError> simpleOffsetDateTimeBodyParam(OffsetDateTime bodyOffsetDateTime) {
 		Objects.requireNonNull(bodyOffsetDateTime, "bodyOffsetDateTime must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParam".formatted(
@@ -2608,28 +2429,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapOffsetDateTime($response);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParam", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParam", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeBodyParam");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2650,28 +2468,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeBodyParamOpt(OffsetDateTime bodyOffsetDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamOpt(OffsetDateTime bodyOffsetDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2692,28 +2507,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeBodyParamNil(OffsetDateTime bodyOffsetDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamNil(OffsetDateTime bodyOffsetDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamNil".formatted(
 				this.baseURI());
 
@@ -2734,28 +2546,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeBodyParamNil");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2776,28 +2585,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime bodyOffsetDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleOffsetDateTimeBodyParamOptNil(OffsetDateTime bodyOffsetDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleOffsetDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -2818,28 +2624,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleOffsetDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleOffsetDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleOffsetDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleOffsetDateTimeBodyParamOptNil");
 		}
 	}
 
-	public ZonedDateTime simpleZonedDateTimeBodyParam(ZonedDateTime bodyZonedDateTime) {
+	public Result<ZonedDateTime, RSDError.$GenericError> simpleZonedDateTimeBodyParam(ZonedDateTime bodyZonedDateTime) {
 		Objects.requireNonNull(bodyZonedDateTime, "bodyZonedDateTime must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParam".formatted(
@@ -2862,28 +2665,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapZonedDateTime($response);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParam", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParam", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeBodyParam");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2904,28 +2704,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeBodyParamOpt(ZonedDateTime bodyZonedDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamOpt(ZonedDateTime bodyZonedDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -2946,28 +2743,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeBodyParamNil(ZonedDateTime bodyZonedDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamNil(ZonedDateTime bodyZonedDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamNil".formatted(
 				this.baseURI());
 
@@ -2988,28 +2782,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeBodyParamNil");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3030,28 +2821,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleZonedDateTimeBodyParamOptNil(ZonedDateTime bodyZonedDateTime) {
+	public Result<NilResult, RSDError.$GenericError> simpleZonedDateTimeBodyParamOptNil(ZonedDateTime bodyZonedDateTime) {
 		var $path = "%s/api/bodyparametertypes/simpleZonedDateTimeBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3072,28 +2860,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleZonedDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleZonedDateTimeBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleZonedDateTimeBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleZonedDateTimeBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleZonedDateTimeBodyParamOptNil");
 		}
 	}
 
-	public ZoneId simpleScalarBodyParam(ZoneId bodyScalar) {
+	public Result<ZoneId, RSDError.$GenericError> simpleScalarBodyParam(ZoneId bodyScalar) {
 		Objects.requireNonNull(bodyScalar, "bodyScalar must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParam".formatted(
@@ -3116,28 +2901,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
 				this.lifecycleHook.onSuccess("simpleScalarBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParam", e);
-			this.lifecycleHook.onCatch("simpleScalarBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarBodyParam", e);
+			this.lifecycleHook.onCatch("simpleScalarBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarBodyParam");
 		}
 	}
 
-	public NilResult simpleScalarBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3158,28 +2940,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleScalarBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleScalarBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleScalarBodyParamOpt(ZoneId bodyScalar) {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamOpt(ZoneId bodyScalar) {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3200,28 +2979,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleScalarBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleScalarBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleScalarBodyParamNil(ZoneId bodyScalar) {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamNil(ZoneId bodyScalar) {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamNil".formatted(
 				this.baseURI());
 
@@ -3242,28 +3018,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleScalarBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleScalarBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarBodyParamNil");
 		}
 	}
 
-	public NilResult simpleScalarBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3284,28 +3057,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleScalarBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleScalarBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleScalarBodyParamOptNil(ZoneId bodyScalar) {
+	public Result<NilResult, RSDError.$GenericError> simpleScalarBodyParamOptNil(ZoneId bodyScalar) {
 		var $path = "%s/api/bodyparametertypes/simpleScalarBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3326,28 +3096,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleScalarBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleScalarBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleScalarBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleScalarBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleScalarBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleScalarBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleScalarBodyParamOptNil");
 		}
 	}
 
-	public SampleEnum simpleEnumBodyParam(SampleEnum bodyEnum) {
+	public Result<SampleEnum, RSDError.$GenericError> simpleEnumBodyParam(SampleEnum bodyEnum) {
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParam".formatted(
@@ -3370,28 +3137,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParam", e);
-			this.lifecycleHook.onCatch("simpleEnumBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumBodyParam", e);
+			this.lifecycleHook.onCatch("simpleEnumBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumBodyParam");
 		}
 	}
 
-	public NilResult simpleEnumBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3412,28 +3176,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleEnumBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleEnumBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleEnumBodyParamOpt(SampleEnum bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamOpt(SampleEnum bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3454,28 +3215,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleEnumBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleEnumBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleEnumBodyParamNil(SampleEnum bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamNil(SampleEnum bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamNil".formatted(
 				this.baseURI());
 
@@ -3496,28 +3254,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleEnumBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleEnumBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumBodyParamNil");
 		}
 	}
 
-	public NilResult simpleEnumBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3538,28 +3293,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleEnumBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleEnumBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleEnumBodyParamOptNil(SampleEnum bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> simpleEnumBodyParamOptNil(SampleEnum bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleEnumBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3580,28 +3332,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleEnumBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleEnumBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleEnumBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleEnumBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleEnumBodyParamOptNil");
 		}
 	}
 
-	public SimpleInlineEnumBodyParam_Result$ simpleInlineEnumBodyParam(SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum) {
+	public Result<SimpleInlineEnumBodyParam_Result$, RSDError.$GenericError> simpleInlineEnumBodyParam(SimpleInlineEnumBodyParam_BodyEnum_Param$ bodyEnum) {
 		Objects.requireNonNull(bodyEnum, "bodyEnum must not be null");
 
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParam".formatted(
@@ -3624,28 +3373,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SimpleInlineEnumBodyParam_Result$::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParam", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParam", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumBodyParam");
 		}
 	}
 
-	public NilResult simpleInlineEnumBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3666,28 +3412,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleInlineEnumBodyParamOpt(SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamOpt(SimpleInlineEnumBodyParamOpt_BodyEnum_Param$ bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3708,28 +3451,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOpt", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOpt", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumBodyParamOpt");
 		}
 	}
 
-	public NilResult simpleInlineEnumBodyParamNil(SimpleInlineEnumBodyParamNil_BodyEnum_Param$ bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamNil(SimpleInlineEnumBodyParamNil_BodyEnum_Param$ bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamNil".formatted(
 				this.baseURI());
 
@@ -3750,28 +3490,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamNil", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamNil", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumBodyParamNil");
 		}
 	}
 
-	public NilResult simpleInlineEnumBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3792,28 +3529,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumBodyParamOptNil");
 		}
 	}
 
-	public NilResult simpleInlineEnumBodyParamOptNil(SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ bodyEnum) {
+	public Result<NilResult, RSDError.$GenericError> simpleInlineEnumBodyParamOptNil(SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$ bodyEnum) {
 		var $path = "%s/api/bodyparametertypes/simpleInlineEnumBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -3834,28 +3568,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("simpleInlineEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("simpleInlineEnumBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("simpleInlineEnumBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation simpleInlineEnumBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("simpleInlineEnumBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("simpleInlineEnumBodyParamOptNil");
 		}
 	}
 
-	public String multiBodyParam(String valueA, int valueB, SimpleRecord.Data valueC) {
+	public Result<String, RSDError.$GenericError> multiBodyParam(String valueA, int valueB, SimpleRecord.Data valueC) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
@@ -3883,28 +3614,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParam", e);
-			this.lifecycleHook.onCatch("multiBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParam", e);
+			this.lifecycleHook.onCatch("multiBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParam");
 		}
 	}
 
-	public String multiBodyParamOpt() {
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3925,28 +3653,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
-			this.lifecycleHook.onCatch("multiBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("multiBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamOpt");
 		}
 	}
 
-	public String multiBodyParamOpt(String valueA) {
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt(String valueA) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -3971,28 +3696,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
-			this.lifecycleHook.onCatch("multiBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("multiBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamOpt");
 		}
 	}
 
-	public String multiBodyParamOpt(String valueA, Integer valueB) {
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt(String valueA, Integer valueB) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4020,28 +3742,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
-			this.lifecycleHook.onCatch("multiBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("multiBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamOpt");
 		}
 	}
 
-	public String multiBodyParamOpt(String valueA, Integer valueB, SimpleRecord.Data valueC) {
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt(String valueA, Integer valueB, SimpleRecord.Data valueC) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4072,28 +3791,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
-			this.lifecycleHook.onCatch("multiBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("multiBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamOpt");
 		}
 	}
 
-	public String multiBodyParamNil(String valueA, Integer valueB, SimpleRecord.Data valueC) {
+	public Result<String, RSDError.$GenericError> multiBodyParamNil(String valueA, Integer valueB, SimpleRecord.Data valueC) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamNil".formatted(
 				this.baseURI());
 
@@ -4118,28 +3834,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamNil", e);
-			this.lifecycleHook.onCatch("multiBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamNil", e);
+			this.lifecycleHook.onCatch("multiBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamNil");
 		}
 	}
 
-	public String multiBodyParamOptNil() {
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4160,28 +3873,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("multiBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("multiBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamOptNil");
 		}
 	}
 
-	public String multiBodyParamOptNil(String valueA) {
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil(String valueA) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4204,28 +3914,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("multiBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("multiBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamOptNil");
 		}
 	}
 
-	public String multiBodyParamOptNil(String valueA, Integer valueB) {
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil(String valueA, Integer valueB) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4249,28 +3956,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("multiBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("multiBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamOptNil");
 		}
 	}
 
-	public String multiBodyParamOptNil(String valueA, Integer valueB, SimpleRecord.Data valueC) {
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil(String valueA, Integer valueB, SimpleRecord.Data valueC) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4295,28 +3999,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("multiBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("multiBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamOptNil");
 		}
 	}
 
-	public String multiBodyParamFirst() {
+	public Result<String, RSDError.$GenericError> multiBodyParamFirst() {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
 				this.baseURI());
 
@@ -4337,28 +4038,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamFirst", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamFirst", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamFirst", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
-			this.lifecycleHook.onCatch("multiBodyParamFirst", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
+			this.lifecycleHook.onCatch("multiBodyParamFirst", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamFirst");
 		}
 	}
 
-	public String multiBodyParamFirst(String valueA) {
+	public Result<String, RSDError.$GenericError> multiBodyParamFirst(String valueA) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
 				this.baseURI());
 
@@ -4383,28 +4081,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamFirst", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamFirst", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamFirst", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
-			this.lifecycleHook.onCatch("multiBodyParamFirst", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
+			this.lifecycleHook.onCatch("multiBodyParamFirst", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamFirst");
 		}
 	}
 
-	public String multiBodyParamFirst(String valueA, int valueB) {
+	public Result<String, RSDError.$GenericError> multiBodyParamFirst(String valueA, int valueB) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
 				this.baseURI());
 
@@ -4430,28 +4125,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamFirst", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamFirst", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamFirst", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
-			this.lifecycleHook.onCatch("multiBodyParamFirst", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
+			this.lifecycleHook.onCatch("multiBodyParamFirst", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamFirst");
 		}
 	}
 
-	public String multiBodyParamFirst(String valueA, int valueB, SimpleRecord.Data valueC) {
+	public Result<String, RSDError.$GenericError> multiBodyParamFirst(String valueA, int valueB, SimpleRecord.Data valueC) {
 		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/bodyparametertypes/multiBodyParamFirst".formatted(
@@ -4480,28 +4172,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapString($response);
 				this.lifecycleHook.onSuccess("multiBodyParamFirst", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("multiBodyParamFirst", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamFirst", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
-			this.lifecycleHook.onCatch("multiBodyParamFirst", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamFirst", e);
+			this.lifecycleHook.onCatch("multiBodyParamFirst", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("multiBodyParamFirst");
 		}
 	}
 
-	public SimpleRecord.Data recordBodyParam(SimpleRecord.Data bodyRecord) {
+	public Result<SimpleRecord.Data, RSDError.$GenericError> recordBodyParam(SimpleRecord.Data bodyRecord) {
 		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
 
 		var $path = "%s/api/bodyparametertypes/recordBodyParam".formatted(
@@ -4524,28 +4213,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("recordBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParam", e);
-			this.lifecycleHook.onCatch("recordBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordBodyParam", e);
+			this.lifecycleHook.onCatch("recordBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordBodyParam");
 		}
 	}
 
-	public NilResult recordBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4566,28 +4252,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamOpt", e);
-			this.lifecycleHook.onCatch("recordBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordBodyParamOpt", e);
+			this.lifecycleHook.onCatch("recordBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordBodyParamOpt");
 		}
 	}
 
-	public NilResult recordBodyParamOpt(SimpleRecord.Data bodyRecord) {
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamOpt(SimpleRecord.Data bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4608,28 +4291,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamOpt", e);
-			this.lifecycleHook.onCatch("recordBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordBodyParamOpt", e);
+			this.lifecycleHook.onCatch("recordBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordBodyParamOpt");
 		}
 	}
 
-	public NilResult recordBodyParamNil(SimpleRecord.Data bodyRecord) {
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamNil(SimpleRecord.Data bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamNil".formatted(
 				this.baseURI());
 
@@ -4650,28 +4330,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamNil", e);
-			this.lifecycleHook.onCatch("recordBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordBodyParamNil", e);
+			this.lifecycleHook.onCatch("recordBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordBodyParamNil");
 		}
 	}
 
-	public NilResult recordBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4692,28 +4369,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("recordBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("recordBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordBodyParamOptNil");
 		}
 	}
 
-	public NilResult recordBodyParamOptNil(SimpleRecord.Data bodyRecord) {
+	public Result<NilResult, RSDError.$GenericError> recordBodyParamOptNil(SimpleRecord.Data bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/recordBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4734,28 +4408,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("recordBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("recordBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("recordBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation recordBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("recordBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation recordBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("recordBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("recordBodyParamOptNil");
 		}
 	}
 
-	public Union.Data unionBodyParam(Union.Data bodyUnion) {
+	public Result<Union.Data, RSDError.$GenericError> unionBodyParam(Union.Data bodyUnion) {
 		Objects.requireNonNull(bodyUnion, "bodyUnion must not be null");
 
 		var $path = "%s/api/bodyparametertypes/unionBodyParam".formatted(
@@ -4778,28 +4449,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, UnionDataImpl::of, Union.Data.class);
 				this.lifecycleHook.onSuccess("unionBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("unionBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("unionBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParam", e);
-			this.lifecycleHook.onCatch("unionBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation unionBodyParam", e);
+			this.lifecycleHook.onCatch("unionBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("unionBodyParam");
 		}
 	}
 
-	public NilResult unionBodyParamOpt() {
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4820,28 +4488,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("unionBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("unionBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("unionBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamOpt", e);
-			this.lifecycleHook.onCatch("unionBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation unionBodyParamOpt", e);
+			this.lifecycleHook.onCatch("unionBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("unionBodyParamOpt");
 		}
 	}
 
-	public NilResult unionBodyParamOpt(Union.Data bodyUnion) {
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamOpt(Union.Data bodyUnion) {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -4862,28 +4527,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("unionBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("unionBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("unionBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamOpt", e);
-			this.lifecycleHook.onCatch("unionBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation unionBodyParamOpt", e);
+			this.lifecycleHook.onCatch("unionBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("unionBodyParamOpt");
 		}
 	}
 
-	public NilResult unionBodyParamNil(Union.Data bodyUnion) {
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamNil(Union.Data bodyUnion) {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamNil".formatted(
 				this.baseURI());
 
@@ -4904,28 +4566,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("unionBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("unionBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("unionBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamNil", e);
-			this.lifecycleHook.onCatch("unionBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation unionBodyParamNil", e);
+			this.lifecycleHook.onCatch("unionBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("unionBodyParamNil");
 		}
 	}
 
-	public NilResult unionBodyParamOptNil() {
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4946,28 +4605,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("unionBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("unionBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("unionBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("unionBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation unionBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("unionBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("unionBodyParamOptNil");
 		}
 	}
 
-	public NilResult unionBodyParamOptNil(Union.Data bodyUnion) {
+	public Result<NilResult, RSDError.$GenericError> unionBodyParamOptNil(Union.Data bodyUnion) {
 		var $path = "%s/api/bodyparametertypes/unionBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -4988,28 +4644,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
 				this.lifecycleHook.onSuccess("unionBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("unionBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("unionBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation unionBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("unionBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation unionBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("unionBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("unionBodyParamOptNil");
 		}
 	}
 
-	public PatchableRecord.Data patchableRecordBodyParam(PatchableRecord.Patch bodyRecord) {
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParam(PatchableRecord.Patch bodyRecord) {
 		Objects.requireNonNull(bodyRecord, "bodyRecord must not be null");
 
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParam".formatted(
@@ -5032,28 +4685,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 				this.lifecycleHook.onSuccess("patchableRecordBodyParam", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("patchableRecordBodyParam", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("patchableRecordBodyParam", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParam", e);
-			this.lifecycleHook.onCatch("patchableRecordBodyParam", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation patchableRecordBodyParam", e);
+			this.lifecycleHook.onCatch("patchableRecordBodyParam", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("patchableRecordBodyParam");
 		}
 	}
 
-	public PatchableRecord.Data patchableRecordBodyParamOpt() {
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamOpt() {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -5074,28 +4724,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 				this.lifecycleHook.onSuccess("patchableRecordBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("patchableRecordBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("patchableRecordBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOpt", e);
-			this.lifecycleHook.onCatch("patchableRecordBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOpt", e);
+			this.lifecycleHook.onCatch("patchableRecordBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("patchableRecordBodyParamOpt");
 		}
 	}
 
-	public PatchableRecord.Data patchableRecordBodyParamOpt(PatchableRecord.Patch bodyRecord) {
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamOpt(PatchableRecord.Patch bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOpt".formatted(
 				this.baseURI());
 
@@ -5116,28 +4763,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 				this.lifecycleHook.onSuccess("patchableRecordBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("patchableRecordBodyParamOpt", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("patchableRecordBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOpt", e);
-			this.lifecycleHook.onCatch("patchableRecordBodyParamOpt", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOpt", e);
+			this.lifecycleHook.onCatch("patchableRecordBodyParamOpt", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("patchableRecordBodyParamOpt");
 		}
 	}
 
-	public PatchableRecord.Data patchableRecordBodyParamNil(PatchableRecord.Patch bodyRecord) {
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamNil(PatchableRecord.Patch bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamNil".formatted(
 				this.baseURI());
 
@@ -5158,28 +4802,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 				this.lifecycleHook.onSuccess("patchableRecordBodyParamNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("patchableRecordBodyParamNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("patchableRecordBodyParamNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamNil", e);
-			this.lifecycleHook.onCatch("patchableRecordBodyParamNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamNil", e);
+			this.lifecycleHook.onCatch("patchableRecordBodyParamNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("patchableRecordBodyParamNil");
 		}
 	}
 
-	public PatchableRecord.Data patchableRecordBodyParamOptNil() {
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamOptNil() {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -5200,28 +4841,25 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 				this.lifecycleHook.onSuccess("patchableRecordBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("patchableRecordBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("patchableRecordBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("patchableRecordBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("patchableRecordBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("patchableRecordBodyParamOptNil");
 		}
 	}
 
-	public PatchableRecord.Data patchableRecordBodyParamOptNil(PatchableRecord.Patch bodyRecord) {
+	public Result<PatchableRecord.Data, RSDError.$GenericError> patchableRecordBodyParamOptNil(PatchableRecord.Patch bodyRecord) {
 		var $path = "%s/api/bodyparametertypes/patchableRecordBodyParamOptNil".formatted(
 				this.baseURI());
 
@@ -5242,22 +4880,19 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			if ($response.statusCode() == 200) {
 				var $rv = JDKHttpClientResponseUtils.mapObject($response, PatchableRecordDataImpl::of, PatchableRecord.Data.class);
 				this.lifecycleHook.onSuccess("patchableRecordBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
-				return $rv;
+				return Result.ok($rv);
 			}
-			var $exception = new RSDException(RSDException.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));
-			this.lifecycleHook.onError("patchableRecordBodyParamOptNil", $exception, this.client.createResponseAdaptable($response));
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("patchableRecordBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
 		} catch (Exception e) {
-			if (e instanceof RSDException rsdEx) {
-				throw rsdEx;
-			}
 			if (e instanceof InterruptedException) {
 				Thread.currentThread().interrupt();
 			}
 
-			var $exception = new RSDException(RSDException.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOptNil", e);
-			this.lifecycleHook.onCatch("patchableRecordBodyParamOptNil", $exception);
-			throw $exception;
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation patchableRecordBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("patchableRecordBodyParamOptNil", $error);
+			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("patchableRecordBodyParamOptNil");
 		}

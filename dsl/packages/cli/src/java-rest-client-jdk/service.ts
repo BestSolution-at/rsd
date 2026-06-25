@@ -19,6 +19,7 @@ import {
 	isMScalarType,
 	MBuiltinType,
 	MOperation,
+	MOperationError,
 	MParameter,
 	MResolvedOperation,
 	MResolvedService,
@@ -32,9 +33,11 @@ import {
 } from '../java-model-json/shared.js';
 import { computePath } from '../rest-utils.js';
 import { toCamelCaseIdentifier, toFirstUpper, toNodeTree } from '../util.js';
+import { computeServiceErrorCombination } from '../java-client-api/service-errors.js';
 
 export function generateService(
 	s: MResolvedService,
+	services: readonly MResolvedService[],
 	generatorConfig: ArtifactGenerationConfig,
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 ): Artifact[] {
@@ -84,7 +87,7 @@ export function generateService(
 
 		s.operations.forEach(o => {
 			classBody.appendNewLine();
-			generateOperation(classBody, s, o, artifactConfig, fqn, s.meta?.rest?.path ?? s.name.toLowerCase());
+			generateOperation(classBody, s, o, services, artifactConfig, fqn, s.meta?.rest?.path ?? s.name.toLowerCase());
 		});
 	});
 	node.append('}', NL);
@@ -137,33 +140,15 @@ function appendWithNullGuard(
 function appendMethodSignature(
 	node: IndentNode,
 	o: MResolvedOperation,
+	services: readonly MResolvedService[],
 	allParameters: readonly MParameter[],
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 ) {
 	const parameters = allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name));
-	node.append(`public ${toResultType(o.resultType, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`);
-	if (o.operationErrors.length > 0) {
-		node.appendNewLine();
-		node.indent(throwBody => {
-			throwBody.indent(other => {
-				other.append(
-					'throws ',
-					fqn(`${artifactConfig.rootPackageName}.${o.operationErrors[0].error}Exception`),
-					o.operationErrors.length > 1 ? ',' : '',
-				);
-				if (o.operationErrors.length > 1) {
-					other.appendNewLine();
-				}
-				o.operationErrors.slice(1).forEach((e, idx, arr) => {
-					other.append(fqn(`${artifactConfig.rootPackageName}.${e.error}Exception`), arr.length !== idx + 1 ? ',' : '');
-					if (arr.length !== idx + 1) {
-						other.appendNewLine();
-					}
-				});
-			});
-		});
-	}
+	node.append(
+		`public ${toAPIResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`,
+	);
 	node.append(' {', NL);
 }
 
@@ -356,6 +341,7 @@ function generateOperationMethod(
 	node: IndentNode,
 	s: MResolvedService,
 	o: MResolvedOperation,
+	services: readonly MResolvedService[],
 	allParameters: readonly MParameter[],
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
@@ -364,7 +350,7 @@ function generateOperationMethod(
 ) {
 	const URI = fqn('java.net.URI');
 
-	appendMethodSignature(node, o, allParameters, artifactConfig, fqn);
+	appendMethodSignature(node, o, services, allParameters, artifactConfig, fqn);
 	node.indent(methodBody => {
 		const processedPath = computePath(`${path.replace(/^\//, '')}/${o.meta?.rest?.path ?? ''}`);
 		const endpoint = processedPath.path ? `%s/${processedPath.path}` : '%s';
@@ -397,23 +383,19 @@ function generateOperationMethod(
 		});
 		methodBody.append(`} catch (Exception e) {`, NL);
 		methodBody.indent(catchBlock => {
-			const RSException = fqn(`${artifactConfig.rootPackageName}.RSDException`);
-			catchBlock.append(`if (e instanceof ${RSException} rsdEx) {`, NL);
-			catchBlock.indent(ifBlock => {
-				ifBlock.append('throw rsdEx;', NL);
-			});
-			catchBlock.append('}', NL);
 			catchBlock.append('if (e instanceof InterruptedException) {', NL);
 			catchBlock.indent(interruptBlock => {
 				interruptBlock.append('Thread.currentThread().interrupt();', NL);
 			});
 			catchBlock.append('}', NL, NL);
+			const RSDError = fqn(`${artifactConfig.rootPackageName}.RSDError`);
 			catchBlock.append(
-				`var $exception = new ${RSException}(${RSException}.Type._Native, "Unexpected error while executing operation ${o.name}", e);`,
+				`var $error = new ${RSDError}.$GenericError(${RSDError}.Type._Native, "Unexpected error while executing operation ${o.name}", e);`,
 				NL,
 			);
-			catchBlock.append(`this.lifecycleHook.onCatch("${o.name}", $exception);`, NL);
-			catchBlock.append('throw $exception;', NL);
+			catchBlock.append(`this.lifecycleHook.onCatch("${o.name}", $error);`, NL);
+			const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
+			catchBlock.append(`return ${Result}.err($error);`, NL);
 		});
 		methodBody.append('} finally {', NL);
 		methodBody.indent(finallyBlock => {
@@ -761,22 +743,24 @@ function generateResponseDispatch(
 		methodBody.append('}', NL);
 	}
 
-	const RSDException = fqn(`${artifactConfig.rootPackageName}.RSDException`);
+	const RSDError = fqn(`${artifactConfig.rootPackageName}.RSDError`);
 	methodBody.append(
-		`var $exception = new ${RSDException}(${RSDException}.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)));`,
+		`var $error = new ${RSDError}.$GenericError(${RSDError}.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);`,
 		NL,
 	);
 	methodBody.append(
-		`this.lifecycleHook.onError("${o.name}", $exception, this.client.createResponseAdaptable($response));`,
+		`this.lifecycleHook.onError("${o.name}", $error, this.client.createResponseAdaptable($response));`,
 		NL,
 	);
-	methodBody.append('throw $exception;', NL);
+	const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
+	methodBody.append(`return ${Result}.err($error);`, NL);
 }
 
 function generateOperation(
 	node: IndentNode,
 	s: MResolvedService,
 	o: MResolvedOperation,
+	services: readonly MResolvedService[],
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 	path: string,
@@ -784,7 +768,7 @@ function generateOperation(
 	const firstOptional = o.parameters.findIndex(p => p.optional);
 
 	if (firstOptional === -1) {
-		generateOperationMethod(node, s, o, o.parameters, artifactConfig, fqn, path, false);
+		generateOperationMethod(node, s, o, services, o.parameters, artifactConfig, fqn, path, false);
 	} else {
 		const hasMultipleParams = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
 		for (let i = firstOptional; i <= o.parameters.length; i++) {
@@ -792,7 +776,7 @@ function generateOperation(
 				node.appendNewLine();
 			}
 			const params = o.parameters.slice(0, i);
-			generateOperationMethod(node, s, o, params, artifactConfig, fqn, path, hasMultipleParams);
+			generateOperationMethod(node, s, o, services, params, artifactConfig, fqn, path, hasMultipleParams);
 		}
 	}
 }
@@ -807,7 +791,8 @@ function handleOkResult(
 
 	if (type === undefined) {
 		node.append(`this.lifecycleHook.onSuccess("${o.name}", null, this.client.createResponseAdaptable($response));`, NL);
-		node.append('return;', NL);
+		const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
+		node.append(`return ${Result}.ok(null);`, NL);
 		return;
 	}
 	if (type.variant === 'stream') {
@@ -862,7 +847,8 @@ function handleOkResult(
 		}
 	}
 	node.append(`this.lifecycleHook.onSuccess("${o.name}", $rv, this.client.createResponseAdaptable($response));`, NL);
-	node.append('return $rv;', NL);
+	const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
+	node.append(`return ${Result}.ok($rv);`, NL);
 }
 
 function builtinMapExpression(type: MBuiltinType, array: boolean): string {
@@ -931,21 +917,15 @@ function handleErrorResult(
 			`var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of ${o.name} failed");`,
 			NL,
 		);
-		node.append(
-			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}($message, $errorData);`,
-			NL,
-		);
+		node.append(`var $error = new ${fqn(`${artifactConfig.rootPackageName}.${error}`)}($message, $errorData);`, NL);
 	} else {
 		node.append(
-			`var exception = new ${fqn(`${artifactConfig.rootPackageName}.${error}Exception`)}(JDKHttpClientResponseUtils.toString($response));`,
+			`var $error = new ${fqn(`${artifactConfig.rootPackageName}.${error}`)}(JDKHttpClientResponseUtils.toString($response));`,
 			NL,
 		);
 	}
-	node.append(
-		`this.lifecycleHook.onError("${o.name}", exception, this.client.createResponseAdaptable($response));`,
-		NL,
-	);
-	node.append(`throw exception;`, NL);
+	node.append(`this.lifecycleHook.onError("${o.name}", $error, this.client.createResponseAdaptable($response));`, NL);
+	node.append(`return ${fqn(`${artifactConfig.rootPackageName}.Result`)}.err($error);`, NL);
 }
 
 function toParameter(
@@ -1017,6 +997,75 @@ function toResultType(
 	}
 
 	return rvType;
+}
+
+function toAPIResultType(
+	type: MReturnType | undefined,
+	errors: readonly MOperationError[],
+	services: readonly MResolvedService[],
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+	methodName: string,
+) {
+	const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
+	const error = computeErrorType(errors, services, artifactConfig, fqn);
+
+	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
+	if (type === undefined) {
+		return `${Result}<Void, ${error}>`;
+	}
+
+	let rvType: string;
+	if (type.variant === 'stream') {
+		if (type.type === 'file') {
+			rvType = fqn(`${dtoPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${dtoPkg}.RSDBlob`);
+		}
+	} else if (type.variant === 'union' || type.variant === 'record') {
+		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
+	} else if (type.variant === 'enum') {
+		rvType = fqn(`${dtoPkg}.${type.type}`);
+	} else if (type.variant === 'inline-enum') {
+		rvType = toFirstUpper(methodName) + '_Result$';
+	} else if (type.variant === 'scalar') {
+		if (artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitues[type.type]);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else {
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, true);
+	}
+
+	if (type.array) {
+		rvType = `${fqn('java.util.List')}<${rvType}>`;
+	}
+
+	return `${Result}<${rvType}, ${error}>`;
+}
+
+function computeErrorType(
+	errors: readonly MOperationError[],
+	services: readonly MResolvedService[],
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+) {
+	if (errors.length === 0) {
+		return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
+	} else {
+		const combinations = computeServiceErrorCombination(services);
+		const errorNames = errors
+			.map(e => e.error)
+			.sort()
+			.join(',');
+		const errorCombination = combinations.get(errorNames);
+		if (errorCombination) {
+			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + `.${errorCombination.interfaceName}`;
+		} else {
+			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
+		}
+	}
 }
 
 function generateServiceData(

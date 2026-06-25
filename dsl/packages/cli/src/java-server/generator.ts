@@ -16,13 +16,13 @@ import { generateBaseDTO } from './base-dto.js';
 import { generateUnion } from './union.js';
 import { generateDTOBuilderFactory } from './builder-factory.js';
 import { generateMixin } from './mixin.js';
-import { generateRSDException } from '../java-client-api/rsd-exception.js';
-import { generateError } from '../java-client-api/error.js';
 import { generateService } from './service.js';
 import { generateServiceImpl } from './service-impl.js';
 import { generateStreamDTO } from './stream-dto.js';
 import { generateEnum } from './enum.js';
 import { generateScalar } from './scalar.js';
+import { generateRSDException } from './rsd-exception.js';
+import { generateError } from './error.js';
 
 export function generate(
 	model: MResolvedRSDModel,
