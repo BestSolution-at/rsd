@@ -1,0 +1,14 @@
+resource Person at '/api/person' {
+	POST create at 'create' => {
+		201
+	}
+	GET get at 'get/${id}' => {
+		200
+	}
+	PUT update at 'update/${id}' => {
+		200
+	}
+	DELETE delete at 'delete/${id}' => {
+		204
+	}
+}

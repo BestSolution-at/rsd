@@ -1,0 +1,27 @@
+{
+    "name": "Person",
+    "generators": [
+		{
+            "name": "java-client-api",
+            "targetFolder": "../person-java-client/src/main/java",
+            "rootPackageName": "dev.rsdlang.person.client"
+        },
+        {
+            "name": "java-rest-client-jdk",
+            "targetFolder": "../person-java-client/src/main/java",
+            "rootPackageName": "dev.rsdlang.person.client",
+            "contentTypeEncodings": ["application/json"]
+        },
+        {
+            "name": "typescript-client-api",
+            "targetFolder": "../person-ts-client/src/lib"
+        },
+        {
+            "name": "typescript-rest-client-fetch",
+            "targetFolder": "../person-ts-client/src/lib",
+            "allowImportingTsExtensions": false,
+            "apiNamespacePath": "../index.ts",
+            "contentTypeEncodings": ["application/json"]
+        }
+    ]
+}

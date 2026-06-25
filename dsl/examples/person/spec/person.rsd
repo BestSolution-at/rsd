@@ -1,0 +1,16 @@
+record Person {
+	@id id: string
+	@rev version: string
+
+	firstName: string
+	lastName: string
+	birthDate?: local-date
+}
+
+
+service Person {
+	operation create(person: Person): Person;
+	operation get(id: string): Person;
+	operation update(id: string, person: Person): Person;
+	operation delete(id: string);
+}

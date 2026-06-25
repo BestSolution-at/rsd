@@ -1,0 +1,248 @@
+{
+  "@type": "RSDModel",
+  "elements": [
+    {
+      "@type": "RecordType",
+      "name": "Person",
+      "patchable": false,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "KeyProperty",
+          "name": "id",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "RevisionProperty",
+          "name": "version",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "firstName",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "lastName",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "string",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "birthDate",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "builtin",
+          "type": "local-date",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    }
+  ],
+  "services": [
+    {
+      "@type": "Service",
+      "name": "Person",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "create",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "person",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "Person",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "Person",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "create",
+              "results": [
+                {
+                  "statusCode": 201
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "get",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "id",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "id",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "Person",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "get/${id}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "update",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "id",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "id",
+                  "source": "path"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "person",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "record",
+              "type": "Person",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "record",
+            "type": "Person",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "PUT",
+              "path": "update/${id}",
+              "results": [
+                {
+                  "statusCode": 200
+                }
+              ]
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "delete",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "id",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "builtin",
+              "type": "string",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "id",
+                  "source": "path"
+                }
+              }
+            }
+          ],
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "DELETE",
+              "path": "delete/${id}",
+              "results": [
+                {
+                  "statusCode": 204
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/person"
+        }
+      }
+    }
+  ],
+  "errors": []
+}

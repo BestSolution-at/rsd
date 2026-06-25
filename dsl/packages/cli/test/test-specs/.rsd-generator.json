@@ -21,7 +21,7 @@
             "apiNamespacePath": "../index.ts",
             "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
         },
-				{
+		{
             "name": "java-client-api",
             "targetFolder": "../../../../java-test/java-client/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.client",
@@ -29,7 +29,7 @@
                 "Range": "dev.rsdlang.sample.client.MyRange"
             }
         },
-				{
+		{
             "name": "java-rest-client-jdk",
             "targetFolder": "../../../../java-test/java-client/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.client",
