@@ -28,12 +28,10 @@ function generateIndexContent(model: MResolvedRSDModel, allowImportingTsExtensio
 			node.append(`export * from './${e.name}Service.js'`, NL);
 		}
 	});
-	if (model.errors.length > 0) {
-		if (allowImportingTsExtensions) {
-			node.append(`export * from './Errors.ts'`, NL);
-		} else {
-			node.append(`export * from './Errors.js'`, NL);
-		}
+	if (allowImportingTsExtensions) {
+		node.append(`export * from './Errors.ts'`, NL);
+	} else {
+		node.append(`export * from './Errors.js'`, NL);
 	}
 
 	return node;

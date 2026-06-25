@@ -30,9 +30,7 @@ function generate(
 		return [];
 	}
 	const result = model.elements.map(e => generateType(e, artifactConfig)).filter(isDefined);
-	if (model.errors.length > 0) {
-		result.push(generateErrors(model.errors, artifactConfig));
-	}
+	result.push(generateErrors(model.errors, artifactConfig));
 	result.push(...model.services.map(s => generateService(s, artifactConfig)));
 	result.push(generateModelIndex(model, artifactConfig));
 	result.push(generateServiceIndex(model, artifactConfig));
