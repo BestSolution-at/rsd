@@ -22,6 +22,17 @@
             "allowImportingTsExtensions": false,
             "apiNamespacePath": "../index.ts",
             "contentTypeEncodings": ["application/json"]
+        },
+        {
+            "name": "java-server-base",
+            "targetFolder": "../person-java-server/src/main/java",
+            "rootPackageName": "dev.rsdlang.person.server"
+        },
+        {
+            "name": "java-server-jakarta-ws",
+            "targetFolder": "../person-java-server/src/main/java",
+            "rootPackageName": "dev.rsdlang.person.server",
+            "contentTypeEncodings": ["application/json"]
         }
     ]
 }

@@ -69,6 +69,36 @@ resource Person at '/api/person' {
 }
 ```
 
+### Implement server code
+
+The code generator already created REST-Resources. The custom code the user has to write are so called handlers for each operation. So one has to implement the following handlers:
+
+- `CreateHandler`
+- `GetHandler`
+- `UpdateHandler`
+- `DeleteHandler`
+
+The `CreateHandler` implementation might look like this:
+
+```java
+package dev.rsdlang.person.server.service.impl.handlers.personservice;
+
+import dev.rsdlang.person.server.model.Person;
+import dev.rsdlang.person.server.service.BuilderFactory;
+import dev.rsdlang.person.server.service.impl.PersonServiceImpl;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class CreateHandlerImpl implements PersonServiceImpl.CreateHandler {
+    @Override
+    public Person.Data create(BuilderFactory f, Person.Data person) {
+        MemoryStore.getInstance().put(person.id(), person);
+        return person;
+    }
+
+}
+```
+
 ### Use of generated client code
 
 Depending on the configuration of the code generator your can invoke APIs in your favorite language like this
@@ -77,7 +107,7 @@ Depending on the configuration of the code generator your can invoke APIs in you
 
 ```java
 var client = JDKPersonClient.builder()
-  .baseURI(URI.create("http://localhost:3000"))
+  .baseURI(URI.create("http://localhost:8080"))
   .build();
 var personService = client.service(PersonService.class);
 
@@ -105,7 +135,7 @@ switch(result) {
 import { createPersonService } from "./lib/index.js";
 
 const personService = createPersonService({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "http://localhost:8080",
 });
 
 await personService.create({
