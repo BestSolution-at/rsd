@@ -11,7 +11,7 @@ import dev.rsdlang.person.client.model.Person;
 public class Main {
     public static void main(String[] args) {
         var client = JDKPersonClient.builder()
-                .baseURI(URI.create("http://localhost:3000"))
+                .baseURI(URI.create("http://localhost:8080"))
                 .build();
         var personService = client.service(PersonService.class);
 

@@ -6,10 +6,11 @@ import dev.rsdlang.person.server.service.impl.PersonServiceImpl;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class GetHandlerImpl implements PersonServiceImpl.GetHandler {
+public class UpdateHandlerImpl implements PersonServiceImpl.UpdateHandler {
     @Override
-    public Person.Data get(BuilderFactory f, String id) {
-        return MemoryStore.getInstance().get(id);
+    public Person.Data update(BuilderFactory f, String id, Person.Data person) {
+        MemoryStore.getInstance().update(id, person);
+        return person;
     }
 
 }

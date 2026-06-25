@@ -1,7 +1,7 @@
 import { createPersonService } from './lib/index.js';
 
 const personService = createPersonService({
-	baseUrl: 'http://localhost:3000',
+	baseUrl: 'http://localhost:8080',
 });
 
 await personService.create({ id: '1', version: '0', firstName: 'Tom', lastName: 'Schindl' });
