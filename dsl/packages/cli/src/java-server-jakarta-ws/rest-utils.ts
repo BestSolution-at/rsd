@@ -13,9 +13,6 @@ export function generateRestUtils(
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 	model: MResolvedRSDModel,
 ): Artifact[] {
-	if (model.errors.length === 0 && !hasStreamResult(model)) {
-		return [];
-	}
 	const packageName = `${artifactConfig.rootPackageName}.rest`;
 
 	const importCollector = new JavaImportsCollector(packageName);
@@ -50,9 +47,11 @@ function generateRestUtilsContent(
 			classBody.append(generateStreamResultHelper(artifactConfig, model, fqn));
 		}
 		fqn('java.util.function.Consumer');
+		const StreamingOutput = fqn('jakarta.ws.rs.core.StreamingOutput');
+		const OutputStream = fqn('java.io.OutputStream');
 		const toStreamOutput = toNodeTree(`
 
-public static StreamingOutput toStreamOutput(Consumer<OutputStream> consumer) {
+public static ${StreamingOutput} toStreamOutput(Consumer<${OutputStream}> consumer) {
 	return output -> {
 		consumer.accept(output);
 	};
