@@ -77,8 +77,8 @@ export function generateServiceErrors(
 			body.append('}', NL, NL);
 		});
 		body.append(
-			`public record $GenericError(Type type, String message, Throwable error) implements RSDError, ${
-				errorNames.length > 0 ? errorNames.map(({ interfaceName }) => interfaceName).join(', ') : ''
+			`public record $GenericError(Type type, String message, Throwable error) implements RSDError${
+				errorNames.length > 0 ? ', ' + errorNames.map(({ interfaceName }) => interfaceName).join(', ') : ''
 			} {`,
 			NL,
 		);
