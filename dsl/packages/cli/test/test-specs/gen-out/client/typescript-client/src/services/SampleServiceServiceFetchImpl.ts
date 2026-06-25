@@ -53,6 +53,7 @@ function fnGetBoolean(props: ServiceProps<api.service.ErrorType>): api.service.S
 				const $result = RSDBooleanFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getBoolean', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -85,6 +86,7 @@ function fnGetShort(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 				const $result = RSDShortFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getShort', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -117,6 +119,7 @@ function fnGetInt(props: ServiceProps<api.service.ErrorType>): api.service.Sampl
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getInt', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -149,6 +152,7 @@ function fnGetLong(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 				const $result = RSDLongFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getLong', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -181,6 +185,7 @@ function fnGetFloat(props: ServiceProps<api.service.ErrorType>): api.service.Sam
 				const $result = RSDFloatFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getFloat', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -213,6 +218,7 @@ function fnGetDouble(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 				const $result = RSDDoubleFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getDouble', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -245,6 +251,7 @@ function fnGetString(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 				const $result = RSDStringFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getString', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -277,6 +284,7 @@ function fnGetLocalDate(props: ServiceProps<api.service.ErrorType>): api.service
 				const $result = RSDLocalDateFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getLocalDate', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -309,6 +317,7 @@ function fnGetLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 				const $result = RSDLocalDateTimeFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getLocalDateTime', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -341,6 +350,7 @@ function fnGetLocalTime(props: ServiceProps<api.service.ErrorType>): api.service
 				const $result = RSDLocalTimeFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getLocalTime', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -373,6 +383,7 @@ function fnGetOffsetDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 				const $result = RSDOffsetDateTimeFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getOffsetDateTime', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -405,6 +416,7 @@ function fnGetZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.ser
 				const $result = RSDZonedDateTimeFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getZonedDateTime', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -437,6 +449,7 @@ function fnGetScalar(props: ServiceProps<api.service.ErrorType>): api.service.Sa
 				const $result = api.model.ZoneIdFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getScalar', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -469,6 +482,7 @@ function fnGetEnum(props: ServiceProps<api.service.ErrorType>): api.service.Samp
 				const $result = api.model.SampleEnumFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getEnum', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -499,6 +513,7 @@ function fnVoidOperation(props: ServiceProps<api.service.ErrorType>): api.servic
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('voidOperation', api.result.Void));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -528,13 +543,17 @@ function fnErrorOperation(props: ServiceProps<api.service.ErrorType>): api.servi
 
 			if ($response.status === 200) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('errorOperation', api.result.Void));
-			} else if ($response.status === 400) {
-				const err = {
-					_type: 'SampleError',
-					message: await $response.text(),
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('errorOperation', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleError') {
+					const err = {
+						_type: 'SampleError',
+						message: await $response.text(),
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('errorOperation', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -564,19 +583,26 @@ function fnMultiErrorOperation(props: ServiceProps<api.service.ErrorType>): api.
 
 			if ($response.status === 200) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('multiErrorOperation', api.result.Void));
-			} else if ($response.status === 400) {
-				const err = {
-					_type: 'SampleError',
-					message: await $response.text(),
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorOperation', err));
-			} else if ($response.status === 401) {
-				const err = {
-					_type: 'SampleError2',
-					message: await $response.text(),
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorOperation', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleError') {
+					const err = {
+						_type: 'SampleError',
+						message: await $response.text(),
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('multiErrorOperation', err));
+				}
+			}
+			if ($response.status === 401) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleError2') {
+					const err = {
+						_type: 'SampleError2',
+						message: await $response.text(),
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('multiErrorOperation', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -609,6 +635,7 @@ function fnGetSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.serv
 				const $result = api.model.SimpleRecordFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getSimpleRecord', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -640,13 +667,17 @@ function fnGetSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>):
 				const $data = await decodeResponse($response, api.utils.isRecord);
 				const $result = api.model.SimpleRecordFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('getSimpleRecordWithError', $result));
-			} else if ($response.status === 400) {
-				const err = {
-					_type: 'SampleError',
-					message: await $response.text(),
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleRecordWithError', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleError') {
+					const err = {
+						_type: 'SampleError',
+						message: await $response.text(),
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('getSimpleRecordWithError', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -676,15 +707,19 @@ function fnGetSimpleErrorWithValue(props: ServiceProps<api.service.ErrorType>): 
 
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorWithValue', api.result.Void));
-			} else if ($response.status === 400) {
-				const $data = await decodeResponse($response, api.utils.isRecord);
-				const $result = api.model.ErrorDataFromJSON($data);
-				const err = {
-					_type: 'SampleErrorWithValue',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorWithValue', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorWithValue') {
+					const $data = await decodeResponse($response, api.utils.isRecord);
+					const $result = api.model.ErrorDataFromJSON($data);
+					const err = {
+						_type: 'SampleErrorWithValue',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorWithValue', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -714,14 +749,18 @@ function fnGetSimpleErrorInt(props: ServiceProps<api.service.ErrorType>): api.se
 
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorInt', api.result.Void));
-			} else if ($response.status === 400) {
-				const $result = await decodeResponse($response, isRSDInt);
-				const err = {
-					_type: 'SampleErrorInt',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorInt', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorInt') {
+					const $result = await decodeResponse($response, isRSDInt);
+					const err = {
+						_type: 'SampleErrorInt',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorInt', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -751,14 +790,18 @@ function fnGetSimpleErrorBoolean(props: ServiceProps<api.service.ErrorType>): ap
 
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorBoolean', api.result.Void));
-			} else if ($response.status === 400) {
-				const $result = await decodeResponse($response, isRSDBoolean);
-				const err = {
-					_type: 'SampleErrorBoolean',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorBoolean', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorBoolean') {
+					const $result = await decodeResponse($response, isRSDBoolean);
+					const err = {
+						_type: 'SampleErrorBoolean',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorBoolean', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -788,14 +831,18 @@ function fnGetSimpleErrorEnum(props: ServiceProps<api.service.ErrorType>): api.s
 
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorEnum', api.result.Void));
-			} else if ($response.status === 400) {
-				const $result = await decodeResponse($response, api.model.isSampleEnum);
-				const err = {
-					_type: 'SampleErrorEnum',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorEnum', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorEnum') {
+					const $result = await decodeResponse($response, api.model.isSampleEnum);
+					const err = {
+						_type: 'SampleErrorEnum',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorEnum', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -825,15 +872,19 @@ function fnGetSimpleErrorScalar(props: ServiceProps<api.service.ErrorType>): api
 
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorScalar', api.result.Void));
-			} else if ($response.status === 400) {
-				const $data = await decodeResponse($response, api.utils.isString);
-				const $result = api.model.ZoneIdFromJSON($data);
-				const err = {
-					_type: 'SampleErrorScalar',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorScalar', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorScalar') {
+					const $data = await decodeResponse($response, api.utils.isString);
+					const $result = api.model.ZoneIdFromJSON($data);
+					const err = {
+						_type: 'SampleErrorScalar',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorScalar', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -863,15 +914,19 @@ function fnGetSimpleErrorUnion(props: ServiceProps<api.service.ErrorType>): api.
 
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('getSimpleErrorUnion', api.result.Void));
-			} else if ($response.status === 400) {
-				const $data = await decodeResponse($response, api.utils.isRecord);
-				const $result = api.model.UnionFromJSON($data);
-				const err = {
-					_type: 'SampleErrorUnion',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorUnion', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorUnion') {
+					const $data = await decodeResponse($response, api.utils.isRecord);
+					const $result = api.model.UnionFromJSON($data);
+					const err = {
+						_type: 'SampleErrorUnion',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('getSimpleErrorUnion', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -903,27 +958,37 @@ function fnMultiErrorSameCode(props: ServiceProps<api.service.ErrorType>): api.s
 
 			if ($response.status === 204) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('multiErrorSameCode', api.result.Void));
-			} else if ($response.status === 400) {
-				const err = {
-					_type: 'SampleError',
-					message: await $response.text(),
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
-			} else if ($response.status === 400) {
-				const err = {
-					_type: 'SampleError2',
-					message: await $response.text(),
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
-			} else if ($response.status === 400) {
-				const $data = await decodeResponse($response, api.utils.isRecord);
-				const $result = api.model.ErrorDataFromJSON($data);
-				const err = {
-					_type: 'SampleErrorWithValue',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleError') {
+					const err = {
+						_type: 'SampleError',
+						message: await $response.text(),
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
+				}
+			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleError2') {
+					const err = {
+						_type: 'SampleError2',
+						message: await $response.text(),
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
+				}
+			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorWithValue') {
+					const $data = await decodeResponse($response, api.utils.isRecord);
+					const $result = api.model.ErrorDataFromJSON($data);
+					const err = {
+						_type: 'SampleErrorWithValue',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('multiErrorSameCode', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {

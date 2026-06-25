@@ -961,15 +961,19 @@ function fnFail(props: ServiceProps<api.service.ErrorType>): api.service.ScalarS
 
 			if ($response.status === 200) {
 				return safeExecute(api.result.OK(api.result.Void), () => onSuccess?.('fail', api.result.Void));
-			} else if ($response.status === 400) {
-				const $data = await decodeResponse($response, api.utils.isString);
-				const $result = api.model.RangeFromJSON($data);
-				const err = {
-					_type: 'SampleErrorScalarSub',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('fail', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorScalarSub') {
+					const $data = await decodeResponse($response, api.utils.isString);
+					const $result = api.model.RangeFromJSON($data);
+					const err = {
+						_type: 'SampleErrorScalarSub',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('fail', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {

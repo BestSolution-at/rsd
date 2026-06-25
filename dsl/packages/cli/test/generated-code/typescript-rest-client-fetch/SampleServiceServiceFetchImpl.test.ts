@@ -448,4 +448,24 @@ describe('SampleServiceServiceFetchImpl', () => {
 			expect(api.service.isSampleErrorScalarError(error)).toBe(true);
 		});
 	});
+	describe('multiErrorSameCode', () => {
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.multiErrorSameCode(0);
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(isSampleErrorError(error)).toBe(true);
+		});
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.multiErrorSameCode(1);
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(isSampleError2Error(error)).toBe(true);
+		});
+		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
+			const [result, error] = await service.multiErrorSameCode(2);
+			expect(error).not.toBeNull();
+			expect(result).toBeUndefined();
+			expect(isSampleErrorWithValueError(error)).toBe(true);
+		});
+	});
 });

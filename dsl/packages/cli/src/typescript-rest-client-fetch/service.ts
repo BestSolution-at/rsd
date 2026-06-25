@@ -672,10 +672,7 @@ function generateRemoteInvoke(
 	}
 
 	if (o.meta.rest.results.length) {
-		o.meta.rest.results.forEach((r, idx) => {
-			if (idx !== 0) {
-				node.append(' else ');
-			}
+		o.meta.rest.results.forEach(r => {
 			node.append(`if ($response.status === ${r.statusCode.toFixed()}) {`, NL);
 			if (r.error === undefined) {
 				node.indent(block => {
@@ -684,10 +681,14 @@ function generateRemoteInvoke(
 			} else {
 				const err = r.error;
 				node.indent(block => {
-					block.append(handleErrorResult(o, err, config, fqn));
+					block.append(`if($response.headers.get('X-RSD-Error-Type') === '${err}') {`, NL);
+					block.indent(innerBlock => {
+						innerBlock.append(handleErrorResult(o, err, config, fqn));
+					});
+					block.append('}', NL);
 				});
 			}
-			node.append('}');
+			node.append('}', NL);
 		});
 	} else {
 		const code = o.resultType ? '200' : '204';

@@ -55,6 +55,7 @@ function fnUploadFile(props: ServiceProps<api.service.ErrorType>): api.service.B
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadFile', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -92,6 +93,7 @@ function fnUploadFileOpt(props: ServiceProps<api.service.ErrorType>): api.servic
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadFileOpt', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -129,6 +131,7 @@ function fnUploadFileNil(props: ServiceProps<api.service.ErrorType>): api.servic
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadFileNil', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -168,6 +171,7 @@ function fnUploadFileOptNil(props: ServiceProps<api.service.ErrorType>): api.ser
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadFileOptNil', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -203,6 +207,7 @@ function fnUploadBlob(props: ServiceProps<api.service.ErrorType>): api.service.B
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadBlob', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -240,6 +245,7 @@ function fnUploadBlobOpt(props: ServiceProps<api.service.ErrorType>): api.servic
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadBlobOpt', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -277,6 +283,7 @@ function fnUploadBlobNil(props: ServiceProps<api.service.ErrorType>): api.servic
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadBlobNil', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -316,6 +323,7 @@ function fnUploadBlobOptNil(props: ServiceProps<api.service.ErrorType>): api.ser
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('uploadBlobOptNil', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -979,15 +987,19 @@ function fnDownloadFile(props: ServiceProps<api.service.ErrorType>): api.service
 				}
 				const $result = new File([$data], fileName, { type: $data.type });
 				return safeExecute(api.result.OK($result), () => onSuccess?.('downloadFile', $result));
-			} else if ($response.status === 400) {
-				const $data = await decodeResponse($response, api.utils.isRecord);
-				const $result = api.model.ErrorDataFromJSON($data);
-				const err = {
-					_type: 'SampleErrorWithValue',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('downloadFile', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorWithValue') {
+					const $data = await decodeResponse($response, api.utils.isRecord);
+					const $result = api.model.ErrorDataFromJSON($data);
+					const err = {
+						_type: 'SampleErrorWithValue',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('downloadFile', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -1019,15 +1031,19 @@ function fnDownloadBlob(props: ServiceProps<api.service.ErrorType>): api.service
 				const $data = await $response.blob();
 				const $result = $data;
 				return safeExecute(api.result.OK($result), () => onSuccess?.('downloadBlob', $result));
-			} else if ($response.status === 400) {
-				const $data = await decodeResponse($response, api.utils.isRecord);
-				const $result = api.model.ErrorDataFromJSON($data);
-				const err = {
-					_type: 'SampleErrorWithValue',
-					data: $result,
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('downloadBlob', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleErrorWithValue') {
+					const $data = await decodeResponse($response, api.utils.isRecord);
+					const $result = api.model.ErrorDataFromJSON($data);
+					const err = {
+						_type: 'SampleErrorWithValue',
+						data: $result,
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('downloadBlob', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {

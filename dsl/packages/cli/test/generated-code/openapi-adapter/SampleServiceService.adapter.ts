@@ -484,4 +484,59 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
+
+	async multiErrorSameCode(
+		errorType: api.model.RSDInt,
+	): Promise<
+		api.result.Result<
+			api.result.VoidType,
+			| api.service.SampleErrorError
+			| api.service.SampleError2Error
+			| api.service.SampleErrorWithValueError
+			| api.service.StatusRSDError
+			| api.service.NativeRSDError
+		>
+	> {
+		try {
+			const response = await this.delegate.sampleServiceMultiErrorSameCodeRaw({ errorType });
+			if (response.raw.status === 204) {
+				return api.result.OK(api.result.Void);
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			if (error instanceof ResponseError) {
+				if (error.response.status === 400) {
+					if (error.response.headers.get('X-RSD-Error-Type') === 'SampleError') {
+						const err = {
+							_type: 'SampleError',
+							message: await error.response.text(),
+						} as const;
+						return api.result.ERR(err);
+					}
+				}
+				if (error.response.status === 400) {
+					if (error.response.headers.get('X-RSD-Error-Type') === 'SampleError2') {
+						const err = {
+							_type: 'SampleError2',
+							message: await error.response.text(),
+						} as const;
+						return api.result.ERR(err);
+					}
+				}
+
+				if (error.response.status === 400) {
+					if (error.response.headers.get('X-RSD-Error-Type') === 'SampleErrorWithValue') {
+						const result = (await error.response.json()) as Record<string, unknown>;
+						const data = ErrorDataFromJSON(result);
+						const err = {
+							_type: 'SampleErrorWithValue',
+							data,
+						} as const;
+						return api.result.ERR(err);
+					}
+				}
+			}
+			return api.result.ERR(toRSDError(error));
+		}
+	}
 }
