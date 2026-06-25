@@ -110,58 +110,6 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 				.filter(r => r.error === undefined)
 				.forEach(r => {
 					handleResultType(r.statusCode);
-					/*if (r.error) {
-					const error = o.resolved.errors.find(e => e.name === r.error);
-					if (error?.resolvedContentType) {
-						if (
-							isMRecordType(error.resolvedContentType) ||
-							isMUnionType(error.resolvedContentType) ||
-							isMEnumType(error.resolvedContentType)
-						) {
-							responses[r.statusCode] = {
-								description: '',
-								content: {
-									'application/json': {
-										schema: {
-											$ref: `#/components/schemas/${error.resolvedContentType.name}`,
-										},
-									},
-								},
-							};
-						} else if (isMBuiltinType(error.resolvedContentType)) {
-							responses[r.statusCode] = {
-								description: '',
-								content: {
-									'application/json': {
-										schema: generateBuilinProperty(error.resolvedContentType),
-									},
-								},
-							};
-						} else {
-							responses[r.statusCode] = {
-								description: '',
-								content: {
-									'application/json': {
-										schema: {
-											type: 'string',
-										},
-									},
-								},
-							};
-						}
-					} else {
-						responses[r.statusCode] = {
-							description: '',
-							content: {
-								'application/json': {
-									schema: {
-										type: 'string',
-									},
-								},
-							},
-						};
-					}
-				}*/
 				});
 			errorsByCode.forEach((errors, code) => {
 				responses[code] = {
