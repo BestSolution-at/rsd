@@ -42,6 +42,7 @@ function fnSimpleBooleanPathParam(props: ServiceProps<api.service.ErrorType>): a
 				const $result = RSDBooleanFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleBooleanPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -74,6 +75,7 @@ function fnSimpleShortPathParam(props: ServiceProps<api.service.ErrorType>): api
 				const $result = RSDShortFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleShortPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -106,6 +108,7 @@ function fnSimpleIntPathParam(props: ServiceProps<api.service.ErrorType>): api.s
 				const $result = RSDIntFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleIntPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -138,6 +141,7 @@ function fnSimpleLongPathParam(props: ServiceProps<api.service.ErrorType>): api.
 				const $result = RSDLongFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleLongPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -170,6 +174,7 @@ function fnSimpleFloatPathParam(props: ServiceProps<api.service.ErrorType>): api
 				const $result = RSDFloatFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleFloatPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -202,6 +207,7 @@ function fnSimpleDoublePathParam(props: ServiceProps<api.service.ErrorType>): ap
 				const $result = RSDDoubleFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleDoublePathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -234,6 +240,7 @@ function fnSimpleStringPathParam(props: ServiceProps<api.service.ErrorType>): ap
 				const $result = RSDStringFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleStringPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -266,6 +273,7 @@ function fnSimpleLocalDatePathParam(props: ServiceProps<api.service.ErrorType>):
 				const $result = RSDLocalDateFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleLocalDatePathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -298,6 +306,7 @@ function fnSimpleLocalDateTimePathParam(props: ServiceProps<api.service.ErrorTyp
 				const $result = RSDLocalDateTimeFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleLocalDateTimePathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -330,6 +339,7 @@ function fnSimpleLocalTimePathParam(props: ServiceProps<api.service.ErrorType>):
 				const $result = RSDLocalTimeFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleLocalTimePathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -362,6 +372,7 @@ function fnSimpleOffsetDateTimePathParam(props: ServiceProps<api.service.ErrorTy
 				const $result = RSDOffsetDateTimeFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleOffsetDateTimePathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -394,6 +405,7 @@ function fnSimpleZonedDateTimePathParam(props: ServiceProps<api.service.ErrorTyp
 				const $result = RSDZonedDateTimeFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleZonedDateTimePathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -426,6 +438,7 @@ function fnSimpleScalarPathParam(props: ServiceProps<api.service.ErrorType>): ap
 				const $result = api.model.ZoneIdFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleScalarPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -458,6 +471,7 @@ function fnSimpleEnumPathParam(props: ServiceProps<api.service.ErrorType>): api.
 				const $result = api.model.SampleEnumFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('simpleEnumPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -490,6 +504,7 @@ function fnMultiPathParam(props: ServiceProps<api.service.ErrorType>): api.servi
 				const $result = RSDStringFromJSON($data);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('multiPathParam', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {

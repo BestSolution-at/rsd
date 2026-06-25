@@ -319,6 +319,7 @@ docs/RecordWithUnions.md
 docs/SampleEnum.md
 docs/SampleEnumWithCustValue.md
 docs/SampleServiceApi.md
+docs/SampleServiceMultiErrorSameCode400Response.md
 docs/ScalarRecord.md
 docs/ScalarRecordSubstitution.md
 docs/ScalarSubstitionServiceApi.md
@@ -638,6 +639,7 @@ models/RecordOfRecords.ts
 models/RecordWithUnions.ts
 models/SampleEnum.ts
 models/SampleEnumWithCustValue.ts
+models/SampleServiceMultiErrorSameCode400Response.ts
 models/ScalarRecord.ts
 models/ScalarRecordSubstitution.ts
 models/SimpleRecord.ts

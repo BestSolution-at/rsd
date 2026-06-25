@@ -722,16 +722,24 @@ function generateResponseDispatch(
 	const BodyHandlers = fqn('java.net.http.HttpResponse.BodyHandlers');
 	methodBody.append(`var $response = $clientSupplier.get().send($request, ${BodyHandlers}.ofInputStream());`, NL);
 	if (o.meta?.rest?.results.length) {
-		o.meta.rest.results.forEach((r, idx) => {
-			methodBody.append(`${idx === 0 ? '' : ' else '}if ($response.statusCode() == ${r.statusCode.toFixed(0)}) {`, NL);
+		o.meta.rest.results.forEach(r => {
+			methodBody.append(`if ($response.statusCode() == ${r.statusCode.toFixed(0)}) {`, NL);
 			methodBody.indent(resBlock => {
 				if (r.error === undefined) {
 					handleOkResult(resBlock, o, artifactConfig, fqn);
 				} else {
-					handleErrorResult(resBlock, o, r.error, artifactConfig, fqn);
+					const error = r.error;
+					resBlock.append(
+						`if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("${error}")) {`,
+						NL,
+					);
+					resBlock.indent(errBlock => {
+						handleErrorResult(errBlock, o, error, artifactConfig, fqn);
+					});
+					resBlock.append('}', NL);
 				}
 			});
-			methodBody.append('}');
+			methodBody.append('}', NL);
 		});
 		methodBody.appendNewLine();
 	} else {

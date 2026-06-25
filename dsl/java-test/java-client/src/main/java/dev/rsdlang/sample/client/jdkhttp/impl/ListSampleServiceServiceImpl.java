@@ -63,6 +63,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listBoolean", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listBoolean", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -98,6 +99,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listShort", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listShort", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -133,6 +135,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listInt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listInt", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -168,6 +171,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listLong", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listLong", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -203,6 +207,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listFloat", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listFloat", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -238,6 +243,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listDouble", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listDouble", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -273,6 +279,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listString", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listString", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -308,6 +315,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listLocalDate", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listLocalDate", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -343,6 +351,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listLocalDateTime", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listLocalDateTime", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -378,6 +387,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listLocalTime", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listLocalTime", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -413,6 +423,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listOffsetDateTime", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listOffsetDateTime", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -448,6 +459,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listZonedDateTime", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listZonedDateTime", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -483,6 +495,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listScalar", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listScalar", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -518,6 +531,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listEnum", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listEnum", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -553,6 +567,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				this.lifecycleHook.onSuccess("listSimpleRecord", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listSimpleRecord", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -587,11 +602,15 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 				var $rv = JDKHttpClientResponseUtils.mapObjects($response, SimpleRecordDataImpl::of, SimpleRecord.Data.class);
 				this.lifecycleHook.onSuccess("listSimpleRecordWithError", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
-			} else if ($response.statusCode() == 400) {
-				var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
-				this.lifecycleHook.onError("listSimpleRecordWithError", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleError")) {
+					var $error = new SampleError(JDKHttpClientResponseUtils.toString($response));
+					this.lifecycleHook.onError("listSimpleRecordWithError", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("listSimpleRecordWithError", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);

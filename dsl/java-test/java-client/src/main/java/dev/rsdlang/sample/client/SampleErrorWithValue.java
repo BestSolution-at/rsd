@@ -3,7 +3,7 @@ package dev.rsdlang.sample.client;
 
 import dev.rsdlang.sample.client.model.ErrorData;
 
-public record SampleErrorWithValue(String message, ErrorData.Data data) implements RSDError, RSDError.E3 {
+public record SampleErrorWithValue(String message, ErrorData.Data data) implements RSDError, RSDError.E3, RSDError.E9 {
 	@Override
 	public Type type() {
 		return Type.SampleErrorWithValue;

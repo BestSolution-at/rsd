@@ -299,6 +299,7 @@ export * from './RecordOfRecords.js';
 export * from './RecordWithUnions.js';
 export * from './SampleEnum.js';
 export * from './SampleEnumWithCustValue.js';
+export * from './SampleServiceMultiErrorSameCode400Response.js';
 export * from './ScalarRecord.js';
 export * from './ScalarRecordSubstitution.js';
 export * from './SimpleRecord.js';

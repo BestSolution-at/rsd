@@ -28,6 +28,7 @@ All URIs are relative to *http://localhost*
 | [**sampleServiceGetString**](SampleServiceApi.md#sampleservicegetstring) | **GET** /api/samplerecords/string |  |
 | [**sampleServiceGetZonedDateTime**](SampleServiceApi.md#sampleservicegetzoneddatetime) | **GET** /api/samplerecords/zoneddatetime |  |
 | [**sampleServiceMultiErrorOperation**](SampleServiceApi.md#sampleservicemultierroroperation) | **GET** /api/samplerecords/multierroroperation |  |
+| [**sampleServiceMultiErrorSameCode**](SampleServiceApi.md#sampleservicemultierrorsamecode) | **GET** /api/samplerecords/multi-error |  |
 | [**sampleServiceVoidOperation**](SampleServiceApi.md#sampleservicevoidoperation) | **GET** /api/samplerecords/voidoperation |  |
 
 
@@ -87,7 +88,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-| **400** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -855,7 +856,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-| **400** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -915,7 +916,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-| **400** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -975,7 +976,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-| **400** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -1035,7 +1036,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-| **400** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -1095,7 +1096,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-| **400** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -1155,7 +1156,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-| **400** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -1290,7 +1291,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** |  |  -  |
-| **400** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -1468,8 +1469,76 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | success |  -  |
-| **400** |  |  -  |
-| **401** |  |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
+| **401** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## sampleServiceMultiErrorSameCode
+
+> sampleServiceMultiErrorSameCode(errorType)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SampleServiceApi,
+} from '';
+import type { SampleServiceMultiErrorSameCodeRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new SampleServiceApi();
+
+  const body = {
+    // number | 
+    errorType: 8.14,
+  } satisfies SampleServiceMultiErrorSameCodeRequest;
+
+  try {
+    const data = await api.sampleServiceMultiErrorSameCode(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **errorType** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | success |  -  |
+| **400** |  |  * X-RSD-Error-Type - Contains the type information for the error transferred in the response body <br>  * X-RSD-Error-Message - Contains the error message for the error transferred in the response body <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

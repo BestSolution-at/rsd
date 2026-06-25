@@ -24,6 +24,11 @@ import {
     SampleEnumToJSON,
 } from '../models/SampleEnum.js';
 import {
+    type SampleServiceMultiErrorSameCode400Response,
+    SampleServiceMultiErrorSameCode400ResponseFromJSON,
+    SampleServiceMultiErrorSameCode400ResponseToJSON,
+} from '../models/SampleServiceMultiErrorSameCode400Response.js';
+import {
     type SimpleRecord,
     SimpleRecordFromJSON,
     SimpleRecordToJSON,
@@ -40,6 +45,10 @@ export interface SampleServiceGetSimpleRecordRequest {
 
 export interface SampleServiceGetSimpleRecordWithErrorRequest {
     key: string;
+}
+
+export interface SampleServiceMultiErrorSameCodeRequest {
+    errorType: number;
 }
 
 /**
@@ -993,6 +1002,53 @@ export class SampleServiceApi extends runtime.BaseAPI {
      */
     async sampleServiceMultiErrorOperation(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.sampleServiceMultiErrorOperationRaw(initOverrides);
+    }
+
+    /**
+     * Creates request options for sampleServiceMultiErrorSameCode without sending the request
+     */
+    async sampleServiceMultiErrorSameCodeRequestOpts(requestParameters: SampleServiceMultiErrorSameCodeRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['errorType'] == null) {
+            throw new runtime.RequiredError(
+                'errorType',
+                'Required parameter "errorType" was null or undefined when calling sampleServiceMultiErrorSameCode().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['errorType'] != null) {
+            queryParameters['errorType'] = requestParameters['errorType'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/samplerecords/multi-error`;
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceMultiErrorSameCodeRaw(requestParameters: SampleServiceMultiErrorSameCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sampleServiceMultiErrorSameCodeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 
+     */
+    async sampleServiceMultiErrorSameCode(requestParameters: SampleServiceMultiErrorSameCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sampleServiceMultiErrorSameCodeRaw(requestParameters, initOverrides);
     }
 
     /**

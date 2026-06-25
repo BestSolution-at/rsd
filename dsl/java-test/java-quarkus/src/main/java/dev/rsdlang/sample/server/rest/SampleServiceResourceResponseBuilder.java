@@ -134,4 +134,8 @@ public class SampleServiceResourceResponseBuilder {
 		return Response.status(204);
 	}
 
+	public ResponseBuilder multiErrorSameCode(int errorType) {
+		return Response.status(204);
+	}
+
 }

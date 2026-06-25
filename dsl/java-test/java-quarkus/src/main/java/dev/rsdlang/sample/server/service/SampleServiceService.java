@@ -72,4 +72,9 @@ public interface SampleServiceService {
 	public void getSimpleErrorUnion(BuilderFactory _factory)
 			throws SampleErrorUnionException;
 
+	public void multiErrorSameCode(BuilderFactory _factory, int errorType)
+			throws SampleErrorException,
+			SampleError2Exception,
+			SampleErrorWithValueException;
+
 }

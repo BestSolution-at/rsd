@@ -62,4 +62,6 @@ public interface SampleServiceService extends BaseService {
 
 	public Result<Void, RSDError.E8> getSimpleErrorUnion();
 
+	public Result<Void, RSDError.E9> multiErrorSameCode(int errorType);
+
 }

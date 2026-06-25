@@ -83,6 +83,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadFile", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadFile", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -124,6 +125,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadFileOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadFileOpt", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -168,6 +170,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadFileOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadFileOpt", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -212,6 +215,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadFileNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadFileNil", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -253,6 +257,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadFileOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadFileOptNil", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -300,6 +305,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadFileOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadFileOptNil", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -344,6 +350,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadBlob", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadBlob", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -385,6 +392,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadBlobOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadBlobOpt", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -429,6 +437,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadBlobOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadBlobOpt", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -473,6 +482,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadBlobNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadBlobNil", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -514,6 +524,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadBlobOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadBlobOptNil", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -561,6 +572,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				this.lifecycleHook.onSuccess("uploadBlobOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("uploadBlobOptNil", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -2479,13 +2491,17 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				var $rv = JDKHttpClientResponseUtils.mapFile($response);
 				this.lifecycleHook.onSuccess("downloadFile", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadFile failed");
-				var $error = new SampleErrorWithValue($message, $errorData);
-				this.lifecycleHook.onError("downloadFile", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorWithValue")) {
+					var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadFile failed");
+					var $error = new SampleErrorWithValue($message, $errorData);
+					this.lifecycleHook.onError("downloadFile", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("downloadFile", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -2520,13 +2536,17 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				var $rv = JDKHttpClientResponseUtils.mapBlob($response);
 				this.lifecycleHook.onSuccess("downloadBlob", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadBlob failed");
-				var $error = new SampleErrorWithValue($message, $errorData);
-				this.lifecycleHook.onError("downloadBlob", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorWithValue")) {
+					var $errorData = JDKHttpClientResponseUtils.mapObject($response, ErrorDataDataImpl::of, ErrorData.Data.class);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of downloadBlob failed");
+					var $error = new SampleErrorWithValue($message, $errorData);
+					this.lifecycleHook.onError("downloadBlob", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("downloadBlob", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);

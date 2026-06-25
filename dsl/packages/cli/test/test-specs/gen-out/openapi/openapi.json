@@ -401,6 +401,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -426,6 +440,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -436,6 +464,20 @@
           },
           "401": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -510,6 +552,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -535,6 +591,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -560,6 +630,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -586,6 +670,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -611,6 +709,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -636,6 +748,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -661,10 +787,81 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Union"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/samplerecords/multi-error": {
+      "get": {
+        "tags": [
+          "SampleService"
+        ],
+        "description": "",
+        "operationId": "SampleService_multiErrorSameCode",
+        "parameters": [
+          {
+            "name": "errorType",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ErrorData"
+                    }
+                  ]
                 }
               }
             }
@@ -1084,6 +1281,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -15355,6 +15566,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -15388,6 +15613,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -16285,6 +16524,20 @@
           },
           "400": {
             "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {

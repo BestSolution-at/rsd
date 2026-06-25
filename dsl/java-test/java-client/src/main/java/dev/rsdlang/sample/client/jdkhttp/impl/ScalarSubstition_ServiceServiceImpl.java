@@ -1549,7 +1549,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		}
 	}
 
-	public Result<Void, RSDError.E9> fail() {
+	public Result<Void, RSDError.E10> fail() {
 		var $path = "%s/api/scalarsubstitution/fail".formatted(
 				this.baseURI());
 
@@ -1570,13 +1570,17 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			if ($response.statusCode() == 200) {
 				this.lifecycleHook.onSuccess("fail", null, this.client.createResponseAdaptable($response));
 				return Result.ok(null);
-			} else if ($response.statusCode() == 400) {
-				var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
-				var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of fail failed");
-				var $error = new SampleErrorScalarSub($message, $errorData);
-				this.lifecycleHook.onError("fail", $error, this.client.createResponseAdaptable($response));
-				return Result.err($error);
 			}
+			if ($response.statusCode() == 400) {
+				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorScalarSub")) {
+					var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, MyRange::of);
+					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of fail failed");
+					var $error = new SampleErrorScalarSub($message, $errorData);
+					this.lifecycleHook.onError("fail", $error, this.client.createResponseAdaptable($response));
+					return Result.err($error);
+				}
+			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("fail", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);

@@ -61,6 +61,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleBooleanPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleBooleanPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -97,6 +98,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleShortPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleShortPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -133,6 +135,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleIntPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleIntPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -169,6 +172,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleLongPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleLongPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -205,6 +209,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleFloatPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleFloatPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -241,6 +246,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleDoublePathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleDoublePathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -279,6 +285,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleStringPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleStringPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -317,6 +324,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleLocalDatePathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleLocalDatePathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -355,6 +363,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleLocalDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleLocalDateTimePathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -393,6 +402,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleLocalTimePathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleLocalTimePathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -431,6 +441,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleOffsetDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleOffsetDateTimePathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -469,6 +480,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleZonedDateTimePathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleZonedDateTimePathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -507,6 +519,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleScalarPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleScalarPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -545,6 +558,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("simpleEnumPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("simpleEnumPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);
@@ -584,6 +598,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 				this.lifecycleHook.onSuccess("multiPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
+
 			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
 			this.lifecycleHook.onError("multiPathParam", $error, this.client.createResponseAdaptable($response));
 			return Result.err($error);

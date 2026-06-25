@@ -1,4 +1,12 @@
-import { isMBuiltinType, isMEnumType, isMRecordType, isMUnionType, MParameter, MResolvedService } from '../model.js';
+import {
+	isMBuiltinType,
+	isMEnumType,
+	isMRecordType,
+	isMUnionType,
+	MParameter,
+	MResolvedOperation,
+	MResolvedService,
+} from '../model.js';
 import { generateBuilinProperty, nullableProcessor } from './record.js';
 
 export function generateService(s: MResolvedService): Record<string, unknown> {
@@ -86,65 +94,46 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 				}
 			};
 
-			if (o.meta.rest.results.length === 0) {
+			if (o.meta.rest.results.filter(r => r.error === undefined).length === 0) {
 				handleResultType(200);
 			}
 
+			const errorsByCode = new Map<number, readonly string[]>();
 			o.meta.rest.results.forEach(r => {
 				if (r.error) {
-					const error = o.resolved.errors.find(e => e.name === r.error);
-					if (error?.resolvedContentType) {
-						if (
-							isMRecordType(error.resolvedContentType) ||
-							isMUnionType(error.resolvedContentType) ||
-							isMEnumType(error.resolvedContentType)
-						) {
-							responses[r.statusCode] = {
-								description: '',
-								content: {
-									'application/json': {
-										schema: {
-											$ref: `#/components/schemas/${error.resolvedContentType.name}`,
-										},
-									},
-								},
-							};
-						} else if (isMBuiltinType(error.resolvedContentType)) {
-							responses[r.statusCode] = {
-								description: '',
-								content: {
-									'application/json': {
-										schema: generateBuilinProperty(error.resolvedContentType),
-									},
-								},
-							};
-						} else {
-							responses[r.statusCode] = {
-								description: '',
-								content: {
-									'application/json': {
-										schema: {
-											type: 'string',
-										},
-									},
-								},
-							};
-						}
-					} else {
-						responses[r.statusCode] = {
-							description: '',
-							content: {
-								'application/json': {
-									schema: {
-										type: 'string',
-									},
-								},
-							},
-						};
-					}
-				} else {
-					handleResultType(r.statusCode);
+					const errors = errorsByCode.get(r.statusCode) ?? [];
+					errorsByCode.set(r.statusCode, [...errors, r.error]);
 				}
+			});
+
+			o.meta.rest.results
+				.filter(r => r.error === undefined)
+				.forEach(r => {
+					handleResultType(r.statusCode);
+				});
+			errorsByCode.forEach((errors, code) => {
+				responses[code] = {
+					description: '',
+					headers: {
+						'X-RSD-Error-Type': {
+							description: 'Contains the type information for the error transferred in the response body',
+							schema: {
+								type: 'string',
+							},
+						},
+						'X-RSD-Error-Message': {
+							description: 'Contains the error message for the error transferred in the response body',
+							schema: {
+								type: 'string',
+							},
+						},
+					},
+					content: {
+						'application/json': {
+							schema: errors.length === 1 ? toErrorType(errors[0], o) : toErrorListType(errors, o),
+						},
+					},
+				};
 			});
 
 			let requestBody;
@@ -266,6 +255,39 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 		}
 	});
 	return rv;
+}
+
+function toErrorType(err: string, o: MResolvedOperation) {
+	const error = o.resolved.errors.find(e => e.name === err);
+	if (error?.resolvedContentType) {
+		if (
+			isMRecordType(error.resolvedContentType) ||
+			isMUnionType(error.resolvedContentType) ||
+			isMEnumType(error.resolvedContentType)
+		) {
+			return {
+				$ref: `#/components/schemas/${error.resolvedContentType.name}`,
+			};
+		} else if (isMBuiltinType(error.resolvedContentType)) {
+			return generateBuilinProperty(error.resolvedContentType);
+		} else {
+			return {
+				type: 'string',
+			};
+		}
+	} else {
+		return {
+			type: 'string',
+		};
+	}
+}
+
+function toErrorListType(errors: readonly string[], o: MResolvedOperation) {
+	const errs = new Set(errors.map(err => toErrorType(err, o)).map(e => JSON.stringify(e)));
+	return {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		oneOf: Array.from(errs).map(e => JSON.parse(e)),
+	};
 }
 
 function toType(param: MParameter) {

@@ -274,4 +274,32 @@ public class SampleServiceServiceTest {
 			default -> fail("Unexpected result type: " + result.getClass().getName());
 		}
 	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void multiErrorSameCode(SampleServiceService service) {
+		var result = service.multiErrorSameCode(0);
+		switch (result) {
+			case Result.OK(var value) -> fail("Expected SampleErrorException to be thrown");
+			case Result.ERR(SampleError error) ->
+				assertEquals("This is a sample error from the server", error.message());
+			default -> fail("Unexpected result type: " + result.getClass().getName());
+		}
+		result = service.multiErrorSameCode(1);
+		switch (result) {
+			case Result.OK(var value) -> fail("Expected SampleErrorException to be thrown");
+			case Result.ERR(SampleError2 error) ->
+				assertEquals("This is a sample error 2 from the server", error.message());
+			default -> fail("Unexpected result type: " + result.getClass().getName());
+		}
+		result = service.multiErrorSameCode(2);
+		switch (result) {
+			case Result.OK(var value) -> fail("Expected SampleErrorWithValueException to be thrown");
+			case Result.ERR(SampleErrorWithValue error) -> {
+				assertEquals("This is a sample error with value from the server", error.message());
+				assertEquals("An error message", error.data().message());
+			}
+			default -> fail("Unexpected result type: " + result.getClass().getName());
+		}
+	}
 }

@@ -43,6 +43,7 @@ function fnListBoolean(props: ServiceProps<api.service.ErrorType>): api.service.
 				const $result = $data.map(RSDBooleanFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listBoolean', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -75,6 +76,7 @@ function fnListShort(props: ServiceProps<api.service.ErrorType>): api.service.Li
 				const $result = $data.map(RSDShortFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listShort', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -107,6 +109,7 @@ function fnListInt(props: ServiceProps<api.service.ErrorType>): api.service.List
 				const $result = $data.map(RSDIntFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listInt', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -139,6 +142,7 @@ function fnListLong(props: ServiceProps<api.service.ErrorType>): api.service.Lis
 				const $result = $data.map(RSDLongFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLong', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -171,6 +175,7 @@ function fnListFloat(props: ServiceProps<api.service.ErrorType>): api.service.Li
 				const $result = $data.map(RSDFloatFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listFloat', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -203,6 +208,7 @@ function fnListDouble(props: ServiceProps<api.service.ErrorType>): api.service.L
 				const $result = $data.map(RSDDoubleFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listDouble', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -235,6 +241,7 @@ function fnListString(props: ServiceProps<api.service.ErrorType>): api.service.L
 				const $result = $data.map(RSDStringFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listString', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -267,6 +274,7 @@ function fnListLocalDate(props: ServiceProps<api.service.ErrorType>): api.servic
 				const $result = $data.map(RSDLocalDateFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDate', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -299,6 +307,7 @@ function fnListLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 				const $result = $data.map(RSDLocalDateTimeFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalDateTime', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -331,6 +340,7 @@ function fnListLocalTime(props: ServiceProps<api.service.ErrorType>): api.servic
 				const $result = $data.map(RSDLocalTimeFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listLocalTime', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -363,6 +373,7 @@ function fnListOffsetDateTime(props: ServiceProps<api.service.ErrorType>): api.s
 				const $result = $data.map(RSDOffsetDateTimeFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listOffsetDateTime', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -395,6 +406,7 @@ function fnListZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.se
 				const $result = $data.map(RSDZonedDateTimeFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listZonedDateTime', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -427,6 +439,7 @@ function fnListScalar(props: ServiceProps<api.service.ErrorType>): api.service.L
 				const $result = $data.map(api.model.ZoneIdFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listScalar', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -459,6 +472,7 @@ function fnListEnum(props: ServiceProps<api.service.ErrorType>): api.service.Lis
 				const $result = $data.map(api.model.SampleEnumFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listEnum', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -491,6 +505,7 @@ function fnListSimpleRecord(props: ServiceProps<api.service.ErrorType>): api.ser
 				const $result = $data.map(api.model.SimpleRecordFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listSimpleRecord', $result));
 			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {
@@ -522,13 +537,17 @@ function fnListSimpleRecordWithError(props: ServiceProps<api.service.ErrorType>)
 				const $data = await decodeResponse($response, v => api.utils.isTypedArray(v, api.utils.isRecord));
 				const $result = $data.map(api.model.SimpleRecordFromJSON);
 				return safeExecute(api.result.OK($result), () => onSuccess?.('listSimpleRecordWithError', $result));
-			} else if ($response.status === 400) {
-				const err = {
-					_type: 'SampleError',
-					message: await $response.text(),
-				} as const;
-				return safeExecute(api.result.ERR(err), () => onError?.('listSimpleRecordWithError', err));
 			}
+			if ($response.status === 400) {
+				if($response.headers.get('X-RSD-Error-Type') === 'SampleError') {
+					const err = {
+						_type: 'SampleError',
+						message: await $response.text(),
+					} as const;
+					return safeExecute(api.result.ERR(err), () => onError?.('listSimpleRecordWithError', err));
+				}
+			}
+
 			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
 			return api.result.ERR(err);
 		} catch (e) {

@@ -42,9 +42,12 @@ public sealed interface RSDError permits RSDError.$GenericError, SampleError, Sa
 	public sealed interface E8 permits $GenericError, SampleErrorUnion {
 	}
 
-	public sealed interface E9 permits $GenericError, SampleErrorScalarSub {
+	public sealed interface E9 permits $GenericError, SampleError, SampleError2, SampleErrorWithValue {
 	}
 
-	public record $GenericError(Type type, String message, Throwable error) implements RSDError, E1, E2, E3, E4, E5, E6, E7, E8, E9 {
+	public sealed interface E10 permits $GenericError, SampleErrorScalarSub {
+	}
+
+	public record $GenericError(Type type, String message, Throwable error) implements RSDError, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10 {
 	}
 }

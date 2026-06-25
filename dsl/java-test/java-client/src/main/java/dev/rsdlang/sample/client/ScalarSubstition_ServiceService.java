@@ -82,6 +82,6 @@ public interface ScalarSubstition_ServiceService extends BaseService {
 
 	public Result<NilResult, RSDError.$GenericError> headerListOptNull(List<MyRange> range);
 
-	public Result<Void, RSDError.E9> fail();
+	public Result<Void, RSDError.E10> fail();
 
 }
