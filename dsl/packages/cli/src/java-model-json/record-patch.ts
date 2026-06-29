@@ -20,13 +20,13 @@ import {
 	generatePatchPropertyAccessor,
 	generatePropertyNG,
 } from './shared.js';
-import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
+import { computeAPIType, JavaNativeTypeSubstitutes, primitiveToObject } from '../java-gen-utils.js';
 import { toFirstUpper, toNode } from '../util.js';
 
 export function generateRecordPatchContent(
 	t: MResolvedRecordType,
 	model: MResolvedRSDModel,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ): CompositeGeneratorNode {
@@ -40,14 +40,14 @@ export function generateRecordPatchContent(
 
 	node.append(`public class ${t.name}PatchImpl extends _BaseDataImpl implements ${Interface}.Patch {`, NL);
 	node.indent(classBody => {
-		classBody.append(ChangeTypes(allProps, nativeTypeSubstitues, interfaceBasePackage, fqn));
+		classBody.append(ChangeTypes(allProps, nativeTypeSubstitutes, interfaceBasePackage, fqn));
 		classBody.append(`${t.name}PatchImpl(${JsonObject} data) {`, NL);
 		classBody.indent(initBody => {
 			initBody.append('super(data);', NL);
 		});
 		classBody.append('}', NL, NL);
-		classBody.append(generatePropertyAccessors(t, allProps, nativeTypeSubstitues, interfaceBasePackage, fqn));
-		classBody.append(generatePatchBuilderImpl(t, model, allProps, nativeTypeSubstitues, interfaceBasePackage, fqn));
+		classBody.append(generatePropertyAccessors(t, allProps, nativeTypeSubstitutes, interfaceBasePackage, fqn));
+		classBody.append(generatePatchBuilderImpl(t, model, allProps, nativeTypeSubstitutes, interfaceBasePackage, fqn));
 		classBody.append(NL, `public static ${t.name}.Patch of(JsonObject obj) {`, NL);
 		classBody.indent(methodBody => {
 			methodBody.append(`return new ${t.name}PatchImpl(obj);`, NL);
@@ -66,7 +66,7 @@ export function generateRecordPatchContent(
 
 function ChangeTypes(
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
@@ -76,19 +76,19 @@ function ChangeTypes(
 			.filter(p => !p.readonly)
 			.filter(p => p.array)
 			.flatMap(p => [
-				SetChange(p, nativeTypeSubstitues, interfaceBasePackage, fqn),
-				ListChange(p, nativeTypeSubstitues, interfaceBasePackage, fqn),
+				SetChange(p, nativeTypeSubstitutes, interfaceBasePackage, fqn),
+				ListChange(p, nativeTypeSubstitutes, interfaceBasePackage, fqn),
 			]),
 	]);
 }
 
 function SetChange(
 	prop: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
-	const type = primitiveToObject(computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true));
+	const type = primitiveToObject(computeAPIType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, true));
 	const prefix = toFirstUpper(prop.name);
 
 	if (prop.variant === 'union' || prop.variant === 'record') {
@@ -134,7 +134,13 @@ function lambdaBodyComputer(prop: MResolvedPropery, type: string, fqn: (type: st
 		} else if (prop.type === 'string') {
 			const JsonString = fqn('jakarta.json.JsonString');
 			return `((${JsonString}) v).getString()`;
-		} else if (prop.type === 'local-date' || prop.type === 'local-date-time' || prop.type === 'local-time' || prop.type === 'offset-date-time' || prop.type === 'zoned-date-time') {
+		} else if (
+			prop.type === 'local-date' ||
+			prop.type === 'local-date-time' ||
+			prop.type === 'local-time' ||
+			prop.type === 'offset-date-time' ||
+			prop.type === 'zoned-date-time'
+		) {
 			const JsonString = fqn('jakarta.json.JsonString');
 			return `${type}.parse(((${JsonString})v).getString())`;
 		} else {
@@ -153,7 +159,7 @@ function lambdaBodyComputer(prop: MResolvedPropery, type: string, fqn: (type: st
 
 function ListChange(
 	prop: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
@@ -175,7 +181,7 @@ function ListChange(
 			'}',
 		]);
 	} else {
-		const type = primitiveToObject(computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true));
+		const type = primitiveToObject(computeAPIType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, true));
 
 		const lambdaBody = lambdaBodyComputer(prop, type, fqn);
 		return toNode([
@@ -190,7 +196,7 @@ function generatePatchBuilderImpl(
 	t: MResolvedRecordType,
 	model: MResolvedRSDModel,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
@@ -216,7 +222,7 @@ function generatePatchBuilderImpl(
 						generateKeyRevBuilderPropertyAccessor(
 							t,
 							p as (MKeyProperty | MRevisionProperty) & MResolvedBaseProperty, // FIXME Typesystem woes!?!
-							nativeTypeSubstitues,
+							nativeTypeSubstitutes,
 							interfaceBasePackage,
 							fqn,
 						),
@@ -229,7 +235,7 @@ function generatePatchBuilderImpl(
 				.filter(isMResolvedProperty)
 				.filter(p => p.readonly === false)
 				.flatMap(p => {
-					return [generatePatchBuilderPropertyAccessor(t, p, nativeTypeSubstitues, interfaceBasePackage, fqn), NL];
+					return [generatePatchBuilderPropertyAccessor(t, p, nativeTypeSubstitutes, interfaceBasePackage, fqn), NL];
 				}),
 		);
 		classBody.append('@Override', NL);
@@ -247,17 +253,17 @@ function generatePatchBuilderImpl(
 function generateKeyRevBuilderPropertyAccessor(
 	t: MResolvedRecordType,
 	p: (MKeyProperty | MRevisionProperty) & MResolvedBaseProperty,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
 	const rv = new CompositeGeneratorNode();
 	rv.append(
-		`public ${t.name}.PatchBuilder ${p.name}(${computeAPIType(p as MResolvedBaseProperty, nativeTypeSubstitues, basePackageName, fqn)} ${p.name}) {`,
+		`public ${t.name}.PatchBuilder ${p.name}(${computeAPIType(p as MResolvedBaseProperty, nativeTypeSubstitutes, basePackageName, fqn)} ${p.name}) {`,
 		NL,
 	);
 	rv.indent(mBody => {
-		var content = builtinBuilderAccess({
+		const content = builtinBuilderAccess({
 			type: p.type,
 			name: p.name,
 		});
@@ -272,7 +278,7 @@ function generateKeyRevBuilderPropertyAccessor(
 function generatePropertyAccessors(
 	owner: MResolvedRecordType,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
@@ -280,14 +286,14 @@ function generatePropertyAccessors(
 	node.append(
 		...props
 			.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
-			.flatMap(p => [generatePropertyNG(owner, p, nativeTypeSubstitues, interfaceBasePackage, fqn), NL]),
+			.flatMap(p => [generatePropertyNG(owner, p, nativeTypeSubstitutes, interfaceBasePackage, fqn), NL]),
 	);
 	node.append(
 		...props
 			.filter(isMResolvedProperty)
 			.filter(p => !p.readonly)
 			.flatMap(p => {
-				return [generatePatchPropertyAccessor(p, nativeTypeSubstitues, interfaceBasePackage, fqn), NL];
+				return [generatePatchPropertyAccessor(p, nativeTypeSubstitutes, interfaceBasePackage, fqn), NL];
 			}),
 	);
 	return node;

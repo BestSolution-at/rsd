@@ -18,11 +18,11 @@ import {
 	generatePatchPropertyAccessor,
 	generatePropertyAccessor,
 } from './shared.js';
-import { computeAPIType, primitiveToObject } from '../java-gen-utils.js';
+import { computeAPIType, JavaNativeTypeSubstitutes, primitiveToObject } from '../java-gen-utils.js';
 
 export function generateRecordContent(
 	t: MResolvedRecordType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ): CompositeGeneratorNode {
@@ -36,14 +36,14 @@ export function generateRecordContent(
 		}
 		classBody.append(generateInlineEnums(t));
 		classBody.appendNewLineIf(classBody.contents.length > 0);
-		classBody.append(generateData(t, allProps, nativeTypeSubstitues, basePackageName, fqn));
+		classBody.append(generateData(t, allProps, nativeTypeSubstitutes, basePackageName, fqn));
 		classBody.appendNewLine();
-		classBody.append(generateDataBuilder(t, allProps, nativeTypeSubstitues, basePackageName, fqn));
+		classBody.append(generateDataBuilder(t, allProps, nativeTypeSubstitutes, basePackageName, fqn));
 		if (t.patchable) {
 			classBody.appendNewLine();
-			classBody.append(generatePatch(t, allProps, nativeTypeSubstitues, basePackageName, fqn));
+			classBody.append(generatePatch(t, allProps, nativeTypeSubstitutes, basePackageName, fqn));
 			classBody.appendNewLine();
-			classBody.append(generatePatchBuilder(t, allProps, nativeTypeSubstitues, basePackageName, fqn));
+			classBody.append(generatePatchBuilder(t, allProps, nativeTypeSubstitutes, basePackageName, fqn));
 		}
 	});
 	node.append('}', NL);
@@ -53,7 +53,7 @@ export function generateRecordContent(
 function generateData(
 	t: MResolvedRecordType,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -70,7 +70,7 @@ function generateData(
 	node.indent(classBody => {
 		classBody.append(
 			...props.flatMap(p => [
-				generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn, t.name !== p.resolved.owner.name),
+				generatePropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn, t.name !== p.resolved.owner.name),
 				NL,
 			]),
 		);
@@ -82,7 +82,7 @@ function generateData(
 function generateDataBuilder(
 	t: MResolvedRecordType,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -100,7 +100,7 @@ function generateDataBuilder(
 
 	node.indent(classBody => {
 		classBody.append(
-			...props.flatMap(p => [generateBuilderPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn), NL]),
+			...props.flatMap(p => [generateBuilderPropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn), NL]),
 		);
 	});
 	node.append('}', NL);
@@ -110,7 +110,7 @@ function generateDataBuilder(
 function generatePatch(
 	t: MResolvedRecordType,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -121,12 +121,12 @@ function generatePatch(
 	const node = new CompositeGeneratorNode();
 	node.append(`public interface Patch extends _Base.BaseData, ${t.name}${unions} {`, NL);
 	node.indent(classBody => {
-		classBody.append(ChangeTypes(props, nativeTypeSubstitues, basePackageName, fqn));
+		classBody.append(ChangeTypes(props, nativeTypeSubstitutes, basePackageName, fqn));
 		classBody.append(
 			...props
 				.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
 				.flatMap(p => [
-					generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn, t.name !== p.resolved.owner.name),
+					generatePropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn, t.name !== p.resolved.owner.name),
 					NL,
 				]),
 		);
@@ -134,7 +134,7 @@ function generatePatch(
 			...props
 				.filter(isMResolvedProperty)
 				.filter(p => !p.readonly)
-				.flatMap(p => [generatePatchPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn), NL]),
+				.flatMap(p => [generatePatchPropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn), NL]),
 		);
 	});
 	node.append('}', NL);
@@ -143,7 +143,7 @@ function generatePatch(
 
 function ChangeTypes(
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -154,8 +154,8 @@ function ChangeTypes(
 			.filter(p => p.array)
 			.flatMap(p => [
 				ChangeType(p),
-				SetChange(p, nativeTypeSubstitues, basePackageName, fqn),
-				ListChange(p, nativeTypeSubstitues, basePackageName, fqn),
+				SetChange(p, nativeTypeSubstitutes, basePackageName, fqn),
+				ListChange(p, nativeTypeSubstitutes, basePackageName, fqn),
 			]),
 	]);
 }
@@ -166,18 +166,18 @@ function ChangeType(prop: MResolvedPropery) {
 
 function SetChange(
 	prop: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
-	const type = primitiveToObject(computeAPIType(prop, nativeTypeSubstitues, basePackageName, fqn, true));
+	const type = primitiveToObject(computeAPIType(prop, nativeTypeSubstitutes, basePackageName, fqn, true));
 	const prefix = toFirstUpper(prop.name);
 	return toNode([`public interface ${prefix}SetChange extends ${prefix}Change, _Base.ListReplace<${type}> {`, '}']);
 }
 
 function ListChange(
 	prop: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -190,7 +190,7 @@ function ListChange(
 			'}',
 		]);
 	}
-	const Type = computeAPIType(prop, nativeTypeSubstitues, basePackageName, fqn, true);
+	const Type = computeAPIType(prop, nativeTypeSubstitutes, basePackageName, fqn, true);
 	return toNode([
 		`public interface ${prefix}MergeChange extends ${prefix}Change, _Base.ListMergeAddRemove<${Type}, ${Type}> {`,
 		'}',
@@ -200,7 +200,7 @@ function ListChange(
 function generatePatchBuilder(
 	t: MResolvedRecordType,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -215,7 +215,7 @@ function generatePatchBuilder(
 			...props
 				.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
 				.flatMap(p => [
-					generateBuilderPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn, 'PatchBuilder'),
+					generateBuilderPropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn, 'PatchBuilder'),
 					NL,
 				]),
 		);
@@ -223,7 +223,7 @@ function generatePatchBuilder(
 			...props
 				.filter(isMResolvedProperty)
 				.filter(p => !p.readonly)
-				.flatMap(p => [generatePatchBuilderPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn), NL]),
+				.flatMap(p => [generatePatchBuilderPropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn), NL]),
 		);
 	});
 	node.append('}', NL);

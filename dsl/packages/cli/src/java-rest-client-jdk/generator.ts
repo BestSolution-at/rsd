@@ -2,7 +2,11 @@ import chalk from 'chalk';
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from '../artifact-generator.js';
 import { isMRecordType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
 import { generateClient } from './client.js';
-import { isJavaRestClientJDKGeneratorConfig, JavaRestClientJDKGeneratorConfig } from '../java-gen-utils.js';
+import {
+	isJavaRestClientJDKGeneratorConfig,
+	JavaNativeTypeSubstitute,
+	JavaRestClientJDKGeneratorConfig,
+} from '../java-gen-utils.js';
 import { generateBase } from './base.js';
 import { isDefined } from '../util.js';
 import { generateRecord } from './record.js';
@@ -26,6 +30,23 @@ export function generate(
 	if (!isJavaRestClientJDKGeneratorConfig(artifactConfig)) {
 		console.log(chalk.red('  Invalid configuration passed aborted artifact generation'));
 		return [];
+	}
+
+	if (artifactConfig.nativeTypeSubstitues) {
+		Object.entries(artifactConfig.nativeTypeSubstitues).forEach(([k, v]) => {
+			const rv: JavaNativeTypeSubstitute = {
+				fromJson: 'of',
+				toJson: 'toString',
+				type: v,
+			};
+			artifactConfig.nativeTypeSubstitutes ??= {};
+			artifactConfig.nativeTypeSubstitutes[k] = rv;
+		});
+		console.log(
+			chalk.yellow(
+				`  Warning: Using deprecated property nativeTypeSubstitues, please use nativeTypeSubstitutes instead`,
+			),
+		);
 	}
 
 	const result: Artifact[] = [];

@@ -9,7 +9,7 @@ import {
 	MResolvedRSDModel,
 	MResolvedUserType,
 } from '../model.js';
-import { isJavaServerConfig, JavaServerGeneratorConfig } from '../java-gen-utils.js';
+import { isJavaServerConfig, JavaNativeTypeSubstitute, JavaServerGeneratorConfig } from '../java-gen-utils.js';
 import { isDefined } from '../util.js';
 import { generateRecord } from './record.js';
 import { generateBaseDTO } from './base-dto.js';
@@ -36,6 +36,23 @@ export function generate(
 		return [];
 	}
 
+	if (artifactConfig.nativeTypeSubstitues) {
+		Object.entries(artifactConfig.nativeTypeSubstitues).forEach(([k, v]) => {
+			const rv: JavaNativeTypeSubstitute = {
+				fromJson: 'of',
+				toJson: 'toString',
+				type: v,
+			};
+			artifactConfig.nativeTypeSubstitutes ??= {};
+			artifactConfig.nativeTypeSubstitutes[k] = rv;
+		});
+		console.log(
+			chalk.yellow(
+				`  Warning: Using deprecated property nativeTypeSubstitues, please use nativeTypeSubstitutes instead`,
+			),
+		);
+	}
+
 	const result = model.elements.map(e => generateType(e, model, artifactConfig)).filter(isDefined);
 	result.push(generateBaseDTO(artifactConfig));
 	result.push(...generateStreamDTO(artifactConfig, model));
@@ -54,8 +71,11 @@ function generateType(
 	artifactConfig: JavaServerGeneratorConfig,
 ): Artifact | undefined {
 	if (isMEnumType(t)) {
-		if (artifactConfig.nativeTypeSubstitues && t.name in artifactConfig.nativeTypeSubstitues) {
-			console.log(chalk.magenta(`  Skipped ${t.name}:`), `Using native ${artifactConfig.nativeTypeSubstitues[t.name]}`);
+		if (artifactConfig.nativeTypeSubstitutes && t.name in artifactConfig.nativeTypeSubstitutes) {
+			console.log(
+				chalk.magenta(`  Skipped ${t.name}:`),
+				`Using native ${artifactConfig.nativeTypeSubstitutes[t.name]}`,
+			);
 			return undefined;
 		}
 		return generateEnum(t, artifactConfig);

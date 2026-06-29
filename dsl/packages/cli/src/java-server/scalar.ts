@@ -5,7 +5,7 @@ import { MScalarType } from '../model.js';
 import { generateScalarContent } from '../java-model-api/scalar.js';
 
 export function generateScalar(t: MScalarType, artifactConfig: JavaServerGeneratorConfig): Artifact | undefined {
-	if (artifactConfig.nativeTypeSubstitues && t.name in artifactConfig.nativeTypeSubstitues) {
+	if (artifactConfig.nativeTypeSubstitutes && t.name in artifactConfig.nativeTypeSubstitutes) {
 		return undefined;
 	}
 

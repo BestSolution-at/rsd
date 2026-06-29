@@ -25,7 +25,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
 				generateCompilationUnit(
 					packageName,
 					importCollector,
-					generateUnionContent(t, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn),
+					generateUnionContent(t, artifactConfig.nativeTypeSubstitutes, `${artifactConfig.rootPackageName}.model`, fqn),
 				),
 				'\t',
 			),
@@ -45,7 +45,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerJ
 					importCollector,
 					generateUnionPatchContent(
 						t,
-						artifactConfig.nativeTypeSubstitues,
+						artifactConfig.nativeTypeSubstitutes,
 						`${artifactConfig.rootPackageName}.model`,
 						fqn,
 					),

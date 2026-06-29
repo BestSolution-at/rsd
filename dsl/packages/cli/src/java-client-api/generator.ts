@@ -11,7 +11,11 @@ import {
 	isMUnionType,
 } from '../model.js';
 import { isDefined } from '../util.js';
-import { JavaClientAPIGeneratorConfig, isJavaClientAPIGeneratorConfig } from '../java-gen-utils.js';
+import {
+	JavaClientAPIGeneratorConfig,
+	JavaNativeTypeSubstitute,
+	isJavaClientAPIGeneratorConfig,
+} from '../java-gen-utils.js';
 
 import { generateBase } from './base.js';
 import { generateClient } from './client.js';
@@ -40,6 +44,23 @@ function generate(
 		return [];
 	}
 
+	if (artifactConfig.nativeTypeSubstitues) {
+		Object.entries(artifactConfig.nativeTypeSubstitues).forEach(([k, v]) => {
+			const rv: JavaNativeTypeSubstitute = {
+				fromJson: 'of',
+				toJson: 'toString',
+				type: v,
+			};
+			artifactConfig.nativeTypeSubstitutes ??= {};
+			artifactConfig.nativeTypeSubstitutes[k] = rv;
+		});
+		console.log(
+			chalk.yellow(
+				`  Warning: Using deprecated property nativeTypeSubstitues, please use nativeTypeSubstitutes instead`,
+			),
+		);
+	}
+
 	const result = model.elements.map(e => generateType(e, artifactConfig)).filter(isDefined);
 	result.push(generateResult(artifactConfig));
 	result.push(generateServiceErrors(artifactConfig, model.services, model.errors));
@@ -59,8 +80,11 @@ function generate(
 
 function generateType(t: MResolvedUserType, artifactConfig: JavaClientAPIGeneratorConfig): Artifact | undefined {
 	if (isMEnumType(t)) {
-		if (artifactConfig.nativeTypeSubstitues && t.name in artifactConfig.nativeTypeSubstitues) {
-			console.log(chalk.magenta(`  Skipped ${t.name}:`), `Using native ${artifactConfig.nativeTypeSubstitues[t.name]}`);
+		if (artifactConfig.nativeTypeSubstitutes && t.name in artifactConfig.nativeTypeSubstitutes) {
+			console.log(
+				chalk.magenta(`  Skipped ${t.name}:`),
+				`Using native ${artifactConfig.nativeTypeSubstitutes[t.name].type}`,
+			);
 			return undefined;
 		}
 		return generateEnum(t, artifactConfig);

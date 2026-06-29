@@ -1,9 +1,10 @@
+import { JavaNativeTypeSubstitutes } from '../java-gen-utils.js';
 import { MResolvedUnionType } from '../model.js';
 import { toNode } from '../util.js';
 
 export function generateUnionPatchContent(
 	t: MResolvedUnionType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {

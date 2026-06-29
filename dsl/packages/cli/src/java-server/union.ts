@@ -17,7 +17,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaServerG
 			generateCompilationUnit(
 				packageName,
 				importCollector,
-				generateUnionContent_(t, artifactConfig.nativeTypeSubstitues, packageName, fqn),
+				generateUnionContent_(t, artifactConfig.nativeTypeSubstitutes, packageName, fqn),
 			),
 			'\t',
 		),

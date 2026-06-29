@@ -31,7 +31,7 @@ export function generateRecord(
 					generateRecordContent(
 						t,
 						model,
-						artifactConfig.nativeTypeSubstitues,
+						artifactConfig.nativeTypeSubstitutes,
 						`${artifactConfig.rootPackageName}.model`,
 						fqn,
 					),
@@ -55,7 +55,7 @@ export function generateRecord(
 					generateRecordPatchContent(
 						t,
 						model,
-						artifactConfig.nativeTypeSubstitues,
+						artifactConfig.nativeTypeSubstitutes,
 						`${artifactConfig.rootPackageName}.model`,
 						fqn,
 					),

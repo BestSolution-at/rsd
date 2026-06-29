@@ -17,7 +17,7 @@ export function generateMixin(t: MResolvedMixinType, artifactConfig: JavaServerG
 			generateCompilationUnit(
 				packageName,
 				importCollector,
-				generateMixinContent_(t, artifactConfig.nativeTypeSubstitues, basePackageName, fqn),
+				generateMixinContent_(t, artifactConfig.nativeTypeSubstitutes, basePackageName, fqn),
 			),
 			'\t',
 		),
