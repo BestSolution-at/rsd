@@ -25,7 +25,7 @@ export function generateMixin(
 			generateCompilationUnit(
 				packageName,
 				importCollector,
-				generateMixinContent(t, artifactConfig.nativeTypeSubstitues, basePackageName, fqn),
+				generateMixinContent(t, artifactConfig.nativeTypeSubstitutes, basePackageName, fqn),
 			),
 			'\t',
 		),

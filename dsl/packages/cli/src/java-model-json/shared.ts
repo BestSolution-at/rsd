@@ -14,24 +14,24 @@ import {
 	MResolvedPropery,
 	MResolvedRecordType,
 } from '../model.js';
-import { computeAPIType, computeAPITypeNG, primitiveToObject } from '../java-gen-utils.js';
+import { computeAPIType, computeAPITypeNG, JavaNativeTypeSubstitutes, primitiveToObject } from '../java-gen-utils.js';
 import { toCamelCaseIdentifier, toFirstUpper, toNode, toNodeTree } from '../util.js';
 
 export function generatePropertyNG(
 	owner: MResolvedRecordType,
 	prop: MResolvedBaseProperty,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
-	const type = computeAPITypeNG(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
+	const type = computeAPITypeNG(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn);
 
 	const node = new CompositeGeneratorNode();
 	node.append('@Override', NL);
 	node.append(`public ${type} ${prop.name}() {`, NL);
 
 	node.indent(methodBody => {
-		methodBody.append(generatePropertyContent(prop, nativeTypeSubstitues, interfaceBasePackage, fqn));
+		methodBody.append(generatePropertyContent(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn));
 	});
 
 	node.append('}', NL);
@@ -40,7 +40,7 @@ export function generatePropertyNG(
 
 function generatePropertyContent(
 	prop: MResolvedBaseProperty,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
@@ -80,7 +80,7 @@ function generatePropertyContent(
 			} else if (prop.optional) {
 				nullablePart = 'Opt';
 			}
-			const Type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true);
+			const Type = computeAPIType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, true);
 			if (array) {
 				mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", ${Type}::valueOf)`;
 			} else {
@@ -105,7 +105,7 @@ function generatePropertyContent(
 					mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", ${prop.type}::valueOf)`;
 				}
 			} else if (prop.variant === 'scalar') {
-				const Type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, true);
+				const Type = computeAPIType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, true);
 
 				if (array) {
 					mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", ${Type}::of)`;
@@ -343,11 +343,11 @@ function generatePatchPropertyAccessorContent_Builtin(property: { type: MBuiltin
 
 function generatePatchPropertyAccessorContent_Scalar(
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
-	const Type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
+	const Type = computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn, true);
 	const methodBody = new CompositeGeneratorNode();
 	if (property.array) {
 		methodBody.append(`return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::of );`, NL);
@@ -359,12 +359,12 @@ function generatePatchPropertyAccessorContent_Scalar(
 
 function generatePatchPropertyAccessor_NoRecord(
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
 	const node = new CompositeGeneratorNode();
-	const type = primitiveToObject(computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn));
+	const type = primitiveToObject(computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn));
 	if (property.optional || property.nullable) {
 		const _Base = fqn(basePackageName + '._Base');
 		node.append(`public ${_Base}.Nillable<${type}> ${property.name}() {`, NL);
@@ -383,7 +383,7 @@ function generatePatchPropertyAccessor_NoRecord(
 			} else if (property.variant === 'scalar') {
 				node.indent(methodBody => {
 					methodBody.append(
-						generatePatchPropertyAccessorContent_Scalar(property, nativeTypeSubstitues, basePackageName, fqn),
+						generatePatchPropertyAccessorContent_Scalar(property, nativeTypeSubstitutes, basePackageName, fqn),
 					);
 				});
 			} else if (property.variant === 'enum') {
@@ -402,7 +402,7 @@ function generatePatchPropertyAccessor_NoRecord(
 				});
 			}
 		} else {
-			const Type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
+			const Type = computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn, true);
 			node.indent(methodBody => {
 				if (property.array) {
 					methodBody.append(`return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::valueOf);`, NL);
@@ -441,7 +441,7 @@ function generatePatchPropertyAccessor_NoRecord(
 					);
 				});
 			} else if (property.variant === 'scalar') {
-				const Type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
+				const Type = computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn, true);
 				node.indent(methodBody => {
 					if (property.array) {
 						methodBody.append(`return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::of);`, NL);
@@ -465,7 +465,7 @@ function generatePatchPropertyAccessor_NoRecord(
 				});
 			}
 		} else {
-			const Type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true);
+			const Type = computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn, true);
 			node.indent(methodBody => {
 				if (property.array) {
 					methodBody.append(`return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::valueOf);`, NL);
@@ -482,20 +482,20 @@ function generatePatchPropertyAccessor_NoRecord(
 
 export function generatePatchPropertyAccessor(
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
 	if (property.array) {
-		return generatePatchPropertyAccessor_Array(property, nativeTypeSubstitues, basePackageName, fqn);
+		return generatePatchPropertyAccessor_Array(property, nativeTypeSubstitutes, basePackageName, fqn);
 	} else {
-		return generatePatchPropertyAccessor_Scalar(property, nativeTypeSubstitues, basePackageName, fqn);
+		return generatePatchPropertyAccessor_Scalar(property, nativeTypeSubstitutes, basePackageName, fqn);
 	}
 }
 
 function generatePatchPropertyAccessor_Array(
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -514,7 +514,7 @@ function generatePatchPropertyAccessor_Array(
 
 function generatePatchPropertyAccessor_Scalar(
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -525,7 +525,7 @@ function generatePatchPropertyAccessor_Scalar(
 		property.variant === 'inline-enum' ||
 		property.variant === 'scalar'
 	) {
-		node.append(generatePatchPropertyAccessor_NoRecord(property, nativeTypeSubstitues, basePackageName, fqn));
+		node.append(generatePatchPropertyAccessor_NoRecord(property, nativeTypeSubstitutes, basePackageName, fqn));
 	} else if (property.optional || property.nullable) {
 		const _Base = fqn(basePackageName + '._Base');
 		const BaseType = fqn(`${basePackageName}.${property.type}`);
@@ -570,11 +570,11 @@ function generatePatchPropertyAccessor_Scalar(
 function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
 	t: MResolvedRecordType,
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
-	let type = computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn);
+	let type = computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn);
 
 	if (property.optional || property.nullable) {
 		type = primitiveToObject(type);
@@ -630,11 +630,11 @@ function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
 function generatePatchBuilderPropertyAccessor_Array(
 	t: MResolvedRecordType,
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
-	const type = primitiveToObject(computeAPIType(property, nativeTypeSubstitues, basePackageName, fqn, true));
+	const type = primitiveToObject(computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn, true));
 	const node = new CompositeGeneratorNode();
 
 	if (
@@ -765,21 +765,21 @@ function generatePatchBuilderPropertyAccessor_Array(
 export function generatePatchBuilderPropertyAccessor(
 	t: MResolvedRecordType,
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
 	if (property.array) {
-		return generatePatchBuilderPropertyAccessor_Array(t, property, nativeTypeSubstitues, basePackageName, fqn);
+		return generatePatchBuilderPropertyAccessor_Array(t, property, nativeTypeSubstitutes, basePackageName, fqn);
 	} else {
-		return generatePatchBuilderPropertyAccessor_Scalar(t, property, nativeTypeSubstitues, basePackageName, fqn);
+		return generatePatchBuilderPropertyAccessor_Scalar(t, property, nativeTypeSubstitutes, basePackageName, fqn);
 	}
 }
 
 export function generatePatchBuilderPropertyAccessor_Scalar(
 	t: MResolvedRecordType,
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -791,7 +791,7 @@ export function generatePatchBuilderPropertyAccessor_Scalar(
 		property.variant === 'scalar'
 	) {
 		node.append(
-			generatePatchBuilderPropertyAccessor_NoRecord_Scalar(t, property, nativeTypeSubstitues, basePackageName, fqn),
+			generatePatchBuilderPropertyAccessor_NoRecord_Scalar(t, property, nativeTypeSubstitutes, basePackageName, fqn),
 		);
 	} else {
 		node.append(RecordPatchBuilderMethods(t, property, basePackageName, fqn));

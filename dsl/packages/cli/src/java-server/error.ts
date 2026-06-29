@@ -40,13 +40,13 @@ function generateSource(
 	if (t.resolvedContentType) {
 		const type = toAPIType(
 			t.resolvedContentType,
-			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.nativeTypeSubstitutes,
 			artifactConfig.rootPackageName + '.model',
 			fqn,
 		);
 		const objectType = toAPIType(
 			t.resolvedContentType,
-			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.nativeTypeSubstitutes,
 			artifactConfig.rootPackageName + '.model',
 			fqn,
 			{ objectType: true },

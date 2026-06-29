@@ -1,16 +1,16 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { isMKeyProperty, isMProperty, isMRevisionProperty, MResolvedBaseProperty, MResolvedPropery } from '../model.js';
-import { computeAPITypeNG, primitiveToObject } from '../java-gen-utils.js';
+import { computeAPITypeNG, JavaNativeTypeSubstitutes, primitiveToObject } from '../java-gen-utils.js';
 import { toFirstUpper } from '../util.js';
 
 export function generatePropertyAccessor(
 	property: MResolvedBaseProperty,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	inherited = false,
 ) {
-	const APIType = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn);
+	const APIType = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn);
 	const node = new CompositeGeneratorNode();
 	if (inherited) {
 		node.append('@Override', NL);
@@ -21,12 +21,12 @@ export function generatePropertyAccessor(
 
 export function generateBuilderPropertyAccessor(
 	property: MResolvedBaseProperty,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	ReturnType = 'DataBuilder',
 ) {
-	const APIType = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+	const APIType = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
 		withArray: true,
 		withOptional: false,
 	});
@@ -48,13 +48,13 @@ export function generateBuilderPropertyAccessor(
 
 export function generatePatchPropertyAccessor(
 	property: MResolvedBaseProperty,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
 	const node = new CompositeGeneratorNode();
 	if (isMKeyProperty(property) || isMRevisionProperty(property)) {
-		const type = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+		const type = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
 			withArray: false,
 			withOptional: false,
 		});
@@ -66,7 +66,7 @@ export function generatePatchPropertyAccessor(
 		property.variant === 'scalar'
 	) {
 		let type = primitiveToObject(
-			computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+			computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
 				withArray: false,
 				withOptional: false,
 			}),
@@ -94,7 +94,7 @@ export function generatePatchPropertyAccessor(
 			}
 		}
 	} else {
-		let type = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+		let type = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
 			withArray: false,
 			withOptional: false,
 		});
@@ -118,7 +118,7 @@ export function generatePatchPropertyAccessor(
 
 export function generatePatchBuilderPropertyAccessor(
 	property: MResolvedPropery,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -129,7 +129,7 @@ export function generatePatchBuilderPropertyAccessor(
 		property.variant === 'inline-enum' ||
 		property.variant === 'scalar'
 	) {
-		let type = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+		let type = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
 			withArray: false,
 			withOptional: false,
 		});
@@ -157,7 +157,7 @@ export function generatePatchBuilderPropertyAccessor(
 				NL,
 			);
 		} else {
-			const type = computeAPITypeNG(property, nativeTypeSubstitues, basePackageName, fqn, {
+			const type = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
 				withArray: false,
 				withOptional: false,
 			});

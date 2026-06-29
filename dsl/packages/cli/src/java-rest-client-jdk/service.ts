@@ -5,6 +5,7 @@ import {
 	computeParameterValueType,
 	generateCompilationUnit,
 	JavaImportsCollector,
+	JavaNativeTypeSubstitutes,
 	JavaRestClientJDKGeneratorConfig,
 	resolveType,
 	toAPIType,
@@ -194,7 +195,7 @@ function appendQueryParams(
 		if (p.variant === 'union' || p.variant === 'record') {
 			const type = computeParameterAPITypeNG(
 				p,
-				artifactConfig.nativeTypeSubstitues,
+				artifactConfig.nativeTypeSubstitutes,
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 				{ withArray: false, withOptional: false },
@@ -271,7 +272,7 @@ function appendHeaderParams(
 			} else {
 				const type = computeParameterAPITypeNG(
 					p,
-					artifactConfig.nativeTypeSubstitues,
+					artifactConfig.nativeTypeSubstitutes,
 					`${artifactConfig.rootPackageName}.model`,
 					fqn,
 					{ withArray: false, withOptional: false },
@@ -304,7 +305,7 @@ function appendHeaderParams(
 			} else if (p.variant === 'record' || p.variant === 'union') {
 				const type = computeParameterAPITypeNG(
 					p,
-					artifactConfig.nativeTypeSubstitues,
+					artifactConfig.nativeTypeSubstitutes,
 					`${artifactConfig.rootPackageName}.model`,
 					fqn,
 					{ withArray: false, withOptional: false },
@@ -589,7 +590,7 @@ function appendSingleParamBody(
 	} else {
 		const type = computeParameterAPITypeNG(
 			param,
-			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.nativeTypeSubstitutes,
 			`${artifactConfig.rootPackageName}.model`,
 			fqn,
 			{ withArray: false, withOptional: false },
@@ -828,14 +829,14 @@ function handleOkResult(
 			node.append(`var $rv = ${builtinMapExpression(type.type, type.array)};`, NL);
 		}
 	} else if (type.variant === 'scalar') {
-		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
+		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, false);
 		if (type.array) {
 			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${resolvedType}::of);`, NL);
 		} else {
 			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${resolvedType}::of);`, NL);
 		}
 	} else if (type.variant === 'enum') {
-		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
+		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, false);
 		if (type.array) {
 			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${resolvedType}::valueOf);`, NL);
 		} else {
@@ -892,7 +893,7 @@ function handleErrorResult(
 			const modelType = fqn(`${modelPkg}.${resolvedError.contentType}DataImpl`);
 			const apiType = toAPIType(
 				resolvedError.resolvedContentType,
-				artifactConfig.nativeTypeSubstitues,
+				artifactConfig.nativeTypeSubstitutes,
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 			);
@@ -905,7 +906,7 @@ function handleErrorResult(
 		} else if (isMScalarType(type)) {
 			const apiType = toAPIType(
 				resolvedError.resolvedContentType,
-				artifactConfig.nativeTypeSubstitues,
+				artifactConfig.nativeTypeSubstitutes,
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 			);
@@ -913,7 +914,7 @@ function handleErrorResult(
 		} else if (isMEnumType(type)) {
 			const apiType = toAPIType(
 				resolvedError.resolvedContentType,
-				artifactConfig.nativeTypeSubstitues,
+				artifactConfig.nativeTypeSubstitutes,
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 			);
@@ -946,7 +947,7 @@ function toParameter(
 	if (parameter.variant === 'inline-enum') {
 		type = computeParameterAPITypeNG(
 			parameter,
-			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.nativeTypeSubstitutes,
 			`${artifactConfig.rootPackageName}.model`,
 			fqn,
 			methodName,
@@ -955,7 +956,7 @@ function toParameter(
 	} else {
 		type = computeParameterAPITypeNG(
 			parameter,
-			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.nativeTypeSubstitutes,
 			`${artifactConfig.rootPackageName}.model`,
 			fqn,
 			{ withArray: true, withOptional: false },
@@ -991,13 +992,13 @@ function toResultType(
 	} else if (type.variant === 'inline-enum') {
 		rvType = toFirstUpper(methodName) + '_Result$';
 	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitues[type.type]);
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
 		} else {
 			rvType = fqn(`${modelPkg}.${type.type}`);
 		}
 	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, type.array);
 	}
 
 	if (type.array && !noArray) {
@@ -1037,13 +1038,13 @@ function toAPIResultType(
 	} else if (type.variant === 'inline-enum') {
 		rvType = toFirstUpper(methodName) + '_Result$';
 	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitues[type.type]);
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
 		} else {
 			rvType = fqn(`${dtoPkg}.${type.type}`);
 		}
 	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, true);
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
 	}
 
 	if (type.array) {
@@ -1106,14 +1107,14 @@ function generateServiceData(
 					p.variant === 'inline-enum'
 						? computeParameterAPITypeNG(
 								p,
-								artifactConfig.nativeTypeSubstitues,
+								artifactConfig.nativeTypeSubstitutes,
 								`${artifactConfig.rootPackageName}.model`,
 								fqn,
 								o.name,
 							)
 						: computeParameterAPITypeNG(
 								p,
-								artifactConfig.nativeTypeSubstitues,
+								artifactConfig.nativeTypeSubstitutes,
 								`${artifactConfig.rootPackageName}.model`,
 								fqn,
 							);
@@ -1122,7 +1123,7 @@ function generateServiceData(
 					methodBody.append(
 						generateParameterContent(
 							p,
-							artifactConfig.nativeTypeSubstitues,
+							artifactConfig.nativeTypeSubstitutes,
 							`${artifactConfig.rootPackageName}.model`,
 							fqn,
 							o,
@@ -1157,7 +1158,7 @@ function jsonMapper(
 
 function generateParameterContent(
 	prop: MParameter,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 	o: MResolvedOperation,
@@ -1170,12 +1171,12 @@ function generateParameterContent(
 			? builtinSimpleJSONArrayAccessNG({ type: prop.type, name: prop.name, optional, nullable })
 			: builtinJSONAccess({ type: prop.type, name: prop.name, optional, nullable });
 	} else if (prop.variant === 'inline-enum') {
-		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, o.name);
+		const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, o.name);
 		mapper = jsonMapper('Literal', prop.name, `${Type}::valueOf`, array, optional, nullable);
 	} else if (prop.variant === 'enum') {
 		mapper = jsonMapper('Literal', prop.name, `${prop.type}::valueOf`, array, optional, nullable);
 	} else if (prop.variant === 'scalar') {
-		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
+		const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn);
 		mapper = jsonMapper('Literal', prop.name, `${Type}::of`, array, optional, nullable);
 	} else {
 		const type = prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`;

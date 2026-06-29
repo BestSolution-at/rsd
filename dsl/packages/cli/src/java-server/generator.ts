@@ -71,8 +71,11 @@ function generateType(
 	artifactConfig: JavaServerGeneratorConfig,
 ): Artifact | undefined {
 	if (isMEnumType(t)) {
-		if (artifactConfig.nativeTypeSubstitues && t.name in artifactConfig.nativeTypeSubstitues) {
-			console.log(chalk.magenta(`  Skipped ${t.name}:`), `Using native ${artifactConfig.nativeTypeSubstitues[t.name]}`);
+		if (artifactConfig.nativeTypeSubstitutes && t.name in artifactConfig.nativeTypeSubstitutes) {
+			console.log(
+				chalk.magenta(`  Skipped ${t.name}:`),
+				`Using native ${artifactConfig.nativeTypeSubstitutes[t.name]}`,
+			);
 			return undefined;
 		}
 		return generateEnum(t, artifactConfig);

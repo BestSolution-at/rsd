@@ -24,7 +24,7 @@ export function generateRecord(
 			generateCompilationUnit(
 				packageName,
 				importCollector,
-				generateRecordContent(t, artifactConfig.nativeTypeSubstitues, packageName, fqn),
+				generateRecordContent(t, artifactConfig.nativeTypeSubstitutes, packageName, fqn),
 			),
 			'\t',
 		),

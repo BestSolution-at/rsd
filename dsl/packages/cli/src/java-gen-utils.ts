@@ -81,7 +81,7 @@ export function builtinToJavaObjectType(type: MBuiltinType, fqn: (type: string) 
 
 export function resolveType(
 	type: string,
-	nativeSubstitutes: Record<string, string> | undefined,
+	nativeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	fqn: (type: string) => string,
 	useBuiltinObject: boolean,
 ) {
@@ -91,40 +91,40 @@ export function resolveType(
 		}
 		return builtinToJavaType(type, fqn);
 	} else if (nativeSubstitutes !== undefined && type in nativeSubstitutes) {
-		return fqn(nativeSubstitutes[type]);
+		return fqn(nativeSubstitutes[type].type);
 	}
 	return type;
 }
 
 export function resolveObjectType(
 	type: string,
-	nativeSubstitutes: Record<string, string> | undefined,
+	nativeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	fqn: (type: string) => string,
 ) {
 	if (isMBuiltinType(type)) {
 		return builtinToJavaObjectType(type, fqn);
 	} else if (nativeSubstitutes !== undefined && type in nativeSubstitutes) {
-		return fqn(nativeSubstitutes[type]);
+		return fqn(nativeSubstitutes[type].type);
 	}
 	return type;
 }
 
 export function computeParameterValueType(
 	parameter: MParameterNoneInlineEnumType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ): string;
 export function computeParameterValueType(
 	parameter: MParameterInlineEnumType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	methodName: string,
 ): string;
 export function computeParameterValueType(
 	parameter: MParameter,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	methodName?: string,
@@ -150,8 +150,8 @@ export function computeParameterValueType(
 			console.error('Internal error: methodName is required for inline-enum parameter types');
 		}
 	} else if (parameter.variant === 'enum' || parameter.variant === 'scalar') {
-		if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
-			type = fqn(nativeTypeSubstitues[parameter.type]);
+		if (nativeTypeSubstitutes !== undefined && parameter.type in nativeTypeSubstitutes) {
+			type = fqn(nativeTypeSubstitutes[parameter.type].type);
 		} else {
 			type = fqn(`${basePackageName}.${parameter.type}`);
 		}
@@ -166,14 +166,14 @@ export function computeParameterValueType(
 
 export function computeParameterAPITypeNG(
 	parameter: MParameterNoneInlineEnumType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	config?: { withArray?: boolean; withOptional?: boolean },
 ): string;
 export function computeParameterAPITypeNG(
 	parameter: MParameterInlineEnumType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	methodName: string,
@@ -181,7 +181,7 @@ export function computeParameterAPITypeNG(
 ): string;
 export function computeParameterAPITypeNG(
 	parameter: MParameter,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	methodNameOrConfig?: string | { withArray?: boolean; withOptional?: boolean },
@@ -211,8 +211,8 @@ export function computeParameterAPITypeNG(
 			throw new Error('Internal error: methodName is required for inline-enum parameter types');
 		}
 	} else if (parameter.variant === 'enum' || parameter.variant === 'scalar') {
-		if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
-			type = fqn(nativeTypeSubstitues[parameter.type]);
+		if (nativeTypeSubstitutes !== undefined && parameter.type in nativeTypeSubstitutes) {
+			type = fqn(nativeTypeSubstitutes[parameter.type].type);
 		} else {
 			type = fqn(`${basePackageName}.${parameter.type}`);
 		}
@@ -252,7 +252,7 @@ export function computeParameterAPITypeNG(
  */
 export function computeParameterAPIType(
 	parameter: MParameter,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	noArray = false,
@@ -275,14 +275,14 @@ export function computeParameterAPIType(
 		type = toFirstUpper(methodName) + '_' + toFirstUpper(parameter.name) + '_Param$';
 	} else {
 		if (parameter.variant === 'scalar') {
-			if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
-				type = fqn(nativeTypeSubstitues[parameter.type]);
+			if (nativeTypeSubstitutes !== undefined && parameter.type in nativeTypeSubstitutes) {
+				type = fqn(nativeTypeSubstitutes[parameter.type].type);
 			} else {
 				type = fqn(`${basePackageName}.${parameter.type}`);
 			}
 		} else if (parameter.variant === 'enum') {
-			if (nativeTypeSubstitues !== undefined && parameter.type in nativeTypeSubstitues) {
-				type = fqn(nativeTypeSubstitues[parameter.type]);
+			if (nativeTypeSubstitutes !== undefined && parameter.type in nativeTypeSubstitutes) {
+				type = fqn(nativeTypeSubstitutes[parameter.type].type);
 			} else {
 				type = fqn(`${basePackageName}.${parameter.type}`);
 			}
@@ -300,7 +300,7 @@ export function computeParameterAPIType(
 
 export function computeAPIType(
 	property: MResolvedBaseProperty,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	noArray = false,
@@ -329,14 +329,14 @@ export function computeAPIType(
 		}
 	} else {
 		if (property.variant === 'scalar') {
-			if (nativeTypeSubstitues !== undefined && property.type in nativeTypeSubstitues) {
-				type = fqn(nativeTypeSubstitues[property.type]);
+			if (nativeTypeSubstitutes !== undefined && property.type in nativeTypeSubstitutes) {
+				type = fqn(nativeTypeSubstitutes[property.type].type);
 			} else {
 				type = fqn(`${basePackageName}.${property.type}`);
 			}
 		} else if (property.variant === 'enum') {
-			if (nativeTypeSubstitues !== undefined && property.type in nativeTypeSubstitues) {
-				type = fqn(nativeTypeSubstitues[property.type]);
+			if (nativeTypeSubstitutes !== undefined && property.type in nativeTypeSubstitutes) {
+				type = fqn(nativeTypeSubstitutes[property.type].type);
 			} else {
 				type = fqn(`${basePackageName}.${property.type}`);
 			}
@@ -355,7 +355,7 @@ export function computeAPIType(
 
 export function computeAPITypeNG(
 	property: MResolvedBaseProperty,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	config?: { withArray?: boolean; withOptional?: boolean },
@@ -385,8 +385,8 @@ export function computeAPITypeNG(
 		}
 	} else {
 		if (property.variant === 'enum' || property.variant === 'scalar') {
-			if (nativeTypeSubstitues !== undefined && property.type in nativeTypeSubstitues) {
-				type = fqn(nativeTypeSubstitues[property.type]);
+			if (nativeTypeSubstitutes !== undefined && property.type in nativeTypeSubstitutes) {
+				type = fqn(nativeTypeSubstitutes[property.type].type);
 			} else {
 				type = fqn(`${basePackageName}.${property.type}`);
 			}
@@ -430,7 +430,7 @@ export function toAPIType(
 		| MResolvedUnionType
 		| MResolvedRecordType
 		| MResolvedScalarType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 	options?: {
@@ -447,8 +447,8 @@ export function toAPIType(
 	} else if (isMMixinType(type)) {
 		return fqn(`${basePackageName}.${type.name}Mixin`);
 	} else if (isMScalarType(type)) {
-		if (nativeTypeSubstitues !== undefined && type.name in nativeTypeSubstitues) {
-			return fqn(nativeTypeSubstitues[type.name]);
+		if (nativeTypeSubstitutes !== undefined && type.name in nativeTypeSubstitutes) {
+			return fqn(nativeTypeSubstitutes[type.name].type);
 		}
 		return fqn(`${basePackageName}.${type.name}`);
 	} else {
