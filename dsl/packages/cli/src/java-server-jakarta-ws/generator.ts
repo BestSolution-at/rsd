@@ -1,7 +1,11 @@
 import chalk from 'chalk';
 import { isMEnumType, isMRecordType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from '../artifact-generator.js';
-import { isJavaServerJakartaWSConfig, JavaServerJakartaWSGeneratorConfig } from '../java-gen-utils.js';
+import {
+	isJavaServerJakartaWSConfig,
+	JavaNativeTypeSubstitute,
+	JavaServerJakartaWSGeneratorConfig,
+} from '../java-gen-utils.js';
 
 import { generateDTOBuilderFactory } from './builder-factory.js';
 import { generateRecord } from './record.js';
@@ -26,6 +30,23 @@ export function generate(
 	if (!isJavaServerJakartaWSConfig(artifactConfig)) {
 		console.log(chalk.red('  Invalid configuration passed aborted artifact generation'));
 		return [];
+	}
+
+	if (artifactConfig.nativeTypeSubstitues) {
+		Object.entries(artifactConfig.nativeTypeSubstitues).forEach(([k, v]) => {
+			const rv: JavaNativeTypeSubstitute = {
+				fromJson: 'of',
+				toJson: 'toString',
+				type: v,
+			};
+			artifactConfig.nativeTypeSubstitutes ??= {};
+			artifactConfig.nativeTypeSubstitutes[k] = rv;
+		});
+		console.log(
+			chalk.yellow(
+				`  Warning: Using deprecated property nativeTypeSubstitues, please use nativeTypeSubstitutes instead`,
+			),
+		);
 	}
 
 	const result = model.elements.flatMap(e => generateType(e, model, artifactConfig));

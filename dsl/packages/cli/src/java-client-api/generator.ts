@@ -11,7 +11,11 @@ import {
 	isMUnionType,
 } from '../model.js';
 import { isDefined } from '../util.js';
-import { JavaClientAPIGeneratorConfig, isJavaClientAPIGeneratorConfig } from '../java-gen-utils.js';
+import {
+	JavaClientAPIGeneratorConfig,
+	JavaNativeTypeSubstitute,
+	isJavaClientAPIGeneratorConfig,
+} from '../java-gen-utils.js';
 
 import { generateBase } from './base.js';
 import { generateClient } from './client.js';
@@ -38,6 +42,23 @@ function generate(
 	if (!isJavaClientAPIGeneratorConfig(artifactConfig)) {
 		console.log(chalk.red('  Invalid configuration passed aborted artifact generation'));
 		return [];
+	}
+
+	if (artifactConfig.nativeTypeSubstitues) {
+		Object.entries(artifactConfig.nativeTypeSubstitues).forEach(([k, v]) => {
+			const rv: JavaNativeTypeSubstitute = {
+				fromJson: 'of',
+				toJson: 'toString',
+				type: v,
+			};
+			artifactConfig.nativeTypeSubstitutes ??= {};
+			artifactConfig.nativeTypeSubstitutes[k] = rv;
+		});
+		console.log(
+			chalk.yellow(
+				`  Warning: Using deprecated property nativeTypeSubstitues, please use nativeTypeSubstitutes instead`,
+			),
+		);
 	}
 
 	const result = model.elements.map(e => generateType(e, artifactConfig)).filter(isDefined);

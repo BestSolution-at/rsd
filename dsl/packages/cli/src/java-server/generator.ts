@@ -9,7 +9,7 @@ import {
 	MResolvedRSDModel,
 	MResolvedUserType,
 } from '../model.js';
-import { isJavaServerConfig, JavaServerGeneratorConfig } from '../java-gen-utils.js';
+import { isJavaServerConfig, JavaNativeTypeSubstitute, JavaServerGeneratorConfig } from '../java-gen-utils.js';
 import { isDefined } from '../util.js';
 import { generateRecord } from './record.js';
 import { generateBaseDTO } from './base-dto.js';
@@ -34,6 +34,23 @@ export function generate(
 	if (!isJavaServerConfig(artifactConfig)) {
 		console.log(chalk.red('  Invalid configuration passed aborted artifact generation'));
 		return [];
+	}
+
+	if (artifactConfig.nativeTypeSubstitues) {
+		Object.entries(artifactConfig.nativeTypeSubstitues).forEach(([k, v]) => {
+			const rv: JavaNativeTypeSubstitute = {
+				fromJson: 'of',
+				toJson: 'toString',
+				type: v,
+			};
+			artifactConfig.nativeTypeSubstitutes ??= {};
+			artifactConfig.nativeTypeSubstitutes[k] = rv;
+		});
+		console.log(
+			chalk.yellow(
+				`  Warning: Using deprecated property nativeTypeSubstitues, please use nativeTypeSubstitutes instead`,
+			),
+		);
 	}
 
 	const result = model.elements.map(e => generateType(e, model, artifactConfig)).filter(isDefined);

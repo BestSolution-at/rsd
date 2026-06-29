@@ -460,23 +460,56 @@ export function toPath(targetFolder: string, packageName: string) {
 	return `${targetFolder}/${packageName.replaceAll('.', '/')}`;
 }
 
+export type JavaNativeTypeSubstitutes = Record<string, JavaNativeTypeSubstitute>;
+export type JavaNativeTypeSubstitute = {
+	fromJson: string;
+	toJson: string;
+	type: string;
+};
+
+export function isJavaNativeTypeSubstitutes(value: unknown): value is JavaNativeTypeSubstitutes {
+	if (typeof value !== 'object' || value === null) {
+		return false;
+	}
+	return Object.values(value).every(v => isJavaNativeTypeSubstitute(v));
+}
+
+export function isJavaNativeTypeSubstitute(value: unknown): value is JavaNativeTypeSubstitute {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		'fromJson' in value &&
+		typeof value.fromJson === 'string' &&
+		'toJson' in value &&
+		typeof value.toJson === 'string' &&
+		'type' in value &&
+		typeof value.type === 'string'
+	);
+}
+
 export type JavaClientAPIGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	rootPackageName: string;
+	/** @deprecated */
 	nativeTypeSubstitues?: Record<string, string>;
+	nativeTypeSubstitutes?: JavaNativeTypeSubstitutes;
 };
 
 export type JavaRestClientJDKGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	rootPackageName: string;
+	/** @deprecated */
 	nativeTypeSubstitues?: Record<string, string>;
+	nativeTypeSubstitutes?: JavaNativeTypeSubstitutes;
 	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
 };
 
 export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	rootPackageName: string;
+	/** @deprecated */
 	nativeTypeSubstitues?: Record<string, string>;
+	nativeTypeSubstitutes?: JavaNativeTypeSubstitutes;
 	scopeValues?: { type: string; name: string }[];
 	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
 };
@@ -484,13 +517,18 @@ export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
 export type JavaServerGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	rootPackageName: string;
+	/** @deprecated */
 	nativeTypeSubstitues?: Record<string, string>;
+	nativeTypeSubstitutes?: JavaNativeTypeSubstitutes;
 	scopeValues?: { type: string; name: string }[];
 };
 
 export function isJavaClientAPIGeneratorConfig(
 	config: ArtifactGeneratorConfig,
 ): config is JavaClientAPIGeneratorConfig {
+	if ('nativeTypeSubstitutes' in config && !isJavaNativeTypeSubstitutes(config.nativeTypeSubstitutes)) {
+		return false;
+	}
 	return (
 		'targetFolder' in config &&
 		typeof config.targetFolder === 'string' &&
@@ -502,6 +540,9 @@ export function isJavaClientAPIGeneratorConfig(
 export function isJavaRestClientJDKGeneratorConfig(
 	config: ArtifactGeneratorConfig,
 ): config is JavaRestClientJDKGeneratorConfig {
+	if ('nativeTypeSubstitutes' in config && !isJavaNativeTypeSubstitutes(config.nativeTypeSubstitutes)) {
+		return false;
+	}
 	return (
 		'targetFolder' in config &&
 		typeof config.targetFolder === 'string' &&
@@ -513,6 +554,9 @@ export function isJavaRestClientJDKGeneratorConfig(
 export function isJavaServerJakartaWSConfig(
 	config: ArtifactGeneratorConfig,
 ): config is JavaServerJakartaWSGeneratorConfig {
+	if ('nativeTypeSubstitutes' in config && !isJavaNativeTypeSubstitutes(config.nativeTypeSubstitutes)) {
+		return false;
+	}
 	return (
 		'targetFolder' in config &&
 		typeof config.targetFolder === 'string' &&
@@ -522,6 +566,9 @@ export function isJavaServerJakartaWSConfig(
 }
 
 export function isJavaServerConfig(config: ArtifactGeneratorConfig): config is JavaServerGeneratorConfig {
+	if ('nativeTypeSubstitutes' in config && !isJavaNativeTypeSubstitutes(config.nativeTypeSubstitutes)) {
+		return false;
+	}
 	return (
 		'targetFolder' in config &&
 		typeof config.targetFolder === 'string' &&
