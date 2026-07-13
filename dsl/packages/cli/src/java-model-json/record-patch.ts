@@ -151,7 +151,7 @@ function lambdaBodyComputer(prop: MResolvedPropery, type: string, fqn: (type: st
 		return `${type}.valueOf(((${JsonString})v).getString())`;
 	} else if (prop.variant === 'scalar') {
 		const JsonString = fqn('jakarta.json.JsonString');
-		return `${type}.of(((${JsonString}) v).getString())`;
+		return `_ScalarSupport.${prop.type}FromJson(((${JsonString}) v).getString())`;
 	} else {
 		throw new Error(`Unsupported variant/type combination '${prop.variant}/${prop.type}'`);
 	}

@@ -105,12 +105,10 @@ function generatePropertyContent(
 					mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", ${prop.type}::valueOf)`;
 				}
 			} else if (prop.variant === 'scalar') {
-				const Type = computeAPIType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, true);
-
 				if (array) {
-					mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", _ScalarSupport::${prop.type}FromJson)`;
 				} else {
-					mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", ${Type}::of)`;
+					mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", _ScalarSupport::${prop.type}FromJson)`;
 				}
 			} else {
 				let nullablePart = '';
@@ -341,18 +339,18 @@ function generatePatchPropertyAccessorContent_Builtin(property: { type: MBuiltin
 	return methodBody;
 }
 
-function generatePatchPropertyAccessorContent_Scalar(
-	property: MResolvedPropery,
-	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
-	basePackageName: string,
-	fqn: (type: string) => string,
-) {
-	const Type = computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn, true);
+function generatePatchPropertyAccessorContent_Scalar(property: MPropertyNoneInlineProperty) {
 	const methodBody = new CompositeGeneratorNode();
 	if (property.array) {
-		methodBody.append(`return _JsonUtils.mapNilLiterals(data, "${property.name}", ${Type}::of );`, NL);
+		methodBody.append(
+			`return _JsonUtils.mapNilLiterals(data, "${property.name}", _ScalarSupport::${property.type}FromJson );`,
+			NL,
+		);
 	} else {
-		methodBody.append(`return _JsonUtils.mapNilLiteral(data, "${property.name}", ${Type}::of );`, NL);
+		methodBody.append(
+			`return _JsonUtils.mapNilLiteral(data, "${property.name}",  _ScalarSupport::${property.type}FromJson );`,
+			NL,
+		);
 	}
 	return methodBody;
 }
@@ -382,9 +380,7 @@ function generatePatchPropertyAccessor_NoRecord(
 				});
 			} else if (property.variant === 'scalar') {
 				node.indent(methodBody => {
-					methodBody.append(
-						generatePatchPropertyAccessorContent_Scalar(property, nativeTypeSubstitutes, basePackageName, fqn),
-					);
+					methodBody.append(generatePatchPropertyAccessorContent_Scalar(property));
 				});
 			} else if (property.variant === 'enum') {
 				node.indent(methodBody => {
@@ -441,12 +437,17 @@ function generatePatchPropertyAccessor_NoRecord(
 					);
 				});
 			} else if (property.variant === 'scalar') {
-				const Type = computeAPIType(property, nativeTypeSubstitutes, basePackageName, fqn, true);
 				node.indent(methodBody => {
 					if (property.array) {
-						methodBody.append(`return _JsonUtils.mapOptLiterals(data, "${property.name}", ${Type}::of);`, NL);
+						methodBody.append(
+							`return _JsonUtils.mapOptLiterals(data, "${property.name}", _ScalarSupport::${property.type}FromJson);`,
+							NL,
+						);
 					} else {
-						methodBody.append(`return _JsonUtils.mapOptLiteral(data, "${property.name}", ${Type}::of);`, NL);
+						methodBody.append(
+							`return _JsonUtils.mapOptLiteral(data, "${property.name}", _ScalarSupport::${property.type}FromJson);`,
+							NL,
+						);
 					}
 				});
 			} else if (property.variant === 'enum') {
@@ -610,9 +611,9 @@ function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
 		}
 	} else if (property.variant === 'scalar') {
 		if (property.array) {
-			content = `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}))`;
+			content = `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}, _ScalarSupport::${property.type}ToJson))`;
 		} else {
-			content = `$builder.add("${property.name}", ${property.name}.toString())`;
+			content = `$builder.add("${property.name}", _ScalarSupport.${property.type}ToJson(${property.name}))`;
 		}
 	} else if (property.variant === 'enum') {
 		content = `$builder.add("${property.name}", ${property.name}.toString())`;
@@ -670,6 +671,15 @@ function generatePatchBuilderPropertyAccessor_Array(
 					';',
 					NL,
 				);
+			} else if (property.variant === 'scalar') {
+				mBody.append(
+					`$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::${property.type}ToJson));`,
+					NL,
+				);
+				mBody.append(
+					`$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::${property.type}ToJson));`,
+					NL,
+				);
 			} else {
 				mBody.append(`$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));`, NL);
 				mBody.append(`$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));`, NL);
@@ -696,6 +706,8 @@ function generatePatchBuilderPropertyAccessor_Array(
 							} else {
 								return '$changeBuilder.add("elements", _JsonUtils.toJsonShortArray(elements));';
 							}
+						} else if (property.variant === 'scalar') {
+							return `$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::${property.type}ToJson));`;
 						} else if (isMBuiltinFloatType(property.type)) {
 							if (property.type === 'double') {
 								return '$changeBuilder.add("elements", _JsonUtils.toJsonDoubleArray(elements));';

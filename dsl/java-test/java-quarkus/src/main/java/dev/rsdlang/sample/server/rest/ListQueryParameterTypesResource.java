@@ -15,9 +15,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
-import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 
 @ApplicationScoped
@@ -181,7 +181,7 @@ public class ListQueryParameterTypesResource {
 	public Response listScalarQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapLiterals(_queryValue, ZoneId::of);
+		var queryValue = _RestUtils.mapLiterals(_queryValue, _ScalarSupport::ZoneIdFromJson);
 		var result = service.listScalarQueryParam(builderFactory, queryValue);
 		return responseBuilder.listScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}

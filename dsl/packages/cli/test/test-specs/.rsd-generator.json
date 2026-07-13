@@ -25,16 +25,24 @@
             "name": "java-client-api",
             "targetFolder": "../../../../java-test/java-client/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.client",
-            "nativeTypeSubstitues": {
-                "Range": "dev.rsdlang.sample.client.MyRange"
+            "nativeTypeSubstitutes": {
+                "Range": {
+                    "type": "dev.rsdlang.sample.client.MyRange",
+                    "fromJson": "parse",
+                    "toJson": "toString"
+                }
             }
         },
 		{
             "name": "java-rest-client-jdk",
             "targetFolder": "../../../../java-test/java-client/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.client",
-            "nativeTypeSubstitues": {
-                "Range": "dev.rsdlang.sample.client.MyRange"
+            "nativeTypeSubstitutes": {
+                "Range": {
+                    "type": "dev.rsdlang.sample.client.MyRange",
+                    "fromJson": "parse",
+                    "toJson": "toString"
+                }
             },
             "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
         },
@@ -42,16 +50,24 @@
             "name": "java-server-base",
             "targetFolder": "../../../../java-test/java-quarkus/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.server",
-            "nativeTypeSubstitues": {
-                "Range": "dev.rsdlang.sample.server.MyRange"
+            "nativeTypeSubstitutes": {
+                "Range": {
+                    "type": "dev.rsdlang.sample.server.MyRange",
+                    "fromJson": "parse",
+                    "toJson": "toString"
+                }
             }
         },
         {
             "name": "java-server-jakarta-ws",
             "targetFolder": "../../../../java-test/java-quarkus/src/main/java",
             "rootPackageName": "dev.rsdlang.sample.server",
-            "nativeTypeSubstitues": {
-                "Range": "dev.rsdlang.sample.server.MyRange"
+            "nativeTypeSubstitutes": {
+                "Range": {
+                    "type": "dev.rsdlang.sample.server.MyRange",
+                    "fromJson": "parse",
+                    "toJson": "toString"
+                }
             },
             "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
         },

@@ -29,42 +29,42 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 
 	@Override
 	public MyRange value() {
-		return _JsonUtils.mapLiteral(data, "value", MyRange::of);
+		return _JsonUtils.mapLiteral(data, "value", _ScalarSupport::RangeFromJson);
 	}
 
 	@Override
 	public Optional<MyRange> value_Null() {
-		return _JsonUtils.mapNullLiteral(data, "value_Null", MyRange::of);
+		return _JsonUtils.mapNullLiteral(data, "value_Null", _ScalarSupport::RangeFromJson);
 	}
 
 	@Override
 	public Optional<MyRange> value_Opt() {
-		return _JsonUtils.mapOptLiteral(data, "value_Opt", MyRange::of);
+		return _JsonUtils.mapOptLiteral(data, "value_Opt", _ScalarSupport::RangeFromJson);
 	}
 
 	@Override
 	public _Base.Nillable<MyRange> value_Opt_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", MyRange::of);
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", _ScalarSupport::RangeFromJson);
 	}
 
 	@Override
 	public List<MyRange> list() {
-		return _JsonUtils.mapLiterals(data, "list", MyRange::of);
+		return _JsonUtils.mapLiterals(data, "list", _ScalarSupport::RangeFromJson);
 	}
 
 	@Override
 	public Optional<List<MyRange>> list_Null() {
-		return _JsonUtils.mapNullLiterals(data, "list_Null", MyRange::of);
+		return _JsonUtils.mapNullLiterals(data, "list_Null", _ScalarSupport::RangeFromJson);
 	}
 
 	@Override
 	public Optional<List<MyRange>> list_Opt() {
-		return _JsonUtils.mapOptLiterals(data, "list_Opt", MyRange::of);
+		return _JsonUtils.mapOptLiterals(data, "list_Opt", _ScalarSupport::RangeFromJson);
 	}
 
 	@Override
 	public _Base.Nillable<List<MyRange>> list_Opt_Null() {
-		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", MyRange::of);
+		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", _ScalarSupport::RangeFromJson);
 	}
 
 	public static PatchableScalarRecord_Substitution.Data of(JsonObject obj) {
@@ -95,7 +95,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 			if (value == null) {
 				return this;
 			}
-			$builder.add("value", _JsonUtils.toString(value));
+			$builder.add("value", _ScalarSupport.RangeToJson(value));
 			return this;
 		}
 
@@ -105,7 +105,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 				$builder.addNull("value_Null");
 				return this;
 			}
-			$builder.add("value_Null", _JsonUtils.toString(value_Null));
+			$builder.add("value_Null", _ScalarSupport.RangeToJson(value_Null));
 			return this;
 		}
 
@@ -114,7 +114,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 			if (value_Opt == null) {
 				return this;
 			}
-			$builder.add("value_Opt", _JsonUtils.toString(value_Opt));
+			$builder.add("value_Opt", _ScalarSupport.RangeToJson(value_Opt));
 			return this;
 		}
 
@@ -124,7 +124,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			$builder.add("value_Opt_Null", _JsonUtils.toString(value_Opt_Null));
+			$builder.add("value_Opt_Null", _ScalarSupport.RangeToJson(value_Opt_Null));
 			return this;
 		}
 
@@ -133,7 +133,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 			if (list == null) {
 				return this;
 			}
-			$builder.add("list", _JsonUtils.toJsonLiteralArray(list));
+			$builder.add("list", _JsonUtils.toJsonLiteralArray(list, $e -> _ScalarSupport.RangeToJson($e)));
 			return this;
 		}
 
@@ -143,7 +143,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 				$builder.addNull("list_Null");
 				return this;
 			}
-			$builder.add("list_Null", _JsonUtils.toJsonLiteralArray(list_Null));
+			$builder.add("list_Null", _JsonUtils.toJsonLiteralArray(list_Null, $e -> _ScalarSupport.RangeToJson($e)));
 			return this;
 		}
 
@@ -152,7 +152,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 			if (list_Opt == null) {
 				return this;
 			}
-			$builder.add("list_Opt", _JsonUtils.toJsonLiteralArray(list_Opt));
+			$builder.add("list_Opt", _JsonUtils.toJsonLiteralArray(list_Opt, $e -> _ScalarSupport.RangeToJson($e)));
 			return this;
 		}
 
@@ -162,7 +162,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 				$builder.addNull("list_Opt_Null");
 				return this;
 			}
-			$builder.add("list_Opt_Null", _JsonUtils.toJsonLiteralArray(list_Opt_Null));
+			$builder.add("list_Opt_Null", _JsonUtils.toJsonLiteralArray(list_Opt_Null, $e -> _ScalarSupport.RangeToJson($e)));
 			return this;
 		}
 

@@ -829,11 +829,17 @@ function handleOkResult(
 			node.append(`var $rv = ${builtinMapExpression(type.type, type.array)};`, NL);
 		}
 	} else if (type.variant === 'scalar') {
-		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, false);
+		const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 		if (type.array) {
-			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${resolvedType}::of);`, NL);
+			node.append(
+				`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${_ScalarSupport}::${type.type}FromJson);`,
+				NL,
+			);
 		} else {
-			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${resolvedType}::of);`, NL);
+			node.append(
+				`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${_ScalarSupport}::${type.type}FromJson);`,
+				NL,
+			);
 		}
 	} else if (type.variant === 'enum') {
 		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, false);
@@ -904,13 +910,11 @@ function handleErrorResult(
 		} else if (isMBuiltinType(type)) {
 			node.append(`var $errorData = ${builtinMapExpression(type, false)};`, NL);
 		} else if (isMScalarType(type)) {
-			const apiType = toAPIType(
-				resolvedError.resolvedContentType,
-				artifactConfig.nativeTypeSubstitutes,
-				`${artifactConfig.rootPackageName}.model`,
-				fqn,
+			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+			node.append(
+				`var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ${_ScalarSupport}::${type.name}FromJson);`,
+				NL,
 			);
-			node.append(`var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ${apiType}::of);`, NL);
 		} else if (isMEnumType(type)) {
 			const apiType = toAPIType(
 				resolvedError.resolvedContentType,

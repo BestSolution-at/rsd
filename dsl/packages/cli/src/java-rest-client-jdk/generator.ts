@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from '../artifact-generator.js';
-import { isMRecordType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
+import { isMRecordType, isMScalarType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
 import { generateClient } from './client.js';
 import {
 	isJavaRestClientJDKGeneratorConfig,
@@ -19,6 +19,7 @@ import { generateStreamImpls } from './stream-impl.js';
 import { generateChangeSupport } from './listchange.js';
 import { generateFormDataPublisherBuilder } from './form-data-publisher.js';
 import { generateBaseUtils } from './base-utils.js';
+import { generateScalarSupport } from './scalar-support.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -61,6 +62,7 @@ export function generate(
 	result.push(...generateChangeSupport(artifactConfig));
 	result.push(...generateFormDataPublisherBuilder(artifactConfig, model));
 	result.push(generateBaseUtils(artifactConfig));
+	result.push(...generateScalarSupport(model.elements.filter(isMScalarType), artifactConfig));
 
 	return result;
 }

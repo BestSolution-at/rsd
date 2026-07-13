@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.ErrorData;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.ErrorDataDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.UnionDataImpl;
@@ -502,7 +503,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("getScalar", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -966,7 +967,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			}
 			if ($response.statusCode() == 400) {
 				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorScalar")) {
-					var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
+					var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, _ScalarSupport::ZoneIdFromJson);
 					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorScalar failed");
 					var $error = new SampleErrorScalar($message, $errorData);
 					this.lifecycleHook.onError("getSimpleErrorScalar", $error, this.client.createResponseAdaptable($response));

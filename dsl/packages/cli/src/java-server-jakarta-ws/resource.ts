@@ -8,7 +8,6 @@ import {
 	JavaImportsCollector,
 	JavaNativeTypeSubstitutes,
 	JavaServerJakartaWSGeneratorConfig,
-	resolveType,
 	toPath,
 } from '../java-gen-utils.js';
 import {
@@ -928,25 +927,31 @@ function scalarParameter(
 	asJSON: boolean,
 	contentTypeText: string,
 ) {
-	const type = p.type;
-	let t: string;
-	if (artifactConfig.nativeTypeSubstitutes && type in artifactConfig.nativeTypeSubstitutes) {
-		t = resolveType(type, artifactConfig.nativeTypeSubstitutes, fqn, false);
-	} else {
-		t = fqn(`${artifactConfig.rootPackageName}.model.${type}`);
-	}
+	const ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
 			if (p.optional && p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
+					NL,
+				);
 			} else if (p.optional) {
-				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
+					NL,
+				);
 			} else if (p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
+					NL,
+				);
 			} else {
-				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
+					NL,
+				);
 			}
 		} else {
 			const transformerPre = p.meta?.rest?.source === 'header' ? `${_Util}.preprocessEscapedAscii(` : '';
@@ -954,22 +959,22 @@ function scalarParameter(
 
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+					`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+					`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+					`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+					`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			}
@@ -983,22 +988,22 @@ function scalarParameter(
 				: `, ${contentTypeText}`;
 		if (p.optional && p.nullable) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 				NL,
 			);
 		} else if (p.optional) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 				NL,
 			);
 		} else if (p.nullable) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 				NL,
 			);
 		} else {
 			node.append(
-				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 				NL,
 			);
 		}

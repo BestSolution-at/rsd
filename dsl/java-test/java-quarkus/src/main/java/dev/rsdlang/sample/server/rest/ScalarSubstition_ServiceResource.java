@@ -17,7 +17,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
-import dev.rsdlang.sample.server.MyRange;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.service.SampleErrorScalarSubException;
 import dev.rsdlang.sample.server.service.ScalarSubstition_ServiceService;
 
@@ -77,7 +77,7 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseLiteral(_range, computeRequestContentType($contentTypeHeader), MyRange::of);
+		var range = _JsonUtils.parseLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
 		var result = service.post(builderFactory, range);
 		return responseBuilder.post(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -88,7 +88,7 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseOptLiteral(_range, computeRequestContentType($contentTypeHeader), MyRange::of);
+		var range = _JsonUtils.parseOptLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
 		var result = service.postOpt(builderFactory, range);
 		return responseBuilder.postOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -99,7 +99,7 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNullLiteral(_range, computeRequestContentType($contentTypeHeader), MyRange::of);
+		var range = _JsonUtils.parseNullLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
 		var result = service.postNull(builderFactory, range);
 		return responseBuilder.postNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -110,7 +110,7 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNilLiteral(_range, computeRequestContentType($contentTypeHeader), MyRange::of);
+		var range = _JsonUtils.parseNilLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
 		var result = service.postOptNull(builderFactory, range);
 		return responseBuilder.postOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -121,7 +121,7 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseLiterals(_range, computeRequestContentType($contentTypeHeader), MyRange::of);
+		var range = _JsonUtils.parseLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
 		var result = service.postList(builderFactory, range);
 		return responseBuilder.postList(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -132,7 +132,7 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseOptLiterals(_range, computeRequestContentType($contentTypeHeader), MyRange::of);
+		var range = _JsonUtils.parseOptLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
 		var result = service.postListOpt(builderFactory, range);
 		return responseBuilder.postListOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -143,7 +143,7 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNullLiterals(_range, computeRequestContentType($contentTypeHeader), MyRange::of);
+		var range = _JsonUtils.parseNullLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
 		var result = service.postListNull(builderFactory, range);
 		return responseBuilder.postListNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -154,7 +154,7 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNilLiterals(_range, computeRequestContentType($contentTypeHeader), MyRange::of);
+		var range = _JsonUtils.parseNilLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
 		var result = service.postListOptNull(builderFactory, range);
 		return responseBuilder.postListOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -164,7 +164,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response query(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") String _range) {
-		var range = _RestUtils.parseLiteral(_range, MyRange::of);
+		var range = _RestUtils.parseLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.query(builderFactory, range);
 		return responseBuilder.query(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -174,7 +174,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response queryOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") String _range) {
-		var range = _RestUtils.parseOptLiteral(_range, MyRange::of);
+		var range = _RestUtils.parseOptLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.queryOpt(builderFactory, range);
 		return responseBuilder.queryOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -184,7 +184,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response queryNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") String _range) {
-		var range = _RestUtils.parseNullLiteral(_range, MyRange::of);
+		var range = _RestUtils.parseNullLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.queryNull(builderFactory, range);
 		return responseBuilder.queryNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -194,7 +194,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response queryOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") String _range) {
-		var range = _RestUtils.parseNilLiteral(_range, MyRange::of);
+		var range = _RestUtils.parseNilLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.queryOptNull(builderFactory, range);
 		return responseBuilder.queryOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -204,7 +204,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response queryList(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") List<String> _range) {
-		var range = _RestUtils.mapLiterals(_range, MyRange::of);
+		var range = _RestUtils.mapLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.queryList(builderFactory, range);
 		return responseBuilder.queryList(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -214,7 +214,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response queryListOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") List<String> _range) {
-		var range = _RestUtils.mapOptLiterals(_range, MyRange::of);
+		var range = _RestUtils.mapOptLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.queryListOpt(builderFactory, range);
 		return responseBuilder.queryListOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -224,7 +224,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response queryListNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") List<String> _range) {
-		var range = _RestUtils.mapNullLiterals(_range, MyRange::of);
+		var range = _RestUtils.mapNullLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.queryListNull(builderFactory, range);
 		return responseBuilder.queryListNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -234,7 +234,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response queryListOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") List<String> _range) {
-		var range = _RestUtils.mapNilLiterals(_range, MyRange::of);
+		var range = _RestUtils.mapNilLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.queryListOptNull(builderFactory, range);
 		return responseBuilder.queryListOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -244,7 +244,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response header(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
-		var range = _RestUtils.parseLiteral(_range, _RestUtils.preprocessEscapedAscii(MyRange::of));
+		var range = _RestUtils.parseLiteral(_range, _RestUtils.preprocessEscapedAscii(_ScalarSupport::RangeFromJson));
 		var result = service.header(builderFactory, range);
 		return responseBuilder.header(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -254,7 +254,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response headerOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
-		var range = _RestUtils.parseOptLiteral(_range, _RestUtils.preprocessEscapedAscii(MyRange::of));
+		var range = _RestUtils.parseOptLiteral(_range, _RestUtils.preprocessEscapedAscii(_ScalarSupport::RangeFromJson));
 		var result = service.headerOpt(builderFactory, range);
 		return responseBuilder.headerOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -264,7 +264,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response headerNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
-		var range = _RestUtils.parseNullLiteral(_range, _RestUtils.preprocessEscapedAscii(MyRange::of));
+		var range = _RestUtils.parseNullLiteral(_range, _RestUtils.preprocessEscapedAscii(_ScalarSupport::RangeFromJson));
 		var result = service.headerNull(builderFactory, range);
 		return responseBuilder.headerNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -274,7 +274,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response headerOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
-		var range = _RestUtils.parseNilLiteral(_range, _RestUtils.preprocessEscapedAscii(MyRange::of));
+		var range = _RestUtils.parseNilLiteral(_range, _RestUtils.preprocessEscapedAscii(_ScalarSupport::RangeFromJson));
 		var result = service.headerOptNull(builderFactory, range);
 		return responseBuilder.headerOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -284,7 +284,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response headerList(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
-		var range = _RestUtils.mapLiterals(_range, _RestUtils.preprocessEscapedAscii(MyRange::of));
+		var range = _RestUtils.mapLiterals(_range, _RestUtils.preprocessEscapedAscii(_ScalarSupport::RangeFromJson));
 		var result = service.headerList(builderFactory, range);
 		return responseBuilder.headerList(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -294,7 +294,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response headerListOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
-		var range = _RestUtils.mapOptLiterals(_range, _RestUtils.preprocessEscapedAscii(MyRange::of));
+		var range = _RestUtils.mapOptLiterals(_range, _RestUtils.preprocessEscapedAscii(_ScalarSupport::RangeFromJson));
 		var result = service.headerListOpt(builderFactory, range);
 		return responseBuilder.headerListOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -304,7 +304,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response headerListNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
-		var range = _RestUtils.mapNullLiterals(_range, _RestUtils.preprocessEscapedAscii(MyRange::of));
+		var range = _RestUtils.mapNullLiterals(_range, _RestUtils.preprocessEscapedAscii(_ScalarSupport::RangeFromJson));
 		var result = service.headerListNull(builderFactory, range);
 		return responseBuilder.headerListNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -314,7 +314,7 @@ public class ScalarSubstition_ServiceResource {
 	public Response headerListOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
-		var range = _RestUtils.mapNilLiterals(_range, _RestUtils.preprocessEscapedAscii(MyRange::of));
+		var range = _RestUtils.mapNilLiterals(_range, _RestUtils.preprocessEscapedAscii(_ScalarSupport::RangeFromJson));
 		var result = service.headerListOptNull(builderFactory, range);
 		return responseBuilder.headerListOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}

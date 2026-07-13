@@ -14,8 +14,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
-import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 
 @ApplicationScoped
@@ -179,7 +179,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleScalarPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathScalar") String _pathScalar) {
-		var pathScalar = _RestUtils.parseLiteral(_pathScalar, ZoneId::of);
+		var pathScalar = _RestUtils.parseLiteral(_pathScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarPathParam(builderFactory, pathScalar);
 		return responseBuilder.simpleScalarPathParam(result, computeResponseContentType($acceptHeaders), pathScalar).build();
 	}

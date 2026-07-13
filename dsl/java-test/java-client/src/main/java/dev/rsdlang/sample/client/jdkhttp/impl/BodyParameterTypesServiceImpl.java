@@ -18,6 +18,7 @@ import dev.rsdlang.sample.client.BodyParameterTypesService;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.BodyParameterTypesMultiBodyParamDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.BodyParameterTypesMultiBodyParamFirstDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.BodyParameterTypesMultiBodyParamNilDataImpl;
@@ -2899,7 +2900,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("simpleScalarBodyParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}

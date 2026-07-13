@@ -15,9 +15,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
-import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.QueryParameterTypesService;
 
 @ApplicationScoped
@@ -301,7 +301,7 @@ public class QueryParameterTypesResource {
 	public Response simpleScalarQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseLiteral(_queryValue, ZoneId::of);
+		var queryValue = _RestUtils.parseLiteral(_queryValue, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarQueryParam(builderFactory, queryValue);
 		return responseBuilder.simpleScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
@@ -311,7 +311,7 @@ public class QueryParameterTypesResource {
 	public Response simpleScalarQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseOptLiteral(_queryValue, ZoneId::of);
+		var queryValue = _RestUtils.parseOptLiteral(_queryValue, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarQueryParamOpt(builderFactory, queryValue);
 		return responseBuilder.simpleScalarQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}

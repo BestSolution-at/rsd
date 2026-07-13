@@ -19,6 +19,7 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListBodyParameterTypesService;
 import dev.rsdlang.sample.client.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.ListBodyParameterTypesListMultiBodyParamDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.ListBodyParameterTypesListMultiBodyParamNilDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.ListBodyParameterTypesListMultiBodyParamOptDataImpl;
@@ -2895,7 +2896,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("listScalarBodyParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}

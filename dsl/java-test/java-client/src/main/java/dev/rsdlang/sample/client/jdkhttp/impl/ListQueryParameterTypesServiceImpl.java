@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -558,7 +559,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("listScalarQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}

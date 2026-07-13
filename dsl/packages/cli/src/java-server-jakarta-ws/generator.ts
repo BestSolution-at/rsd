@@ -1,5 +1,12 @@
 import chalk from 'chalk';
-import { isMEnumType, isMRecordType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
+import {
+	isMEnumType,
+	isMRecordType,
+	isMScalarType,
+	isMUnionType,
+	MResolvedRSDModel,
+	MResolvedUserType,
+} from '../model.js';
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from '../artifact-generator.js';
 import {
 	isJavaServerJakartaWSConfig,
@@ -19,6 +26,7 @@ import { generateNillable } from './nillable-impl.js';
 import { generateScopeValueProvider } from './scopevalue-provider.js';
 import { generateStreamImpls } from './stream-impl.js';
 import { generateChangeSupport } from './listchange.js';
+import { generateScalarSupport } from './scalar-support.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -60,6 +68,7 @@ export function generate(
 	result.push(...generateScopeValueProvider(artifactConfig));
 	result.push(...generateStreamImpls(artifactConfig, model));
 	result.push(...generateChangeSupport(artifactConfig));
+	result.push(...generateScalarSupport(model.elements.filter(isMScalarType), artifactConfig));
 
 	return result;
 }

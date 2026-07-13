@@ -13,6 +13,7 @@ import java.util.List;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListSampleServiceService;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -491,7 +492,7 @@ public class ListSampleServiceServiceImpl implements ListSampleServiceService {
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("listScalar", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
