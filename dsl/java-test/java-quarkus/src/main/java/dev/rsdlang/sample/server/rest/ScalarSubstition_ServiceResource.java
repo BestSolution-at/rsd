@@ -326,7 +326,7 @@ public class ScalarSubstition_ServiceResource {
 			service.fail(builderFactory);
 			return responseBuilder.fail().build();
 		} catch (SampleErrorScalarSubException e) {
-			return _RestUtils.toResponse(400, e);
+			return _RestUtils.toResponse(400, e, _ScalarSupport::toJson);
 		}
 	}
 

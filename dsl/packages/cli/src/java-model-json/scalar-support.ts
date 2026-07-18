@@ -11,6 +11,21 @@ export function generateScalarSupportContent(
 	const node = new CompositeGeneratorNode();
 	node.append('public class _ScalarSupport {', NL);
 	node.indent(classBody => {
+		classBody.append('public static Object toJson(Object value) {', NL);
+		classBody.indent(mBody => {
+			scalars.forEach(scalar => {
+				const substitute = nativeTypeSubstitutes?.[scalar.name];
+				const type = substitute ? fqn(substitute.type) : fqn(`${interfaceBasePackage}.${scalar.name}`);
+
+				mBody.append(`if (value instanceof ${type}) {`, NL);
+				mBody.indent(inner => {
+					inner.append(`return ${scalar.name}ToJson((${type}) value);`, NL);
+				});
+				mBody.append('}', NL);
+			});
+			mBody.append('return value;', NL);
+		});
+		classBody.append('}', NL, NL);
 		scalars.forEach(scalar => {
 			classBody.append(generateScalarMethods(scalar, nativeTypeSubstitutes, interfaceBasePackage, fqn));
 		});
@@ -83,7 +98,11 @@ export function generateSubstituteScalarMethods(
 			const method = substitute.toJson.substring(idx + 1);
 			mBody.append(`return ${type}.${method}(value);`, NL);
 		} else {
-			mBody.append(`return value.${substitute.toJson}();`, NL);
+			if (substitute.toJson.startsWith('::')) {
+				mBody.append(`return ${type}.${substitute.toJson.substring(2)}(value);`, NL);
+			} else {
+				mBody.append(`return value.${substitute.toJson}();`, NL);
+			}
 		}
 	});
 	node.append('}', NL, NL);

@@ -545,7 +545,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
-			$queryParams.append("queryValue", $q);
+			$queryParams.append("queryValue", _ScalarSupport.ZoneIdToJson($q));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());

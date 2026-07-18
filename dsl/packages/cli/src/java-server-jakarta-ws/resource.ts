@@ -12,6 +12,7 @@ import {
 } from '../java-gen-utils.js';
 import {
 	isMBuiltinType,
+	isMScalarType,
 	MOperation,
 	MParameter,
 	MParameterInlineEnumType,
@@ -346,7 +347,16 @@ function _generateResource(
 							const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
 							mBody.append(`} catch (${Type} e) {`, NL);
 							mBody.indent(inner => {
-								inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+								const err = o.resolved.errors.find(r => r.name === e.error);
+								if (isMScalarType(err?.resolvedContentType)) {
+									const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+									inner.append(
+										`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_ScalarSupport}::toJson);`,
+										NL,
+									);
+								} else {
+									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+								}
 							});
 						});
 						mBody.append('}', NL);
@@ -518,7 +528,13 @@ function generateResourceMethod(
 				const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
 				mBody.append(`} catch (${Type} e) {`, NL);
 				mBody.indent(inner => {
-					inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+					const err = o.resolved.errors.find(r => r.name === e.error);
+					if (isMScalarType(err?.resolvedContentType)) {
+						const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_ScalarSupport}::toJson);`, NL);
+					} else {
+						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+					}
 				});
 			});
 			mBody.append('}', NL);

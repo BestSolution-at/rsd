@@ -10,6 +10,7 @@ import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.function.Function;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.Map;
@@ -228,18 +229,21 @@ public class BaseUtils {
 		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
 	}
 
-	public static byte[] ofLiteral(
-			Object value,
+	public static <T> byte[] ofLiteral(
+			T value,
 			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
+			String contentType,
+			Function<T, String> mapToJson) {
+		return of(value == null ? null : mapToJson.apply(value), nullable, contentType, TypeInfo.STRING);
 	}
 
 	public static <T> byte[] ofLiteralList(
 			List<T> value,
 			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+			String contentType,
+			Function<T, String> mapToJson) {
+		return of(value == null ? null : value.stream().map(mapToJson).toList(), nullable, contentType,
+				TypeInfo.STRING.withMulti());
 	}
 
 	public static <T extends _Base.BaseData> byte[] ofObject(

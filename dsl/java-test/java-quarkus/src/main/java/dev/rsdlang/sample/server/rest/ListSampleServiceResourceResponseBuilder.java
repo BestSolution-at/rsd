@@ -13,6 +13,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.ZoneId;
@@ -82,7 +83,7 @@ public class ListSampleServiceResourceResponseBuilder {
 	public ResponseBuilder listScalar(List<ZoneId> $result, String $contentType) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_ScalarSupport::ZoneIdToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listEnum(List<SampleEnum> $result, String $contentType) {
 		return Response.status(200)

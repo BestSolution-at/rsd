@@ -18,6 +18,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
@@ -269,7 +270,7 @@ public class HeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder simpleScalarHeaderParam(ZoneId $result, String $contentType, ZoneId headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _ScalarSupport.ZoneIdToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder simpleScalarHeaderParamOpt(NilResult $result, String $contentType, Optional<ZoneId> headerValue) {
 		return Response.status(200)

@@ -69,6 +69,22 @@ function generateContent(
 						} else {
 							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
 						}
+					} else if (o.resultType.variant === 'scalar') {
+						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+						const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+						if (o.resultType.array) {
+							const content = toNodeTree(`
+							return ${Response}.status(${code.toFixed()})
+								.type($contentType)
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result.stream().map(${_ScalarSupport}::${o.resultType.type}ToJson).toList(), $contentType, /* FIXME */ null)));`);
+							methodBody.append(content);
+						} else {
+							const content = toNodeTree(`
+							return ${Response}.status(${code.toFixed()})
+								.type($contentType)
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${_ScalarSupport}.${o.resultType.type}ToJson($result), $contentType, /* FIXME */ null)));`);
+							methodBody.append(content);
+						}
 					} else {
 						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 						const content = toNodeTree(`

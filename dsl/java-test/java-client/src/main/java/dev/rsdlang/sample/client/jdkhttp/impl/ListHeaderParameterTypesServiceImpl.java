@@ -3042,7 +3042,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3120,7 +3120,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		}
 		var $headers = BaseUtils.toHeaders($headerParams);
 
@@ -3164,7 +3164,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -3245,7 +3245,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}

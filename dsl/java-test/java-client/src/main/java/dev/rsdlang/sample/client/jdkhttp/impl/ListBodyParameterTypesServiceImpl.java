@@ -2884,7 +2884,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyScalar, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyScalar, false, $contentType, _ScalarSupport::ZoneIdToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2962,7 +2962,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyScalar == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(bodyScalar, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyScalar == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(bodyScalar, false, $contentType, _ScalarSupport::ZoneIdToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3001,7 +3001,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyScalar, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyScalar, true, $contentType, _ScalarSupport::ZoneIdToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3079,7 +3079,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyScalar, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyScalar, true, $contentType, _ScalarSupport::ZoneIdToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3120,7 +3120,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, false, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3198,7 +3198,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(bodyEnum, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(bodyEnum, false, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3237,7 +3237,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3315,7 +3315,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3356,7 +3356,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, false, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3434,7 +3434,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(bodyEnum, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(bodyEnum, false, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3473,7 +3473,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3551,7 +3551,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)

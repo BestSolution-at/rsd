@@ -12,6 +12,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.ZoneId;
 
@@ -80,7 +81,7 @@ public class PathParameterTypeServiceResourceResponseBuilder {
 	public ResponseBuilder simpleScalarPathParam(ZoneId $result, String $contentType, ZoneId pathScalar) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _ScalarSupport.ZoneIdToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder simpleEnumPathParam(SampleEnum $result, String $contentType, SampleEnum pathEnum) {
 		return Response.status(200)

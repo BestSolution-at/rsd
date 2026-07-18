@@ -37,7 +37,7 @@ public class ScalarSubstition_ServiceServiceTest {
     @MethodSource("serviceProvider")
     public void get(ScalarSubstition_ServiceService service) {
         var result = service.get().orThrow();
-        assertEquals("[0,0]", result.toString());
+        assertEquals("[0,0]", MyRange.toString(result));
     }
 
     @ParameterizedTest
@@ -45,14 +45,14 @@ public class ScalarSubstition_ServiceServiceTest {
     public void list(ScalarSubstition_ServiceService service) {
         var result = service.list().orThrow();
         assertEquals(1, result.size());
-        assertEquals("[0,0]", result.get(0).toString());
+        assertEquals("[0,0]", MyRange.toString(result.get(0)));
     }
 
     @ParameterizedTest
     @MethodSource("serviceProvider")
     public void post(ScalarSubstition_ServiceService service) {
         var result = service.post(new MyRange(1, 1)).orThrow();
-        assertEquals("[1,1]", result.toString());
+        assertEquals("[1,1]", MyRange.toString(result));
     }
 
     @ParameterizedTest
@@ -82,7 +82,7 @@ public class ScalarSubstition_ServiceServiceTest {
     public void postList(ScalarSubstition_ServiceService service) {
         var result = service.postList(List.of(new MyRange(1, 1))).orThrow();
         assertEquals(1, result.size());
-        assertEquals("[1,1]", result.get(0).toString());
+        assertEquals("[1,1]", MyRange.toString(result.get(0)));
     }
 
     @ParameterizedTest
@@ -111,7 +111,7 @@ public class ScalarSubstition_ServiceServiceTest {
     @MethodSource("serviceProvider")
     public void query(ScalarSubstition_ServiceService service) {
         var result = service.query(new MyRange(1, 1)).orThrow();
-        assertEquals("[1,1]", result.toString());
+        assertEquals("[1,1]", MyRange.toString(result));
     }
 
     @ParameterizedTest
@@ -141,7 +141,7 @@ public class ScalarSubstition_ServiceServiceTest {
     public void queryList(ScalarSubstition_ServiceService service) {
         var result = service.queryList(List.of(new MyRange(1, 1))).orThrow();
         assertEquals(1, result.size());
-        assertEquals("[1,1]", result.get(0).toString());
+        assertEquals("[1,1]", MyRange.toString(result.get(0)));
     }
 
     @ParameterizedTest
@@ -171,7 +171,7 @@ public class ScalarSubstition_ServiceServiceTest {
     @MethodSource("serviceProvider")
     public void header(ScalarSubstition_ServiceService service) {
         var result = service.header(new MyRange(1, 1)).orThrow();
-        assertEquals("[1,1]", result.toString());
+        assertEquals("[1,1]", MyRange.toString(result));
     }
 
     @ParameterizedTest
@@ -201,7 +201,7 @@ public class ScalarSubstition_ServiceServiceTest {
     public void headerList(ScalarSubstition_ServiceService service) {
         var result = service.headerList(List.of(new MyRange(0, 0))).orThrow();
         assertEquals(1, result.size());
-        assertEquals("[0,0]", result.get(0).toString());
+        assertEquals("[0,0]", MyRange.toString(result.get(0)));
     }
 
     @ParameterizedTest
@@ -234,7 +234,7 @@ public class ScalarSubstition_ServiceServiceTest {
             case Result.OK(var value) -> Assertions.fail("Expected SampleErrorScalarSubException to be thrown");
             case Result.ERR(SampleErrorScalarSub error) -> {
                 assertEquals("This is a sample error from the server", error.message());
-                assertEquals("[0,0]", error.data().toString());
+                assertEquals("[0,0]", MyRange.toString(error.data()));
             }
             default -> Assertions.fail("Unexpected result type: " + result.getClass().getName());
         }

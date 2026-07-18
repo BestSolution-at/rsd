@@ -201,6 +201,9 @@ function appendQueryParams(
 				{ withArray: false, withOptional: false },
 			);
 			param = `BaseUtils.ofObject(${p.array ? '$q' : p.name}, false, this.contentType(), ${type}.class)`;
+		} else if (p.variant === 'scalar') {
+			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+			param = `${_ScalarSupport}.${p.type}ToJson(${p.array ? '$q' : p.name})`;
 		} else {
 			param = p.array ? '$q' : p.name;
 		}
@@ -252,8 +255,8 @@ function appendHeaderParams(
 				if (p.type === 'string') {
 					toString = '$v -> BaseUtils.encodeAsciiString($v)';
 				} else if (p.variant === 'scalar') {
-					const Objects = fqn('java.util.Objects');
-					toString = `$v -> BaseUtils.encodeAsciiString(${Objects}.toString($v))`;
+					const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+					toString = `$v -> BaseUtils.encodeAsciiString(${_ScalarSupport}.${p.type}ToJson($v))`;
 				} else {
 					const Objects = fqn('java.util.Objects');
 					toString = `${Objects}::toString`;
@@ -322,9 +325,9 @@ function appendHeaderParams(
 			} else if (p.variant === 'stream') {
 				methodBody.append('throw new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 			} else if (p.variant === 'scalar') {
-				const Objects = fqn('java.util.Objects');
+				const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 				methodBody.append(
-					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${Objects}.toString(${p.name})));`,
+					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${p.name} != null ? ${_ScalarSupport}.${p.type}ToJson(${p.name}) : "null"));`,
 					NL,
 				);
 			} else {
@@ -583,10 +586,15 @@ function appendSingleParamBody(
 		const method = `BaseUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${suffix}`;
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
 		optionalCall = `${method}(${param.name}, false, $contentType)`;
-	} else if (param.variant === 'scalar' || param.variant === 'enum' || param.variant === 'inline-enum') {
+	} else if (param.variant === 'scalar') {
 		const method = `BaseUtils.ofLiteral${suffix}`;
-		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
-		optionalCall = `${method}(${param.name}, false, $contentType)`;
+		const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, ${_ScalarSupport}::${param.type}ToJson)`;
+		optionalCall = `${method}(${param.name}, false, $contentType, ${_ScalarSupport}::${param.type}ToJson)`;
+	} else if (param.variant === 'enum' || param.variant === 'inline-enum') {
+		const method = `BaseUtils.ofLiteral${suffix}`;
+		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, Objects::toString)`;
+		optionalCall = `${method}(${param.name}, false, $contentType, Objects::toString)`;
 	} else {
 		const type = computeParameterAPITypeNG(
 			param,

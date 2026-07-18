@@ -16,6 +16,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
@@ -146,7 +147,7 @@ public class QueryParameterTypesResourceResponseBuilder {
 	public ResponseBuilder simpleScalarQueryParam(ZoneId $result, String $contentType, ZoneId queryValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _ScalarSupport.ZoneIdToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder simpleScalarQueryParamOpt(NilResult $result, String $contentType, Optional<ZoneId> queryValue) {
 		return Response.status(200)

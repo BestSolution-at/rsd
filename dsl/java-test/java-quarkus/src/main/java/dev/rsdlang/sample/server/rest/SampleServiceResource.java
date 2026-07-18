@@ -15,6 +15,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.service.SampleError2Exception;
 import dev.rsdlang.sample.server.service.SampleErrorBooleanException;
 import dev.rsdlang.sample.server.service.SampleErrorEnumException;
@@ -265,7 +266,7 @@ public class SampleServiceResource {
 			service.getSimpleErrorScalar(builderFactory);
 			return responseBuilder.getSimpleErrorScalar().build();
 		} catch (SampleErrorScalarException e) {
-			return _RestUtils.toResponse(400, e);
+			return _RestUtils.toResponse(400, e, _ScalarSupport::toJson);
 		}
 	}
 

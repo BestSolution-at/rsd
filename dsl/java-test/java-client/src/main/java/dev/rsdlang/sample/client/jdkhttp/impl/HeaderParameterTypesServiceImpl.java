@@ -2933,7 +2933,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(Objects.toString(headerValue)));
+		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(headerValue != null ? _ScalarSupport.ZoneIdToJson(headerValue) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3010,7 +3010,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(Objects.toString(headerValue)));
+		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(headerValue != null ? _ScalarSupport.ZoneIdToJson(headerValue) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3052,7 +3052,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(Objects.toString(headerValue)));
+		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(headerValue != null ? _ScalarSupport.ZoneIdToJson(headerValue) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3129,7 +3129,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(Objects.toString(headerValue)));
+		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(headerValue != null ? _ScalarSupport.ZoneIdToJson(headerValue) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);

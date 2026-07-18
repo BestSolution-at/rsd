@@ -15,6 +15,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
@@ -266,7 +267,7 @@ public class ListBodyParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listScalarBodyParam(List<ZoneId> $result, String $contentType, List<ZoneId> bodyScalar) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_ScalarSupport::ZoneIdToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listScalarBodyParamOpt(NilResult $result, String $contentType, Optional<List<ZoneId>> bodyScalar) {
 		return Response.status(200)

@@ -121,7 +121,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, false, $contentType, _ScalarSupport::RangeToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -199,7 +199,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(range == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(range, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(range == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(range, false, $contentType, _ScalarSupport::RangeToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -238,7 +238,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, true, $contentType, _ScalarSupport::RangeToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -316,7 +316,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(range, true, $contentType, _ScalarSupport::RangeToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -357,7 +357,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, false, $contentType, _ScalarSupport::RangeToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -435,7 +435,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(range == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(range, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(range == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(range, false, $contentType, _ScalarSupport::RangeToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -474,7 +474,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, true, $contentType, _ScalarSupport::RangeToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -552,7 +552,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(range, true, $contentType, _ScalarSupport::RangeToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -591,7 +591,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $queryParams = new BaseUtils.URLSearchParams();
-		$queryParams.append("range", range);
+		$queryParams.append("range", _ScalarSupport.RangeToJson(range));
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
@@ -665,7 +665,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
-			$queryParams.append("range", range);
+			$queryParams.append("range", _ScalarSupport.RangeToJson(range));
 		}
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -705,7 +705,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
-			$queryParams.append("range", range);
+			$queryParams.append("range", _ScalarSupport.RangeToJson(range));
 		} else {
 			$queryParams.append("range", "null");
 		}
@@ -782,7 +782,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
-			$queryParams.append("range", range);
+			$queryParams.append("range", _ScalarSupport.RangeToJson(range));
 		} else {
 			$queryParams.append("range", "null");
 		}
@@ -826,7 +826,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		range.stream().forEach($q -> {
-			$queryParams.append("range", $q);
+			$queryParams.append("range", _ScalarSupport.RangeToJson($q));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -902,7 +902,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			range.stream().forEach($q -> {
-				$queryParams.append("range", $q);
+				$queryParams.append("range", _ScalarSupport.RangeToJson($q));
 			});
 		}
 
@@ -944,7 +944,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			range.stream().forEach($q -> {
-				$queryParams.append("range", $q);
+				$queryParams.append("range", _ScalarSupport.RangeToJson($q));
 			});
 		} else {
 			$queryParams.append("range", "null");
@@ -1023,7 +1023,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (range != null) {
 			range.stream().forEach($q -> {
-				$queryParams.append("range", $q);
+				$queryParams.append("range", _ScalarSupport.RangeToJson($q));
 			});
 		} else {
 			$queryParams.append("range", "null");
@@ -1067,7 +1067,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", BaseUtils.encodeAsciiString(Objects.toString(range)));
+		$headerParams.put("range", BaseUtils.encodeAsciiString(range != null ? _ScalarSupport.RangeToJson(range) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1144,7 +1144,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", BaseUtils.encodeAsciiString(Objects.toString(range)));
+		$headerParams.put("range", BaseUtils.encodeAsciiString(range != null ? _ScalarSupport.RangeToJson(range) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1186,7 +1186,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", BaseUtils.encodeAsciiString(Objects.toString(range)));
+		$headerParams.put("range", BaseUtils.encodeAsciiString(range != null ? _ScalarSupport.RangeToJson(range) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1263,7 +1263,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", BaseUtils.encodeAsciiString(Objects.toString(range)));
+		$headerParams.put("range", BaseUtils.encodeAsciiString(range != null ? _ScalarSupport.RangeToJson(range) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1307,7 +1307,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+		$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.RangeToJson($v))).toList()));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1385,7 +1385,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $headerParams = new HashMap<String, String>();
 		if (range != null) {
-			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.RangeToJson($v))).toList()));
 		}
 		var $headers = BaseUtils.toHeaders($headerParams);
 
@@ -1429,7 +1429,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $headerParams = new HashMap<String, String>();
 		if (range != null) {
-			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.RangeToJson($v))).toList()));
 		} else {
 			$headerParams.put("range", "null");
 		}
@@ -1510,7 +1510,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 		var $headerParams = new HashMap<String, String>();
 		if (range != null) {
-			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("range", String.join(",", range.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.RangeToJson($v))).toList()));
 		} else {
 			$headerParams.put("range", "null");
 		}

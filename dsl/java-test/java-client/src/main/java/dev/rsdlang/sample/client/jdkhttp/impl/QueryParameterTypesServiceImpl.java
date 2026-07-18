@@ -1420,7 +1420,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new BaseUtils.URLSearchParams();
-		$queryParams.append("queryValue", queryValue);
+		$queryParams.append("queryValue", _ScalarSupport.ZoneIdToJson(queryValue));
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
@@ -1494,7 +1494,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
-			$queryParams.append("queryValue", queryValue);
+			$queryParams.append("queryValue", _ScalarSupport.ZoneIdToJson(queryValue));
 		}
 
 		var $uri = URI.create($path + $queryParams.toQueryString());

@@ -5,6 +5,16 @@ import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.MyRange;
 
 public class _ScalarSupport {
+	public static Object toJson(Object value) {
+		if (value instanceof ZoneId) {
+			return ZoneIdToJson((ZoneId) value);
+		}
+		if (value instanceof MyRange) {
+			return RangeToJson((MyRange) value);
+		}
+		return value;
+	}
+
 	public static ZoneId ZoneIdFromJson(String s) {
 		return ZoneId.of(s);
 	}
@@ -16,7 +26,7 @@ public class _ScalarSupport {
 		return MyRange.parse(s);
 	}
 	public static String RangeToJson(MyRange value) {
-		return value.toString();
+		return MyRange.toString(value);
 	}
 
 }

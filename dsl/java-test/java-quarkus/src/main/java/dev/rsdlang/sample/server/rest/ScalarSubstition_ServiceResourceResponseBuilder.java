@@ -10,6 +10,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.MyRange;
 
@@ -18,17 +19,17 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder get(MyRange $result, String $contentType) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _ScalarSupport.RangeToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder list(List<MyRange> $result, String $contentType) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_ScalarSupport::RangeToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder post(MyRange $result, String $contentType, MyRange range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _ScalarSupport.RangeToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder postOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
@@ -48,7 +49,7 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder postList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_ScalarSupport::RangeToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder postListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
@@ -68,7 +69,7 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder query(MyRange $result, String $contentType, MyRange range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _ScalarSupport.RangeToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder queryOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
@@ -88,7 +89,7 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder queryList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_ScalarSupport::RangeToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder queryListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
@@ -108,7 +109,7 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder header(MyRange $result, String $contentType, MyRange range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _ScalarSupport.RangeToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder headerOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
@@ -128,7 +129,7 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder headerList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_ScalarSupport::RangeToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder headerListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
