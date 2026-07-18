@@ -46,10 +46,21 @@ public static String ZoneIdToJson(LocalDate value) {
 
 const ScalarSupport_Empty = `
 public class _ScalarSupport {
+	public static Object toJson(Object value) {
+		return value;
+	}
+
 }`.trim();
 
 const ScalarSupport_Single = `
 public class _ScalarSupport {
+	public static Object toJson(Object value) {
+		if (value instanceof ZoneId) {
+			return ZoneIdToJson((ZoneId) value);
+		}
+		return value;
+	}
+
 	public static ZoneId ZoneIdFromJson(String s) {
 		return ZoneId.of(s);
 	}
@@ -61,6 +72,16 @@ public class _ScalarSupport {
 
 const ScalarSupport_Multiple = `
 public class _ScalarSupport {
+	public static Object toJson(Object value) {
+		if (value instanceof ZoneId) {
+			return ZoneIdToJson((ZoneId) value);
+		}
+		if (value instanceof LocalDate) {
+			return LocalDateToJson((LocalDate) value);
+		}
+		return value;
+	}
+
 	public static ZoneId ZoneIdFromJson(String s) {
 		return ZoneId.of(s);
 	}
