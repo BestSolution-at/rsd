@@ -7,6 +7,7 @@ import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.server.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.ZoneId;
@@ -29,7 +30,7 @@ public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl {
 	}
 
 	public ZoneId scalar_() {
-		return _JsonUtils.mapLiteral(data, "scalar_", ZoneId::of);
+		return _JsonUtils.mapLiteral(data, "scalar_", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	public List<String> textList() {
@@ -45,7 +46,7 @@ public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl {
 	}
 
 	public List<ZoneId> scalarList() {
-		return _JsonUtils.mapLiterals(data, "scalarList", ZoneId::of);
+		return _JsonUtils.mapLiterals(data, "scalarList", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

@@ -1265,26 +1265,26 @@ function generateParameterContent(
 				}
 			}
 		} else if (prop.variant === 'scalar') {
-			const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn);
+			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 			if (array) {
 				if (prop.optional && prop.nullable) {
-					mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else if (prop.optional) {
-					mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else if (prop.nullable) {
-					mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else {
-					mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				}
 			} else {
 				if (prop.optional && prop.nullable) {
-					mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else if (prop.optional) {
-					mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else if (prop.nullable) {
-					mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else {
-					mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				}
 			}
 		} else {
