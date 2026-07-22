@@ -2237,7 +2237,7 @@ function fnSimpleInlineEnumHeaderParamOptNil(props: ServiceProps<api.service.Err
 function fnMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['multiHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: RSDString, valueB: RSDInt) => {
+	return async (valueA: RSDString, valueB: RSDInt, valueC: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('multiHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2245,6 +2245,7 @@ function fnMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api.ser
 			$headers.append('Content-Type', encodingType(props));
 			$headers.append('valueA', encodeAsciiString(valueA));
 			$headers.append('valueB', String(valueB));
+			$headers.append('valueC', encodeAsciiString(api.model.ZoneIdToJSON(valueC)));
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/headerparametertypes/multiHeaderParam`;
@@ -2271,7 +2272,7 @@ function fnMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api.ser
 function fnMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['multiHeaderParamOpt'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA?: RSDString, valueB?: RSDInt) => {
+	return async (valueA?: RSDString, valueB?: RSDInt, valueC?: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('multiHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2282,6 +2283,9 @@ function fnMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.
 			}
 			if (valueB !== undefined) {
 				$headers.append('valueB', String(valueB));
+			}
+			if (valueC !== undefined) {
+				$headers.append('valueC', encodeAsciiString(api.model.ZoneIdToJSON(valueC)));
 			}
 			$init.headers = $headers;
 
@@ -2309,7 +2313,7 @@ function fnMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.
 function fnMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['multiHeaderParamNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: RSDString | null, valueB: RSDInt | null) => {
+	return async (valueA: RSDString | null, valueB: RSDInt | null, valueC: api.model.ZoneId | null) => {
 		try {
 			const $init = (await preFetch?.('multiHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2324,6 +2328,11 @@ function fnMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.
 				$headers.append('valueB', String(valueB));
 			} else {
 				$headers.append('valueB', 'null');
+			}
+			if (valueC !== null) {
+				$headers.append('valueC', encodeAsciiString(api.model.ZoneIdToJSON(valueC)));
+			} else {
+				$headers.append('valueC', 'null');
 			}
 			$init.headers = $headers;
 
@@ -2351,7 +2360,7 @@ function fnMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.
 function fnMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.HeaderParameterTypesService['multiHeaderParamOptNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA?: RSDString | null, valueB?: RSDInt | null) => {
+	return async (valueA?: RSDString | null, valueB?: RSDInt | null, valueC?: api.model.ZoneId | null) => {
 		try {
 			const $init = (await preFetch?.('multiHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2366,6 +2375,11 @@ function fnMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): a
 				$headers.append('valueB', String(valueB));
 			} else if (valueB === null) {
 				$headers.append('valueB', 'null');
+			}
+			if (valueC !== undefined && valueC !== null) {
+				$headers.append('valueC', encodeAsciiString(api.model.ZoneIdToJSON(valueC)));
+			} else if (valueC === null) {
+				$headers.append('valueC', 'null');
 			}
 			$init.headers = $headers;
 

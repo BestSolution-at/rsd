@@ -8,8 +8,10 @@ import jakarta.json.JsonObject;
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 public class ListBodyParameterTypesListMultiBodyParamOptNilDataImpl extends _BaseDataImpl {
 	public ListBodyParameterTypesListMultiBodyParamOptNilDataImpl(JsonObject data) {
@@ -26,6 +28,10 @@ public class ListBodyParameterTypesListMultiBodyParamOptNilDataImpl extends _Bas
 
 	public _Base.Nillable<List<SimpleRecord.Data>> valueC() {
 		return _JsonUtils.mapNilObjects(data, "valueC", SimpleRecordDataImpl::of);
+	}
+
+	public _Base.Nillable<List<ZoneId>> valueD() {
+		return _JsonUtils.mapNilLiterals(data, "valueD", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
@@ -1419,7 +1420,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 				this.baseURI());
 
 		var $queryParams = new BaseUtils.URLSearchParams();
-		$queryParams.append("queryValue", queryValue);
+		$queryParams.append("queryValue", _ScalarSupport.ZoneIdToJson(queryValue));
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
@@ -1432,7 +1433,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("simpleScalarQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1493,7 +1494,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (queryValue != null) {
-			$queryParams.append("queryValue", queryValue);
+			$queryParams.append("queryValue", _ScalarSupport.ZoneIdToJson(queryValue));
 		}
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -1642,8 +1643,9 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		}
 	}
 
-	public Result<String, RSDError.$GenericError> multiQueryParam(String valueA, int valueB) {
+	public Result<String, RSDError.$GenericError> multiQueryParam(String valueA, int valueB, ZoneId valueC) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
+		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/queryparametertypes/multiQueryParam".formatted(
 				this.baseURI());
@@ -1651,6 +1653,7 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		var $queryParams = new BaseUtils.URLSearchParams();
 		$queryParams.append("valueA", valueA);
 		$queryParams.append("valueB", valueB);
+		$queryParams.append("valueC", _ScalarSupport.ZoneIdToJson(valueC));
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
@@ -1768,6 +1771,52 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 		}
 		if (valueB != null) {
 			$queryParams.append("valueB", valueB);
+		}
+
+		var $uri = URI.create($path + $queryParams.toQueryString());
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			this.lifecycleHook.preRequest("multiQueryParamOpt", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
+				this.lifecycleHook.onSuccess("multiQueryParamOpt", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiQueryParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiQueryParamOpt", e);
+			this.lifecycleHook.onCatch("multiQueryParamOpt", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("multiQueryParamOpt");
+		}
+	}
+
+	public Result<String, RSDError.$GenericError> multiQueryParamOpt(String valueA, Integer valueB, ZoneId valueC) {
+		var $path = "%s/api/queryparametertypes/multiQueryParamOpt".formatted(
+				this.baseURI());
+
+		var $queryParams = new BaseUtils.URLSearchParams();
+		if (valueA != null) {
+			$queryParams.append("valueA", valueA);
+		}
+		if (valueB != null) {
+			$queryParams.append("valueB", valueB);
+		}
+		if (valueC != null) {
+			$queryParams.append("valueC", _ScalarSupport.ZoneIdToJson(valueC));
 		}
 
 		var $uri = URI.create($path + $queryParams.toQueryString());

@@ -4291,6 +4291,17 @@
         },
         {
           "@type": "Property",
+          "name": "_scalar",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "textList",
           "array": true,
           "readonly": false,
@@ -4320,6 +4331,17 @@
           "nullable": true,
           "variant": "record",
           "type": "SimpleRecord",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "scalarList",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "scalar",
+          "type": "ZoneId",
           "doc": ""
         },
         {
@@ -8589,6 +8611,17 @@
               "variant": "record",
               "type": "SimpleRecord",
               "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
             }
           ],
           "resultType": {
@@ -8644,6 +8677,17 @@
               "patch": false,
               "variant": "record",
               "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
               "doc": ""
             }
           ],
@@ -8701,6 +8745,17 @@
               "variant": "record",
               "type": "SimpleRecord",
               "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
             }
           ],
           "resultType": {
@@ -8756,6 +8811,17 @@
               "patch": false,
               "variant": "record",
               "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
               "doc": ""
             }
           ],
@@ -11750,6 +11816,23 @@
                   "source": "header"
                 }
               }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueC",
+                  "source": "header"
+                }
+              }
             }
           ],
           "resultType": {
@@ -11804,6 +11887,23 @@
               "meta": {
                 "rest": {
                   "name": "valueB",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueC",
                   "source": "header"
                 }
               }
@@ -11864,6 +11964,23 @@
                   "source": "header"
                 }
               }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueC",
+                  "source": "header"
+                }
+              }
             }
           ],
           "resultType": {
@@ -11918,6 +12035,23 @@
               "meta": {
                 "rest": {
                   "name": "valueB",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueC",
                   "source": "header"
                 }
               }
@@ -13433,6 +13567,23 @@
                   "source": "query"
                 }
               }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueC",
+                  "source": "query"
+                }
+              }
             }
           ],
           "resultType": {
@@ -13487,6 +13638,23 @@
               "meta": {
                 "rest": {
                   "name": "valueB",
+                  "source": "query"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueC",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueC",
                   "source": "query"
                 }
               }
@@ -15738,6 +15906,17 @@
               "variant": "record",
               "type": "SimpleRecord",
               "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
             }
           ],
           "resultType": {
@@ -15793,6 +15972,17 @@
               "patch": false,
               "variant": "record",
               "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
               "doc": ""
             }
           ],
@@ -15850,6 +16040,17 @@
               "variant": "record",
               "type": "SimpleRecord",
               "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
             }
           ],
           "resultType": {
@@ -15905,6 +16106,17 @@
               "patch": false,
               "variant": "record",
               "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
               "doc": ""
             }
           ],
@@ -16749,6 +16961,23 @@
               "meta": {
                 "rest": {
                   "name": "valueC",
+                  "source": "query"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueD",
                   "source": "query"
                 }
               }
@@ -19338,6 +19567,23 @@
                   "source": "header"
                 }
               }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueD",
+                  "source": "header"
+                }
+              }
             }
           ],
           "resultType": {
@@ -19409,6 +19655,23 @@
               "meta": {
                 "rest": {
                   "name": "valueC",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueD",
                   "source": "header"
                 }
               }
@@ -19486,6 +19749,23 @@
                   "source": "header"
                 }
               }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueD",
+                  "source": "header"
+                }
+              }
             }
           ],
           "resultType": {
@@ -19557,6 +19837,23 @@
               "meta": {
                 "rest": {
                   "name": "valueC",
+                  "source": "header"
+                }
+              }
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueD",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "valueD",
                   "source": "header"
                 }
               }
@@ -20367,6 +20664,17 @@
             },
             {
               "@type": "Parameter",
+              "name": "scalar_",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
               "name": "textList",
               "array": true,
               "nullable": false,
@@ -20396,6 +20704,17 @@
               "patch": false,
               "variant": "record",
               "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "scalarList",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
               "doc": ""
             },
             {
@@ -20478,6 +20797,17 @@
             },
             {
               "@type": "Parameter",
+              "name": "scalar_",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
               "name": "textList",
               "array": true,
               "nullable": false,
@@ -20507,6 +20837,17 @@
               "patch": false,
               "variant": "record",
               "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "scalarList",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
               "doc": ""
             },
             {
@@ -20589,6 +20930,17 @@
             },
             {
               "@type": "Parameter",
+              "name": "scalar_",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
               "name": "textList",
               "array": true,
               "nullable": true,
@@ -20618,6 +20970,17 @@
               "patch": false,
               "variant": "record",
               "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "scalarList",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
               "doc": ""
             },
             {
@@ -20700,6 +21063,17 @@
             },
             {
               "@type": "Parameter",
+              "name": "scalar_",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
               "name": "textList",
               "array": true,
               "nullable": true,
@@ -20729,6 +21103,17 @@
               "patch": false,
               "variant": "record",
               "type": "SimpleRecord",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "scalarList",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
               "doc": ""
             },
             {
@@ -22071,6 +22456,51 @@
             "rest": {
               "method": "GET",
               "path": "headerListOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "multiBody",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "Range",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "scalar",
+              "type": "ZoneId",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "multiBody",
               "results": []
             }
           }

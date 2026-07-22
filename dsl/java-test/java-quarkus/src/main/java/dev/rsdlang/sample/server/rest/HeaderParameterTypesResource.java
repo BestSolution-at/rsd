@@ -18,9 +18,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
-import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.HeaderParameterTypesService;
 
 @ApplicationScoped
@@ -544,7 +544,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleScalarHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
+		var headerValue = _RestUtils.parseLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
 		var result = service.simpleScalarHeaderParam(builderFactory, headerValue);
 		return responseBuilder.simpleScalarHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -554,7 +554,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleScalarHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseOptLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
+		var headerValue = _RestUtils.parseOptLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
 		var result = service.simpleScalarHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.simpleScalarHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -564,7 +564,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleScalarHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNullLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
+		var headerValue = _RestUtils.parseNullLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
 		var result = service.simpleScalarHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.simpleScalarHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -574,7 +574,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleScalarHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNilLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(ZoneId::of));
+		var headerValue = _RestUtils.parseNilLiteral(_headerValue, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
 		var result = service.simpleScalarHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.simpleScalarHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -664,11 +664,13 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
-			@HeaderParam("valueB") String _valueB) {
+			@HeaderParam("valueB") String _valueB,
+			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseInt(_valueB);
-		var result = service.multiHeaderParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseLiteral(_valueC, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.multiHeaderParam(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -676,11 +678,13 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
-			@HeaderParam("valueB") String _valueB) {
+			@HeaderParam("valueB") String _valueB,
+			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseOptString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseOptInt(_valueB);
-		var result = service.multiHeaderParamOpt(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseOptLiteral(_valueC, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.multiHeaderParamOpt(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -688,11 +692,13 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
-			@HeaderParam("valueB") String _valueB) {
+			@HeaderParam("valueB") String _valueB,
+			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseNullString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseNullInt(_valueB);
-		var result = service.multiHeaderParamNil(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseNullLiteral(_valueC, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.multiHeaderParamNil(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -700,11 +706,13 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
-			@HeaderParam("valueB") String _valueB) {
+			@HeaderParam("valueB") String _valueB,
+			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseNilString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseNilInt(_valueB);
-		var result = service.multiHeaderParamOptNil(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseNilLiteral(_valueC, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.multiHeaderParamOptNil(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET

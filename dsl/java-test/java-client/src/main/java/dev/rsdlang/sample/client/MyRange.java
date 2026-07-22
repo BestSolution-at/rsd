@@ -1,9 +1,13 @@
 package dev.rsdlang.sample.client;
 
 public class MyRange {
-    public static MyRange of(String s) {
+    public static MyRange parse(String s) {
         String[] parts = s.substring(1, s.length() - 1).split(",");
         return new MyRange(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));
+    }
+
+    public static String toString(MyRange range) {
+        return "[" + range.getStart() + "," + range.getEnd() + "]";
     }
 
     private final int start;
@@ -20,10 +24,5 @@ public class MyRange {
 
     public int getEnd() {
         return end;
-    }
-
-    @Override
-    public String toString() {
-        return "[" + start + "," + end + "]";
     }
 }

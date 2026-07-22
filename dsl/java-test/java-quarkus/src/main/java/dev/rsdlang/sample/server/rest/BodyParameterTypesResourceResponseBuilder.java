@@ -17,6 +17,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.model.PatchableRecord;
 import dev.rsdlang.sample.server.model.SampleEnum;
@@ -270,7 +271,7 @@ public class BodyParameterTypesResourceResponseBuilder {
 	public ResponseBuilder simpleScalarBodyParam(ZoneId $result, String $contentType, ZoneId bodyScalar) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _ScalarSupport.ZoneIdToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder simpleScalarBodyParamOpt(NilResult $result, String $contentType, Optional<ZoneId> bodyScalar) {
 		return Response.status(200)
@@ -327,22 +328,22 @@ public class BodyParameterTypesResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiBodyParam(String $result, String $contentType, String valueA, int valueB, SimpleRecord.Data valueC) {
+	public ResponseBuilder multiBodyParam(String $result, String $contentType, String valueA, int valueB, SimpleRecord.Data valueC, ZoneId valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiBodyParamOpt(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
+	public ResponseBuilder multiBodyParamOpt(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiBodyParamNil(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
+	public ResponseBuilder multiBodyParamNil(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiBodyParamOptNil(String $result, String $contentType, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC) {
+	public ResponseBuilder multiBodyParamOptNil(String $result, String $contentType, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC, _Base.Nillable<ZoneId> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

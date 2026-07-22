@@ -302,6 +302,7 @@ export * from './SampleEnumWithCustValue.js';
 export * from './SampleServiceMultiErrorSameCode400Response.js';
 export * from './ScalarRecord.js';
 export * from './ScalarRecordSubstitution.js';
+export * from './ScalarSubstitionServiceMultiBodyRequest.js';
 export * from './SimpleRecord.js';
 export * from './SimpleRecordBasic.js';
 export * from './SimpleRecordBasicList.js';

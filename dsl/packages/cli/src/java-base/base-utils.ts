@@ -19,6 +19,7 @@ export function generateBaseUtilsContent(
 	fqn('java.util.ArrayList');
 	fqn('java.util.Base64');
 	fqn('java.util.HexFormat');
+	fqn('java.util.function.Function');
 
 	fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 	fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils.TypeInfo`);
@@ -233,18 +234,21 @@ public class BaseUtils {
 		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
 	}
 
-	public static byte[] ofLiteral(
-			Object value,
+	public static <T> byte[] ofLiteral(
+			T value,
 			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING);
+			String contentType,
+			Function<T, String> mapToJson) {
+		return of(value == null ? null : mapToJson.apply(value), nullable, contentType, TypeInfo.STRING);
 	}
 
 	public static <T> byte[] ofLiteralList(
 			List<T> value,
 			boolean nullable,
-			String contentType) {
-		return of(value, nullable, contentType, TypeInfo.STRING.withMulti());
+			String contentType,
+			Function<T, String> mapToJson) {
+		return of(value == null ? null : value.stream().map(mapToJson).toList(), nullable, contentType,
+				TypeInfo.STRING.withMulti());
 	}
 
 	public static <T extends _Base.BaseData> byte[] ofObject(

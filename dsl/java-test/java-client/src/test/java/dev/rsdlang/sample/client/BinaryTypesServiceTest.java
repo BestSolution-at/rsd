@@ -17,6 +17,7 @@ import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncodin
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class BinaryTypesServiceTest {
 	private static SpecSamplesClient JSON;
@@ -259,16 +260,25 @@ public class BinaryTypesServiceTest {
 	public void uploadMixed(BinaryTypesService service) throws IOException {
 		var rec = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.uploadMixed(
-				"hello", 42, rec,
-				List.of("a", "b"), List.of(1, 2), List.of(rec),
-				file(service, "FileContent"), blob(service, "BlobContent")).orThrow();
+				"hello",
+				42,
+				rec,
+				ZoneId.of("UTC"),
+				List.of("a", "b"),
+				List.of(1, 2),
+				List.of(rec),
+				List.of(ZoneId.of("UTC")),
+				file(service, "FileContent"),
+				blob(service, "BlobContent")).orThrow();
 
 		assertEquals("hello", result.text().orElse(null));
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().toOptional().map(SimpleRecord.Data::key).orElse(""));
+		assertEquals(ZoneId.of("UTC"), result._scalar().orElse(null));
 		assertEquals(List.of("a", "b"), result.textList().orElse(null));
 		assertEquals(List.of(1, 2), result.numberList().orElse(null));
 		assertEquals(1, result.recList().toOptional().map(List::size).orElse(0));
+		assertEquals(List.of(ZoneId.of("UTC")), result.scalarList().orElse(null));
 		assertEquals("FileContent", result.dataFileContent().orElse(null));
 		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}
@@ -286,15 +296,24 @@ public class BinaryTypesServiceTest {
 	public void uploadMixedOpt_allDefined(BinaryTypesService service) throws IOException {
 		var rec = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.uploadMixedOpt(
-				"hello", 42, rec,
-				List.of("a", "b"), List.of(1, 2), List.of(rec),
-				file(service, "FileContent"), blob(service, "BlobContent")).orThrow();
+				"hello",
+				42,
+				rec,
+				ZoneId.of("UTC"),
+				List.of("a", "b"),
+				List.of(1, 2),
+				List.of(rec),
+				List.of(ZoneId.of("UTC")),
+				file(service, "FileContent"),
+				blob(service, "BlobContent")).orThrow();
 		assertEquals("hello", result.text().orElse(null));
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().map(SimpleRecord.Data::key).orElse(""));
+		assertEquals(ZoneId.of("UTC"), result._scalar().orElse(null));
 		assertEquals(List.of("a", "b"), result.textList().orElse(null));
 		assertEquals(List.of(1, 2), result.numberList().orElse(null));
 		assertEquals(1, result.recList().map(List::size).orElse(0));
+		assertEquals(List.of(ZoneId.of("UTC")), result.scalarList().orElse(null));
 		assertEquals("FileContent", result.dataFileContent().orElse(null));
 		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}
@@ -302,13 +321,25 @@ public class BinaryTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void uploadMixedNil_allNull(BinaryTypesService service) {
-		var result = service.uploadMixedNil(null, null, null, null, null, null, null, null).orThrow();
+		var result = service.uploadMixedNil(
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null).orThrow();
 		assertEquals(true, result.text().isNull());
 		assertEquals(true, result.number().isNull());
 		assertEquals(true, result.rec().isNull());
+		assertEquals(true, result._scalar().isNull());
 		assertEquals(true, result.textList().isNull());
 		assertEquals(true, result.numberList().isNull());
 		assertEquals(true, result.recList().isNull());
+		assertEquals(true, result.scalarList().isNull());
 		assertEquals(true, result.dataFileContent().isNull());
 		assertEquals(true, result.dataBlobContent().isNull());
 	}
@@ -318,15 +349,24 @@ public class BinaryTypesServiceTest {
 	public void uploadMixedNil_allDefined(BinaryTypesService service) throws IOException {
 		var rec = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
 		var result = service.uploadMixedNil(
-				"hello", 42, rec,
-				List.of("a", "b"), List.of(1, 2), List.of(rec),
-				file(service, "FileContent"), blob(service, "BlobContent")).orThrow();
+				"hello",
+				42,
+				rec,
+				ZoneId.of("UTC"),
+				List.of("a", "b"),
+				List.of(1, 2),
+				List.of(rec),
+				List.of(ZoneId.of("UTC")),
+				file(service, "FileContent"),
+				blob(service, "BlobContent")).orThrow();
 		assertEquals("hello", result.text().orElse(null));
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().map(SimpleRecord.Data::key).orElse(""));
+		assertEquals(ZoneId.of("UTC"), result._scalar().orElse(null));
 		assertEquals(List.of("a", "b"), result.textList().orElse(null));
 		assertEquals(List.of(1, 2), result.numberList().orElse(null));
 		assertEquals(1, result.recList().map(List::size).orElse(0));
+		assertEquals(List.of(ZoneId.of("UTC")), result.scalarList().orElse(null));
 		assertEquals("FileContent", result.dataFileContent().orElse(null));
 		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}

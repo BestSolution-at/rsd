@@ -9,9 +9,11 @@ Name | Type
 `text` | string
 `number` | number
 `rec` | [SimpleRecord](SimpleRecord.md)
+`_scalar` | string
 `textList` | Array&lt;string&gt;
 `numberList` | Array&lt;number&gt;
 `recList` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
+`scalarList` | Array&lt;string&gt;
 `dataFileContent` | string
 `dataBlobContent` | string
 
@@ -25,9 +27,11 @@ const example = {
   "text": null,
   "number": null,
   "rec": null,
+  "_scalar": null,
   "textList": null,
   "numberList": null,
   "recList": null,
+  "scalarList": null,
   "dataFileContent": null,
   "dataBlobContent": null,
 } satisfies UploadMixedResult

@@ -531,9 +531,11 @@ record UploadMixedResult {
 	text?: string?
 	number?: int?
 	rec?: SimpleRecord?
+	_scalar?: ZoneId?
 	textList?: string[]?
 	numberList?: int[]?
 	recList?: SimpleRecord[]?
+	scalarList?: ZoneId[]?
 	dataFileContent?: string?
 	dataBlobContent?: string?
 }
@@ -865,10 +867,10 @@ service BodyParameterTypes {
 		bodyEnum?: enum C | D?
 	): NilResult;
 
-	operation multiBodyParam(valueA: string, valueB: int, valueC: SimpleRecord): string;
-	operation multiBodyParamOpt(valueA?: string, valueB?: int, valueC?: SimpleRecord): string;
-	operation multiBodyParamNil(valueA: string?, valueB: int?, valueC: SimpleRecord?): string;
-	operation multiBodyParamOptNil(valueA?: string?, valueB?: int?, valueC?: SimpleRecord?): string;
+	operation multiBodyParam(valueA: string, valueB: int, valueC: SimpleRecord, valueD: ZoneId): string;
+	operation multiBodyParamOpt(valueA?: string, valueB?: int, valueC?: SimpleRecord, valueD?: ZoneId): string;
+	operation multiBodyParamNil(valueA: string?, valueB: int?, valueC: SimpleRecord?, valueD: ZoneId?): string;
+	operation multiBodyParamOptNil(valueA?: string?, valueB?: int?, valueC?: SimpleRecord?, valueD?: ZoneId?): string;
 	
 	operation multiBodyParamFirst(valueA?: string, valueB: int, valueC: SimpleRecord): string;
 	
@@ -1109,10 +1111,10 @@ service HeaderParameterTypes {
 		headerValue?: enum C | D?
 	): NilResult;
 
-	operation multiHeaderParam(valueA: string, valueB: int): string;
-	operation multiHeaderParamOpt(valueA?: string, valueB?: int): NilResult[];
-	operation multiHeaderParamNil(valueA: string?, valueB: int?): NilResult[];
-	operation multiHeaderParamOptNil(valueA?: string?, valueB?: int?): NilResult[];
+	operation multiHeaderParam(valueA: string, valueB: int, valueC: ZoneId): string;
+	operation multiHeaderParamOpt(valueA?: string, valueB?: int, valueC?: ZoneId): NilResult[];
+	operation multiHeaderParamNil(valueA: string?, valueB: int?, valueC: ZoneId?): NilResult[];
+	operation multiHeaderParamOptNil(valueA?: string?, valueB?: int?, valueC?: ZoneId?): NilResult[];
 
 	operation recordHeaderParam(
 		headerValue: SimpleRecord
@@ -1239,8 +1241,8 @@ service QueryParameterTypes {
 		queryValue?: SampleEnum
 	): NilResult;
 
-	operation multiQueryParam(valueA: string, valueB: int): string;
-	operation multiQueryParamOpt(valueA?: string, valueB?: int): string;
+	operation multiQueryParam(valueA: string, valueB: int, valueC: ZoneId): string;
+	operation multiQueryParamOpt(valueA?: string, valueB?: int, valueC?: ZoneId): string;
 
 	operation recordQueryParam(
 		queryValue: SimpleRecord
@@ -1446,10 +1448,10 @@ service ListBodyParameterTypes {
 		bodyEnum?: enum C | D []?
 	): NilResult;
 
-	operation listMultiBodyParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
-	operation listMultiBodyParamOpt(valueA?: string[], valueB?: int[], valueC?: SimpleRecord[]): NilResult[];
-	operation listMultiBodyParamNil(valueA: string[]?, valueB: int[]?, valueC: SimpleRecord[]?): NilResult[];
-	operation listMultiBodyParamOptNil(valueA?: string[]?, valueB?: int[]?, valueC?: SimpleRecord[]?): NilResult[];
+	operation listMultiBodyParam(valueA: string[], valueB: int[], valueC: SimpleRecord[], valueD: ZoneId[]): string;
+	operation listMultiBodyParamOpt(valueA?: string[], valueB?: int[], valueC?: SimpleRecord[], valueD?: ZoneId[]): NilResult[];
+	operation listMultiBodyParamNil(valueA: string[]?, valueB: int[]?, valueC: SimpleRecord[]?, valueD: ZoneId[]?): NilResult[];
+	operation listMultiBodyParamOptNil(valueA?: string[]?, valueB?: int[]?, valueC?: SimpleRecord[]?, valueD?: ZoneId[]?): NilResult[];
 
 	operation listRecordBodyParam(
 		bodyRecord: SimpleRecord[]
@@ -1512,7 +1514,7 @@ service ListQueryParameterTypes {
 	operation listInlineEnumQueryParam(
 		queryValue: enum A | B[]
 	): enum A | B[];
-	operation listMultiQueryParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
+	operation listMultiQueryParam(valueA: string[], valueB: int[], valueC: SimpleRecord[], valueD: ZoneId[]): string;
 	operation listRecordQueryParam(
 		queryValue: SimpleRecord[]
 	): SimpleRecord[];
@@ -1714,10 +1716,10 @@ service ListHeaderParameterTypes {
 		headerValue?: enum C | D []?
 	): NilResult;
 
-	operation listMultiHeaderParam(valueA: string[], valueB: int[], valueC: SimpleRecord[]): string;
-	operation listMultiHeaderParamOpt(valueA?: string[], valueB?: int[], valueC?: SimpleRecord[]): NilResult[];
-	operation listMultiHeaderParamNil(valueA: string[]?, valueB: int[]?, valueC: SimpleRecord[]?): NilResult[];
-	operation listMultiHeaderParamOptNil(valueA?: string[]?, valueB?: int[]?, valueC?: SimpleRecord[]?): NilResult[];
+	operation listMultiHeaderParam(valueA: string[], valueB: int[], valueC: SimpleRecord[], valueD: ZoneId[]): string;
+	operation listMultiHeaderParamOpt(valueA?: string[], valueB?: int[], valueC?: SimpleRecord[], valueD?: ZoneId[]): NilResult[];
+	operation listMultiHeaderParamNil(valueA: string[]?, valueB: int[]?, valueC: SimpleRecord[]?, valueD: ZoneId[]?): NilResult[];
+	operation listMultiHeaderParamOptNil(valueA?: string[]?, valueB?: int[]?, valueC?: SimpleRecord[]?, valueD?: ZoneId[]?): NilResult[];
 	
 	operation listRecordHeaderParam(
 		headerValue: SimpleRecord[]
@@ -1790,9 +1792,11 @@ service BinaryTypes {
 		text: string,
 		number: int,
 		rec: SimpleRecord,
+		scalar_: ZoneId,
 		textList: string[],
 		numberList: int[],
 		recList: SimpleRecord[],
+		scalarList: ZoneId[],
 		dataFile: file,
 		dataBlob: blob
 	): UploadMixedResult;
@@ -1800,9 +1804,11 @@ service BinaryTypes {
 		text?: string,
 		number?: int,
 		rec?: SimpleRecord,
+		scalar_?: ZoneId,
 		textList?: string[],
 		numberList?: int[],
 		recList?: SimpleRecord[],
+		scalarList?: ZoneId[],
 		dataFile?: file,
 		dataBlob?: blob
 	): UploadMixedResult;
@@ -1810,9 +1816,11 @@ service BinaryTypes {
 		text: string?,
 		number: int?,
 		rec: SimpleRecord?,
+		scalar_: ZoneId?,
 		textList: string[]?,
 		numberList: int[]?,
 		recList: SimpleRecord[]?,
+		scalarList: ZoneId[]?,
 		dataFile: file?,
 		dataBlob: blob?
 	): UploadMixedResult;
@@ -1820,9 +1828,11 @@ service BinaryTypes {
 		text?: string?,
 		number?: int?,
 		rec?: SimpleRecord?,
+		scalar_?: ZoneId?,
 		textList?: string[]?,
 		numberList?: int[]?,
 		recList?: SimpleRecord[]?,
+		scalarList?: ZoneId[]?,
 		dataFile?: file?,
 		dataBlob?: blob?
 	): UploadMixedResult;
@@ -1889,6 +1899,8 @@ service ScalarSubstition_Service {
 	operation headerListOpt(range?: Range[]): NilResult;
 	operation headerListNull(range: Range[]?): NilResult;
 	operation headerListOptNull(range?: Range[]?): NilResult;
+
+	operation multiBody(valueA: Range, valueB: ZoneId): string;
 
 	operation fail() throws SampleErrorScalarSub;
 }

@@ -54,7 +54,8 @@ public interface ListQueryParameterTypesService extends BaseService {
 	public Result<String, RSDError.$GenericError> listMultiQueryParam(
 			List<String> valueA, 
 			List<Integer> valueB, 
-			List<SimpleRecord.Data> valueC);
+			List<SimpleRecord.Data> valueC, 
+			List<ZoneId> valueD);
 
 	public Result<List<SimpleRecord.Data>, RSDError.$GenericError> listRecordQueryParam(List<SimpleRecord.Data> queryValue);
 

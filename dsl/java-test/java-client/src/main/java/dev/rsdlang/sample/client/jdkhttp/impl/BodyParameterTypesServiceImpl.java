@@ -18,6 +18,7 @@ import dev.rsdlang.sample.client.BodyParameterTypesService;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.BodyParameterTypesMultiBodyParamDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.BodyParameterTypesMultiBodyParamFirstDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.BodyParameterTypesMultiBodyParamNilDataImpl;
@@ -2887,7 +2888,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyScalar, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyScalar, false, $contentType, _ScalarSupport::ZoneIdToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -2899,7 +2900,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("simpleScalarBodyParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2965,7 +2966,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyScalar == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(bodyScalar, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyScalar == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(bodyScalar, false, $contentType, _ScalarSupport::ZoneIdToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3004,7 +3005,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyScalar, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyScalar, true, $contentType, _ScalarSupport::ZoneIdToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3082,7 +3083,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyScalar, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyScalar, true, $contentType, _ScalarSupport::ZoneIdToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3123,7 +3124,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, false, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3201,7 +3202,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(bodyEnum, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(bodyEnum, false, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3240,7 +3241,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, true, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3318,7 +3319,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, true, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3359,7 +3360,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, false, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3437,7 +3438,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(bodyEnum, false, $contentType));
+			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteral(bodyEnum, false, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3476,7 +3477,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, true, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3554,7 +3555,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, true, $contentType));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteral(bodyEnum, true, $contentType, Objects::toString));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3586,9 +3587,10 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		}
 	}
 
-	public Result<String, RSDError.$GenericError> multiBodyParam(String valueA, int valueB, SimpleRecord.Data valueC) {
+	public Result<String, RSDError.$GenericError> multiBodyParam(String valueA, int valueB, SimpleRecord.Data valueC, ZoneId valueD) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
+		Objects.requireNonNull(valueD, "valueD must not be null");
 
 		var $path = "%s/api/bodyparametertypes/multiBodyParam".formatted(
 				this.baseURI());
@@ -3600,6 +3602,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = $builder.add("valueA", valueA);
 			$builder = $builder.add("valueB", valueB);
 			$builder = $builder.add("valueC", ((_BaseDataImpl)valueC).data);
+			$builder = $builder.add("valueD", _ScalarSupport.ZoneIdToJson(valueD));
 			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new BodyParameterTypesMultiBodyParamDataImpl($builder.build()), false, this.contentType(), BodyParameterTypesMultiBodyParamDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
@@ -3809,7 +3812,59 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 		}
 	}
 
-	public Result<String, RSDError.$GenericError> multiBodyParamNil(String valueA, Integer valueB, SimpleRecord.Data valueC) {
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt(String valueA, Integer valueB, SimpleRecord.Data valueC, ZoneId valueD) {
+		var $path = "%s/api/bodyparametertypes/multiBodyParamOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $contentType = this.contentType();
+			var $builder = Json.createObjectBuilder();
+			if(valueA != null) {
+				$builder = $builder.add("valueA", valueA);
+			}
+			if(valueB != null) {
+				$builder = $builder.add("valueB", valueB);
+			}
+			if(valueC != null) {
+				$builder = $builder.add("valueC", ((_BaseDataImpl)valueC).data);
+			}
+			if(valueD != null) {
+				$builder = $builder.add("valueD", _ScalarSupport.ZoneIdToJson(valueD));
+			}
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new BodyParameterTypesMultiBodyParamOptDataImpl($builder.build()), false, this.contentType(), BodyParameterTypesMultiBodyParamOptDataImpl.class));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			this.lifecycleHook.preRequest("multiBodyParamOpt", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
+				this.lifecycleHook.onSuccess("multiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("multiBodyParamOpt", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("multiBodyParamOpt");
+		}
+	}
+
+	public Result<String, RSDError.$GenericError> multiBodyParamNil(String valueA, Integer valueB, SimpleRecord.Data valueC, ZoneId valueD) {
 		var $path = "%s/api/bodyparametertypes/multiBodyParamNil".formatted(
 				this.baseURI());
 
@@ -3820,6 +3875,7 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", valueA);
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", valueB);
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", ((_BaseDataImpl)valueC).data);
+			$builder = valueD == null ? $builder.addNull("valueD") : $builder.add("valueD", _ScalarSupport.ZoneIdToJson(valueD));
 			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new BodyParameterTypesMultiBodyParamNilDataImpl($builder.build()), false, this.contentType(), BodyParameterTypesMultiBodyParamNilDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
@@ -3985,6 +4041,50 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", valueA);
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", valueB);
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", ((_BaseDataImpl)valueC).data);
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new BodyParameterTypesMultiBodyParamOptNilDataImpl($builder.build()), false, this.contentType(), BodyParameterTypesMultiBodyParamOptNilDataImpl.class));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			this.lifecycleHook.preRequest("multiBodyParamOptNil", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
+				this.lifecycleHook.onSuccess("multiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("multiBodyParamOptNil", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("multiBodyParamOptNil");
+		}
+	}
+
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil(String valueA, Integer valueB, SimpleRecord.Data valueC, ZoneId valueD) {
+		var $path = "%s/api/bodyparametertypes/multiBodyParamOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $contentType = this.contentType();
+			var $builder = Json.createObjectBuilder();
+			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", valueA);
+			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", valueB);
+			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", ((_BaseDataImpl)valueC).data);
+			$builder = valueD == null ? $builder.addNull("valueD") : $builder.add("valueD", _ScalarSupport.ZoneIdToJson(valueD));
 			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new BodyParameterTypesMultiBodyParamOptNilDataImpl($builder.build()), false, this.contentType(), BodyParameterTypesMultiBodyParamOptNilDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()

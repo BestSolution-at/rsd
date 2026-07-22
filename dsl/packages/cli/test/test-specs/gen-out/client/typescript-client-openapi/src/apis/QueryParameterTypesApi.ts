@@ -32,11 +32,13 @@ import {
 export interface QueryParameterTypesMultiQueryParamRequest {
     valueA: string;
     valueB: number;
+    valueC: string;
 }
 
 export interface QueryParameterTypesMultiQueryParamOptRequest {
     valueA?: string;
     valueB?: number;
+    valueC?: string;
 }
 
 export interface QueryParameterTypesRecordQueryParamRequest {
@@ -184,6 +186,13 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['valueC'] == null) {
+            throw new runtime.RequiredError(
+                'valueC',
+                'Required parameter "valueC" was null or undefined when calling queryParameterTypesMultiQueryParam().'
+            );
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters['valueA'] != null) {
@@ -192,6 +201,10 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueB'] != null) {
             queryParameters['valueB'] = requestParameters['valueB'];
+        }
+
+        if (requestParameters['valueC'] != null) {
+            queryParameters['valueC'] = requestParameters['valueC'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -241,6 +254,10 @@ export class QueryParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueB'] != null) {
             queryParameters['valueB'] = requestParameters['valueB'];
+        }
+
+        if (requestParameters['valueC'] != null) {
+            queryParameters['valueC'] = requestParameters['valueC'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

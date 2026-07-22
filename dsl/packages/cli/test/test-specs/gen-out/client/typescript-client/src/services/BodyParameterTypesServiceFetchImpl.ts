@@ -2035,7 +2035,7 @@ function fnSimpleInlineEnumBodyParamOptNil(props: ServiceProps<api.service.Error
 function fnMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['multiBodyParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: RSDString, valueB: RSDInt, valueC: api.model.SimpleRecord) => {
+	return async (valueA: RSDString, valueB: RSDInt, valueC: api.model.SimpleRecord, valueD: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('multiBodyParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2048,6 +2048,7 @@ function fnMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.servi
 				valueA: RSDStringToJSON(valueA),
 				valueB: RSDIntToJSON(valueB),
 				valueC: api.model.SimpleRecordToJSON(valueC),
+				valueD: api.model.ZoneIdToJSON(valueD),
 			});
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
@@ -2071,7 +2072,7 @@ function fnMultiBodyParam(props: ServiceProps<api.service.ErrorType>): api.servi
 function fnMultiBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['multiBodyParamOpt'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA?: RSDString, valueB?: RSDInt, valueC?: api.model.SimpleRecord) => {
+	return async (valueA?: RSDString, valueB?: RSDInt, valueC?: api.model.SimpleRecord, valueD?: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('multiBodyParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2084,6 +2085,7 @@ function fnMultiBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.se
 				valueA: valueA ? RSDStringToJSON(valueA) : valueA,
 				valueB: valueB ? RSDIntToJSON(valueB) : valueB,
 				valueC: valueC ? api.model.SimpleRecordToJSON(valueC) : valueC,
+				valueD: valueD ? api.model.ZoneIdToJSON(valueD) : valueD,
 			});
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
@@ -2107,7 +2109,7 @@ function fnMultiBodyParamOpt(props: ServiceProps<api.service.ErrorType>): api.se
 function fnMultiBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['multiBodyParamNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: RSDString | null, valueB: RSDInt | null, valueC: api.model.SimpleRecord | null) => {
+	return async (valueA: RSDString | null, valueB: RSDInt | null, valueC: api.model.SimpleRecord | null, valueD: api.model.ZoneId | null) => {
 		try {
 			const $init = (await preFetch?.('multiBodyParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2120,6 +2122,7 @@ function fnMultiBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.se
 				valueA: valueA ? RSDStringToJSON(valueA) : valueA,
 				valueB: valueB ? RSDIntToJSON(valueB) : valueB,
 				valueC: valueC ? api.model.SimpleRecordToJSON(valueC) : valueC,
+				valueD: valueD ? api.model.ZoneIdToJSON(valueD) : valueD,
 			});
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {
@@ -2143,7 +2146,7 @@ function fnMultiBodyParamNil(props: ServiceProps<api.service.ErrorType>): api.se
 function fnMultiBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BodyParameterTypesService['multiBodyParamOptNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA?: RSDString | null, valueB?: RSDInt | null, valueC?: api.model.SimpleRecord | null) => {
+	return async (valueA?: RSDString | null, valueB?: RSDInt | null, valueC?: api.model.SimpleRecord | null, valueD?: api.model.ZoneId | null) => {
 		try {
 			const $init = (await preFetch?.('multiBodyParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2156,6 +2159,7 @@ function fnMultiBodyParamOptNil(props: ServiceProps<api.service.ErrorType>): api
 				valueA: valueA ? RSDStringToJSON(valueA) : valueA,
 				valueB: valueB ? RSDIntToJSON(valueB) : valueB,
 				valueC: valueC ? api.model.SimpleRecordToJSON(valueC) : valueC,
+				valueD: valueD ? api.model.ZoneIdToJSON(valueD) : valueD,
 			});
 			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
 			if ($response.status === 200) {

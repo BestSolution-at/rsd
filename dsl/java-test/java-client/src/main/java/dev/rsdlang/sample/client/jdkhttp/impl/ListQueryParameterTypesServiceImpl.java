@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -544,7 +545,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
-			$queryParams.append("queryValue", $q);
+			$queryParams.append("queryValue", _ScalarSupport.ZoneIdToJson($q));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -558,7 +559,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("listScalarQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -662,9 +663,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		}
 	}
 
-	public Result<String, RSDError.$GenericError> listMultiQueryParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<String, RSDError.$GenericError> listMultiQueryParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
+		Objects.requireNonNull(valueD, "valueD must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listMultiQueryParam".formatted(
 				this.baseURI());
@@ -678,6 +680,9 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		});
 		valueC.stream().forEach($q -> {
 			$queryParams.append("valueC", BaseUtils.ofObject($q, false, this.contentType(), SimpleRecord.Data.class));
+		});
+		valueD.stream().forEach($q -> {
+			$queryParams.append("valueD", _ScalarSupport.ZoneIdToJson($q));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());

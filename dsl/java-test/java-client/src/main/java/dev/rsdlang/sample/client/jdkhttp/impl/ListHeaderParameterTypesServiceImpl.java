@@ -15,6 +15,7 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
@@ -3041,7 +3042,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3058,7 +3059,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("listScalarHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3119,7 +3120,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		}
 		var $headers = BaseUtils.toHeaders($headerParams);
 
@@ -3163,7 +3164,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -3244,7 +3245,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(Objects.toString($v))).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -3784,9 +3785,10 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		}
 	}
 
-	public Result<String, RSDError.$GenericError> listMultiHeaderParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<String, RSDError.$GenericError> listMultiHeaderParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
+		Objects.requireNonNull(valueD, "valueD must not be null");
 
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParam".formatted(
 				this.baseURI());
@@ -3795,6 +3797,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
 		$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
 		$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+		$headerParams.put("valueD", String.join(",", valueD.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -4009,7 +4012,61 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 		}
 	}
 
-	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
+		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOpt".formatted(
+				this.baseURI());
+
+		var $headerParams = new HashMap<String, String>();
+		if (valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
+		}
+		if (valueB != null) {
+			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
+		}
+		if (valueC != null) {
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+		}
+		if (valueD != null) {
+			$headerParams.put("valueD", String.join(",", valueD.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
+		}
+		var $headers = BaseUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			this.lifecycleHook.preRequest("listMultiHeaderParamOpt", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("listMultiHeaderParamOpt", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("listMultiHeaderParamOpt");
+		}
+	}
+
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
 		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -4028,6 +4085,11 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
+		}
+		if (valueD != null) {
+			$headerParams.put("valueD", String.join(",", valueD.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
+		} else {
+			$headerParams.put("valueD", "null");
 		}
 		var $headers = BaseUtils.toHeaders($headerParams);
 
@@ -4217,6 +4279,68 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
 		} else {
 			$headerParams.put("valueC", "null");
+		}
+		var $headers = BaseUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("X-RSD-Param-Content-Type", this.contentType())
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			this.lifecycleHook.preRequest("listMultiHeaderParamOptNil", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("listMultiHeaderParamOptNil", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("listMultiHeaderParamOptNil");
+		}
+	}
+
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiHeaderParamOptNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
+		var $path = "%s/api/listheaderparametertypes/listMultiHeaderParamOptNil".formatted(
+				this.baseURI());
+
+		var $headerParams = new HashMap<String, String>();
+		if (valueA != null) {
+			$headerParams.put("valueA", String.join(",", valueA.stream().map($v -> BaseUtils.encodeAsciiString($v)).toList()));
+		} else {
+			$headerParams.put("valueA", "null");
+		}
+		if (valueB != null) {
+			$headerParams.put("valueB", String.join(",", valueB.stream().map(Objects::toString).toList()));
+		} else {
+			$headerParams.put("valueB", "null");
+		}
+		if (valueC != null) {
+			$headerParams.put("valueC", String.join(",", valueC.stream().map($v -> BaseUtils.encodeBase64(BaseUtils.ofObject($v, false, this.contentType(), SimpleRecord.Data.class))).toList()));
+		} else {
+			$headerParams.put("valueC", "null");
+		}
+		if (valueD != null) {
+			$headerParams.put("valueD", String.join(",", valueD.stream().map($v -> BaseUtils.encodeAsciiString(_ScalarSupport.ZoneIdToJson($v))).toList()));
+		} else {
+			$headerParams.put("valueD", "null");
 		}
 		var $headers = BaseUtils.toHeaders($headerParams);
 

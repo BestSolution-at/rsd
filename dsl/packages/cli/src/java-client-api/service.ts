@@ -119,7 +119,7 @@ function toParameter(
 ) {
 	const type = computeParameterAPIType(
 		parameter,
-		artifactConfig.nativeTypeSubstitues,
+		artifactConfig.nativeTypeSubstitutes,
 		`${artifactConfig.rootPackageName}.model`,
 		fqn,
 		false,
@@ -158,13 +158,13 @@ function toResultType(
 	} else if (type.variant === 'inline-enum') {
 		rvType = toFirstUpper(methodName) + '_Result$';
 	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitues[type.type]);
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
 		} else {
 			rvType = fqn(`${dtoPkg}.${type.type}`);
 		}
 	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, true);
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
 	}
 
 	if (type.array) {

@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client.model.impl.json;
 import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class BodyParameterTypesMultiBodyParamDataImpl extends _BaseDataImpl implements dev.rsdlang.sample.client.model._Base.BaseData {
 	public BodyParameterTypesMultiBodyParamDataImpl(JsonObject data) {
@@ -20,6 +21,10 @@ public class BodyParameterTypesMultiBodyParamDataImpl extends _BaseDataImpl impl
 
 	public SimpleRecord.Data valueC() {
 		return _JsonUtils.mapObject(data, "valueC", SimpleRecordDataImpl::of);
+	}
+
+	public ZoneId valueD() {
+		return _JsonUtils.mapLiteral(data, "valueD", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

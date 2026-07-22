@@ -229,13 +229,15 @@ public class BinaryTypesResource {
 		var text = $payload.text();
 		var number = $payload.number();
 		var rec = $payload.rec();
+		var scalar_ = $payload.scalar_();
 		var textList = $payload.textList();
 		var numberList = $payload.numberList();
 		var recList = $payload.recList();
+		var scalarList = $payload.scalarList();
 		var dataFile = builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName());
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
-		var result = service.uploadMixed(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
-		return responseBuilder.uploadMixed(result, computeResponseContentType($acceptHeaders), text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
+		var result = service.uploadMixed(builderFactory, text, number, rec, scalar_, textList, numberList, recList, scalarList, dataFile, dataBlob);
+		return responseBuilder.uploadMixed(result, computeResponseContentType($acceptHeaders), text, number, rec, scalar_, textList, numberList, recList, scalarList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedOpt")
@@ -246,13 +248,15 @@ public class BinaryTypesResource {
 		var text = $payload.text();
 		var number = $payload.number();
 		var rec = $payload.rec();
+		var scalar_ = $payload.scalar_();
 		var textList = $payload.textList();
 		var numberList = $payload.numberList();
 		var recList = $payload.recList();
+		var scalarList = $payload.scalarList();
 		var dataFile = _dataFile != null ? Optional.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName())) : Optional.<RSDFile>empty();
 		var dataBlob = _dataBlob != null ? Optional.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType())) : Optional.<RSDBlob>empty();
-		var result = service.uploadMixedOpt(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
-		return responseBuilder.uploadMixedOpt(result, computeResponseContentType($acceptHeaders), text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
+		var result = service.uploadMixedOpt(builderFactory, text, number, rec, scalar_, textList, numberList, recList, scalarList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedOpt(result, computeResponseContentType($acceptHeaders), text, number, rec, scalar_, textList, numberList, recList, scalarList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedNil")
@@ -263,13 +267,15 @@ public class BinaryTypesResource {
 		var text = $payload.text();
 		var number = $payload.number();
 		var rec = $payload.rec();
+		var scalar_ = $payload.scalar_();
 		var textList = $payload.textList();
 		var numberList = $payload.numberList();
 		var recList = $payload.recList();
+		var scalarList = $payload.scalarList();
 		var dataFile = _dataFile != null ? Optional.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName())) : Optional.<RSDFile>empty();
 		var dataBlob = _dataBlob != null ? Optional.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType())) : Optional.<RSDBlob>empty();
-		var result = service.uploadMixedNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
-		return responseBuilder.uploadMixedNil(result, computeResponseContentType($acceptHeaders), text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
+		var result = service.uploadMixedNil(builderFactory, text, number, rec, scalar_, textList, numberList, recList, scalarList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedNil(result, computeResponseContentType($acceptHeaders), text, number, rec, scalar_, textList, numberList, recList, scalarList, dataFile, dataBlob).build();
 	}
 	@PUT
 	@Path("uploadMixedOptNil")
@@ -280,13 +286,15 @@ public class BinaryTypesResource {
 		var text = $payload.text();
 		var number = $payload.number();
 		var rec = $payload.rec();
+		var scalar_ = $payload.scalar_();
 		var textList = $payload.textList();
 		var numberList = $payload.numberList();
 		var recList = $payload.recList();
+		var scalarList = $payload.scalarList();
 		var dataFile = _dataFile == null ? ($isDataFileNull ? _NillableImpl.<RSDFile>nill() : _NillableImpl.<RSDFile>undefined()) : _NillableImpl.of(builderFactory.createFile(_dataFile.filePath(), _dataFile.contentType(), _dataFile.fileName()));
 		var dataBlob = _dataBlob == null ? ($isDataBlobNull ? _NillableImpl.<RSDBlob>nill() : _NillableImpl.<RSDBlob>undefined()) : _NillableImpl.of(builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType()));
-		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, textList, numberList, recList, dataFile, dataBlob);
-		return responseBuilder.uploadMixedOptNil(result, computeResponseContentType($acceptHeaders), text, number, rec, textList, numberList, recList, dataFile, dataBlob).build();
+		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, scalar_, textList, numberList, recList, scalarList, dataFile, dataBlob);
+		return responseBuilder.uploadMixedOptNil(result, computeResponseContentType($acceptHeaders), text, number, rec, scalar_, textList, numberList, recList, scalarList, dataFile, dataBlob).build();
 	}
 	@POST
 	@Path("mixed/{pathString}/{pathNumber}")

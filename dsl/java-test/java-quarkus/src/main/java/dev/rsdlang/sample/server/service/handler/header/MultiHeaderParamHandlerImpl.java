@@ -1,5 +1,6 @@
 package dev.rsdlang.sample.server.service.handler.header;
 
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.HeaderParameterTypesServiceImpl;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -8,8 +9,12 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class MultiHeaderParamHandlerImpl implements HeaderParameterTypesServiceImpl.MultiHeaderParamHandler {
 
 	@Override
-	public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB) {
-		return valueA + "-" + valueB;
+	public String multiHeaderParam(
+			BuilderFactory _factory,
+			String valueA,
+			int valueB,
+			ZoneId zone) {
+		return valueA + "-" + valueB + "-" + zone.value();
 	}
 
 }

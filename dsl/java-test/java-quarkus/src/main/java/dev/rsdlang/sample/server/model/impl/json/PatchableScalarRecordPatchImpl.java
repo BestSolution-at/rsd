@@ -16,49 +16,49 @@ import dev.rsdlang.sample.server.model.ZoneId;
 public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements PatchableScalarRecord.Patch {
 	static class ListSetChangeImpl extends _ChangeSupport.ValueElementsChange<ZoneId> implements ListSetChange {
 		ListSetChangeImpl(JsonObject data) {
-			super(data, v -> ZoneId.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<ZoneId, ZoneId> implements ListMergeChange {
 		ListMergeChangeImpl(JsonObject data) {
-			super(data, v -> ZoneId.of(((JsonString) v).getString()), v -> ZoneId.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()), v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<ZoneId> implements List_NullSetChange {
 		List_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> ZoneId.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<ZoneId, ZoneId> implements List_NullMergeChange {
 		List_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> ZoneId.of(((JsonString) v).getString()), v -> ZoneId.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()), v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_OptSetChangeImpl extends _ChangeSupport.ValueElementsChange<ZoneId> implements List_OptSetChange {
 		List_OptSetChangeImpl(JsonObject data) {
-			super(data, v -> ZoneId.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_OptMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<ZoneId, ZoneId> implements List_OptMergeChange {
 		List_OptMergeChangeImpl(JsonObject data) {
-			super(data, v -> ZoneId.of(((JsonString) v).getString()), v -> ZoneId.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()), v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<ZoneId> implements List_Opt_NullSetChange {
 		List_Opt_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> ZoneId.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_Opt_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<ZoneId, ZoneId> implements List_Opt_NullMergeChange {
 		List_Opt_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> ZoneId.of(((JsonString) v).getString()), v -> ZoneId.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()), v -> _ScalarSupport.ZoneIdFromJson(((JsonString) v).getString()));
 		}
 	}
 
@@ -77,19 +77,19 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 	}
 
 	public Optional<ZoneId> value() {
-		return _JsonUtils.mapOptLiteral(data, "value", ZoneId::of);
+		return _JsonUtils.mapOptLiteral(data, "value", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	public _Base.Nillable<ZoneId> value_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Null", ZoneId::of );
+		return _JsonUtils.mapNilLiteral(data, "value_Null",  _ScalarSupport::ZoneIdFromJson );
 	}
 
 	public _Base.Nillable<ZoneId> value_Opt() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt", ZoneId::of );
+		return _JsonUtils.mapNilLiteral(data, "value_Opt",  _ScalarSupport::ZoneIdFromJson );
 	}
 
 	public _Base.Nillable<ZoneId> value_Opt_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", ZoneId::of );
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null",  _ScalarSupport::ZoneIdFromJson );
 	}
 
 	public Optional<ListChange> list() {
@@ -123,7 +123,7 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 
 		@Override
 		public PatchableScalarRecord.PatchBuilder value(ZoneId value) {
-			$builder.add("value", value.toString());
+			$builder.add("value", _ScalarSupport.ZoneIdToJson(value));
 			return this;
 		}
 
@@ -133,7 +133,7 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 				$builder.addNull("value_Null");
 				return this;
 			}
-			$builder.add("value_Null", value_Null.toString());
+			$builder.add("value_Null", _ScalarSupport.ZoneIdToJson(value_Null));
 			return this;
 		}
 
@@ -143,7 +143,7 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 				$builder.addNull("value_Opt");
 				return this;
 			}
-			$builder.add("value_Opt", value_Opt.toString());
+			$builder.add("value_Opt", _ScalarSupport.ZoneIdToJson(value_Opt));
 			return this;
 		}
 
@@ -153,7 +153,7 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			$builder.add("value_Opt_Null", value_Opt_Null.toString());
+			$builder.add("value_Opt_Null", _ScalarSupport.ZoneIdToJson(value_Opt_Null));
 			return this;
 		}
 
@@ -166,8 +166,8 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 		public PatchableScalarRecord.PatchBuilder list(List<ZoneId> additions, List<ZoneId> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::ZoneIdToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::ZoneIdToJson));
 			$builder.add("list", $changeBuilder.build());
 			return this;
 		}
@@ -175,7 +175,7 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 		public PatchableScalarRecord.PatchBuilder list(List<ZoneId> elements) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "replace");
-			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::ZoneIdToJson));
 			$builder.add("list", $changeBuilder.build());
 			return this;
 		}
@@ -189,8 +189,8 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 		public PatchableScalarRecord.PatchBuilder list_Null(List<ZoneId> additions, List<ZoneId> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::ZoneIdToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::ZoneIdToJson));
 			$builder.add("list_Null", $changeBuilder.build());
 			return this;
 		}
@@ -198,7 +198,7 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 		public PatchableScalarRecord.PatchBuilder list_Null(List<ZoneId> elements) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "replace");
-			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::ZoneIdToJson));
 			$builder.add("list_Null", $changeBuilder.build());
 			return this;
 		}
@@ -212,8 +212,8 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 		public PatchableScalarRecord.PatchBuilder list_Opt(List<ZoneId> additions, List<ZoneId> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::ZoneIdToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::ZoneIdToJson));
 			$builder.add("list_Opt", $changeBuilder.build());
 			return this;
 		}
@@ -221,7 +221,7 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 		public PatchableScalarRecord.PatchBuilder list_Opt(List<ZoneId> elements) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "replace");
-			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::ZoneIdToJson));
 			$builder.add("list_Opt", $changeBuilder.build());
 			return this;
 		}
@@ -235,8 +235,8 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 		public PatchableScalarRecord.PatchBuilder list_Opt_Null(List<ZoneId> additions, List<ZoneId> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::ZoneIdToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::ZoneIdToJson));
 			$builder.add("list_Opt_Null", $changeBuilder.build());
 			return this;
 		}
@@ -244,7 +244,7 @@ public class PatchableScalarRecordPatchImpl extends _BaseDataImpl implements Pat
 		public PatchableScalarRecord.PatchBuilder list_Opt_Null(List<ZoneId> elements) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "replace");
-			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::ZoneIdToJson));
 			$builder.add("list_Opt_Null", $changeBuilder.build());
 			return this;
 		}

@@ -1,8 +1,12 @@
 import chalk from 'chalk';
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from '../artifact-generator.js';
-import { isMRecordType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
+import { isMRecordType, isMScalarType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
 import { generateClient } from './client.js';
-import { isJavaRestClientJDKGeneratorConfig, JavaRestClientJDKGeneratorConfig } from '../java-gen-utils.js';
+import {
+	isJavaRestClientJDKGeneratorConfig,
+	JavaNativeTypeSubstitute,
+	JavaRestClientJDKGeneratorConfig,
+} from '../java-gen-utils.js';
 import { generateBase } from './base.js';
 import { isDefined } from '../util.js';
 import { generateRecord } from './record.js';
@@ -15,6 +19,7 @@ import { generateStreamImpls } from './stream-impl.js';
 import { generateChangeSupport } from './listchange.js';
 import { generateFormDataPublisherBuilder } from './form-data-publisher.js';
 import { generateBaseUtils } from './base-utils.js';
+import { generateScalarSupport } from './scalar-support.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -26,6 +31,23 @@ export function generate(
 	if (!isJavaRestClientJDKGeneratorConfig(artifactConfig)) {
 		console.log(chalk.red('  Invalid configuration passed aborted artifact generation'));
 		return [];
+	}
+
+	if (artifactConfig.nativeTypeSubstitues) {
+		Object.entries(artifactConfig.nativeTypeSubstitues).forEach(([k, v]) => {
+			const rv: JavaNativeTypeSubstitute = {
+				fromJson: 'of',
+				toJson: 'toString',
+				type: v,
+			};
+			artifactConfig.nativeTypeSubstitutes ??= {};
+			artifactConfig.nativeTypeSubstitutes[k] = rv;
+		});
+		console.log(
+			chalk.yellow(
+				`  Warning: Using deprecated property nativeTypeSubstitues, please use nativeTypeSubstitutes instead`,
+			),
+		);
 	}
 
 	const result: Artifact[] = [];
@@ -40,6 +62,7 @@ export function generate(
 	result.push(...generateChangeSupport(artifactConfig));
 	result.push(...generateFormDataPublisherBuilder(artifactConfig, model));
 	result.push(generateBaseUtils(artifactConfig));
+	result.push(...generateScalarSupport(model.elements.filter(isMScalarType), artifactConfig));
 
 	return result;
 }

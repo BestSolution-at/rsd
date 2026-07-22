@@ -822,71 +822,85 @@ public class BodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void multiBodyParam(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParam("hello", 42, record).orThrow());
+		var result = service.multiBodyParam(
+				"hello",
+				42,
+				record,
+				ZoneId.of("UTC")).orThrow();
+		assertEquals("hello-42-k-UTC", result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_allUndefined(BodyParameterTypesService service) {
-		assertEquals("undefined-undefined-undefined", service.multiBodyParamOpt().orThrow());
+		assertEquals("undefined-undefined-undefined-undefined", service.multiBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_valueAOnly(BodyParameterTypesService service) {
-		assertEquals("hello-undefined-undefined", service.multiBodyParamOpt("hello").orThrow());
+		assertEquals("hello-undefined-undefined-undefined", service.multiBodyParamOpt("hello").orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_valueAAndB(BodyParameterTypesService service) {
-		assertEquals("hello-42-undefined", service.multiBodyParamOpt("hello", 42).orThrow());
+		assertEquals("hello-42-undefined-undefined", service.multiBodyParamOpt("hello", 42).orThrow());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void multiBodyParamOpt_valueAAndBAndC(BodyParameterTypesService service) {
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		assertEquals("hello-42-k-undefined", service.multiBodyParamOpt("hello", 42, record).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOpt_allDefined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParamOpt("hello", 42, record).orThrow());
+		assertEquals("hello-42-k-UTC", service.multiBodyParamOpt("hello", 42, record, ZoneId.of("UTC")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamNil_allNull(BodyParameterTypesService service) {
-		assertEquals("null-null-null", service.multiBodyParamNil(null, null, null).orThrow());
+		var result = service.multiBodyParamNil(null, null, null, null).orThrow();
+		assertEquals("null-null-null-null", result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamNil_allDefined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParamNil("hello", 42, record).orThrow());
+		var result = service.multiBodyParamNil("hello", 42, record, ZoneId.of("UTC")).orThrow();
+		assertEquals("hello-42-k-UTC", result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_allUndefined(BodyParameterTypesService service) {
-		assertEquals("undefined-undefined-undefined", service.multiBodyParamOptNil().orThrow());
+		assertEquals("undefined-undefined-undefined-undefined", service.multiBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_valueANull(BodyParameterTypesService service) {
-		assertEquals("null-undefined-undefined", service.multiBodyParamOptNil((String) null).orThrow());
+		assertEquals("null-undefined-undefined-undefined", service.multiBodyParamOptNil((String) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_allNull(BodyParameterTypesService service) {
-		assertEquals("null-null-null",
-				service.multiBodyParamOptNil((String) null, (Integer) null, (SimpleRecord.Data) null).orThrow());
+		assertEquals("null-null-null-null",
+				service.multiBodyParamOptNil((String) null, (Integer) null, (SimpleRecord.Data) null, null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiBodyParamOptNil_allDefined(BodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k", service.multiBodyParamOptNil("hello", 42, record).orThrow());
+		assertEquals("hello-42-k-UTC", service.multiBodyParamOptNil("hello", 42, record, ZoneId.of("UTC")).orThrow());
 	}
 
 	@ParameterizedTest

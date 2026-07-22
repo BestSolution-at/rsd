@@ -470,4 +470,24 @@ class ScalarSubstition_ServiceServiceImpl implements api.service.ScalarSubstitio
 			return api.result.ERR(toRSDError(error));
 		}
 	}
+
+	async multiBody(
+		valueA: api.model.Range,
+		valueB: api.model.ZoneId,
+	): Promise<api.result.Result<api.model.RSDString, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		try {
+			const response = await this.delegate.scalarSubstitionServiceMultiBodyRaw({
+				scalarSubstitionServiceMultiBodyRequest: {
+					valueA: RangeToJSON(valueA),
+					valueB,
+				},
+			});
+			if (response.raw.status === 200) {
+				return api.result.OK(await response.value());
+			}
+			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
+		} catch (error: unknown) {
+			return api.result.ERR(toRSDError(error));
+		}
+	}
 }

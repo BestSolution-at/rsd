@@ -1,7 +1,18 @@
 import chalk from 'chalk';
-import { isMEnumType, isMRecordType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
+import {
+	isMEnumType,
+	isMRecordType,
+	isMScalarType,
+	isMUnionType,
+	MResolvedRSDModel,
+	MResolvedUserType,
+} from '../model.js';
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from '../artifact-generator.js';
-import { isJavaServerJakartaWSConfig, JavaServerJakartaWSGeneratorConfig } from '../java-gen-utils.js';
+import {
+	isJavaServerJakartaWSConfig,
+	JavaNativeTypeSubstitute,
+	JavaServerJakartaWSGeneratorConfig,
+} from '../java-gen-utils.js';
 
 import { generateDTOBuilderFactory } from './builder-factory.js';
 import { generateRecord } from './record.js';
@@ -15,6 +26,7 @@ import { generateNillable } from './nillable-impl.js';
 import { generateScopeValueProvider } from './scopevalue-provider.js';
 import { generateStreamImpls } from './stream-impl.js';
 import { generateChangeSupport } from './listchange.js';
+import { generateScalarSupport } from './scalar-support.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -28,6 +40,23 @@ export function generate(
 		return [];
 	}
 
+	if (artifactConfig.nativeTypeSubstitues) {
+		Object.entries(artifactConfig.nativeTypeSubstitues).forEach(([k, v]) => {
+			const rv: JavaNativeTypeSubstitute = {
+				fromJson: 'of',
+				toJson: 'toString',
+				type: v,
+			};
+			artifactConfig.nativeTypeSubstitutes ??= {};
+			artifactConfig.nativeTypeSubstitutes[k] = rv;
+		});
+		console.log(
+			chalk.yellow(
+				`  Warning: Using deprecated property nativeTypeSubstitues, please use nativeTypeSubstitutes instead`,
+			),
+		);
+	}
+
 	const result = model.elements.flatMap(e => generateType(e, model, artifactConfig));
 	result.push(generateBase(artifactConfig));
 	result.push(generateJsonUtils(artifactConfig));
@@ -39,6 +68,7 @@ export function generate(
 	result.push(...generateScopeValueProvider(artifactConfig));
 	result.push(...generateStreamImpls(artifactConfig, model));
 	result.push(...generateChangeSupport(artifactConfig));
+	result.push(...generateScalarSupport(model.elements.filter(isMScalarType), artifactConfig));
 
 	return result;
 }

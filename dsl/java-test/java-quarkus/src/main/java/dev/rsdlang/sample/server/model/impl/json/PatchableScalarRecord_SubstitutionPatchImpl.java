@@ -16,49 +16,49 @@ import dev.rsdlang.sample.server.MyRange;
 public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl implements PatchableScalarRecord_Substitution.Patch {
 	static class ListSetChangeImpl extends _ChangeSupport.ValueElementsChange<MyRange> implements ListSetChange {
 		ListSetChangeImpl(JsonObject data) {
-			super(data, v -> MyRange.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<MyRange, MyRange> implements ListMergeChange {
 		ListMergeChangeImpl(JsonObject data) {
-			super(data, v -> MyRange.of(((JsonString) v).getString()), v -> MyRange.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()), v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<MyRange> implements List_NullSetChange {
 		List_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> MyRange.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<MyRange, MyRange> implements List_NullMergeChange {
 		List_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> MyRange.of(((JsonString) v).getString()), v -> MyRange.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()), v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_OptSetChangeImpl extends _ChangeSupport.ValueElementsChange<MyRange> implements List_OptSetChange {
 		List_OptSetChangeImpl(JsonObject data) {
-			super(data, v -> MyRange.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_OptMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<MyRange, MyRange> implements List_OptMergeChange {
 		List_OptMergeChangeImpl(JsonObject data) {
-			super(data, v -> MyRange.of(((JsonString) v).getString()), v -> MyRange.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()), v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<MyRange> implements List_Opt_NullSetChange {
 		List_Opt_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> MyRange.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_Opt_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<MyRange, MyRange> implements List_Opt_NullMergeChange {
 		List_Opt_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> MyRange.of(((JsonString) v).getString()), v -> MyRange.of(((JsonString) v).getString()));
+			super(data, v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()), v -> _ScalarSupport.RangeFromJson(((JsonString) v).getString()));
 		}
 	}
 
@@ -77,19 +77,19 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 	}
 
 	public Optional<MyRange> value() {
-		return _JsonUtils.mapOptLiteral(data, "value", MyRange::of);
+		return _JsonUtils.mapOptLiteral(data, "value", _ScalarSupport::RangeFromJson);
 	}
 
 	public _Base.Nillable<MyRange> value_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Null", MyRange::of );
+		return _JsonUtils.mapNilLiteral(data, "value_Null",  _ScalarSupport::RangeFromJson );
 	}
 
 	public _Base.Nillable<MyRange> value_Opt() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt", MyRange::of );
+		return _JsonUtils.mapNilLiteral(data, "value_Opt",  _ScalarSupport::RangeFromJson );
 	}
 
 	public _Base.Nillable<MyRange> value_Opt_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", MyRange::of );
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null",  _ScalarSupport::RangeFromJson );
 	}
 
 	public Optional<ListChange> list() {
@@ -123,7 +123,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder value(MyRange value) {
-			$builder.add("value", value.toString());
+			$builder.add("value", _ScalarSupport.RangeToJson(value));
 			return this;
 		}
 
@@ -133,7 +133,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 				$builder.addNull("value_Null");
 				return this;
 			}
-			$builder.add("value_Null", value_Null.toString());
+			$builder.add("value_Null", _ScalarSupport.RangeToJson(value_Null));
 			return this;
 		}
 
@@ -143,7 +143,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 				$builder.addNull("value_Opt");
 				return this;
 			}
-			$builder.add("value_Opt", value_Opt.toString());
+			$builder.add("value_Opt", _ScalarSupport.RangeToJson(value_Opt));
 			return this;
 		}
 
@@ -153,7 +153,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			$builder.add("value_Opt_Null", value_Opt_Null.toString());
+			$builder.add("value_Opt_Null", _ScalarSupport.RangeToJson(value_Opt_Null));
 			return this;
 		}
 
@@ -166,8 +166,8 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		public PatchableScalarRecord_Substitution.PatchBuilder list(List<MyRange> additions, List<MyRange> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::RangeToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::RangeToJson));
 			$builder.add("list", $changeBuilder.build());
 			return this;
 		}
@@ -175,7 +175,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		public PatchableScalarRecord_Substitution.PatchBuilder list(List<MyRange> elements) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "replace");
-			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::RangeToJson));
 			$builder.add("list", $changeBuilder.build());
 			return this;
 		}
@@ -189,8 +189,8 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Null(List<MyRange> additions, List<MyRange> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::RangeToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::RangeToJson));
 			$builder.add("list_Null", $changeBuilder.build());
 			return this;
 		}
@@ -198,7 +198,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Null(List<MyRange> elements) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "replace");
-			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::RangeToJson));
 			$builder.add("list_Null", $changeBuilder.build());
 			return this;
 		}
@@ -212,8 +212,8 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt(List<MyRange> additions, List<MyRange> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::RangeToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::RangeToJson));
 			$builder.add("list_Opt", $changeBuilder.build());
 			return this;
 		}
@@ -221,7 +221,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt(List<MyRange> elements) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "replace");
-			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::RangeToJson));
 			$builder.add("list_Opt", $changeBuilder.build());
 			return this;
 		}
@@ -235,8 +235,8 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt_Null(List<MyRange> additions, List<MyRange> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::RangeToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::RangeToJson));
 			$builder.add("list_Opt_Null", $changeBuilder.build());
 			return this;
 		}
@@ -244,7 +244,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt_Null(List<MyRange> elements) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "replace");
-			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements));
+			$changeBuilder.add("elements", _JsonUtils.toJsonLiteralArray(elements, _ScalarSupport::RangeToJson));
 			$builder.add("list_Opt_Null", $changeBuilder.build());
 			return this;
 		}

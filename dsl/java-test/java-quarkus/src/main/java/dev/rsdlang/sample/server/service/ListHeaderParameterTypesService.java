@@ -156,13 +156,13 @@ public interface ListHeaderParameterTypesService {
 
 	public NilResult listInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue);
 
-	public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+	public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD);
 
-	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD);
 
-	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD);
 
-	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC, _Base.Nillable<List<ZoneId>> valueD);
 
 	public List<SimpleRecord.Data> listRecordHeaderParam(BuilderFactory _factory, List<SimpleRecord.Data> headerValue);
 

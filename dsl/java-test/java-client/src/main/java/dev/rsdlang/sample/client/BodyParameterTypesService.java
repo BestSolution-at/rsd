@@ -218,7 +218,8 @@ public interface BodyParameterTypesService extends BaseService {
 	public Result<String, RSDError.$GenericError> multiBodyParam(
 			String valueA, 
 			int valueB, 
-			SimpleRecord.Data valueC);
+			SimpleRecord.Data valueC, 
+			ZoneId valueD);
 
 	public Result<String, RSDError.$GenericError> multiBodyParamOpt();
 
@@ -233,10 +234,17 @@ public interface BodyParameterTypesService extends BaseService {
 			Integer valueB, 
 			SimpleRecord.Data valueC);
 
+	public Result<String, RSDError.$GenericError> multiBodyParamOpt(
+			String valueA, 
+			Integer valueB, 
+			SimpleRecord.Data valueC, 
+			ZoneId valueD);
+
 	public Result<String, RSDError.$GenericError> multiBodyParamNil(
 			String valueA, 
 			Integer valueB, 
-			SimpleRecord.Data valueC);
+			SimpleRecord.Data valueC, 
+			ZoneId valueD);
 
 	public Result<String, RSDError.$GenericError> multiBodyParamOptNil();
 
@@ -250,6 +258,12 @@ public interface BodyParameterTypesService extends BaseService {
 			String valueA, 
 			Integer valueB, 
 			SimpleRecord.Data valueC);
+
+	public Result<String, RSDError.$GenericError> multiBodyParamOptNil(
+			String valueA, 
+			Integer valueB, 
+			SimpleRecord.Data valueC, 
+			ZoneId valueD);
 
 	public Result<String, RSDError.$GenericError> multiBodyParamFirst();
 

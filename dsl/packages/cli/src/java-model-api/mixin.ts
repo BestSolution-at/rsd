@@ -3,10 +3,11 @@ import { isMInlineEnumType, isMProperty, MResolvedMixinType } from '../model.js'
 import { generateInlineEnum } from './enum.js';
 import { toFirstUpper } from '../util.js';
 import { generatePropertyAccessor } from './shared.js';
+import { JavaNativeTypeSubstitutes } from '../java-gen-utils.js';
 
 export function generateMixinContent(
 	t: MResolvedMixinType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -14,7 +15,7 @@ export function generateMixinContent(
 	node.append(`public interface ${t.name}Mixin {`, NL);
 	node.indent(classBody => {
 		classBody.append(generateInlineEnums(t));
-		classBody.append(generatePropertyAccessors(t, nativeTypeSubstitues, basePackageName, fqn));
+		classBody.append(generatePropertyAccessors(t, nativeTypeSubstitutes, basePackageName, fqn));
 	});
 	node.append('}', NL);
 
@@ -39,13 +40,13 @@ function generateInlineEnums(t: MResolvedMixinType) {
 
 function generatePropertyAccessors(
 	t: MResolvedMixinType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
 	const node = new CompositeGeneratorNode();
 	t.resolved.properties.forEach(p => {
-		node.append(generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn));
+		node.append(generatePropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn));
 		node.append(NL);
 	});
 	return node;

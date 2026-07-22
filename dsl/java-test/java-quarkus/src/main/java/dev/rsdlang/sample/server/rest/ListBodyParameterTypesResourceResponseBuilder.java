@@ -15,6 +15,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
@@ -266,7 +267,7 @@ public class ListBodyParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listScalarBodyParam(List<ZoneId> $result, String $contentType, List<ZoneId> bodyScalar) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_ScalarSupport::ZoneIdToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listScalarBodyParamOpt(NilResult $result, String $contentType, Optional<List<ZoneId>> bodyScalar) {
 		return Response.status(200)
@@ -323,22 +324,22 @@ public class ListBodyParameterTypesResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listMultiBodyParam(String $result, String $contentType, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public ResponseBuilder listMultiBodyParam(String $result, String $contentType, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listMultiBodyParamOpt(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamOpt(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listMultiBodyParamNil(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamNil(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder listMultiBodyParamOptNil(List<NilResult> $result, String $contentType, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
+	public ResponseBuilder listMultiBodyParamOptNil(List<NilResult> $result, String $contentType, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC, _Base.Nillable<List<ZoneId>> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

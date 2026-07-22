@@ -8,6 +8,7 @@ import java.util.OptionalInt;
 import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class BinaryTypesUploadMixedNilDataImpl extends _BaseDataImpl implements dev.rsdlang.sample.client.model._Base.BaseData {
 	public BinaryTypesUploadMixedNilDataImpl(JsonObject data) {
@@ -26,6 +27,10 @@ public class BinaryTypesUploadMixedNilDataImpl extends _BaseDataImpl implements 
 		return _JsonUtils.mapNullObject(data, "rec", SimpleRecordDataImpl::of);
 	}
 
+	public Optional<ZoneId> scalar_() {
+		return _JsonUtils.mapNullLiteral(data, "scalar_", _ScalarSupport::ZoneIdFromJson);
+	}
+
 	public Optional<List<String>> textList() {
 		return _JsonUtils.mapNullStrings(data, "textList");
 	}
@@ -36,6 +41,10 @@ public class BinaryTypesUploadMixedNilDataImpl extends _BaseDataImpl implements 
 
 	public Optional<List<SimpleRecord.Data>> recList() {
 		return _JsonUtils.mapNullObjects(data, "recList", SimpleRecordDataImpl::of);
+	}
+
+	public Optional<List<ZoneId>> scalarList() {
+		return _JsonUtils.mapNullLiterals(data, "scalarList", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

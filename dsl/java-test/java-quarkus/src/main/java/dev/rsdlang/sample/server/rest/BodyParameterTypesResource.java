@@ -16,11 +16,11 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.PatchableRecord;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.Union;
-import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamDataImpl;
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamFirstDataImpl;
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamNilDataImpl;
@@ -598,7 +598,7 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), ZoneId::of);
+		var bodyScalar = _JsonUtils.parseLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarBodyParam(builderFactory, bodyScalar);
 		return responseBuilder.simpleScalarBodyParam(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
@@ -609,7 +609,7 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseOptLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), ZoneId::of);
+		var bodyScalar = _JsonUtils.parseOptLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarBodyParamOpt(builderFactory, bodyScalar);
 		return responseBuilder.simpleScalarBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
@@ -620,7 +620,7 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseNullLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), ZoneId::of);
+		var bodyScalar = _JsonUtils.parseNullLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarBodyParamNil(builderFactory, bodyScalar);
 		return responseBuilder.simpleScalarBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
@@ -631,7 +631,7 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseNilLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), ZoneId::of);
+		var bodyScalar = _JsonUtils.parseNilLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarBodyParamOptNil(builderFactory, bodyScalar);
 		return responseBuilder.simpleScalarBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
@@ -731,8 +731,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamDataImpl::new, BodyParameterTypesMultiBodyParamDataImpl.class);
-		var result = service.multiBodyParam(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParam(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
+		var result = service.multiBodyParam(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
+		return responseBuilder.multiBodyParam(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@POST
@@ -742,8 +742,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamOptDataImpl::new, BodyParameterTypesMultiBodyParamOptDataImpl.class);
-		var result = service.multiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParamOpt(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
+		var result = service.multiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
+		return responseBuilder.multiBodyParamOpt(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@POST
@@ -753,8 +753,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamNilDataImpl::new, BodyParameterTypesMultiBodyParamNilDataImpl.class);
-		var result = service.multiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParamNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
+		var result = service.multiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
+		return responseBuilder.multiBodyParamNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@POST
@@ -764,8 +764,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamOptNilDataImpl::new, BodyParameterTypesMultiBodyParamOptNilDataImpl.class);
-		var result = service.multiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.multiBodyParamOptNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
+		var result = service.multiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
+		return responseBuilder.multiBodyParamOptNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@POST

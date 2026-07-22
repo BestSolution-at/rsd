@@ -696,7 +696,7 @@ No authorization required
 
 ## listQueryParameterTypesListMultiQueryParam
 
-> string listQueryParameterTypesListMultiQueryParam(valueA, valueB, valueC, xRSDParamContentType)
+> string listQueryParameterTypesListMultiQueryParam(valueA, valueB, valueC, valueD, xRSDParamContentType)
 
 
 
@@ -722,6 +722,8 @@ async function example() {
     valueB: ...,
     // Array<string> | 
     valueC: ...,
+    // Array<string> | 
+    valueD: ...,
     // string | Contains the type information for record and union types transferred in headers as a base64 blob
     xRSDParamContentType: xRSDParamContentType_example,
   } satisfies ListQueryParameterTypesListMultiQueryParamRequest;
@@ -746,6 +748,7 @@ example().catch(console.error);
 | **valueA** | `Array<string>` |  | |
 | **valueB** | `Array<number>` |  | |
 | **valueC** | `Array<string>` |  | |
+| **valueD** | `Array<string>` |  | |
 | **xRSDParamContentType** | `string` | Contains the type information for record and union types transferred in headers as a base64 blob | [Defaults to `undefined`] |
 
 ### Return type

@@ -2,11 +2,12 @@ package dev.rsdlang.sample.server.service.handler.listheader;
 
 import java.util.List;
 
-import dev.rsdlang.sample.server.service.BuilderFactory;
-import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.server.model.NilResult;
 import dev.rsdlang.sample.server.model.SimpleRecord.Data;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.model._Base.Nillable;
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import dev.rsdlang.sample.server.service.impl.ListHeaderParameterTypesServiceImpl;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -14,12 +15,17 @@ public class ListMultiHeaderParamOptNilHandlerImpl
 		implements ListHeaderParameterTypesServiceImpl.ListMultiHeaderParamOptNilHandler {
 
 	@Override
-	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, Nillable<List<String>> valueA,
-			Nillable<List<Integer>> valueB, Nillable<List<Data>> valueC) {
+	public List<NilResult> listMultiHeaderParamOptNil(
+			BuilderFactory _factory,
+			Nillable<List<String>> valueA,
+			Nillable<List<Integer>> valueB,
+			Nillable<List<Data>> valueC,
+			Nillable<List<ZoneId>> zone) {
 		return List.of(
 				valueA.isNull() ? NilResult.NULL : valueA.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED,
 				valueB.isNull() ? NilResult.NULL : valueB.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED,
-				valueC.isNull() ? NilResult.NULL : valueC.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED);
+				valueC.isNull() ? NilResult.NULL : valueC.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED,
+				zone.isNull() ? NilResult.NULL : zone.isUndefined() ? NilResult.UNDEFINED : NilResult.DEFINED);
 	}
 
 }

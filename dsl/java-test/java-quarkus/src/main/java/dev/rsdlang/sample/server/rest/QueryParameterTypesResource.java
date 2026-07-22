@@ -15,9 +15,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
-import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.QueryParameterTypesService;
 
 @ApplicationScoped
@@ -301,7 +301,7 @@ public class QueryParameterTypesResource {
 	public Response simpleScalarQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseLiteral(_queryValue, ZoneId::of);
+		var queryValue = _RestUtils.parseLiteral(_queryValue, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarQueryParam(builderFactory, queryValue);
 		return responseBuilder.simpleScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
@@ -311,7 +311,7 @@ public class QueryParameterTypesResource {
 	public Response simpleScalarQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseOptLiteral(_queryValue, ZoneId::of);
+		var queryValue = _RestUtils.parseOptLiteral(_queryValue, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarQueryParamOpt(builderFactory, queryValue);
 		return responseBuilder.simpleScalarQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
@@ -341,11 +341,13 @@ public class QueryParameterTypesResource {
 	public Response multiQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("valueA") String _valueA,
-			@QueryParam("valueB") String _valueB) {
+			@QueryParam("valueB") String _valueB,
+			@QueryParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseString(_valueA);
 		var valueB = _RestUtils.parseInt(_valueB);
-		var result = service.multiQueryParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseLiteral(_valueC, _ScalarSupport::ZoneIdFromJson);
+		var result = service.multiQueryParam(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -353,11 +355,13 @@ public class QueryParameterTypesResource {
 	public Response multiQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("valueA") String _valueA,
-			@QueryParam("valueB") String _valueB) {
+			@QueryParam("valueB") String _valueB,
+			@QueryParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseOptString(_valueA);
 		var valueB = _RestUtils.parseOptInt(_valueB);
-		var result = service.multiQueryParamOpt(builderFactory, valueA, valueB);
-		return responseBuilder.multiQueryParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseOptLiteral(_valueC, _ScalarSupport::ZoneIdFromJson);
+		var result = service.multiQueryParamOpt(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiQueryParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET

@@ -16,6 +16,7 @@ import dev.rsdlang.sample.server.model.RSDBlob;
 import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.UploadMixedResult;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 @Singleton
 public class BinaryTypesResourceResponseBuilder {
@@ -99,22 +100,22 @@ public class BinaryTypesResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder uploadMixed(UploadMixedResult.Data $result, String $contentType, String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public ResponseBuilder uploadMixed(UploadMixedResult.Data $result, String $contentType, String text, int number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList, RSDFile dataFile, RSDBlob dataBlob) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder uploadMixedOpt(UploadMixedResult.Data $result, String $contentType, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
+	public ResponseBuilder uploadMixedOpt(UploadMixedResult.Data $result, String $contentType, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<ZoneId> scalar_, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<List<ZoneId>> scalarList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder uploadMixedNil(UploadMixedResult.Data $result, String $contentType, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
+	public ResponseBuilder uploadMixedNil(UploadMixedResult.Data $result, String $contentType, Optional<String> text, OptionalInt number, Optional<SimpleRecord.Data> rec, Optional<ZoneId> scalar_, Optional<List<String>> textList, Optional<List<Integer>> numberList, Optional<List<SimpleRecord.Data>> recList, Optional<List<ZoneId>> scalarList, Optional<RSDFile> dataFile, Optional<RSDBlob> dataBlob) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder uploadMixedOptNil(UploadMixedResult.Data $result, String $contentType, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob) {
+	public ResponseBuilder uploadMixedOptNil(UploadMixedResult.Data $result, String $contentType, _Base.Nillable<String> text, _Base.Nillable<Integer> number, _Base.Nillable<SimpleRecord.Data> rec, _Base.Nillable<ZoneId> scalar_, _Base.Nillable<List<String>> textList, _Base.Nillable<List<Integer>> numberList, _Base.Nillable<List<SimpleRecord.Data>> recList, _Base.Nillable<List<ZoneId>> scalarList, _Base.Nillable<RSDFile> dataFile, _Base.Nillable<RSDBlob> dataBlob) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

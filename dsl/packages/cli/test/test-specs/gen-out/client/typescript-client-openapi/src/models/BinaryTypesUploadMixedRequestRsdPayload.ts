@@ -47,6 +47,12 @@ export interface BinaryTypesUploadMixedRequestRsdPayload {
     rec: SimpleRecord;
     /**
      * 
+     * @type {string}
+     * @memberof BinaryTypesUploadMixedRequestRsdPayload
+     */
+    scalar_: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof BinaryTypesUploadMixedRequestRsdPayload
      */
@@ -63,6 +69,12 @@ export interface BinaryTypesUploadMixedRequestRsdPayload {
      * @memberof BinaryTypesUploadMixedRequestRsdPayload
      */
     recList: Array<SimpleRecord>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof BinaryTypesUploadMixedRequestRsdPayload
+     */
+    scalarList: Array<string>;
 }
 
 /**
@@ -72,9 +84,11 @@ export function instanceOfBinaryTypesUploadMixedRequestRsdPayload(value: object)
     if (!('text' in value) || value['text'] === undefined) return false;
     if (!('number' in value) || value['number'] === undefined) return false;
     if (!('rec' in value) || value['rec'] === undefined) return false;
+    if (!('scalar_' in value) || value['scalar_'] === undefined) return false;
     if (!('textList' in value) || value['textList'] === undefined) return false;
     if (!('numberList' in value) || value['numberList'] === undefined) return false;
     if (!('recList' in value) || value['recList'] === undefined) return false;
+    if (!('scalarList' in value) || value['scalarList'] === undefined) return false;
     return true;
 }
 
@@ -91,9 +105,11 @@ export function BinaryTypesUploadMixedRequestRsdPayloadFromJSONTyped(json: any, 
         'text': json['text'],
         'number': json['number'],
         'rec': SimpleRecordFromJSON(json['rec']),
+        'scalar_': json['scalar_'],
         'textList': json['textList'],
         'numberList': json['numberList'],
         'recList': ((json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
+        'scalarList': json['scalarList'],
     };
 }
 
@@ -111,9 +127,11 @@ export function BinaryTypesUploadMixedRequestRsdPayloadToJSONTyped(value?: Binar
         'text': value['text'],
         'number': value['number'],
         'rec': SimpleRecordToJSON(value['rec']),
+        'scalar_': value['scalar_'],
         'textList': value['textList'],
         'numberList': value['numberList'],
         'recList': ((value['recList'] as Array<any>).map(SimpleRecordToJSON)),
+        'scalarList': value['scalarList'],
     };
 }
 

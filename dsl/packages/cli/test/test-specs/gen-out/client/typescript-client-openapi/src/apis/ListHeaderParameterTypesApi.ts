@@ -193,6 +193,7 @@ export interface ListHeaderParameterTypesListMultiHeaderParamRequest {
     valueA: Array<string>;
     valueB: Array<number>;
     valueC: Array<string>;
+    valueD: Array<string>;
     xRSDParamContentType: string;
 }
 
@@ -200,6 +201,7 @@ export interface ListHeaderParameterTypesListMultiHeaderParamNilRequest {
     valueA: Array<string> | null;
     valueB: Array<number> | null;
     valueC: Array<string> | null;
+    valueD: Array<string> | null;
     xRSDParamContentType: string;
 }
 
@@ -208,6 +210,7 @@ export interface ListHeaderParameterTypesListMultiHeaderParamOptRequest {
     valueA?: Array<string>;
     valueB?: Array<number>;
     valueC?: Array<string>;
+    valueD?: Array<string>;
 }
 
 export interface ListHeaderParameterTypesListMultiHeaderParamOptNilRequest {
@@ -215,6 +218,7 @@ export interface ListHeaderParameterTypesListMultiHeaderParamOptNilRequest {
     valueA?: Array<string> | null;
     valueB?: Array<number> | null;
     valueC?: Array<string> | null;
+    valueD?: Array<string> | null;
 }
 
 export interface ListHeaderParameterTypesListOffsetDateTimeHeaderParamRequest {
@@ -2127,6 +2131,13 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['valueD'] == null) {
+            throw new runtime.RequiredError(
+                'valueD',
+                'Required parameter "valueD" was null or undefined when calling listHeaderParameterTypesListMultiHeaderParam().'
+            );
+        }
+
         if (requestParameters['xRSDParamContentType'] == null) {
             throw new runtime.RequiredError(
                 'xRSDParamContentType',
@@ -2148,6 +2159,10 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueC'] != null) {
             headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+        if (requestParameters['valueD'] != null) {
+            headerParameters['valueD'] = requestParameters['valueD']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2212,6 +2227,13 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['valueD'] == null) {
+            throw new runtime.RequiredError(
+                'valueD',
+                'Required parameter "valueD" was null or undefined when calling listHeaderParameterTypesListMultiHeaderParamNil().'
+            );
+        }
+
         if (requestParameters['xRSDParamContentType'] == null) {
             throw new runtime.RequiredError(
                 'xRSDParamContentType',
@@ -2233,6 +2255,10 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueC'] != null) {
             headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+        if (requestParameters['valueD'] != null) {
+            headerParameters['valueD'] = requestParameters['valueD']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {
@@ -2295,6 +2321,10 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
             headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
+        if (requestParameters['valueD'] != null) {
+            headerParameters['valueD'] = requestParameters['valueD']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
         if (requestParameters['xRSDParamContentType'] != null) {
             headerParameters['X-RSD-Param-Content-Type'] = String(requestParameters['xRSDParamContentType']);
         }
@@ -2353,6 +2383,10 @@ export class ListHeaderParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueC'] != null) {
             headerParameters['valueC'] = requestParameters['valueC']!.join(runtime.COLLECTION_FORMATS["csv"]);
+        }
+
+        if (requestParameters['valueD'] != null) {
+            headerParameters['valueD'] = requestParameters['valueD']!.join(runtime.COLLECTION_FORMATS["csv"]);
         }
 
         if (requestParameters['xRSDParamContentType'] != null) {

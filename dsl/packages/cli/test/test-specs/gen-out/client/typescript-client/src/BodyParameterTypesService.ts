@@ -70,10 +70,10 @@ export interface BodyParameterTypesService {
 	simpleInlineEnumBodyParamOpt(bodyEnum?: 'A' | 'B'): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleInlineEnumBodyParamNil(bodyEnum: 'C' | 'D' | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleInlineEnumBodyParamOptNil(bodyEnum?: 'C' | 'D' | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	multiBodyParam(valueA: RSDString, valueB: RSDInt, valueC: SimpleRecord): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
-	multiBodyParamOpt(valueA?: RSDString, valueB?: RSDInt, valueC?: SimpleRecord): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
-	multiBodyParamNil(valueA: RSDString | null, valueB: RSDInt | null, valueC: SimpleRecord | null): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
-	multiBodyParamOptNil(valueA?: RSDString | null, valueB?: RSDInt | null, valueC?: SimpleRecord | null): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	multiBodyParam(valueA: RSDString, valueB: RSDInt, valueC: SimpleRecord, valueD: ZoneId): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	multiBodyParamOpt(valueA?: RSDString, valueB?: RSDInt, valueC?: SimpleRecord, valueD?: ZoneId): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	multiBodyParamNil(valueA: RSDString | null, valueB: RSDInt | null, valueC: SimpleRecord | null, valueD: ZoneId | null): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	multiBodyParamOptNil(valueA?: RSDString | null, valueB?: RSDInt | null, valueC?: SimpleRecord | null, valueD?: ZoneId | null): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
 	multiBodyParamFirst(valueA: RSDString | undefined, valueB: RSDInt, valueC: SimpleRecord): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
 	recordBodyParam(bodyRecord: SimpleRecord): Promise<Result<SimpleRecord, StatusRSDError | NativeRSDError>>;
 	recordBodyParamOpt(bodyRecord?: SimpleRecord): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

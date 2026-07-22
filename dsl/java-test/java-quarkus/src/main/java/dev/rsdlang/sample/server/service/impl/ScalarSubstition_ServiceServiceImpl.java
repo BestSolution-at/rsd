@@ -8,6 +8,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.MyRange;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.SampleErrorScalarSubException;
@@ -41,9 +42,10 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 	private final HeaderListOptHandler headerListOptHandler;
 	private final HeaderListNullHandler headerListNullHandler;
 	private final HeaderListOptNullHandler headerListOptNullHandler;
+	private final MultiBodyHandler multiBodyHandler;
 	private final FailHandler failHandler;
 
-	public ScalarSubstition_ServiceServiceImpl(GetHandler getHandler, ListHandler listHandler, PostHandler postHandler, PostOptHandler postOptHandler, PostNullHandler postNullHandler, PostOptNullHandler postOptNullHandler, PostListHandler postListHandler, PostListOptHandler postListOptHandler, PostListNullHandler postListNullHandler, PostListOptNullHandler postListOptNullHandler, QueryHandler queryHandler, QueryOptHandler queryOptHandler, QueryNullHandler queryNullHandler, QueryOptNullHandler queryOptNullHandler, QueryListHandler queryListHandler, QueryListOptHandler queryListOptHandler, QueryListNullHandler queryListNullHandler, QueryListOptNullHandler queryListOptNullHandler, HeaderHandler headerHandler, HeaderOptHandler headerOptHandler, HeaderNullHandler headerNullHandler, HeaderOptNullHandler headerOptNullHandler, HeaderListHandler headerListHandler, HeaderListOptHandler headerListOptHandler, HeaderListNullHandler headerListNullHandler, HeaderListOptNullHandler headerListOptNullHandler, FailHandler failHandler) {
+	public ScalarSubstition_ServiceServiceImpl(GetHandler getHandler, ListHandler listHandler, PostHandler postHandler, PostOptHandler postOptHandler, PostNullHandler postNullHandler, PostOptNullHandler postOptNullHandler, PostListHandler postListHandler, PostListOptHandler postListOptHandler, PostListNullHandler postListNullHandler, PostListOptNullHandler postListOptNullHandler, QueryHandler queryHandler, QueryOptHandler queryOptHandler, QueryNullHandler queryNullHandler, QueryOptNullHandler queryOptNullHandler, QueryListHandler queryListHandler, QueryListOptHandler queryListOptHandler, QueryListNullHandler queryListNullHandler, QueryListOptNullHandler queryListOptNullHandler, HeaderHandler headerHandler, HeaderOptHandler headerOptHandler, HeaderNullHandler headerNullHandler, HeaderOptNullHandler headerOptNullHandler, HeaderListHandler headerListHandler, HeaderListOptHandler headerListOptHandler, HeaderListNullHandler headerListNullHandler, HeaderListOptNullHandler headerListOptNullHandler, MultiBodyHandler multiBodyHandler, FailHandler failHandler) {
 		this.getHandler = getHandler;
 		this.listHandler = listHandler;
 		this.postHandler = postHandler;
@@ -70,6 +72,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 		this.headerListOptHandler = headerListOptHandler;
 		this.headerListNullHandler = headerListNullHandler;
 		this.headerListOptNullHandler = headerListOptNullHandler;
+		this.multiBodyHandler = multiBodyHandler;
 		this.failHandler = failHandler;
 	}
 
@@ -204,6 +207,11 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 	}
 
 	@Override
+	public String multiBody(BuilderFactory _factory, MyRange valueA, ZoneId valueB) {
+		return multiBodyHandler.multiBody(_factory, valueA, valueB);
+	}
+
+	@Override
 	public void fail(BuilderFactory _factory)
 			throws SampleErrorScalarSubException {
 		failHandler.fail(_factory);
@@ -311,6 +319,10 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 	public interface HeaderListOptNullHandler {
 		public NilResult headerListOptNull(BuilderFactory _factory, _Base.Nillable<List<MyRange>> range);
+	}
+
+	public interface MultiBodyHandler {
+		public String multiBody(BuilderFactory _factory, MyRange valueA, ZoneId valueB);
 	}
 
 	public interface FailHandler {

@@ -24,7 +24,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaRestCli
 				generateCompilationUnit(
 					packageName,
 					importCollector,
-					generateUnionContent(t, artifactConfig.nativeTypeSubstitues, `${artifactConfig.rootPackageName}.model`, fqn),
+					generateUnionContent(t, artifactConfig.nativeTypeSubstitutes, `${artifactConfig.rootPackageName}.model`, fqn),
 				),
 				'\t',
 			),
@@ -44,7 +44,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaRestCli
 					importCollector,
 					generateUnionPatchContent(
 						t,
-						artifactConfig.nativeTypeSubstitues,
+						artifactConfig.nativeTypeSubstitutes,
 						`${artifactConfig.rootPackageName}.model`,
 						fqn,
 					),

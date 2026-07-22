@@ -29,42 +29,42 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 
 	@Override
 	public ZoneId value() {
-		return _JsonUtils.mapLiteral(data, "value", ZoneId::of);
+		return _JsonUtils.mapLiteral(data, "value", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	@Override
 	public Optional<ZoneId> value_Null() {
-		return _JsonUtils.mapNullLiteral(data, "value_Null", ZoneId::of);
+		return _JsonUtils.mapNullLiteral(data, "value_Null", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	@Override
 	public Optional<ZoneId> value_Opt() {
-		return _JsonUtils.mapOptLiteral(data, "value_Opt", ZoneId::of);
+		return _JsonUtils.mapOptLiteral(data, "value_Opt", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	@Override
 	public _Base.Nillable<ZoneId> value_Opt_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", ZoneId::of);
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	@Override
 	public List<ZoneId> list() {
-		return _JsonUtils.mapLiterals(data, "list", ZoneId::of);
+		return _JsonUtils.mapLiterals(data, "list", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	@Override
 	public Optional<List<ZoneId>> list_Null() {
-		return _JsonUtils.mapNullLiterals(data, "list_Null", ZoneId::of);
+		return _JsonUtils.mapNullLiterals(data, "list_Null", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	@Override
 	public Optional<List<ZoneId>> list_Opt() {
-		return _JsonUtils.mapOptLiterals(data, "list_Opt", ZoneId::of);
+		return _JsonUtils.mapOptLiterals(data, "list_Opt", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	@Override
 	public _Base.Nillable<List<ZoneId>> list_Opt_Null() {
-		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", ZoneId::of);
+		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	public static PatchableScalarRecord.Data of(JsonObject obj) {
@@ -95,7 +95,7 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 			if (value == null) {
 				return this;
 			}
-			$builder.add("value", _JsonUtils.toString(value));
+			$builder.add("value", _ScalarSupport.ZoneIdToJson(value));
 			return this;
 		}
 
@@ -105,7 +105,7 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 				$builder.addNull("value_Null");
 				return this;
 			}
-			$builder.add("value_Null", _JsonUtils.toString(value_Null));
+			$builder.add("value_Null", _ScalarSupport.ZoneIdToJson(value_Null));
 			return this;
 		}
 
@@ -114,7 +114,7 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 			if (value_Opt == null) {
 				return this;
 			}
-			$builder.add("value_Opt", _JsonUtils.toString(value_Opt));
+			$builder.add("value_Opt", _ScalarSupport.ZoneIdToJson(value_Opt));
 			return this;
 		}
 
@@ -124,7 +124,7 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			$builder.add("value_Opt_Null", _JsonUtils.toString(value_Opt_Null));
+			$builder.add("value_Opt_Null", _ScalarSupport.ZoneIdToJson(value_Opt_Null));
 			return this;
 		}
 
@@ -133,7 +133,7 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 			if (list == null) {
 				return this;
 			}
-			$builder.add("list", _JsonUtils.toJsonLiteralArray(list));
+			$builder.add("list", _JsonUtils.toJsonLiteralArray(list, $e -> _ScalarSupport.ZoneIdToJson($e)));
 			return this;
 		}
 
@@ -143,7 +143,7 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 				$builder.addNull("list_Null");
 				return this;
 			}
-			$builder.add("list_Null", _JsonUtils.toJsonLiteralArray(list_Null));
+			$builder.add("list_Null", _JsonUtils.toJsonLiteralArray(list_Null, $e -> _ScalarSupport.ZoneIdToJson($e)));
 			return this;
 		}
 
@@ -152,7 +152,7 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 			if (list_Opt == null) {
 				return this;
 			}
-			$builder.add("list_Opt", _JsonUtils.toJsonLiteralArray(list_Opt));
+			$builder.add("list_Opt", _JsonUtils.toJsonLiteralArray(list_Opt, $e -> _ScalarSupport.ZoneIdToJson($e)));
 			return this;
 		}
 
@@ -162,7 +162,7 @@ public class PatchableScalarRecordDataImpl extends _BaseDataImpl implements Patc
 				$builder.addNull("list_Opt_Null");
 				return this;
 			}
-			$builder.add("list_Opt_Null", _JsonUtils.toJsonLiteralArray(list_Opt_Null));
+			$builder.add("list_Opt_Null", _JsonUtils.toJsonLiteralArray(list_Opt_Null, $e -> _ScalarSupport.ZoneIdToJson($e)));
 			return this;
 		}
 

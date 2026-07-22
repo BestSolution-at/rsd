@@ -764,6 +764,16 @@ public class _RestUtils {
 	public static <T> _Base.Nillable<T> parseNilObject(String value, Function<String, T> parser) {
 		return parseNilLiteral(value, parser);
 	}
+
+	public static Response toResponse(int status, RSDException.RSDStructuredDataException e,
+			Function<Object, Object> toJson) {
+		return Response.status(status)
+				.header("X-RSD-Error-Type", e.type)
+				.header("X-RSD-Error-Message", e.getMessage())
+				.type(MediaType.APPLICATION_JSON_TYPE)
+				.entity(_JsonUtils.encodeValue(toJson.apply(e.data()), "application/json", null)).build();
+	}
+
 	public static Response toResponse(int status, RSDException e) {
 		if (e instanceof RSDException.RSDStructuredDataException s) {
 			return Response.status(status)

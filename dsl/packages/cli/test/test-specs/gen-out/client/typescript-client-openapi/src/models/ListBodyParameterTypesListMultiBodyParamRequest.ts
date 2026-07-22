@@ -45,6 +45,12 @@ export interface ListBodyParameterTypesListMultiBodyParamRequest {
      * @memberof ListBodyParameterTypesListMultiBodyParamRequest
      */
     valueC: Array<SimpleRecord>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ListBodyParameterTypesListMultiBodyParamRequest
+     */
+    valueD: Array<string>;
 }
 
 /**
@@ -54,6 +60,7 @@ export function instanceOfListBodyParameterTypesListMultiBodyParamRequest(value:
     if (!('valueA' in value) || value['valueA'] === undefined) return false;
     if (!('valueB' in value) || value['valueB'] === undefined) return false;
     if (!('valueC' in value) || value['valueC'] === undefined) return false;
+    if (!('valueD' in value) || value['valueD'] === undefined) return false;
     return true;
 }
 
@@ -70,6 +77,7 @@ export function ListBodyParameterTypesListMultiBodyParamRequestFromJSONTyped(jso
         'valueA': json['valueA'],
         'valueB': json['valueB'],
         'valueC': ((json['valueC'] as Array<any>).map(SimpleRecordFromJSON)),
+        'valueD': json['valueD'],
     };
 }
 
@@ -87,6 +95,7 @@ export function ListBodyParameterTypesListMultiBodyParamRequestToJSONTyped(value
         'valueA': value['valueA'],
         'valueB': value['valueB'],
         'valueC': ((value['valueC'] as Array<any>).map(SimpleRecordToJSON)),
+        'valueD': value['valueD'],
     };
 }
 

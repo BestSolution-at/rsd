@@ -141,9 +141,10 @@ describe('ListQueryParameterTypesServiceFetchImpl', () => {
 					{ key: 'b', version: 'v2', value: 'Value2' },
 					{ key: 'c', version: 'v3', value: 'Value3' },
 				],
+				['UTC'],
 			);
 			expect(error).toBeNull();
-			expect(result).toEqual('one,two,three-1,2,3-a,b,c');
+			expect(result).toEqual('one,two,three-1,2,3-a,b,c-UTC');
 		});
 	});
 	describe('listRecordQueryParam', () => {

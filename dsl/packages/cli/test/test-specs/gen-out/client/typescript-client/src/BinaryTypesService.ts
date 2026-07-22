@@ -3,6 +3,7 @@ import type { Result } from './_result-utils.js';
 import type { RSDInt, RSDString } from './model/_Builtins.js';
 import type { NativeRSDError, SampleErrorWithValueError, StatusRSDError } from './Errors.js';
 import type { SimpleRecord } from './model/SimpleRecord.js';
+import type { ZoneId } from './model/_Scalars.js';
 import type { UploadMixedResult } from './model/UploadMixedResult.js';
 import type { MixedResult } from './model/MixedResult.js';
 
@@ -23,10 +24,10 @@ export interface BinaryTypesService {
 	uploadBlobListOpt(data?: Blob[]): Promise<Result<RSDInt, StatusRSDError | NativeRSDError>>;
 	uploadBlobListNil(data: Blob[] | null): Promise<Result<RSDInt, StatusRSDError | NativeRSDError>>;
 	uploadBlobListOptNil(data?: Blob[] | null): Promise<Result<RSDInt, StatusRSDError | NativeRSDError>>;
-	uploadMixed(text: RSDString, number: RSDInt, rec: SimpleRecord, textList: RSDString[], numberList: RSDInt[], recList: SimpleRecord[], dataFile: File, dataBlob: Blob): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
-	uploadMixedOpt(text?: RSDString, number?: RSDInt, rec?: SimpleRecord, textList?: RSDString[], numberList?: RSDInt[], recList?: SimpleRecord[], dataFile?: File, dataBlob?: Blob): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
-	uploadMixedNil(text: RSDString | null, number: RSDInt | null, rec: SimpleRecord | null, textList: RSDString[] | null, numberList: RSDInt[] | null, recList: SimpleRecord[] | null, dataFile: File | null, dataBlob: Blob | null): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
-	uploadMixedOptNil(text?: RSDString | null, number?: RSDInt | null, rec?: SimpleRecord | null, textList?: RSDString[] | null, numberList?: RSDInt[] | null, recList?: SimpleRecord[] | null, dataFile?: File | null, dataBlob?: Blob | null): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
+	uploadMixed(text: RSDString, number: RSDInt, rec: SimpleRecord, scalar_: ZoneId, textList: RSDString[], numberList: RSDInt[], recList: SimpleRecord[], scalarList: ZoneId[], dataFile: File, dataBlob: Blob): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
+	uploadMixedOpt(text?: RSDString, number?: RSDInt, rec?: SimpleRecord, scalar_?: ZoneId, textList?: RSDString[], numberList?: RSDInt[], recList?: SimpleRecord[], scalarList?: ZoneId[], dataFile?: File, dataBlob?: Blob): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
+	uploadMixedNil(text: RSDString | null, number: RSDInt | null, rec: SimpleRecord | null, scalar_: ZoneId | null, textList: RSDString[] | null, numberList: RSDInt[] | null, recList: SimpleRecord[] | null, scalarList: ZoneId[] | null, dataFile: File | null, dataBlob: Blob | null): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
+	uploadMixedOptNil(text?: RSDString | null, number?: RSDInt | null, rec?: SimpleRecord | null, scalar_?: ZoneId | null, textList?: RSDString[] | null, numberList?: RSDInt[] | null, recList?: SimpleRecord[] | null, scalarList?: ZoneId[] | null, dataFile?: File | null, dataBlob?: Blob | null): Promise<Result<UploadMixedResult, StatusRSDError | NativeRSDError>>;
 	mixed(pathString: RSDString, pathNumber: RSDInt, headerString: RSDString, headerNumber: RSDInt, headerRecord: SimpleRecord, queryString: RSDString, queryNumber: RSDInt, queryRecord: SimpleRecord, dataBlob: Blob): Promise<Result<MixedResult, StatusRSDError | NativeRSDError>>;
 	singleBodyAddition(name: RSDString, dataBlob: Blob): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
 	twoBinariesAddition(dataBlob: Blob, dataFile: File): Promise<Result<RSDInt[], StatusRSDError | NativeRSDError>>;

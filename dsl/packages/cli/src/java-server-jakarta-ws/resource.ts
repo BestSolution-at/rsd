@@ -6,12 +6,13 @@ import {
 	computeParameterValueType,
 	generateCompilationUnit,
 	JavaImportsCollector,
+	JavaNativeTypeSubstitutes,
 	JavaServerJakartaWSGeneratorConfig,
-	resolveType,
 	toPath,
 } from '../java-gen-utils.js';
 import {
 	isMBuiltinType,
+	isMScalarType,
 	MOperation,
 	MParameter,
 	MParameterInlineEnumType,
@@ -346,7 +347,16 @@ function _generateResource(
 							const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
 							mBody.append(`} catch (${Type} e) {`, NL);
 							mBody.indent(inner => {
-								inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+								const err = o.resolved.errors.find(r => r.name === e.error);
+								if (isMScalarType(err?.resolvedContentType)) {
+									const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+									inner.append(
+										`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_ScalarSupport}::toJson);`,
+										NL,
+									);
+								} else {
+									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+								}
 							});
 						});
 						mBody.append('}', NL);
@@ -518,7 +528,13 @@ function generateResourceMethod(
 				const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
 				mBody.append(`} catch (${Type} e) {`, NL);
 				mBody.indent(inner => {
-					inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+					const err = o.resolved.errors.find(r => r.name === e.error);
+					if (isMScalarType(err?.resolvedContentType)) {
+						const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_ScalarSupport}::toJson);`, NL);
+					} else {
+						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+					}
 				});
 			});
 			mBody.append('}', NL);
@@ -715,7 +731,7 @@ function recordUnionParameter(
 ) {
 	const type = computeParameterAPIType(
 		p,
-		artifactConfig.nativeTypeSubstitues,
+		artifactConfig.nativeTypeSubstitutes,
 		`${artifactConfig.rootPackageName}.model`,
 		fqn,
 		true,
@@ -927,25 +943,31 @@ function scalarParameter(
 	asJSON: boolean,
 	contentTypeText: string,
 ) {
-	const type = p.type;
-	let t: string;
-	if (artifactConfig.nativeTypeSubstitues && type in artifactConfig.nativeTypeSubstitues) {
-		t = resolveType(type, artifactConfig.nativeTypeSubstitues, fqn, false);
-	} else {
-		t = fqn(`${artifactConfig.rootPackageName}.model.${type}`);
-	}
+	const ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
 			if (p.optional && p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
+					NL,
+				);
 			} else if (p.optional) {
-				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
+					NL,
+				);
 			} else if (p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
+					NL,
+				);
 			} else {
-				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${contentTypeText}, ${t}::of);`, NL);
+				node.append(
+					`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
+					NL,
+				);
 			}
 		} else {
 			const transformerPre = p.meta?.rest?.source === 'header' ? `${_Util}.preprocessEscapedAscii(` : '';
@@ -953,22 +975,22 @@ function scalarParameter(
 
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+					`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+					`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+					`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${transformerPre}${t}::of${transformerPost});`,
+					`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			}
@@ -982,22 +1004,22 @@ function scalarParameter(
 				: `, ${contentTypeText}`;
 		if (p.optional && p.nullable) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 				NL,
 			);
 		} else if (p.optional) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 				NL,
 			);
 		} else if (p.nullable) {
 			node.append(
-				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 				NL,
 			);
 		} else {
 			node.append(
-				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${transformerPre}${t}::of${transformerPost});`,
+				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 				NL,
 			);
 		}
@@ -1130,14 +1152,14 @@ function generateServiceData(
 					p.variant === 'inline-enum'
 						? computeParameterAPITypeNG(
 								p,
-								artifactConfig.nativeTypeSubstitues,
+								artifactConfig.nativeTypeSubstitutes,
 								`${artifactConfig.rootPackageName}.model`,
 								fqn,
 								o.name,
 							)
 						: computeParameterAPITypeNG(
 								p,
-								artifactConfig.nativeTypeSubstitues,
+								artifactConfig.nativeTypeSubstitutes,
 								`${artifactConfig.rootPackageName}.model`,
 								fqn,
 							);
@@ -1147,7 +1169,7 @@ function generateServiceData(
 						generateParameterContent(
 							p,
 							artifactConfig,
-							artifactConfig.nativeTypeSubstitues,
+							artifactConfig.nativeTypeSubstitutes,
 							`${artifactConfig.rootPackageName}.model`,
 							fqn,
 							o,
@@ -1170,7 +1192,7 @@ function generateServiceData(
 function generateParameterContent(
 	prop: MParameter,
 	artifactConfig: JavaServerJakartaWSGeneratorConfig,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 	o: MResolvedOperation,
@@ -1197,7 +1219,7 @@ function generateParameterContent(
 			});
 		}
 	} else if (prop.variant === 'inline-enum') {
-		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, o.name);
+		const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, o.name);
 		if (array) {
 			if (prop.optional && prop.nullable) {
 				mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${Type}::valueOf)`;
@@ -1243,26 +1265,26 @@ function generateParameterContent(
 				}
 			}
 		} else if (prop.variant === 'scalar') {
-			const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
+			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 			if (array) {
 				if (prop.optional && prop.nullable) {
-					mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else if (prop.optional) {
-					mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else if (prop.nullable) {
-					mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else {
-					mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				}
 			} else {
 				if (prop.optional && prop.nullable) {
-					mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else if (prop.optional) {
-					mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else if (prop.nullable) {
-					mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				} else {
-					mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${Type}::of)`;
+					mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${_ScalarSupport}::${prop.type}FromJson)`;
 				}
 			}
 		} else {

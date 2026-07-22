@@ -343,25 +343,26 @@ public class QueryParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiQueryParam(QueryParameterTypesService service) {
-		assertEquals("hello-42", service.multiQueryParam("hello", 42).orThrow());
+		var result = service.multiQueryParam("hello", 42, ZoneId.of("UTC")).orThrow();
+		assertEquals("hello-42-UTC", result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiQueryParamOpt_allUndefined(QueryParameterTypesService service) {
-		assertEquals("undefined-undefined", service.multiQueryParamOpt().orThrow());
+		assertEquals("undefined-undefined-undefined", service.multiQueryParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiQueryParamOpt_valueAOnly(QueryParameterTypesService service) {
-		assertEquals("hello-undefined", service.multiQueryParamOpt("hello").orThrow());
+		assertEquals("hello-undefined-undefined", service.multiQueryParamOpt("hello").orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiQueryParamOpt_allDefined(QueryParameterTypesService service) {
-		assertEquals("hello-42", service.multiQueryParamOpt("hello", 42).orThrow());
+		assertEquals("hello-42-UTC", service.multiQueryParamOpt("hello", 42, ZoneId.of("UTC")).orThrow());
 	}
 
 	// --- Record Query Param ---

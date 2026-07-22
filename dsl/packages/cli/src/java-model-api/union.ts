@@ -2,10 +2,11 @@ import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { isMResolvedProperty, MResolvedUnionType } from '../model.js';
 import { generatePatchPropertyAccessor, generatePropertyAccessor } from './shared.js';
 import { toNode } from '../util.js';
+import { JavaNativeTypeSubstitutes } from '../java-gen-utils.js';
 
 export function generateUnionContent(
 	t: MResolvedUnionType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -14,12 +15,12 @@ export function generateUnionContent(
 	node.indent(classBody => {
 		classBody.append(Builder());
 		classBody.appendNewLine();
-		classBody.append(generateData(t, nativeTypeSubstitues, basePackageName, fqn));
+		classBody.append(generateData(t, nativeTypeSubstitutes, basePackageName, fqn));
 		classBody.appendNewLine();
 		classBody.append(generateDataBuilder());
 
 		if (t.resolved.records.find(r => r.patchable)) {
-			classBody.append(NL, generatePatch(t, nativeTypeSubstitues, basePackageName, fqn), NL);
+			classBody.append(NL, generatePatch(t, nativeTypeSubstitutes, basePackageName, fqn), NL);
 			classBody.append(generatePatchBuilder(), NL);
 		}
 	});
@@ -33,7 +34,7 @@ function Builder() {
 
 function generateData(
 	t: MResolvedUnionType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -42,7 +43,7 @@ function generateData(
 	node.indent(classBody => {
 		classBody.append(
 			...t.resolved.sharedProps.flatMap(p => [
-				generatePropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn),
+				generatePropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn),
 				NL,
 			]),
 		);
@@ -60,7 +61,7 @@ function generateDataBuilder() {
 
 function generatePatch(
 	t: MResolvedUnionType,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
@@ -74,7 +75,7 @@ function generatePatch(
 				}
 				return true;
 			})
-			.flatMap(p => [generatePatchPropertyAccessor(p, nativeTypeSubstitues, basePackageName, fqn)]),
+			.flatMap(p => [generatePatchPropertyAccessor(p, nativeTypeSubstitutes, basePackageName, fqn)]),
 		'}',
 	]);
 }

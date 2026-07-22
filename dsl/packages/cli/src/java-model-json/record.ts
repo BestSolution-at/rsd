@@ -12,13 +12,13 @@ import {
 	MResolvedRSDModel,
 } from '../model.js';
 import { generatePropertyNG } from './shared.js';
-import { computeAPIType } from '../java-gen-utils.js';
+import { computeAPIType, JavaNativeTypeSubstitutes } from '../java-gen-utils.js';
 import { toFirstUpper } from '../util.js';
 
 export function generateRecordContent(
 	t: MResolvedRecordType,
 	model: MResolvedRSDModel,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ): CompositeGeneratorNode {
@@ -38,10 +38,10 @@ export function generateRecordContent(
 			initBody.append('super(data);', NL);
 		});
 		classBody.append('}', NL, NL);
-		classBody.append(generatePropertyAccessors(t, allProps, nativeTypeSubstitues, interfaceBasePackage, fqn));
+		classBody.append(generatePropertyAccessors(t, allProps, nativeTypeSubstitutes, interfaceBasePackage, fqn));
 		classBody.append(generateOf(t, fqn), NL);
 		classBody.append(generateToString(keyProp, revProp), NL);
-		classBody.append(generateBuilder(t, allProps, nativeTypeSubstitues, interfaceBasePackage, fqn), NL);
+		classBody.append(generateBuilder(t, allProps, nativeTypeSubstitutes, interfaceBasePackage, fqn), NL);
 		classBody.append(`public static ${t.name}.DataBuilder builder() {`, NL);
 		classBody.indent(methodBody => {
 			methodBody.append('return new DataBuilderImpl();', NL);
@@ -57,7 +57,7 @@ export function generateRecordContent(
 function generateBuilder(
 	t: MResolvedRecordType,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
@@ -76,7 +76,7 @@ function generateBuilder(
 			});
 			classBody.append('}', NL, NL);
 		}
-		classBody.append(generateBuilderPropertyMethods(t, props, nativeTypeSubstitues, interfaceBasePackage, fqn));
+		classBody.append(generateBuilderPropertyMethods(t, props, nativeTypeSubstitutes, interfaceBasePackage, fqn));
 		classBody.append(`public ${t.name}.Data build() {`, NL);
 		classBody.indent(methodBody => {
 			methodBody.append(`return new ${t.name}DataImpl($builder.build());`, NL);
@@ -90,13 +90,13 @@ function generateBuilder(
 function generateBuilderPropertyMethods(
 	owner: MResolvedRecordType,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
 	const node = new CompositeGeneratorNode();
 	props.forEach(prop => {
-		const type = computeAPIType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
+		const type = computeAPIType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn);
 		node.append('@Override', NL);
 		node.append(`public ${owner.name}.DataBuilder ${prop.name}(${type} ${prop.name}) {`, NL);
 		node.indent(methodBody => {
@@ -181,7 +181,9 @@ function generateJSONBuilder(prop: MResolvedBaseProperty): string {
 				type: prop.type,
 				name: prop.name,
 			});
-		} else if (prop.variant === 'enum' || prop.variant === 'inline-enum' || prop.variant === 'scalar') {
+		} else if (prop.variant === 'scalar') {
+			return `$builder.add("${prop.name}", _JsonUtils.toJsonLiteralArray(${prop.name}, $e -> _ScalarSupport.${prop.type}ToJson($e)))`;
+		} else if (prop.variant === 'enum' || prop.variant === 'inline-enum') {
 			return `$builder.add("${prop.name}", _JsonUtils.toJsonLiteralArray(${prop.name}))`;
 		} else {
 			return `$builder.add("${prop.name}", _JsonUtils.toJsonValueArray(${prop.name}, $e -> ((_BaseDataImpl) $e).data))`;
@@ -190,7 +192,9 @@ function generateJSONBuilder(prop: MResolvedBaseProperty): string {
 
 	if (isMBuiltinType(prop.type)) {
 		return builtinBuilderAccess({ type: prop.type, name: prop.name });
-	} else if (prop.variant === 'enum' || prop.variant === 'inline-enum' || prop.variant === 'scalar') {
+	} else if (prop.variant === 'scalar') {
+		return `$builder.add("${prop.name}", _ScalarSupport.${prop.type}ToJson(${prop.name}))`;
+	} else if (prop.variant === 'enum' || prop.variant === 'inline-enum') {
 		return `$builder.add("${prop.name}", _JsonUtils.toString(${prop.name}))`;
 	} else {
 		return `$builder.add("${prop.name}", ((_BaseDataImpl) ${prop.name}).data)`;
@@ -286,14 +290,14 @@ function generateToString(keyProp: MResolvedBaseProperty | undefined, revProp: M
 function generatePropertyAccessors(
 	owner: MResolvedRecordType,
 	props: MResolvedBaseProperty[],
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 ) {
 	const node = new CompositeGeneratorNode();
 	node.append(
 		...props.flatMap(p => {
-			return [generatePropertyNG(owner, p, nativeTypeSubstitues, interfaceBasePackage, fqn), NL];
+			return [generatePropertyNG(owner, p, nativeTypeSubstitutes, interfaceBasePackage, fqn), NL];
 		}),
 	);
 	return node;

@@ -465,15 +465,19 @@ resource HeaderParameterTypes at '/api/headerparametertypes' {
 	GET multiHeaderParam at 'multiHeaderParam'
 		header-param valueA
 		header-param valueB
+		header-param valueC
 	GET multiHeaderParamOpt at 'multiHeaderParamOpt'
 		header-param valueA
 		header-param valueB
+		header-param valueC
 	GET multiHeaderParamNil at 'multiHeaderParamNil'
 		header-param valueA
 		header-param valueB
+		header-param valueC
 	GET multiHeaderParamOptNil at 'multiHeaderParamOptNil'
 		header-param valueA
 		header-param valueB
+		header-param valueC
 	
 	GET recordHeaderParam at 'recordHeaderParam'
 		header-param headerValue
@@ -569,9 +573,11 @@ resource QueryParameterTypes at '/api/queryparametertypes' {
 	GET multiQueryParam at 'multiQueryParam'
 		query-param valueA
 		query-param valueB
+		query-param valueC
 	GET multiQueryParamOpt at 'multiQueryParamOpt'
 		query-param valueA
 		query-param valueB
+		query-param valueC
 	
 	GET recordQueryParam at 'recordQueryParam'
 		query-param queryValue
@@ -701,6 +707,7 @@ resource ListQueryParameterTypes at '/api/listqueryparametertypes' {
 		query-param valueA
 		query-param valueB
 		query-param valueC
+		query-param valueD
 	GET listRecordQueryParam at 'listRecordQueryParam'
 		query-param queryValue
 }
@@ -845,18 +852,22 @@ resource ListHeaderParameterTypes at '/api/listheaderparametertypes' {
 		header-param valueA
 		header-param valueB
 		header-param valueC
+		header-param valueD
 	GET listMultiHeaderParamOpt at 'listMultiHeaderParamOpt'
 		header-param valueA
 		header-param valueB
 		header-param valueC
+		header-param valueD
 	GET listMultiHeaderParamNil at 'listMultiHeaderParamNil'
 		header-param valueA
 		header-param valueB
 		header-param valueC
+		header-param valueD
 	GET listMultiHeaderParamOptNil at 'listMultiHeaderParamOptNil'
 		header-param valueA
 		header-param valueB
 		header-param valueC
+		header-param valueD
 	
 	GET listRecordHeaderParam at 'listRecordHeaderParam'
 		header-param headerValue
@@ -985,4 +996,6 @@ resource ScalarSubstition_Service at '/api/scalarsubstitution' {
 		200
 		400: SampleErrorScalarSub
 	}
+
+	POST multiBody at 'multiBody'
 }

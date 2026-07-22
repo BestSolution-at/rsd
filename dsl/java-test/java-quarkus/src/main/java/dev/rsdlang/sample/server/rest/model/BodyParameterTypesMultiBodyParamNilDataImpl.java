@@ -8,8 +8,10 @@ import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.server.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 public class BodyParameterTypesMultiBodyParamNilDataImpl extends _BaseDataImpl {
 	public BodyParameterTypesMultiBodyParamNilDataImpl(JsonObject data) {
@@ -26,6 +28,10 @@ public class BodyParameterTypesMultiBodyParamNilDataImpl extends _BaseDataImpl {
 
 	public Optional<SimpleRecord.Data> valueC() {
 		return _JsonUtils.mapNullObject(data, "valueC", SimpleRecordDataImpl::of);
+	}
+
+	public Optional<ZoneId> valueD() {
+		return _JsonUtils.mapNullLiteral(data, "valueD", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

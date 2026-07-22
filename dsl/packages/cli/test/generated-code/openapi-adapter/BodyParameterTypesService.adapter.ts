@@ -3,6 +3,7 @@ import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/
 import { BodyParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/BodyParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
 import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import { ZoneId } from '../../test-specs/gen-out/client/typescript-client/src/model/_Scalars.js';
 
 export function createOpenAPIBodyParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -929,6 +930,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		valueA: string,
 		valueB: number,
 		valueC: api.model.SimpleRecord,
+		valueD: ZoneId,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesMultiBodyParamRaw({
@@ -936,6 +938,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 					valueA,
 					valueB,
 					valueC,
+					valueD,
 				},
 			});
 			if (response.raw.status === 200) {
@@ -973,6 +976,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		valueA: string | null,
 		valueB: number | null,
 		valueC: api.model.SimpleRecord | null,
+		valueD: ZoneId | null,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesMultiBodyParamNilRaw({
@@ -980,6 +984,7 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 					valueA,
 					valueB,
 					valueC,
+					valueD,
 				},
 			});
 			if (response.raw.status === 200) {

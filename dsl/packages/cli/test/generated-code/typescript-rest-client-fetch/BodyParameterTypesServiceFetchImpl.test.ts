@@ -570,9 +570,14 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 		test.each([json, msgpack, openapi])(
 			'success - valueA: Hello, valueB: World with $encoding',
 			async ({ service }) => {
-				const [result, error] = await service.multiBodyParam('Hello', 1, { key: 'a', version: '1', value: 'foo' });
+				const [result, error] = await service.multiBodyParam(
+					'Hello',
+					1,
+					{ key: 'a', version: '1', value: 'foo' },
+					'UTC',
+				);
 				expect(error).toBeNull();
-				expect(result).toBe('Hello-1-a');
+				expect(result).toBe('Hello-1-a-UTC');
 			},
 		);
 	});
@@ -602,24 +607,24 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 		test.each([json, msgpack, openapi])(
 			'success - valueA: Hello, valueB: undefined with $encoding',
 			async ({ service }) => {
-				const [result, error] = await service.multiBodyParamOpt('Hello', undefined, undefined);
+				const [result, error] = await service.multiBodyParamOpt('Hello', undefined, undefined, undefined);
 				expect(error).toBeNull();
-				expect(result).toBe('Hello-undefined-undefined');
+				expect(result).toBe('Hello-undefined-undefined-undefined');
 			},
 		);
 	});
 	describe('multiBodyParamNil', () => {
 		test.each([json, msgpack, openapi])('success - valueA: Hello, valueB: null with $encoding', async ({ service }) => {
-			const [result, error] = await service.multiBodyParamNil('Hello', null, null);
+			const [result, error] = await service.multiBodyParamNil('Hello', null, null, null);
 			expect(error).toBeNull();
-			expect(result).toBe('Hello-null-null');
+			expect(result).toBe('Hello-null-null-null');
 		});
 	});
 	describe('multiBodyParamOptNil', () => {
 		test.each([json, msgpack, openapi])('success - valueA: Hello, valueB: null with $encoding', async ({ service }) => {
-			const [result, error] = await service.multiBodyParamOptNil('Hello', null, undefined);
+			const [result, error] = await service.multiBodyParamOptNil('Hello', null, undefined, undefined);
 			expect(error).toBeNull();
-			expect(result).toBe('Hello-null-undefined');
+			expect(result).toBe('Hello-null-undefined-undefined');
 		});
 	});
 

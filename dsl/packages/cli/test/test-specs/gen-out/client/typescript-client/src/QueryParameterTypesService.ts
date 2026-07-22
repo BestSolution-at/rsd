@@ -36,8 +36,8 @@ export interface QueryParameterTypesService {
 	simpleScalarQueryParamOpt(queryValue?: ZoneId): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleEnumQueryParam(queryValue: SampleEnum): Promise<Result<SampleEnum, StatusRSDError | NativeRSDError>>;
 	simpleEnumQueryParamOpt(queryValue?: SampleEnum): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	multiQueryParam(valueA: RSDString, valueB: RSDInt): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
-	multiQueryParamOpt(valueA?: RSDString, valueB?: RSDInt): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	multiQueryParam(valueA: RSDString, valueB: RSDInt, valueC: ZoneId): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	multiQueryParamOpt(valueA?: RSDString, valueB?: RSDInt, valueC?: ZoneId): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
 	recordQueryParam(queryValue: SimpleRecord): Promise<Result<SimpleRecord, StatusRSDError | NativeRSDError>>;
 	recordQueryParamOpt(queryValue?: SimpleRecord): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 }

@@ -16,6 +16,7 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.HeaderParameterTypesService;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
 import dev.rsdlang.sample.client.model.SampleEnum;
@@ -2932,7 +2933,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(Objects.toString(headerValue)));
+		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(headerValue != null ? _ScalarSupport.ZoneIdToJson(headerValue) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -2949,7 +2950,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ZoneId::of);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _ScalarSupport::ZoneIdFromJson);
 				this.lifecycleHook.onSuccess("simpleScalarHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3009,7 +3010,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(Objects.toString(headerValue)));
+		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(headerValue != null ? _ScalarSupport.ZoneIdToJson(headerValue) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3051,7 +3052,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(Objects.toString(headerValue)));
+		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(headerValue != null ? _ScalarSupport.ZoneIdToJson(headerValue) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3128,7 +3129,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(Objects.toString(headerValue)));
+		$headerParams.put("headerValue", BaseUtils.encodeAsciiString(headerValue != null ? _ScalarSupport.ZoneIdToJson(headerValue) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3645,8 +3646,9 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		}
 	}
 
-	public Result<String, RSDError.$GenericError> multiHeaderParam(String valueA, int valueB) {
+	public Result<String, RSDError.$GenericError> multiHeaderParam(String valueA, int valueB, ZoneId valueC) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
+		Objects.requireNonNull(valueC, "valueC must not be null");
 
 		var $path = "%s/api/headerparametertypes/multiHeaderParam".formatted(
 				this.baseURI());
@@ -3654,6 +3656,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		var $headerParams = new HashMap<String, String>();
 		$headerParams.put("valueA", BaseUtils.encodeAsciiString(valueA));
 		$headerParams.put("valueB", String.format("%s", valueB));
+		$headerParams.put("valueC", BaseUtils.encodeAsciiString(valueC != null ? _ScalarSupport.ZoneIdToJson(valueC) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3814,7 +3817,53 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 		}
 	}
 
-	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamNil(String valueA, Integer valueB) {
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt(String valueA, Integer valueB, ZoneId valueC) {
+		var $path = "%s/api/headerparametertypes/multiHeaderParamOpt".formatted(
+				this.baseURI());
+
+		var $headerParams = new HashMap<String, String>();
+		if (valueA != null) {
+			$headerParams.put("valueA", BaseUtils.encodeAsciiString(valueA));
+		}
+		$headerParams.put("valueB", String.format("%s", valueB));
+		$headerParams.put("valueC", BaseUtils.encodeAsciiString(valueC != null ? _ScalarSupport.ZoneIdToJson(valueC) : "null"));
+		var $headers = BaseUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			this.lifecycleHook.preRequest("multiHeaderParamOpt", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				this.lifecycleHook.onSuccess("multiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamOpt", e);
+			this.lifecycleHook.onCatch("multiHeaderParamOpt", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("multiHeaderParamOpt");
+		}
+	}
+
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamNil(String valueA, Integer valueB, ZoneId valueC) {
 		var $path = "%s/api/headerparametertypes/multiHeaderParamNil".formatted(
 				this.baseURI());
 
@@ -3825,6 +3874,7 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			$headerParams.put("valueA", "null");
 		}
 		$headerParams.put("valueB", String.format("%s", valueB));
+		$headerParams.put("valueC", BaseUtils.encodeAsciiString(valueC != null ? _ScalarSupport.ZoneIdToJson(valueC) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3953,6 +4003,54 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 			$headerParams.put("valueA", "null");
 		}
 		$headerParams.put("valueB", String.format("%s", valueB));
+		var $headers = BaseUtils.toHeaders($headerParams);
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.GET();
+			if($headers.length > 0) {
+				$requestBuilder = $requestBuilder.headers($headers);
+			}
+			this.lifecycleHook.preRequest("multiHeaderParamOptNil", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				this.lifecycleHook.onSuccess("multiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiHeaderParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiHeaderParamOptNil", e);
+			this.lifecycleHook.onCatch("multiHeaderParamOptNil", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("multiHeaderParamOptNil");
+		}
+	}
+
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil(String valueA, Integer valueB, ZoneId valueC) {
+		var $path = "%s/api/headerparametertypes/multiHeaderParamOptNil".formatted(
+				this.baseURI());
+
+		var $headerParams = new HashMap<String, String>();
+		if (valueA != null) {
+			$headerParams.put("valueA", BaseUtils.encodeAsciiString(valueA));
+		} else {
+			$headerParams.put("valueA", "null");
+		}
+		$headerParams.put("valueB", String.format("%s", valueB));
+		$headerParams.put("valueC", BaseUtils.encodeAsciiString(valueC != null ? _ScalarSupport.ZoneIdToJson(valueC) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);

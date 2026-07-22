@@ -693,40 +693,40 @@ describe('SingleHeaderParameterTypesService', () => {
 
 	describe('multiHeaderParam', () => {
 		test.each([json, msgpack, openApi])('success - ["Hell", 1] with $encoding', async ({ service }) => {
-			const [result, error] = await service.multiHeaderParam('Hello', 1);
+			const [result, error] = await service.multiHeaderParam('Hello', 1, 'UTC');
 			expect(error).toBeNull();
-			expect(result).toEqual('Hello-1');
+			expect(result).toEqual('Hello-1-UTC');
 		});
 	});
 	describe('multiHeaderParamOpt', () => {
 		test.each([json, msgpack, openApi])('success with $encoding', async ({ service }) => {
 			const [result, error] = await service.multiHeaderParamOpt();
 			expect(error).toBeNull();
-			expect(result).toEqual(['UNDEFINED', 'UNDEFINED']);
+			expect(result).toEqual(['UNDEFINED', 'UNDEFINED', 'UNDEFINED']);
 		});
 	});
 	describe('multiHeaderParamNil', () => {
 		test.each([json, msgpack, openApi])('success - null with $encoding', async ({ service }) => {
-			const [result, error] = await service.multiHeaderParamNil(null, null);
+			const [result, error] = await service.multiHeaderParamNil(null, null, null);
 			expect(error).toBeNull();
-			expect(result).toEqual(['NULL', 'NULL']);
+			expect(result).toEqual(['NULL', 'NULL', 'NULL']);
 		});
 	});
 	describe('multiHeaderParamOptNil', () => {
 		test.each([json, msgpack, openApi])('success - undefined with $encoding', async ({ service }) => {
 			const [result, error] = await service.multiHeaderParamOptNil();
 			expect(error).toBeNull();
-			expect(result).toEqual(['UNDEFINED', 'UNDEFINED']);
+			expect(result).toEqual(['UNDEFINED', 'UNDEFINED', 'UNDEFINED']);
 		});
 		test.each([json, msgpack, openApi])('success - null with $encoding', async ({ service }) => {
-			const [result, error] = await service.multiHeaderParamOptNil(null, null);
+			const [result, error] = await service.multiHeaderParamOptNil(null, null, null);
 			expect(error).toBeNull();
-			expect(result).toEqual(['NULL', 'NULL']);
+			expect(result).toEqual(['NULL', 'NULL', 'NULL']);
 		});
 		test.each([json, msgpack, openApi])('success - mixed with $encoding', async ({ service }) => {
-			const [result, error] = await service.multiHeaderParamOptNil(undefined, null);
+			const [result, error] = await service.multiHeaderParamOptNil(undefined, null, null);
 			expect(error).toBeNull();
-			expect(result).toEqual(['UNDEFINED', 'NULL']);
+			expect(result).toEqual(['UNDEFINED', 'NULL', 'NULL']);
 		});
 	});
 

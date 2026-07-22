@@ -7,8 +7,10 @@ import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.server.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl {
 	public BinaryTypesUploadMixedDataImpl(JsonObject data) {
@@ -27,6 +29,10 @@ public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl {
 		return _JsonUtils.mapObject(data, "rec", SimpleRecordDataImpl::of);
 	}
 
+	public ZoneId scalar_() {
+		return _JsonUtils.mapLiteral(data, "scalar_", _ScalarSupport::ZoneIdFromJson);
+	}
+
 	public List<String> textList() {
 		return _JsonUtils.mapStrings(data, "textList");
 	}
@@ -37,6 +43,10 @@ public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl {
 
 	public List<SimpleRecord.Data> recList() {
 		return _JsonUtils.mapObjects(data, "recList", SimpleRecordDataImpl::of);
+	}
+
+	public List<ZoneId> scalarList() {
+		return _JsonUtils.mapLiterals(data, "scalarList", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

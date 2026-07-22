@@ -125,8 +125,19 @@ function toResponse(
 	fqn(`${artifactConfig.rootPackageName}.service.RSDException`);
 	fqn('jakarta.ws.rs.core.Response');
 	fqn('jakarta.ws.rs.core.MediaType');
+	fqn('java.util.function.Function');
 
 	return toNodeTree(`
+
+public static Response toResponse(int status, RSDException.RSDStructuredDataException e,
+		Function<Object, Object> toJson) {
+	return Response.status(status)
+			.header("X-RSD-Error-Type", e.type)
+			.header("X-RSD-Error-Message", e.getMessage())
+			.type(MediaType.APPLICATION_JSON_TYPE)
+			.entity(_JsonUtils.encodeValue(toJson.apply(e.data()), "application/json", null)).build();
+}
+
 public static Response toResponse(int status, RSDException e) {
 	if (e instanceof RSDException.RSDStructuredDataException s) {
 		return Response.status(status)

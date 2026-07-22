@@ -45,21 +45,25 @@ export interface HeaderParameterTypesMixedRequest {
 export interface HeaderParameterTypesMultiHeaderParamRequest {
     valueA: string;
     valueB: number;
+    valueC: string;
 }
 
 export interface HeaderParameterTypesMultiHeaderParamNilRequest {
     valueA: string | null;
     valueB: number | null;
+    valueC: string | null;
 }
 
 export interface HeaderParameterTypesMultiHeaderParamOptRequest {
     valueA?: string;
     valueB?: number;
+    valueC?: string;
 }
 
 export interface HeaderParameterTypesMultiHeaderParamOptNilRequest {
     valueA?: string | null;
     valueB?: number | null;
+    valueC?: string | null;
 }
 
 export interface HeaderParameterTypesRecordHeaderParamRequest {
@@ -484,6 +488,13 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['valueC'] == null) {
+            throw new runtime.RequiredError(
+                'valueC',
+                'Required parameter "valueC" was null or undefined when calling headerParameterTypesMultiHeaderParam().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -494,6 +505,10 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueB'] != null) {
             headerParameters['valueB'] = String(requestParameters['valueB']);
+        }
+
+        if (requestParameters['valueC'] != null) {
+            headerParameters['valueC'] = String(requestParameters['valueC']);
         }
 
 
@@ -547,6 +562,13 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['valueC'] == null) {
+            throw new runtime.RequiredError(
+                'valueC',
+                'Required parameter "valueC" was null or undefined when calling headerParameterTypesMultiHeaderParamNil().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -557,6 +579,10 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueB'] != null) {
             headerParameters['valueB'] = String(requestParameters['valueB']);
+        }
+
+        if (requestParameters['valueC'] != null) {
+            headerParameters['valueC'] = String(requestParameters['valueC']);
         }
 
 
@@ -604,6 +630,10 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
             headerParameters['valueB'] = String(requestParameters['valueB']);
         }
 
+        if (requestParameters['valueC'] != null) {
+            headerParameters['valueC'] = String(requestParameters['valueC']);
+        }
+
 
         let urlPath = `/api/headerparametertypes/multiHeaderParamOpt`;
 
@@ -647,6 +677,10 @@ export class HeaderParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueB'] != null) {
             headerParameters['valueB'] = String(requestParameters['valueB']);
+        }
+
+        if (requestParameters['valueC'] != null) {
+            headerParameters['valueC'] = String(requestParameters['valueC']);
         }
 
 

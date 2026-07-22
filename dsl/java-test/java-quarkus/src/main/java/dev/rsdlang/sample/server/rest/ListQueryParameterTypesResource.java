@@ -15,9 +15,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
-import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 
 @ApplicationScoped
@@ -181,7 +181,7 @@ public class ListQueryParameterTypesResource {
 	public Response listScalarQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapLiterals(_queryValue, ZoneId::of);
+		var queryValue = _RestUtils.mapLiterals(_queryValue, _ScalarSupport::ZoneIdFromJson);
 		var result = service.listScalarQueryParam(builderFactory, queryValue);
 		return responseBuilder.listScalarQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
@@ -213,12 +213,14 @@ public class ListQueryParameterTypesResource {
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("valueA") List<String> _valueA,
 			@QueryParam("valueB") List<String> _valueB,
-			@QueryParam("valueC") List<String> _valueC) {
+			@QueryParam("valueC") List<String> _valueC,
+			@QueryParam("valueD") List<String> _valueD) {
 		var valueA = _RestUtils.mapStrings(_valueA);
 		var valueB = _RestUtils.mapInts(_valueB);
 		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
-		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
+		var valueD = _RestUtils.mapLiterals(_valueD, _ScalarSupport::ZoneIdFromJson);
+		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC, valueD);
+		return responseBuilder.listMultiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
 	}
 
 	@GET

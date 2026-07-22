@@ -2356,7 +2356,7 @@ function fnListInlineEnumHeaderParamOptNil(props: ServiceProps<api.service.Error
 function fnListMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listMultiHeaderParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: RSDString[], valueB: RSDInt[], valueC: api.model.SimpleRecord[]) => {
+	return async (valueA: RSDString[], valueB: RSDInt[], valueC: api.model.SimpleRecord[], valueD: api.model.ZoneId[]) => {
 		try {
 			const $init = (await preFetch?.('listMultiHeaderParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2371,6 +2371,9 @@ function fnListMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 			});
 			valueC.forEach($entry => {
 				$headers.append('valueC', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))));
+			});
+			valueD.forEach($entry => {
+				$headers.append('valueD', encodeAsciiString(api.model.ZoneIdToJSON($entry)));
 			});
 			$init.headers = $headers;
 
@@ -2398,7 +2401,7 @@ function fnListMultiHeaderParam(props: ServiceProps<api.service.ErrorType>): api
 function fnListMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listMultiHeaderParamOpt'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA?: RSDString[], valueB?: RSDInt[], valueC?: api.model.SimpleRecord[]) => {
+	return async (valueA?: RSDString[], valueB?: RSDInt[], valueC?: api.model.SimpleRecord[], valueD?: api.model.ZoneId[]) => {
 		try {
 			const $init = (await preFetch?.('listMultiHeaderParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2418,6 +2421,11 @@ function fnListMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 			if (valueC !== undefined) {
 				valueC.forEach($entry => {
 					$headers.append('valueC', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))));
+				});
+			}
+			if (valueD !== undefined) {
+				valueD.forEach($entry => {
+					$headers.append('valueD', encodeAsciiString(api.model.ZoneIdToJSON($entry)));
 				});
 			}
 			$init.headers = $headers;
@@ -2446,7 +2454,7 @@ function fnListMultiHeaderParamOpt(props: ServiceProps<api.service.ErrorType>): 
 function fnListMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listMultiHeaderParamNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: RSDString[] | null, valueB: RSDInt[] | null, valueC: api.model.SimpleRecord[] | null) => {
+	return async (valueA: RSDString[] | null, valueB: RSDInt[] | null, valueC: api.model.SimpleRecord[] | null, valueD: api.model.ZoneId[] | null) => {
 		try {
 			const $init = (await preFetch?.('listMultiHeaderParamNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2474,6 +2482,13 @@ function fnListMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 			} else {
 				$headers.append('valueC', 'null');
 			}
+			if (valueD !== null) {
+				valueD.forEach($entry => {
+					$headers.append('valueD', encodeAsciiString(api.model.ZoneIdToJSON($entry)));
+				});
+			} else {
+				$headers.append('valueD', 'null');
+			}
 			$init.headers = $headers;
 
 			const $path = `${baseUrl}/api/listheaderparametertypes/listMultiHeaderParamNil`;
@@ -2500,7 +2515,7 @@ function fnListMultiHeaderParamNil(props: ServiceProps<api.service.ErrorType>): 
 function fnListMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>): api.service.ListHeaderParameterTypesService['listMultiHeaderParamOptNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA?: RSDString[] | null, valueB?: RSDInt[] | null, valueC?: api.model.SimpleRecord[] | null) => {
+	return async (valueA?: RSDString[] | null, valueB?: RSDInt[] | null, valueC?: api.model.SimpleRecord[] | null, valueD?: api.model.ZoneId[] | null) => {
 		try {
 			const $init = (await preFetch?.('listMultiHeaderParamOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -2527,6 +2542,13 @@ function fnListMultiHeaderParamOptNil(props: ServiceProps<api.service.ErrorType>
 				});
 			} else if (valueC === null) {
 				$headers.append('valueC', 'null');
+			}
+			if (valueD !== undefined && valueD !== null) {
+				valueD.forEach($entry => {
+					$headers.append('valueD', encodeAsciiString(api.model.ZoneIdToJSON($entry)));
+				});
+			} else if (valueD === null) {
+				$headers.append('valueD', 'null');
 			}
 			$init.headers = $headers;
 

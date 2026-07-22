@@ -20,7 +20,7 @@ export function generateRecord(
 			generateCompilationUnit(
 				packageName,
 				importCollector,
-				generateRecordContent_(t, artifactConfig.nativeTypeSubstitues, packageName, fqn),
+				generateRecordContent_(t, artifactConfig.nativeTypeSubstitutes, packageName, fqn),
 			),
 			'\t',
 		),

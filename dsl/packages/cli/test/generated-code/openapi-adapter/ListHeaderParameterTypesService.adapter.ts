@@ -1071,12 +1071,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 		valueA: string[],
 		valueB: number[],
 		valueC: api.model.SimpleRecord[],
+		valueD: api.model.ZoneId[],
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListMultiHeaderParamRaw({
 				valueA: valueA.map(e => encodeAsciiString(e)),
 				valueB,
 				valueC: valueC.map(e => encodeBase64(JSON.stringify(e))),
+				valueD: valueD.map(e => encodeAsciiString(e)),
 				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
@@ -1093,12 +1095,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 		valueA?: string[],
 		valueB?: number[],
 		valueC?: api.model.SimpleRecord[],
+		valueD?: api.model.ZoneId[],
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListMultiHeaderParamOptRaw({
 				valueA: valueA?.map(e => '"' + encodeAsciiString(e) + '"'),
 				valueB,
 				valueC: valueC?.map(e => encodeBase64(JSON.stringify(e))),
+				valueD: valueD?.map(e => encodeAsciiString(e)),
 				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
@@ -1114,12 +1118,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 		valueA: string[] | null,
 		valueB: number[] | null,
 		valueC: api.model.SimpleRecord[] | null,
+		valueD: api.model.ZoneId[] | null,
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListMultiHeaderParamNilRaw({
 				valueA: valueA?.map(e => '"' + encodeAsciiString(e) + '"') ?? null,
 				valueB,
 				valueC: valueC?.map(e => encodeBase64(JSON.stringify(e))) ?? null,
+				valueD: valueD?.map(e => encodeAsciiString(e)) ?? null,
 				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {
@@ -1136,12 +1142,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 		valueA?: string[] | null,
 		valueB?: number[] | null,
 		valueC?: api.model.SimpleRecord[] | null,
+		valueD?: api.model.ZoneId[] | null,
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListMultiHeaderParamOptNilRaw({
 				valueA: valueA === null ? null : valueA?.map(e => '"' + encodeAsciiString(e) + '"'),
 				valueB,
 				valueC: valueC === null ? null : valueC?.map(e => encodeBase64(JSON.stringify(e))),
+				valueD: valueD === null ? null : valueD?.map(e => encodeAsciiString(e)),
 				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {

@@ -5,6 +5,7 @@ import {
 	computeParameterValueType,
 	generateCompilationUnit,
 	JavaImportsCollector,
+	JavaNativeTypeSubstitutes,
 	JavaRestClientJDKGeneratorConfig,
 	resolveType,
 	toAPIType,
@@ -194,12 +195,15 @@ function appendQueryParams(
 		if (p.variant === 'union' || p.variant === 'record') {
 			const type = computeParameterAPITypeNG(
 				p,
-				artifactConfig.nativeTypeSubstitues,
+				artifactConfig.nativeTypeSubstitutes,
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 				{ withArray: false, withOptional: false },
 			);
 			param = `BaseUtils.ofObject(${p.array ? '$q' : p.name}, false, this.contentType(), ${type}.class)`;
+		} else if (p.variant === 'scalar') {
+			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+			param = `${_ScalarSupport}.${p.type}ToJson(${p.array ? '$q' : p.name})`;
 		} else {
 			param = p.array ? '$q' : p.name;
 		}
@@ -251,8 +255,8 @@ function appendHeaderParams(
 				if (p.type === 'string') {
 					toString = '$v -> BaseUtils.encodeAsciiString($v)';
 				} else if (p.variant === 'scalar') {
-					const Objects = fqn('java.util.Objects');
-					toString = `$v -> BaseUtils.encodeAsciiString(${Objects}.toString($v))`;
+					const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+					toString = `$v -> BaseUtils.encodeAsciiString(${_ScalarSupport}.${p.type}ToJson($v))`;
 				} else {
 					const Objects = fqn('java.util.Objects');
 					toString = `${Objects}::toString`;
@@ -271,7 +275,7 @@ function appendHeaderParams(
 			} else {
 				const type = computeParameterAPITypeNG(
 					p,
-					artifactConfig.nativeTypeSubstitues,
+					artifactConfig.nativeTypeSubstitutes,
 					`${artifactConfig.rootPackageName}.model`,
 					fqn,
 					{ withArray: false, withOptional: false },
@@ -304,7 +308,7 @@ function appendHeaderParams(
 			} else if (p.variant === 'record' || p.variant === 'union') {
 				const type = computeParameterAPITypeNG(
 					p,
-					artifactConfig.nativeTypeSubstitues,
+					artifactConfig.nativeTypeSubstitutes,
 					`${artifactConfig.rootPackageName}.model`,
 					fqn,
 					{ withArray: false, withOptional: false },
@@ -321,9 +325,9 @@ function appendHeaderParams(
 			} else if (p.variant === 'stream') {
 				methodBody.append('throw new UnsupportedOperationException("Stream headers are not supported yet");', NL);
 			} else if (p.variant === 'scalar') {
-				const Objects = fqn('java.util.Objects');
+				const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 				methodBody.append(
-					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${Objects}.toString(${p.name})));`,
+					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${p.name} != null ? ${_ScalarSupport}.${p.type}ToJson(${p.name}) : "null"));`,
 					NL,
 				);
 			} else {
@@ -582,14 +586,19 @@ function appendSingleParamBody(
 		const method = `BaseUtils.of${toFirstUpper(toCamelCaseIdentifier(param.type))}${suffix}`;
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
 		optionalCall = `${method}(${param.name}, false, $contentType)`;
-	} else if (param.variant === 'scalar' || param.variant === 'enum' || param.variant === 'inline-enum') {
+	} else if (param.variant === 'scalar') {
 		const method = `BaseUtils.ofLiteral${suffix}`;
-		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType)`;
-		optionalCall = `${method}(${param.name}, false, $contentType)`;
+		const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, ${_ScalarSupport}::${param.type}ToJson)`;
+		optionalCall = `${method}(${param.name}, false, $contentType, ${_ScalarSupport}::${param.type}ToJson)`;
+	} else if (param.variant === 'enum' || param.variant === 'inline-enum') {
+		const method = `BaseUtils.ofLiteral${suffix}`;
+		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, Objects::toString)`;
+		optionalCall = `${method}(${param.name}, false, $contentType, Objects::toString)`;
 	} else {
 		const type = computeParameterAPITypeNG(
 			param,
-			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.nativeTypeSubstitutes,
 			`${artifactConfig.rootPackageName}.model`,
 			fqn,
 			{ withArray: false, withOptional: false },
@@ -633,6 +642,23 @@ function appendMultiParamBody(
 				p,
 				p.array ? builtinBuilderArrayJSONAccess({ name: p.name, type }) : builtinBuilderAccess({ name: p.name, type }),
 			);
+		} else if (p.variant === 'scalar') {
+			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+
+			if (p.array) {
+				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+				appendBuilderAssignment(
+					methodBody,
+					p,
+					`$builder.add("${p.name}", ${_JsonUtils}.toJsonLiteralArray(${p.name}, ${_ScalarSupport}::${p.type}ToJson))`,
+				);
+			} else {
+				appendBuilderAssignment(
+					methodBody,
+					p,
+					`$builder.add("${p.name}", ${_ScalarSupport}.${p.type}ToJson(${p.name}))`,
+				);
+			}
 		} else {
 			methodBody.append('throw new UnsupportedOperationException();', NL);
 		}
@@ -828,14 +854,20 @@ function handleOkResult(
 			node.append(`var $rv = ${builtinMapExpression(type.type, type.array)};`, NL);
 		}
 	} else if (type.variant === 'scalar') {
-		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
+		const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 		if (type.array) {
-			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${resolvedType}::of);`, NL);
+			node.append(
+				`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${_ScalarSupport}::${type.type}FromJson);`,
+				NL,
+			);
 		} else {
-			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${resolvedType}::of);`, NL);
+			node.append(
+				`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${_ScalarSupport}::${type.type}FromJson);`,
+				NL,
+			);
 		}
 	} else if (type.variant === 'enum') {
-		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, false);
+		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, false);
 		if (type.array) {
 			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${resolvedType}::valueOf);`, NL);
 		} else {
@@ -892,7 +924,7 @@ function handleErrorResult(
 			const modelType = fqn(`${modelPkg}.${resolvedError.contentType}DataImpl`);
 			const apiType = toAPIType(
 				resolvedError.resolvedContentType,
-				artifactConfig.nativeTypeSubstitues,
+				artifactConfig.nativeTypeSubstitutes,
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 			);
@@ -903,17 +935,15 @@ function handleErrorResult(
 		} else if (isMBuiltinType(type)) {
 			node.append(`var $errorData = ${builtinMapExpression(type, false)};`, NL);
 		} else if (isMScalarType(type)) {
-			const apiType = toAPIType(
-				resolvedError.resolvedContentType,
-				artifactConfig.nativeTypeSubstitues,
-				`${artifactConfig.rootPackageName}.model`,
-				fqn,
+			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+			node.append(
+				`var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ${_ScalarSupport}::${type.name}FromJson);`,
+				NL,
 			);
-			node.append(`var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ${apiType}::of);`, NL);
 		} else if (isMEnumType(type)) {
 			const apiType = toAPIType(
 				resolvedError.resolvedContentType,
-				artifactConfig.nativeTypeSubstitues,
+				artifactConfig.nativeTypeSubstitutes,
 				`${artifactConfig.rootPackageName}.model`,
 				fqn,
 			);
@@ -946,7 +976,7 @@ function toParameter(
 	if (parameter.variant === 'inline-enum') {
 		type = computeParameterAPITypeNG(
 			parameter,
-			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.nativeTypeSubstitutes,
 			`${artifactConfig.rootPackageName}.model`,
 			fqn,
 			methodName,
@@ -955,7 +985,7 @@ function toParameter(
 	} else {
 		type = computeParameterAPITypeNG(
 			parameter,
-			artifactConfig.nativeTypeSubstitues,
+			artifactConfig.nativeTypeSubstitutes,
 			`${artifactConfig.rootPackageName}.model`,
 			fqn,
 			{ withArray: true, withOptional: false },
@@ -991,13 +1021,13 @@ function toResultType(
 	} else if (type.variant === 'inline-enum') {
 		rvType = toFirstUpper(methodName) + '_Result$';
 	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitues[type.type]);
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
 		} else {
 			rvType = fqn(`${modelPkg}.${type.type}`);
 		}
 	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, type.array);
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, type.array);
 	}
 
 	if (type.array && !noArray) {
@@ -1037,13 +1067,13 @@ function toAPIResultType(
 	} else if (type.variant === 'inline-enum') {
 		rvType = toFirstUpper(methodName) + '_Result$';
 	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitues !== undefined && type.type in artifactConfig.nativeTypeSubstitues) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitues[type.type]);
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
 		} else {
 			rvType = fqn(`${dtoPkg}.${type.type}`);
 		}
 	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitues, fqn, true);
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
 	}
 
 	if (type.array) {
@@ -1106,14 +1136,14 @@ function generateServiceData(
 					p.variant === 'inline-enum'
 						? computeParameterAPITypeNG(
 								p,
-								artifactConfig.nativeTypeSubstitues,
+								artifactConfig.nativeTypeSubstitutes,
 								`${artifactConfig.rootPackageName}.model`,
 								fqn,
 								o.name,
 							)
 						: computeParameterAPITypeNG(
 								p,
-								artifactConfig.nativeTypeSubstitues,
+								artifactConfig.nativeTypeSubstitutes,
 								`${artifactConfig.rootPackageName}.model`,
 								fqn,
 							);
@@ -1122,7 +1152,7 @@ function generateServiceData(
 					methodBody.append(
 						generateParameterContent(
 							p,
-							artifactConfig.nativeTypeSubstitues,
+							artifactConfig.nativeTypeSubstitutes,
 							`${artifactConfig.rootPackageName}.model`,
 							fqn,
 							o,
@@ -1157,7 +1187,7 @@ function jsonMapper(
 
 function generateParameterContent(
 	prop: MParameter,
-	nativeTypeSubstitues: Record<string, string> | undefined,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	interfaceBasePackage: string,
 	fqn: (type: string) => string,
 	o: MResolvedOperation,
@@ -1170,13 +1200,14 @@ function generateParameterContent(
 			? builtinSimpleJSONArrayAccessNG({ type: prop.type, name: prop.name, optional, nullable })
 			: builtinJSONAccess({ type: prop.type, name: prop.name, optional, nullable });
 	} else if (prop.variant === 'inline-enum') {
-		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn, o.name);
+		const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, o.name);
 		mapper = jsonMapper('Literal', prop.name, `${Type}::valueOf`, array, optional, nullable);
 	} else if (prop.variant === 'enum') {
 		mapper = jsonMapper('Literal', prop.name, `${prop.type}::valueOf`, array, optional, nullable);
 	} else if (prop.variant === 'scalar') {
-		const Type = computeParameterValueType(prop, nativeTypeSubstitues, interfaceBasePackage, fqn);
-		mapper = jsonMapper('Literal', prop.name, `${Type}::of`, array, optional, nullable);
+		//const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn);
+		const _ScalarSupport = fqn(`${interfaceBasePackage}.impl.json._ScalarSupport`);
+		mapper = jsonMapper('Literal', prop.name, `${_ScalarSupport}::${prop.type}FromJson`, array, optional, nullable);
 	} else {
 		const type = prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`;
 		mapper = jsonMapper('Object', prop.name, `${type}::of`, array, optional, nullable);

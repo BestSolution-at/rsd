@@ -22,6 +22,6 @@ export interface ListQueryParameterTypesService {
 	listScalarQueryParam(queryValue: ZoneId[]): Promise<Result<ZoneId[], StatusRSDError | NativeRSDError>>;
 	listEnumQueryParam(queryValue: SampleEnum[]): Promise<Result<SampleEnum[], StatusRSDError | NativeRSDError>>;
 	listInlineEnumQueryParam(queryValue: ('A' | 'B')[]): Promise<Result<('A' | 'B')[], StatusRSDError | NativeRSDError>>;
-	listMultiQueryParam(valueA: RSDString[], valueB: RSDInt[], valueC: SimpleRecord[]): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	listMultiQueryParam(valueA: RSDString[], valueB: RSDInt[], valueC: SimpleRecord[], valueD: ZoneId[]): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
 	listRecordQueryParam(queryValue: SimpleRecord[]): Promise<Result<SimpleRecord[], StatusRSDError | NativeRSDError>>;
 }

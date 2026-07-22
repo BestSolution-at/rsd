@@ -22,7 +22,7 @@ export function generateUnion(t: MResolvedUnionType, artifactConfig: JavaClientA
 			generateCompilationUnit(
 				packageName,
 				importCollector,
-				generateUnionContent(t, artifactConfig.nativeTypeSubstitues, packageName, fqn),
+				generateUnionContent(t, artifactConfig.nativeTypeSubstitutes, packageName, fqn),
 			),
 			'\t',
 		),

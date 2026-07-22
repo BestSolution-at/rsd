@@ -11,6 +11,7 @@ import jakarta.json.JsonObjectBuilder;
 import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMixedResult.Data {
 	UploadMixedResultDataImpl(JsonObject data) {
@@ -33,6 +34,11 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 	}
 
 	@Override
+	public _Base.Nillable<ZoneId> _scalar() {
+		return _JsonUtils.mapNilLiteral(data, "_scalar", _ScalarSupport::ZoneIdFromJson);
+	}
+
+	@Override
 	public _Base.Nillable<List<String>> textList() {
 		return _JsonUtils.mapNilStrings(data, "textList");
 	}
@@ -45,6 +51,11 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 	@Override
 	public _Base.Nillable<List<SimpleRecord.Data>> recList() {
 		return _JsonUtils.mapNilObjects(data, "recList", SimpleRecordDataImpl::of);
+	}
+
+	@Override
+	public _Base.Nillable<List<ZoneId>> scalarList() {
+		return _JsonUtils.mapNilLiterals(data, "scalarList", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	@Override
@@ -105,6 +116,16 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 		}
 
 		@Override
+		public UploadMixedResult.DataBuilder _scalar(ZoneId _scalar) {
+			if (_scalar == null) {
+				$builder.addNull("_scalar");
+				return this;
+			}
+			$builder.add("_scalar", _ScalarSupport.ZoneIdToJson(_scalar));
+			return this;
+		}
+
+		@Override
 		public UploadMixedResult.DataBuilder textList(List<String> textList) {
 			if (textList == null) {
 				$builder.addNull("textList");
@@ -131,6 +152,16 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				return this;
 			}
 			$builder.add("recList", _JsonUtils.toJsonValueArray(recList, $e -> ((_BaseDataImpl) $e).data));
+			return this;
+		}
+
+		@Override
+		public UploadMixedResult.DataBuilder scalarList(List<ZoneId> scalarList) {
+			if (scalarList == null) {
+				$builder.addNull("scalarList");
+				return this;
+			}
+			$builder.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, $e -> _ScalarSupport.ZoneIdToJson($e)));
 			return this;
 		}
 

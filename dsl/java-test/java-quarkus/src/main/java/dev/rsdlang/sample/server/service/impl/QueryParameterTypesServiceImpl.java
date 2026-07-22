@@ -231,13 +231,13 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	@Override
-	public String multiQueryParam(BuilderFactory _factory, String valueA, int valueB) {
-		return multiQueryParamHandler.multiQueryParam(_factory, valueA, valueB);
+	public String multiQueryParam(BuilderFactory _factory, String valueA, int valueB, ZoneId valueC) {
+		return multiQueryParamHandler.multiQueryParam(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB) {
-		return multiQueryParamOptHandler.multiQueryParamOpt(_factory, valueA, valueB);
+	public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC) {
+		return multiQueryParamOptHandler.multiQueryParamOpt(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
@@ -363,11 +363,11 @@ public class QueryParameterTypesServiceImpl implements QueryParameterTypesServic
 	}
 
 	public interface MultiQueryParamHandler {
-		public String multiQueryParam(BuilderFactory _factory, String valueA, int valueB);
+		public String multiQueryParam(BuilderFactory _factory, String valueA, int valueB, ZoneId valueC);
 	}
 
 	public interface MultiQueryParamOptHandler {
-		public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
+		public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC);
 	}
 
 	public interface RecordQueryParamHandler {

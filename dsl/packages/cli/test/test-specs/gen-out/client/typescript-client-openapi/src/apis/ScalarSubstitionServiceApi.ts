@@ -18,6 +18,11 @@ import {
     NilResultFromJSON,
     NilResultToJSON,
 } from '../models/NilResult.js';
+import {
+    type ScalarSubstitionServiceMultiBodyRequest,
+    ScalarSubstitionServiceMultiBodyRequestFromJSON,
+    ScalarSubstitionServiceMultiBodyRequestToJSON,
+} from '../models/ScalarSubstitionServiceMultiBodyRequest.js';
 
 export interface ScalarSubstitionServiceHeaderRequest {
     range: string;
@@ -49,6 +54,10 @@ export interface ScalarSubstitionServiceHeaderOptRequest {
 
 export interface ScalarSubstitionServiceHeaderOptNullRequest {
     range?: string | null;
+}
+
+export interface ScalarSubstitionServiceMultiBodyOperationRequest {
+    scalarSubstitionServiceMultiBodyRequest: ScalarSubstitionServiceMultiBodyRequest;
 }
 
 export interface ScalarSubstitionServicePostRequest {
@@ -591,6 +600,57 @@ export class ScalarSubstitionServiceApi extends runtime.BaseAPI {
      */
     async scalarSubstitionServiceList(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.scalarSubstitionServiceListRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for scalarSubstitionServiceMultiBody without sending the request
+     */
+    async scalarSubstitionServiceMultiBodyRequestOpts(requestParameters: ScalarSubstitionServiceMultiBodyOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['scalarSubstitionServiceMultiBodyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'scalarSubstitionServiceMultiBodyRequest',
+                'Required parameter "scalarSubstitionServiceMultiBodyRequest" was null or undefined when calling scalarSubstitionServiceMultiBody().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/scalarsubstitution/multiBody`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ScalarSubstitionServiceMultiBodyRequestToJSON(requestParameters['scalarSubstitionServiceMultiBodyRequest']),
+        };
+    }
+
+    /**
+     * 
+     */
+    async scalarSubstitionServiceMultiBodyRaw(requestParameters: ScalarSubstitionServiceMultiBodyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.scalarSubstitionServiceMultiBodyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 
+     */
+    async scalarSubstitionServiceMultiBody(requestParameters: ScalarSubstitionServiceMultiBodyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.scalarSubstitionServiceMultiBodyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

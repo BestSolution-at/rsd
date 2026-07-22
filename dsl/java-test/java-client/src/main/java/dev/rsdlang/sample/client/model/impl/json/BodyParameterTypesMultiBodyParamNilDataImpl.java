@@ -7,6 +7,7 @@ import java.util.OptionalInt;
 import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class BodyParameterTypesMultiBodyParamNilDataImpl extends _BaseDataImpl implements dev.rsdlang.sample.client.model._Base.BaseData {
 	public BodyParameterTypesMultiBodyParamNilDataImpl(JsonObject data) {
@@ -23,6 +24,10 @@ public class BodyParameterTypesMultiBodyParamNilDataImpl extends _BaseDataImpl i
 
 	public Optional<SimpleRecord.Data> valueC() {
 		return _JsonUtils.mapNullObject(data, "valueC", SimpleRecordDataImpl::of);
+	}
+
+	public Optional<ZoneId> valueD() {
+		return _JsonUtils.mapNullLiteral(data, "valueD", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }
