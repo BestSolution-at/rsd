@@ -15,6 +15,7 @@ All URIs are relative to *http://localhost*
 | [**scalarSubstitionServiceHeaderOpt**](ScalarSubstitionServiceApi.md#scalarsubstitionserviceheaderopt) | **GET** /api/scalarsubstitution/headerOpt |  |
 | [**scalarSubstitionServiceHeaderOptNull**](ScalarSubstitionServiceApi.md#scalarsubstitionserviceheaderoptnull) | **GET** /api/scalarsubstitution/headerOptNull |  |
 | [**scalarSubstitionServiceList**](ScalarSubstitionServiceApi.md#scalarsubstitionservicelist) | **GET** /api/scalarsubstitution/list |  |
+| [**scalarSubstitionServiceMultiBody**](ScalarSubstitionServiceApi.md#scalarsubstitionservicemultibodyoperation) | **POST** /api/scalarsubstitution/multiBody |  |
 | [**scalarSubstitionServicePost**](ScalarSubstitionServiceApi.md#scalarsubstitionservicepost) | **POST** /api/scalarsubstitution/post |  |
 | [**scalarSubstitionServicePostList**](ScalarSubstitionServiceApi.md#scalarsubstitionservicepostlist) | **POST** /api/scalarsubstitution/postList |  |
 | [**scalarSubstitionServicePostListNull**](ScalarSubstitionServiceApi.md#scalarsubstitionservicepostlistnull) | **POST** /api/scalarsubstitution/postListNull |  |
@@ -737,6 +738,73 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## scalarSubstitionServiceMultiBody
+
+> string scalarSubstitionServiceMultiBody(scalarSubstitionServiceMultiBodyRequest)
+
+
+
+
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ScalarSubstitionServiceApi,
+} from '';
+import type { ScalarSubstitionServiceMultiBodyOperationRequest } from '';
+
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new ScalarSubstitionServiceApi();
+
+  const body = {
+    // ScalarSubstitionServiceMultiBodyRequest
+    scalarSubstitionServiceMultiBodyRequest: ...,
+  } satisfies ScalarSubstitionServiceMultiBodyOperationRequest;
+
+  try {
+    const data = await api.scalarSubstitionServiceMultiBody(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **scalarSubstitionServiceMultiBodyRequest** | [ScalarSubstitionServiceMultiBodyRequest](ScalarSubstitionServiceMultiBodyRequest.md) |  | |
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 

@@ -47,6 +47,12 @@ export interface UploadMixedResult {
     rec?: SimpleRecord | null;
     /**
      * 
+     * @type {string}
+     * @memberof UploadMixedResult
+     */
+    _scalar?: string | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof UploadMixedResult
      */
@@ -63,6 +69,12 @@ export interface UploadMixedResult {
      * @memberof UploadMixedResult
      */
     recList?: Array<SimpleRecord> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UploadMixedResult
+     */
+    scalarList?: Array<string> | null;
     /**
      * 
      * @type {string}
@@ -97,9 +109,11 @@ export function UploadMixedResultFromJSONTyped(json: any, ignoreDiscriminator: b
         'text': json['text'] == null ? undefined : json['text'],
         'number': json['number'] == null ? undefined : json['number'],
         'rec': json['rec'] == null ? undefined : SimpleRecordFromJSON(json['rec']),
+        '_scalar': json['_scalar'] == null ? undefined : json['_scalar'],
         'textList': json['textList'] == null ? undefined : json['textList'],
         'numberList': json['numberList'] == null ? undefined : json['numberList'],
         'recList': json['recList'] == null ? undefined : ((json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
+        'scalarList': json['scalarList'] == null ? undefined : json['scalarList'],
         'dataFileContent': json['dataFileContent'] == null ? undefined : json['dataFileContent'],
         'dataBlobContent': json['dataBlobContent'] == null ? undefined : json['dataBlobContent'],
     };
@@ -119,9 +133,11 @@ export function UploadMixedResultToJSONTyped(value?: UploadMixedResult | null, i
         'text': value['text'],
         'number': value['number'],
         'rec': SimpleRecordToJSON(value['rec']),
+        '_scalar': value['_scalar'],
         'textList': value['textList'],
         'numberList': value['numberList'],
         'recList': value['recList'] == null ? undefined : ((value['recList'] as Array<any>).map(SimpleRecordToJSON)),
+        'scalarList': value['scalarList'],
         'dataFileContent': value['dataFileContent'],
         'dataBlobContent': value['dataBlobContent'],
     };

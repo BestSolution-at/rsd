@@ -7,6 +7,7 @@ import {
 import { HeaderParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/HeaderParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
 import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import { ZoneId } from '../../test-specs/gen-out/client/typescript-client/src/model/_Scalars.js';
 
 export function createOpenAPIHeaderParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -973,11 +974,13 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	async multiHeaderParam(
 		valueA: string,
 		valueB: number,
+		valueC: ZoneId,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesMultiHeaderParamRaw({
 				valueA: encodeAsciiString(valueA),
 				valueB,
+				valueC,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -1009,11 +1012,13 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	async multiHeaderParamNil(
 		valueA: string | null,
 		valueB: number | null,
+		valueC: ZoneId | null,
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesMultiHeaderParamNilRaw({
 				valueA: valueA !== null ? encodeAsciiString(valueA) : 'null',
 				valueB: (valueB ?? 'null') as unknown as number,
+				valueC: valueC !== null ? encodeAsciiString(valueC) : 'null',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -1027,11 +1032,13 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	async multiHeaderParamOptNil(
 		valueA?: string | null,
 		valueB?: number | null,
+		valueC?: ZoneId | null,
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesMultiHeaderParamOptNilRaw({
 				valueA: valueA !== undefined ? (valueA !== null ? `"${encodeAsciiString(valueA)}"` : 'null') : undefined,
 				valueB: valueB !== undefined ? ((valueB ?? 'null') as unknown as number) : undefined,
+				valueC: valueC !== undefined ? (valueC !== null ? `"${encodeAsciiString(valueC)}"` : 'null') : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

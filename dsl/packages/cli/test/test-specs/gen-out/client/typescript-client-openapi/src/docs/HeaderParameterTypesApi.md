@@ -172,7 +172,7 @@ No authorization required
 
 ## headerParameterTypesMultiHeaderParam
 
-> string headerParameterTypesMultiHeaderParam(valueA, valueB)
+> string headerParameterTypesMultiHeaderParam(valueA, valueB, valueC)
 
 
 
@@ -196,6 +196,8 @@ async function example() {
     valueA: valueA_example,
     // number | 
     valueB: 8.14,
+    // string | 
+    valueC: valueC_example,
   } satisfies HeaderParameterTypesMultiHeaderParamRequest;
 
   try {
@@ -217,6 +219,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `string` |  | [Defaults to `undefined`] |
 | **valueB** | `number` |  | [Defaults to `undefined`] |
+| **valueC** | `string` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -242,7 +245,7 @@ No authorization required
 
 ## headerParameterTypesMultiHeaderParamNil
 
-> Array&lt;NilResult&gt; headerParameterTypesMultiHeaderParamNil(valueA, valueB)
+> Array&lt;NilResult&gt; headerParameterTypesMultiHeaderParamNil(valueA, valueB, valueC)
 
 
 
@@ -266,6 +269,8 @@ async function example() {
     valueA: valueA_example,
     // number | 
     valueB: 8.14,
+    // string | 
+    valueC: valueC_example,
   } satisfies HeaderParameterTypesMultiHeaderParamNilRequest;
 
   try {
@@ -287,6 +292,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `string` |  | [Defaults to `undefined`] |
 | **valueB** | `number` |  | [Defaults to `undefined`] |
+| **valueC** | `string` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -312,7 +318,7 @@ No authorization required
 
 ## headerParameterTypesMultiHeaderParamOpt
 
-> Array&lt;NilResult&gt; headerParameterTypesMultiHeaderParamOpt(valueA, valueB)
+> Array&lt;NilResult&gt; headerParameterTypesMultiHeaderParamOpt(valueA, valueB, valueC)
 
 
 
@@ -336,6 +342,8 @@ async function example() {
     valueA: valueA_example,
     // number |  (optional)
     valueB: 8.14,
+    // string |  (optional)
+    valueC: valueC_example,
   } satisfies HeaderParameterTypesMultiHeaderParamOptRequest;
 
   try {
@@ -357,6 +365,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **valueB** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **valueC** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -382,7 +391,7 @@ No authorization required
 
 ## headerParameterTypesMultiHeaderParamOptNil
 
-> Array&lt;NilResult&gt; headerParameterTypesMultiHeaderParamOptNil(valueA, valueB)
+> Array&lt;NilResult&gt; headerParameterTypesMultiHeaderParamOptNil(valueA, valueB, valueC)
 
 
 
@@ -406,6 +415,8 @@ async function example() {
     valueA: valueA_example,
     // number |  (optional)
     valueB: 8.14,
+    // string |  (optional)
+    valueC: valueC_example,
   } satisfies HeaderParameterTypesMultiHeaderParamOptNilRequest;
 
   try {
@@ -427,6 +438,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **valueB** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **valueC** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

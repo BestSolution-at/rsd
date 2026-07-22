@@ -45,6 +45,12 @@ export interface ListBodyParameterTypesListMultiBodyParamNilRequest {
      * @memberof ListBodyParameterTypesListMultiBodyParamNilRequest
      */
     valueC: Array<SimpleRecord> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ListBodyParameterTypesListMultiBodyParamNilRequest
+     */
+    valueD: Array<string> | null;
 }
 
 /**
@@ -54,6 +60,7 @@ export function instanceOfListBodyParameterTypesListMultiBodyParamNilRequest(val
     if (!('valueA' in value) || value['valueA'] === undefined) return false;
     if (!('valueB' in value) || value['valueB'] === undefined) return false;
     if (!('valueC' in value) || value['valueC'] === undefined) return false;
+    if (!('valueD' in value) || value['valueD'] === undefined) return false;
     return true;
 }
 
@@ -70,6 +77,7 @@ export function ListBodyParameterTypesListMultiBodyParamNilRequestFromJSONTyped(
         'valueA': json['valueA'] == null ? null : json['valueA'],
         'valueB': json['valueB'] == null ? null : json['valueB'],
         'valueC': (json['valueC'] == null ? null : (json['valueC'] as Array<any>).map(SimpleRecordFromJSON)),
+        'valueD': json['valueD'] == null ? null : json['valueD'],
     };
 }
 
@@ -87,6 +95,7 @@ export function ListBodyParameterTypesListMultiBodyParamNilRequestToJSONTyped(va
         'valueA': value['valueA'],
         'valueB': value['valueB'],
         'valueC': (value['valueC'] == null ? null : (value['valueC'] as Array<any>).map(SimpleRecordToJSON)),
+        'valueD': value['valueD'],
     };
 }
 

@@ -1002,6 +1002,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 		valueA: string[],
 		valueB: number[],
 		valueC: api.model.SimpleRecord[],
+		valueD: api.model.ZoneId[],
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListMultiBodyParamRaw({
@@ -1009,6 +1010,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 					valueA,
 					valueB,
 					valueC,
+					valueD,
 				},
 			});
 			if (response.raw.status === 200) {
@@ -1024,6 +1026,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 		valueA?: string[],
 		valueB?: number[],
 		valueC?: api.model.SimpleRecord[],
+		valueD?: api.model.ZoneId[],
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListMultiBodyParamOptRaw({
@@ -1031,6 +1034,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 					valueA,
 					valueB,
 					valueC,
+					valueD,
 				},
 			});
 			if (response.raw.status === 200) {
@@ -1046,6 +1050,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 		valueA: string[] | null,
 		valueB: number[] | null,
 		valueC: api.model.SimpleRecord[] | null,
+		valueD: api.model.ZoneId[] | null,
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListMultiBodyParamNilRaw({
@@ -1053,6 +1058,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 					valueA,
 					valueB,
 					valueC,
+					valueD,
 				},
 			});
 			if (response.raw.status === 200) {
@@ -1068,6 +1074,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 		valueA?: string[] | null,
 		valueB?: number[] | null,
 		valueC?: api.model.SimpleRecord[] | null,
+		valueD?: api.model.ZoneId[] | null,
 	): Promise<api.result.Result<api.model.NilResult[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.delegate.listBodyParameterTypesListMultiBodyParamOptNilRaw({
@@ -1075,6 +1082,7 @@ class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypesService
 					valueA,
 					valueB,
 					valueC,
+					valueD,
 				},
 			});
 			if (response.raw.status === 200) {

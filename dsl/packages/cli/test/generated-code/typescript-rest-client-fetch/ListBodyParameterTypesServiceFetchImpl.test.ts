@@ -801,16 +801,17 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 					{ key: 'b', version: 'v2', value: 'Value2' },
 					{ key: 'c', version: 'v3', value: 'Value3' },
 				],
+				['UTC'],
 			);
 			expect(error).toBeNull();
-			expect(result).toEqual('one,two,three-1,2,3-a,b,c');
+			expect(result).toEqual('one,two,three-1,2,3-a,b,c-UTC');
 		});
 	});
 	describe('listMultiBodyParamOpt', () => {
 		test.each([json, msgpack, openapi])('success undefined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listMultiBodyParamOpt();
 			expect(error).toBeNull();
-			expect(result).toEqual(['UNDEFINED', 'UNDEFINED', 'UNDEFINED']);
+			expect(result).toEqual(['UNDEFINED', 'UNDEFINED', 'UNDEFINED', 'UNDEFINED']);
 		});
 		test.each([json, msgpack, openapi])('success defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listMultiBodyParamOpt(
@@ -820,16 +821,17 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 					{ key: 'd', version: 'v4', value: 'Value4' },
 					{ key: 'e', version: 'v5', value: 'Value5' },
 				],
+				['UTC'],
 			);
 			expect(error).toBeNull();
-			expect(result).toEqual(['DEFINED', 'DEFINED', 'DEFINED']);
+			expect(result).toEqual(['DEFINED', 'DEFINED', 'DEFINED', 'DEFINED']);
 		});
 	});
 	describe('listMultiBodyParamNil', () => {
 		test.each([json, msgpack, openapi])('success null with $encoding', async ({ service }) => {
-			const [result, error] = await service.listMultiBodyParamNil(null, null, null);
+			const [result, error] = await service.listMultiBodyParamNil(null, null, null, null);
 			expect(error).toBeNull();
-			expect(result).toEqual(['NULL', 'NULL', 'NULL']);
+			expect(result).toEqual(['NULL', 'NULL', 'NULL', 'NULL']);
 		});
 		test.each([json, msgpack, openapi])('success defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listMultiBodyParamNil(
@@ -839,21 +841,22 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 					{ key: 'f', version: 'v6', value: 'Value6' },
 					{ key: 'g', version: 'v7', value: 'Value7' },
 				],
+				['UTC'],
 			);
 			expect(error).toBeNull();
-			expect(result).toEqual(['DEFINED', 'DEFINED', 'DEFINED']);
+			expect(result).toEqual(['DEFINED', 'DEFINED', 'DEFINED', 'DEFINED']);
 		});
 	});
 	describe('listMultiBodyParamOptNil', () => {
 		test.each([json, msgpack, openapi])('success undefined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listMultiBodyParamOptNil(undefined, undefined, undefined);
+			const [result, error] = await service.listMultiBodyParamOptNil(undefined, undefined, undefined, undefined);
 			expect(error).toBeNull();
-			expect(result).toEqual(['UNDEFINED', 'UNDEFINED', 'UNDEFINED']);
+			expect(result).toEqual(['UNDEFINED', 'UNDEFINED', 'UNDEFINED', 'UNDEFINED']);
 		});
 		test.each([json, msgpack /*, openapi*/])('success null with $encoding', async ({ service }) => {
-			const [result, error] = await service.listMultiBodyParamOptNil(null, null, null);
+			const [result, error] = await service.listMultiBodyParamOptNil(null, null, null, null);
 			expect(error).toBeNull();
-			expect(result).toEqual(['NULL', 'NULL', 'NULL']);
+			expect(result).toEqual(['NULL', 'NULL', 'NULL', 'NULL']);
 		});
 		test.each([json, msgpack, openapi])('success defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listMultiBodyParamOptNil(
@@ -863,17 +866,23 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 					{ key: 'h', version: 'v8', value: 'Value8' },
 					{ key: 'i', version: 'v9', value: 'Value9' },
 				],
+				['UTC'],
 			);
 			expect(error).toBeNull();
-			expect(result).toEqual(['DEFINED', 'DEFINED', 'DEFINED']);
+			expect(result).toEqual(['DEFINED', 'DEFINED', 'DEFINED', 'DEFINED']);
 		});
 		test.each([json, msgpack, openapi])('success mixed with $encoding', async ({ service }) => {
-			const [result, error] = await service.listMultiBodyParamOptNil(undefined, null, [
-				{ key: 'j', version: 'v10', value: 'Value10' },
-				{ key: 'k', version: 'v11', value: 'Value11' },
-			]);
+			const [result, error] = await service.listMultiBodyParamOptNil(
+				undefined,
+				null,
+				[
+					{ key: 'j', version: 'v10', value: 'Value10' },
+					{ key: 'k', version: 'v11', value: 'Value11' },
+				],
+				['UTC'],
+			);
 			expect(error).toBeNull();
-			expect(result).toEqual(['UNDEFINED', 'NULL', 'DEFINED']);
+			expect(result).toEqual(['UNDEFINED', 'NULL', 'DEFINED', 'DEFINED']);
 		});
 	});
 });

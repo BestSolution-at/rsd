@@ -68,6 +68,7 @@ export interface ListQueryParameterTypesListMultiQueryParamRequest {
     valueA: Array<string>;
     valueB: Array<number>;
     valueC: Array<string>;
+    valueD: Array<string>;
     xRSDParamContentType: string;
 }
 
@@ -606,6 +607,13 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['valueD'] == null) {
+            throw new runtime.RequiredError(
+                'valueD',
+                'Required parameter "valueD" was null or undefined when calling listQueryParameterTypesListMultiQueryParam().'
+            );
+        }
+
         if (requestParameters['xRSDParamContentType'] == null) {
             throw new runtime.RequiredError(
                 'xRSDParamContentType',
@@ -625,6 +633,10 @@ export class ListQueryParameterTypesApi extends runtime.BaseAPI {
 
         if (requestParameters['valueC'] != null) {
             queryParameters['valueC'] = requestParameters['valueC'];
+        }
+
+        if (requestParameters['valueD'] != null) {
+            queryParameters['valueD'] = requestParameters['valueD'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

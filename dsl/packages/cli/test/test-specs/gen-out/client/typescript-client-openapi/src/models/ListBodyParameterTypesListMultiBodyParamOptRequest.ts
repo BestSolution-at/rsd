@@ -45,6 +45,12 @@ export interface ListBodyParameterTypesListMultiBodyParamOptRequest {
      * @memberof ListBodyParameterTypesListMultiBodyParamOptRequest
      */
     valueC?: Array<SimpleRecord>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ListBodyParameterTypesListMultiBodyParamOptRequest
+     */
+    valueD?: Array<string>;
 }
 
 /**
@@ -67,6 +73,7 @@ export function ListBodyParameterTypesListMultiBodyParamOptRequestFromJSONTyped(
         'valueA': json['valueA'] == null ? undefined : json['valueA'],
         'valueB': json['valueB'] == null ? undefined : json['valueB'],
         'valueC': json['valueC'] == null ? undefined : ((json['valueC'] as Array<any>).map(SimpleRecordFromJSON)),
+        'valueD': json['valueD'] == null ? undefined : json['valueD'],
     };
 }
 
@@ -84,6 +91,7 @@ export function ListBodyParameterTypesListMultiBodyParamOptRequestToJSONTyped(va
         'valueA': value['valueA'],
         'valueB': value['valueB'],
         'valueC': value['valueC'] == null ? undefined : ((value['valueC'] as Array<any>).map(SimpleRecordToJSON)),
+        'valueD': value['valueD'],
     };
 }
 

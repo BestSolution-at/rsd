@@ -41,7 +41,7 @@ All URIs are relative to *http://localhost*
 
 ## queryParameterTypesMultiQueryParam
 
-> string queryParameterTypesMultiQueryParam(valueA, valueB)
+> string queryParameterTypesMultiQueryParam(valueA, valueB, valueC)
 
 
 
@@ -65,6 +65,8 @@ async function example() {
     valueA: valueA_example,
     // number | 
     valueB: 8.14,
+    // string | 
+    valueC: valueC_example,
   } satisfies QueryParameterTypesMultiQueryParamRequest;
 
   try {
@@ -86,6 +88,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `string` |  | [Defaults to `undefined`] |
 | **valueB** | `number` |  | [Defaults to `undefined`] |
+| **valueC** | `string` |  | [Defaults to `undefined`] |
 
 ### Return type
 
@@ -111,7 +114,7 @@ No authorization required
 
 ## queryParameterTypesMultiQueryParamOpt
 
-> string queryParameterTypesMultiQueryParamOpt(valueA, valueB)
+> string queryParameterTypesMultiQueryParamOpt(valueA, valueB, valueC)
 
 
 
@@ -135,6 +138,8 @@ async function example() {
     valueA: valueA_example,
     // number |  (optional)
     valueB: 8.14,
+    // string |  (optional)
+    valueC: valueC_example,
   } satisfies QueryParameterTypesMultiQueryParamOptRequest;
 
   try {
@@ -156,6 +161,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **valueA** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **valueB** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **valueC** | `string` |  | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

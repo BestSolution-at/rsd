@@ -9,6 +9,7 @@ Name | Type
 `valueA` | Array&lt;string&gt;
 `valueB` | Array&lt;number&gt;
 `valueC` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
+`valueD` | Array&lt;string&gt;
 
 ## Example
 
@@ -20,6 +21,7 @@ const example = {
   "valueA": null,
   "valueB": null,
   "valueC": null,
+  "valueD": null,
 } satisfies ListBodyParameterTypesListMultiBodyParamOptRequest
 
 console.log(example)

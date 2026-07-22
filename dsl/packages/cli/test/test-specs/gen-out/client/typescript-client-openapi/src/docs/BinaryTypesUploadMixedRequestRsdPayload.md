@@ -9,9 +9,11 @@ Name | Type
 `text` | string
 `number` | number
 `rec` | [SimpleRecord](SimpleRecord.md)
+`scalar_` | string
 `textList` | Array&lt;string&gt;
 `numberList` | Array&lt;number&gt;
 `recList` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
+`scalarList` | Array&lt;string&gt;
 
 ## Example
 
@@ -23,9 +25,11 @@ const example = {
   "text": null,
   "number": null,
   "rec": null,
+  "scalar_": null,
   "textList": null,
   "numberList": null,
   "recList": null,
+  "scalarList": null,
 } satisfies BinaryTypesUploadMixedRequestRsdPayload
 
 console.log(example)

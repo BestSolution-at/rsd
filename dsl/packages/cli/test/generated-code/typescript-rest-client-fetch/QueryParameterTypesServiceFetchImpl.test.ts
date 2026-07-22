@@ -235,26 +235,26 @@ describe('SingleQueryParameterTypesService', () => {
 	});
 	describe('multiQueryParam', () => {
 		test.each([json, msgpack, openapi])('success - ["Hello","1"] - $encoding', async ({ service }) => {
-			const [result, error] = await service.multiQueryParam('Hello', 1);
+			const [result, error] = await service.multiQueryParam('Hello', 1, 'UTC');
 			expect(error).toBeNull();
-			expect(result).toEqual('Hello-1');
+			expect(result).toEqual('Hello-1-UTC');
 		});
 	});
 	describe('multiQueryParamOpt', () => {
 		test.each([json, msgpack, openapi])('success - ["Hello","1"] - $encoding', async ({ service }) => {
-			const [result, error] = await service.multiQueryParamOpt('Hello', 1);
+			const [result, error] = await service.multiQueryParamOpt('Hello', 1, 'UTC');
 			expect(error).toBeNull();
-			expect(result).toEqual('Hello-1');
+			expect(result).toEqual('Hello-1-UTC');
 		});
 		test.each([json, msgpack, openapi])('success - ["hello"] - $encoding', async ({ service }) => {
 			const [result, error] = await service.multiQueryParamOpt('Hello');
 			expect(error).toBeNull();
-			expect(result).toEqual('Hello-undefined');
+			expect(result).toEqual('Hello-undefined-undefined');
 		});
 		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
 			const [result, error] = await service.multiQueryParamOpt();
 			expect(error).toBeNull();
-			expect(result).toEqual('undefined-undefined');
+			expect(result).toEqual('undefined-undefined-undefined');
 		});
 	});
 	describe('recordQueryParam', () => {

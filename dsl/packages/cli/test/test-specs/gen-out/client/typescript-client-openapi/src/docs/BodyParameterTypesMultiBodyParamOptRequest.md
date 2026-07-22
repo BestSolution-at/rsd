@@ -9,6 +9,7 @@ Name | Type
 `valueA` | string
 `valueB` | number
 `valueC` | [SimpleRecord](SimpleRecord.md)
+`valueD` | string
 
 ## Example
 
@@ -20,6 +21,7 @@ const example = {
   "valueA": null,
   "valueB": null,
   "valueC": null,
+  "valueD": null,
 } satisfies BodyParameterTypesMultiBodyParamOptRequest
 
 console.log(example)

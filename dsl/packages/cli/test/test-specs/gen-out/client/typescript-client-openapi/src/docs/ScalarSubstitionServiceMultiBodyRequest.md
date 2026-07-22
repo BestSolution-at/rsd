@@ -1,28 +1,24 @@
 
-# ListBodyParameterTypesListMultiBodyParamOptNilRequest
+# ScalarSubstitionServiceMultiBodyRequest
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`valueA` | Array&lt;string&gt;
-`valueB` | Array&lt;number&gt;
-`valueC` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
-`valueD` | Array&lt;string&gt;
+`valueA` | string
+`valueB` | string
 
 ## Example
 
 ```typescript
-import type { ListBodyParameterTypesListMultiBodyParamOptNilRequest } from ''
+import type { ScalarSubstitionServiceMultiBodyRequest } from ''
 
 // TODO: Update the object below with actual values
 const example = {
   "valueA": null,
   "valueB": null,
-  "valueC": null,
-  "valueD": null,
-} satisfies ListBodyParameterTypesListMultiBodyParamOptNilRequest
+} satisfies ScalarSubstitionServiceMultiBodyRequest
 
 console.log(example)
 
@@ -31,7 +27,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ListBodyParameterTypesListMultiBodyParamOptNilRequest
+const exampleParsed = JSON.parse(exampleJSON) as ScalarSubstitionServiceMultiBodyRequest
 console.log(exampleParsed)
 ```
 

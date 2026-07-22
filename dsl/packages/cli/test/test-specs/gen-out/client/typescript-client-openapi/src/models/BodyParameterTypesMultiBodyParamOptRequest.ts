@@ -45,6 +45,12 @@ export interface BodyParameterTypesMultiBodyParamOptRequest {
      * @memberof BodyParameterTypesMultiBodyParamOptRequest
      */
     valueC?: SimpleRecord;
+    /**
+     * 
+     * @type {string}
+     * @memberof BodyParameterTypesMultiBodyParamOptRequest
+     */
+    valueD?: string;
 }
 
 /**
@@ -67,6 +73,7 @@ export function BodyParameterTypesMultiBodyParamOptRequestFromJSONTyped(json: an
         'valueA': json['valueA'] == null ? undefined : json['valueA'],
         'valueB': json['valueB'] == null ? undefined : json['valueB'],
         'valueC': json['valueC'] == null ? undefined : SimpleRecordFromJSON(json['valueC']),
+        'valueD': json['valueD'] == null ? undefined : json['valueD'],
     };
 }
 
@@ -84,6 +91,7 @@ export function BodyParameterTypesMultiBodyParamOptRequestToJSONTyped(value?: Bo
         'valueA': value['valueA'],
         'valueB': value['valueB'],
         'valueC': SimpleRecordToJSON(value['valueC']),
+        'valueD': value['valueD'],
     };
 }
 

@@ -323,6 +323,7 @@ docs/SampleServiceMultiErrorSameCode400Response.md
 docs/ScalarRecord.md
 docs/ScalarRecordSubstitution.md
 docs/ScalarSubstitionServiceApi.md
+docs/ScalarSubstitionServiceMultiBodyRequest.md
 docs/SimpleRecord.md
 docs/SimpleRecordBasic.md
 docs/SimpleRecordBasicList.md
@@ -642,6 +643,7 @@ models/SampleEnumWithCustValue.ts
 models/SampleServiceMultiErrorSameCode400Response.ts
 models/ScalarRecord.ts
 models/ScalarRecordSubstitution.ts
+models/ScalarSubstitionServiceMultiBodyRequest.ts
 models/SimpleRecord.ts
 models/SimpleRecordBasic.ts
 models/SimpleRecordBasicList.ts

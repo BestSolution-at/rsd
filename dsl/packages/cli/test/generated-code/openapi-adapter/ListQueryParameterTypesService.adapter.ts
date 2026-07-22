@@ -301,12 +301,14 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 		valueA: string[],
 		valueB: number[],
 		valueC: api.model.SimpleRecord[],
+		valueD: api.model.ZoneId[],
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listQueryParameterTypesListMultiQueryParamRaw({
 				valueA,
 				valueB,
 				valueC: valueC.map(record => encodeBase64(JSON.stringify(record))),
+				valueD,
 				xRSDParamContentType: 'application/json',
 			});
 			if (response.raw.status === 200) {

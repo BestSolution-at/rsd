@@ -461,9 +461,10 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	async multiQueryParam(
 		valueA: string,
 		valueB: number,
+		valueC: api.model.ZoneId,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.queryParameterTypesMultiQueryParamRaw({ valueA, valueB });
+			const response = await this.deletegate.queryParameterTypesMultiQueryParamRaw({ valueA, valueB, valueC });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}
@@ -476,9 +477,10 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	async multiQueryParamOpt(
 		valueA?: string,
 		valueB?: number,
+		valueC?: api.model.ZoneId,
 	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
-			const response = await this.deletegate.queryParameterTypesMultiQueryParamOptRaw({ valueA, valueB });
+			const response = await this.deletegate.queryParameterTypesMultiQueryParamOptRaw({ valueA, valueB, valueC });
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
 			}

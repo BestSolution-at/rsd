@@ -288,12 +288,14 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				'Sample Text',
 				42,
 				{ key: '1', version: '1', value: 'Record1' },
+				'UTC',
 				['Text1', 'Text2'],
 				[1, 2, 3],
 				[
 					{ key: '2', version: '1', value: 'Record2' },
 					{ key: '3', version: '1', value: 'Record3' },
 				],
+				['UTC'],
 				file,
 				blob,
 			);
@@ -301,12 +303,14 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				text: 'Sample Text',
 				number: 42,
 				rec: { key: '1', version: '1', value: 'Record1' },
+				_scalar: 'UTC',
 				textList: ['Text1', 'Text2'],
 				numberList: [1, 2, 3],
 				recList: [
 					{ key: '2', version: '1', value: 'Record2' },
 					{ key: '3', version: '1', value: 'Record3' },
 				],
+				scalarList: ['UTC'],
 				dataFileContent: 'Mixed File Content',
 				dataBlobContent: 'Mixed Blob Content',
 			};
@@ -323,12 +327,14 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				'Sample Text',
 				42,
 				{ key: '1', version: '1', value: 'Record1' },
+				'UTC',
 				['Text1', 'Text2'],
 				[1, 2, 3],
 				[
 					{ key: '2', version: '1', value: 'Record2' },
 					{ key: '3', version: '1', value: 'Record3' },
 				],
+				['UTC'],
 				file,
 				blob,
 			);
@@ -337,12 +343,14 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				text: 'Sample Text',
 				number: 42,
 				rec: { key: '1', version: '1', value: 'Record1' },
+				_scalar: 'UTC',
 				textList: ['Text1', 'Text2'],
 				numberList: [1, 2, 3],
 				recList: [
 					{ key: '2', version: '1', value: 'Record2' },
 					{ key: '3', version: '1', value: 'Record3' },
 				],
+				scalarList: ['UTC'],
 				dataFileContent: 'Mixed File Content',
 				dataBlobContent: 'Mixed Blob Content',
 			});
@@ -357,15 +365,19 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				undefined,
 				undefined,
 				undefined,
+				undefined,
+				undefined,
 			);
 			expect(error).toBeNull();
 			expect(result).toStrictEqual({
 				text: undefined,
 				number: undefined,
 				rec: undefined,
+				_scalar: undefined,
 				textList: undefined,
 				numberList: undefined,
 				recList: undefined,
+				scalarList: undefined,
 				dataFileContent: undefined,
 				dataBlobContent: undefined,
 			});
@@ -379,12 +391,14 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				'Sample Text',
 				42,
 				{ key: '1', version: '1', value: 'Record1' },
+				'UTC',
 				['Text1', 'Text2'],
 				[1, 2, 3],
 				[
 					{ key: '2', version: '1', value: 'Record2' },
 					{ key: '3', version: '1', value: 'Record3' },
 				],
+				['UTC'],
 				file,
 				blob,
 			);
@@ -393,26 +407,30 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				text: 'Sample Text',
 				number: 42,
 				rec: { key: '1', version: '1', value: 'Record1' },
+				_scalar: 'UTC',
 				textList: ['Text1', 'Text2'],
 				numberList: [1, 2, 3],
 				recList: [
 					{ key: '2', version: '1', value: 'Record2' },
 					{ key: '3', version: '1', value: 'Record3' },
 				],
+				scalarList: ['UTC'],
 				dataFileContent: 'Mixed File Content',
 				dataBlobContent: 'Mixed Blob Content',
 			});
 		});
 		test.each([json, msgpack /*, openapi*/])('success with null params', async ({ service }) => {
-			const [result, error] = await service.uploadMixedNil(null, null, null, null, null, null, null, null);
+			const [result, error] = await service.uploadMixedNil(null, null, null, null, null, null, null, null, null, null);
 			expect(error).toBeNull();
 			expect(result).toStrictEqual({
 				text: null,
 				number: null,
 				rec: null,
+				_scalar: null,
 				textList: null,
 				numberList: null,
 				recList: null,
+				scalarList: null,
 				dataFileContent: null,
 				dataBlobContent: null,
 			});

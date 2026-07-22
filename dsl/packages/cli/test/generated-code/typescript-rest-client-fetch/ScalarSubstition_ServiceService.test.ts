@@ -448,4 +448,12 @@ describe('ScalarSubstition_ServiceService', () => {
 			}
 		});
 	});
+	describe('multiBody', () => {
+		test.each([json, msgpack, jsonOpenApi])('success with $encoding', async ({ service }) => {
+			const [result, error] = await service.multiBody({ start: 1, end: 2 }, 'UTC');
+			expect(error).toBeNull();
+			expect(result).toBeDefined();
+			expect(result).toEqual('[1,2] UTC');
+		});
+	});
 });

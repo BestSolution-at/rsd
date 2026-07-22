@@ -47,6 +47,12 @@ export interface BinaryTypesUploadMixedOptNilRequestRsdPayload {
     rec?: SimpleRecord | null;
     /**
      * 
+     * @type {string}
+     * @memberof BinaryTypesUploadMixedOptNilRequestRsdPayload
+     */
+    scalar_?: string | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof BinaryTypesUploadMixedOptNilRequestRsdPayload
      */
@@ -63,6 +69,12 @@ export interface BinaryTypesUploadMixedOptNilRequestRsdPayload {
      * @memberof BinaryTypesUploadMixedOptNilRequestRsdPayload
      */
     recList?: Array<SimpleRecord> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof BinaryTypesUploadMixedOptNilRequestRsdPayload
+     */
+    scalarList?: Array<string> | null;
 }
 
 /**
@@ -85,9 +97,11 @@ export function BinaryTypesUploadMixedOptNilRequestRsdPayloadFromJSONTyped(json:
         'text': json['text'] == null ? undefined : json['text'],
         'number': json['number'] == null ? undefined : json['number'],
         'rec': json['rec'] == null ? undefined : SimpleRecordFromJSON(json['rec']),
+        'scalar_': json['scalar_'] == null ? undefined : json['scalar_'],
         'textList': json['textList'] == null ? undefined : json['textList'],
         'numberList': json['numberList'] == null ? undefined : json['numberList'],
         'recList': json['recList'] == null ? undefined : ((json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
+        'scalarList': json['scalarList'] == null ? undefined : json['scalarList'],
     };
 }
 
@@ -105,9 +119,11 @@ export function BinaryTypesUploadMixedOptNilRequestRsdPayloadToJSONTyped(value?:
         'text': value['text'],
         'number': value['number'],
         'rec': SimpleRecordToJSON(value['rec']),
+        'scalar_': value['scalar_'],
         'textList': value['textList'],
         'numberList': value['numberList'],
         'recList': value['recList'] == null ? undefined : ((value['recList'] as Array<any>).map(SimpleRecordToJSON)),
+        'scalarList': value['scalarList'],
     };
 }
 
