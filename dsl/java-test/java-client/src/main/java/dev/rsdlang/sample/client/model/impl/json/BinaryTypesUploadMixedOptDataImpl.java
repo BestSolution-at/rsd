@@ -28,7 +28,7 @@ public class BinaryTypesUploadMixedOptDataImpl extends _BaseDataImpl implements 
 	}
 
 	public Optional<ZoneId> scalar_() {
-		return _JsonUtils.mapOptLiteral(data, "scalar_", ZoneId::of);
+		return _JsonUtils.mapOptLiteral(data, "scalar_", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	public Optional<List<String>> textList() {
@@ -44,7 +44,7 @@ public class BinaryTypesUploadMixedOptDataImpl extends _BaseDataImpl implements 
 	}
 
 	public Optional<List<ZoneId>> scalarList() {
-		return _JsonUtils.mapOptLiterals(data, "scalarList", ZoneId::of);
+		return _JsonUtils.mapOptLiterals(data, "scalarList", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

@@ -27,7 +27,7 @@ public class ListBodyParameterTypesListMultiBodyParamOptNilDataImpl extends _Bas
 	}
 
 	public _Base.Nillable<List<ZoneId>> valueD() {
-		return _JsonUtils.mapNilLiterals(data, "valueD", ZoneId::of);
+		return _JsonUtils.mapNilLiterals(data, "valueD", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

@@ -27,7 +27,7 @@ public class ListBodyParameterTypesListMultiBodyParamNilDataImpl extends _BaseDa
 	}
 
 	public Optional<List<ZoneId>> valueD() {
-		return _JsonUtils.mapNullLiterals(data, "valueD", ZoneId::of);
+		return _JsonUtils.mapNullLiterals(data, "valueD", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

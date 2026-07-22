@@ -24,7 +24,7 @@ public class BodyParameterTypesMultiBodyParamDataImpl extends _BaseDataImpl impl
 	}
 
 	public ZoneId valueD() {
-		return _JsonUtils.mapLiteral(data, "valueD", ZoneId::of);
+		return _JsonUtils.mapLiteral(data, "valueD", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

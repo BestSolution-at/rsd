@@ -1205,8 +1205,9 @@ function generateParameterContent(
 	} else if (prop.variant === 'enum') {
 		mapper = jsonMapper('Literal', prop.name, `${prop.type}::valueOf`, array, optional, nullable);
 	} else if (prop.variant === 'scalar') {
-		const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn);
-		mapper = jsonMapper('Literal', prop.name, `${Type}::of`, array, optional, nullable);
+		//const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn);
+		const _ScalarSupport = fqn(`${interfaceBasePackage}.impl.json._ScalarSupport`);
+		mapper = jsonMapper('Literal', prop.name, `${_ScalarSupport}::${prop.type}FromJson`, array, optional, nullable);
 	} else {
 		const type = prop.patch ? `${prop.type}PatchImpl` : `${prop.type}DataImpl`;
 		mapper = jsonMapper('Object', prop.name, `${type}::of`, array, optional, nullable);

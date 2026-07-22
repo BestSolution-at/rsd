@@ -27,7 +27,7 @@ public class BinaryTypesUploadMixedOptNilDataImpl extends _BaseDataImpl implemen
 	}
 
 	public _Base.Nillable<ZoneId> scalar_() {
-		return _JsonUtils.mapNilLiteral(data, "scalar_", ZoneId::of);
+		return _JsonUtils.mapNilLiteral(data, "scalar_", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	public _Base.Nillable<List<String>> textList() {
@@ -43,7 +43,7 @@ public class BinaryTypesUploadMixedOptNilDataImpl extends _BaseDataImpl implemen
 	}
 
 	public _Base.Nillable<List<ZoneId>> scalarList() {
-		return _JsonUtils.mapNilLiterals(data, "scalarList", ZoneId::of);
+		return _JsonUtils.mapNilLiterals(data, "scalarList", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

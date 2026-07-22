@@ -26,7 +26,7 @@ public class ListBodyParameterTypesListMultiBodyParamDataImpl extends _BaseDataI
 	}
 
 	public List<ZoneId> valueD() {
-		return _JsonUtils.mapLiterals(data, "valueD", ZoneId::of);
+		return _JsonUtils.mapLiterals(data, "valueD", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }

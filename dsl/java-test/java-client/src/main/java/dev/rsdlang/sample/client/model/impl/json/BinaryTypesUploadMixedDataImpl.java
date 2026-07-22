@@ -26,7 +26,7 @@ public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl implements dev
 	}
 
 	public ZoneId scalar_() {
-		return _JsonUtils.mapLiteral(data, "scalar_", ZoneId::of);
+		return _JsonUtils.mapLiteral(data, "scalar_", _ScalarSupport::ZoneIdFromJson);
 	}
 
 	public List<String> textList() {
@@ -42,7 +42,7 @@ public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl implements dev
 	}
 
 	public List<ZoneId> scalarList() {
-		return _JsonUtils.mapLiterals(data, "scalarList", ZoneId::of);
+		return _JsonUtils.mapLiterals(data, "scalarList", _ScalarSupport::ZoneIdFromJson);
 	}
 
 }
