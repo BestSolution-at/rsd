@@ -68,10 +68,10 @@ export interface ListBodyParameterTypesService {
 	listInlineEnumBodyParamOpt(bodyEnum?: ('A' | 'B')[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listInlineEnumBodyParamNil(bodyEnum: ('C' | 'D')[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listInlineEnumBodyParamOptNil(bodyEnum?: ('C' | 'D')[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	listMultiBodyParam(valueA: RSDString[], valueB: RSDInt[], valueC: SimpleRecord[]): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
-	listMultiBodyParamOpt(valueA?: RSDString[], valueB?: RSDInt[], valueC?: SimpleRecord[]): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
-	listMultiBodyParamNil(valueA: RSDString[] | null, valueB: RSDInt[] | null, valueC: SimpleRecord[] | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
-	listMultiBodyParamOptNil(valueA?: RSDString[] | null, valueB?: RSDInt[] | null, valueC?: SimpleRecord[] | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	listMultiBodyParam(valueA: RSDString[], valueB: RSDInt[], valueC: SimpleRecord[], valueD: ZoneId[]): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	listMultiBodyParamOpt(valueA?: RSDString[], valueB?: RSDInt[], valueC?: SimpleRecord[], valueD?: ZoneId[]): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	listMultiBodyParamNil(valueA: RSDString[] | null, valueB: RSDInt[] | null, valueC: SimpleRecord[] | null, valueD: ZoneId[] | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	listMultiBodyParamOptNil(valueA?: RSDString[] | null, valueB?: RSDInt[] | null, valueC?: SimpleRecord[] | null, valueD?: ZoneId[] | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
 	listRecordBodyParam(bodyRecord: SimpleRecord[]): Promise<Result<SimpleRecord[], StatusRSDError | NativeRSDError>>;
 	listRecordBodyParamOpt(bodyRecord?: SimpleRecord[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listRecordBodyParamNil(bodyRecord: SimpleRecord[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

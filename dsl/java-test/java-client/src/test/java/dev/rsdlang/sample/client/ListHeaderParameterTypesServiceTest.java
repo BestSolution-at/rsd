@@ -842,72 +842,85 @@ public class ListHeaderParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParam(ListHeaderParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k",
-				service.listMultiHeaderParam(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		var result = service
+				.listMultiHeaderParam(List.of("hello"), List.of(42), List.of(record), List.of(ZoneId.of("UTC")))
+				.orThrow();
+		assertEquals("hello-42-k-UTC", result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOpt_allUndefined(ListHeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiHeaderParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOpt_valueAOnly(ListHeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.DEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.DEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiHeaderParamOpt(List.of("hello")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOpt_valueAAndB(ListHeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiHeaderParamOpt(List.of("hello"), List.of(42)).orThrow());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listMultiHeaderParamOpt_valueAAndBAndC(ListHeaderParameterTypesService service) {
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED, NilResult.UNDEFINED),
+				service.listMultiHeaderParamOpt(List.of("hello"), List.of(42), List.of(record)).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOpt_allDefined(ListHeaderParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
-				service.listMultiHeaderParamOpt(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
+				service.listMultiHeaderParamOpt(List.of("hello"), List.of(42), List.of(record),
+						List.of(ZoneId.of("UTC"))).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamNil_allDefined(ListHeaderParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
-				service.listMultiHeaderParamNil(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		var result = service
+				.listMultiHeaderParamNil(List.of("hello"), List.of(42), List.of(record), List.of(ZoneId.of("UTC")))
+				.orThrow();
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED), result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamNil_allNull(ListHeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL),
-				service.listMultiHeaderParamNil(null, null, null).orThrow());
+		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL, NilResult.NULL),
+				service.listMultiHeaderParamNil(null, null, null, null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOptNil_allUndefined(ListHeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiHeaderParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOptNil_valueANull(ListHeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.UNDEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.NULL, NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiHeaderParamOptNil((List<String>) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOptNil_valueAAndBNull(ListHeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiHeaderParamOptNil((List<String>) null, (List<Integer>) null).orThrow());
 	}
 
@@ -915,8 +928,9 @@ public class ListHeaderParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listMultiHeaderParamOptNil_allDefined(ListHeaderParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
-				service.listMultiHeaderParamOptNil(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
+				service.listMultiHeaderParamOptNil(List.of("hello"), List.of(42), List.of(record),
+						List.of(ZoneId.of("UTC"))).orThrow());
 	}
 
 	// --- Record List Header Param ---

@@ -3,6 +3,7 @@ package dev.rsdlang.sample.server.service.handler.query;
 import java.util.Optional;
 import java.util.OptionalInt;
 
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.QueryParameterTypesServiceImpl;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -11,10 +12,15 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class MultiQueryParamOptHandlerImpl implements QueryParameterTypesServiceImpl.MultiQueryParamOptHandler {
 
 	@Override
-	public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB) {
+	public String multiQueryParamOpt(
+			BuilderFactory _factory,
+			Optional<String> valueA,
+			OptionalInt valueB,
+			Optional<ZoneId> zone) {
 		var valA = valueA.orElse("undefined");
 		var valB = valueB.isPresent() ? Integer.toString(valueB.getAsInt()) : "undefined";
-		return valA + "-" + valB;
+		var valC = zone.map(ZoneId::value).orElse("undefined");
+		return valA + "-" + valB + "-" + valC;
 	}
 
 }

@@ -328,22 +328,22 @@ public class BodyParameterTypesResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiBodyParam(String $result, String $contentType, String valueA, int valueB, SimpleRecord.Data valueC) {
+	public ResponseBuilder multiBodyParam(String $result, String $contentType, String valueA, int valueB, SimpleRecord.Data valueC, ZoneId valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiBodyParamOpt(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
+	public ResponseBuilder multiBodyParamOpt(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiBodyParamNil(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
+	public ResponseBuilder multiBodyParamNil(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiBodyParamOptNil(String $result, String $contentType, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC) {
+	public ResponseBuilder multiBodyParamOptNil(String $result, String $contentType, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC, _Base.Nillable<ZoneId> valueD) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

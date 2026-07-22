@@ -727,8 +727,8 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), ListBodyParameterTypesListMultiBodyParamDataImpl::new, ListBodyParameterTypesListMultiBodyParamDataImpl.class);
-		var result = service.listMultiBodyParam(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.listMultiBodyParam(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
+		var result = service.listMultiBodyParam(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
+		return responseBuilder.listMultiBodyParam(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@PUT
@@ -738,8 +738,8 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), ListBodyParameterTypesListMultiBodyParamOptDataImpl::new, ListBodyParameterTypesListMultiBodyParamOptDataImpl.class);
-		var result = service.listMultiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.listMultiBodyParamOpt(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
+		var result = service.listMultiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
+		return responseBuilder.listMultiBodyParamOpt(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@PUT
@@ -749,8 +749,8 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), ListBodyParameterTypesListMultiBodyParamNilDataImpl::new, ListBodyParameterTypesListMultiBodyParamNilDataImpl.class);
-		var result = service.listMultiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.listMultiBodyParamNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
+		var result = service.listMultiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
+		return responseBuilder.listMultiBodyParamNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@PUT
@@ -760,8 +760,8 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
 		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), ListBodyParameterTypesListMultiBodyParamOptNilDataImpl::new, ListBodyParameterTypesListMultiBodyParamOptNilDataImpl.class);
-		var result = service.listMultiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
-		return responseBuilder.listMultiBodyParamOptNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
+		var result = service.listMultiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
+		return responseBuilder.listMultiBodyParamOptNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@PUT

@@ -68,10 +68,10 @@ export interface HeaderParameterTypesService {
 	simpleInlineEnumHeaderParamOpt(headerValue?: 'A' | 'B'): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleInlineEnumHeaderParamNil(headerValue: 'C' | 'D' | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	simpleInlineEnumHeaderParamOptNil(headerValue?: 'C' | 'D' | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	multiHeaderParam(valueA: RSDString, valueB: RSDInt): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
-	multiHeaderParamOpt(valueA?: RSDString, valueB?: RSDInt): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
-	multiHeaderParamNil(valueA: RSDString | null, valueB: RSDInt | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
-	multiHeaderParamOptNil(valueA?: RSDString | null, valueB?: RSDInt | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	multiHeaderParam(valueA: RSDString, valueB: RSDInt, valueC: ZoneId): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	multiHeaderParamOpt(valueA?: RSDString, valueB?: RSDInt, valueC?: ZoneId): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	multiHeaderParamNil(valueA: RSDString | null, valueB: RSDInt | null, valueC: ZoneId | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	multiHeaderParamOptNil(valueA?: RSDString | null, valueB?: RSDInt | null, valueC?: ZoneId | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
 	recordHeaderParam(headerValue: SimpleRecord): Promise<Result<SimpleRecord, StatusRSDError | NativeRSDError>>;
 	recordHeaderParamOpt(headerValue?: SimpleRecord): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	recordHeaderParamNil(headerValue: SimpleRecord | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

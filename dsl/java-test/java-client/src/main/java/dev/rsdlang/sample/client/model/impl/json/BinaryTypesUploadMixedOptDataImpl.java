@@ -8,6 +8,7 @@ import java.util.OptionalInt;
 import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class BinaryTypesUploadMixedOptDataImpl extends _BaseDataImpl implements dev.rsdlang.sample.client.model._Base.BaseData {
 	public BinaryTypesUploadMixedOptDataImpl(JsonObject data) {
@@ -26,6 +27,10 @@ public class BinaryTypesUploadMixedOptDataImpl extends _BaseDataImpl implements 
 		return _JsonUtils.mapOptObject(data, "rec", SimpleRecordDataImpl::of);
 	}
 
+	public Optional<ZoneId> scalar_() {
+		return _JsonUtils.mapOptLiteral(data, "scalar_", ZoneId::of);
+	}
+
 	public Optional<List<String>> textList() {
 		return _JsonUtils.mapOptStrings(data, "textList");
 	}
@@ -36,6 +41,10 @@ public class BinaryTypesUploadMixedOptDataImpl extends _BaseDataImpl implements 
 
 	public Optional<List<SimpleRecord.Data>> recList() {
 		return _JsonUtils.mapOptObjects(data, "recList", SimpleRecordDataImpl::of);
+	}
+
+	public Optional<List<ZoneId>> scalarList() {
+		return _JsonUtils.mapOptLiterals(data, "scalarList", ZoneId::of);
 	}
 
 }

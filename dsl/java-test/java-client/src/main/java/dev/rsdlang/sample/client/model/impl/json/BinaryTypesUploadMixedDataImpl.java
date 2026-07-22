@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl implements dev.rsdlang.sample.client.model._Base.BaseData {
 	public BinaryTypesUploadMixedDataImpl(JsonObject data) {
@@ -24,6 +25,10 @@ public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl implements dev
 		return _JsonUtils.mapObject(data, "rec", SimpleRecordDataImpl::of);
 	}
 
+	public ZoneId scalar_() {
+		return _JsonUtils.mapLiteral(data, "scalar_", ZoneId::of);
+	}
+
 	public List<String> textList() {
 		return _JsonUtils.mapStrings(data, "textList");
 	}
@@ -34,6 +39,10 @@ public class BinaryTypesUploadMixedDataImpl extends _BaseDataImpl implements dev
 
 	public List<SimpleRecord.Data> recList() {
 		return _JsonUtils.mapObjects(data, "recList", SimpleRecordDataImpl::of);
+	}
+
+	public List<ZoneId> scalarList() {
+		return _JsonUtils.mapLiterals(data, "scalarList", ZoneId::of);
 	}
 
 }

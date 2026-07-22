@@ -664,11 +664,13 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
-			@HeaderParam("valueB") String _valueB) {
+			@HeaderParam("valueB") String _valueB,
+			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseInt(_valueB);
-		var result = service.multiHeaderParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseLiteral(_valueC, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.multiHeaderParam(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -676,11 +678,13 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
-			@HeaderParam("valueB") String _valueB) {
+			@HeaderParam("valueB") String _valueB,
+			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseOptString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseOptInt(_valueB);
-		var result = service.multiHeaderParamOpt(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseOptLiteral(_valueC, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.multiHeaderParamOpt(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -688,11 +692,13 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
-			@HeaderParam("valueB") String _valueB) {
+			@HeaderParam("valueB") String _valueB,
+			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseNullString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseNullInt(_valueB);
-		var result = service.multiHeaderParamNil(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseNullLiteral(_valueC, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.multiHeaderParamNil(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -700,11 +706,13 @@ public class HeaderParameterTypesResource {
 	public Response multiHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
-			@HeaderParam("valueB") String _valueB) {
+			@HeaderParam("valueB") String _valueB,
+			@HeaderParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseNilString(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.parseNilInt(_valueB);
-		var result = service.multiHeaderParamOptNil(builderFactory, valueA, valueB);
-		return responseBuilder.multiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseNilLiteral(_valueC, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.multiHeaderParamOptNil(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET

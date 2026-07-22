@@ -164,12 +164,12 @@ public class QueryParameterTypesResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiQueryParam(String $result, String $contentType, String valueA, int valueB) {
+	public ResponseBuilder multiQueryParam(String $result, String $contentType, String valueA, int valueB, ZoneId valueC) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiQueryParamOpt(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB) {
+	public ResponseBuilder multiQueryParamOpt(String $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

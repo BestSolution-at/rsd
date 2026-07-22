@@ -467,23 +467,23 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	@Override
-	public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB) {
-		return multiHeaderParamHandler.multiHeaderParam(_factory, valueA, valueB);
+	public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB, ZoneId valueC) {
+		return multiHeaderParamHandler.multiHeaderParam(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> multiHeaderParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB) {
-		return multiHeaderParamOptHandler.multiHeaderParamOpt(_factory, valueA, valueB);
+	public List<NilResult> multiHeaderParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC) {
+		return multiHeaderParamOptHandler.multiHeaderParamOpt(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB) {
-		return multiHeaderParamNilHandler.multiHeaderParamNil(_factory, valueA, valueB);
+	public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC) {
+		return multiHeaderParamNilHandler.multiHeaderParamNil(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
-	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB) {
-		return multiHeaderParamOptNilHandler.multiHeaderParamOptNil(_factory, valueA, valueB);
+	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<ZoneId> valueC) {
+		return multiHeaderParamOptNilHandler.multiHeaderParamOptNil(_factory, valueA, valueB, valueC);
 	}
 
 	@Override
@@ -752,19 +752,19 @@ public class HeaderParameterTypesServiceImpl implements HeaderParameterTypesServ
 	}
 
 	public interface MultiHeaderParamHandler {
-		public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB);
+		public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB, ZoneId valueC);
 	}
 
 	public interface MultiHeaderParamOptHandler {
-		public List<NilResult> multiHeaderParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
+		public List<NilResult> multiHeaderParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC);
 	}
 
 	public interface MultiHeaderParamNilHandler {
-		public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
+		public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC);
 	}
 
 	public interface MultiHeaderParamOptNilHandler {
-		public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB);
+		public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<ZoneId> valueC);
 	}
 
 	public interface RecordHeaderParamHandler {

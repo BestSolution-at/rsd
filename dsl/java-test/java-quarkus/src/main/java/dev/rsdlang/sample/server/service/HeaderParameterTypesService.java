@@ -159,13 +159,13 @@ public interface HeaderParameterTypesService {
 
 	public NilResult simpleInlineEnumHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleInlineEnumHeaderParamOptNil_HeaderValue_Param$> headerValue);
 
-	public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB);
+	public String multiHeaderParam(BuilderFactory _factory, String valueA, int valueB, ZoneId valueC);
 
-	public List<NilResult> multiHeaderParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
+	public List<NilResult> multiHeaderParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC);
 
-	public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
+	public List<NilResult> multiHeaderParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC);
 
-	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB);
+	public List<NilResult> multiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<ZoneId> valueC);
 
 	public SimpleRecord.Data recordHeaderParam(BuilderFactory _factory, SimpleRecord.Data headerValue);
 

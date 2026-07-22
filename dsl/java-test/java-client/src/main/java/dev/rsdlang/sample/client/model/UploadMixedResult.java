@@ -13,11 +13,15 @@ public interface UploadMixedResult {
 
 		public _Base.Nillable<SimpleRecord.Data> rec();
 
+		public _Base.Nillable<ZoneId> _scalar();
+
 		public _Base.Nillable<List<String>> textList();
 
 		public _Base.Nillable<List<Integer>> numberList();
 
 		public _Base.Nillable<List<SimpleRecord.Data>> recList();
+
+		public _Base.Nillable<List<ZoneId>> scalarList();
 
 		public _Base.Nillable<String> dataFileContent();
 
@@ -34,11 +38,15 @@ public interface UploadMixedResult {
 
 		public <T extends SimpleRecord.DataBuilder> DataBuilder withRec(Class<T> clazz, Function<T, SimpleRecord.Data> block);
 
+		public DataBuilder _scalar(ZoneId _scalar);
+
 		public DataBuilder textList(List<String> textList);
 
 		public DataBuilder numberList(List<Integer> numberList);
 
 		public DataBuilder recList(List<SimpleRecord.Data> recList);
+
+		public DataBuilder scalarList(List<ZoneId> scalarList);
 
 		public DataBuilder dataFileContent(String dataFileContent);
 

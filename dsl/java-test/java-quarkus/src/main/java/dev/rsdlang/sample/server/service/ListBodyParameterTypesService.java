@@ -156,13 +156,13 @@ public interface ListBodyParameterTypesService {
 
 	public NilResult listInlineEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<ListInlineEnumBodyParamOptNil_BodyEnum_Param$>> bodyEnum);
 
-	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD);
 
-	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD);
 
-	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD);
 
-	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
+	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC, _Base.Nillable<List<ZoneId>> valueD);
 
 	public List<SimpleRecord.Data> listRecordBodyParam(BuilderFactory _factory, List<SimpleRecord.Data> bodyRecord);
 

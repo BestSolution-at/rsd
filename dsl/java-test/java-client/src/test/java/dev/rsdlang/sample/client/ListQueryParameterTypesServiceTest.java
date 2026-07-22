@@ -177,8 +177,10 @@ public class ListQueryParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listMultiQueryParam(ListQueryParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k",
-				service.listMultiQueryParam(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		var result = service
+				.listMultiQueryParam(List.of("hello"), List.of(42), List.of(record), List.of(ZoneId.of("UTC")))
+				.orThrow();
+		assertEquals("hello-42-k-UTC", result);
 	}
 
 	// --- Record List Query Param ---

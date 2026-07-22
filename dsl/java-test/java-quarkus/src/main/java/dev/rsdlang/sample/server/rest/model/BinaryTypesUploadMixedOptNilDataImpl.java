@@ -10,6 +10,7 @@ import dev.rsdlang.sample.server.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 public class BinaryTypesUploadMixedOptNilDataImpl extends _BaseDataImpl {
 	public BinaryTypesUploadMixedOptNilDataImpl(JsonObject data) {
@@ -28,6 +29,10 @@ public class BinaryTypesUploadMixedOptNilDataImpl extends _BaseDataImpl {
 		return _JsonUtils.mapNilObject(data, "rec", SimpleRecordDataImpl::of);
 	}
 
+	public _Base.Nillable<ZoneId> scalar_() {
+		return _JsonUtils.mapNilLiteral(data, "scalar_", ZoneId::of);
+	}
+
 	public _Base.Nillable<List<String>> textList() {
 		return _JsonUtils.mapNilStrings(data, "textList");
 	}
@@ -38,6 +43,10 @@ public class BinaryTypesUploadMixedOptNilDataImpl extends _BaseDataImpl {
 
 	public _Base.Nillable<List<SimpleRecord.Data>> recList() {
 		return _JsonUtils.mapNilObjects(data, "recList", SimpleRecordDataImpl::of);
+	}
+
+	public _Base.Nillable<List<ZoneId>> scalarList() {
+		return _JsonUtils.mapNilLiterals(data, "scalarList", ZoneId::of);
 	}
 
 }

@@ -28,6 +28,7 @@ import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
+import dev.rsdlang.sample.client.model.ZoneId;
 import dev.rsdlang.sample.client.Result;
 import dev.rsdlang.sample.client.RSDError;
 import dev.rsdlang.sample.client.SampleErrorWithValue;
@@ -1111,11 +1112,13 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixed(String text, int number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixed(String text, int number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList, RSDFile dataFile, RSDBlob dataBlob) {
 		Objects.requireNonNull(text, "text must not be null");
 		Objects.requireNonNull(rec, "rec must not be null");
+		Objects.requireNonNull(scalar_, "scalar_ must not be null");
 		Objects.requireNonNull(textList, "textList must not be null");
 		Objects.requireNonNull(recList, "recList must not be null");
+		Objects.requireNonNull(scalarList, "scalarList must not be null");
 		Objects.requireNonNull(dataFile, "dataFile must not be null");
 		Objects.requireNonNull(dataBlob, "dataBlob must not be null");
 
@@ -1129,9 +1132,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			$jsonPayload.add("text", text);
 			$jsonPayload.add("number", number);
 			$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			$jsonPayload.add("scalar_", Objects.toString(scalar_));
 			$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
+			$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
 			$formDataBuilder.addBlob("dataFile", dataFile);
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
 			$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new BinaryTypesUploadMixedDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedDataImpl.class), this.contentType());
@@ -1359,7 +1364,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1375,6 +1380,64 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			}
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			}
+			$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
+			var $formData = $formDataBuilder.build();
+			var $body = $formData.publisher();
+			var $contentType = $formData.contentType();
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.PUT($body);
+			this.lifecycleHook.preRequest("uploadMixedOpt", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
+				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("uploadMixedOpt");
+		}
+	}
+
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList) {
+		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
 			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
@@ -1414,7 +1477,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1430,6 +1493,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			}
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
 			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
@@ -1472,7 +1538,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1488,6 +1554,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			}
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
 			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
@@ -1533,7 +1602,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1550,6 +1619,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			}
@@ -1558,6 +1630,76 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			}
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
+			}
+			if (scalarList != null) {
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+			}
+			$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
+			var $formData = $formDataBuilder.build();
+			var $body = $formData.publisher();
+			var $contentType = $formData.contentType();
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.PUT($body);
+			this.lifecycleHook.preRequest("uploadMixedOpt", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
+				this.lifecycleHook.onSuccess("uploadMixedOpt", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOpt", e);
+			this.lifecycleHook.onCatch("uploadMixedOpt", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("uploadMixedOpt");
+		}
+	}
+
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList, RSDFile dataFile) {
+		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			}
+			if (textList != null) {
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
+			}
+			if (numberList != null) {
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
+			}
+			if (recList != null) {
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
+			}
+			if (scalarList != null) {
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
 			}
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
@@ -1597,7 +1739,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedOpt".formatted(
 				this.baseURI());
 
@@ -1614,6 +1756,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			if (rec != null) {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			}
@@ -1622,6 +1767,9 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			}
 			if (recList != null) {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
+			}
+			if (scalarList != null) {
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
 			}
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
@@ -1664,7 +1812,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedNil(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedNil".formatted(
 				this.baseURI());
 
@@ -1687,6 +1835,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("rec");
 			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			} else {
+				$jsonPayload.addNull("scalar_");
+			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
@@ -1701,6 +1854,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
 				$jsonPayload.addNull("recList");
+			}
+			if (scalarList != null) {
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+			} else {
+				$jsonPayload.addNull("scalarList");
 			}
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
@@ -1945,7 +2103,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -1967,6 +2125,74 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			} else {
+				$jsonPayload.addNull("scalar_");
+			}
+			$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
+			var $formData = $formDataBuilder.build();
+			var $body = $formData.publisher();
+			var $contentType = $formData.contentType();
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.PUT($body);
+			this.lifecycleHook.preRequest("uploadMixedOptNil", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
+				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("uploadMixedOptNil");
+		}
+	}
+
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList) {
+		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			} else {
+				$jsonPayload.addNull("text");
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			} else {
+				$jsonPayload.addNull("number");
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			} else {
+				$jsonPayload.addNull("rec");
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			} else {
+				$jsonPayload.addNull("scalar_");
 			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
@@ -2008,7 +2234,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2030,6 +2256,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			} else {
+				$jsonPayload.addNull("scalar_");
 			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
@@ -2076,7 +2307,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2098,6 +2329,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			} else {
 				$jsonPayload.addNull("rec");
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			} else {
+				$jsonPayload.addNull("scalar_");
 			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
@@ -2149,7 +2385,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2172,6 +2408,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("rec");
 			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			} else {
+				$jsonPayload.addNull("scalar_");
+			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
@@ -2186,6 +2427,94 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
 				$jsonPayload.addNull("recList");
+			}
+			if (scalarList != null) {
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+			} else {
+				$jsonPayload.addNull("scalarList");
+			}
+			$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new BinaryTypesUploadMixedOptNilDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptNilDataImpl.class), this.contentType());
+			var $formData = $formDataBuilder.build();
+			var $body = $formData.publisher();
+			var $contentType = $formData.contentType();
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.PUT($body);
+			this.lifecycleHook.preRequest("uploadMixedOptNil", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapObject($response, UploadMixedResultDataImpl::of, UploadMixedResult.Data.class);
+				this.lifecycleHook.onSuccess("uploadMixedOptNil", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("uploadMixedOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadMixedOptNil", e);
+			this.lifecycleHook.onCatch("uploadMixedOptNil", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("uploadMixedOptNil");
+		}
+	}
+
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList, RSDFile dataFile) {
+		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
+			var $jsonPayload = Json.createObjectBuilder();
+			if (text != null) {
+				$jsonPayload.add("text", text);
+			} else {
+				$jsonPayload.addNull("text");
+			}
+			if (number != null) {
+				$jsonPayload.add("number", number);
+			} else {
+				$jsonPayload.addNull("number");
+			}
+			if (rec != null) {
+				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
+			} else {
+				$jsonPayload.addNull("rec");
+			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			} else {
+				$jsonPayload.addNull("scalar_");
+			}
+			if (textList != null) {
+				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
+			} else {
+				$jsonPayload.addNull("textList");
+			}
+			if (numberList != null) {
+				$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
+			} else {
+				$jsonPayload.addNull("numberList");
+			}
+			if (recList != null) {
+				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
+			} else {
+				$jsonPayload.addNull("recList");
+			}
+			if (scalarList != null) {
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+			} else {
+				$jsonPayload.addNull("scalarList");
 			}
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);
@@ -2228,7 +2557,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 		}
 	}
 
-	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, RSDFile dataFile, RSDBlob dataBlob) {
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(String text, Integer number, SimpleRecord.Data rec, ZoneId scalar_, List<String> textList, List<Integer> numberList, List<SimpleRecord.Data> recList, List<ZoneId> scalarList, RSDFile dataFile, RSDBlob dataBlob) {
 		var $path = "%s/api/binarytypes/uploadMixedOptNil".formatted(
 				this.baseURI());
 
@@ -2251,6 +2580,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			} else {
 				$jsonPayload.addNull("rec");
 			}
+			if (scalar_ != null) {
+				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			} else {
+				$jsonPayload.addNull("scalar_");
+			}
 			if (textList != null) {
 				$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			} else {
@@ -2265,6 +2599,11 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			} else {
 				$jsonPayload.addNull("recList");
+			}
+			if (scalarList != null) {
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+			} else {
+				$jsonPayload.addNull("scalarList");
 			}
 			if (dataFile != null) {
 				$formDataBuilder.addBlob("dataFile", dataFile);

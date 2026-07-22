@@ -662,12 +662,14 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
-			@HeaderParam("valueC") String _valueC) {
+			@HeaderParam("valueC") String _valueC,
+			@HeaderParam("valueD") String _valueD) {
 		var valueA = _RestUtils.mapStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.mapInts(_valueB);
 		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
-		var result = service.listMultiHeaderParam(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
+		var valueD = _RestUtils.mapLiterals(_valueD, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.listMultiHeaderParam(builderFactory, valueA, valueB, valueC, valueD);
+		return responseBuilder.listMultiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
 	}
 
 	@GET
@@ -677,12 +679,14 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
-			@HeaderParam("valueC") String _valueC) {
+			@HeaderParam("valueC") String _valueC,
+			@HeaderParam("valueD") String _valueD) {
 		var valueA = _RestUtils.mapOptStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.mapOptInts(_valueB);
 		var valueC = _RestUtils.mapOptObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
-		var result = service.listMultiHeaderParamOpt(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
+		var valueD = _RestUtils.mapOptLiterals(_valueD, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.listMultiHeaderParamOpt(builderFactory, valueA, valueB, valueC, valueD);
+		return responseBuilder.listMultiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
 	}
 
 	@GET
@@ -692,12 +696,14 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
-			@HeaderParam("valueC") String _valueC) {
+			@HeaderParam("valueC") String _valueC,
+			@HeaderParam("valueD") String _valueD) {
 		var valueA = _RestUtils.mapNullStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.mapNullInts(_valueB);
 		var valueC = _RestUtils.mapNullObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
-		var result = service.listMultiHeaderParamNil(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
+		var valueD = _RestUtils.mapNullLiterals(_valueD, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.listMultiHeaderParamNil(builderFactory, valueA, valueB, valueC, valueD);
+		return responseBuilder.listMultiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
 	}
 
 	@GET
@@ -707,12 +713,14 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("valueA") String _valueA,
 			@HeaderParam("valueB") String _valueB,
-			@HeaderParam("valueC") String _valueC) {
+			@HeaderParam("valueC") String _valueC,
+			@HeaderParam("valueD") String _valueD) {
 		var valueA = _RestUtils.mapNilStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.mapNilInts(_valueB);
 		var valueC = _RestUtils.mapNilObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
-		var result = service.listMultiHeaderParamOptNil(builderFactory, valueA, valueB, valueC);
-		return responseBuilder.listMultiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
+		var valueD = _RestUtils.mapNilLiterals(_valueD, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
+		var result = service.listMultiHeaderParamOptNil(builderFactory, valueA, valueB, valueC, valueD);
+		return responseBuilder.listMultiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
 	}
 
 	@GET

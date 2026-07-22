@@ -3888,12 +3888,16 @@
                   },
                   "valueC": {
                     "$ref": "#/components/schemas/SimpleRecord"
+                  },
+                  "valueD": {
+                    "type": "string"
                   }
                 },
                 "required": [
                   "valueA",
                   "valueB",
-                  "valueC"
+                  "valueC",
+                  "valueD"
                 ]
               }
             }
@@ -3937,6 +3941,9 @@
                   },
                   "valueC": {
                     "$ref": "#/components/schemas/SimpleRecord"
+                  },
+                  "valueD": {
+                    "type": "string"
                   }
                 },
                 "required": []
@@ -3989,12 +3996,17 @@
                       }
                     ],
                     "nullable": true
+                  },
+                  "valueD": {
+                    "type": "string",
+                    "nullable": true
                   }
                 },
                 "required": [
                   "valueA",
                   "valueB",
-                  "valueC"
+                  "valueC",
+                  "valueD"
                 ]
               }
             }
@@ -4044,6 +4056,10 @@
                         "$ref": "#/components/schemas/SimpleRecord"
                       }
                     ],
+                    "nullable": true
+                  },
+                  "valueD": {
+                    "type": "string",
                     "nullable": true
                   }
                 },
@@ -6598,6 +6614,15 @@
               "type": "number",
               "format": "int32"
             }
+          },
+          {
+            "name": "valueC",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6639,6 +6664,15 @@
             "schema": {
               "type": "number",
               "format": "int32"
+            }
+          },
+          {
+            "name": "valueC",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -6687,6 +6721,16 @@
               "format": "int32",
               "nullable": true
             }
+          },
+          {
+            "name": "valueC",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
           }
         ],
         "responses": {
@@ -6732,6 +6776,16 @@
             "schema": {
               "type": "number",
               "format": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "valueC",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
               "nullable": true
             }
           }
@@ -8000,6 +8054,15 @@
               "type": "number",
               "format": "int32"
             }
+          },
+          {
+            "name": "valueC",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -8041,6 +8104,15 @@
             "schema": {
               "type": "number",
               "format": "int32"
+            }
+          },
+          {
+            "name": "valueC",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -10436,12 +10508,19 @@
                     "items": {
                       "$ref": "#/components/schemas/SimpleRecord"
                     }
+                  },
+                  "valueD": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   }
                 },
                 "required": [
                   "valueA",
                   "valueB",
-                  "valueC"
+                  "valueC",
+                  "valueD"
                 ]
               }
             }
@@ -10493,6 +10572,12 @@
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/SimpleRecord"
+                    }
+                  },
+                  "valueD": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
                     }
                   }
                 },
@@ -10554,12 +10639,20 @@
                       "$ref": "#/components/schemas/SimpleRecord"
                     },
                     "nullable": true
+                  },
+                  "valueD": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "nullable": true
                   }
                 },
                 "required": [
                   "valueA",
                   "valueB",
-                  "valueC"
+                  "valueC",
+                  "valueD"
                 ]
               }
             }
@@ -10616,6 +10709,13 @@
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/SimpleRecord"
+                    },
+                    "nullable": true
+                  },
+                  "valueD": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
                     },
                     "nullable": true
                   }
@@ -11437,6 +11537,18 @@
                 "format": "base64"
               },
               "nullable": false
+            }
+          },
+          {
+            "name": "valueD",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           {
@@ -13820,6 +13932,18 @@
             }
           },
           {
+            "name": "valueD",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
             "name": "X-RSD-Param-Content-Type",
             "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
             "in": "header",
@@ -13888,6 +14012,18 @@
                 "format": "base64"
               },
               "nullable": false
+            }
+          },
+          {
+            "name": "valueD",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           {
@@ -13967,6 +14103,19 @@
             }
           },
           {
+            "name": "valueD",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            }
+          },
+          {
             "name": "X-RSD-Param-Content-Type",
             "description": "Contains the type information for record and union types transferred in headers as a base64 blob",
             "in": "header",
@@ -14038,6 +14187,19 @@
               "items": {
                 "type": "string",
                 "format": "base64"
+              },
+              "nullable": true
+            }
+          },
+          {
+            "name": "valueD",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
               },
               "nullable": true
             }
@@ -14985,6 +15147,9 @@
                       "rec": {
                         "$ref": "#/components/schemas/SimpleRecord"
                       },
+                      "scalar_": {
+                        "type": "string"
+                      },
                       "textList": {
                         "type": "array",
                         "items": {
@@ -15003,15 +15168,23 @@
                         "items": {
                           "$ref": "#/components/schemas/SimpleRecord"
                         }
+                      },
+                      "scalarList": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
                       }
                     },
                     "required": [
                       "text",
                       "number",
                       "rec",
+                      "scalar_",
                       "textList",
                       "numberList",
-                      "recList"
+                      "recList",
+                      "scalarList"
                     ]
                   }
                 },
@@ -15075,6 +15248,9 @@
                       "rec": {
                         "$ref": "#/components/schemas/SimpleRecord"
                       },
+                      "scalar_": {
+                        "type": "string"
+                      },
                       "textList": {
                         "type": "array",
                         "items": {
@@ -15092,6 +15268,12 @@
                         "type": "array",
                         "items": {
                           "$ref": "#/components/schemas/SimpleRecord"
+                        }
+                      },
+                      "scalarList": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
                         }
                       }
                     },
@@ -15162,6 +15344,10 @@
                         ],
                         "nullable": true
                       },
+                      "scalar_": {
+                        "type": "string",
+                        "nullable": true
+                      },
                       "textList": {
                         "type": "array",
                         "items": {
@@ -15183,15 +15369,24 @@
                           "$ref": "#/components/schemas/SimpleRecord"
                         },
                         "nullable": true
+                      },
+                      "scalarList": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "nullable": true
                       }
                     },
                     "required": [
                       "text",
                       "number",
                       "rec",
+                      "scalar_",
                       "textList",
                       "numberList",
-                      "recList"
+                      "recList",
+                      "scalarList"
                     ]
                   }
                 },
@@ -15262,6 +15457,10 @@
                         ],
                         "nullable": true
                       },
+                      "scalar_": {
+                        "type": "string",
+                        "nullable": true
+                      },
                       "textList": {
                         "type": "array",
                         "items": {
@@ -15281,6 +15480,13 @@
                         "type": "array",
                         "items": {
                           "$ref": "#/components/schemas/SimpleRecord"
+                        },
+                        "nullable": true
+                      },
+                      "scalarList": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
                         },
                         "nullable": true
                       }
@@ -24638,6 +24844,10 @@
             ],
             "nullable": true
           },
+          "_scalar": {
+            "type": "string",
+            "nullable": true
+          },
           "textList": {
             "type": "array",
             "items": {
@@ -24657,6 +24867,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SimpleRecord"
+            },
+            "nullable": true
+          },
+          "scalarList": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
             "nullable": true
           },

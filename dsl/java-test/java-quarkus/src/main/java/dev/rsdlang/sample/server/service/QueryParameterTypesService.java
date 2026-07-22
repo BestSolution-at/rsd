@@ -73,9 +73,9 @@ public interface QueryParameterTypesService {
 
 	public NilResult simpleEnumQueryParamOpt(BuilderFactory _factory, Optional<SampleEnum> queryValue);
 
-	public String multiQueryParam(BuilderFactory _factory, String valueA, int valueB);
+	public String multiQueryParam(BuilderFactory _factory, String valueA, int valueB, ZoneId valueC);
 
-	public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB);
+	public String multiQueryParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC);
 
 	public SimpleRecord.Data recordQueryParam(BuilderFactory _factory, SimpleRecord.Data queryValue);
 

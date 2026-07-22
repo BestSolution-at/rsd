@@ -8,6 +8,7 @@ import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UploadMixedResult;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public interface BinaryTypesService extends BaseService {
 	public Result<Integer, RSDError.$GenericError> uploadFile(RSDFile data);
@@ -62,9 +63,11 @@ public interface BinaryTypesService extends BaseService {
 			String text, 
 			int number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList, 
+			List<ZoneId> scalarList, 
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
@@ -85,12 +88,20 @@ public interface BinaryTypesService extends BaseService {
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_);
+
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
+			String text, 
+			Integer number, 
+			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList);
 
 	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList);
 
@@ -98,6 +109,7 @@ public interface BinaryTypesService extends BaseService {
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList);
@@ -106,18 +118,32 @@ public interface BinaryTypesService extends BaseService {
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList, 
+			List<ZoneId> scalarList);
+
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
+			String text, 
+			Integer number, 
+			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
+			List<String> textList, 
+			List<Integer> numberList, 
+			List<SimpleRecord.Data> recList, 
+			List<ZoneId> scalarList, 
 			RSDFile dataFile);
 
 	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOpt(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList, 
+			List<ZoneId> scalarList, 
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
@@ -125,9 +151,11 @@ public interface BinaryTypesService extends BaseService {
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList, 
+			List<ZoneId> scalarList, 
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 
@@ -148,12 +176,20 @@ public interface BinaryTypesService extends BaseService {
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_);
+
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
+			String text, 
+			Integer number, 
+			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList);
 
 	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList);
 
@@ -161,6 +197,7 @@ public interface BinaryTypesService extends BaseService {
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList);
@@ -169,18 +206,32 @@ public interface BinaryTypesService extends BaseService {
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList, 
+			List<ZoneId> scalarList);
+
+	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
+			String text, 
+			Integer number, 
+			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
+			List<String> textList, 
+			List<Integer> numberList, 
+			List<SimpleRecord.Data> recList, 
+			List<ZoneId> scalarList, 
 			RSDFile dataFile);
 
 	public Result<UploadMixedResult.Data, RSDError.$GenericError> uploadMixedOptNil(
 			String text, 
 			Integer number, 
 			SimpleRecord.Data rec, 
+			ZoneId scalar_, 
 			List<String> textList, 
 			List<Integer> numberList, 
 			List<SimpleRecord.Data> recList, 
+			List<ZoneId> scalarList, 
 			RSDFile dataFile, 
 			RSDBlob dataBlob);
 

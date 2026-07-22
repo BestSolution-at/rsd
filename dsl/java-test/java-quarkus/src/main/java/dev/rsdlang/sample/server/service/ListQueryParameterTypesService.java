@@ -51,7 +51,7 @@ public interface ListQueryParameterTypesService {
 
 	public List<ListInlineEnumQueryParam_Result$> listInlineEnumQueryParam(BuilderFactory _factory, List<ListInlineEnumQueryParam_QueryValue_Param$> queryValue);
 
-	public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+	public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD);
 
 	public List<SimpleRecord.Data> listRecordQueryParam(BuilderFactory _factory, List<SimpleRecord.Data> queryValue);
 

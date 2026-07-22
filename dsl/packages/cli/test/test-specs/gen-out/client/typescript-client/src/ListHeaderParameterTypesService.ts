@@ -68,10 +68,10 @@ export interface ListHeaderParameterTypesService {
 	listInlineEnumHeaderParamOpt(headerValue?: ('A' | 'B')[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listInlineEnumHeaderParamNil(headerValue: ('C' | 'D')[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listInlineEnumHeaderParamOptNil(headerValue?: ('C' | 'D')[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
-	listMultiHeaderParam(valueA: RSDString[], valueB: RSDInt[], valueC: SimpleRecord[]): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
-	listMultiHeaderParamOpt(valueA?: RSDString[], valueB?: RSDInt[], valueC?: SimpleRecord[]): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
-	listMultiHeaderParamNil(valueA: RSDString[] | null, valueB: RSDInt[] | null, valueC: SimpleRecord[] | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
-	listMultiHeaderParamOptNil(valueA?: RSDString[] | null, valueB?: RSDInt[] | null, valueC?: SimpleRecord[] | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	listMultiHeaderParam(valueA: RSDString[], valueB: RSDInt[], valueC: SimpleRecord[], valueD: ZoneId[]): Promise<Result<RSDString, StatusRSDError | NativeRSDError>>;
+	listMultiHeaderParamOpt(valueA?: RSDString[], valueB?: RSDInt[], valueC?: SimpleRecord[], valueD?: ZoneId[]): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	listMultiHeaderParamNil(valueA: RSDString[] | null, valueB: RSDInt[] | null, valueC: SimpleRecord[] | null, valueD: ZoneId[] | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
+	listMultiHeaderParamOptNil(valueA?: RSDString[] | null, valueB?: RSDInt[] | null, valueC?: SimpleRecord[] | null, valueD?: ZoneId[] | null): Promise<Result<NilResult[], StatusRSDError | NativeRSDError>>;
 	listRecordHeaderParam(headerValue: SimpleRecord[]): Promise<Result<SimpleRecord[], StatusRSDError | NativeRSDError>>;
 	listRecordHeaderParamOpt(headerValue?: SimpleRecord[]): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;
 	listRecordHeaderParamNil(headerValue: SimpleRecord[] | null): Promise<Result<NilResult, StatusRSDError | NativeRSDError>>;

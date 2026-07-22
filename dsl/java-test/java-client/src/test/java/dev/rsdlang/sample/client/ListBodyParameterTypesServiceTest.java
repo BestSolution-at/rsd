@@ -833,82 +833,97 @@ public class ListBodyParameterTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParam(ListBodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals("hello-42-k",
-				service.listMultiBodyParam(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		var result = service.listMultiBodyParam(
+				List.of("hello"),
+				List.of(42),
+				List.of(record),
+				List.of(ZoneId.of("UTC"))).orThrow();
+		assertEquals("hello-42-k-UTC", result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOpt_allUndefined(ListBodyParameterTypesService service) {
-		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiBodyParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOpt_valueAOnly(ListBodyParameterTypesService service) {
-		assertEquals(List.of(NilResult.DEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.DEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiBodyParamOpt(List.of("hello")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOpt_valueAAndB(ListBodyParameterTypesService service) {
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiBodyParamOpt(List.of("hello"), List.of(42)).orThrow());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void listMultiBodyParamOpt_valueAAndBAndC(ListBodyParameterTypesService service) {
+		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED, NilResult.UNDEFINED),
+				service.listMultiBodyParamOpt(List.of("hello"), List.of(42), List.of(record)).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOpt_allDefined(ListBodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
-				service.listMultiBodyParamOpt(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
+				service.listMultiBodyParamOpt(List.of("hello"), List.of(42), List.of(record), List.of(ZoneId.of("UTC")))
+						.orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamNil_allNull(ListBodyParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL),
-				service.listMultiBodyParamNil(null, null, null).orThrow());
+		var result = service.listMultiBodyParamNil(null, null, null, null).orThrow();
+		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL, NilResult.NULL), result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamNil_allDefined(ListBodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
-				service.listMultiBodyParamNil(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		var result = service.listMultiBodyParamNil(List.of("hello"), List.of(42), List.of(record),
+				List.of(ZoneId.of("UTC"))).orThrow();
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED), result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOptNil_allUndefined(ListBodyParameterTypesService service) {
-		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiBodyParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOptNil_valueANull(ListBodyParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.UNDEFINED, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.NULL, NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.listMultiBodyParamOptNil((List<String>) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOptNil_allNull(ListBodyParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL),
+		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL, NilResult.NULL),
 				service.listMultiBodyParamOptNil((List<String>) null, (List<Integer>) null,
-						(List<SimpleRecord.Data>) null).orThrow());
+						(List<SimpleRecord.Data>) null, (List<ZoneId>) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void listMultiBodyParamOptNil_allDefined(ListBodyParameterTypesService service) {
 		var record = service.client().builder(SimpleRecord.DataBuilder.class).key("k").version("1").value("v").build();
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
-				service.listMultiBodyParamOptNil(List.of("hello"), List.of(42), List.of(record)).orThrow());
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
+				service.listMultiBodyParamOptNil(List.of("hello"), List.of(42), List.of(record),
+						List.of(ZoneId.of("UTC"))).orThrow());
 	}
 
 	// --- List Record Body Param ---

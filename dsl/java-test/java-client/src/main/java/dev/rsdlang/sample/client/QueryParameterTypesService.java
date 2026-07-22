@@ -99,7 +99,8 @@ public interface QueryParameterTypesService extends BaseService {
 
 	public Result<String, RSDError.$GenericError> multiQueryParam(
 			String valueA, 
-			int valueB);
+			int valueB, 
+			ZoneId valueC);
 
 	public Result<String, RSDError.$GenericError> multiQueryParamOpt();
 
@@ -108,6 +109,11 @@ public interface QueryParameterTypesService extends BaseService {
 	public Result<String, RSDError.$GenericError> multiQueryParamOpt(
 			String valueA, 
 			Integer valueB);
+
+	public Result<String, RSDError.$GenericError> multiQueryParamOpt(
+			String valueA, 
+			Integer valueB, 
+			ZoneId valueC);
 
 	public Result<SimpleRecord.Data, RSDError.$GenericError> recordQueryParam(SimpleRecord.Data queryValue);
 

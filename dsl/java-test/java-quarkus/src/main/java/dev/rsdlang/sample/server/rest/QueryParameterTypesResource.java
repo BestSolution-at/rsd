@@ -341,11 +341,13 @@ public class QueryParameterTypesResource {
 	public Response multiQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("valueA") String _valueA,
-			@QueryParam("valueB") String _valueB) {
+			@QueryParam("valueB") String _valueB,
+			@QueryParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseString(_valueA);
 		var valueB = _RestUtils.parseInt(_valueB);
-		var result = service.multiQueryParam(builderFactory, valueA, valueB);
-		return responseBuilder.multiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseLiteral(_valueC, _ScalarSupport::ZoneIdFromJson);
+		var result = service.multiQueryParam(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET
@@ -353,11 +355,13 @@ public class QueryParameterTypesResource {
 	public Response multiQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("valueA") String _valueA,
-			@QueryParam("valueB") String _valueB) {
+			@QueryParam("valueB") String _valueB,
+			@QueryParam("valueC") String _valueC) {
 		var valueA = _RestUtils.parseOptString(_valueA);
 		var valueB = _RestUtils.parseOptInt(_valueB);
-		var result = service.multiQueryParamOpt(builderFactory, valueA, valueB);
-		return responseBuilder.multiQueryParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB).build();
+		var valueC = _RestUtils.parseOptLiteral(_valueC, _ScalarSupport::ZoneIdFromJson);
+		var result = service.multiQueryParamOpt(builderFactory, valueA, valueB, valueC);
+		return responseBuilder.multiQueryParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC).build();
 	}
 
 	@GET

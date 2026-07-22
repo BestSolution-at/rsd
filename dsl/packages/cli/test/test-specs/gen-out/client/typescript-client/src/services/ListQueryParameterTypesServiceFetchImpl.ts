@@ -583,7 +583,7 @@ function fnListInlineEnumQueryParam(props: ServiceProps<api.service.ErrorType>):
 function fnListMultiQueryParam(props: ServiceProps<api.service.ErrorType>): api.service.ListQueryParameterTypesService['listMultiQueryParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: RSDString[], valueB: RSDInt[], valueC: api.model.SimpleRecord[]) => {
+	return async (valueA: RSDString[], valueB: RSDInt[], valueC: api.model.SimpleRecord[], valueD: api.model.ZoneId[]) => {
 		try {
 			const $init = (await preFetch?.('listMultiQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -601,6 +601,9 @@ function fnListMultiQueryParam(props: ServiceProps<api.service.ErrorType>): api.
 			});
 			valueC.forEach($entry => {
 				$param.append('valueC', encodeBase64(encodeValue(encodingType(props), api.model.SimpleRecordToJSON($entry))));
+			});
+			valueD.forEach($entry => {
+				$param.append('valueD', api.model.ZoneIdToJSON($entry));
 			});
 			const $path = `${baseUrl}/api/listqueryparametertypes/listMultiQueryParam?${$param.toString()}`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });

@@ -663,9 +663,10 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		}
 	}
 
-	public Result<String, RSDError.$GenericError> listMultiQueryParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<String, RSDError.$GenericError> listMultiQueryParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
+		Objects.requireNonNull(valueD, "valueD must not be null");
 
 		var $path = "%s/api/listqueryparametertypes/listMultiQueryParam".formatted(
 				this.baseURI());
@@ -679,6 +680,9 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 		});
 		valueC.stream().forEach($q -> {
 			$queryParams.append("valueC", BaseUtils.ofObject($q, false, this.contentType(), SimpleRecord.Data.class));
+		});
+		valueD.stream().forEach($q -> {
+			$queryParams.append("valueD", _ScalarSupport.ZoneIdToJson($q));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());

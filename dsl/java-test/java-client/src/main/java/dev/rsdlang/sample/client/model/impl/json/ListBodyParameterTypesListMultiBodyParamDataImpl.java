@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.json.JsonObject;
 
 import dev.rsdlang.sample.client.model.SimpleRecord;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class ListBodyParameterTypesListMultiBodyParamDataImpl extends _BaseDataImpl implements dev.rsdlang.sample.client.model._Base.BaseData {
 	public ListBodyParameterTypesListMultiBodyParamDataImpl(JsonObject data) {
@@ -22,6 +23,10 @@ public class ListBodyParameterTypesListMultiBodyParamDataImpl extends _BaseDataI
 
 	public List<SimpleRecord.Data> valueC() {
 		return _JsonUtils.mapObjects(data, "valueC", SimpleRecordDataImpl::of);
+	}
+
+	public List<ZoneId> valueD() {
+		return _JsonUtils.mapLiterals(data, "valueD", ZoneId::of);
 	}
 
 }

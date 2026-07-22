@@ -10,6 +10,7 @@ import dev.rsdlang.sample.server.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.model.ZoneId;
 
 public class BodyParameterTypesMultiBodyParamOptDataImpl extends _BaseDataImpl {
 	public BodyParameterTypesMultiBodyParamOptDataImpl(JsonObject data) {
@@ -26,6 +27,10 @@ public class BodyParameterTypesMultiBodyParamOptDataImpl extends _BaseDataImpl {
 
 	public Optional<SimpleRecord.Data> valueC() {
 		return _JsonUtils.mapOptObject(data, "valueC", SimpleRecordDataImpl::of);
+	}
+
+	public Optional<ZoneId> valueD() {
+		return _JsonUtils.mapOptLiteral(data, "valueD", ZoneId::of);
 	}
 
 }

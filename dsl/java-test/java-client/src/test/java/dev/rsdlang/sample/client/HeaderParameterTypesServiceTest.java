@@ -827,64 +827,85 @@ public class HeaderParameterTypesServiceTest {
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiHeaderParam(HeaderParameterTypesService service) {
-		assertEquals("hello-42", service.multiHeaderParam("hello", 42).orThrow());
+		var result = service.multiHeaderParam("hello", 42, ZoneId.of("UTC")).orThrow();
+		assertEquals("hello-42-UTC", result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiHeaderParamOpt_allUndefined(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED), service.multiHeaderParamOpt().orThrow());
+		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+				service.multiHeaderParamOpt().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiHeaderParamOpt_valueAOnly(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.DEFINED, NilResult.UNDEFINED), service.multiHeaderParamOpt("hello").orThrow());
+		assertEquals(List.of(NilResult.DEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+				service.multiHeaderParamOpt("hello").orThrow());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void multiHeaderParamOpt_valueAAndB(HeaderParameterTypesService service) {
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.UNDEFINED),
+				service.multiHeaderParamOpt("hello", 42).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiHeaderParamOpt_allDefined(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED), service.multiHeaderParamOpt("hello", 42).orThrow());
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
+				service.multiHeaderParamOpt("hello", 42, ZoneId.of("UTC")).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiHeaderParamNil_allNull(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.NULL), service.multiHeaderParamNil(null, null).orThrow());
+		var result = service.multiHeaderParamNil(null, null, null).orThrow();
+		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL), result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiHeaderParamNil_allDefined(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED), service.multiHeaderParamNil("hello", 42).orThrow());
+		var result = service.multiHeaderParamNil("hello", 42, ZoneId.of("UTC")).orThrow();
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED), result);
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiHeaderParamOptNil_allUndefined(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED), service.multiHeaderParamOptNil().orThrow());
+		assertEquals(List.of(NilResult.UNDEFINED, NilResult.UNDEFINED, NilResult.UNDEFINED),
+				service.multiHeaderParamOptNil().orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
 	public void multiHeaderParamOptNil_valueANull(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.UNDEFINED),
+		assertEquals(List.of(NilResult.NULL, NilResult.UNDEFINED, NilResult.UNDEFINED),
 				service.multiHeaderParamOptNil((String) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
-	public void multiHeaderParamOptNil_allNull(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.NULL, NilResult.NULL),
+	public void multiHeaderParamOptNil_valueAAndBNull(HeaderParameterTypesService service) {
+		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.UNDEFINED),
 				service.multiHeaderParamOptNil((String) null, (Integer) null).orThrow());
 	}
 
 	@ParameterizedTest
 	@MethodSource("serviceProvider")
+	public void multiHeaderParamOptNil_allNull(HeaderParameterTypesService service) {
+		assertEquals(List.of(NilResult.NULL, NilResult.NULL, NilResult.NULL),
+				service.multiHeaderParamOptNil((String) null, (Integer) null, (ZoneId) null).orThrow());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
 	public void multiHeaderParamOptNil_allDefined(HeaderParameterTypesService service) {
-		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED),
-				service.multiHeaderParamOptNil("hello", 42).orThrow());
+		assertEquals(List.of(NilResult.DEFINED, NilResult.DEFINED, NilResult.DEFINED),
+				service.multiHeaderParamOptNil("hello", 42, ZoneId.of("UTC")).orThrow());
 	}
 
 	// --- Record Header Param ---

@@ -132,8 +132,8 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	@Override
-	public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		return listMultiQueryParamHandler.listMultiQueryParam(_factory, valueA, valueB, valueC);
+	public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
+		return listMultiQueryParamHandler.listMultiQueryParam(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
@@ -202,7 +202,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 	}
 
 	public interface ListMultiQueryParamHandler {
-		public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+		public String listMultiQueryParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD);
 	}
 
 	public interface ListRecordQueryParamHandler {

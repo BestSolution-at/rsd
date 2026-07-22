@@ -462,23 +462,23 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	@Override
-	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		return listMultiBodyParamHandler.listMultiBodyParam(_factory, valueA, valueB, valueC);
+	public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
+		return listMultiBodyParamHandler.listMultiBodyParam(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
-		return listMultiBodyParamOptHandler.listMultiBodyParamOpt(_factory, valueA, valueB, valueC);
+	public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD) {
+		return listMultiBodyParamOptHandler.listMultiBodyParamOpt(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
-		return listMultiBodyParamNilHandler.listMultiBodyParamNil(_factory, valueA, valueB, valueC);
+	public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD) {
+		return listMultiBodyParamNilHandler.listMultiBodyParamNil(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
-		return listMultiBodyParamOptNilHandler.listMultiBodyParamOptNil(_factory, valueA, valueB, valueC);
+	public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC, _Base.Nillable<List<ZoneId>> valueD) {
+		return listMultiBodyParamOptNilHandler.listMultiBodyParamOptNil(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
@@ -742,19 +742,19 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 	}
 
 	public interface ListMultiBodyParamHandler {
-		public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+		public String listMultiBodyParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD);
 	}
 
 	public interface ListMultiBodyParamOptHandler {
-		public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiBodyParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD);
 	}
 
 	public interface ListMultiBodyParamNilHandler {
-		public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiBodyParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD);
 	}
 
 	public interface ListMultiBodyParamOptNilHandler {
-		public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC, _Base.Nillable<List<ZoneId>> valueD);
 	}
 
 	public interface ListRecordBodyParamHandler {

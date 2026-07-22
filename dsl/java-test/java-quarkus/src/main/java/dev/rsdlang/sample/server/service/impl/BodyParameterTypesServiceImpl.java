@@ -484,23 +484,23 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	@Override
-	public String multiBodyParam(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC) {
-		return multiBodyParamHandler.multiBodyParam(_factory, valueA, valueB, valueC);
+	public String multiBodyParam(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC, ZoneId valueD) {
+		return multiBodyParamHandler.multiBodyParam(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
-		return multiBodyParamOptHandler.multiBodyParamOpt(_factory, valueA, valueB, valueC);
+	public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD) {
+		return multiBodyParamOptHandler.multiBodyParamOpt(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC) {
-		return multiBodyParamNilHandler.multiBodyParamNil(_factory, valueA, valueB, valueC);
+	public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD) {
+		return multiBodyParamNilHandler.multiBodyParamNil(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC) {
-		return multiBodyParamOptNilHandler.multiBodyParamOptNil(_factory, valueA, valueB, valueC);
+	public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC, _Base.Nillable<ZoneId> valueD) {
+		return multiBodyParamOptNilHandler.multiBodyParamOptNil(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
@@ -809,19 +809,19 @@ public class BodyParameterTypesServiceImpl implements BodyParameterTypesService 
 	}
 
 	public interface MultiBodyParamHandler {
-		public String multiBodyParam(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC);
+		public String multiBodyParam(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC, ZoneId valueD);
 	}
 
 	public interface MultiBodyParamOptHandler {
-		public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC);
+		public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD);
 	}
 
 	public interface MultiBodyParamNilHandler {
-		public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC);
+		public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD);
 	}
 
 	public interface MultiBodyParamOptNilHandler {
-		public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC);
+		public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC, _Base.Nillable<ZoneId> valueD);
 	}
 
 	public interface MultiBodyParamFirstHandler {

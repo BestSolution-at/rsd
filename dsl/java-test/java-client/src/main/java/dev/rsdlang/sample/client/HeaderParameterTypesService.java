@@ -216,7 +216,8 @@ public interface HeaderParameterTypesService extends BaseService {
 
 	public Result<String, RSDError.$GenericError> multiHeaderParam(
 			String valueA, 
-			int valueB);
+			int valueB, 
+			ZoneId valueC);
 
 	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt();
 
@@ -226,9 +227,15 @@ public interface HeaderParameterTypesService extends BaseService {
 			String valueA, 
 			Integer valueB);
 
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOpt(
+			String valueA, 
+			Integer valueB, 
+			ZoneId valueC);
+
 	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamNil(
 			String valueA, 
-			Integer valueB);
+			Integer valueB, 
+			ZoneId valueC);
 
 	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil();
 
@@ -237,6 +244,11 @@ public interface HeaderParameterTypesService extends BaseService {
 	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil(
 			String valueA, 
 			Integer valueB);
+
+	public Result<List<NilResult>, RSDError.$GenericError> multiHeaderParamOptNil(
+			String valueA, 
+			Integer valueB, 
+			ZoneId valueC);
 
 	public Result<SimpleRecord.Data, RSDError.$GenericError> recordHeaderParam(SimpleRecord.Data headerValue);
 

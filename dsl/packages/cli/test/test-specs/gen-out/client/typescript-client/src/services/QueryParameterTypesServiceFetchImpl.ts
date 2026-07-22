@@ -1023,7 +1023,7 @@ function fnSimpleEnumQueryParamOpt(props: ServiceProps<api.service.ErrorType>): 
 function fnMultiQueryParam(props: ServiceProps<api.service.ErrorType>): api.service.QueryParameterTypesService['multiQueryParam'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA: RSDString, valueB: RSDInt) => {
+	return async (valueA: RSDString, valueB: RSDInt, valueC: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('multiQueryParam')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -1034,6 +1034,7 @@ function fnMultiQueryParam(props: ServiceProps<api.service.ErrorType>): api.serv
 			const $param = new URLSearchParams();
 			$param.append('valueA', valueA);
 			$param.append('valueB', String(valueB));
+			$param.append('valueC', api.model.ZoneIdToJSON(valueC));
 			const $path = `${baseUrl}/api/queryparametertypes/multiQueryParam?${$param.toString()}`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
@@ -1058,7 +1059,7 @@ function fnMultiQueryParam(props: ServiceProps<api.service.ErrorType>): api.serv
 function fnMultiQueryParamOpt(props: ServiceProps<api.service.ErrorType>): api.service.QueryParameterTypesService['multiQueryParamOpt'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (valueA?: RSDString, valueB?: RSDInt) => {
+	return async (valueA?: RSDString, valueB?: RSDInt, valueC?: api.model.ZoneId) => {
 		try {
 			const $init = (await preFetch?.('multiQueryParamOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -1072,6 +1073,9 @@ function fnMultiQueryParamOpt(props: ServiceProps<api.service.ErrorType>): api.s
 			}
 			if (valueB !== undefined) {
 				$param.append('valueB', String(valueB));
+			}
+			if (valueC !== undefined) {
+				$param.append('valueC', api.model.ZoneIdToJSON(valueC));
 			}
 			const $path = `${baseUrl}/api/queryparametertypes/multiQueryParamOpt?${$param.toString()}`;
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });

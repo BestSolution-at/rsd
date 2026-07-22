@@ -642,6 +642,23 @@ function appendMultiParamBody(
 				p,
 				p.array ? builtinBuilderArrayJSONAccess({ name: p.name, type }) : builtinBuilderAccess({ name: p.name, type }),
 			);
+		} else if (p.variant === 'scalar') {
+			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+
+			if (p.array) {
+				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+				appendBuilderAssignment(
+					methodBody,
+					p,
+					`$builder.add("${p.name}", ${_JsonUtils}.toJsonLiteralArray(${p.name}, ${_ScalarSupport}::${p.type}ToJson))`,
+				);
+			} else {
+				appendBuilderAssignment(
+					methodBody,
+					p,
+					`$builder.add("${p.name}", ${_ScalarSupport}.${p.type}ToJson(${p.name}))`,
+				);
+			}
 		} else {
 			methodBody.append('throw new UnsupportedOperationException();', NL);
 		}

@@ -1,6 +1,5 @@
 package dev.rsdlang.sample.server.service.handler.binary;
 
-import java.io.IOException;
 import java.util.List;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
@@ -9,6 +8,7 @@ import dev.rsdlang.sample.server.model.RSDBlob;
 import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.UploadMixedResult;
+import dev.rsdlang.sample.server.model.ZoneId;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -19,18 +19,22 @@ public class UploadMixedHandlerImpl implements BinaryTypesServiceImpl.UploadMixe
 			String text,
 			int number,
 			SimpleRecord.Data rec,
+			ZoneId zone,
 			List<String> textList,
 			List<Integer> numberList,
 			List<SimpleRecord.Data> recList,
+			List<ZoneId> zoneList,
 			RSDFile dataFile,
 			RSDBlob dataBlob) {
 		return _factory.builder(UploadMixedResult.DataBuilder.class)
 				.text(text)
 				.number(number)
 				.rec(rec)
+				._scalar(zone)
 				.textList(textList)
 				.numberList(numberList)
 				.recList(recList)
+				.scalarList(zoneList)
 				.dataFileContent(StreamUtils.streamToString(dataFile.stream()))
 				.dataBlobContent(StreamUtils.streamToString(dataBlob.stream()))
 				.build();

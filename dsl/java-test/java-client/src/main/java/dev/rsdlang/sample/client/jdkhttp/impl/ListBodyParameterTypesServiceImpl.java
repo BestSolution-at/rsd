@@ -3583,9 +3583,10 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		}
 	}
 
-	public Result<String, RSDError.$GenericError> listMultiBodyParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<String, RSDError.$GenericError> listMultiBodyParam(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
 		Objects.requireNonNull(valueA, "valueA must not be null");
 		Objects.requireNonNull(valueC, "valueC must not be null");
+		Objects.requireNonNull(valueD, "valueD must not be null");
 
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParam".formatted(
 				this.baseURI());
@@ -3597,6 +3598,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			$builder = $builder.add("valueD", _JsonUtils.toJsonLiteralArray(valueD, _ScalarSupport::ZoneIdToJson));
 			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
@@ -3806,7 +3808,59 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		}
 	}
 
-	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOpt(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
+		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOpt".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $contentType = this.contentType();
+			var $builder = Json.createObjectBuilder();
+			if(valueA != null) {
+				$builder = $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			}
+			if(valueB != null) {
+				$builder = $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			}
+			if(valueC != null) {
+				$builder = $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			}
+			if(valueD != null) {
+				$builder = $builder.add("valueD", _JsonUtils.toJsonLiteralArray(valueD, _ScalarSupport::ZoneIdToJson));
+			}
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptDataImpl.class));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.PUT($body);
+			this.lifecycleHook.preRequest("listMultiBodyParamOpt", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOpt", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOpt", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOpt", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("listMultiBodyParamOpt");
+		}
+	}
+
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
 		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamNil".formatted(
 				this.baseURI());
 
@@ -3817,6 +3871,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			$builder = valueD == null ? $builder.addNull("valueD") : $builder.add("valueD", _JsonUtils.toJsonLiteralArray(valueD, _ScalarSupport::ZoneIdToJson));
 			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamNilDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamNilDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()
@@ -3982,6 +4037,50 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
 			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
 			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptNilDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptNilDataImpl.class));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.PUT($body);
+			this.lifecycleHook.preRequest("listMultiBodyParamOptNil", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("listMultiBodyParamOptNil", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation listMultiBodyParamOptNil", e);
+			this.lifecycleHook.onCatch("listMultiBodyParamOptNil", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("listMultiBodyParamOptNil");
+		}
+	}
+
+	public Result<List<NilResult>, RSDError.$GenericError> listMultiBodyParamOptNil(List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
+		var $path = "%s/api/listbodyparametertypes/listMultiBodyParamOptNil".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $contentType = this.contentType();
+			var $builder = Json.createObjectBuilder();
+			$builder = valueA == null ? $builder.addNull("valueA") : $builder.add("valueA", _JsonUtils.toJsonStringArray(valueA));
+			$builder = valueB == null ? $builder.addNull("valueB") : $builder.add("valueB", _JsonUtils.toJsonIntArray(valueB));
+			$builder = valueC == null ? $builder.addNull("valueC") : $builder.add("valueC", _JsonUtils.toJsonValueArray(valueC, i -> ((_BaseDataImpl) i).data));
+			$builder = valueD == null ? $builder.addNull("valueD") : $builder.add("valueD", _JsonUtils.toJsonLiteralArray(valueD, _ScalarSupport::ZoneIdToJson));
 			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new ListBodyParameterTypesListMultiBodyParamOptNilDataImpl($builder.build()), false, this.contentType(), ListBodyParameterTypesListMultiBodyParamOptNilDataImpl.class));
 
 			var $requestBuilder = HttpRequest.newBuilder()

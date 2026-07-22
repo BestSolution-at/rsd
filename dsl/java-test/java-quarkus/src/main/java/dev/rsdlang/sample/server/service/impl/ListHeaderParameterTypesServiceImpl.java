@@ -462,23 +462,23 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	@Override
-	public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC) {
-		return listMultiHeaderParamHandler.listMultiHeaderParam(_factory, valueA, valueB, valueC);
+	public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
+		return listMultiHeaderParamHandler.listMultiHeaderParam(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
-		return listMultiHeaderParamOptHandler.listMultiHeaderParamOpt(_factory, valueA, valueB, valueC);
+	public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD) {
+		return listMultiHeaderParamOptHandler.listMultiHeaderParamOpt(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC) {
-		return listMultiHeaderParamNilHandler.listMultiHeaderParamNil(_factory, valueA, valueB, valueC);
+	public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD) {
+		return listMultiHeaderParamNilHandler.listMultiHeaderParamNil(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
-	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC) {
-		return listMultiHeaderParamOptNilHandler.listMultiHeaderParamOptNil(_factory, valueA, valueB, valueC);
+	public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC, _Base.Nillable<List<ZoneId>> valueD) {
+		return listMultiHeaderParamOptNilHandler.listMultiHeaderParamOptNil(_factory, valueA, valueB, valueC, valueD);
 	}
 
 	@Override
@@ -742,19 +742,19 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 	}
 
 	public interface ListMultiHeaderParamHandler {
-		public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC);
+		public String listMultiHeaderParam(BuilderFactory _factory, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD);
 	}
 
 	public interface ListMultiHeaderParamOptHandler {
-		public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiHeaderParamOpt(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD);
 	}
 
 	public interface ListMultiHeaderParamNilHandler {
-		public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiHeaderParamNil(BuilderFactory _factory, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD);
 	}
 
 	public interface ListMultiHeaderParamOptNilHandler {
-		public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC);
+		public List<NilResult> listMultiHeaderParamOptNil(BuilderFactory _factory, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC, _Base.Nillable<List<ZoneId>> valueD);
 	}
 
 	public interface ListRecordHeaderParamHandler {

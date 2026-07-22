@@ -327,22 +327,22 @@ public class HeaderParameterTypesResourceResponseBuilder {
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiHeaderParam(String $result, String $contentType, String valueA, int valueB) {
+	public ResponseBuilder multiHeaderParam(String $result, String $contentType, String valueA, int valueB, ZoneId valueC) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiHeaderParamOpt(List<NilResult> $result, String $contentType, Optional<String> valueA, OptionalInt valueB) {
+	public ResponseBuilder multiHeaderParamOpt(List<NilResult> $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiHeaderParamNil(List<NilResult> $result, String $contentType, Optional<String> valueA, OptionalInt valueB) {
+	public ResponseBuilder multiHeaderParamNil(List<NilResult> $result, String $contentType, Optional<String> valueA, OptionalInt valueB, Optional<ZoneId> valueC) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
-	public ResponseBuilder multiHeaderParamOptNil(List<NilResult> $result, String $contentType, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB) {
+	public ResponseBuilder multiHeaderParamOptNil(List<NilResult> $result, String $contentType, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<ZoneId> valueC) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

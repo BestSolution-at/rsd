@@ -160,13 +160,13 @@ public interface BodyParameterTypesService {
 
 	public NilResult simpleInlineEnumBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$> bodyEnum);
 
-	public String multiBodyParam(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC);
+	public String multiBodyParam(BuilderFactory _factory, String valueA, int valueB, SimpleRecord.Data valueC, ZoneId valueD);
 
-	public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC);
+	public String multiBodyParamOpt(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD);
 
-	public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC);
+	public String multiBodyParamNil(BuilderFactory _factory, Optional<String> valueA, OptionalInt valueB, Optional<SimpleRecord.Data> valueC, Optional<ZoneId> valueD);
 
-	public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC);
+	public String multiBodyParamOptNil(BuilderFactory _factory, _Base.Nillable<String> valueA, _Base.Nillable<Integer> valueB, _Base.Nillable<SimpleRecord.Data> valueC, _Base.Nillable<ZoneId> valueD);
 
 	public String multiBodyParamFirst(BuilderFactory _factory, Optional<String> valueA, int valueB, SimpleRecord.Data valueC);
 
