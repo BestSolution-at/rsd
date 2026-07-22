@@ -9,10 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.json.Json;
+
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
+import dev.rsdlang.sample.client.model.impl.json.ScalarSubstition_ServiceMultiBodyDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
+import dev.rsdlang.sample.client.model.ZoneId;
 import dev.rsdlang.sample.client.MyRange;
 import dev.rsdlang.sample.client.Result;
 import dev.rsdlang.sample.client.RSDError;
@@ -1547,6 +1551,51 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 			return Result.err($error);
 		} finally {
 			this.lifecycleHook.onFinally("headerListOptNull");
+		}
+	}
+
+	public Result<String, RSDError.$GenericError> multiBody(MyRange valueA, ZoneId valueB) {
+		Objects.requireNonNull(valueA, "valueA must not be null");
+		Objects.requireNonNull(valueB, "valueB must not be null");
+
+		var $path = "%s/api/scalarsubstitution/multiBody".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		try(var $clientSupplier = this.client.httpClientSupplier()) {
+			var $contentType = this.contentType();
+			var $builder = Json.createObjectBuilder();
+			$builder = $builder.add("valueA", _ScalarSupport.RangeToJson(valueA));
+			$builder = $builder.add("valueB", _ScalarSupport.ZoneIdToJson(valueB));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofObject(new ScalarSubstition_ServiceMultiBodyDataImpl($builder.build()), false, this.contentType(), ScalarSubstition_ServiceMultiBodyDataImpl.class));
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			this.lifecycleHook.preRequest("multiBody", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
+			if ($response.statusCode() == 200) {
+				var $rv = JDKHttpClientResponseUtils.mapString($response);
+				this.lifecycleHook.onSuccess("multiBody", $rv, this.client.createResponseAdaptable($response));
+				return Result.ok($rv);
+			}
+			var $error = new RSDError.$GenericError(RSDError.Type._UnknownResponse, String.format("Unsupported Http-Status '%s':\n%s", $response.statusCode(), JDKHttpClientResponseUtils.toString($response)), null);
+			this.lifecycleHook.onError("multiBody", $error, this.client.createResponseAdaptable($response));
+			return Result.err($error);
+		} catch (Exception e) {
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation multiBody", e);
+			this.lifecycleHook.onCatch("multiBody", $error);
+			return Result.err($error);
+		} finally {
+			this.lifecycleHook.onFinally("multiBody");
 		}
 	}
 

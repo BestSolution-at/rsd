@@ -12,6 +12,7 @@ import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.MyRange;
 
 @Singleton
@@ -142,6 +143,11 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder headerListOptNull(NilResult $result, String $contentType, _Base.Nillable<List<MyRange>> range) {
+		return Response.status(200)
+			.type($contentType)
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+
+	public ResponseBuilder multiBody(String $result, String $contentType, MyRange valueA, ZoneId valueB) {
 		return Response.status(200)
 			.type($contentType)
 			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}

@@ -74,7 +74,7 @@ function generateType(
 		if (artifactConfig.nativeTypeSubstitutes && t.name in artifactConfig.nativeTypeSubstitutes) {
 			console.log(
 				chalk.magenta(`  Skipped ${t.name}:`),
-				`Using native ${artifactConfig.nativeTypeSubstitutes[t.name]}`,
+				`Using native ${artifactConfig.nativeTypeSubstitutes[t.name].type}`,
 			);
 			return undefined;
 		}

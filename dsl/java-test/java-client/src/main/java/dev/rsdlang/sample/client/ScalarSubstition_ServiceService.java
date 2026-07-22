@@ -4,6 +4,7 @@ package dev.rsdlang.sample.client;
 import java.util.List;
 
 import dev.rsdlang.sample.client.model.NilResult;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public interface ScalarSubstition_ServiceService extends BaseService {
 	public Result<MyRange, RSDError.$GenericError> get();
@@ -81,6 +82,10 @@ public interface ScalarSubstition_ServiceService extends BaseService {
 	public Result<NilResult, RSDError.$GenericError> headerListOptNull();
 
 	public Result<NilResult, RSDError.$GenericError> headerListOptNull(List<MyRange> range);
+
+	public Result<String, RSDError.$GenericError> multiBody(
+			MyRange valueA, 
+			ZoneId valueB);
 
 	public Result<Void, RSDError.E10> fail();
 

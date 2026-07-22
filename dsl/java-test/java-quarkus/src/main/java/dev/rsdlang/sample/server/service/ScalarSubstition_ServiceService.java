@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import dev.rsdlang.sample.server.model._Base;
 import dev.rsdlang.sample.server.model.NilResult;
+import dev.rsdlang.sample.server.model.ZoneId;
 import dev.rsdlang.sample.server.MyRange;
 
 public interface ScalarSubstition_ServiceService {
@@ -60,6 +61,8 @@ public interface ScalarSubstition_ServiceService {
 	public NilResult headerListNull(BuilderFactory _factory, Optional<List<MyRange>> range);
 
 	public NilResult headerListOptNull(BuilderFactory _factory, _Base.Nillable<List<MyRange>> range);
+
+	public String multiBody(BuilderFactory _factory, MyRange valueA, ZoneId valueB);
 
 	public void fail(BuilderFactory _factory)
 			throws SampleErrorScalarSubException;

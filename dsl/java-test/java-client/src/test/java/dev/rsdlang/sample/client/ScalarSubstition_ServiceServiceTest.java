@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 import dev.rsdlang.sample.client.model.NilResult;
+import dev.rsdlang.sample.client.model.ZoneId;
 
 public class ScalarSubstition_ServiceServiceTest {
     private static SpecSamplesClient JSON;
@@ -238,5 +239,12 @@ public class ScalarSubstition_ServiceServiceTest {
             }
             default -> Assertions.fail("Unexpected result type: " + result.getClass().getName());
         }
+    }
+
+    @ParameterizedTest
+    @MethodSource("serviceProvider")
+    public void multiBody(ScalarSubstition_ServiceService service) {
+        var result = service.multiBody(new MyRange(1, 1), ZoneId.of("Europe/Berlin")).orThrow();
+        assertEquals("[1,1] Europe/Berlin", result);
     }
 }

@@ -996,4 +996,6 @@ resource ScalarSubstition_Service at '/api/scalarsubstitution' {
 		200
 		400: SampleErrorScalarSub
 	}
+
+	POST multiBody at 'multiBody'
 }

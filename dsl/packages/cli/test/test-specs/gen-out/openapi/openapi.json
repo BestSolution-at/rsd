@@ -16716,6 +16716,50 @@
         }
       }
     },
+    "/api/scalarsubstitution/multiBody": {
+      "post": {
+        "tags": [
+          "ScalarSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "ScalarSubstition_Service_multiBody",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "valueA": {
+                    "type": "string"
+                  },
+                  "valueB": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "valueA",
+                  "valueB"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/scalarsubstitution/fail": {
       "post": {
         "tags": [
