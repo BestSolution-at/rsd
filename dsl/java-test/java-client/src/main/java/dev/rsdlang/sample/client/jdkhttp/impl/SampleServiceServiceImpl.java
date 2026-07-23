@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.model.ErrorData;
+import dev.rsdlang.sample.client.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.ErrorDataDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
@@ -539,7 +540,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::SampleEnumFromJson);
 				this.lifecycleHook.onSuccess("getEnum", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -923,7 +924,7 @@ public class SampleServiceServiceImpl implements SampleServiceService {
 			}
 			if ($response.statusCode() == 400) {
 				if ($response.headers().firstValue("X-RSD-Error-Type").orElse("").equals("SampleErrorEnum")) {
-					var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
+					var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::SampleEnumFromJson);
 					var $message = $response.headers().firstValue("X-RSD-Error-Message").orElse("Invocation of getSimpleErrorEnum failed");
 					var $error = new SampleErrorEnum($message, $errorData);
 					this.lifecycleHook.onError("getSimpleErrorEnum", $error, this.client.createResponseAdaptable($response));

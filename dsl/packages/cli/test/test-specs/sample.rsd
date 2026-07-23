@@ -1,6 +1,9 @@
 enum SampleEnum = A | B;
 enum SampleEnumWithCustValue = A = "foo" | B = 1;
 
+enum Month = JANUARY | FEBRUARY | MARCH | APRIL | MAY | JUNE | JULY | AUGUST | SEPTEMBER | OCTOBER | NOVEMBER | DECEMBER;
+enum DayOfWeek = MONDAY | TUESDAY | WEDNESDAY | THURSDAY | FRIDAY | SATURDAY | SUNDAY;
+
 scalar ZoneId;
 scalar Range;
 
@@ -151,6 +154,28 @@ record EnumRecord {
 	list_Null: SampleEnum[]?
 	list_Opt?: SampleEnum[]
 	list_Opt_Null?: SampleEnum[]?
+}
+
+patchable record EnumRecord_Substitution {
+	month: Month
+	month_Null: Month?
+	month_Opt?: Month
+	month_Opt_Null?: Month?
+	
+	monthList: Month[]
+	monthList_Null: Month[]?
+	monthList_Opt?: Month[]
+	monthList_Opt_Null?: Month[]?
+
+	dayOfWeek: DayOfWeek
+	dayOfWeek_Null: DayOfWeek?
+	dayOfWeek_Opt?: DayOfWeek
+	dayOfWeek_Opt_Null?: DayOfWeek?
+
+	dayOfWeekList: DayOfWeek[]
+	dayOfWeekList_Null: DayOfWeek[]?
+	dayOfWeekList_Opt?: DayOfWeek[]
+	dayOfWeekList_Opt_Null?: DayOfWeek[]?
 }
 
 record EnumInlineRecord {
@@ -532,10 +557,12 @@ record UploadMixedResult {
 	number?: int?
 	rec?: SimpleRecord?
 	_scalar?: ZoneId?
+	dayOfWeek?: DayOfWeek?
 	textList?: string[]?
 	numberList?: int[]?
 	recList?: SimpleRecord[]?
 	scalarList?: ZoneId[]?
+	monthList?: Month[]?
 	dataFileContent?: string?
 	dataBlobContent?: string?
 }
@@ -571,6 +598,7 @@ error SampleErrorEnum = SampleEnum;
 error SampleErrorScalar = ZoneId;
 error SampleErrorUnion = Union;
 error SampleErrorScalarSub = Range;
+error SampleErrorEnumSub = DayOfWeek;
 
 service SampleService {
 	operation getBoolean(): boolean;
@@ -1793,10 +1821,12 @@ service BinaryTypes {
 		number: int,
 		rec: SimpleRecord,
 		scalar_: ZoneId,
+		dayOfWeek: DayOfWeek,
 		textList: string[],
 		numberList: int[],
 		recList: SimpleRecord[],
 		scalarList: ZoneId[],
+		monthList: Month[],
 		dataFile: file,
 		dataBlob: blob
 	): UploadMixedResult;
@@ -1805,10 +1835,12 @@ service BinaryTypes {
 		number?: int,
 		rec?: SimpleRecord,
 		scalar_?: ZoneId,
+		dayOfWeek?: DayOfWeek,
 		textList?: string[],
 		numberList?: int[],
 		recList?: SimpleRecord[],
 		scalarList?: ZoneId[],
+		monthList?: Month[],
 		dataFile?: file,
 		dataBlob?: blob
 	): UploadMixedResult;
@@ -1817,10 +1849,12 @@ service BinaryTypes {
 		number: int?,
 		rec: SimpleRecord?,
 		scalar_: ZoneId?,
+		dayOfWeek: DayOfWeek?,
 		textList: string[]?,
 		numberList: int[]?,
 		recList: SimpleRecord[]?,
 		scalarList: ZoneId[]?,
+		monthList: Month[]?,
 		dataFile: file?,
 		dataBlob: blob?
 	): UploadMixedResult;
@@ -1829,10 +1863,12 @@ service BinaryTypes {
 		number?: int?,
 		rec?: SimpleRecord?,
 		scalar_?: ZoneId?,
+		dayOfWeek?: DayOfWeek?,
 		textList?: string[]?,
 		numberList?: int[]?,
 		recList?: SimpleRecord[]?,
 		scalarList?: ZoneId[]?,
+		monthList?: Month[]?,
 		dataFile?: file?,
 		dataBlob?: blob?
 	): UploadMixedResult;
@@ -1903,4 +1939,42 @@ service ScalarSubstition_Service {
 	operation multiBody(valueA: Range, valueB: ZoneId): string;
 
 	operation fail() throws SampleErrorScalarSub;
+}
+
+service EnumSubstition_Service {
+	operation get(): DayOfWeek;
+	operation list(): DayOfWeek[];
+
+	operation post(dayOfWeek: DayOfWeek): DayOfWeek;
+	operation postOpt(dayOfWeek?: DayOfWeek): NilResult;
+	operation postNull(dayOfWeek: DayOfWeek?): NilResult;
+	operation postOptNull(dayOfWeek?: DayOfWeek?): NilResult;
+
+	operation postList(dayOfWeek: DayOfWeek[]): DayOfWeek[];
+	operation postListOpt(dayOfWeek?: DayOfWeek[]): NilResult;
+	operation postListNull(dayOfWeek: DayOfWeek[]?): NilResult;
+	operation postListOptNull(dayOfWeek?: DayOfWeek[]?): NilResult;
+
+	operation query(dayOfWeek: DayOfWeek): DayOfWeek;
+	operation queryOpt(dayOfWeek?: DayOfWeek): NilResult;
+	operation queryNull(dayOfWeek: DayOfWeek?): NilResult;
+	operation queryOptNull(dayOfWeek?: DayOfWeek?): NilResult;
+
+	operation queryList(dayOfWeek: DayOfWeek[]): DayOfWeek[];
+	operation queryListOpt(dayOfWeek?: DayOfWeek[]): NilResult;
+	operation queryListNull(dayOfWeek: DayOfWeek[]?): NilResult;
+	operation queryListOptNull(dayOfWeek?: DayOfWeek[]?): NilResult;
+
+	operation header(dayOfWeek: DayOfWeek): DayOfWeek;
+	operation headerOpt(dayOfWeek?: DayOfWeek): NilResult;
+	operation headerNull(dayOfWeek: DayOfWeek?): NilResult;
+	operation headerOptNull(dayOfWeek?: DayOfWeek?): NilResult;
+
+	operation headerList(dayOfWeek: DayOfWeek[]): DayOfWeek[];
+	operation headerListOpt(dayOfWeek?: DayOfWeek[]): NilResult;
+	operation headerListNull(dayOfWeek: DayOfWeek[]?): NilResult;
+	operation headerListOptNull(dayOfWeek?: DayOfWeek[]?): NilResult;
+
+	operation multiBody(valueA: DayOfWeek, valueB: Month): string;
+	operation fail() throws SampleErrorEnumSub;
 }

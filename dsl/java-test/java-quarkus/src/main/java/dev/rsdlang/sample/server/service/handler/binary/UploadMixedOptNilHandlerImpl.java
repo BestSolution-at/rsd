@@ -1,8 +1,10 @@
 package dev.rsdlang.sample.server.service.handler.binary;
 
 import java.util.List;
+import java.time.Month;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BinaryTypesServiceImpl;
+import dev.rsdlang.sample.server.DayOfWeek;
 import dev.rsdlang.sample.server.model.RSDBlob;
 import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.model.SimpleRecord;
@@ -20,10 +22,12 @@ public class UploadMixedOptNilHandlerImpl implements BinaryTypesServiceImpl.Uplo
 			Nillable<Integer> number,
 			Nillable<SimpleRecord.Data> rec,
 			Nillable<ZoneId> zone,
+			Nillable<DayOfWeek> dayOfWeek,
 			Nillable<List<String>> textList,
 			Nillable<List<Integer>> numberList,
 			Nillable<List<SimpleRecord.Data>> recList,
 			Nillable<List<ZoneId>> zoneList,
+			Nillable<List<Month>> monthList,
 			Nillable<RSDFile> dataFile,
 			Nillable<RSDBlob> dataBlob) {
 		// TODO Auto-generated method stub

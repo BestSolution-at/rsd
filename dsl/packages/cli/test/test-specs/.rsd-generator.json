@@ -30,6 +30,16 @@
                     "type": "dev.rsdlang.sample.client.MyRange",
                     "fromJson": "parse",
                     "toJson": "::toString"
+                },
+                "Month": {
+                    "type": "java.time.Month",
+                    "fromJson": "valueOf",
+                    "toJson": "name"
+                },
+                "DayOfWeek": {
+                    "type": "dev.rsdlang.sample.client.DayOfWeek",
+                    "fromJson": "parse",
+                    "toJson": "::toString"
                 }
             }
         },
@@ -40,6 +50,16 @@
             "nativeTypeSubstitutes": {
                 "Range": {
                     "type": "dev.rsdlang.sample.client.MyRange",
+                    "fromJson": "parse",
+                    "toJson": "::toString"
+                },
+                "Month": {
+                    "type": "java.time.Month",
+                    "fromJson": "valueOf",
+                    "toJson": "name"
+                },
+                "DayOfWeek": {
+                    "type": "dev.rsdlang.sample.client.DayOfWeek",
                     "fromJson": "parse",
                     "toJson": "::toString"
                 }
@@ -55,6 +75,16 @@
                     "type": "dev.rsdlang.sample.server.MyRange",
                     "fromJson": "parse",
                     "toJson": "::toString"
+                },
+                "Month": {
+                    "type": "java.time.Month",
+                    "fromJson": "valueOf",
+                    "toJson": "name"
+                },
+                "DayOfWeek": {
+                    "type": "dev.rsdlang.sample.server.DayOfWeek",
+                    "fromJson": "parse",
+                    "toJson": "::toString"
                 }
             }
         },
@@ -65,6 +95,16 @@
             "nativeTypeSubstitutes": {
                 "Range": {
                     "type": "dev.rsdlang.sample.server.MyRange",
+                    "fromJson": "parse",
+                    "toJson": "::toString"
+                },
+                "Month": {
+                    "type": "java.time.Month",
+                    "fromJson": "valueOf",
+                    "toJson": "name"
+                },
+                "DayOfWeek": {
+                    "type": "dev.rsdlang.sample.server.DayOfWeek",
                     "fromJson": "parse",
                     "toJson": "::toString"
                 }

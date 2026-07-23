@@ -15,6 +15,7 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
+import dev.rsdlang.sample.client.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.NilResult;
@@ -104,7 +105,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -148,7 +149,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -194,7 +195,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -229,7 +230,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -275,7 +276,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -352,7 +353,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -396,7 +397,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -442,7 +443,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -477,7 +478,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -523,7 +524,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -600,7 +601,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -644,7 +645,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -690,7 +691,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -725,7 +726,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -771,7 +772,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -848,7 +849,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -892,7 +893,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -938,7 +939,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -973,7 +974,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1019,7 +1020,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1096,7 +1097,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1140,7 +1141,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1186,7 +1187,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1221,7 +1222,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1267,7 +1268,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1344,7 +1345,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1388,7 +1389,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1434,7 +1435,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1469,7 +1470,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1515,7 +1516,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1594,7 +1595,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1638,7 +1639,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1684,7 +1685,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1719,7 +1720,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1765,7 +1766,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1844,7 +1845,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1888,7 +1889,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1934,7 +1935,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1969,7 +1970,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2015,7 +2016,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2094,7 +2095,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2138,7 +2139,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2184,7 +2185,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2219,7 +2220,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2265,7 +2266,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2344,7 +2345,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2388,7 +2389,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2434,7 +2435,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2469,7 +2470,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2515,7 +2516,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2594,7 +2595,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2638,7 +2639,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2684,7 +2685,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2719,7 +2720,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2765,7 +2766,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2844,7 +2845,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2888,7 +2889,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2934,7 +2935,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2969,7 +2970,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3015,7 +3016,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3094,7 +3095,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3138,7 +3139,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3184,7 +3185,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3219,7 +3220,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3265,7 +3266,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3292,7 +3293,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+		$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_EnumSupport.SampleEnumToJson($v))).toList()));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -3309,7 +3310,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, SampleEnum::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::SampleEnumFromJson);
 				this.lifecycleHook.onSuccess("listEnumHeaderParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3344,7 +3345,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3370,7 +3371,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_EnumSupport.SampleEnumToJson($v))).toList()));
 		}
 		var $headers = BaseUtils.toHeaders($headerParams);
 
@@ -3388,7 +3389,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3414,7 +3415,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_EnumSupport.SampleEnumToJson($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -3434,7 +3435,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3469,7 +3470,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3495,7 +3496,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 		var $headerParams = new HashMap<String, String>();
 		if (headerValue != null) {
-			$headerParams.put("headerValue", String.join(",", headerValue.stream().map(Objects::toString).toList()));
+			$headerParams.put("headerValue", String.join(",", headerValue.stream().map($v -> BaseUtils.encodeAsciiString(_EnumSupport.SampleEnumToJson($v))).toList()));
 		} else {
 			$headerParams.put("headerValue", "null");
 		}
@@ -3515,7 +3516,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3594,7 +3595,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3638,7 +3639,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3684,7 +3685,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3719,7 +3720,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3765,7 +3766,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3850,7 +3851,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3894,7 +3895,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3941,7 +3942,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3992,7 +3993,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4046,7 +4047,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4108,7 +4109,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4143,7 +4144,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4189,7 +4190,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4240,7 +4241,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4297,7 +4298,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4359,7 +4360,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4439,7 +4440,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4484,7 +4485,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4531,7 +4532,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4566,7 +4567,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4613,7 +4614,7 @@ public class ListHeaderParameterTypesServiceImpl implements ListHeaderParameterT
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordHeaderParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}

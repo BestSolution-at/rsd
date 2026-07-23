@@ -15,9 +15,11 @@ import java.util.Optional;
 import dev.rsdlang.sample.client.BaseService;
 import dev.rsdlang.sample.client.BinaryTypesService;
 import dev.rsdlang.sample.client.BodyParameterTypesService;
+import dev.rsdlang.sample.client.EnumSubstition_ServiceService;
 import dev.rsdlang.sample.client.HeaderParameterTypesService;
 import dev.rsdlang.sample.client.jdkhttp.impl.BinaryTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.BodyParameterTypesServiceImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.EnumSubstition_ServiceServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.HeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.ListBodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.ListHeaderParameterTypesServiceImpl;
@@ -36,12 +38,15 @@ import dev.rsdlang.sample.client.model.CyclicNodeA;
 import dev.rsdlang.sample.client.model.CyclicNodeB;
 import dev.rsdlang.sample.client.model.EnumInlineRecord;
 import dev.rsdlang.sample.client.model.EnumRecord;
+import dev.rsdlang.sample.client.model.EnumRecord_Substitution;
 import dev.rsdlang.sample.client.model.ErrorData;
 import dev.rsdlang.sample.client.model.impl.json._BlobImpl;
 import dev.rsdlang.sample.client.model.impl.json._FileImpl;
 import dev.rsdlang.sample.client.model.impl.json.CyclicNodeADataImpl;
 import dev.rsdlang.sample.client.model.impl.json.CyclicNodeBDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.EnumInlineRecordDataImpl;
+import dev.rsdlang.sample.client.model.impl.json.EnumRecord_SubstitutionDataImpl;
+import dev.rsdlang.sample.client.model.impl.json.EnumRecord_SubstitutionPatchImpl;
 import dev.rsdlang.sample.client.model.impl.json.EnumRecordDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.ErrorDataDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.MixedResultDataImpl;
@@ -285,6 +290,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerBuilderCreator(SimpleRecord_Basic_List_Null.DataBuilder.class, SimpleRecord_Basic_List_NullDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(SimpleRecord_Basic_List_Optional_Null.DataBuilder.class, SimpleRecord_Basic_List_Optional_NullDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(EnumRecord.DataBuilder.class, EnumRecordDataImpl.DataBuilderImpl::new);
+		registerBuilderCreator(EnumRecord_Substitution.DataBuilder.class, EnumRecord_SubstitutionDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(EnumInlineRecord.DataBuilder.class, EnumInlineRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(ScalarRecord.DataBuilder.class, ScalarRecordDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(ScalarRecord_Substitution.DataBuilder.class, ScalarRecord_SubstitutionDataImpl.DataBuilderImpl::new);
@@ -317,6 +323,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerBuilderCreator(MixedResult.DataBuilder.class, MixedResultDataImpl.DataBuilderImpl::new);
 		registerBuilderCreator(ErrorData.DataBuilder.class, ErrorDataDataImpl.DataBuilderImpl::new);
 
+		registerBuilderCreator(EnumRecord_Substitution.PatchBuilder.class, EnumRecord_SubstitutionPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableRecord.PatchBuilder.class, PatchableRecordPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableRecord_Basic.PatchBuilder.class, PatchableRecord_BasicPatchImpl.PatchBuilderImpl::new);
 		registerBuilderCreator(PatchableRecord_Basic_Optional.PatchBuilder.class, PatchableRecord_Basic_OptionalPatchImpl.PatchBuilderImpl::new);
@@ -346,6 +353,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerServiceCreator(ListHeaderParameterTypesService.class, ListHeaderParameterTypesServiceImpl::new);
 		registerServiceCreator(BinaryTypesService.class, BinaryTypesServiceImpl::new);
 		registerServiceCreator(ScalarSubstition_ServiceService.class, ScalarSubstition_ServiceServiceImpl::new);
+		registerServiceCreator(EnumSubstition_ServiceService.class, EnumSubstition_ServiceServiceImpl::new);
 	}
 
 	private static void registerBuilderCreator(Class<?> clazz, Supplier<Object> constructor) {

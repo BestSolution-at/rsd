@@ -14,6 +14,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
@@ -32,17 +33,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listBooleanHeaderParamOpt(NilResult $result, String $contentType, Optional<List<Boolean>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listBooleanHeaderParamNil(NilResult $result, String $contentType, Optional<List<Boolean>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listBooleanHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Boolean>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listShortHeaderParam(List<Short> $result, String $contentType, List<Short> headerValue) {
 		return Response.status(200)
@@ -52,17 +53,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listShortHeaderParamOpt(NilResult $result, String $contentType, Optional<List<Short>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listShortHeaderParamNil(NilResult $result, String $contentType, Optional<List<Short>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listShortHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Short>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listIntHeaderParam(List<Integer> $result, String $contentType, List<Integer> headerValue) {
 		return Response.status(200)
@@ -72,17 +73,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listIntHeaderParamOpt(NilResult $result, String $contentType, Optional<List<Integer>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listIntHeaderParamNil(NilResult $result, String $contentType, Optional<List<Integer>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listIntHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Integer>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLongHeaderParam(List<Long> $result, String $contentType, List<Long> headerValue) {
 		return Response.status(200)
@@ -92,17 +93,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listLongHeaderParamOpt(NilResult $result, String $contentType, Optional<List<Long>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLongHeaderParamNil(NilResult $result, String $contentType, Optional<List<Long>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLongHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Long>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listFloatHeaderParam(List<Float> $result, String $contentType, List<Float> headerValue) {
 		return Response.status(200)
@@ -112,17 +113,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listFloatHeaderParamOpt(NilResult $result, String $contentType, Optional<List<Float>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listFloatHeaderParamNil(NilResult $result, String $contentType, Optional<List<Float>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listFloatHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Float>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listDoubleHeaderParam(List<Double> $result, String $contentType, List<Double> headerValue) {
 		return Response.status(200)
@@ -132,17 +133,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listDoubleHeaderParamOpt(NilResult $result, String $contentType, Optional<List<Double>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listDoubleHeaderParamNil(NilResult $result, String $contentType, Optional<List<Double>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listDoubleHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<Double>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listStringHeaderParam(List<String> $result, String $contentType, List<String> headerValue) {
 		return Response.status(200)
@@ -152,17 +153,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listStringHeaderParamOpt(NilResult $result, String $contentType, Optional<List<String>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listStringHeaderParamNil(NilResult $result, String $contentType, Optional<List<String>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listStringHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<String>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalDateHeaderParam(List<LocalDate> $result, String $contentType, List<LocalDate> headerValue) {
 		return Response.status(200)
@@ -172,17 +173,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listLocalDateHeaderParamOpt(NilResult $result, String $contentType, Optional<List<LocalDate>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalDateHeaderParamNil(NilResult $result, String $contentType, Optional<List<LocalDate>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalDateHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalDate>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalDateTimeHeaderParam(List<LocalDateTime> $result, String $contentType, List<LocalDateTime> headerValue) {
 		return Response.status(200)
@@ -192,17 +193,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listLocalDateTimeHeaderParamOpt(NilResult $result, String $contentType, Optional<List<LocalDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalDateTimeHeaderParamNil(NilResult $result, String $contentType, Optional<List<LocalDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalDateTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalTimeHeaderParam(List<LocalTime> $result, String $contentType, List<LocalTime> headerValue) {
 		return Response.status(200)
@@ -212,17 +213,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listLocalTimeHeaderParamOpt(NilResult $result, String $contentType, Optional<List<LocalTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalTimeHeaderParamNil(NilResult $result, String $contentType, Optional<List<LocalTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listLocalTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<LocalTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listOffsetDateTimeHeaderParam(List<OffsetDateTime> $result, String $contentType, List<OffsetDateTime> headerValue) {
 		return Response.status(200)
@@ -232,17 +233,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listOffsetDateTimeHeaderParamOpt(NilResult $result, String $contentType, Optional<List<OffsetDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listOffsetDateTimeHeaderParamNil(NilResult $result, String $contentType, Optional<List<OffsetDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listOffsetDateTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<OffsetDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listZonedDateTimeHeaderParam(List<ZonedDateTime> $result, String $contentType, List<ZonedDateTime> headerValue) {
 		return Response.status(200)
@@ -252,17 +253,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listZonedDateTimeHeaderParamOpt(NilResult $result, String $contentType, Optional<List<ZonedDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listZonedDateTimeHeaderParamNil(NilResult $result, String $contentType, Optional<List<ZonedDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listZonedDateTimeHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ZonedDateTime>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listScalarHeaderParam(List<ZoneId> $result, String $contentType, List<ZoneId> headerValue) {
 		return Response.status(200)
@@ -272,37 +273,37 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listScalarHeaderParamOpt(NilResult $result, String $contentType, Optional<List<ZoneId>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listScalarHeaderParamNil(NilResult $result, String $contentType, Optional<List<ZoneId>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listScalarHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ZoneId>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listEnumHeaderParam(List<SampleEnum> $result, String $contentType, List<SampleEnum> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_EnumSupport::SampleEnumToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listEnumHeaderParamOpt(NilResult $result, String $contentType, Optional<List<SampleEnum>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listEnumHeaderParamNil(NilResult $result, String $contentType, Optional<List<SampleEnum>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listEnumHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<SampleEnum>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listInlineEnumHeaderParam(List<ListHeaderParameterTypesService.ListInlineEnumHeaderParam_Result$> $result, String $contentType, List<ListHeaderParameterTypesService.ListInlineEnumHeaderParam_HeaderValue_Param$> headerValue) {
 		return Response.status(200)
@@ -312,17 +313,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listInlineEnumHeaderParamOpt(NilResult $result, String $contentType, Optional<List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamOpt_HeaderValue_Param$>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listInlineEnumHeaderParamNil(NilResult $result, String $contentType, Optional<List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamNil_HeaderValue_Param$>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listInlineEnumHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<ListHeaderParameterTypesService.ListInlineEnumHeaderParamOptNil_HeaderValue_Param$>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listMultiHeaderParam(String $result, String $contentType, List<String> valueA, List<Integer> valueB, List<SimpleRecord.Data> valueC, List<ZoneId> valueD) {
 		return Response.status(200)
@@ -332,17 +333,17 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listMultiHeaderParamOpt(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_EnumSupport::NilResultToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listMultiHeaderParamNil(List<NilResult> $result, String $contentType, Optional<List<String>> valueA, Optional<List<Integer>> valueB, Optional<List<SimpleRecord.Data>> valueC, Optional<List<ZoneId>> valueD) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_EnumSupport::NilResultToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listMultiHeaderParamOptNil(List<NilResult> $result, String $contentType, _Base.Nillable<List<String>> valueA, _Base.Nillable<List<Integer>> valueB, _Base.Nillable<List<SimpleRecord.Data>> valueC, _Base.Nillable<List<ZoneId>> valueD) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_EnumSupport::NilResultToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listRecordHeaderParam(List<SimpleRecord.Data> $result, String $contentType, List<SimpleRecord.Data> headerValue) {
 		return Response.status(200)
@@ -352,16 +353,16 @@ public class ListHeaderParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listRecordHeaderParamOpt(NilResult $result, String $contentType, Optional<List<SimpleRecord.Data>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listRecordHeaderParamNil(NilResult $result, String $contentType, Optional<List<SimpleRecord.Data>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listRecordHeaderParamOptNil(NilResult $result, String $contentType, _Base.Nillable<List<SimpleRecord.Data>> headerValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 }

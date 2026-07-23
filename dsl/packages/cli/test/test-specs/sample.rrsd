@@ -999,3 +999,61 @@ resource ScalarSubstition_Service at '/api/scalarsubstitution' {
 
 	POST multiBody at 'multiBody'
 }
+
+resource EnumSubstition_Service at '/api/enumsubstition' {
+	GET get at 'get'
+	GET list at 'list'
+
+	POST post at 'post'
+	POST postOpt at 'postOpt'
+	POST postNull at 'postNull'
+	POST postOptNull at 'postOptNull'
+
+	POST postList at 'postList'
+	POST postListOpt at 'postListOpt'
+	POST postListNull at 'postListNull'
+	POST postListOptNull at 'postListOptNull'
+
+	GET query at 'query'
+		query-param dayOfWeek
+	GET queryOpt at 'queryOpt'
+		query-param dayOfWeek
+	GET queryNull at 'queryNull'
+		query-param dayOfWeek
+	GET queryOptNull at 'queryOptNull'
+		query-param dayOfWeek
+
+	GET queryList at 'queryList'
+		query-param dayOfWeek
+	GET queryListOpt at 'queryListOpt'
+		query-param dayOfWeek
+	GET queryListNull at 'queryListNull'
+		query-param dayOfWeek
+	GET queryListOptNull at 'queryListOptNull'
+		query-param dayOfWeek
+
+	GET header at 'header'
+		header-param dayOfWeek
+	GET headerOpt at 'headerOpt'
+		header-param dayOfWeek
+	GET headerNull at 'headerNull'
+		header-param dayOfWeek
+	GET headerOptNull at 'headerOptNull'
+		header-param dayOfWeek
+
+	GET headerList at 'headerList'
+		header-param dayOfWeek
+	GET headerListOpt at 'headerListOpt'
+		header-param dayOfWeek
+	GET headerListNull at 'headerListNull'
+		header-param dayOfWeek
+	GET headerListOptNull at 'headerListOptNull'
+		header-param dayOfWeek
+
+	POST fail at 'fail' => {
+		200
+		400: SampleErrorEnumSub
+	}
+
+	POST multiBody at 'multiBody'
+}

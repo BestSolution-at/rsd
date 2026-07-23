@@ -27,6 +27,7 @@ import { generateScopeValueProvider } from './scopevalue-provider.js';
 import { generateStreamImpls } from './stream-impl.js';
 import { generateChangeSupport } from './listchange.js';
 import { generateScalarSupport } from './scalar-support.js';
+import { generateEnumSupport } from './enum-support.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -69,6 +70,7 @@ export function generate(
 	result.push(...generateStreamImpls(artifactConfig, model));
 	result.push(...generateChangeSupport(artifactConfig));
 	result.push(...generateScalarSupport(model.elements.filter(isMScalarType), artifactConfig));
+	result.push(...generateEnumSupport(model.elements.filter(isMEnumType), artifactConfig));
 
 	return result;
 }

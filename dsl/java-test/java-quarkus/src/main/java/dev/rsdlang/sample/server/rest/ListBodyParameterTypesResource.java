@@ -14,9 +14,9 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.PUT;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
-import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.rest.model.ListBodyParameterTypesListMultiBodyParamDataImpl;
 import dev.rsdlang.sample.server.rest.model.ListBodyParameterTypesListMultiBodyParamNilDataImpl;
@@ -638,7 +638,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseLiterals(_bodyEnum, computeRequestContentType($contentTypeHeader), SampleEnum::valueOf);
+		var bodyEnum = _JsonUtils.parseLiterals(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
 		var result = service.listEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.listEnumBodyParam(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -649,7 +649,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseOptLiterals(_bodyEnum, computeRequestContentType($contentTypeHeader), SampleEnum::valueOf);
+		var bodyEnum = _JsonUtils.parseOptLiterals(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
 		var result = service.listEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.listEnumBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -660,7 +660,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNullLiterals(_bodyEnum, computeRequestContentType($contentTypeHeader), SampleEnum::valueOf);
+		var bodyEnum = _JsonUtils.parseNullLiterals(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
 		var result = service.listEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.listEnumBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -671,7 +671,7 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNilLiterals(_bodyEnum, computeRequestContentType($contentTypeHeader), SampleEnum::valueOf);
+		var bodyEnum = _JsonUtils.parseNilLiterals(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
 		var result = service.listEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.listEnumBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}

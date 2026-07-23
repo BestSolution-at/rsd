@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.time.Month;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -264,10 +265,12 @@ public class BinaryTypesServiceTest {
 				42,
 				rec,
 				ZoneId.of("UTC"),
+				DayOfWeek.MONDAY,
 				List.of("a", "b"),
 				List.of(1, 2),
 				List.of(rec),
 				List.of(ZoneId.of("UTC")),
+				List.of(Month.JANUARY),
 				file(service, "FileContent"),
 				blob(service, "BlobContent")).orThrow();
 
@@ -300,10 +303,12 @@ public class BinaryTypesServiceTest {
 				42,
 				rec,
 				ZoneId.of("UTC"),
+				DayOfWeek.MONDAY,
 				List.of("a", "b"),
 				List.of(1, 2),
 				List.of(rec),
 				List.of(ZoneId.of("UTC")),
+				List.of(Month.JANUARY),
 				file(service, "FileContent"),
 				blob(service, "BlobContent")).orThrow();
 		assertEquals("hello", result.text().orElse(null));
@@ -322,6 +327,8 @@ public class BinaryTypesServiceTest {
 	@MethodSource("serviceProvider")
 	public void uploadMixedNil_allNull(BinaryTypesService service) {
 		var result = service.uploadMixedNil(
+				null,
+				null,
 				null,
 				null,
 				null,
@@ -353,10 +360,12 @@ public class BinaryTypesServiceTest {
 				42,
 				rec,
 				ZoneId.of("UTC"),
+				DayOfWeek.MONDAY,
 				List.of("a", "b"),
 				List.of(1, 2),
 				List.of(rec),
 				List.of(ZoneId.of("UTC")),
+				List.of(Month.JANUARY),
 				file(service, "FileContent"),
 				blob(service, "BlobContent")).orThrow();
 		assertEquals("hello", result.text().orElse(null));

@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.ZoneId;
@@ -555,7 +556,7 @@ public class PathParameterTypeServiceServiceImpl implements PathParameterTypeSer
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, SampleEnum::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::SampleEnumFromJson);
 				this.lifecycleHook.onSuccess("simpleEnumPathParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}

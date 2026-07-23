@@ -1,9 +1,11 @@
 package dev.rsdlang.sample.server.service.handler.binary;
 
+import java.time.Month;
 import java.util.List;
 
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.impl.BinaryTypesServiceImpl;
+import dev.rsdlang.sample.server.DayOfWeek;
 import dev.rsdlang.sample.server.model.RSDBlob;
 import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.model.SimpleRecord;
@@ -20,10 +22,12 @@ public class UploadMixedHandlerImpl implements BinaryTypesServiceImpl.UploadMixe
 			int number,
 			SimpleRecord.Data rec,
 			ZoneId zone,
+			DayOfWeek dayOfWeek,
 			List<String> textList,
 			List<Integer> numberList,
 			List<SimpleRecord.Data> recList,
 			List<ZoneId> zoneList,
+			List<Month> monthList,
 			RSDFile dataFile,
 			RSDBlob dataBlob) {
 		return _factory.builder(UploadMixedResult.DataBuilder.class)
@@ -31,10 +35,12 @@ public class UploadMixedHandlerImpl implements BinaryTypesServiceImpl.UploadMixe
 				.number(number)
 				.rec(rec)
 				._scalar(zone)
+				.dayOfWeek(dayOfWeek)
 				.textList(textList)
 				.numberList(numberList)
 				.recList(recList)
 				.scalarList(zoneList)
+				.monthList(monthList)
 				.dataFileContent(StreamUtils.streamToString(dataFile.stream()))
 				.dataBlobContent(StreamUtils.streamToString(dataBlob.stream()))
 				.build();

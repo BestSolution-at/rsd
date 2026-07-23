@@ -146,9 +146,12 @@ function lambdaBodyComputer(prop: MResolvedPropery, type: string, fqn: (type: st
 		} else {
 			throw new Error(`Unknown builtin type ${prop.type}`);
 		}
-	} else if (prop.variant === 'enum' || prop.variant === 'inline-enum') {
+	} else if (prop.variant === 'inline-enum') {
 		const JsonString = fqn('jakarta.json.JsonString');
 		return `${type}.valueOf(((${JsonString})v).getString())`;
+	} else if (prop.variant === 'enum') {
+		const JsonString = fqn('jakarta.json.JsonString');
+		return `_EnumSupport.${prop.type}FromJson(((${JsonString}) v).getString())`;
 	} else if (prop.variant === 'scalar') {
 		const JsonString = fqn('jakarta.json.JsonString');
 		return `_ScalarSupport.${prop.type}FromJson(((${JsonString}) v).getString())`;
@@ -209,7 +212,7 @@ function generatePatchBuilderImpl(
 		if (t.resolved.unions.length > 0) {
 			classBody.append('public PatchBuilderImpl() {', NL);
 			classBody.indent(methodBody => {
-				const key = (t.resolved.unions[0].descriminatorAliases ?? {})[t.name] ?? t.name;
+				const key = t.resolved.unions[0].descriminatorAliases?.[t.name] ?? t.name;
 				methodBody.append(`$builder.add("@type", "patch:${key}");`, NL);
 			});
 			classBody.append('}', NL, NL);
@@ -218,22 +221,13 @@ function generatePatchBuilderImpl(
 			...props
 				.filter(p => isMKeyProperty(p) || isMRevisionProperty(p))
 				.flatMap(p => {
-					return [
-						generateKeyRevBuilderPropertyAccessor(
-							t,
-							p as (MKeyProperty | MRevisionProperty) & MResolvedBaseProperty, // FIXME Typesystem woes!?!
-							nativeTypeSubstitutes,
-							interfaceBasePackage,
-							fqn,
-						),
-						NL,
-					];
+					return [generateKeyRevBuilderPropertyAccessor(t, p, nativeTypeSubstitutes, interfaceBasePackage, fqn), NL];
 				}),
 		);
 		classBody.append(
 			...props
 				.filter(isMResolvedProperty)
-				.filter(p => p.readonly === false)
+				.filter(p => !p.readonly)
 				.flatMap(p => {
 					return [generatePatchBuilderPropertyAccessor(t, p, nativeTypeSubstitutes, interfaceBasePackage, fqn), NL];
 				}),
@@ -259,7 +253,7 @@ function generateKeyRevBuilderPropertyAccessor(
 ) {
 	const rv = new CompositeGeneratorNode();
 	rv.append(
-		`public ${t.name}.PatchBuilder ${p.name}(${computeAPIType(p as MResolvedBaseProperty, nativeTypeSubstitutes, basePackageName, fqn)} ${p.name}) {`,
+		`public ${t.name}.PatchBuilder ${p.name}(${computeAPIType(p, nativeTypeSubstitutes, basePackageName, fqn)} ${p.name}) {`,
 		NL,
 	);
 	rv.indent(mBody => {

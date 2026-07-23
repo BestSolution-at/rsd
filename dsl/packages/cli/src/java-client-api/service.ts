@@ -154,7 +154,11 @@ function toResultType(
 	} else if (type.variant === 'union' || type.variant === 'record') {
 		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
 	} else if (type.variant === 'enum') {
-		rvType = fqn(`${dtoPkg}.${type.type}`);
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
 	} else if (type.variant === 'inline-enum') {
 		rvType = toFirstUpper(methodName) + '_Result$';
 	} else if (type.variant === 'scalar') {

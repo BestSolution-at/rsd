@@ -9,6 +9,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model._Base;
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.NilResult;
@@ -35,17 +36,17 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder postOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder postNull(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder postOptNull(NilResult $result, String $contentType, _Base.Nillable<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder postList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
@@ -55,17 +56,17 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder postListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder postListNull(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder postListOptNull(NilResult $result, String $contentType, _Base.Nillable<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder query(MyRange $result, String $contentType, MyRange range) {
 		return Response.status(200)
@@ -75,17 +76,17 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder queryOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder queryNull(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder queryOptNull(NilResult $result, String $contentType, _Base.Nillable<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder queryList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
@@ -95,17 +96,17 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder queryListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder queryListNull(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder queryListOptNull(NilResult $result, String $contentType, _Base.Nillable<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder header(MyRange $result, String $contentType, MyRange range) {
 		return Response.status(200)
@@ -115,17 +116,17 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder headerOpt(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder headerNull(NilResult $result, String $contentType, Optional<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder headerOptNull(NilResult $result, String $contentType, _Base.Nillable<MyRange> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder headerList(List<MyRange> $result, String $contentType, List<MyRange> range) {
 		return Response.status(200)
@@ -135,17 +136,17 @@ public class ScalarSubstition_ServiceResourceResponseBuilder {
 	public ResponseBuilder headerListOpt(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder headerListNull(NilResult $result, String $contentType, Optional<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder headerListOptNull(NilResult $result, String $contentType, _Base.Nillable<List<MyRange>> range) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.NilResultToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder multiBody(String $result, String $contentType, MyRange valueA, ZoneId valueB) {
 		return Response.status(200)

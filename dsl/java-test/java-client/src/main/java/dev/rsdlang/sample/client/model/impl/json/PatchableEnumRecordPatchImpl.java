@@ -16,49 +16,49 @@ import dev.rsdlang.sample.client.model.SampleEnum;
 public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements PatchableEnumRecord.Patch {
 	static class ListSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum> implements ListSetChange {
 		ListSetChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()));
+			super(data, v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class ListMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum> implements ListMergeChange {
 		ListMergeChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()), v -> SampleEnum.valueOf(((JsonString)v).getString()));
+			super(data, v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()), v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum> implements List_NullSetChange {
 		List_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()));
+			super(data, v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum> implements List_NullMergeChange {
 		List_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()), v -> SampleEnum.valueOf(((JsonString)v).getString()));
+			super(data, v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()), v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_OptSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum> implements List_OptSetChange {
 		List_OptSetChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()));
+			super(data, v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_OptMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum> implements List_OptMergeChange {
 		List_OptMergeChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()), v -> SampleEnum.valueOf(((JsonString)v).getString()));
+			super(data, v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()), v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_Opt_NullSetChangeImpl extends _ChangeSupport.ValueElementsChange<SampleEnum> implements List_Opt_NullSetChange {
 		List_Opt_NullSetChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()));
+			super(data, v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()));
 		}
 	}
 
 	static class List_Opt_NullMergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<SampleEnum, SampleEnum> implements List_Opt_NullMergeChange {
 		List_Opt_NullMergeChangeImpl(JsonObject data) {
-			super(data, v -> SampleEnum.valueOf(((JsonString)v).getString()), v -> SampleEnum.valueOf(((JsonString)v).getString()));
+			super(data, v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()), v -> _EnumSupport.SampleEnumFromJson(((JsonString) v).getString()));
 		}
 	}
 
@@ -77,19 +77,19 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 	}
 
 	public Optional<SampleEnum> value() {
-		return _JsonUtils.mapOptLiteral(data, "value", SampleEnum::valueOf);
+		return _JsonUtils.mapOptLiteral(data, "value", _EnumSupport::SampleEnumFromJson);
 	}
 
 	public _Base.Nillable<SampleEnum> value_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Null", SampleEnum::valueOf);
+		return _JsonUtils.mapNilLiteral(data, "value_Null", _EnumSupport::SampleEnumFromJson);
 	}
 
 	public _Base.Nillable<SampleEnum> value_Opt() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt", SampleEnum::valueOf);
+		return _JsonUtils.mapNilLiteral(data, "value_Opt", _EnumSupport::SampleEnumFromJson);
 	}
 
 	public _Base.Nillable<SampleEnum> value_Opt_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", SampleEnum::valueOf);
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", _EnumSupport::SampleEnumFromJson);
 	}
 
 	public Optional<ListChange> list() {
@@ -123,7 +123,7 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 
 		@Override
 		public PatchableEnumRecord.PatchBuilder value(SampleEnum value) {
-			$builder.add("value", value.toString());
+			$builder.add("value", _EnumSupport.SampleEnumToJson(value));
 			return this;
 		}
 
@@ -133,7 +133,7 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 				$builder.addNull("value_Null");
 				return this;
 			}
-			$builder.add("value_Null", value_Null.toString());
+			$builder.add("value_Null", _EnumSupport.SampleEnumToJson(value_Null));
 			return this;
 		}
 
@@ -143,7 +143,7 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 				$builder.addNull("value_Opt");
 				return this;
 			}
-			$builder.add("value_Opt", value_Opt.toString());
+			$builder.add("value_Opt", _EnumSupport.SampleEnumToJson(value_Opt));
 			return this;
 		}
 
@@ -153,7 +153,7 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			$builder.add("value_Opt_Null", value_Opt_Null.toString());
+			$builder.add("value_Opt_Null", _EnumSupport.SampleEnumToJson(value_Opt_Null));
 			return this;
 		}
 
@@ -166,8 +166,8 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 		public PatchableEnumRecord.PatchBuilder list(List<SampleEnum> additions, List<SampleEnum> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _EnumSupport::SampleEnumToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _EnumSupport::SampleEnumToJson));
 			$builder.add("list", $changeBuilder.build());
 			return this;
 		}
@@ -189,8 +189,8 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 		public PatchableEnumRecord.PatchBuilder list_Null(List<SampleEnum> additions, List<SampleEnum> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _EnumSupport::SampleEnumToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _EnumSupport::SampleEnumToJson));
 			$builder.add("list_Null", $changeBuilder.build());
 			return this;
 		}
@@ -212,8 +212,8 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 		public PatchableEnumRecord.PatchBuilder list_Opt(List<SampleEnum> additions, List<SampleEnum> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _EnumSupport::SampleEnumToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _EnumSupport::SampleEnumToJson));
 			$builder.add("list_Opt", $changeBuilder.build());
 			return this;
 		}
@@ -235,8 +235,8 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 		public PatchableEnumRecord.PatchBuilder list_Opt_Null(List<SampleEnum> additions, List<SampleEnum> removals) {
 			var $changeBuilder = Json.createObjectBuilder();
 			$changeBuilder.add("@type", "merge");
-			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions));
-			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals));
+			$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _EnumSupport::SampleEnumToJson));
+			$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _EnumSupport::SampleEnumToJson));
 			$builder.add("list_Opt_Null", $changeBuilder.build());
 			return this;
 		}
