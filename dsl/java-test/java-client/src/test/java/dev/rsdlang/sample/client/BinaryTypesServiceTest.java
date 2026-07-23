@@ -278,10 +278,12 @@ public class BinaryTypesServiceTest {
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().toOptional().map(SimpleRecord.Data::key).orElse(""));
 		assertEquals(ZoneId.of("UTC"), result._scalar().orElse(null));
+		assertEquals(DayOfWeek.MONDAY, result.dayOfWeek().orElse(null));
 		assertEquals(List.of("a", "b"), result.textList().orElse(null));
 		assertEquals(List.of(1, 2), result.numberList().orElse(null));
 		assertEquals(1, result.recList().toOptional().map(List::size).orElse(0));
 		assertEquals(List.of(ZoneId.of("UTC")), result.scalarList().orElse(null));
+		assertEquals(List.of(Month.JANUARY), result.monthList().orElse(null));
 		assertEquals("FileContent", result.dataFileContent().orElse(null));
 		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}
@@ -315,10 +317,12 @@ public class BinaryTypesServiceTest {
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().map(SimpleRecord.Data::key).orElse(""));
 		assertEquals(ZoneId.of("UTC"), result._scalar().orElse(null));
+		assertEquals(DayOfWeek.MONDAY, result.dayOfWeek().orElse(null));
 		assertEquals(List.of("a", "b"), result.textList().orElse(null));
 		assertEquals(List.of(1, 2), result.numberList().orElse(null));
 		assertEquals(1, result.recList().map(List::size).orElse(0));
 		assertEquals(List.of(ZoneId.of("UTC")), result.scalarList().orElse(null));
+		assertEquals(List.of(Month.JANUARY), result.monthList().orElse(null));
 		assertEquals("FileContent", result.dataFileContent().orElse(null));
 		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}
@@ -343,9 +347,11 @@ public class BinaryTypesServiceTest {
 		assertEquals(true, result.number().isNull());
 		assertEquals(true, result.rec().isNull());
 		assertEquals(true, result._scalar().isNull());
+		assertEquals(true, result.dayOfWeek().isNull());
 		assertEquals(true, result.textList().isNull());
 		assertEquals(true, result.numberList().isNull());
 		assertEquals(true, result.recList().isNull());
+		assertEquals(true, result.monthList().isNull());
 		assertEquals(true, result.scalarList().isNull());
 		assertEquals(true, result.dataFileContent().isNull());
 		assertEquals(true, result.dataBlobContent().isNull());
@@ -372,10 +378,12 @@ public class BinaryTypesServiceTest {
 		assertEquals(42, result.number().orElse(null));
 		assertEquals("k", result.rec().map(SimpleRecord.Data::key).orElse(""));
 		assertEquals(ZoneId.of("UTC"), result._scalar().orElse(null));
+		assertEquals(DayOfWeek.MONDAY, result.dayOfWeek().orElse(null));
 		assertEquals(List.of("a", "b"), result.textList().orElse(null));
 		assertEquals(List.of(1, 2), result.numberList().orElse(null));
 		assertEquals(1, result.recList().map(List::size).orElse(0));
 		assertEquals(List.of(ZoneId.of("UTC")), result.scalarList().orElse(null));
+		assertEquals(List.of(Month.JANUARY), result.monthList().orElse(null));
 		assertEquals("FileContent", result.dataFileContent().orElse(null));
 		assertEquals("BlobContent", result.dataBlobContent().orElse(null));
 	}
