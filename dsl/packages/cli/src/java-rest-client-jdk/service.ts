@@ -201,9 +201,12 @@ function appendQueryParams(
 				{ withArray: false, withOptional: false },
 			);
 			param = `BaseUtils.ofObject(${p.array ? '$q' : p.name}, false, this.contentType(), ${type}.class)`;
-		} else if (p.variant === 'scalar') {
-			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
-			param = `${_ScalarSupport}.${p.type}ToJson(${p.array ? '$q' : p.name})`;
+		} else if (p.variant === 'scalar' || p.variant === 'enum') {
+			const _Support =
+				p.variant === 'scalar'
+					? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+					: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+			param = `${_Support}.${p.type}ToJson(${p.array ? '$q' : p.name})`;
 		} else {
 			param = p.array ? '$q' : p.name;
 		}
@@ -327,10 +330,13 @@ function appendHeaderParams(
 				);
 			} else if (p.variant === 'stream') {
 				methodBody.append('throw new UnsupportedOperationException("Stream headers are not supported yet");', NL);
-			} else if (p.variant === 'scalar') {
-				const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+			} else if (p.variant === 'scalar' || p.variant === 'enum') {
+				const _Support =
+					p.variant === 'scalar'
+						? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+						: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
 				methodBody.append(
-					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${p.name} != null ? ${_ScalarSupport}.${p.type}ToJson(${p.name}) : "null"));`,
+					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${p.name} != null ? ${_Support}.${p.type}ToJson(${p.name}) : "null"));`,
 					NL,
 				);
 			} else {

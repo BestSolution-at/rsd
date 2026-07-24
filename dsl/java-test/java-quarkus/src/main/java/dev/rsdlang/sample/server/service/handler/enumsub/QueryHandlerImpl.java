@@ -10,6 +10,7 @@ public class QueryHandlerImpl implements EnumSubstition_ServiceServiceImpl.Query
 
     @Override
     public DayOfWeek query(BuilderFactory _factory, DayOfWeek dayOfWeek) {
+        System.out.println("QueryHandlerImpl.query: " + dayOfWeek);
         return dayOfWeek;
     }
 

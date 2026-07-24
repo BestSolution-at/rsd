@@ -16,7 +16,7 @@ public class HeaderOptHandlerImpl implements EnumSubstition_ServiceServiceImpl.H
         if (dayOfWeek.isPresent()) {
             return NilResult.DEFINED;
         }
-        return NilResult.DEFINED;
+        return NilResult.UNDEFINED;
     }
 
 }

@@ -17,7 +17,7 @@ public class PostListOptHandlerImpl implements EnumSubstition_ServiceServiceImpl
         if (dayOfWeek.isPresent()) {
             return NilResult.DEFINED;
         }
-        return NilResult.NULL;
+        return NilResult.UNDEFINED;
     }
 
 }

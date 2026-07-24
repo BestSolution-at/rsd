@@ -595,7 +595,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 				this.baseURI());
 
 		var $queryParams = new BaseUtils.URLSearchParams();
-		$queryParams.append("dayOfWeek", dayOfWeek);
+		$queryParams.append("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
@@ -669,7 +669,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (dayOfWeek != null) {
-			$queryParams.append("dayOfWeek", dayOfWeek);
+			$queryParams.append("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
 		}
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -709,7 +709,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (dayOfWeek != null) {
-			$queryParams.append("dayOfWeek", dayOfWeek);
+			$queryParams.append("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
 		} else {
 			$queryParams.append("dayOfWeek", "null");
 		}
@@ -786,7 +786,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (dayOfWeek != null) {
-			$queryParams.append("dayOfWeek", dayOfWeek);
+			$queryParams.append("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
 		} else {
 			$queryParams.append("dayOfWeek", "null");
 		}
@@ -830,7 +830,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		dayOfWeek.stream().forEach($q -> {
-			$queryParams.append("dayOfWeek", $q);
+			$queryParams.append("dayOfWeek", _EnumSupport.DayOfWeekToJson($q));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -906,7 +906,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (dayOfWeek != null) {
 			dayOfWeek.stream().forEach($q -> {
-				$queryParams.append("dayOfWeek", $q);
+				$queryParams.append("dayOfWeek", _EnumSupport.DayOfWeekToJson($q));
 			});
 		}
 
@@ -948,7 +948,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (dayOfWeek != null) {
 			dayOfWeek.stream().forEach($q -> {
-				$queryParams.append("dayOfWeek", $q);
+				$queryParams.append("dayOfWeek", _EnumSupport.DayOfWeekToJson($q));
 			});
 		} else {
 			$queryParams.append("dayOfWeek", "null");
@@ -1027,7 +1027,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 		var $queryParams = new BaseUtils.URLSearchParams();
 		if (dayOfWeek != null) {
 			dayOfWeek.stream().forEach($q -> {
-				$queryParams.append("dayOfWeek", $q);
+				$queryParams.append("dayOfWeek", _EnumSupport.DayOfWeekToJson($q));
 			});
 		} else {
 			$queryParams.append("dayOfWeek", "null");
@@ -1071,7 +1071,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("dayOfWeek", Objects.toString(dayOfWeek));
+		$headerParams.put("dayOfWeek", BaseUtils.encodeAsciiString(dayOfWeek != null ? _EnumSupport.DayOfWeekToJson(dayOfWeek) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1148,7 +1148,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("dayOfWeek", Objects.toString(dayOfWeek));
+		$headerParams.put("dayOfWeek", BaseUtils.encodeAsciiString(dayOfWeek != null ? _EnumSupport.DayOfWeekToJson(dayOfWeek) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1190,7 +1190,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("dayOfWeek", Objects.toString(dayOfWeek));
+		$headerParams.put("dayOfWeek", BaseUtils.encodeAsciiString(dayOfWeek != null ? _EnumSupport.DayOfWeekToJson(dayOfWeek) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
@@ -1267,7 +1267,7 @@ public class EnumSubstition_ServiceServiceImpl implements EnumSubstition_Service
 				this.baseURI());
 
 		var $headerParams = new HashMap<String, String>();
-		$headerParams.put("dayOfWeek", Objects.toString(dayOfWeek));
+		$headerParams.put("dayOfWeek", BaseUtils.encodeAsciiString(dayOfWeek != null ? _EnumSupport.DayOfWeekToJson(dayOfWeek) : "null"));
 		var $headers = BaseUtils.toHeaders($headerParams);
 
 		var $uri = URI.create($path);
