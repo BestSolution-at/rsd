@@ -3,7 +3,7 @@ import { Artifact } from '../artifact-generator.js';
 import {
 	generateCompilationUnit,
 	JavaImportsCollector,
-	JavaRestClientJDKGeneratorConfig,
+	JavaServerJakartaWSGeneratorConfig,
 	toPath,
 } from '../java-gen-utils.js';
 import { generateEnumSupportContent } from '../java-model-json/enum-support.js';
@@ -11,7 +11,7 @@ import { MResolvedEnumType } from '../model.js';
 
 export function generateEnumSupport(
 	enums: readonly MResolvedEnumType[],
-	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
 ): Artifact[] {
 	if (enums.length === 0) {
 		return [];
