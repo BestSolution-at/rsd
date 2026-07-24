@@ -10,10 +10,12 @@ Name | Type
 `number` | number
 `rec` | [SimpleRecord](SimpleRecord.md)
 `_scalar` | string
+`dayOfWeek` | [DayOfWeek](DayOfWeek.md)
 `textList` | Array&lt;string&gt;
 `numberList` | Array&lt;number&gt;
 `recList` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
 `scalarList` | Array&lt;string&gt;
+`monthList` | [Array&lt;Month&gt;](Month.md)
 `dataFileContent` | string
 `dataBlobContent` | string
 
@@ -28,10 +30,12 @@ const example = {
   "number": null,
   "rec": null,
   "_scalar": null,
+  "dayOfWeek": null,
   "textList": null,
   "numberList": null,
   "recList": null,
   "scalarList": null,
+  "monthList": null,
   "dataFileContent": null,
   "dataBlobContent": null,
 } satisfies UploadMixedResult

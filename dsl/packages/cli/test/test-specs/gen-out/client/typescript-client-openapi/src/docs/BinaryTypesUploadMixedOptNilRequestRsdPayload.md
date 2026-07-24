@@ -10,10 +10,12 @@ Name | Type
 `number` | number
 `rec` | [SimpleRecord](SimpleRecord.md)
 `scalar_` | string
+`dayOfWeek` | [DayOfWeek](DayOfWeek.md)
 `textList` | Array&lt;string&gt;
 `numberList` | Array&lt;number&gt;
 `recList` | [Array&lt;SimpleRecord&gt;](SimpleRecord.md)
 `scalarList` | Array&lt;string&gt;
+`monthList` | [Array&lt;Month&gt;](Month.md)
 
 ## Example
 
@@ -26,10 +28,12 @@ const example = {
   "number": null,
   "rec": null,
   "scalar_": null,
+  "dayOfWeek": null,
   "textList": null,
   "numberList": null,
   "recList": null,
   "scalarList": null,
+  "monthList": null,
 } satisfies BinaryTypesUploadMixedOptNilRequestRsdPayload
 
 console.log(example)

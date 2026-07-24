@@ -289,6 +289,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				42,
 				{ key: '1', version: '1', value: 'Record1' },
 				'UTC',
+				'MONDAY',
 				['Text1', 'Text2'],
 				[1, 2, 3],
 				[
@@ -296,6 +297,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 					{ key: '3', version: '1', value: 'Record3' },
 				],
 				['UTC'],
+				['JANUARY'],
 				file,
 				blob,
 			);
@@ -304,6 +306,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				number: 42,
 				rec: { key: '1', version: '1', value: 'Record1' },
 				_scalar: 'UTC',
+				dayOfWeek: 'MONDAY',
 				textList: ['Text1', 'Text2'],
 				numberList: [1, 2, 3],
 				recList: [
@@ -311,6 +314,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 					{ key: '3', version: '1', value: 'Record3' },
 				],
 				scalarList: ['UTC'],
+				monthList: ['JANUARY'],
 				dataFileContent: 'Mixed File Content',
 				dataBlobContent: 'Mixed Blob Content',
 			};
@@ -328,6 +332,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				42,
 				{ key: '1', version: '1', value: 'Record1' },
 				'UTC',
+				'MONDAY',
 				['Text1', 'Text2'],
 				[1, 2, 3],
 				[
@@ -335,6 +340,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 					{ key: '3', version: '1', value: 'Record3' },
 				],
 				['UTC'],
+				['JANUARY'],
 				file,
 				blob,
 			);
@@ -344,6 +350,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				number: 42,
 				rec: { key: '1', version: '1', value: 'Record1' },
 				_scalar: 'UTC',
+				dayOfWeek: 'MONDAY',
 				textList: ['Text1', 'Text2'],
 				numberList: [1, 2, 3],
 				recList: [
@@ -351,12 +358,15 @@ describe('BinaryTypesServiceFetchImpl', () => {
 					{ key: '3', version: '1', value: 'Record3' },
 				],
 				scalarList: ['UTC'],
+				monthList: ['JANUARY'],
 				dataFileContent: 'Mixed File Content',
 				dataBlobContent: 'Mixed Blob Content',
 			});
 		});
 		test.each([json, msgpack, openapi])('success with undefined params', async ({ service }) => {
 			const [result, error] = await service.uploadMixedOpt(
+				undefined,
+				undefined,
 				undefined,
 				undefined,
 				undefined,
@@ -374,10 +384,12 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				number: undefined,
 				rec: undefined,
 				_scalar: undefined,
+				dayOfWeek: undefined,
 				textList: undefined,
 				numberList: undefined,
 				recList: undefined,
 				scalarList: undefined,
+				monthList: undefined,
 				dataFileContent: undefined,
 				dataBlobContent: undefined,
 			});
@@ -392,6 +404,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				42,
 				{ key: '1', version: '1', value: 'Record1' },
 				'UTC',
+				'MONDAY',
 				['Text1', 'Text2'],
 				[1, 2, 3],
 				[
@@ -399,6 +412,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 					{ key: '3', version: '1', value: 'Record3' },
 				],
 				['UTC'],
+				['JANUARY'],
 				file,
 				blob,
 			);
@@ -408,6 +422,7 @@ describe('BinaryTypesServiceFetchImpl', () => {
 				number: 42,
 				rec: { key: '1', version: '1', value: 'Record1' },
 				_scalar: 'UTC',
+				dayOfWeek: 'MONDAY',
 				textList: ['Text1', 'Text2'],
 				numberList: [1, 2, 3],
 				recList: [
@@ -415,22 +430,38 @@ describe('BinaryTypesServiceFetchImpl', () => {
 					{ key: '3', version: '1', value: 'Record3' },
 				],
 				scalarList: ['UTC'],
+				monthList: ['JANUARY'],
 				dataFileContent: 'Mixed File Content',
 				dataBlobContent: 'Mixed Blob Content',
 			});
 		});
 		test.each([json, msgpack /*, openapi*/])('success with null params', async ({ service }) => {
-			const [result, error] = await service.uploadMixedNil(null, null, null, null, null, null, null, null, null, null);
+			const [result, error] = await service.uploadMixedNil(
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+			);
 			expect(error).toBeNull();
 			expect(result).toStrictEqual({
 				text: null,
 				number: null,
 				rec: null,
 				_scalar: null,
+				dayOfWeek: null,
 				textList: null,
 				numberList: null,
 				recList: null,
 				scalarList: null,
+				monthList: null,
 				dataFileContent: null,
 				dataBlobContent: null,
 			});
