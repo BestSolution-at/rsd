@@ -5,6 +5,7 @@ import java.util.List;
 import java.net.URI;
 import java.time.Month;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -372,5 +373,17 @@ public class EnumSubstition_ServiceServiceTest {
     void multiBody(EnumSubstition_ServiceService service) {
         var result = service.multiBody(DayOfWeek.MONDAY, Month.JANUARY).orThrow();
         assertEquals("MONDAY JANUARY", result);
+    }
+
+    @ParameterizedTest
+    @MethodSource("serviceProvider")
+    void fail(EnumSubstition_ServiceService service) {
+        var result = service.fail();
+        switch (result) {
+            case Result.ERR(SampleErrorEnumSub err) -> {
+                assertEquals(err.data(), DayOfWeek.MONDAY);
+            }
+            default -> Assertions.fail("Expected result");
+        }
     }
 }

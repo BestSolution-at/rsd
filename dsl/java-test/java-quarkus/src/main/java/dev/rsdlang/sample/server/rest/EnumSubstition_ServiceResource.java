@@ -338,7 +338,7 @@ public class EnumSubstition_ServiceResource {
 			service.fail(builderFactory);
 			return responseBuilder.fail().build();
 		} catch (SampleErrorEnumSubException e) {
-			return _RestUtils.toResponse(400, e);
+			return _RestUtils.toResponse(400, e, _EnumSupport::toJson);
 		}
 	}
 

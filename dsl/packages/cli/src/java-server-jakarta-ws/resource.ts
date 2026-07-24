@@ -12,6 +12,7 @@ import {
 } from '../java-gen-utils.js';
 import {
 	isMBuiltinType,
+	isMEnumType,
 	isMScalarType,
 	MOperation,
 	MParameter,
@@ -348,12 +349,11 @@ function _generateResource(
 							mBody.append(`} catch (${Type} e) {`, NL);
 							mBody.indent(inner => {
 								const err = o.resolved.errors.find(r => r.name === e.error);
-								if (isMScalarType(err?.resolvedContentType)) {
-									const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
-									inner.append(
-										`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_ScalarSupport}::toJson);`,
-										NL,
-									);
+								if (isMScalarType(err?.resolvedContentType) || isMEnumType(err?.resolvedContentType)) {
+									const _Support = isMScalarType(err.resolvedContentType)
+										? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+										: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_Support}::toJson);`, NL);
 								} else {
 									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
 								}
@@ -529,9 +529,11 @@ function generateResourceMethod(
 				mBody.append(`} catch (${Type} e) {`, NL);
 				mBody.indent(inner => {
 					const err = o.resolved.errors.find(r => r.name === e.error);
-					if (isMScalarType(err?.resolvedContentType)) {
-						const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
-						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_ScalarSupport}::toJson);`, NL);
+					if (isMScalarType(err?.resolvedContentType) || isMEnumType(err?.resolvedContentType)) {
+						const _Support = isMScalarType(err.resolvedContentType)
+							? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+							: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_Support}::toJson);`, NL);
 					} else {
 						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
 					}
