@@ -12,6 +12,7 @@ import java.util.Objects;
 import jakarta.json.Json;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.ScalarSubstition_ServiceMultiBodyDataImpl;
@@ -176,7 +177,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -215,7 +216,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -254,7 +255,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -293,7 +294,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -332,7 +333,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -412,7 +413,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postListOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -451,7 +452,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postListOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -490,7 +491,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postListNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -529,7 +530,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -568,7 +569,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("postListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -643,7 +644,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -683,7 +684,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -725,7 +726,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -760,7 +761,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -802,7 +803,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -879,7 +880,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryListOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -921,7 +922,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryListOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -965,7 +966,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryListNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1000,7 +1001,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1044,7 +1045,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("queryListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1123,7 +1124,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1165,7 +1166,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1207,7 +1208,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1242,7 +1243,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1284,7 +1285,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1363,7 +1364,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerListOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1407,7 +1408,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerListOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1453,7 +1454,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerListNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1488,7 +1489,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1534,7 +1535,7 @@ public class ScalarSubstition_ServiceServiceImpl implements ScalarSubstition_Ser
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("headerListOptNull", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}

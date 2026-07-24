@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { DayOfWeek } from './DayOfWeek.js';
+import {
+    DayOfWeekFromJSON,
+    DayOfWeekFromJSONTyped,
+    DayOfWeekToJSON,
+    DayOfWeekToJSONTyped,
+} from './DayOfWeek.js';
+import type { Month } from './Month.js';
+import {
+    MonthFromJSON,
+    MonthFromJSONTyped,
+    MonthToJSON,
+    MonthToJSONTyped,
+} from './Month.js';
 import type { SimpleRecord } from './SimpleRecord.js';
 import {
     SimpleRecordFromJSON,
@@ -53,6 +67,12 @@ export interface BinaryTypesUploadMixedNilRequestRsdPayload {
     scalar_: string | null;
     /**
      * 
+     * @type {DayOfWeek}
+     * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
+     */
+    dayOfWeek: DayOfWeek | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
      */
@@ -75,7 +95,15 @@ export interface BinaryTypesUploadMixedNilRequestRsdPayload {
      * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
      */
     scalarList: Array<string> | null;
+    /**
+     * 
+     * @type {Array<Month>}
+     * @memberof BinaryTypesUploadMixedNilRequestRsdPayload
+     */
+    monthList: Array<Month> | null;
 }
+
+
 
 /**
  * Check if a given object implements the BinaryTypesUploadMixedNilRequestRsdPayload interface.
@@ -85,10 +113,12 @@ export function instanceOfBinaryTypesUploadMixedNilRequestRsdPayload(value: obje
     if (!('number' in value) || value['number'] === undefined) return false;
     if (!('rec' in value) || value['rec'] === undefined) return false;
     if (!('scalar_' in value) || value['scalar_'] === undefined) return false;
+    if (!('dayOfWeek' in value) || value['dayOfWeek'] === undefined) return false;
     if (!('textList' in value) || value['textList'] === undefined) return false;
     if (!('numberList' in value) || value['numberList'] === undefined) return false;
     if (!('recList' in value) || value['recList'] === undefined) return false;
     if (!('scalarList' in value) || value['scalarList'] === undefined) return false;
+    if (!('monthList' in value) || value['monthList'] === undefined) return false;
     return true;
 }
 
@@ -106,10 +136,12 @@ export function BinaryTypesUploadMixedNilRequestRsdPayloadFromJSONTyped(json: an
         'number': json['number'],
         'rec': SimpleRecordFromJSON(json['rec']),
         'scalar_': json['scalar_'],
+        'dayOfWeek': DayOfWeekFromJSON(json['dayOfWeek']),
         'textList': json['textList'] == null ? null : json['textList'],
         'numberList': json['numberList'] == null ? null : json['numberList'],
         'recList': (json['recList'] == null ? null : (json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
         'scalarList': json['scalarList'] == null ? null : json['scalarList'],
+        'monthList': (json['monthList'] == null ? null : (json['monthList'] as Array<any>).map(MonthFromJSON)),
     };
 }
 
@@ -128,10 +160,12 @@ export function BinaryTypesUploadMixedNilRequestRsdPayloadToJSONTyped(value?: Bi
         'number': value['number'],
         'rec': SimpleRecordToJSON(value['rec']),
         'scalar_': value['scalar_'],
+        'dayOfWeek': DayOfWeekToJSON(value['dayOfWeek']),
         'textList': value['textList'],
         'numberList': value['numberList'],
         'recList': (value['recList'] == null ? null : (value['recList'] as Array<any>).map(SimpleRecordToJSON)),
         'scalarList': value['scalarList'],
+        'monthList': (value['monthList'] == null ? null : (value['monthList'] as Array<any>).map(MonthToJSON)),
     };
 }
 

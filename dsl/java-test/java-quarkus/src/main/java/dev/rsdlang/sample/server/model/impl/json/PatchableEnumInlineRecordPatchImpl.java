@@ -106,7 +106,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder value(Value$ value) {
-			;
+			$builder.add("value", value.toString());
 			return this;
 		}
 
@@ -116,7 +116,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 				$builder.addNull("value_Null");
 				return this;
 			}
-			;
+			$builder.add("value_Null", value_Null.toString());
 			return this;
 		}
 
@@ -126,7 +126,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 				$builder.addNull("value_Opt");
 				return this;
 			}
-			;
+			$builder.add("value_Opt", value_Opt.toString());
 			return this;
 		}
 
@@ -136,7 +136,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			;
+			$builder.add("value_Opt_Null", value_Opt_Null.toString());
 			return this;
 		}
 

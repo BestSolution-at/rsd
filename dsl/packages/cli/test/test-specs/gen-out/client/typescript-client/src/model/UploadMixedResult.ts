@@ -2,6 +2,8 @@
 import { isRSDInt, isRSDString, type RSDInt, RSDIntFromJSON, RSDIntToJSON, type RSDString, RSDStringFromJSON, RSDStringToJSON } from './_Builtins.js';
 import { isSimpleRecord, type SimpleRecord, SimpleRecordFromJSON, SimpleRecordToJSON } from './SimpleRecord.js';
 import { isZoneId, type ZoneId, ZoneIdFromJSON, ZoneIdToJSON } from './_Scalars.js';
+import { type DayOfWeek, DayOfWeekFromJSON, DayOfWeekToJSON, isDayOfWeek } from './DayOfWeek.js';
+import { isMonth, type Month, MonthFromJSON, MonthToJSON } from './Month.js';
 import { checkOptProp, createTypedArrayGuard, isNull, isNumber, isRecord, isString, isUndefined, propMappedListValue, propMappedValue } from '../_type-utils.js';
 
 export type UploadMixedResult = {
@@ -9,10 +11,12 @@ export type UploadMixedResult = {
 	readonly number?: RSDInt | null;
 	readonly rec?: SimpleRecord | null;
 	readonly _scalar?: ZoneId | null;
+	readonly dayOfWeek?: DayOfWeek | null;
 	readonly textList?: RSDString[] | null;
 	readonly numberList?: RSDInt[] | null;
 	readonly recList?: SimpleRecord[] | null;
 	readonly scalarList?: ZoneId[] | null;
+	readonly monthList?: Month[] | null;
 	readonly dataFileContent?: RSDString | null;
 	readonly dataBlobContent?: RSDString | null;
 };
@@ -23,10 +27,12 @@ export function isUploadMixedResult(value: unknown): value is UploadMixedResult 
 		(checkOptProp(value, 'number', isNull) || checkOptProp(value, 'number', isRSDInt)) &&
 		(checkOptProp(value, 'rec', isNull) || checkOptProp(value, 'rec', isSimpleRecord)) &&
 		(checkOptProp(value, '_scalar', isNull) || checkOptProp(value, '_scalar', isZoneId)) &&
+		(checkOptProp(value, 'dayOfWeek', isNull) || checkOptProp(value, 'dayOfWeek', isDayOfWeek)) &&
 		(checkOptProp(value, 'textList', isNull) || checkOptProp(value, 'textList', createTypedArrayGuard(isRSDString))) &&
 		(checkOptProp(value, 'numberList', isNull) || checkOptProp(value, 'numberList', createTypedArrayGuard(isRSDInt))) &&
 		(checkOptProp(value, 'recList', isNull) || checkOptProp(value, 'recList', createTypedArrayGuard(isSimpleRecord))) &&
 		(checkOptProp(value, 'scalarList', isNull) || checkOptProp(value, 'scalarList', createTypedArrayGuard(isZoneId))) &&
+		(checkOptProp(value, 'monthList', isNull) || checkOptProp(value, 'monthList', createTypedArrayGuard(isMonth))) &&
 		(checkOptProp(value, 'dataFileContent', isNull) || checkOptProp(value, 'dataFileContent', isRSDString)) &&
 		(checkOptProp(value, 'dataBlobContent', isNull) || checkOptProp(value, 'dataBlobContent', isRSDString));
 }
@@ -36,10 +42,12 @@ export function UploadMixedResultFromJSON($value: Record<string, unknown>): Uplo
 	const number = propMappedValue('number', $value, isNumber, RSDIntFromJSON, 'optional_null');
 	const rec = propMappedValue('rec', $value, isRecord, SimpleRecordFromJSON, 'optional_null');
 	const _scalar = propMappedValue('_scalar', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const dayOfWeek = propMappedValue('dayOfWeek', $value, isString, DayOfWeekFromJSON, 'optional_null');
 	const textList = propMappedListValue('textList', $value, isString, RSDStringFromJSON, 'optional_null');
 	const numberList = propMappedListValue('numberList', $value, isNumber, RSDIntFromJSON, 'optional_null');
 	const recList = propMappedListValue('recList', $value, isRecord, SimpleRecordFromJSON, 'optional_null');
 	const scalarList = propMappedListValue('scalarList', $value, isString, ZoneIdFromJSON, 'optional_null');
+	const monthList = propMappedListValue('monthList', $value, isString, MonthFromJSON, 'optional_null');
 	const dataFileContent = propMappedValue('dataFileContent', $value, isString, RSDStringFromJSON, 'optional_null');
 	const dataBlobContent = propMappedValue('dataBlobContent', $value, isString, RSDStringFromJSON, 'optional_null');
 	return {
@@ -47,10 +55,12 @@ export function UploadMixedResultFromJSON($value: Record<string, unknown>): Uplo
 		number,
 		rec,
 		_scalar,
+		dayOfWeek,
 		textList,
 		numberList,
 		recList,
 		scalarList,
+		monthList,
 		dataFileContent,
 		dataBlobContent,
 	};
@@ -61,10 +71,12 @@ export function UploadMixedResultToJSON($value: UploadMixedResult): Record<strin
 	const number = isUndefined($value.number) || isNull($value.number) ? $value.number : RSDIntToJSON($value.number);
 	const rec = isUndefined($value.rec) || isNull($value.rec) ? $value.rec : SimpleRecordToJSON($value.rec);
 	const _scalar = isUndefined($value._scalar) || isNull($value._scalar) ? $value._scalar : ZoneIdToJSON($value._scalar);
+	const dayOfWeek = isUndefined($value.dayOfWeek) || isNull($value.dayOfWeek) ? $value.dayOfWeek : DayOfWeekToJSON($value.dayOfWeek);
 	const textList = isUndefined($value.textList) || isNull($value.textList) ? $value.textList : $value.textList.map(RSDStringToJSON);
 	const numberList = isUndefined($value.numberList) || isNull($value.numberList) ? $value.numberList : $value.numberList.map(RSDIntToJSON);
 	const recList = isUndefined($value.recList) || isNull($value.recList) ? $value.recList : $value.recList.map(SimpleRecordToJSON);
 	const scalarList = isUndefined($value.scalarList) || isNull($value.scalarList) ? $value.scalarList : $value.scalarList.map(ZoneIdToJSON);
+	const monthList = isUndefined($value.monthList) || isNull($value.monthList) ? $value.monthList : $value.monthList.map(MonthToJSON);
 	const dataFileContent = isUndefined($value.dataFileContent) || isNull($value.dataFileContent) ? $value.dataFileContent : RSDStringToJSON($value.dataFileContent);
 	const dataBlobContent = isUndefined($value.dataBlobContent) || isNull($value.dataBlobContent) ? $value.dataBlobContent : RSDStringToJSON($value.dataBlobContent);
 
@@ -73,10 +85,12 @@ export function UploadMixedResultToJSON($value: UploadMixedResult): Record<strin
 		number,
 		rec,
 		_scalar,
+		dayOfWeek,
 		textList,
 		numberList,
 		recList,
 		scalarList,
+		monthList,
 		dataFileContent,
 		dataBlobContent,
 	};

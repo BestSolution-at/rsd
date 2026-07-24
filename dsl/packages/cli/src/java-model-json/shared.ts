@@ -100,9 +100,9 @@ function generatePropertyContent(
 
 			if (prop.variant === 'enum') {
 				if (array) {
-					mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `_JsonUtils.map${nullablePart}Literals(data, "${prop.name}", _EnumSupport::${prop.type}FromJson)`;
 				} else {
-					mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `_JsonUtils.map${nullablePart}Literal(data, "${prop.name}", _EnumSupport::${prop.type}FromJson)`;
 				}
 			} else if (prop.variant === 'scalar') {
 				if (array) {
@@ -386,12 +386,12 @@ function generatePatchPropertyAccessor_NoRecord(
 				node.indent(methodBody => {
 					if (property.array) {
 						methodBody.append(
-							`return _JsonUtils.mapNilLiterals(data, "${property.name}", ${property.type}::valueOf);`,
+							`return _JsonUtils.mapNilLiterals(data, "${property.name}", _EnumSupport::${property.type}FromJson);`,
 							NL,
 						);
 					} else {
 						methodBody.append(
-							`return _JsonUtils.mapNilLiteral(data, "${property.name}", ${property.type}::valueOf);`,
+							`return _JsonUtils.mapNilLiteral(data, "${property.name}", _EnumSupport::${property.type}FromJson);`,
 							NL,
 						);
 					}
@@ -454,12 +454,12 @@ function generatePatchPropertyAccessor_NoRecord(
 				node.indent(methodBody => {
 					if (property.array) {
 						methodBody.append(
-							`return _JsonUtils.mapOptLiterals(data, "${property.name}", ${property.type}::valueOf);`,
+							`return _JsonUtils.mapOptLiterals(data, "${property.name}", _EnumSupport::${property.type}FromJson);`,
 							NL,
 						);
 					} else {
 						methodBody.append(
-							`return _JsonUtils.mapOptLiteral(data, "${property.name}", ${property.type}::valueOf);`,
+							`return _JsonUtils.mapOptLiteral(data, "${property.name}", _EnumSupport::${property.type}FromJson);`,
 							NL,
 						);
 					}
@@ -609,13 +609,14 @@ function generatePatchBuilderPropertyAccessor_NoRecord_Scalar(
 				name: property.name,
 			});
 		}
-	} else if (property.variant === 'scalar') {
+	} else if (property.variant === 'scalar' || property.variant === 'enum') {
+		const _Support = property.variant === 'scalar' ? '_ScalarSupport' : '_EnumSupport';
 		if (property.array) {
-			content = `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}, _ScalarSupport::${property.type}ToJson))`;
+			content = `$builder.add("${property.name}", _JsonUtils.toJsonLiteralArray(${property.name}, ${_Support}::${property.type}ToJson))`;
 		} else {
-			content = `$builder.add("${property.name}", _ScalarSupport.${property.type}ToJson(${property.name}))`;
+			content = `$builder.add("${property.name}", ${_Support}.${property.type}ToJson(${property.name}))`;
 		}
-	} else if (property.variant === 'enum') {
+	} else if (property.variant === 'inline-enum') {
 		content = `$builder.add("${property.name}", ${property.name}.toString())`;
 	}
 	node.indent(methodBody => {
@@ -671,13 +672,14 @@ function generatePatchBuilderPropertyAccessor_Array(
 					';',
 					NL,
 				);
-			} else if (property.variant === 'scalar') {
+			} else if (property.variant === 'scalar' || property.variant === 'enum') {
+				const _Support = property.variant === 'scalar' ? '_ScalarSupport' : '_EnumSupport';
 				mBody.append(
-					`$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, _ScalarSupport::${property.type}ToJson));`,
+					`$changeBuilder.add("additions", _JsonUtils.toJsonLiteralArray(additions, ${_Support}::${property.type}ToJson));`,
 					NL,
 				);
 				mBody.append(
-					`$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, _ScalarSupport::${property.type}ToJson));`,
+					`$changeBuilder.add("removals", _JsonUtils.toJsonLiteralArray(removals, ${_Support}::${property.type}ToJson));`,
 					NL,
 				);
 			} else {

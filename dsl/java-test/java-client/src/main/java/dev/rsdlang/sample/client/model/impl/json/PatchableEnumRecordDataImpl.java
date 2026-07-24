@@ -29,42 +29,42 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 
 	@Override
 	public SampleEnum value() {
-		return _JsonUtils.mapLiteral(data, "value", SampleEnum::valueOf);
+		return _JsonUtils.mapLiteral(data, "value", _EnumSupport::SampleEnumFromJson);
 	}
 
 	@Override
 	public Optional<SampleEnum> value_Null() {
-		return _JsonUtils.mapNullLiteral(data, "value_Null", SampleEnum::valueOf);
+		return _JsonUtils.mapNullLiteral(data, "value_Null", _EnumSupport::SampleEnumFromJson);
 	}
 
 	@Override
 	public Optional<SampleEnum> value_Opt() {
-		return _JsonUtils.mapOptLiteral(data, "value_Opt", SampleEnum::valueOf);
+		return _JsonUtils.mapOptLiteral(data, "value_Opt", _EnumSupport::SampleEnumFromJson);
 	}
 
 	@Override
 	public _Base.Nillable<SampleEnum> value_Opt_Null() {
-		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", SampleEnum::valueOf);
+		return _JsonUtils.mapNilLiteral(data, "value_Opt_Null", _EnumSupport::SampleEnumFromJson);
 	}
 
 	@Override
 	public List<SampleEnum> list() {
-		return _JsonUtils.mapLiterals(data, "list", SampleEnum::valueOf);
+		return _JsonUtils.mapLiterals(data, "list", _EnumSupport::SampleEnumFromJson);
 	}
 
 	@Override
 	public Optional<List<SampleEnum>> list_Null() {
-		return _JsonUtils.mapNullLiterals(data, "list_Null", SampleEnum::valueOf);
+		return _JsonUtils.mapNullLiterals(data, "list_Null", _EnumSupport::SampleEnumFromJson);
 	}
 
 	@Override
 	public Optional<List<SampleEnum>> list_Opt() {
-		return _JsonUtils.mapOptLiterals(data, "list_Opt", SampleEnum::valueOf);
+		return _JsonUtils.mapOptLiterals(data, "list_Opt", _EnumSupport::SampleEnumFromJson);
 	}
 
 	@Override
 	public _Base.Nillable<List<SampleEnum>> list_Opt_Null() {
-		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", SampleEnum::valueOf);
+		return _JsonUtils.mapNilLiterals(data, "list_Opt_Null", _EnumSupport::SampleEnumFromJson);
 	}
 
 	public static PatchableEnumRecord.Data of(JsonObject obj) {
@@ -95,7 +95,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (value == null) {
 				return this;
 			}
-			$builder.add("value", _JsonUtils.toString(value));
+			$builder.add("value", _EnumSupport.SampleEnumToJson(value));
 			return this;
 		}
 
@@ -105,7 +105,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.addNull("value_Null");
 				return this;
 			}
-			$builder.add("value_Null", _JsonUtils.toString(value_Null));
+			$builder.add("value_Null", _EnumSupport.SampleEnumToJson(value_Null));
 			return this;
 		}
 
@@ -114,7 +114,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (value_Opt == null) {
 				return this;
 			}
-			$builder.add("value_Opt", _JsonUtils.toString(value_Opt));
+			$builder.add("value_Opt", _EnumSupport.SampleEnumToJson(value_Opt));
 			return this;
 		}
 
@@ -124,7 +124,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.addNull("value_Opt_Null");
 				return this;
 			}
-			$builder.add("value_Opt_Null", _JsonUtils.toString(value_Opt_Null));
+			$builder.add("value_Opt_Null", _EnumSupport.SampleEnumToJson(value_Opt_Null));
 			return this;
 		}
 
@@ -133,7 +133,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (list == null) {
 				return this;
 			}
-			$builder.add("list", _JsonUtils.toJsonLiteralArray(list));
+			$builder.add("list", _JsonUtils.toJsonLiteralArray(list, $e -> _EnumSupport.SampleEnumToJson($e)));
 			return this;
 		}
 
@@ -143,7 +143,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.addNull("list_Null");
 				return this;
 			}
-			$builder.add("list_Null", _JsonUtils.toJsonLiteralArray(list_Null));
+			$builder.add("list_Null", _JsonUtils.toJsonLiteralArray(list_Null, $e -> _EnumSupport.SampleEnumToJson($e)));
 			return this;
 		}
 
@@ -152,7 +152,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (list_Opt == null) {
 				return this;
 			}
-			$builder.add("list_Opt", _JsonUtils.toJsonLiteralArray(list_Opt));
+			$builder.add("list_Opt", _JsonUtils.toJsonLiteralArray(list_Opt, $e -> _EnumSupport.SampleEnumToJson($e)));
 			return this;
 		}
 
@@ -162,7 +162,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.addNull("list_Opt_Null");
 				return this;
 			}
-			$builder.add("list_Opt_Null", _JsonUtils.toJsonLiteralArray(list_Opt_Null));
+			$builder.add("list_Opt_Null", _JsonUtils.toJsonLiteralArray(list_Opt_Null, $e -> _EnumSupport.SampleEnumToJson($e)));
 			return this;
 		}
 

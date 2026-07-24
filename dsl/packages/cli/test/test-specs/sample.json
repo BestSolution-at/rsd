@@ -33,6 +33,96 @@
       "doc": ""
     },
     {
+      "@type": "EnumType",
+      "name": "Month",
+      "entries": [
+        {
+          "@type": "EnumEntry",
+          "name": "JANUARY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "FEBRUARY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "MARCH"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "APRIL"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "MAY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "JUNE"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "JULY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "AUGUST"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "SEPTEMBER"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "OCTOBER"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "NOVEMBER"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "DECEMBER"
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "EnumType",
+      "name": "DayOfWeek",
+      "entries": [
+        {
+          "@type": "EnumEntry",
+          "name": "MONDAY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "TUESDAY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "WEDNESDAY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "THURSDAY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "FRIDAY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "SATURDAY"
+        },
+        {
+          "@type": "EnumEntry",
+          "name": "SUNDAY"
+        }
+      ],
+      "doc": ""
+    },
+    {
       "@type": "ScalarType",
       "name": "ZoneId",
       "doc": ""
@@ -1336,6 +1426,191 @@
           "nullable": true,
           "variant": "enum",
           "type": "SampleEnum",
+          "doc": ""
+        }
+      ],
+      "doc": ""
+    },
+    {
+      "@type": "RecordType",
+      "name": "EnumRecord_Substitution",
+      "patchable": true,
+      "mixins": [],
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "month",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "enum",
+          "type": "Month",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "month_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "enum",
+          "type": "Month",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "month_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "enum",
+          "type": "Month",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "month_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "enum",
+          "type": "Month",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "monthList",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "enum",
+          "type": "Month",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "monthList_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "enum",
+          "type": "Month",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "monthList_Opt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "enum",
+          "type": "Month",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "monthList_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "enum",
+          "type": "Month",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dayOfWeek",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "enum",
+          "type": "DayOfWeek",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dayOfWeek_Null",
+          "array": false,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "enum",
+          "type": "DayOfWeek",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dayOfWeek_Opt",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "enum",
+          "type": "DayOfWeek",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dayOfWeek_Opt_Null",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "enum",
+          "type": "DayOfWeek",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dayOfWeekList",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": false,
+          "variant": "enum",
+          "type": "DayOfWeek",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dayOfWeekList_Null",
+          "array": true,
+          "readonly": false,
+          "optional": false,
+          "nullable": true,
+          "variant": "enum",
+          "type": "DayOfWeek",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dayOfWeekList_Opt",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": false,
+          "variant": "enum",
+          "type": "DayOfWeek",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "dayOfWeekList_Opt_Null",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "enum",
+          "type": "DayOfWeek",
           "doc": ""
         }
       ],
@@ -4302,6 +4577,17 @@
         },
         {
           "@type": "Property",
+          "name": "dayOfWeek",
+          "array": false,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "enum",
+          "type": "DayOfWeek",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
           "name": "textList",
           "array": true,
           "readonly": false,
@@ -4342,6 +4628,17 @@
           "nullable": true,
           "variant": "scalar",
           "type": "ZoneId",
+          "doc": ""
+        },
+        {
+          "@type": "Property",
+          "name": "monthList",
+          "array": true,
+          "readonly": false,
+          "optional": true,
+          "nullable": true,
+          "variant": "enum",
+          "type": "Month",
           "doc": ""
         },
         {
@@ -20675,6 +20972,17 @@
             },
             {
               "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
               "name": "textList",
               "array": true,
               "nullable": false,
@@ -20715,6 +21023,17 @@
               "patch": false,
               "variant": "scalar",
               "type": "ZoneId",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "monthList",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "Month",
               "doc": ""
             },
             {
@@ -20808,6 +21127,17 @@
             },
             {
               "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
               "name": "textList",
               "array": true,
               "nullable": false,
@@ -20848,6 +21178,17 @@
               "patch": false,
               "variant": "scalar",
               "type": "ZoneId",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "monthList",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "Month",
               "doc": ""
             },
             {
@@ -20941,6 +21282,17 @@
             },
             {
               "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
               "name": "textList",
               "array": true,
               "nullable": true,
@@ -20981,6 +21333,17 @@
               "patch": false,
               "variant": "scalar",
               "type": "ZoneId",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "monthList",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "Month",
               "doc": ""
             },
             {
@@ -21074,6 +21437,17 @@
             },
             {
               "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
               "name": "textList",
               "array": true,
               "nullable": true,
@@ -21114,6 +21488,17 @@
               "patch": false,
               "variant": "scalar",
               "type": "ZoneId",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "monthList",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "Month",
               "doc": ""
             },
             {
@@ -22542,6 +22927,1050 @@
           "path": "/api/scalarsubstitution"
         }
       }
+    },
+    {
+      "@type": "Service",
+      "name": "EnumSubstition_Service",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "get",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "DayOfWeek",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "get",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "list",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "DayOfWeek",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "list",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "post",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "DayOfWeek",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "post",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postList",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "DayOfWeek",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postList",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postListOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postListOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postListNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postListNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "postListOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "postListOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "query",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "DayOfWeek",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "query",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryList",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "DayOfWeek",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryList",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryListOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryListOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryListNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryListNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "queryListOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "query"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "queryListOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "header",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "DayOfWeek",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "header",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": false,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerList",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "variant": "enum",
+            "type": "DayOfWeek",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerList",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerListOpt",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": false,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerListOpt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerListNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": true,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerListNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "headerListOptNull",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "dayOfWeek",
+              "array": true,
+              "nullable": true,
+              "optional": true,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": "",
+              "meta": {
+                "rest": {
+                  "name": "dayOfWeek",
+                  "source": "header"
+                }
+              }
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "enum",
+            "type": "NilResult",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "headerListOptNull",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "multiBody",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "valueA",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "DayOfWeek",
+              "doc": ""
+            },
+            {
+              "@type": "Parameter",
+              "name": "valueB",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "enum",
+              "type": "Month",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": false,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "multiBody",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "fail",
+          "doc": "",
+          "parameters": [],
+          "errors": [
+            "SampleErrorEnumSub"
+          ],
+          "operationErrors": [
+            {
+              "@type": "OperationError",
+              "error": "SampleErrorEnumSub",
+              "doc": ""
+            }
+          ],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "fail",
+              "results": [
+                {
+                  "statusCode": 200
+                },
+                {
+                  "statusCode": 400,
+                  "error": "SampleErrorEnumSub"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/enumsubstition"
+        }
+      }
     }
   ],
   "errors": [
@@ -22587,6 +24016,11 @@
       "@type": "Error",
       "name": "SampleErrorScalarSub",
       "contentType": "Range"
+    },
+    {
+      "@type": "Error",
+      "name": "SampleErrorEnumSub",
+      "contentType": "DayOfWeek"
     }
   ]
 }

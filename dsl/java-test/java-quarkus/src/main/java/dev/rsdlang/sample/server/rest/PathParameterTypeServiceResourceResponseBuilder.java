@@ -11,6 +11,7 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
@@ -86,7 +87,7 @@ public class PathParameterTypeServiceResourceResponseBuilder {
 	public ResponseBuilder simpleEnumPathParam(SampleEnum $result, String $contentType, SampleEnum pathEnum) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.SampleEnumToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder multiPathParam(String $result, String $contentType, String valueA, int valueB) {
 		return Response.status(200)

@@ -443,6 +443,9 @@ export function toAPIType(
 		}
 		return builtinToJavaType(type, t => t);
 	} else if (isMEnumType(type)) {
+		if (nativeTypeSubstitutes !== undefined && type.name in nativeTypeSubstitutes) {
+			return fqn(nativeTypeSubstitutes[type.name].type);
+		}
 		return fqn(`${basePackageName}.${type.name}`);
 	} else if (isMMixinType(type)) {
 		return fqn(`${basePackageName}.${type.name}Mixin`);

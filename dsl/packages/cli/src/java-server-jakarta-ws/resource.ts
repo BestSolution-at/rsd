@@ -12,6 +12,7 @@ import {
 } from '../java-gen-utils.js';
 import {
 	isMBuiltinType,
+	isMEnumType,
 	isMScalarType,
 	MOperation,
 	MParameter,
@@ -348,12 +349,11 @@ function _generateResource(
 							mBody.append(`} catch (${Type} e) {`, NL);
 							mBody.indent(inner => {
 								const err = o.resolved.errors.find(r => r.name === e.error);
-								if (isMScalarType(err?.resolvedContentType)) {
-									const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
-									inner.append(
-										`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_ScalarSupport}::toJson);`,
-										NL,
-									);
+								if (isMScalarType(err?.resolvedContentType) || isMEnumType(err?.resolvedContentType)) {
+									const _Support = isMScalarType(err.resolvedContentType)
+										? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+										: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_Support}::toJson);`, NL);
 								} else {
 									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
 								}
@@ -529,9 +529,11 @@ function generateResourceMethod(
 				mBody.append(`} catch (${Type} e) {`, NL);
 				mBody.indent(inner => {
 					const err = o.resolved.errors.find(r => r.name === e.error);
-					if (isMScalarType(err?.resolvedContentType)) {
-						const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
-						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_ScalarSupport}::toJson);`, NL);
+					if (isMScalarType(err?.resolvedContentType) || isMEnumType(err?.resolvedContentType)) {
+						const _Support = isMScalarType(err.resolvedContentType)
+							? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+							: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_Support}::toJson);`, NL);
 					} else {
 						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
 					}
@@ -556,41 +558,41 @@ function enumParameter(
 	asJSON: boolean,
 	contentTypeText: string,
 ) {
-	const t = fqn(`${artifactConfig.rootPackageName}.model.${p.type}`);
 	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
+	const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
 	if (p.array) {
 		if (asJSON) {
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${t}::valueOf);`,
+					`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${_EnumSupport}::${p.type}FromJson);`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${t}::valueOf);`,
+					`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${_EnumSupport}::${p.type}FromJson);`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${t}::valueOf);`,
+					`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${_EnumSupport}::${p.type}FromJson);`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${t}::valueOf);`,
+					`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, computeRequestContentType($contentTypeHeader), ${_EnumSupport}::${p.type}FromJson);`,
 					NL,
 				);
 			}
 		} else {
 			if (p.optional && p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${_EnumSupport}::${p.type}FromJson);`, NL);
 			} else if (p.optional) {
-				node.append(`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${_EnumSupport}::${p.type}FromJson);`, NL);
 			} else if (p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${_EnumSupport}::${p.type}FromJson);`, NL);
 			} else {
-				node.append(`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${_EnumSupport}::${p.type}FromJson);`, NL);
 			}
 		}
 	} else {
@@ -599,13 +601,25 @@ function enumParameter(
 				? ''
 				: `, ${contentTypeText}`;
 		if (p.optional && p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${_EnumSupport}::${p.type}FromJson);`,
+				NL,
+			);
 		} else if (p.optional) {
-			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${_EnumSupport}::${p.type}FromJson);`,
+				NL,
+			);
 		} else if (p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${_EnumSupport}::${p.type}FromJson);`,
+				NL,
+			);
 		} else {
-			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			node.append(
+				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${_EnumSupport}::${p.type}FromJson);`,
+				NL,
+			);
 		}
 	}
 	return node;
@@ -1243,25 +1257,26 @@ function generateParameterContent(
 		}
 	} else {
 		if (prop.variant === 'enum') {
+			const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
 			if (array) {
 				if (prop.optional && prop.nullable) {
-					mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapNilLiterals(data, "${prop.name}", ${_EnumSupport}::${prop.type}FromJson)`;
 				} else if (prop.optional) {
-					mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapOptLiterals(data, "${prop.name}", ${_EnumSupport}::${prop.type}FromJson)`;
 				} else if (prop.nullable) {
-					mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapNullLiterals(data, "${prop.name}", ${_EnumSupport}::${prop.type}FromJson)`;
 				} else {
-					mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapLiterals(data, "${prop.name}", ${_EnumSupport}::${prop.type}FromJson)`;
 				}
 			} else {
 				if (prop.optional && prop.nullable) {
-					mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapNilLiteral(data, "${prop.name}", ${_EnumSupport}::${prop.type}FromJson)`;
 				} else if (prop.optional) {
-					mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapOptLiteral(data, "${prop.name}", ${_EnumSupport}::${prop.type}FromJson)`;
 				} else if (prop.nullable) {
-					mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapNullLiteral(data, "${prop.name}", ${_EnumSupport}::${prop.type}FromJson)`;
 				} else {
-					mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${prop.type}::valueOf)`;
+					mapper = `${_JsonUtils}.mapLiteral(data, "${prop.name}", ${_EnumSupport}::${prop.type}FromJson)`;
 				}
 			}
 		} else if (prop.variant === 'scalar') {

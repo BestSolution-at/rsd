@@ -2,6 +2,7 @@
 /* eslint-disable */
 export * from './BinaryTypesApi.js';
 export * from './BodyParameterTypesApi.js';
+export * from './EnumSubstitionServiceApi.js';
 export * from './HeaderParameterTypesApi.js';
 export * from './ListBodyParameterTypesApi.js';
 export * from './ListHeaderParameterTypesApi.js';

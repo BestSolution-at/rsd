@@ -12,6 +12,7 @@ import dev.rsdlang.sample.server.model.CyclicNodeA;
 import dev.rsdlang.sample.server.model.CyclicNodeB;
 import dev.rsdlang.sample.server.model.EnumInlineRecord;
 import dev.rsdlang.sample.server.model.EnumRecord;
+import dev.rsdlang.sample.server.model.EnumRecord_Substitution;
 import dev.rsdlang.sample.server.model.ErrorData;
 import dev.rsdlang.sample.server.model.impl.json._BlobImpl;
 import dev.rsdlang.sample.server.model.impl.json._FileImpl;
@@ -20,6 +21,8 @@ import dev.rsdlang.sample.server.model.impl.json._StreamFileImpl;
 import dev.rsdlang.sample.server.model.impl.json.CyclicNodeADataImpl;
 import dev.rsdlang.sample.server.model.impl.json.CyclicNodeBDataImpl;
 import dev.rsdlang.sample.server.model.impl.json.EnumInlineRecordDataImpl;
+import dev.rsdlang.sample.server.model.impl.json.EnumRecord_SubstitutionDataImpl;
+import dev.rsdlang.sample.server.model.impl.json.EnumRecord_SubstitutionPatchImpl;
 import dev.rsdlang.sample.server.model.impl.json.EnumRecordDataImpl;
 import dev.rsdlang.sample.server.model.impl.json.ErrorDataDataImpl;
 import dev.rsdlang.sample.server.model.impl.json.MixedResultDataImpl;
@@ -163,6 +166,12 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == EnumRecord.DataBuilder.class) {
 			return type.cast(EnumRecordDataImpl.builder());
+		}
+		if (type == EnumRecord_Substitution.DataBuilder.class) {
+			return type.cast(EnumRecord_SubstitutionDataImpl.builder());
+		}
+		if (type == EnumRecord_Substitution.PatchBuilder.class) {
+			return type.cast(EnumRecord_SubstitutionPatchImpl.builder());
 		}
 		if (type == EnumInlineRecord.DataBuilder.class) {
 			return type.cast(EnumInlineRecordDataImpl.builder());
@@ -347,6 +356,12 @@ public class RestBuilderFactory implements BuilderFactory {
 		}
 		if (type == EnumRecord.Data.class) {
 			return type.cast(EnumRecordDataImpl.of(data));
+		}
+		if (type == EnumRecord_Substitution.Data.class) {
+			return type.cast(EnumRecord_SubstitutionDataImpl.of(data));
+		}
+		if (type == EnumRecord_Substitution.Patch.class) {
+			return type.cast(EnumRecord_SubstitutionPatchImpl.of(data));
 		}
 		if (type == EnumInlineRecord.Data.class) {
 			return type.cast(EnumInlineRecordDataImpl.of(data));

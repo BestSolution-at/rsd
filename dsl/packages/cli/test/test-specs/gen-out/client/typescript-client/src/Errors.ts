@@ -6,10 +6,11 @@ import { isRSDBoolean, isRSDInt, type RSDBoolean, type RSDInt } from './model/_B
 import { isSampleEnum, type SampleEnum } from './model/SampleEnum.js';
 import type { Range, ZoneId } from './model/_Scalars.js';
 import { isUnion, type Union } from './model/Union.js';
+import { type DayOfWeek, isDayOfWeek } from './model/DayOfWeek.js';
 
-const errorTypes = new Set(['_Native', '_Status', 'SampleError', 'SampleError2', 'SampleErrorWithValue', 'SampleErrorInt', 'SampleErrorBoolean', 'SampleErrorEnum', 'SampleErrorScalar', 'SampleErrorUnion', 'SampleErrorScalarSub']);
+const errorTypes = new Set(['_Native', '_Status', 'SampleError', 'SampleError2', 'SampleErrorWithValue', 'SampleErrorInt', 'SampleErrorBoolean', 'SampleErrorEnum', 'SampleErrorScalar', 'SampleErrorUnion', 'SampleErrorScalarSub', 'SampleErrorEnumSub']);
 
-export type ErrorType = '_Native' | '_Status' | 'SampleError' | 'SampleError2' | 'SampleErrorWithValue' | 'SampleErrorInt' | 'SampleErrorBoolean' | 'SampleErrorEnum' | 'SampleErrorScalar' | 'SampleErrorUnion' | 'SampleErrorScalarSub';
+export type ErrorType = '_Native' | '_Status' | 'SampleError' | 'SampleError2' | 'SampleErrorWithValue' | 'SampleErrorInt' | 'SampleErrorBoolean' | 'SampleErrorEnum' | 'SampleErrorScalar' | 'SampleErrorUnion' | 'SampleErrorScalarSub' | 'SampleErrorEnumSub';
 
 export function isKnownRSDError(value: unknown): value is RSDError<ErrorType> {
 	return (
@@ -37,6 +38,7 @@ export type SampleErrorEnumError = RSDError<'SampleErrorEnum'> & { data: SampleE
 export type SampleErrorScalarError = RSDError<'SampleErrorScalar'> & { data: ZoneId };
 export type SampleErrorUnionError = RSDError<'SampleErrorUnion'> & { data: Union };
 export type SampleErrorScalarSubError = RSDError<'SampleErrorScalarSub'> & { data: Range };
+export type SampleErrorEnumSubError = RSDError<'SampleErrorEnumSub'> & { data: DayOfWeek };
 
 export function isNativeError(value: unknown): value is NativeRSDError {
 	return (
@@ -117,5 +119,12 @@ export function isSampleErrorScalarSubError(value: unknown): value is SampleErro
 		isRecord(value) &&
 		checkProp(value, '_type', v => v === 'SampleErrorScalarSub') &&
 		checkProp(value, 'data', isString)
+	);
+}
+export function isSampleErrorEnumSubError(value: unknown): value is SampleErrorEnumSubError {
+	return (
+		isRecord(value) &&
+		checkProp(value, '_type', v => v === 'SampleErrorEnumSub') &&
+		checkProp(value, 'data', isDayOfWeek)
 	);
 }

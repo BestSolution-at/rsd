@@ -18,6 +18,7 @@ import jakarta.json.Json;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListBodyParameterTypesService;
 import dev.rsdlang.sample.client.model.impl.json._BaseDataImpl;
+import dev.rsdlang.sample.client.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.ListBodyParameterTypesListMultiBodyParamDataImpl;
@@ -113,7 +114,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -152,7 +153,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -191,7 +192,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -230,7 +231,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -269,7 +270,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listBooleanBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -347,7 +348,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -386,7 +387,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -425,7 +426,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -464,7 +465,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -503,7 +504,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listShortBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -581,7 +582,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -620,7 +621,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -659,7 +660,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -698,7 +699,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -737,7 +738,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listIntBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -815,7 +816,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -854,7 +855,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -893,7 +894,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -932,7 +933,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -971,7 +972,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLongBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1049,7 +1050,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1088,7 +1089,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1127,7 +1128,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1166,7 +1167,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1205,7 +1206,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listFloatBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1283,7 +1284,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1322,7 +1323,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1361,7 +1362,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1400,7 +1401,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1439,7 +1440,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listDoubleBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1519,7 +1520,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1558,7 +1559,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1597,7 +1598,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1636,7 +1637,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1675,7 +1676,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listStringBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1755,7 +1756,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1794,7 +1795,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1833,7 +1834,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1872,7 +1873,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1911,7 +1912,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -1991,7 +1992,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2030,7 +2031,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2069,7 +2070,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2108,7 +2109,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2147,7 +2148,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2227,7 +2228,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2266,7 +2267,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2305,7 +2306,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2344,7 +2345,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2383,7 +2384,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listLocalTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2463,7 +2464,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2502,7 +2503,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2541,7 +2542,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2580,7 +2581,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2619,7 +2620,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listOffsetDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2699,7 +2700,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2738,7 +2739,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2777,7 +2778,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2816,7 +2817,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2855,7 +2856,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listZonedDateTimeBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2935,7 +2936,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -2974,7 +2975,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3013,7 +3014,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3052,7 +3053,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3091,7 +3092,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listScalarBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3120,7 +3121,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, false, $contentType, Objects::toString));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, false, $contentType, _EnumSupport::SampleEnumToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3132,7 +3133,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, SampleEnum::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::SampleEnumFromJson);
 				this.lifecycleHook.onSuccess("listEnumBodyParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3171,7 +3172,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3198,7 +3199,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(bodyEnum, false, $contentType, Objects::toString));
+			var $body = BodyPublishers.ofByteArray(bodyEnum == null ? _JsonUtils.encodeEmptyValue($contentType) : BaseUtils.ofLiteralList(bodyEnum, false, $contentType, _EnumSupport::SampleEnumToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3210,7 +3211,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3237,7 +3238,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType, Objects::toString));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType, _EnumSupport::SampleEnumToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3249,7 +3250,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3288,7 +3289,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3315,7 +3316,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 		var $uri = URI.create($path);
 		try(var $clientSupplier = this.client.httpClientSupplier()) {
 			var $contentType = this.contentType();
-			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType, Objects::toString));
+			var $body = BodyPublishers.ofByteArray(BaseUtils.ofLiteralList(bodyEnum, true, $contentType, _EnumSupport::SampleEnumToJson));
 
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
@@ -3327,7 +3328,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3407,7 +3408,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3446,7 +3447,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3485,7 +3486,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3524,7 +3525,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3563,7 +3564,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listInlineEnumBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3650,7 +3651,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3693,7 +3694,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3739,7 +3740,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3788,7 +3789,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3840,7 +3841,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3884,7 +3885,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3923,7 +3924,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -3964,7 +3965,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4006,7 +4007,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4049,7 +4050,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4093,7 +4094,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listMultiBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4173,7 +4174,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4212,7 +4213,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordBodyParamOpt", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4251,7 +4252,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordBodyParamNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4290,7 +4291,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
@@ -4329,7 +4330,7 @@ public class ListBodyParameterTypesServiceImpl implements ListBodyParameterTypes
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, NilResult::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiteral($response, _EnumSupport::NilResultFromJson);
 				this.lifecycleHook.onSuccess("listRecordBodyParamOptNil", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}

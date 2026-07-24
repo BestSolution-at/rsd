@@ -14,8 +14,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
-import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 
 @ApplicationScoped
@@ -189,7 +189,7 @@ public class PathParameterTypeServiceResource {
 	public Response simpleEnumPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathEnum") String _pathEnum) {
-		var pathEnum = _RestUtils.parseLiteral(_pathEnum, SampleEnum::valueOf);
+		var pathEnum = _RestUtils.parseLiteral(_pathEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumPathParam(builderFactory, pathEnum);
 		return responseBuilder.simpleEnumPathParam(result, computeResponseContentType($acceptHeaders), pathEnum).build();
 	}

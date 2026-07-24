@@ -14,9 +14,9 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
-import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 
@@ -191,7 +191,7 @@ public class ListQueryParameterTypesResource {
 	public Response listEnumQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapLiterals(_queryValue, SampleEnum::valueOf);
+		var queryValue = _RestUtils.mapLiterals(_queryValue, _EnumSupport::SampleEnumFromJson);
 		var result = service.listEnumQueryParam(builderFactory, queryValue);
 		return responseBuilder.listEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}

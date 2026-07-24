@@ -12,6 +12,7 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
@@ -89,7 +90,7 @@ public class ListQueryParameterTypesResourceResponseBuilder {
 	public ResponseBuilder listEnumQueryParam(List<SampleEnum> $result, String $contentType, List<SampleEnum> queryValue) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_EnumSupport::SampleEnumToJson).toList(), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder listInlineEnumQueryParam(List<ListQueryParameterTypesService.ListInlineEnumQueryParam_Result$> $result, String $contentType, List<ListQueryParameterTypesService.ListInlineEnumQueryParam_QueryValue_Param$> queryValue) {
 		return Response.status(200)

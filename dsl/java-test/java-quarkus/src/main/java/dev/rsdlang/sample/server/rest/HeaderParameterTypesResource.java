@@ -17,9 +17,9 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
-import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.service.HeaderParameterTypesService;
 
@@ -584,7 +584,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleEnumHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseLiteral(_headerValue, SampleEnum::valueOf);
+		var headerValue = _RestUtils.parseLiteral(_headerValue, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumHeaderParam(builderFactory, headerValue);
 		return responseBuilder.simpleEnumHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -594,7 +594,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleEnumHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseOptLiteral(_headerValue, SampleEnum::valueOf);
+		var headerValue = _RestUtils.parseOptLiteral(_headerValue, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.simpleEnumHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -604,7 +604,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleEnumHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNullLiteral(_headerValue, SampleEnum::valueOf);
+		var headerValue = _RestUtils.parseNullLiteral(_headerValue, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.simpleEnumHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -614,7 +614,7 @@ public class HeaderParameterTypesResource {
 	public Response simpleEnumHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.parseNilLiteral(_headerValue, SampleEnum::valueOf);
+		var headerValue = _RestUtils.parseNilLiteral(_headerValue, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.simpleEnumHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}

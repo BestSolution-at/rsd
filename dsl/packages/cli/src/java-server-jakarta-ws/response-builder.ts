@@ -69,20 +69,23 @@ function generateContent(
 						} else {
 							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
 						}
-					} else if (o.resultType.variant === 'scalar') {
+					} else if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
 						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
-						const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+						const _Support =
+							o.resultType.variant === 'scalar'
+								? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+								: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
 						if (o.resultType.array) {
 							const content = toNodeTree(`
 							return ${Response}.status(${code.toFixed()})
 								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result.stream().map(${_ScalarSupport}::${o.resultType.type}ToJson).toList(), $contentType, /* FIXME */ null)));`);
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result.stream().map(${_Support}::${o.resultType.type}ToJson).toList(), $contentType, /* FIXME */ null)));`);
 							methodBody.append(content);
 						} else {
 							const content = toNodeTree(`
 							return ${Response}.status(${code.toFixed()})
 								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${_ScalarSupport}.${o.resultType.type}ToJson($result), $contentType, /* FIXME */ null)));`);
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${_Support}.${o.resultType.type}ToJson($result), $contentType, /* FIXME */ null)));`);
 							methodBody.append(content);
 						}
 					} else {
@@ -176,7 +179,11 @@ function toResultType(
 	} else if (type.variant === 'union' || type.variant === 'record') {
 		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
 	} else if (type.variant === 'enum') {
-		rvType = fqn(`${dtoPkg}.${type.type}`);
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
 	} else if (type.variant === 'inline-enum') {
 		const Service = fqn(`${artifactConfig.rootPackageName}.service.${serviceName}Service`);
 		rvType = Service + '.' + toFirstUpper(methodName) + '_Result$';

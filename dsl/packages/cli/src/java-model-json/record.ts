@@ -183,8 +183,10 @@ function generateJSONBuilder(prop: MResolvedBaseProperty): string {
 			});
 		} else if (prop.variant === 'scalar') {
 			return `$builder.add("${prop.name}", _JsonUtils.toJsonLiteralArray(${prop.name}, $e -> _ScalarSupport.${prop.type}ToJson($e)))`;
-		} else if (prop.variant === 'enum' || prop.variant === 'inline-enum') {
+		} else if (prop.variant === 'inline-enum') {
 			return `$builder.add("${prop.name}", _JsonUtils.toJsonLiteralArray(${prop.name}))`;
+		} else if (prop.variant === 'enum') {
+			return `$builder.add("${prop.name}", _JsonUtils.toJsonLiteralArray(${prop.name}, $e -> _EnumSupport.${prop.type}ToJson($e)))`;
 		} else {
 			return `$builder.add("${prop.name}", _JsonUtils.toJsonValueArray(${prop.name}, $e -> ((_BaseDataImpl) $e).data))`;
 		}
@@ -194,8 +196,10 @@ function generateJSONBuilder(prop: MResolvedBaseProperty): string {
 		return builtinBuilderAccess({ type: prop.type, name: prop.name });
 	} else if (prop.variant === 'scalar') {
 		return `$builder.add("${prop.name}", _ScalarSupport.${prop.type}ToJson(${prop.name}))`;
-	} else if (prop.variant === 'enum' || prop.variant === 'inline-enum') {
+	} else if (prop.variant === 'inline-enum') {
 		return `$builder.add("${prop.name}", _JsonUtils.toString(${prop.name}))`;
+	} else if (prop.variant === 'enum') {
+		return `$builder.add("${prop.name}", _EnumSupport.${prop.type}ToJson(${prop.name}))`;
 	} else {
 		return `$builder.add("${prop.name}", ((_BaseDataImpl) ${prop.name}).data)`;
 	}

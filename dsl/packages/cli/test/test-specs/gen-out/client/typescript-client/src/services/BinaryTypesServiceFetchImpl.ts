@@ -652,7 +652,7 @@ function fnUploadBlobListOptNil(props: ServiceProps<api.service.ErrorType>): api
 function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadMixed'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (text: RSDString, number: RSDInt, rec: api.model.SimpleRecord, scalar_: api.model.ZoneId, textList: RSDString[], numberList: RSDInt[], recList: api.model.SimpleRecord[], scalarList: api.model.ZoneId[], dataFile: File, dataBlob: Blob) => {
+	return async (text: RSDString, number: RSDInt, rec: api.model.SimpleRecord, scalar_: api.model.ZoneId, dayOfWeek: api.model.DayOfWeek, textList: RSDString[], numberList: RSDInt[], recList: api.model.SimpleRecord[], scalarList: api.model.ZoneId[], monthList: api.model.Month[], dataFile: File, dataBlob: Blob) => {
 		try {
 			const $init = (await preFetch?.('uploadMixed')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -668,10 +668,12 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 				number,
 				rec: api.model.SimpleRecordToJSON(rec),
 				scalar_,
+				dayOfWeek,
 				textList,
 				numberList,
 				recList: recList.map(api.model.SimpleRecordToJSON),
 				scalarList,
+				monthList,
 			};
 			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
 			if ($body.values().next().done) {
@@ -699,7 +701,7 @@ function fnUploadMixed(props: ServiceProps<api.service.ErrorType>): api.service.
 function fnUploadMixedOpt(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadMixedOpt'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (text?: RSDString, number?: RSDInt, rec?: api.model.SimpleRecord, scalar_?: api.model.ZoneId, textList?: RSDString[], numberList?: RSDInt[], recList?: api.model.SimpleRecord[], scalarList?: api.model.ZoneId[], dataFile?: File, dataBlob?: Blob) => {
+	return async (text?: RSDString, number?: RSDInt, rec?: api.model.SimpleRecord, scalar_?: api.model.ZoneId, dayOfWeek?: api.model.DayOfWeek, textList?: RSDString[], numberList?: RSDInt[], recList?: api.model.SimpleRecord[], scalarList?: api.model.ZoneId[], monthList?: api.model.Month[], dataFile?: File, dataBlob?: Blob) => {
 		try {
 			const $init = (await preFetch?.('uploadMixedOpt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -719,10 +721,12 @@ function fnUploadMixedOpt(props: ServiceProps<api.service.ErrorType>): api.servi
 				number,
 				rec: rec ? api.model.SimpleRecordToJSON(rec) : rec,
 				scalar_,
+				dayOfWeek,
 				textList,
 				numberList,
 				recList: recList ? recList.map(api.model.SimpleRecordToJSON) : recList,
 				scalarList,
+				monthList,
 			};
 			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
 			if ($body.values().next().done) {
@@ -750,7 +754,7 @@ function fnUploadMixedOpt(props: ServiceProps<api.service.ErrorType>): api.servi
 function fnUploadMixedNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadMixedNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (text: RSDString | null, number: RSDInt | null, rec: api.model.SimpleRecord | null, scalar_: api.model.ZoneId | null, textList: RSDString[] | null, numberList: RSDInt[] | null, recList: api.model.SimpleRecord[] | null, scalarList: api.model.ZoneId[] | null, dataFile: File | null, dataBlob: Blob | null) => {
+	return async (text: RSDString | null, number: RSDInt | null, rec: api.model.SimpleRecord | null, scalar_: api.model.ZoneId | null, dayOfWeek: api.model.DayOfWeek | null, textList: RSDString[] | null, numberList: RSDInt[] | null, recList: api.model.SimpleRecord[] | null, scalarList: api.model.ZoneId[] | null, monthList: api.model.Month[] | null, dataFile: File | null, dataBlob: Blob | null) => {
 		try {
 			const $init = (await preFetch?.('uploadMixedNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -770,10 +774,12 @@ function fnUploadMixedNil(props: ServiceProps<api.service.ErrorType>): api.servi
 				number,
 				rec: rec ? api.model.SimpleRecordToJSON(rec) : rec,
 				scalar_,
+				dayOfWeek,
 				textList,
 				numberList,
 				recList: recList ? recList.map(api.model.SimpleRecordToJSON) : recList,
 				scalarList,
+				monthList,
 			};
 			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
 			if ($body.values().next().done) {
@@ -801,7 +807,7 @@ function fnUploadMixedNil(props: ServiceProps<api.service.ErrorType>): api.servi
 function fnUploadMixedOptNil(props: ServiceProps<api.service.ErrorType>): api.service.BinaryTypesService['uploadMixedOptNil'] {
 	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
 	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
-	return async (text?: RSDString | null, number?: RSDInt | null, rec?: api.model.SimpleRecord | null, scalar_?: api.model.ZoneId | null, textList?: RSDString[] | null, numberList?: RSDInt[] | null, recList?: api.model.SimpleRecord[] | null, scalarList?: api.model.ZoneId[] | null, dataFile?: File | null, dataBlob?: Blob | null) => {
+	return async (text?: RSDString | null, number?: RSDInt | null, rec?: api.model.SimpleRecord | null, scalar_?: api.model.ZoneId | null, dayOfWeek?: api.model.DayOfWeek | null, textList?: RSDString[] | null, numberList?: RSDInt[] | null, recList?: api.model.SimpleRecord[] | null, scalarList?: api.model.ZoneId[] | null, monthList?: api.model.Month[] | null, dataFile?: File | null, dataBlob?: Blob | null) => {
 		try {
 			const $init = (await preFetch?.('uploadMixedOptNil')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
@@ -825,10 +831,12 @@ function fnUploadMixedOptNil(props: ServiceProps<api.service.ErrorType>): api.se
 				number,
 				rec: rec ? api.model.SimpleRecordToJSON(rec) : rec,
 				scalar_,
+				dayOfWeek,
 				textList,
 				numberList,
 				recList: recList ? recList.map(api.model.SimpleRecordToJSON) : recList,
 				scalarList,
+				monthList,
 			};
 			$body.append('_rsdPayload', new Blob([encodeValue(encodingType(props), $jsonPayload)], { type: encodingType(props) }));
 			if ($body.values().next().done) {

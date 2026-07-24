@@ -1,6 +1,13 @@
 import chalk from 'chalk';
 import { Artifact, ArtifactGenerationConfig, ArtifactGeneratorConfig } from '../artifact-generator.js';
-import { isMRecordType, isMScalarType, isMUnionType, MResolvedRSDModel, MResolvedUserType } from '../model.js';
+import {
+	isMEnumType,
+	isMRecordType,
+	isMScalarType,
+	isMUnionType,
+	MResolvedRSDModel,
+	MResolvedUserType,
+} from '../model.js';
 import { generateClient } from './client.js';
 import {
 	isJavaRestClientJDKGeneratorConfig,
@@ -20,6 +27,7 @@ import { generateChangeSupport } from './listchange.js';
 import { generateFormDataPublisherBuilder } from './form-data-publisher.js';
 import { generateBaseUtils } from './base-utils.js';
 import { generateScalarSupport } from './scalar-support.js';
+import { generateEnumSupport } from './enum-support.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -63,6 +71,7 @@ export function generate(
 	result.push(...generateFormDataPublisherBuilder(artifactConfig, model));
 	result.push(generateBaseUtils(artifactConfig));
 	result.push(...generateScalarSupport(model.elements.filter(isMScalarType), artifactConfig));
+	result.push(...generateEnumSupport(model.elements.filter(isMEnumType), artifactConfig));
 
 	return result;
 }

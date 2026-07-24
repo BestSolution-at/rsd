@@ -11,6 +11,7 @@ import jakarta.inject.Singleton;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
@@ -87,7 +88,7 @@ public class SampleServiceResourceResponseBuilder {
 	public ResponseBuilder getEnum(SampleEnum $result, String $contentType) {
 		return Response.status(200)
 			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, _EnumSupport.SampleEnumToJson($result), $contentType, /* FIXME */ null)));}
 
 	public ResponseBuilder voidOperation() {
 		return Response.status(204);

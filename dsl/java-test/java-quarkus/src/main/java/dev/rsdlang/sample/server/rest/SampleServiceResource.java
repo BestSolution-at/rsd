@@ -15,6 +15,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.service.SampleError2Exception;
 import dev.rsdlang.sample.server.service.SampleErrorBooleanException;
@@ -255,7 +256,7 @@ public class SampleServiceResource {
 			service.getSimpleErrorEnum(builderFactory);
 			return responseBuilder.getSimpleErrorEnum().build();
 		} catch (SampleErrorEnumException e) {
-			return _RestUtils.toResponse(400, e);
+			return _RestUtils.toResponse(400, e, _EnumSupport::toJson);
 		}
 	}
 

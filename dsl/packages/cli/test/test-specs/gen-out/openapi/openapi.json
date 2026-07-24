@@ -48,6 +48,10 @@
     {
       "name": "ScalarSubstition_Service",
       "description": ""
+    },
+    {
+      "name": "EnumSubstition_Service",
+      "description": ""
     }
   ],
   "paths": {
@@ -15150,6 +15154,9 @@
                       "scalar_": {
                         "type": "string"
                       },
+                      "dayOfWeek": {
+                        "$ref": "#/components/schemas/DayOfWeek"
+                      },
                       "textList": {
                         "type": "array",
                         "items": {
@@ -15174,6 +15181,12 @@
                         "items": {
                           "type": "string"
                         }
+                      },
+                      "monthList": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Month"
+                        }
                       }
                     },
                     "required": [
@@ -15181,10 +15194,12 @@
                       "number",
                       "rec",
                       "scalar_",
+                      "dayOfWeek",
                       "textList",
                       "numberList",
                       "recList",
-                      "scalarList"
+                      "scalarList",
+                      "monthList"
                     ]
                   }
                 },
@@ -15251,6 +15266,9 @@
                       "scalar_": {
                         "type": "string"
                       },
+                      "dayOfWeek": {
+                        "$ref": "#/components/schemas/DayOfWeek"
+                      },
                       "textList": {
                         "type": "array",
                         "items": {
@@ -15274,6 +15292,12 @@
                         "type": "array",
                         "items": {
                           "type": "string"
+                        }
+                      },
+                      "monthList": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Month"
                         }
                       }
                     },
@@ -15348,6 +15372,14 @@
                         "type": "string",
                         "nullable": true
                       },
+                      "dayOfWeek": {
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/DayOfWeek"
+                          }
+                        ],
+                        "nullable": true
+                      },
                       "textList": {
                         "type": "array",
                         "items": {
@@ -15376,6 +15408,13 @@
                           "type": "string"
                         },
                         "nullable": true
+                      },
+                      "monthList": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Month"
+                        },
+                        "nullable": true
                       }
                     },
                     "required": [
@@ -15383,10 +15422,12 @@
                       "number",
                       "rec",
                       "scalar_",
+                      "dayOfWeek",
                       "textList",
                       "numberList",
                       "recList",
-                      "scalarList"
+                      "scalarList",
+                      "monthList"
                     ]
                   }
                 },
@@ -15461,6 +15502,14 @@
                         "type": "string",
                         "nullable": true
                       },
+                      "dayOfWeek": {
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/DayOfWeek"
+                          }
+                        ],
+                        "nullable": true
+                      },
                       "textList": {
                         "type": "array",
                         "items": {
@@ -15487,6 +15536,13 @@
                         "type": "array",
                         "items": {
                           "type": "string"
+                        },
+                        "nullable": true
+                      },
+                      "monthList": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Month"
                         },
                         "nullable": true
                       }
@@ -16798,6 +16854,985 @@
           }
         }
       }
+    },
+    "/api/enumsubstition/get": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/list": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DayOfWeek"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/post": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/postOpt": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_postOpt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/postNull": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_postNull",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/DayOfWeek"
+                  }
+                ],
+                "nullable": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/postOptNull": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_postOptNull",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/DayOfWeek"
+                  }
+                ],
+                "nullable": true
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/postList": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_postList",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DayOfWeek"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/postListOpt": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_postListOpt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/postListNull": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_postListNull",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                },
+                "nullable": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/postListOptNull": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_postListOptNull",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                },
+                "nullable": true
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/query": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_query",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/queryOpt": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_queryOpt",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/queryNull": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_queryNull",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              ],
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/queryOptNull": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_queryOptNull",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              ],
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/queryList": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_queryList",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DayOfWeek"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/queryListOpt": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_queryListOpt",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/queryListNull": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_queryListNull",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/queryListOptNull": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_queryListOptNull",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/header": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_header",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/headerOpt": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_headerOpt",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/headerNull": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_headerNull",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              ],
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/headerOptNull": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_headerOptNull",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              ],
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/headerList": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_headerList",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DayOfWeek"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/headerListOpt": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_headerListOpt",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/headerListNull": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_headerListNull",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/headerListOptNull": {
+      "get": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_headerListOptNull",
+        "parameters": [
+          {
+            "name": "dayOfWeek",
+            "description": "",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/DayOfWeek"
+              },
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NilResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/multiBody": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_multiBody",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "valueA": {
+                    "$ref": "#/components/schemas/DayOfWeek"
+                  },
+                  "valueB": {
+                    "$ref": "#/components/schemas/Month"
+                  }
+                },
+                "required": [
+                  "valueA",
+                  "valueB"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enumsubstition/fail": {
+      "post": {
+        "tags": [
+          "EnumSubstition_Service"
+        ],
+        "description": "",
+        "operationId": "EnumSubstition_Service_fail",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "400": {
+            "description": "",
+            "headers": {
+              "X-RSD-Error-Type": {
+                "description": "Contains the type information for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-RSD-Error-Message": {
+                "description": "Contains the error message for the error transferred in the response body",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayOfWeek"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -16814,6 +17849,35 @@
         "enum": [
           "A",
           "B"
+        ]
+      },
+      "Month": {
+        "type": "string",
+        "enum": [
+          "JANUARY",
+          "FEBRUARY",
+          "MARCH",
+          "APRIL",
+          "MAY",
+          "JUNE",
+          "JULY",
+          "AUGUST",
+          "SEPTEMBER",
+          "OCTOBER",
+          "NOVEMBER",
+          "DECEMBER"
+        ]
+      },
+      "DayOfWeek": {
+        "type": "string",
+        "enum": [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY"
         ]
       },
       "SimpleRecord_KeyVersion": {
@@ -17604,6 +18668,665 @@
           "value_Null",
           "list",
           "list_Null"
+        ]
+      },
+      "EnumRecord_Substitution": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "$ref": "#/components/schemas/Month"
+          },
+          "month_Null": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Month"
+              }
+            ],
+            "nullable": true
+          },
+          "month_Opt": {
+            "$ref": "#/components/schemas/Month"
+          },
+          "month_Opt_Null": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Month"
+              }
+            ],
+            "nullable": true
+          },
+          "monthList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          },
+          "monthList_Null": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            },
+            "nullable": true
+          },
+          "monthList_Opt": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          },
+          "monthList_Opt_Null": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            },
+            "nullable": true
+          },
+          "dayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "dayOfWeek_Null": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            ],
+            "nullable": true
+          },
+          "dayOfWeek_Opt": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "dayOfWeek_Opt_Null": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            ],
+            "nullable": true
+          },
+          "dayOfWeekList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          },
+          "dayOfWeekList_Null": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            },
+            "nullable": true
+          },
+          "dayOfWeekList_Opt": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          },
+          "dayOfWeekList_Opt_Null": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "month",
+          "month_Null",
+          "monthList",
+          "monthList_Null",
+          "dayOfWeek",
+          "dayOfWeek_Null",
+          "dayOfWeekList",
+          "dayOfWeekList_Null"
+        ]
+      },
+      "EnumRecord_SubstitutionPatch": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "$ref": "#/components/schemas/Month"
+          },
+          "month_Null": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Month"
+              }
+            ],
+            "nullable": true
+          },
+          "month_Opt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Month"
+              }
+            ],
+            "nullable": true
+          },
+          "month_Opt_Null": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Month"
+              }
+            ],
+            "nullable": true
+          },
+          "monthList": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_monthListPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_monthListPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/EnumRecord_Substitution_monthListPatchReplace",
+                "merge": "#/components/schemas/EnumRecord_Substitution_monthListPatchMerge"
+              }
+            }
+          },
+          "monthList_Null": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_monthList_NullPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_monthList_NullPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/EnumRecord_Substitution_monthList_NullPatchReplace",
+                "merge": "#/components/schemas/EnumRecord_Substitution_monthList_NullPatchMerge"
+              }
+            }
+          },
+          "monthList_Opt": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_monthList_OptPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_monthList_OptPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/EnumRecord_Substitution_monthList_OptPatchReplace",
+                "merge": "#/components/schemas/EnumRecord_Substitution_monthList_OptPatchMerge"
+              }
+            }
+          },
+          "monthList_Opt_Null": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_monthList_Opt_NullPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_monthList_Opt_NullPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/EnumRecord_Substitution_monthList_Opt_NullPatchReplace",
+                "merge": "#/components/schemas/EnumRecord_Substitution_monthList_Opt_NullPatchMerge"
+              }
+            }
+          },
+          "dayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "dayOfWeek_Null": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            ],
+            "nullable": true
+          },
+          "dayOfWeek_Opt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            ],
+            "nullable": true
+          },
+          "dayOfWeek_Opt_Null": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            ],
+            "nullable": true
+          },
+          "dayOfWeekList": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_dayOfWeekListPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_dayOfWeekListPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/EnumRecord_Substitution_dayOfWeekListPatchReplace",
+                "merge": "#/components/schemas/EnumRecord_Substitution_dayOfWeekListPatchMerge"
+              }
+            }
+          },
+          "dayOfWeekList_Null": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_NullPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_NullPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_NullPatchReplace",
+                "merge": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_NullPatchMerge"
+              }
+            }
+          },
+          "dayOfWeekList_Opt": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_OptPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_OptPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_OptPatchReplace",
+                "merge": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_OptPatchMerge"
+              }
+            }
+          },
+          "dayOfWeekList_Opt_Null": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchReplace"
+              },
+              {
+                "$ref": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchMerge"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "@type",
+              "mapping": {
+                "replace": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchReplace",
+                "merge": "#/components/schemas/EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchMerge"
+              }
+            }
+          }
+        },
+        "required": []
+      },
+      "EnumRecord_Substitution_monthListPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "EnumRecord_Substitution_monthListPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "EnumRecord_Substitution_monthList_NullPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "EnumRecord_Substitution_monthList_NullPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "EnumRecord_Substitution_monthList_OptPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "EnumRecord_Substitution_monthList_OptPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "EnumRecord_Substitution_monthList_Opt_NullPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "EnumRecord_Substitution_monthList_Opt_NullPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "EnumRecord_Substitution_dayOfWeekListPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "EnumRecord_Substitution_dayOfWeekListPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "EnumRecord_Substitution_dayOfWeekList_NullPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "EnumRecord_Substitution_dayOfWeekList_NullPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "EnumRecord_Substitution_dayOfWeekList_OptPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "EnumRecord_Substitution_dayOfWeekList_OptPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
+        ]
+      },
+      "EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchReplace": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "elements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            }
+          }
+        },
+        "required": [
+          "@type",
+          "elements"
+        ]
+      },
+      "EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchMerge": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "additions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            },
+            "nullable": true
+          },
+          "removals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayOfWeek"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "@type",
+          "additions",
+          "removals"
         ]
       },
       "EnumInlineRecord": {
@@ -24892,6 +26615,14 @@
             "type": "string",
             "nullable": true
           },
+          "dayOfWeek": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            ],
+            "nullable": true
+          },
           "textList": {
             "type": "array",
             "items": {
@@ -24918,6 +26649,13 @@
             "type": "array",
             "items": {
               "type": "string"
+            },
+            "nullable": true
+          },
+          "monthList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Month"
             },
             "nullable": true
           },

@@ -201,9 +201,12 @@ function appendQueryParams(
 				{ withArray: false, withOptional: false },
 			);
 			param = `BaseUtils.ofObject(${p.array ? '$q' : p.name}, false, this.contentType(), ${type}.class)`;
-		} else if (p.variant === 'scalar') {
-			const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
-			param = `${_ScalarSupport}.${p.type}ToJson(${p.array ? '$q' : p.name})`;
+		} else if (p.variant === 'scalar' || p.variant === 'enum') {
+			const _Support =
+				p.variant === 'scalar'
+					? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+					: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+			param = `${_Support}.${p.type}ToJson(${p.array ? '$q' : p.name})`;
 		} else {
 			param = p.array ? '$q' : p.name;
 		}
@@ -257,6 +260,9 @@ function appendHeaderParams(
 				} else if (p.variant === 'scalar') {
 					const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 					toString = `$v -> BaseUtils.encodeAsciiString(${_ScalarSupport}.${p.type}ToJson($v))`;
+				} else if (p.variant === 'enum') {
+					const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+					toString = `$v -> BaseUtils.encodeAsciiString(${_EnumSupport}.${p.type}ToJson($v))`;
 				} else {
 					const Objects = fqn('java.util.Objects');
 					toString = `${Objects}::toString`;
@@ -324,10 +330,13 @@ function appendHeaderParams(
 				);
 			} else if (p.variant === 'stream') {
 				methodBody.append('throw new UnsupportedOperationException("Stream headers are not supported yet");', NL);
-			} else if (p.variant === 'scalar') {
-				const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+			} else if (p.variant === 'scalar' || p.variant === 'enum') {
+				const _Support =
+					p.variant === 'scalar'
+						? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+						: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
 				methodBody.append(
-					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${p.name} != null ? ${_ScalarSupport}.${p.type}ToJson(${p.name}) : "null"));`,
+					`$headerParams.put("${restName}", BaseUtils.encodeAsciiString(${p.name} != null ? ${_Support}.${p.type}ToJson(${p.name}) : "null"));`,
 					NL,
 				);
 			} else {
@@ -522,12 +531,18 @@ function jsonPayloadEntry(
 			if (p.type === 'long') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonLongArray(${p.name}));`;
 			if (p.type === 'int') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonIntArray(${p.name}));`;
 			return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonShortArray(${p.name}));`;
+		} else if (p.variant === 'enum') {
+			const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+			return `$jsonPayload.add("${key}", _JsonUtils.toJsonLiteralArray(${p.name}, ${_EnumSupport}::${p.type}ToJson));`;
 		}
 		const Objects = fqn('java.util.Objects');
 		return `$jsonPayload.add("${key}", _JsonUtils.toJsonLiteralArray(${p.name}, ${Objects}::toString));`;
 	}
 	if (isMBuiltinNumericType(p.type) || p.type === 'boolean' || p.type === 'string') {
 		return `$jsonPayload.add("${key}", ${p.name});`;
+	} else if (p.variant === 'enum') {
+		const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+		return `$jsonPayload.add("${key}", ${_EnumSupport}.${p.type}ToJson(${p.name}));`;
 	}
 	const Objects = fqn('java.util.Objects');
 	return `$jsonPayload.add("${key}", ${Objects}.toString(${p.name}));`;
@@ -591,10 +606,15 @@ function appendSingleParamBody(
 		const _ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, ${_ScalarSupport}::${param.type}ToJson)`;
 		optionalCall = `${method}(${param.name}, false, $contentType, ${_ScalarSupport}::${param.type}ToJson)`;
-	} else if (param.variant === 'enum' || param.variant === 'inline-enum') {
+	} else if (param.variant === 'inline-enum') {
 		const method = `BaseUtils.ofLiteral${suffix}`;
 		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, Objects::toString)`;
 		optionalCall = `${method}(${param.name}, false, $contentType, Objects::toString)`;
+	} else if (param.variant === 'enum') {
+		const method = `BaseUtils.ofLiteral${suffix}`;
+		const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+		baseCall = `${method}(${param.name}, ${String(param.nullable)}, $contentType, ${_EnumSupport}::${param.type}ToJson)`;
+		optionalCall = `${method}(${param.name}, false, $contentType, ${_EnumSupport}::${param.type}ToJson)`;
 	} else {
 		const type = computeParameterAPITypeNG(
 			param,
@@ -659,8 +679,19 @@ function appendMultiParamBody(
 					`$builder.add("${p.name}", ${_ScalarSupport}.${p.type}ToJson(${p.name}))`,
 				);
 			}
-		} else {
-			methodBody.append('throw new UnsupportedOperationException();', NL);
+		} else if (p.variant === 'enum') {
+			const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+
+			if (p.array) {
+				const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+				appendBuilderAssignment(
+					methodBody,
+					p,
+					`$builder.add("${p.name}", ${_JsonUtils}.toJsonLiteralArray(${p.name}, ${_EnumSupport}::${p.type}ToJson))`,
+				);
+			} else {
+				appendBuilderAssignment(methodBody, p, `$builder.add("${p.name}", ${_EnumSupport}.${p.type}ToJson(${p.name}))`);
+			}
 		}
 	});
 	const typeName = fqn(`${artifactConfig.rootPackageName}.model.impl.json.${s.name}${toFirstUpper(o.name)}DataImpl`);
@@ -867,11 +898,17 @@ function handleOkResult(
 			);
 		}
 	} else if (type.variant === 'enum') {
-		const resolvedType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, false);
+		const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
 		if (type.array) {
-			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${resolvedType}::valueOf);`, NL);
+			node.append(
+				`var $rv = JDKHttpClientResponseUtils.mapLiterals($response, ${_EnumSupport}::${type.type}FromJson);`,
+				NL,
+			);
 		} else {
-			node.append(`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${resolvedType}::valueOf);`, NL);
+			node.append(
+				`var $rv = JDKHttpClientResponseUtils.mapLiteral($response, ${_EnumSupport}::${type.type}FromJson);`,
+				NL,
+			);
 		}
 	} else {
 		if (type.array) {
@@ -941,13 +978,11 @@ function handleErrorResult(
 				NL,
 			);
 		} else if (isMEnumType(type)) {
-			const apiType = toAPIType(
-				resolvedError.resolvedContentType,
-				artifactConfig.nativeTypeSubstitutes,
-				`${artifactConfig.rootPackageName}.model`,
-				fqn,
+			const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+			node.append(
+				`var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ${_EnumSupport}::${type.name}FromJson);`,
+				NL,
 			);
-			node.append(`var $errorData = JDKHttpClientResponseUtils.mapLiteral($response, ${apiType}::valueOf);`, NL);
 		} else {
 			throw new Error(`Unsupported error content type for operation ${o.name}`);
 		}
@@ -1063,7 +1098,11 @@ function toAPIResultType(
 	} else if (type.variant === 'union' || type.variant === 'record') {
 		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
 	} else if (type.variant === 'enum') {
-		rvType = fqn(`${dtoPkg}.${type.type}`);
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
 	} else if (type.variant === 'inline-enum') {
 		rvType = toFirstUpper(methodName) + '_Result$';
 	} else if (type.variant === 'scalar') {
@@ -1203,9 +1242,9 @@ function generateParameterContent(
 		const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, o.name);
 		mapper = jsonMapper('Literal', prop.name, `${Type}::valueOf`, array, optional, nullable);
 	} else if (prop.variant === 'enum') {
-		mapper = jsonMapper('Literal', prop.name, `${prop.type}::valueOf`, array, optional, nullable);
+		const _EnumSupport = fqn(`${interfaceBasePackage}.impl.json._EnumSupport`);
+		mapper = jsonMapper('Literal', prop.name, `${_EnumSupport}::${prop.type}FromJson`, array, optional, nullable);
 	} else if (prop.variant === 'scalar') {
-		//const Type = computeParameterValueType(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn);
 		const _ScalarSupport = fqn(`${interfaceBasePackage}.impl.json._ScalarSupport`);
 		mapper = jsonMapper('Literal', prop.name, `${_ScalarSupport}::${prop.type}FromJson`, array, optional, nullable);
 	} else {

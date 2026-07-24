@@ -14,9 +14,9 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
+import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
-import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.service.QueryParameterTypesService;
 
@@ -321,7 +321,7 @@ public class QueryParameterTypesResource {
 	public Response simpleEnumQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseLiteral(_queryValue, SampleEnum::valueOf);
+		var queryValue = _RestUtils.parseLiteral(_queryValue, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumQueryParam(builderFactory, queryValue);
 		return responseBuilder.simpleEnumQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}
@@ -331,7 +331,7 @@ public class QueryParameterTypesResource {
 	public Response simpleEnumQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
-		var queryValue = _RestUtils.parseOptLiteral(_queryValue, SampleEnum::valueOf);
+		var queryValue = _RestUtils.parseOptLiteral(_queryValue, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumQueryParamOpt(builderFactory, queryValue);
 		return responseBuilder.simpleEnumQueryParamOpt(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}

@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime.js';
+import type { DayOfWeek } from './DayOfWeek.js';
+import {
+    DayOfWeekFromJSON,
+    DayOfWeekFromJSONTyped,
+    DayOfWeekToJSON,
+    DayOfWeekToJSONTyped,
+} from './DayOfWeek.js';
+import type { Month } from './Month.js';
+import {
+    MonthFromJSON,
+    MonthFromJSONTyped,
+    MonthToJSON,
+    MonthToJSONTyped,
+} from './Month.js';
 import type { SimpleRecord } from './SimpleRecord.js';
 import {
     SimpleRecordFromJSON,
@@ -53,6 +67,12 @@ export interface UploadMixedResult {
     _scalar?: string | null;
     /**
      * 
+     * @type {DayOfWeek}
+     * @memberof UploadMixedResult
+     */
+    dayOfWeek?: DayOfWeek | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof UploadMixedResult
      */
@@ -77,6 +97,12 @@ export interface UploadMixedResult {
     scalarList?: Array<string> | null;
     /**
      * 
+     * @type {Array<Month>}
+     * @memberof UploadMixedResult
+     */
+    monthList?: Array<Month> | null;
+    /**
+     * 
      * @type {string}
      * @memberof UploadMixedResult
      */
@@ -88,6 +114,8 @@ export interface UploadMixedResult {
      */
     dataBlobContent?: string | null;
 }
+
+
 
 /**
  * Check if a given object implements the UploadMixedResult interface.
@@ -110,10 +138,12 @@ export function UploadMixedResultFromJSONTyped(json: any, ignoreDiscriminator: b
         'number': json['number'] == null ? undefined : json['number'],
         'rec': json['rec'] == null ? undefined : SimpleRecordFromJSON(json['rec']),
         '_scalar': json['_scalar'] == null ? undefined : json['_scalar'],
+        'dayOfWeek': json['dayOfWeek'] == null ? undefined : DayOfWeekFromJSON(json['dayOfWeek']),
         'textList': json['textList'] == null ? undefined : json['textList'],
         'numberList': json['numberList'] == null ? undefined : json['numberList'],
         'recList': json['recList'] == null ? undefined : ((json['recList'] as Array<any>).map(SimpleRecordFromJSON)),
         'scalarList': json['scalarList'] == null ? undefined : json['scalarList'],
+        'monthList': json['monthList'] == null ? undefined : ((json['monthList'] as Array<any>).map(MonthFromJSON)),
         'dataFileContent': json['dataFileContent'] == null ? undefined : json['dataFileContent'],
         'dataBlobContent': json['dataBlobContent'] == null ? undefined : json['dataBlobContent'],
     };
@@ -134,10 +164,12 @@ export function UploadMixedResultToJSONTyped(value?: UploadMixedResult | null, i
         'number': value['number'],
         'rec': SimpleRecordToJSON(value['rec']),
         '_scalar': value['_scalar'],
+        'dayOfWeek': DayOfWeekToJSON(value['dayOfWeek']),
         'textList': value['textList'],
         'numberList': value['numberList'],
         'recList': value['recList'] == null ? undefined : ((value['recList'] as Array<any>).map(SimpleRecordToJSON)),
         'scalarList': value['scalarList'],
+        'monthList': value['monthList'] == null ? undefined : ((value['monthList'] as Array<any>).map(MonthToJSON)),
         'dataFileContent': value['dataFileContent'],
         'dataBlobContent': value['dataBlobContent'],
     };

@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
+import dev.rsdlang.sample.client.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.SampleEnum;
@@ -587,7 +588,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 		var $queryParams = new BaseUtils.URLSearchParams();
 		queryValue.stream().forEach($q -> {
-			$queryParams.append("queryValue", $q);
+			$queryParams.append("queryValue", _EnumSupport.SampleEnumToJson($q));
 		});
 
 		var $uri = URI.create($path + $queryParams.toQueryString());
@@ -601,7 +602,7 @@ public class ListQueryParameterTypesServiceImpl implements ListQueryParameterTyp
 
 			var $response = $clientSupplier.get().send($request, BodyHandlers.ofInputStream());
 			if ($response.statusCode() == 200) {
-				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, SampleEnum::valueOf);
+				var $rv = JDKHttpClientResponseUtils.mapLiterals($response, _EnumSupport::SampleEnumFromJson);
 				this.lifecycleHook.onSuccess("listEnumQueryParam", $rv, this.client.createResponseAdaptable($response));
 				return Result.ok($rv);
 			}
