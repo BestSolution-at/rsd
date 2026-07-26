@@ -18,6 +18,7 @@ import dev.rsdlang.sample.client.model.ErrorData;
 import dev.rsdlang.sample.client.model.impl.json._BaseDataImpl;
 import dev.rsdlang.sample.client.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
+import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.BinaryTypesSingleBodyAdditionDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.BinaryTypesUploadMixedDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.BinaryTypesUploadMixedNilDataImpl;
@@ -1137,12 +1138,12 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 			$jsonPayload.add("text", text);
 			$jsonPayload.add("number", number);
 			$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
-			$jsonPayload.add("scalar_", Objects.toString(scalar_));
+			$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
 			$jsonPayload.add("textList", _JsonUtils.toJsonLiteralArray(textList, Objects::toString));
 			$jsonPayload.add("numberList", _JsonUtils.toJsonIntArray(numberList));
 			$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
-			$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+			$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			$jsonPayload.add("monthList", _JsonUtils.toJsonLiteralArray(monthList, _EnumSupport::MonthToJson));
 			$formDataBuilder.addBlob("dataFile", dataFile);
 			$formDataBuilder.addBlob("dataBlob", dataBlob);
@@ -1389,7 +1390,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
@@ -1444,7 +1445,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			if (dayOfWeek != null) {
 				$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -1502,7 +1503,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			if (dayOfWeek != null) {
 				$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -1563,7 +1564,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			if (dayOfWeek != null) {
 				$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -1627,7 +1628,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			if (dayOfWeek != null) {
 				$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -1694,7 +1695,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			if (dayOfWeek != null) {
 				$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -1709,7 +1710,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			}
 			$formDataBuilder.addBytes("_rsdPayload", BaseUtils.ofObject(new BinaryTypesUploadMixedOptDataImpl($jsonPayload.build()), false, this.contentType(), BinaryTypesUploadMixedOptDataImpl.class), this.contentType());
 			var $formData = $formDataBuilder.build();
@@ -1764,7 +1765,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			if (dayOfWeek != null) {
 				$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -1779,7 +1780,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			}
 			if (monthList != null) {
 				$jsonPayload.add("monthList", _JsonUtils.toJsonLiteralArray(monthList, _EnumSupport::MonthToJson));
@@ -1837,7 +1838,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			if (dayOfWeek != null) {
 				$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -1852,7 +1853,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			}
 			if (monthList != null) {
 				$jsonPayload.add("monthList", _JsonUtils.toJsonLiteralArray(monthList, _EnumSupport::MonthToJson));
@@ -1913,7 +1914,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("rec", ((_BaseDataImpl) rec).data);
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			}
 			if (dayOfWeek != null) {
 				$jsonPayload.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -1928,7 +1929,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.add("recList", _JsonUtils.toJsonValueArray(recList, i -> ((_BaseDataImpl) i).data));
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			}
 			if (monthList != null) {
 				$jsonPayload.add("monthList", _JsonUtils.toJsonLiteralArray(monthList, _EnumSupport::MonthToJson));
@@ -1998,7 +1999,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2023,7 +2024,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("recList");
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			} else {
 				$jsonPayload.addNull("scalarList");
 			}
@@ -2299,7 +2300,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2362,7 +2363,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2430,7 +2431,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2503,7 +2504,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2581,7 +2582,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2664,7 +2665,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2689,7 +2690,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("recList");
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			} else {
 				$jsonPayload.addNull("scalarList");
 			}
@@ -2752,7 +2753,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2777,7 +2778,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("recList");
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			} else {
 				$jsonPayload.addNull("scalarList");
 			}
@@ -2845,7 +2846,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2870,7 +2871,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("recList");
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			} else {
 				$jsonPayload.addNull("scalarList");
 			}
@@ -2944,7 +2945,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("rec");
 			}
 			if (scalar_ != null) {
-				$jsonPayload.add("scalar_", Objects.toString(scalar_));
+				$jsonPayload.add("scalar_", _ScalarSupport.ZoneIdToJson(scalar_));
 			} else {
 				$jsonPayload.addNull("scalar_");
 			}
@@ -2969,7 +2970,7 @@ public class BinaryTypesServiceImpl implements BinaryTypesService {
 				$jsonPayload.addNull("recList");
 			}
 			if (scalarList != null) {
-				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, Objects::toString));
+				$jsonPayload.add("scalarList", _JsonUtils.toJsonLiteralArray(scalarList, _ScalarSupport::ZoneIdToJson));
 			} else {
 				$jsonPayload.addNull("scalarList");
 			}
