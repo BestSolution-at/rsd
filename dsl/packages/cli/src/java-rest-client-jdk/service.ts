@@ -531,18 +531,24 @@ function jsonPayloadEntry(
 			if (p.type === 'long') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonLongArray(${p.name}));`;
 			if (p.type === 'int') return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonIntArray(${p.name}));`;
 			return `$jsonPayload.add("${key}", ${_JsonUtils}.toJsonShortArray(${p.name}));`;
-		} else if (p.variant === 'enum') {
-			const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
-			return `$jsonPayload.add("${key}", _JsonUtils.toJsonLiteralArray(${p.name}, ${_EnumSupport}::${p.type}ToJson));`;
+		} else if (p.variant === 'enum' || p.variant === 'scalar') {
+			const _Support =
+				p.variant === 'enum'
+					? fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`)
+					: fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+			return `$jsonPayload.add("${key}", _JsonUtils.toJsonLiteralArray(${p.name}, ${_Support}::${p.type}ToJson));`;
 		}
 		const Objects = fqn('java.util.Objects');
 		return `$jsonPayload.add("${key}", _JsonUtils.toJsonLiteralArray(${p.name}, ${Objects}::toString));`;
 	}
 	if (isMBuiltinNumericType(p.type) || p.type === 'boolean' || p.type === 'string') {
 		return `$jsonPayload.add("${key}", ${p.name});`;
-	} else if (p.variant === 'enum') {
-		const _EnumSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
-		return `$jsonPayload.add("${key}", ${_EnumSupport}.${p.type}ToJson(${p.name}));`;
+	} else if (p.variant === 'enum' || p.variant === 'scalar') {
+		const _Support =
+			p.variant === 'enum'
+				? fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`)
+				: fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
+		return `$jsonPayload.add("${key}", ${_Support}.${p.type}ToJson(${p.name}));`;
 	}
 	const Objects = fqn('java.util.Objects');
 	return `$jsonPayload.add("${key}", ${Objects}.toString(${p.name}));`;
