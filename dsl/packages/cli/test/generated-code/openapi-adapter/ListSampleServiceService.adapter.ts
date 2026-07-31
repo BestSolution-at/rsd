@@ -2,7 +2,19 @@ import { api } from '../../test-specs/gen-out/client/typescript-client/src/index
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListSampleServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/ListSampleServiceApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import {
+	RSDLocalDate,
+	RSDLocalDateFromJSON,
+	RSDLocalDateTime,
+	RSDLocalDateTimeFromJSON,
+	RSDLocalTime,
+	RSDLocalTimeFromJSON,
+	RSDLong,
+	RSDOffsetDateTime,
+	RSDOffsetDateTimeFromJSON,
+	RSDZonedDateTime,
+	RSDZonedDateTimeFromJSON,
+} from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIListSampleServiceService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -148,11 +160,13 @@ class ListSampleServiceServiceImpl implements api.service.ListSampleServiceServi
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async listLocalDate(): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+	async listLocalDate(): Promise<
+		api.result.Result<RSDLocalDate[], api.service.StatusRSDError | api.service.NativeRSDError>
+	> {
 		try {
 			const response = await this.deletegate.listSampleServiceListLocalDateRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string[]);
+				return api.result.OK(((await response.value()) as unknown as string[]).map(RSDLocalDateFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -161,12 +175,12 @@ class ListSampleServiceServiceImpl implements api.service.ListSampleServiceServi
 		}
 	}
 	async listLocalDateTime(): Promise<
-		api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>
+		api.result.Result<RSDLocalDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
 			const response = await this.deletegate.listSampleServiceListLocalDateTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDLocalDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -174,11 +188,13 @@ class ListSampleServiceServiceImpl implements api.service.ListSampleServiceServi
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async listLocalTime(): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+	async listLocalTime(): Promise<
+		api.result.Result<RSDLocalTime[], api.service.StatusRSDError | api.service.NativeRSDError>
+	> {
 		try {
 			const response = await this.deletegate.listSampleServiceListLocalTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDLocalTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -187,12 +203,12 @@ class ListSampleServiceServiceImpl implements api.service.ListSampleServiceServi
 		}
 	}
 	async listOffsetDateTime(): Promise<
-		api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>
+		api.result.Result<RSDOffsetDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
 			const response = await this.deletegate.listSampleServiceListOffsetDateTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string[]);
+				return api.result.OK(((await response.value()) as unknown as string[]).map(RSDOffsetDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -202,12 +218,12 @@ class ListSampleServiceServiceImpl implements api.service.ListSampleServiceServi
 	}
 
 	async listZonedDateTime(): Promise<
-		api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>
+		api.result.Result<RSDZonedDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
 			const response = await this.deletegate.listSampleServiceListZonedDateTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDZonedDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}

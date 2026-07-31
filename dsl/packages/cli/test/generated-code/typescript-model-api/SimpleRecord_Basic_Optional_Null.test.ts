@@ -6,6 +6,7 @@ import {
 	SimpleRecord_Basic_Optional_NullToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/SimpleRecord_Basic_Optional_Null.js';
 import { addFooProperty, invalidateProperty, removeProperty } from './utils.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 const SimpleEmpty: SimpleRecord_Basic_Optional_Null = {
 	valueBoolean: undefined,
@@ -42,14 +43,14 @@ const Simple: SimpleRecord_Basic_Optional_Null = {
 	valueDouble: 1.5,
 	valueFloat: 1.5,
 	valueInt: 1,
-	valueLocalDate: '2025-01-01',
-	valueLocalDateTime: '2025-01-01T10:00:00',
-	valueLocalTime: '10:00:00',
-	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+	valueLocalDate: Temporal.PlainDate.from('2025-01-01'),
+	valueLocalDateTime: Temporal.PlainDateTime.from('2025-01-01T10:00:00'),
+	valueLocalTime: Temporal.PlainTime.from('10:00:00'),
+	valueOffsetDateTime: RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
 	valueLong: BigInt(1),
 	valueShort: 1,
 	valueString: 'Foo',
-	valueZonedDateTime: '2025-01-01T10:00:00Z',
+	valueZonedDateTime: Temporal.ZonedDateTime.from('2025-01-01T10:00:00Z[UTC]'),
 };
 
 const Simple_Json = {

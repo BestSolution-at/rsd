@@ -5,7 +5,24 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { QueryParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/QueryParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import {
+	RSDLocalDate,
+	RSDLocalDateFromJSON,
+	RSDLocalDateTime,
+	RSDLocalDateTimeFromJSON,
+	RSDLocalDateTimeToJSON,
+	RSDLocalDateToJSON,
+	RSDLocalTime,
+	RSDLocalTimeFromJSON,
+	RSDLocalTimeToJSON,
+	RSDLong,
+	RSDOffsetDateTime,
+	RSDOffsetDateTimeFromJSON,
+	RSDOffsetDateTimeToJSON,
+	RSDZonedDateTime,
+	RSDZonedDateTimeFromJSON,
+	RSDZonedDateTimeToJSON,
+} from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIQueryParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -243,14 +260,14 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleLocalDateQueryParam(
-		queryValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDLocalDate,
+	): Promise<api.result.Result<RSDLocalDate, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleLocalDateQueryParamRaw({
-				queryValue: new Date(queryValue),
+				queryValue: new Date(RSDLocalDateToJSON(queryValue)),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				return api.result.OK(RSDLocalDateFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -259,11 +276,11 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleLocalDateQueryParamOpt(
-		queryValue?: string,
+		queryValue?: RSDLocalDate,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleLocalDateQueryParamOptRaw({
-				queryValue: queryValue ? new Date(queryValue) : undefined,
+				queryValue: queryValue ? new Date(RSDLocalDateToJSON(queryValue)) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -275,14 +292,14 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleLocalDateTimeQueryParam(
-		queryValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDLocalDateTime,
+	): Promise<api.result.Result<RSDLocalDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleLocalDateTimeQueryParamRaw({
-				queryValue,
+				queryValue: RSDLocalDateTimeToJSON(queryValue),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalDateTimeFromJSON(await response.value())); // OpenAPI Generator inappropriately types date-time values as `string`, so we need to cast it back
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -291,11 +308,11 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleLocalDateTimeQueryParamOpt(
-		queryValue?: string,
+		queryValue?: RSDLocalDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleLocalDateTimeQueryParamOptRaw({
-				queryValue,
+				queryValue: queryValue ? RSDLocalDateTimeToJSON(queryValue) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -307,14 +324,14 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleLocalTimeQueryParam(
-		queryValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDLocalTime,
+	): Promise<api.result.Result<RSDLocalTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleLocalTimeQueryParamRaw({
-				queryValue,
+				queryValue: RSDLocalTimeToJSON(queryValue),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -323,11 +340,11 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleLocalTimeQueryParamOpt(
-		queryValue?: string,
+		queryValue?: RSDLocalTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleLocalTimeQueryParamOptRaw({
-				queryValue,
+				queryValue: queryValue ? RSDLocalTimeToJSON(queryValue) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -339,14 +356,14 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleOffsetDateTimeQueryParam(
-		queryValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDOffsetDateTime,
+	): Promise<api.result.Result<RSDOffsetDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleOffsetDateTimeQueryParamRaw({
-				queryValue: new Date(queryValue),
+				queryValue: new Date(RSDOffsetDateTimeToJSON(queryValue)),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				return api.result.OK(RSDOffsetDateTimeFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -355,11 +372,11 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleOffsetDateTimeQueryParamOpt(
-		queryValue?: string,
+		queryValue?: RSDOffsetDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleOffsetDateTimeQueryParamOptRaw({
-				queryValue: queryValue as unknown as Date | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				queryValue: queryValue ? new Date(RSDOffsetDateTimeToJSON(queryValue)) : undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -371,14 +388,14 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleZonedDateTimeQueryParam(
-		queryValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDZonedDateTime,
+	): Promise<api.result.Result<RSDZonedDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleZonedDateTimeQueryParamRaw({
-				queryValue,
+				queryValue: RSDZonedDateTimeToJSON(queryValue),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDZonedDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -387,11 +404,11 @@ class QueryParameterTypesServiceImpl implements api.service.QueryParameterTypesS
 	}
 
 	async simpleZonedDateTimeQueryParamOpt(
-		queryValue?: string,
+		queryValue?: RSDZonedDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.queryParameterTypesSimpleZonedDateTimeQueryParamOptRaw({
-				queryValue,
+				queryValue: queryValue ? RSDZonedDateTimeToJSON(queryValue) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

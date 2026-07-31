@@ -6,7 +6,24 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { HeaderParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/HeaderParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import {
+	RSDLocalDate,
+	RSDLocalDateFromJSON,
+	RSDLocalDateTime,
+	RSDLocalDateTimeFromJSON,
+	RSDLocalDateTimeToJSON,
+	RSDLocalDateToJSON,
+	RSDLocalTime,
+	RSDLocalTimeFromJSON,
+	RSDLocalTimeToJSON,
+	RSDLong,
+	RSDOffsetDateTime,
+	RSDOffsetDateTimeFromJSON,
+	RSDOffsetDateTimeToJSON,
+	RSDZonedDateTime,
+	RSDZonedDateTimeFromJSON,
+	RSDZonedDateTimeToJSON,
+} from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 import { ZoneId } from '../../test-specs/gen-out/client/typescript-client/src/model/_Scalars.js';
 
 export function createOpenAPIHeaderParameterTypesService(
@@ -463,14 +480,14 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 		}
 	}
 	async simpleLocalDateHeaderParam(
-		headerValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDLocalDate,
+	): Promise<api.result.Result<RSDLocalDate, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalDateHeaderParamRaw({
-				headerValue: headerValue as unknown as Date,
+				headerValue: RSDLocalDateToJSON(headerValue) as unknown as Date,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				return api.result.OK(RSDLocalDateFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -479,11 +496,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalDateHeaderParamOpt(
-		headerValue?: string,
+		headerValue?: RSDLocalDate,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalDateHeaderParamOptRaw({
-				headerValue: headerValue !== undefined ? (headerValue as unknown as Date) : undefined,
+				headerValue: headerValue !== undefined ? (RSDLocalDateToJSON(headerValue) as unknown as Date) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -495,11 +512,12 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalDateHeaderParamNil(
-		headerValue: string | null,
+		headerValue: RSDLocalDate | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalDateHeaderParamNilRaw({
-				headerValue: headerValue !== null ? (headerValue as unknown as Date) : ('null' as unknown as Date),
+				headerValue:
+					headerValue !== null ? (RSDLocalDateToJSON(headerValue) as unknown as Date) : ('null' as unknown as Date),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -511,14 +529,14 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalDateHeaderParamOptNil(
-		headerValue?: string | null,
+		headerValue?: RSDLocalDate | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalDateHeaderParamOptNilRaw({
 				headerValue:
 					headerValue !== undefined
 						? headerValue !== null
-							? (headerValue as unknown as Date)
+							? (RSDLocalDateToJSON(headerValue) as unknown as Date)
 							: ('null' as unknown as Date)
 						: undefined,
 			});
@@ -532,14 +550,14 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalDateTimeHeaderParam(
-		headerValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDLocalDateTime,
+	): Promise<api.result.Result<RSDLocalDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalDateTimeHeaderParamRaw({
-				headerValue,
+				headerValue: RSDLocalDateTimeToJSON(headerValue),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -548,11 +566,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalDateTimeHeaderParamOpt(
-		headerValue?: string,
+		headerValue?: RSDLocalDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalDateTimeHeaderParamOptRaw({
-				headerValue,
+				headerValue: headerValue ? RSDLocalDateTimeToJSON(headerValue) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -564,11 +582,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalDateTimeHeaderParamNil(
-		headerValue: string | null,
+		headerValue: RSDLocalDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalDateTimeHeaderParamNilRaw({
-				headerValue: headerValue ?? 'null',
+				headerValue: headerValue ? RSDLocalDateTimeToJSON(headerValue) : 'null',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -580,11 +598,12 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalDateTimeHeaderParamOptNil(
-		headerValue?: string | null,
+		headerValue?: RSDLocalDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalDateTimeHeaderParamOptNilRaw({
-				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+				headerValue:
+					headerValue !== undefined ? (headerValue ? RSDLocalDateTimeToJSON(headerValue) : 'null') : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -596,14 +615,14 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalTimeHeaderParam(
-		headerValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDLocalTime,
+	): Promise<api.result.Result<RSDLocalTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamRaw({
-				headerValue,
+				headerValue: RSDLocalTimeToJSON(headerValue),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -612,11 +631,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalTimeHeaderParamOpt(
-		headerValue?: string,
+		headerValue?: RSDLocalTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamOptRaw({
-				headerValue,
+				headerValue: headerValue ? RSDLocalTimeToJSON(headerValue) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -628,11 +647,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalTimeHeaderParamNil(
-		headerValue: string | null,
+		headerValue: RSDLocalTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamNilRaw({
-				headerValue: headerValue ?? 'null',
+				headerValue: headerValue ? RSDLocalTimeToJSON(headerValue) : 'null',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -644,11 +663,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleLocalTimeHeaderParamOptNil(
-		headerValue?: string | null,
+		headerValue?: RSDLocalTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleLocalTimeHeaderParamOptNilRaw({
-				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+				headerValue: headerValue !== undefined ? (headerValue ? RSDLocalTimeToJSON(headerValue) : 'null') : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -660,14 +679,14 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleOffsetDateTimeHeaderParam(
-		headerValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDOffsetDateTime,
+	): Promise<api.result.Result<RSDOffsetDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamRaw({
 				headerValue: headerValue as unknown as Date,
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string);
+				return api.result.OK(RSDOffsetDateTimeFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -676,11 +695,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleOffsetDateTimeHeaderParamOpt(
-		headerValue?: string,
+		headerValue?: RSDOffsetDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptRaw({
-				headerValue: headerValue as unknown as Date,
+				headerValue: headerValue ? (RSDOffsetDateTimeToJSON(headerValue) as unknown as Date) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -692,11 +711,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleOffsetDateTimeHeaderParamNil(
-		headerValue: string | null,
+		headerValue: RSDOffsetDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamNilRaw({
-				headerValue: (headerValue ?? 'null') as unknown as Date,
+				headerValue: (headerValue ? RSDOffsetDateTimeToJSON(headerValue) : 'null') as unknown as Date,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -708,11 +727,14 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleOffsetDateTimeHeaderParamOptNil(
-		headerValue?: string | null,
+		headerValue?: RSDOffsetDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleOffsetDateTimeHeaderParamOptNilRaw({
-				headerValue: headerValue !== undefined ? ((headerValue ?? 'null') as unknown as Date) : undefined,
+				headerValue:
+					headerValue !== undefined
+						? ((headerValue ? RSDOffsetDateTimeToJSON(headerValue) : 'null') as unknown as Date)
+						: undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -724,14 +746,14 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleZonedDateTimeHeaderParam(
-		headerValue: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDZonedDateTime,
+	): Promise<api.result.Result<RSDZonedDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleZonedDateTimeHeaderParamRaw({
-				headerValue,
+				headerValue: RSDZonedDateTimeToJSON(headerValue),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDZonedDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error) {
@@ -740,11 +762,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleZonedDateTimeHeaderParamOpt(
-		headerValue?: string,
+		headerValue?: RSDZonedDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleZonedDateTimeHeaderParamOptRaw({
-				headerValue,
+				headerValue: headerValue ? RSDZonedDateTimeToJSON(headerValue) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -756,11 +778,11 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleZonedDateTimeHeaderParamNil(
-		headerValue: string | null,
+		headerValue: RSDZonedDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleZonedDateTimeHeaderParamNilRaw({
-				headerValue: headerValue ?? 'null',
+				headerValue: headerValue ? RSDZonedDateTimeToJSON(headerValue) : 'null',
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -772,11 +794,12 @@ class HeaderParameterTypesServiceImpl implements api.service.HeaderParameterType
 	}
 
 	async simpleZonedDateTimeHeaderParamOptNil(
-		headerValue?: string | null,
+		headerValue?: RSDZonedDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.headerParameterTypesSimpleZonedDateTimeHeaderParamOptNilRaw({
-				headerValue: headerValue !== undefined ? (headerValue ?? 'null') : undefined,
+				headerValue:
+					headerValue !== undefined ? (headerValue ? RSDZonedDateTimeToJSON(headerValue) : 'null') : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

@@ -2,7 +2,24 @@ import { api } from '../../test-specs/gen-out/client/typescript-client/src/index
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { BodyParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/BodyParameterTypesApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import {
+	RSDLocalDate,
+	RSDLocalDateFromJSON,
+	RSDLocalDateTime,
+	RSDLocalDateTimeFromJSON,
+	RSDLocalDateTimeToJSON,
+	RSDLocalDateToJSON,
+	RSDLocalTimeToJSON,
+	RSDLocalTime,
+	RSDLong,
+	RSDLocalTimeFromJSON,
+	RSDOffsetDateTime,
+	RSDOffsetDateTimeToJSON,
+	RSDOffsetDateTimeFromJSON,
+	RSDZonedDateTime,
+	RSDZonedDateTimeToJSON,
+	RSDZonedDateTimeFromJSON,
+} from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 import { ZoneId } from '../../test-specs/gen-out/client/typescript-client/src/model/_Scalars.js';
 
 export function createOpenAPIBodyParameterTypesService(
@@ -449,14 +466,14 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalDateBodyParam(
-		bodyLocalDate: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		bodyLocalDate: RSDLocalDate,
+	): Promise<api.result.Result<RSDLocalDate, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamRaw({
-				body: bodyLocalDate as unknown as Date, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				body: RSDLocalDateToJSON(bodyLocalDate) as unknown as Date, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				return api.result.OK(RSDLocalDateFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -464,11 +481,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalDateBodyParamOpt(
-		bodyLocalDate?: string,
+		bodyLocalDate?: RSDLocalDate,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamOptRaw({
-				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				body: bodyLocalDate ? (RSDLocalDateToJSON(bodyLocalDate) as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -479,11 +496,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalDateBodyParamNil(
-		bodyLocalDate: string | null,
+		bodyLocalDate: RSDLocalDate | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamNilRaw({
-				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : null, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				body: bodyLocalDate ? (RSDLocalDateToJSON(bodyLocalDate) as unknown as Date) : null, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -494,11 +511,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalDateBodyParamOptNil(
-		bodyLocalDate?: string | null,
+		bodyLocalDate?: RSDLocalDate | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateBodyParamOptNilRaw({
-				body: bodyLocalDate ? (bodyLocalDate as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				body: bodyLocalDate ? (RSDLocalDateToJSON(bodyLocalDate) as unknown as Date) : undefined, // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -509,14 +526,14 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalDateTimeBodyParam(
-		bodyLocalDateTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		bodyLocalDateTime: RSDLocalDateTime,
+	): Promise<api.result.Result<RSDLocalDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamRaw({
-				body: bodyLocalDateTime,
+				body: RSDLocalDateTimeToJSON(bodyLocalDateTime),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -524,11 +541,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalDateTimeBodyParamOpt(
-		bodyLocalDateTime?: string,
+		bodyLocalDateTime?: RSDLocalDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamOptRaw({
-				body: bodyLocalDateTime,
+				body: bodyLocalDateTime ? RSDLocalDateTimeToJSON(bodyLocalDateTime) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -539,11 +556,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalDateTimeBodyParamNil(
-		bodyLocalDateTime: string | null,
+		bodyLocalDateTime: RSDLocalDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamNilRaw({
-				body: bodyLocalDateTime,
+				body: bodyLocalDateTime ? RSDLocalDateTimeToJSON(bodyLocalDateTime) : null,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -554,11 +571,16 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalDateTimeBodyParamOptNil(
-		bodyLocalDateTime?: string | null,
+		bodyLocalDateTime?: RSDLocalDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalDateTimeBodyParamOptNilRaw({
-				body: bodyLocalDateTime,
+				body:
+					bodyLocalDateTime === undefined
+						? undefined
+						: bodyLocalDateTime === null
+							? null
+							: RSDLocalDateTimeToJSON(bodyLocalDateTime),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -569,14 +591,14 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalTimeBodyParam(
-		bodyLocalTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		bodyLocalTime: RSDLocalTime,
+	): Promise<api.result.Result<RSDLocalTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamRaw({
-				body: bodyLocalTime,
+				body: RSDLocalTimeToJSON(bodyLocalTime),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -584,11 +606,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalTimeBodyParamOpt(
-		bodyLocalTime?: string,
+		bodyLocalTime?: RSDLocalTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamOptRaw({
-				body: bodyLocalTime,
+				body: bodyLocalTime ? RSDLocalTimeToJSON(bodyLocalTime) : undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -599,11 +621,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalTimeBodyParamNil(
-		bodyLocalTime: string | null,
+		bodyLocalTime: RSDLocalTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamNilRaw({
-				body: bodyLocalTime,
+				body: bodyLocalTime ? RSDLocalTimeToJSON(bodyLocalTime) : null,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -614,11 +636,12 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleLocalTimeBodyParamOptNil(
-		bodyLocalTime?: string | null,
+		bodyLocalTime?: RSDLocalTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleLocalTimeBodyParamOptNilRaw({
-				body: bodyLocalTime,
+				body:
+					bodyLocalTime === undefined ? undefined : bodyLocalTime === null ? null : RSDLocalTimeToJSON(bodyLocalTime),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -630,14 +653,14 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	}
 
 	async simpleOffsetDateTimeBodyParam(
-		bodyOffsetDateTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		bodyOffsetDateTime: RSDOffsetDateTime,
+	): Promise<api.result.Result<RSDOffsetDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamRaw({
-				body: bodyOffsetDateTime as unknown as Date,
+				body: RSDOffsetDateTimeToJSON(bodyOffsetDateTime) as unknown as Date, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string);
+				return api.result.OK(RSDOffsetDateTimeFromJSON((await response.value()) as unknown as string));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -645,11 +668,14 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleOffsetDateTimeBodyParamOpt(
-		bodyOffsetDateTime?: string,
+		bodyOffsetDateTime?: RSDOffsetDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptRaw({
-				body: bodyOffsetDateTime as unknown as Date,
+				body:
+					bodyOffsetDateTime === undefined
+						? undefined
+						: (RSDOffsetDateTimeToJSON(bodyOffsetDateTime) as unknown as Date),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -660,11 +686,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleOffsetDateTimeBodyParamNil(
-		bodyOffsetDateTime: string | null,
+		bodyOffsetDateTime: RSDOffsetDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamNilRaw({
-				body: bodyOffsetDateTime as unknown as Date,
+				body: bodyOffsetDateTime === null ? null : (RSDOffsetDateTimeToJSON(bodyOffsetDateTime) as unknown as Date),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -675,11 +701,16 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleOffsetDateTimeBodyParamOptNil(
-		bodyOffsetDateTime?: string | null,
+		bodyOffsetDateTime?: RSDOffsetDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleOffsetDateTimeBodyParamOptNilRaw({
-				body: bodyOffsetDateTime as unknown as Date,
+				body:
+					bodyOffsetDateTime === undefined
+						? undefined
+						: bodyOffsetDateTime === null
+							? null
+							: (RSDOffsetDateTimeToJSON(bodyOffsetDateTime) as unknown as Date),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -691,14 +722,14 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 	}
 
 	async simpleZonedDateTimeBodyParam(
-		bodyZonedDateTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		bodyZonedDateTime: RSDZonedDateTime,
+	): Promise<api.result.Result<RSDZonedDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamRaw({
-				body: bodyZonedDateTime,
+				body: RSDZonedDateTimeToJSON(bodyZonedDateTime),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDZonedDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -706,11 +737,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleZonedDateTimeBodyParamOpt(
-		bodyZonedDateTime?: string,
+		bodyZonedDateTime?: RSDZonedDateTime,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamOptRaw({
-				body: bodyZonedDateTime,
+				body: bodyZonedDateTime === undefined ? undefined : RSDZonedDateTimeToJSON(bodyZonedDateTime),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -721,11 +752,11 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleZonedDateTimeBodyParamNil(
-		bodyZonedDateTime: string | null,
+		bodyZonedDateTime: RSDZonedDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamNilRaw({
-				body: bodyZonedDateTime,
+				body: bodyZonedDateTime === null ? null : RSDZonedDateTimeToJSON(bodyZonedDateTime),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -736,11 +767,16 @@ class BodyParameterTypesServiceImpl implements api.service.BodyParameterTypesSer
 		}
 	}
 	async simpleZonedDateTimeBodyParamOptNil(
-		bodyZonedDateTime?: string | null,
+		bodyZonedDateTime?: RSDZonedDateTime | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.bodyParameterTypesSimpleZonedDateTimeBodyParamOptNilRaw({
-				body: bodyZonedDateTime,
+				body:
+					bodyZonedDateTime === undefined
+						? undefined
+						: bodyZonedDateTime === null
+							? null
+							: RSDZonedDateTimeToJSON(bodyZonedDateTime),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import { createListQueryParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { createOpenAPIListQueryParameterTypesService } from '../openapi-adapter/ListQueryParameterTypesService.adapter.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/index.js';
 
 const jsonService = createListQueryParameterTypesService({
 	baseUrl: 'http://localhost:3000',
@@ -71,43 +72,61 @@ describe('ListQueryParameterTypesServiceFetchImpl', () => {
 	});
 	describe('listLocalDateQueryParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalDateQueryParam(['2024-01-01', '2024-12-31']);
+			const [result, error] = await service.listLocalDateQueryParam([
+				Temporal.PlainDate.from('2024-01-01'),
+				Temporal.PlainDate.from('2024-12-31'),
+			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['2024-01-01', '2024-12-31']);
+			expect(result).toEqual([Temporal.PlainDate.from('2024-01-01'), Temporal.PlainDate.from('2024-12-31')]);
 		});
 	});
 	describe('listLocalDateTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalDateTimeQueryParam(['2024-01-01T10:00:00', '2024-12-31T22:30:00']);
+			const [result, error] = await service.listLocalDateTimeQueryParam([
+				Temporal.PlainDateTime.from('2024-01-01T10:00:00'),
+				Temporal.PlainDateTime.from('2024-12-31T22:30:00'),
+			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['2024-01-01T10:00:00', '2024-12-31T22:30:00']);
+			expect(result).toEqual([
+				Temporal.PlainDateTime.from('2024-01-01T10:00:00'),
+				Temporal.PlainDateTime.from('2024-12-31T22:30:00'),
+			]);
 		});
 	});
 	describe('listLocalTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalTimeQueryParam(['10:00:00', '23:59:59']);
+			const [result, error] = await service.listLocalTimeQueryParam([
+				Temporal.PlainTime.from('10:00:00'),
+				Temporal.PlainTime.from('23:59:59'),
+			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['10:00:00', '23:59:59']);
+			expect(result).toEqual([Temporal.PlainTime.from('10:00:00'), Temporal.PlainTime.from('23:59:59')]);
 		});
 	});
 	describe('listOffsetDateTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
 			const [result, error] = await service.listOffsetDateTimeQueryParam([
-				'2025-01-01T10:00:00+01:00',
-				'2021-02-02T11:30:00+01:00',
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+				RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00'),
 			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['2025-01-01T10:00:00+01:00', '2021-02-02T11:30:00+01:00']);
+			expect(result).toEqual([
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+				RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00'),
+			]);
 		});
 	});
 	describe('listZonedDateTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTimeQueryParam([
-				'2024-01-01T10:00:00Z',
-				'2024-12-31T22:30:00+02:00',
+				Temporal.ZonedDateTime.from('2024-01-01T10:00:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2024-12-31T22:30:00+01:00[Europe/Vienna]'),
 			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['2024-01-01T10:00:00Z', '2024-12-31T22:30:00+02:00']);
+			expect(result).toEqual([
+				Temporal.ZonedDateTime.from('2024-01-01T10:00:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2024-12-31T22:30:00+01:00[Europe/Vienna]'),
+			]);
 		});
 	});
 	describe('listScalarQueryParam', () => {
