@@ -31,7 +31,6 @@ export type TypescriptFetchClientGeneratorConfig = ArtifactGeneratorConfig & {
 	allowImportingTsExtensions?: boolean;
 	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
 	temporalMapping?: 'native' | 'string';
-	jsTarget?: string;
 };
 
 export function isTypescriptFetchClientGeneratorConfig(
