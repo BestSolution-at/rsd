@@ -85,7 +85,7 @@ export class RSDOffsetDateTime {
 	}
 
 	public toString(): string {
-		return this.zonedDateTime.toString().substring(0, this.zonedDateTime.toString().length - 8);
+		return this.zonedDateTime.toString({ timeZoneName: 'never' });
 	}
 }
 export function RSDOffsetDateTimeFromJSON(value: string): RSDOffsetDateTime {
@@ -166,13 +166,13 @@ export function isRSDLong(value: unknown): value is RSDLong {
   return typeof value === 'bigint';
 }
 export function RSDLongFromJSON(value: bigint | number): RSDLong {
-	if(typeof value === 'bigint') {
+	if (typeof value === 'bigint') {
 			return value;
 	}
 	return BigInt(value);
 }
 export function RSDLongToJSON(value: RSDLong): bigint | number {
-	if(Number.MIN_SAFE_INTEGER <= value && value <= Number.MAX_SAFE_INTEGER) {
+	if (Number.MIN_SAFE_INTEGER <= value && value <= Number.MAX_SAFE_INTEGER) {
 			return Number(value);
 	}
 	return value;
