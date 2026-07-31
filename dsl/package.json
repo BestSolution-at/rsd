@@ -15,7 +15,6 @@
         "lint": "eslint ."
     },
     "devDependencies": {
-        "@js-temporal/polyfill": "^0.5.1",
         "@msgpack/msgpack": "^3.1.2",
         "@types/json-schema": "^7.0.15",
         "@types/node": "~20.19.35",

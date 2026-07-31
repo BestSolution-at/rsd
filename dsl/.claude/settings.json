@@ -1,14 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(/Users/tomschindl/git-beso/rsd/dsl/node_modules/.bin/tsc --noEmit test.ts)",
-      "Bash(cp /Users/tomschindl/git-beso/rsd/dsl/packages/cli/test/test-specs/gen-out/client/typescript-client/src/model/_Builtins.ts real_builtins.ts)",
-      "Bash(ln -sfn /Users/tomschindl/git-beso/rsd/dsl/node_modules ./node_modules)",
-      "Bash(/Users/tomschindl/git-beso/rsd/dsl/node_modules/.bin/tsc --noEmit --skipLibCheck false real_builtins.ts)",
-      "Bash(/Users/tomschindl/git-beso/rsd/dsl/node_modules/.bin/tsc --version)",
-      "Bash(/Users/tomschindl/git-beso/rsd/dsl/node_modules/.bin/tsc --noEmit -p tsconfig.json)",
-      "Bash(cat)",
-      "Bash(/Users/tomschindl/git-beso/rsd/dsl/node_modules/.bin/tsc --noEmit test2.ts)"
+      
     ]
   }
 }
