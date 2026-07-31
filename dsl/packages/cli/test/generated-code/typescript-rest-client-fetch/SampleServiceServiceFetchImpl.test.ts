@@ -7,6 +7,7 @@ import {
 	isSampleErrorWithValueError,
 } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
 import { createOpenAPISampleServiceService } from '../openapi-adapter/SampleServiceService.adapter.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 const jsonService = createSampleServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -218,7 +219,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLocalDate();
 			expect(error).toBeNull();
-			expect(result).toBe('2020-01-01');
+			expect(result).toStrictEqual(Temporal.PlainDate.from('2020-01-01'));
 		});
 		test('fail - invalid data', async () => {
 			const [result, error] = await serviceFailInvalid.getLocalDate();
@@ -235,7 +236,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLocalDateTime();
 			expect(error).toBeNull();
-			expect(result).toBe('2020-01-01T10:00:00');
+			expect(result).toStrictEqual(Temporal.PlainDateTime.from('2020-01-01T10:00:00'));
 		});
 		test('fail - invalid data', async () => {
 			const [result, error] = await serviceFailInvalid.getLocalDateTime();
@@ -252,7 +253,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getLocalTime();
 			expect(error).toBeNull();
-			expect(result).toBe('10:00:00');
+			expect(result).toStrictEqual(Temporal.PlainTime.from('10:00:00'));
 		});
 		test('fail - invalid data', async () => {
 			const [result, error] = await serviceFailInvalid.getLocalTime();
@@ -269,7 +270,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getOffsetDateTime();
 			expect(error).toBeNull();
-			expect(result).toBe('2025-01-01T10:00:00+01:00');
+			expect(result).toStrictEqual(RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'));
 		});
 		test('fail - invalid data', async () => {
 			const [result, error] = await serviceFailInvalid.getOffsetDateTime();
@@ -286,7 +287,7 @@ describe('SampleServiceServiceFetchImpl', () => {
 		test.each([json, msgpack, jsonOpenApi])('sucess with $encoding ', async ({ service }) => {
 			const [result, error] = await service.getZonedDateTime();
 			expect(error).toBeNull();
-			expect(result).toBe('2025-01-01T10:00:00Z');
+			expect(result).toStrictEqual(Temporal.ZonedDateTime.from('2025-01-01T10:00:00Z[UTC]'));
 		});
 		test('fail - invalid data', async () => {
 			const [result, error] = await serviceFailInvalid.getZonedDateTime();

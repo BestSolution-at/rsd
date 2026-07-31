@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import { createPathParameterTypeServiceService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { createOpenAPIPathParameterTypeServiceService } from '../openapi-adapter/PathParameterTypeServiceService.adapter.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 const jsonService = createPathParameterTypeServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -84,41 +85,47 @@ describe('SinglePathParameterTypeServiceServiceFetchImpl', () => {
 
 	describe('simpleLocalDatePathParam', () => {
 		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalDatePathParam('2024-06-15');
+			const [result, error] = await service.simpleLocalDatePathParam(Temporal.PlainDate.from('2024-06-15'));
 			expect(error).toBeNull();
-			expect(result).toBe('2024-06-15');
+			expect(result).toStrictEqual(Temporal.PlainDate.from('2024-06-15'));
 		});
 	});
 
 	describe('simpleLocalDateTimePathParam', () => {
 		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalDateTimePathParam('2024-06-15T12:34:56');
+			const [result, error] = await service.simpleLocalDateTimePathParam(
+				Temporal.PlainDateTime.from('2024-06-15T12:34:56'),
+			);
 			expect(error).toBeNull();
-			expect(result).toBe('2024-06-15T12:34:56');
+			expect(result).toStrictEqual(Temporal.PlainDateTime.from('2024-06-15T12:34:56'));
 		});
 	});
 
 	describe('simpleLocalTimePathParam', () => {
 		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalTimePathParam('10:00:00');
+			const [result, error] = await service.simpleLocalTimePathParam(Temporal.PlainTime.from('10:00:00'));
 			expect(error).toBeNull();
-			expect(result).toBe('10:00:00');
+			expect(result).toStrictEqual(Temporal.PlainTime.from('10:00:00'));
 		});
 	});
 
 	describe('simpleOffsetDateTimePathParam', () => {
 		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleOffsetDateTimePathParam('2025-01-01T10:00:00+01:00');
+			const [result, error] = await service.simpleOffsetDateTimePathParam(
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+			);
 			expect(error).toBeNull();
-			expect(result).toBe('2025-01-01T10:00:00+01:00');
+			expect(result).toStrictEqual(RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'));
 		});
 	});
 
 	describe('simpleZonedDateTimePathParam', () => {
 		test.each([json, msgpack, openapi])('success - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleZonedDateTimePathParam('2024-06-15T12:34:56Z');
+			const [result, error] = await service.simpleZonedDateTimePathParam(
+				Temporal.ZonedDateTime.from('2024-06-15T12:34:56Z[UTC]'),
+			);
 			expect(error).toBeNull();
-			expect(result).toBe('2024-06-15T12:34:56Z');
+			expect(result).toStrictEqual(Temporal.ZonedDateTime.from('2024-06-15T12:34:56Z[UTC]'));
 		});
 	});
 

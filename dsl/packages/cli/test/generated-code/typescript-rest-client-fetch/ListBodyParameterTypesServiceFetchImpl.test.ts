@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import { createListBodyParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { createOpenAPIListBodyParameterTypesService } from '../openapi-adapter/ListBodyParameterTypesService.adapter.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 const jsonService = createListBodyParameterTypesService({
 	baseUrl: 'http://localhost:3000',
@@ -368,9 +369,12 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 
 	describe('listLocalDateBodyParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalDateBodyParam(['2024-01-01', '2024-12-31']);
+			const [result, error] = await service.listLocalDateBodyParam([
+				Temporal.PlainDate.from('2024-01-01'),
+				Temporal.PlainDate.from('2024-12-31'),
+			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['2024-01-01', '2024-12-31']);
+			expect(result).toEqual([Temporal.PlainDate.from('2024-01-01'), Temporal.PlainDate.from('2024-12-31')]);
 		});
 	});
 	describe('listLocalDateBodyParamOpt', () => {
@@ -380,7 +384,10 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('UNDEFINED');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalDateBodyParamOpt(['2024-06-15', '2024-07-20']);
+			const [result, error] = await service.listLocalDateBodyParamOpt([
+				Temporal.PlainDate.from('2024-06-15'),
+				Temporal.PlainDate.from('2024-07-20'),
+			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
 		});
@@ -392,7 +399,10 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('NULL');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalDateBodyParamNil(['2024-08-25', '2024-09-30']);
+			const [result, error] = await service.listLocalDateBodyParamNil([
+				Temporal.PlainDate.from('2024-08-25'),
+				Temporal.PlainDate.from('2024-09-30'),
+			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
 		});
@@ -409,7 +419,10 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('NULL');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalDateBodyParamOptNil(['2024-10-05', '2024-11-15']);
+			const [result, error] = await service.listLocalDateBodyParamOptNil([
+				Temporal.PlainDate.from('2024-10-05'),
+				Temporal.PlainDate.from('2024-11-15'),
+			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
 		});
@@ -417,9 +430,15 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 
 	describe('listLocalDateTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalDateTimeBodyParam(['2024-01-01T10:00:00', '2024-12-31T22:30:00']);
+			const [result, error] = await service.listLocalDateTimeBodyParam([
+				Temporal.PlainDateTime.from('2024-01-01T10:00:00'),
+				Temporal.PlainDateTime.from('2024-12-31T22:30:00'),
+			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['2024-01-01T10:00:00', '2024-12-31T22:30:00']);
+			expect(result).toEqual([
+				Temporal.PlainDateTime.from('2024-01-01T10:00:00'),
+				Temporal.PlainDateTime.from('2024-12-31T22:30:00'),
+			]);
 		});
 	});
 	describe('listLocalDateTimeBodyParamOpt', () => {
@@ -430,8 +449,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDateTimeBodyParamOpt([
-				'2024-06-15T12:00:00',
-				'2024-07-20T14:30:00',
+				Temporal.PlainDateTime.from('2024-06-15T12:00:00'),
+				Temporal.PlainDateTime.from('2024-07-20T14:30:00'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -445,8 +464,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDateTimeBodyParamNil([
-				'2024-08-25T16:00:00',
-				'2024-09-30T18:45:00',
+				Temporal.PlainDateTime.from('2024-08-25T16:00:00'),
+				Temporal.PlainDateTime.from('2024-09-30T18:45:00'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -465,8 +484,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDateTimeBodyParamOptNil([
-				'2024-10-05T20:15:00',
-				'2024-11-15T23:59:00',
+				Temporal.PlainDateTime.from('2024-10-05T20:15:00'),
+				Temporal.PlainDateTime.from('2024-11-15T23:59:00'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -475,9 +494,12 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 
 	describe('listLocalTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalTimeBodyParam(['10:00:00', '23:59:59']);
+			const [result, error] = await service.listLocalTimeBodyParam([
+				Temporal.PlainTime.from('10:00:00'),
+				Temporal.PlainTime.from('23:59:59'),
+			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['10:00:00', '23:59:59']);
+			expect(result).toEqual([Temporal.PlainTime.from('10:00:00'), Temporal.PlainTime.from('23:59:59')]);
 		});
 	});
 	describe('listLocalTimeBodyParamOpt', () => {
@@ -487,7 +509,10 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('UNDEFINED');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalTimeBodyParamOpt(['10:00:00', '23:59:59']);
+			const [result, error] = await service.listLocalTimeBodyParamOpt([
+				Temporal.PlainTime.from('10:00:00'),
+				Temporal.PlainTime.from('23:59:59'),
+			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
 		});
@@ -499,7 +524,10 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('NULL');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalTimeBodyParamNil(['10:00:00', '23:59:59']);
+			const [result, error] = await service.listLocalTimeBodyParamNil([
+				Temporal.PlainTime.from('10:00:00'),
+				Temporal.PlainTime.from('23:59:59'),
+			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
 		});
@@ -516,7 +544,10 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 			expect(result).toEqual('NULL');
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
-			const [result, error] = await service.listLocalTimeBodyParamOptNil(['10:00:00', '23:59:59']);
+			const [result, error] = await service.listLocalTimeBodyParamOptNil([
+				Temporal.PlainTime.from('10:00:00'),
+				Temporal.PlainTime.from('23:59:59'),
+			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
 		});
@@ -525,11 +556,14 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 	describe('listOffsetDateTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
 			const [result, error] = await service.listOffsetDateTimeBodyParam([
-				'2025-01-01T10:00:00+01:00',
-				'2021-02-02T11:30:00+01:00',
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+				RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00'),
 			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['2025-01-01T10:00:00+01:00', '2021-02-02T11:30:00+01:00']);
+			expect(result).toEqual([
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+				RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00'),
+			]);
 		});
 	});
 	describe('listOffsetDateTimeBodyParamOpt', () => {
@@ -540,8 +574,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listOffsetDateTimeBodyParamOpt([
-				'2025-01-01T10:00:00+01:00',
-				'2021-02-02T11:30:00+01:00',
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+				RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -555,8 +589,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listOffsetDateTimeBodyParamNil([
-				'2025-01-01T10:00:00+01:00',
-				'2021-02-02T11:30:00+01:00',
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+				RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -575,8 +609,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success - defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listOffsetDateTimeBodyParamOptNil([
-				'2025-01-01T10:00:00+01:00',
-				'2021-02-02T11:30:00+01:00',
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+				RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -586,11 +620,14 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 	describe('listZonedDateTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success with $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTimeBodyParam([
-				'2024-01-01T10:00:00Z',
-				'2024-12-31T22:30:00+02:00',
+				Temporal.ZonedDateTime.from('2024-01-01T10:00:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2024-12-31T22:30:00+01:00[Europe/Vienna]'),
 			]);
 			expect(error).toBeNull();
-			expect(result).toEqual(['2024-01-01T10:00:00Z', '2024-12-31T22:30:00+02:00']);
+			expect(result).toEqual([
+				Temporal.ZonedDateTime.from('2024-01-01T10:00:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2024-12-31T22:30:00+01:00[Europe/Vienna]'),
+			]);
 		});
 	});
 	describe('listZonedDateTimeBodyParamOpt', () => {
@@ -601,8 +638,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTimeBodyParamOpt([
-				'2024-06-15T12:00:00Z',
-				'2024-07-20T14:30:00+02:00',
+				Temporal.ZonedDateTime.from('2024-06-15T12:00:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2024-07-20T14:30:00+02:00[Europe/Vienna]'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -616,8 +653,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTimeBodyParamNil([
-				'2024-08-25T16:00:00Z',
-				'2024-09-30T18:45:00+02:00',
+				Temporal.ZonedDateTime.from('2024-08-25T16:00:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2024-09-30T18:45:00+02:00[Europe/Vienna]'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');
@@ -636,8 +673,8 @@ describe('ListBodyParameterTypesServiceFetchImpl', () => {
 		});
 		test.each([json, msgpack, openapi])('success defined with $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTimeBodyParamOptNil([
-				'2024-10-05T20:15:00Z',
-				'2024-11-15T23:59:00+02:00',
+				Temporal.ZonedDateTime.from('2024-10-05T20:15:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2024-11-15T23:59:00+01:00[Europe/Vienna]'),
 			]);
 			expect(error).toBeNull();
 			expect(result).toEqual('DEFINED');

@@ -10,6 +10,7 @@ import {
 	PatchableRecord_Basic_List_OptionalToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/PatchableRecord_Basic_List_Optional.js';
 import { addFooProperty, invalidateArrayProperty, invalidateProperty, removeProperty } from './utils.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/index.js';
 
 const Simple: PatchableRecord_Basic_List_Optional = {
 	key: 'key',
@@ -20,12 +21,18 @@ const Simple: PatchableRecord_Basic_List_Optional = {
 	valueLong: [BigInt(1), BigInt(2)],
 	valueString: ['A', 'B'],
 	valueFloat: [1.5, 2.5],
-	valueLocalDate: ['2020-01-01', '2020-12-31'],
-	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-12-31T23:59:59'],
-	valueLocalTime: ['10:00:00', '23:59:59'],
-	valueOffsetDateTime: ['2025-01-01T10:00:00+01:00'],
+	valueLocalDate: [Temporal.PlainDate.from('2020-01-01'), Temporal.PlainDate.from('2020-12-31')],
+	valueLocalDateTime: [
+		Temporal.PlainDateTime.from('2020-01-01T10:00:00'),
+		Temporal.PlainDateTime.from('2020-12-31T23:59:59'),
+	],
+	valueLocalTime: [Temporal.PlainTime.from('10:00:00'), Temporal.PlainTime.from('23:59:59')],
+	valueOffsetDateTime: [RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00')],
 	valueShort: [1, 2],
-	valueZonedDateTime: ['2020-01-01T10:00:00Z', '2020-12-31T23:59:59Z'],
+	valueZonedDateTime: [
+		Temporal.ZonedDateTime.from('2020-01-01T10:00:00Z[UTC]'),
+		Temporal.ZonedDateTime.from('2020-12-31T23:59:59Z[UTC]'),
+	],
 };
 
 const Simple_Json = {
@@ -142,19 +149,19 @@ const SimplePatchReplace: PatchableRecord_Basic_List_OptionalPatch = {
 	},
 	valueLocalDate: {
 		'@type': 'replace',
-		elements: ['2020-01-01', '2020-12-31'],
+		elements: [Temporal.PlainDate.from('2020-01-01'), Temporal.PlainDate.from('2020-12-31')],
 	},
 	valueLocalDateTime: {
 		'@type': 'replace',
-		elements: ['2020-01-01T10:00:00', '2020-12-31T23:59:59'],
+		elements: [Temporal.PlainDateTime.from('2020-01-01T10:00:00'), Temporal.PlainDateTime.from('2020-12-31T23:59:59')],
 	},
 	valueLocalTime: {
 		'@type': 'replace',
-		elements: ['10:00:00', '23:59:59'],
+		elements: [Temporal.PlainTime.from('10:00:00'), Temporal.PlainTime.from('23:59:59')],
 	},
 	valueOffsetDateTime: {
 		'@type': 'replace',
-		elements: ['2025-01-01T10:00:00+01:00'],
+		elements: [RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00')],
 	},
 	valueShort: {
 		'@type': 'replace',
@@ -162,7 +169,10 @@ const SimplePatchReplace: PatchableRecord_Basic_List_OptionalPatch = {
 	},
 	valueZonedDateTime: {
 		'@type': 'replace',
-		elements: ['2020-01-01T10:00:00Z', '2020-12-31T23:59:59Z'],
+		elements: [
+			Temporal.ZonedDateTime.from('2020-01-01T10:00:00Z[UTC]'),
+			Temporal.ZonedDateTime.from('2020-12-31T23:59:59Z[UTC]'),
+		],
 	},
 };
 
@@ -254,23 +264,23 @@ const SimplePatchMerge: PatchableRecord_Basic_List_OptionalPatch = {
 	},
 	valueLocalDate: {
 		'@type': 'merge',
-		additions: ['2020-01-01'],
-		removals: ['2020-12-31'],
+		additions: [Temporal.PlainDate.from('2020-01-01')],
+		removals: [Temporal.PlainDate.from('2020-12-31')],
 	},
 	valueLocalDateTime: {
 		'@type': 'merge',
-		additions: ['2020-01-01T10:00:00'],
-		removals: ['2020-12-31T23:59:59'],
+		additions: [Temporal.PlainDateTime.from('2020-01-01T10:00:00')],
+		removals: [Temporal.PlainDateTime.from('2020-12-31T23:59:59')],
 	},
 	valueLocalTime: {
 		'@type': 'merge',
-		additions: ['10:00:00'],
-		removals: ['23:59:59'],
+		additions: [Temporal.PlainTime.from('10:00:00')],
+		removals: [Temporal.PlainTime.from('23:59:59')],
 	},
 	valueOffsetDateTime: {
 		'@type': 'merge',
-		additions: ['2025-01-01T10:00:00+01:00'],
-		removals: ['2021-02-02T11:30:00+01:00'],
+		additions: [RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00')],
+		removals: [RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00')],
 	},
 	valueShort: {
 		'@type': 'merge',
@@ -279,8 +289,8 @@ const SimplePatchMerge: PatchableRecord_Basic_List_OptionalPatch = {
 	},
 	valueZonedDateTime: {
 		'@type': 'merge',
-		additions: ['2020-01-01T10:00:00Z'],
-		removals: ['2020-12-31T23:59:59Z'],
+		additions: [Temporal.ZonedDateTime.from('2020-01-01T10:00:00Z[UTC]')],
+		removals: [Temporal.ZonedDateTime.from('2020-12-31T23:59:59Z[UTC]')],
 	},
 };
 

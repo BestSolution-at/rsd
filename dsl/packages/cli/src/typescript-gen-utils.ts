@@ -6,6 +6,7 @@ export type TypescriptClientAPIGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	allowImportingTsExtensions?: boolean;
 	nativeScalarTypeSubstitutes?: TypescriptNativeScalarTypeSubstitues;
+	temporalMapping?: 'native' | 'string';
 };
 
 export function isTypescriptClientAPIGeneratorConfig(
@@ -29,6 +30,7 @@ export type TypescriptFetchClientGeneratorConfig = ArtifactGeneratorConfig & {
 	apiNamespacePath: string;
 	allowImportingTsExtensions?: boolean;
 	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
+	temporalMapping?: 'native' | 'string';
 };
 
 export function isTypescriptFetchClientGeneratorConfig(

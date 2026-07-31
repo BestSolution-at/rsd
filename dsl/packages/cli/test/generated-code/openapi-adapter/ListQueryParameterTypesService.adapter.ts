@@ -5,7 +5,24 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListQueryParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import {
+	RSDLocalDate,
+	RSDLocalDateFromJSON,
+	RSDLocalDateTime,
+	RSDLocalDateTimeFromJSON,
+	RSDLocalDateTimeToJSON,
+	RSDLocalDateToJSON,
+	RSDLocalTime,
+	RSDLocalTimeFromJSON,
+	RSDLocalTimeToJSON,
+	RSDLong,
+	RSDOffsetDateTime,
+	RSDOffsetDateTimeFromJSON,
+	RSDOffsetDateTimeToJSON,
+	RSDZonedDateTime,
+	RSDZonedDateTimeFromJSON,
+	RSDZonedDateTimeToJSON,
+} from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIListQueryParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -162,14 +179,14 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 		}
 	}
 	async listLocalDateQueryParam(
-		queryValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDLocalDate[],
+	): Promise<api.result.Result<RSDLocalDate[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listQueryParameterTypesListLocalDateQueryParamRaw({
-				queryValue: queryValue as unknown as Date[],
+				queryValue: queryValue.map(RSDLocalDateToJSON) as unknown as Date[],
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string[]);
+				return api.result.OK(((await response.value()) as unknown as string[]).map(RSDLocalDateFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -179,14 +196,14 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 	}
 
 	async listLocalDateTimeQueryParam(
-		queryValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDLocalDateTime[],
+	): Promise<api.result.Result<RSDLocalDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listQueryParameterTypesListLocalDateTimeQueryParamRaw({
-				queryValue,
+				queryValue: queryValue.map(RSDLocalDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDLocalDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -196,14 +213,14 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 	}
 
 	async listLocalTimeQueryParam(
-		queryValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDLocalTime[],
+	): Promise<api.result.Result<RSDLocalTime[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listQueryParameterTypesListLocalTimeQueryParamRaw({
-				queryValue,
+				queryValue: queryValue.map(RSDLocalTimeToJSON),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDLocalTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -213,14 +230,14 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 	}
 
 	async listOffsetDateTimeQueryParam(
-		queryValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDOffsetDateTime[],
+	): Promise<api.result.Result<RSDOffsetDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listQueryParameterTypesListOffsetDateTimeQueryParamRaw({
-				queryValue: queryValue as unknown as Date[],
+				queryValue: queryValue.map(RSDOffsetDateTimeToJSON) as unknown as Date[],
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string[]);
+				return api.result.OK(((await response.value()) as unknown as string[]).map(RSDOffsetDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -230,14 +247,14 @@ class ListQueryParameterTypesServiceImpl implements api.service.ListQueryParamet
 	}
 
 	async listZonedDateTimeQueryParam(
-		queryValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		queryValue: RSDZonedDateTime[],
+	): Promise<api.result.Result<RSDZonedDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listQueryParameterTypesListZonedDateTimeQueryParamRaw({
-				queryValue,
+				queryValue: queryValue.map(RSDZonedDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDZonedDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}

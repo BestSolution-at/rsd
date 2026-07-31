@@ -12,7 +12,10 @@ export function generateBuiltin(config: TypescriptClientAPIGeneratorConfig): Art
 	return [
 		{
 			name: `_Builtins.ts`,
-			content: toString(generateCompilationUnit(collector, generateBuiltinContent()), '\t'),
+			content: toString(
+				generateCompilationUnit(collector, generateBuiltinContent(config.temporalMapping ?? 'native')),
+				'\t',
+			),
 			path: `${config.targetFolder}/model`,
 		},
 	];

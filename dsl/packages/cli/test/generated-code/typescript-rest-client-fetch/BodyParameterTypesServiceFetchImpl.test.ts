@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import { createBodyParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { createOpenAPIBodyParameterTypesService } from '../openapi-adapter/BodyParameterTypesService.adapter.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 const jsonService = createBodyParameterTypesService({
 	baseUrl: 'http://localhost:3000',
@@ -296,9 +297,9 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 
 	describe('simpleLocalDateBodyParam', () => {
 		test.each([json, msgpack, openapi])('success - 2023-01-01 with $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalDateBodyParam('2023-01-01');
+			const [result, error] = await service.simpleLocalDateBodyParam(Temporal.PlainDate.from('2023-01-01'));
 			expect(error).toBeNull();
-			expect(result).toBe('2023-01-01');
+			expect(result).toStrictEqual(Temporal.PlainDate.from('2023-01-01'));
 		});
 	});
 	describe('simpleLocalDateBodyParamOpt', () => {
@@ -330,9 +331,11 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 
 	describe('simpleLocalDateTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success - 2023-01-01T12:34:56 with $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalDateTimeBodyParam('2023-01-01T12:34:56');
+			const [result, error] = await service.simpleLocalDateTimeBodyParam(
+				Temporal.PlainDateTime.from('2023-01-01T12:34:56'),
+			);
 			expect(error).toBeNull();
-			expect(result).toBe('2023-01-01T12:34:56');
+			expect(result).toStrictEqual(Temporal.PlainDateTime.from('2023-01-01T12:34:56'));
 		});
 	});
 	describe('simpleLocalDateTimeBodyParamOpt', () => {
@@ -364,9 +367,9 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 
 	describe('simpleLocalTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success - 10:00:00 with $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalTimeBodyParam('10:00:00');
+			const [result, error] = await service.simpleLocalTimeBodyParam(Temporal.PlainTime.from('10:00:00'));
 			expect(error).toBeNull();
-			expect(result).toBe('10:00:00');
+			expect(result).toStrictEqual(Temporal.PlainTime.from('10:00:00'));
 		});
 	});
 	describe('simpleLocalTimeBodyParamOpt', () => {
@@ -398,9 +401,11 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 
 	describe('simpleOffsetDateTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success - 2025-01-01T10:00:00+01:00 with $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleOffsetDateTimeBodyParam('2025-01-01T10:00:00+01:00');
+			const [result, error] = await service.simpleOffsetDateTimeBodyParam(
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+			);
 			expect(error).toBeNull();
-			expect(result).toBe('2025-01-01T10:00:00+01:00');
+			expect(result).toStrictEqual(RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'));
 		});
 	});
 	describe('simpleOffsetDateTimeBodyParamOpt', () => {
@@ -466,9 +471,11 @@ describe('SingleBodyParameterTypesServiceFetchImpl', () => {
 
 	describe('simpleZonedDateTimeBodyParam', () => {
 		test.each([json, msgpack, openapi])('success - 2023-01-01T12:34:56Z with $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleZonedDateTimeBodyParam('2023-01-01T12:34:56Z');
+			const [result, error] = await service.simpleZonedDateTimeBodyParam(
+				Temporal.ZonedDateTime.from('2023-01-01T12:34:56Z[UTC]'),
+			);
 			expect(error).toBeNull();
-			expect(result).toBe('2023-01-01T12:34:56Z');
+			expect(result).toStrictEqual(Temporal.ZonedDateTime.from('2023-01-01T12:34:56Z[UTC]'));
 		});
 	});
 	describe('simpleZonedDateTimeBodyParamOpt', () => {

@@ -3,6 +3,7 @@ import { describe, expect, test } from 'vitest';
 import { api, createListSampleServiceService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { isSampleErrorError } from '../../test-specs/gen-out/client/typescript-client/src/Errors.js';
 import { createOpenAPIListSampleServiceService } from '../openapi-adapter/ListSampleServiceService.adapter.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/index.js';
 
 const jsonService = createListSampleServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -180,7 +181,11 @@ describe('ListSampleServiceServiceImpl', () => {
 		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDate();
 			expect(error).toBeNull();
-			expect(result).toStrictEqual(['2020-01-01', '2021-02-02', '2022-03-03']);
+			expect(result).toStrictEqual([
+				Temporal.PlainDate.from('2020-01-01'),
+				Temporal.PlainDate.from('2021-02-02'),
+				Temporal.PlainDate.from('2022-03-03'),
+			]);
 		});
 		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
 			const [result, error] = await service.listLocalDate();
@@ -197,7 +202,11 @@ describe('ListSampleServiceServiceImpl', () => {
 		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalDateTime();
 			expect(error).toBeNull();
-			expect(result).toStrictEqual(['2020-01-01T10:00:00', '2021-02-02T11:30:00', '2022-03-03T12:45:00']);
+			expect(result).toStrictEqual([
+				Temporal.PlainDateTime.from('2020-01-01T10:00:00'),
+				Temporal.PlainDateTime.from('2021-02-02T11:30:00'),
+				Temporal.PlainDateTime.from('2022-03-03T12:45:00'),
+			]);
 		});
 		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
 			const [result, error] = await service.listLocalDateTime();
@@ -214,7 +223,11 @@ describe('ListSampleServiceServiceImpl', () => {
 		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listLocalTime();
 			expect(error).toBeNull();
-			expect(result).toStrictEqual(['10:00:00', '11:30:00', '12:45:00']);
+			expect(result).toStrictEqual([
+				Temporal.PlainTime.from('10:00:00'),
+				Temporal.PlainTime.from('11:30:00'),
+				Temporal.PlainTime.from('12:45:00'),
+			]);
 		});
 		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
 			const [result, error] = await service.listLocalTime();
@@ -232,9 +245,9 @@ describe('ListSampleServiceServiceImpl', () => {
 			const [result, error] = await service.listOffsetDateTime();
 			expect(error).toBeNull();
 			expect(result).toStrictEqual([
-				'2020-01-01T10:00:00+01:00',
-				'2021-02-02T11:30:00+01:00',
-				'2022-03-03T12:45:00+01:00',
+				RSDOffsetDateTime.from('2020-01-01T10:00:00+01:00'),
+				RSDOffsetDateTime.from('2021-02-02T11:30:00+01:00'),
+				RSDOffsetDateTime.from('2022-03-03T12:45:00+01:00'),
 			]);
 		});
 		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
@@ -252,7 +265,11 @@ describe('ListSampleServiceServiceImpl', () => {
 		test.each([json, msgpack, openAPI])('sucess - $encoding', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTime();
 			expect(error).toBeNull();
-			expect(result).toStrictEqual(['2020-01-01T10:00:00Z', '2021-02-02T11:30:00Z', '2022-03-03T12:45:00Z']);
+			expect(result).toStrictEqual([
+				Temporal.ZonedDateTime.from('2020-01-01T10:00:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2021-02-02T11:30:00Z[UTC]'),
+				Temporal.ZonedDateTime.from('2022-03-03T12:45:00Z[UTC]'),
+			]);
 		});
 		test.each([jsonInvalid, msgpackInvalid, openAPIInvalid])('fail - $encoding - invalid data', async ({ service }) => {
 			const [result, error] = await service.listZonedDateTime();

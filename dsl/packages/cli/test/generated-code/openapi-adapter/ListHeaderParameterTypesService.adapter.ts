@@ -6,7 +6,24 @@ import {
 } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { ListHeaderParameterTypesApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import {
+	RSDLocalDate,
+	RSDLocalDateFromJSON,
+	RSDLocalDateTime,
+	RSDLocalDateTimeFromJSON,
+	RSDLocalDateTimeToJSON,
+	RSDLocalDateToJSON,
+	RSDLocalTime,
+	RSDLocalTimeFromJSON,
+	RSDLocalTimeToJSON,
+	RSDLong,
+	RSDOffsetDateTime,
+	RSDOffsetDateTimeFromJSON,
+	RSDOffsetDateTimeToJSON,
+	RSDZonedDateTime,
+	RSDZonedDateTimeFromJSON,
+	RSDZonedDateTimeToJSON,
+} from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIListHeaderParameterTypesService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -524,14 +541,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalDateHeaderParam(
-		headerValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDLocalDate[],
+	): Promise<api.result.Result<RSDLocalDate[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalDateHeaderParamRaw({
-				headerValue: headerValue as unknown as Date[],
+				headerValue: headerValue.map(RSDLocalDateToJSON) as unknown as Date[],
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string[]);
+				return api.result.OK(((await response.value()) as unknown as string[]).map(RSDLocalDateFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -541,11 +558,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalDateHeaderParamOpt(
-		headerValue?: string[],
+		headerValue?: RSDLocalDate[],
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalDateHeaderParamOptRaw({
-				headerValue: headerValue as unknown as Date[] | undefined,
+				headerValue: headerValue?.map(RSDLocalDateToJSON) as unknown as Date[] | undefined,
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -558,11 +575,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalDateHeaderParamNil(
-		headerValue: string[] | null,
+		headerValue: RSDLocalDate[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalDateHeaderParamNilRaw({
-				headerValue: headerValue as unknown as Date[] | null,
+				headerValue: headerValue === null ? null : (headerValue.map(RSDLocalDateToJSON) as unknown as Date[] | null),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -575,11 +592,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalDateHeaderParamOptNil(
-		headerValue?: string[] | null,
+		headerValue?: RSDLocalDate[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalDateHeaderParamOptNilRaw({
-				headerValue: headerValue as unknown as Date[] | null,
+				headerValue: headerValue === null ? null : (headerValue?.map(RSDLocalDateToJSON) as unknown as Date[] | null),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -592,14 +609,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalDateTimeHeaderParam(
-		headerValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDLocalDateTime[],
+	): Promise<api.result.Result<RSDLocalDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalDateTimeHeaderParamRaw({
-				headerValue,
+				headerValue: headerValue.map(RSDLocalDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDLocalDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -609,11 +626,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalDateTimeHeaderParamOpt(
-		headerValue?: string[],
+		headerValue?: RSDLocalDateTime[],
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalDateTimeHeaderParamOptRaw({
-				headerValue,
+				headerValue: headerValue?.map(RSDLocalDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -626,11 +643,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalDateTimeHeaderParamNil(
-		headerValue: string[] | null,
+		headerValue: RSDLocalDateTime[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalDateTimeHeaderParamNilRaw({
-				headerValue,
+				headerValue: headerValue === null ? null : headerValue.map(RSDLocalDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -643,11 +660,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalDateTimeHeaderParamOptNil(
-		headerValue?: string[] | null,
+		headerValue?: RSDLocalDateTime[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalDateTimeHeaderParamOptNilRaw({
-				headerValue,
+				headerValue: headerValue === null ? null : headerValue?.map(RSDLocalDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -660,14 +677,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalTimeHeaderParam(
-		headerValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDLocalTime[],
+	): Promise<api.result.Result<RSDLocalTime[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalTimeHeaderParamRaw({
-				headerValue,
+				headerValue: headerValue.map(RSDLocalTimeToJSON),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDLocalTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -677,11 +694,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalTimeHeaderParamOpt(
-		headerValue?: string[],
+		headerValue?: RSDLocalTime[],
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalTimeHeaderParamOptRaw({
-				headerValue,
+				headerValue: headerValue?.map(RSDLocalTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -694,11 +711,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalTimeHeaderParamNil(
-		headerValue: string[] | null,
+		headerValue: RSDLocalTime[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalTimeHeaderParamNilRaw({
-				headerValue,
+				headerValue: headerValue === null ? null : headerValue.map(RSDLocalTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -711,11 +728,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listLocalTimeHeaderParamOptNil(
-		headerValue?: string[] | null,
+		headerValue?: RSDLocalTime[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListLocalTimeHeaderParamOptNilRaw({
-				headerValue,
+				headerValue: headerValue === null ? null : headerValue?.map(RSDLocalTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -728,14 +745,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listOffsetDateTimeHeaderParam(
-		headerValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDOffsetDateTime[],
+	): Promise<api.result.Result<RSDOffsetDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListOffsetDateTimeHeaderParamRaw({
-				headerValue: headerValue as unknown as Date[], // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				headerValue: headerValue.map(RSDOffsetDateTimeToJSON) as unknown as Date[], // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string[]);
+				return api.result.OK(((await response.value()) as unknown as string[]).map(RSDOffsetDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -745,11 +762,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listOffsetDateTimeHeaderParamOpt(
-		headerValue?: string[],
+		headerValue?: RSDOffsetDateTime[],
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptRaw({
-				headerValue: headerValue as unknown as Date[] | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				headerValue: headerValue?.map(RSDOffsetDateTimeToJSON) as unknown as Date[] | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -762,11 +779,12 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listOffsetDateTimeHeaderParamNil(
-		headerValue: string[] | null,
+		headerValue: RSDOffsetDateTime[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListOffsetDateTimeHeaderParamNilRaw({
-				headerValue: headerValue as unknown as Date[] | null, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				headerValue:
+					headerValue === null ? null : (headerValue.map(RSDOffsetDateTimeToJSON) as unknown as Date[] | null), // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -779,11 +797,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listOffsetDateTimeHeaderParamOptNil(
-		headerValue?: string[] | null,
+		headerValue?: RSDOffsetDateTime[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListOffsetDateTimeHeaderParamOptNilRaw({
-				headerValue: headerValue as unknown as Date[] | null | undefined, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				headerValue:
+					headerValue === null
+						? null
+						: (headerValue?.map(RSDOffsetDateTimeToJSON) as unknown as Date[] | null | undefined), // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -796,14 +817,14 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listZonedDateTimeHeaderParam(
-		headerValue: string[],
-	): Promise<api.result.Result<string[], api.service.StatusRSDError | api.service.NativeRSDError>> {
+		headerValue: RSDZonedDateTime[],
+	): Promise<api.result.Result<RSDZonedDateTime[], api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListZonedDateTimeHeaderParamRaw({
-				headerValue,
+				headerValue: headerValue.map(RSDZonedDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK((await response.value()).map(RSDZonedDateTimeFromJSON));
 			} else {
 				return api.result.ERR(toRSDError(response));
 			}
@@ -813,11 +834,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listZonedDateTimeHeaderParamOpt(
-		headerValue?: string[],
+		headerValue?: RSDZonedDateTime[],
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListZonedDateTimeHeaderParamOptRaw({
-				headerValue,
+				headerValue: headerValue?.map(RSDZonedDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -830,11 +851,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listZonedDateTimeHeaderParamNil(
-		headerValue: string[] | null,
+		headerValue: RSDZonedDateTime[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListZonedDateTimeHeaderParamNilRaw({
-				headerValue,
+				headerValue: headerValue === null ? null : headerValue.map(RSDZonedDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());
@@ -847,11 +868,11 @@ class ListHeaderParameterTypesServiceImpl implements api.service.ListHeaderParam
 	}
 
 	async listZonedDateTimeHeaderParamOptNil(
-		headerValue?: string[] | null,
+		headerValue?: RSDZonedDateTime[] | null,
 	): Promise<api.result.Result<api.model.NilResult, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.listHeaderParameterTypesListZonedDateTimeHeaderParamOptNilRaw({
-				headerValue,
+				headerValue: headerValue === null ? null : headerValue?.map(RSDZonedDateTimeToJSON),
 			});
 			if (response.raw.status === 200) {
 				return api.result.OK(await response.value());

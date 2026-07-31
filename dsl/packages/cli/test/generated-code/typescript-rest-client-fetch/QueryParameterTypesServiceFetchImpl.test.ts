@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest';
 
 import { createQueryParameterTypesService } from '../../test-specs/gen-out/client/typescript-client/src/index.js';
 import { createOpenAPIQueryParameterTypesService } from '../openapi-adapter/QueryParameterTypesService.adapter.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/index.js';
 
 const jsonService = createQueryParameterTypesService({
 	baseUrl: 'http://localhost:3000',
@@ -147,9 +148,9 @@ describe('SingleQueryParameterTypesService', () => {
 	});
 	describe('simpleLocalDateQueryParam', () => {
 		test.each([json, msgpack, openapi])('success - 2024-01-01 - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalDateQueryParam('2024-01-01');
+			const [result, error] = await service.simpleLocalDateQueryParam(Temporal.PlainDate.from('2024-01-01'));
 			expect(error).toBeNull();
-			expect(result).toBe('2024-01-01');
+			expect(result).toStrictEqual(Temporal.PlainDate.from('2024-01-01'));
 		});
 		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleLocalDateQueryParamOpt();
@@ -159,9 +160,11 @@ describe('SingleQueryParameterTypesService', () => {
 	});
 	describe('simpleLocalDateTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success - 2024-01-01T12:34:56 - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalDateTimeQueryParam('2024-01-01T12:34:56');
+			const [result, error] = await service.simpleLocalDateTimeQueryParam(
+				Temporal.PlainDateTime.from('2024-01-01T12:34:56'),
+			);
 			expect(error).toBeNull();
-			expect(result).toBe('2024-01-01T12:34:56');
+			expect(result).toStrictEqual(Temporal.PlainDateTime.from('2024-01-01T12:34:56'));
 		});
 		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleLocalDateTimeQueryParamOpt();
@@ -171,9 +174,9 @@ describe('SingleQueryParameterTypesService', () => {
 	});
 	describe('simpleLocalTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success - 10:00:00 - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleLocalTimeQueryParam('10:00:00');
+			const [result, error] = await service.simpleLocalTimeQueryParam(Temporal.PlainTime.from('10:00:00'));
 			expect(error).toBeNull();
-			expect(result).toBe('10:00:00');
+			expect(result).toStrictEqual(Temporal.PlainTime.from('10:00:00'));
 		});
 		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleLocalTimeQueryParamOpt();
@@ -183,12 +186,14 @@ describe('SingleQueryParameterTypesService', () => {
 	});
 	describe('simpleOffsetDateTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success - 2025-01-01T10:00:00+01:00 - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleOffsetDateTimeQueryParam('2025-01-01T10:00:00+01:00');
+			const [result, error] = await service.simpleOffsetDateTimeQueryParam(
+				RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
+			);
 			expect(error).toBeNull();
 			if (service === openapiService) {
-				expect(result).toBe('2025-01-01T09:00:00Z');
+				expect(result).toStrictEqual(RSDOffsetDateTime.from('2025-01-01T09:00:00Z'));
 			} else {
-				expect(result).toBe('2025-01-01T10:00:00+01:00');
+				expect(result).toStrictEqual(RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'));
 			}
 		});
 		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
@@ -199,9 +204,11 @@ describe('SingleQueryParameterTypesService', () => {
 	});
 	describe('simpleZonedDateTimeQueryParam', () => {
 		test.each([json, msgpack, openapi])('success - 2024-01-01T12:34:56Z - $encoding', async ({ service }) => {
-			const [result, error] = await service.simpleZonedDateTimeQueryParam('2024-01-01T12:34:56Z');
+			const [result, error] = await service.simpleZonedDateTimeQueryParam(
+				Temporal.ZonedDateTime.from('2024-01-01T12:34:56Z[UTC]'),
+			);
 			expect(error).toBeNull();
-			expect(result).toBe('2024-01-01T12:34:56Z');
+			expect(result).toStrictEqual(Temporal.ZonedDateTime.from('2024-01-01T12:34:56Z[UTC]'));
 		});
 		test.each([json, msgpack, openapi])('success - optional - $encoding', async ({ service }) => {
 			const [result, error] = await service.simpleZonedDateTimeQueryParamOpt();

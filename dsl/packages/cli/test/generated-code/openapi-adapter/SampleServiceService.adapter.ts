@@ -4,7 +4,19 @@ import { UnionFromJSON } from '../../test-specs/gen-out/client/typescript-client
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { SampleServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/SampleServiceApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import {
+	RSDLocalDate,
+	RSDLocalDateFromJSON,
+	RSDLocalDateTime,
+	RSDLocalDateTimeFromJSON,
+	RSDLocalTime,
+	RSDLocalTimeFromJSON,
+	RSDLong,
+	RSDOffsetDateTime,
+	RSDOffsetDateTimeFromJSON,
+	RSDZonedDateTime,
+	RSDZonedDateTimeFromJSON,
+} from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPISampleServiceService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -119,11 +131,13 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async getLocalDate(): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	async getLocalDate(): Promise<
+		api.result.Result<RSDLocalDate, api.service.StatusRSDError | api.service.NativeRSDError>
+	> {
 		try {
 			const response = await this.delegate.sampleServiceGetLocalDateRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				return api.result.OK(RSDLocalDateFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -131,23 +145,25 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		}
 	}
 	async getLocalDateTime(): Promise<
-		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
+		api.result.Result<RSDLocalDateTime, api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
 			const response = await this.delegate.sampleServiceGetLocalDateTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
 			return api.result.ERR(toRSDError(error));
 		}
 	}
-	async getLocalTime(): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+	async getLocalTime(): Promise<
+		api.result.Result<RSDLocalTime, api.service.StatusRSDError | api.service.NativeRSDError>
+	> {
 		try {
 			const response = await this.delegate.sampleServiceGetLocalTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -155,12 +171,12 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 		}
 	}
 	async getOffsetDateTime(): Promise<
-		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
+		api.result.Result<RSDOffsetDateTime, api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
 			const response = await this.delegate.sampleServiceGetOffsetDateTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				return api.result.OK(RSDOffsetDateTimeFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -169,12 +185,12 @@ class SampleServiceServiceImpl implements api.service.SampleServiceService {
 	}
 
 	async getZonedDateTime(): Promise<
-		api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>
+		api.result.Result<RSDZonedDateTime, api.service.StatusRSDError | api.service.NativeRSDError>
 	> {
 		try {
 			const response = await this.delegate.sampleServiceGetZonedDateTimeRaw();
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDZonedDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {

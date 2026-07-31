@@ -3,7 +3,24 @@ import { PathParameterTypeServiceService } from '../../test-specs/gen-out/client
 import { ServiceProps } from '../../test-specs/gen-out/client/typescript-client/src/services/_fetch-type-utils.js';
 import { PathParameterTypeServiceApi } from '../../test-specs/gen-out/client/typescript-client-openapi/src/apis/PathParameterTypeServiceApi.js';
 import { Configuration, ResponseError } from '../../test-specs/gen-out/client/typescript-client-openapi/src/runtime.js';
-import { RSDLong } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
+import {
+	RSDLocalDate,
+	RSDLocalDateFromJSON,
+	RSDLocalDateTime,
+	RSDLocalDateTimeFromJSON,
+	RSDLocalDateTimeToJSON,
+	RSDLocalDateToJSON,
+	RSDLocalTime,
+	RSDLocalTimeFromJSON,
+	RSDLocalTimeToJSON,
+	RSDLong,
+	RSDOffsetDateTime,
+	RSDOffsetDateTimeFromJSON,
+	RSDOffsetDateTimeToJSON,
+	RSDZonedDateTime,
+	RSDZonedDateTimeFromJSON,
+	RSDZonedDateTimeToJSON,
+} from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 export function createOpenAPIPathParameterTypeServiceService(
 	props: ServiceProps<api.service.ErrorType>,
@@ -141,14 +158,14 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 	}
 
 	async simpleLocalDatePathParam(
-		pathLocalDate: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		pathLocalDate: RSDLocalDate,
+	): Promise<api.result.Result<RSDLocalDate, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.pathParameterTypeServiceSimpleLocalDatePathParamRaw({
-				pathLocalDate: new Date(pathLocalDate),
+				pathLocalDate: new Date(RSDLocalDateToJSON(pathLocalDate)),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
+				return api.result.OK(RSDLocalDateFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-only values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -157,14 +174,14 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 	}
 
 	async simpleLocalDateTimePathParam(
-		pathLocalDateTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		pathLocalDateTime: RSDLocalDateTime,
+	): Promise<api.result.Result<RSDLocalDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.pathParameterTypeServiceSimpleLocalDateTimePathParamRaw({
-				pathLocalDateTime,
+				pathLocalDateTime: RSDLocalDateTimeToJSON(pathLocalDateTime),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -173,14 +190,14 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 	}
 
 	async simpleLocalTimePathParam(
-		pathLocalTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		pathLocalTime: RSDLocalTime,
+	): Promise<api.result.Result<RSDLocalTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.pathParameterTypeServiceSimpleLocalTimePathParamRaw({
-				pathLocalTime,
+				pathLocalTime: RSDLocalTimeToJSON(pathLocalTime),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDLocalTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -189,14 +206,14 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 	}
 
 	async simpleOffsetDateTimePathParam(
-		pathOffsetDateTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		pathOffsetDateTime: RSDOffsetDateTime,
+	): Promise<api.result.Result<RSDOffsetDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.pathParameterTypeServiceSimpleOffsetDateTimePathParamRaw({
-				pathOffsetDateTime: pathOffsetDateTime as unknown as Date, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				pathOffsetDateTime: RSDOffsetDateTimeToJSON(pathOffsetDateTime) as unknown as Date, // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK((await response.value()) as unknown as string); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
+				return api.result.OK(RSDOffsetDateTimeFromJSON((await response.value()) as unknown as string)); // OpenAPI Generator inappropriately types date-time values as `Date`, so we need to cast it back to string
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {
@@ -205,14 +222,14 @@ class PathParameterTypeServiceServiceImpl implements PathParameterTypeServiceSer
 	}
 
 	async simpleZonedDateTimePathParam(
-		pathZonedDateTime: string,
-	): Promise<api.result.Result<string, api.service.StatusRSDError | api.service.NativeRSDError>> {
+		pathZonedDateTime: RSDZonedDateTime,
+	): Promise<api.result.Result<RSDZonedDateTime, api.service.StatusRSDError | api.service.NativeRSDError>> {
 		try {
 			const response = await this.deletegate.pathParameterTypeServiceSimpleZonedDateTimePathParamRaw({
-				pathZonedDateTime,
+				pathZonedDateTime: RSDZonedDateTimeToJSON(pathZonedDateTime),
 			});
 			if (response.raw.status === 200) {
-				return api.result.OK(await response.value());
+				return api.result.OK(RSDZonedDateTimeFromJSON(await response.value()));
 			}
 			return api.result.ERR(toRSDError(new ResponseError(response.raw, await response.raw.text())));
 		} catch (error: unknown) {

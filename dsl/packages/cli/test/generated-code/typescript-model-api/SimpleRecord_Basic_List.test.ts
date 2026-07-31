@@ -5,6 +5,7 @@ import {
 	SimpleRecord_Basic_ListFromJSON,
 	SimpleRecord_Basic_ListToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/SimpleRecord_Basic_List.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 import { addFooProperty, invalidateArrayProperty, invalidateProperty, removeProperty } from './utils.js';
 
 const Simple: SimpleRecord_Basic_List = {
@@ -13,13 +14,19 @@ const Simple: SimpleRecord_Basic_List = {
 	valueDouble: [1.5, 2.5],
 	valueFloat: [1.5, 2.5],
 	valueInt: [0, 1],
-	valueLocalDate: ['2020-01-01', '2020-02-01'],
-	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
-	valueLocalTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
-	valueOffsetDateTime: ['2025-01-01T10:00:00+01:00'],
+	valueLocalDate: [Temporal.PlainDate.from('2020-01-01'), Temporal.PlainDate.from('2020-02-01')],
+	valueLocalDateTime: [
+		Temporal.PlainDateTime.from('2020-01-01T10:00:00'),
+		Temporal.PlainDateTime.from('2020-02-01T10:00:00'),
+	],
+	valueLocalTime: [Temporal.PlainTime.from('10:00:00'), Temporal.PlainTime.from('10:00:00')],
+	valueOffsetDateTime: [RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00')],
 	valueLong: [BigInt(0), BigInt(1)],
 	valueString: ['a', 'b'],
-	valueZonedDateTime: ['2025-01-01T10:00:00Z', '2025-02-01T10:00:00Z'],
+	valueZonedDateTime: [
+		Temporal.ZonedDateTime.from('2025-01-01T10:00:00Z[UTC]'),
+		Temporal.ZonedDateTime.from('2025-02-01T10:00:00Z[UTC]'),
+	],
 };
 
 const Simple_Json = {
@@ -30,7 +37,7 @@ const Simple_Json = {
 	valueInt: [0, 1],
 	valueLocalDate: ['2020-01-01', '2020-02-01'],
 	valueLocalDateTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
-	valueLocalTime: ['2020-01-01T10:00:00', '2020-02-01T10:00:00'],
+	valueLocalTime: ['10:00:00', '10:00:00'],
 	valueOffsetDateTime: ['2025-01-01T10:00:00+01:00'],
 	valueLong: [0, 1],
 	valueString: ['a', 'b'],

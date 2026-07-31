@@ -10,6 +10,7 @@ import {
 	PatchableRecord_BasicToJSON,
 } from '../../test-specs/gen-out/client/typescript-client/src/model/PatchableRecord_Basic.js';
 import { addFooProperty, invalidateArrayProperty, invalidateProperty, removeProperty } from './utils.js';
+import { RSDOffsetDateTime } from '../../test-specs/gen-out/client/typescript-client/src/model/_Builtins.js';
 
 const Simple: PatchableRecord_Basic = {
 	key: 'key',
@@ -18,14 +19,14 @@ const Simple: PatchableRecord_Basic = {
 	valueDouble: 0.1,
 	valueFloat: 0.5,
 	valueInt: 1,
-	valueLocalDate: '2020-01-02',
-	valueLocalDateTime: '2020-01-02T03:04:05',
-	valueLocalTime: '2020-01-02T03:04:05',
-	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+	valueLocalDate: Temporal.PlainDate.from('2020-01-02'),
+	valueLocalDateTime: Temporal.PlainDateTime.from('2020-01-02T03:04:05'),
+	valueLocalTime: Temporal.PlainTime.from('03:04:05'),
+	valueOffsetDateTime: RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
 	valueLong: BigInt(1),
 	valueShort: 1,
 	valueString: 'value',
-	valueZonedDateTime: '2020-01-02T03:04:05Z',
+	valueZonedDateTime: Temporal.ZonedDateTime.from('2020-01-02T03:04:05Z[UTC]'),
 };
 
 const Simple_Json = {
@@ -37,7 +38,7 @@ const Simple_Json = {
 	valueInt: 1,
 	valueLocalDate: '2020-01-02',
 	valueLocalDateTime: '2020-01-02T03:04:05',
-	valueLocalTime: '2020-01-02T03:04:05',
+	valueLocalTime: '03:04:05',
 	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 	valueLong: 1,
 	valueShort: 1,
@@ -97,14 +98,14 @@ const SimplePatch: PatchableRecord_BasicPatch = {
 	valueDouble: 0.1,
 	valueFloat: 0.1,
 	valueInt: 1,
-	valueLocalDate: '2020-01-02',
-	valueLocalDateTime: '2020-01-02T03:04:05',
-	valueLocalTime: '2020-01-02T03:04:05',
-	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
+	valueLocalDate: Temporal.PlainDate.from('2020-01-02'),
+	valueLocalDateTime: Temporal.PlainDateTime.from('2020-01-02T03:04:05'),
+	valueLocalTime: Temporal.PlainTime.from('03:04:05'),
+	valueOffsetDateTime: RSDOffsetDateTime.from('2025-01-01T10:00:00+01:00'),
 	valueLong: BigInt(1),
 	valueShort: 1,
 	valueString: 'value',
-	valueZonedDateTime: '2020-01-02T03:04:05Z',
+	valueZonedDateTime: Temporal.ZonedDateTime.from('2020-01-02T03:04:05Z[UTC]'),
 };
 
 const SimplePatch_Json = {
@@ -116,7 +117,7 @@ const SimplePatch_Json = {
 	valueInt: 1,
 	valueLocalDate: '2020-01-02',
 	valueLocalDateTime: '2020-01-02T03:04:05',
-	valueLocalTime: '2020-01-02T03:04:05',
+	valueLocalTime: '03:04:05',
 	valueOffsetDateTime: '2025-01-01T10:00:00+01:00',
 	valueLong: 1,
 	valueShort: 1,
