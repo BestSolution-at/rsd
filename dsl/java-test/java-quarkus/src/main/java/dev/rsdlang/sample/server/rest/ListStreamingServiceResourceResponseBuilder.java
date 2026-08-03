@@ -6,106 +6,111 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.util.List;
+
+import org.jboss.resteasy.reactive.RestMulti;
 
 import jakarta.inject.Singleton;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
-import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.Union;
 import dev.rsdlang.sample.server.MyRange;
 import dev.rsdlang.sample.server.service.ListStreamingServiceService;
+import io.smallrye.mutiny.Multi;
 
 @Singleton
 public class ListStreamingServiceResourceResponseBuilder {
-	public ResponseBuilder streamBoolean(List<Boolean> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamBoolean(Multi<Boolean> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamShort(List<Short> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamShort(Multi<Short> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamInt(List<Integer> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamInt(Multi<Integer> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamLong(List<Long> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamLong(Multi<Long> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamFloat(List<Float> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamFloat(Multi<Float> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamDouble(List<Double> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamDouble(Multi<Double> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamString(List<String> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamString(Multi<String> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamLocalDate(List<LocalDate> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalDate(Multi<LocalDate> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamLocalDateTime(List<LocalDateTime> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalDateTime(Multi<LocalDateTime> $result,
+			String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamLocalTime(List<LocalTime> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalTime(Multi<LocalTime> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamOffsetDateTime(List<OffsetDateTime> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamOffsetDateTime(Multi<OffsetDateTime> $result,
+			String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamZonedDateTime(List<ZonedDateTime> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamZonedDateTime(Multi<ZonedDateTime> $result,
+			String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamScalar(List<MyRange> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_ScalarSupport::RangeToJson).toList(), $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamScalar(Multi<MyRange> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamEnum(List<SampleEnum> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result.stream().map(_EnumSupport::SampleEnumToJson).toList(), $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamEnum(Multi<SampleEnum> $result, String $contentType) {
+		return RestMulti
+				.fromMultiData($result.map(e -> _JsonUtils.encodeValue(_EnumSupport.SampleEnumToJson(e), $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamInlineEnum(List<ListStreamingServiceService.StreamInlineEnum_Result$> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamInlineEnum(
+			Multi<ListStreamingServiceService.StreamInlineEnum_Result$> $result,
+			String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamRecord(List<SimpleRecord.Data> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamRecord(Multi<SimpleRecord.Data> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
-	public ResponseBuilder streamUnion(List<Union.Data> $result, String $contentType) {
-		return Response.status(200)
-			.type($contentType)
-			.entity(_RestUtils.toStreamOutput(stream -> _JsonUtils.encodeValue(stream, $result, $contentType, /* FIXME */ null)));}
+	public RestMulti.SyncRestMulti.Builder<byte[]> streamUnion(Multi<Union.Data> $result, String $contentType) {
+		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, null)))
+				.header("Content-Type", $contentType);
+	}
 
 }

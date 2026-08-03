@@ -7,18 +7,16 @@ import java.util.regex.Pattern;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.service.ListStreamingServiceService;
+import io.smallrye.mutiny.Multi;
 
 @ApplicationScoped
 @Path("/api/liststreaming")
-@Produces({"application/json", "application/vnd.msgpack"})
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({ "application/json", "application/vnd.msgpack" })
 public class ListStreamingServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
@@ -27,7 +25,8 @@ public class ListStreamingServiceResource {
 	private final ListStreamingServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListStreamingServiceResource(ListStreamingServiceService service, ListStreamingServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListStreamingServiceResource(ListStreamingServiceService service,
+			ListStreamingServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -53,119 +52,119 @@ public class ListStreamingServiceResource {
 
 	@GET
 	@Path("streamBoolean")
-	public Response streamBoolean(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamBoolean(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamBoolean(builderFactory);
 		return responseBuilder.streamBoolean(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamShort")
-	public Response streamShort(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamShort(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamShort(builderFactory);
 		return responseBuilder.streamShort(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamInt")
-	public Response streamInt(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamInt(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamInt(builderFactory);
 		return responseBuilder.streamInt(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamLong")
-	public Response streamLong(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamLong(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamLong(builderFactory);
 		return responseBuilder.streamLong(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamFloat")
-	public Response streamFloat(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamFloat(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamFloat(builderFactory);
 		return responseBuilder.streamFloat(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamDouble")
-	public Response streamDouble(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamDouble(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamDouble(builderFactory);
 		return responseBuilder.streamDouble(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamString")
-	public Response streamString(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamString(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamString(builderFactory);
 		return responseBuilder.streamString(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamLocalDate")
-	public Response streamLocalDate(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamLocalDate(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamLocalDate(builderFactory);
 		return responseBuilder.streamLocalDate(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamLocalDateTime")
-	public Response streamLocalDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamLocalDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamLocalDateTime(builderFactory);
 		return responseBuilder.streamLocalDateTime(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamLocalTime")
-	public Response streamLocalTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamLocalTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamLocalTime(builderFactory);
 		return responseBuilder.streamLocalTime(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamOffsetDateTime")
-	public Response streamOffsetDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamOffsetDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamOffsetDateTime(builderFactory);
 		return responseBuilder.streamOffsetDateTime(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamZonedDateTime")
-	public Response streamZonedDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamZonedDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamZonedDateTime(builderFactory);
 		return responseBuilder.streamZonedDateTime(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamScalar")
-	public Response streamScalar(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamScalar(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamScalar(builderFactory);
 		return responseBuilder.streamScalar(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamEnum")
-	public Response streamEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamEnum(builderFactory);
 		return responseBuilder.streamEnum(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamInlineEnum")
-	public Response streamInlineEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamInlineEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamInlineEnum(builderFactory);
 		return responseBuilder.streamInlineEnum(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamRecord")
-	public Response streamRecord(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamRecord(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamRecord(builderFactory);
 		return responseBuilder.streamRecord(result, computeResponseContentType($acceptHeaders)).build();
 	}
 
 	@GET
 	@Path("streamUnion")
-	public Response streamUnion(@HeaderParam("Accept") List<String> $acceptHeaders) {
+	public Multi<byte[]> streamUnion(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamUnion(builderFactory);
 		return responseBuilder.streamUnion(result, computeResponseContentType($acceptHeaders)).build();
 	}

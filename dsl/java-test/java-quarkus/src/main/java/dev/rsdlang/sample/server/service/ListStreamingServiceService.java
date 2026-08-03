@@ -6,50 +6,50 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.util.List;
 
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.Union;
 import dev.rsdlang.sample.server.MyRange;
+import io.smallrye.mutiny.Multi;
 
 public interface ListStreamingServiceService {
 	public enum StreamInlineEnum_Result$ {
 		A,
 		B,
 	}
-	public List<Boolean> streamBoolean(BuilderFactory _factory);
+	public Multi<Boolean> streamBoolean(BuilderFactory _factory);
 
-	public List<Short> streamShort(BuilderFactory _factory);
+	public Multi<Short> streamShort(BuilderFactory _factory);
 
-	public List<Integer> streamInt(BuilderFactory _factory);
+	public Multi<Integer> streamInt(BuilderFactory _factory);
 
-	public List<Long> streamLong(BuilderFactory _factory);
+	public Multi<Long> streamLong(BuilderFactory _factory);
 
-	public List<Float> streamFloat(BuilderFactory _factory);
+	public Multi<Float> streamFloat(BuilderFactory _factory);
 
-	public List<Double> streamDouble(BuilderFactory _factory);
+	public Multi<Double> streamDouble(BuilderFactory _factory);
 
-	public List<String> streamString(BuilderFactory _factory);
+	public Multi<String> streamString(BuilderFactory _factory);
 
-	public List<LocalDate> streamLocalDate(BuilderFactory _factory);
+	public Multi<LocalDate> streamLocalDate(BuilderFactory _factory);
 
-	public List<LocalDateTime> streamLocalDateTime(BuilderFactory _factory);
+	public Multi<LocalDateTime> streamLocalDateTime(BuilderFactory _factory);
 
-	public List<LocalTime> streamLocalTime(BuilderFactory _factory);
+	public Multi<LocalTime> streamLocalTime(BuilderFactory _factory);
 
-	public List<OffsetDateTime> streamOffsetDateTime(BuilderFactory _factory);
+	public Multi<OffsetDateTime> streamOffsetDateTime(BuilderFactory _factory);
 
-	public List<ZonedDateTime> streamZonedDateTime(BuilderFactory _factory);
+	public Multi<ZonedDateTime> streamZonedDateTime(BuilderFactory _factory);
 
-	public List<MyRange> streamScalar(BuilderFactory _factory);
+	public Multi<MyRange> streamScalar(BuilderFactory _factory);
 
-	public List<SampleEnum> streamEnum(BuilderFactory _factory);
+	public Multi<SampleEnum> streamEnum(BuilderFactory _factory);
 
-	public List<StreamInlineEnum_Result$> streamInlineEnum(BuilderFactory _factory);
+	public Multi<StreamInlineEnum_Result$> streamInlineEnum(BuilderFactory _factory);
 
-	public List<SimpleRecord.Data> streamRecord(BuilderFactory _factory);
+	public Multi<SimpleRecord.Data> streamRecord(BuilderFactory _factory);
 
-	public List<Union.Data> streamUnion(BuilderFactory _factory);
+	public Multi<Union.Data> streamUnion(BuilderFactory _factory);
 
 }

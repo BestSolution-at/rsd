@@ -193,7 +193,11 @@ function toResultType(
 	}
 
 	if (type.array) {
-		rvType = `${fqn('java.util.List')}<${rvType}>`;
+		if (type.streaming) {
+			rvType = `${fqn('io.smallrye.mutiny.Multi')}<${rvType}>`;
+		} else {
+			rvType = `${fqn('java.util.List')}<${rvType}>`;
+		}
 	}
 
 	return rvType;

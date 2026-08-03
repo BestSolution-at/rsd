@@ -1,5 +1,17 @@
 package dev.rsdlang.sample.server.service.handler.liststreaming;
 
-public class StreamLongHandlerImpl {
+import dev.rsdlang.sample.server.service.impl.ListStreamingServiceServiceImpl;
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import io.smallrye.mutiny.Multi;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class StreamLongHandlerImpl implements ListStreamingServiceServiceImpl.StreamLongHandler {
+
+	@Override
+	public Multi<Long> streamLong(BuilderFactory _factory) {
+		// Implement your streaming logic here
+		return Multi.createFrom().empty();
+	}
 
 }

@@ -1,5 +1,18 @@
 package dev.rsdlang.sample.server.service.handler.liststreaming;
 
-public class StreamRecordHandlerImpl {
+import dev.rsdlang.sample.server.service.impl.ListStreamingServiceServiceImpl;
+import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import io.smallrye.mutiny.Multi;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class StreamRecordHandlerImpl implements ListStreamingServiceServiceImpl.StreamRecordHandler {
+
+	@Override
+	public Multi<SimpleRecord.Data> streamRecord(BuilderFactory _factory) {
+		// Implement your streaming logic here
+		return Multi.createFrom().empty();
+	}
 
 }

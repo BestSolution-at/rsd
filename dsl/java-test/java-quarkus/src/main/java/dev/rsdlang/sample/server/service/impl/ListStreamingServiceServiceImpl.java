@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -16,6 +15,7 @@ import dev.rsdlang.sample.server.model.Union;
 import dev.rsdlang.sample.server.MyRange;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import dev.rsdlang.sample.server.service.ListStreamingServiceService;
+import io.smallrye.mutiny.Multi;
 
 @ApplicationScoped
 public class ListStreamingServiceServiceImpl implements ListStreamingServiceService {
@@ -58,156 +58,156 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 	}
 
 	@Override
-	public List<Boolean> streamBoolean(BuilderFactory _factory) {
+	public Multi<Boolean> streamBoolean(BuilderFactory _factory) {
 		return streamBooleanHandler.streamBoolean(_factory);
 	}
 
 	@Override
-	public List<Short> streamShort(BuilderFactory _factory) {
+	public Multi<Short> streamShort(BuilderFactory _factory) {
 		return streamShortHandler.streamShort(_factory);
 	}
 
 	@Override
-	public List<Integer> streamInt(BuilderFactory _factory) {
+	public Multi<Integer> streamInt(BuilderFactory _factory) {
 		return streamIntHandler.streamInt(_factory);
 	}
 
 	@Override
-	public List<Long> streamLong(BuilderFactory _factory) {
+	public Multi<Long> streamLong(BuilderFactory _factory) {
 		return streamLongHandler.streamLong(_factory);
 	}
 
 	@Override
-	public List<Float> streamFloat(BuilderFactory _factory) {
+	public Multi<Float> streamFloat(BuilderFactory _factory) {
 		return streamFloatHandler.streamFloat(_factory);
 	}
 
 	@Override
-	public List<Double> streamDouble(BuilderFactory _factory) {
+	public Multi<Double> streamDouble(BuilderFactory _factory) {
 		return streamDoubleHandler.streamDouble(_factory);
 	}
 
 	@Override
-	public List<String> streamString(BuilderFactory _factory) {
+	public Multi<String> streamString(BuilderFactory _factory) {
 		return streamStringHandler.streamString(_factory);
 	}
 
 	@Override
-	public List<LocalDate> streamLocalDate(BuilderFactory _factory) {
+	public Multi<LocalDate> streamLocalDate(BuilderFactory _factory) {
 		return streamLocalDateHandler.streamLocalDate(_factory);
 	}
 
 	@Override
-	public List<LocalDateTime> streamLocalDateTime(BuilderFactory _factory) {
+	public Multi<LocalDateTime> streamLocalDateTime(BuilderFactory _factory) {
 		return streamLocalDateTimeHandler.streamLocalDateTime(_factory);
 	}
 
 	@Override
-	public List<LocalTime> streamLocalTime(BuilderFactory _factory) {
+	public Multi<LocalTime> streamLocalTime(BuilderFactory _factory) {
 		return streamLocalTimeHandler.streamLocalTime(_factory);
 	}
 
 	@Override
-	public List<OffsetDateTime> streamOffsetDateTime(BuilderFactory _factory) {
+	public Multi<OffsetDateTime> streamOffsetDateTime(BuilderFactory _factory) {
 		return streamOffsetDateTimeHandler.streamOffsetDateTime(_factory);
 	}
 
 	@Override
-	public List<ZonedDateTime> streamZonedDateTime(BuilderFactory _factory) {
+	public Multi<ZonedDateTime> streamZonedDateTime(BuilderFactory _factory) {
 		return streamZonedDateTimeHandler.streamZonedDateTime(_factory);
 	}
 
 	@Override
-	public List<MyRange> streamScalar(BuilderFactory _factory) {
+	public Multi<MyRange> streamScalar(BuilderFactory _factory) {
 		return streamScalarHandler.streamScalar(_factory);
 	}
 
 	@Override
-	public List<SampleEnum> streamEnum(BuilderFactory _factory) {
+	public Multi<SampleEnum> streamEnum(BuilderFactory _factory) {
 		return streamEnumHandler.streamEnum(_factory);
 	}
 
 	@Override
-	public List<StreamInlineEnum_Result$> streamInlineEnum(BuilderFactory _factory) {
+	public Multi<StreamInlineEnum_Result$> streamInlineEnum(BuilderFactory _factory) {
 		return streamInlineEnumHandler.streamInlineEnum(_factory);
 	}
 
 	@Override
-	public List<SimpleRecord.Data> streamRecord(BuilderFactory _factory) {
+	public Multi<SimpleRecord.Data> streamRecord(BuilderFactory _factory) {
 		return streamRecordHandler.streamRecord(_factory);
 	}
 
 	@Override
-	public List<Union.Data> streamUnion(BuilderFactory _factory) {
+	public Multi<Union.Data> streamUnion(BuilderFactory _factory) {
 		return streamUnionHandler.streamUnion(_factory);
 	}
 
 	public interface StreamBooleanHandler {
-		public List<Boolean> streamBoolean(BuilderFactory _factory);
+		public Multi<Boolean> streamBoolean(BuilderFactory _factory);
 	}
 
 	public interface StreamShortHandler {
-		public List<Short> streamShort(BuilderFactory _factory);
+		public Multi<Short> streamShort(BuilderFactory _factory);
 	}
 
 	public interface StreamIntHandler {
-		public List<Integer> streamInt(BuilderFactory _factory);
+		public Multi<Integer> streamInt(BuilderFactory _factory);
 	}
 
 	public interface StreamLongHandler {
-		public List<Long> streamLong(BuilderFactory _factory);
+		public Multi<Long> streamLong(BuilderFactory _factory);
 	}
 
 	public interface StreamFloatHandler {
-		public List<Float> streamFloat(BuilderFactory _factory);
+		public Multi<Float> streamFloat(BuilderFactory _factory);
 	}
 
 	public interface StreamDoubleHandler {
-		public List<Double> streamDouble(BuilderFactory _factory);
+		public Multi<Double> streamDouble(BuilderFactory _factory);
 	}
 
 	public interface StreamStringHandler {
-		public List<String> streamString(BuilderFactory _factory);
+		public Multi<String> streamString(BuilderFactory _factory);
 	}
 
 	public interface StreamLocalDateHandler {
-		public List<LocalDate> streamLocalDate(BuilderFactory _factory);
+		public Multi<LocalDate> streamLocalDate(BuilderFactory _factory);
 	}
 
 	public interface StreamLocalDateTimeHandler {
-		public List<LocalDateTime> streamLocalDateTime(BuilderFactory _factory);
+		public Multi<LocalDateTime> streamLocalDateTime(BuilderFactory _factory);
 	}
 
 	public interface StreamLocalTimeHandler {
-		public List<LocalTime> streamLocalTime(BuilderFactory _factory);
+		public Multi<LocalTime> streamLocalTime(BuilderFactory _factory);
 	}
 
 	public interface StreamOffsetDateTimeHandler {
-		public List<OffsetDateTime> streamOffsetDateTime(BuilderFactory _factory);
+		public Multi<OffsetDateTime> streamOffsetDateTime(BuilderFactory _factory);
 	}
 
 	public interface StreamZonedDateTimeHandler {
-		public List<ZonedDateTime> streamZonedDateTime(BuilderFactory _factory);
+		public Multi<ZonedDateTime> streamZonedDateTime(BuilderFactory _factory);
 	}
 
 	public interface StreamScalarHandler {
-		public List<MyRange> streamScalar(BuilderFactory _factory);
+		public Multi<MyRange> streamScalar(BuilderFactory _factory);
 	}
 
 	public interface StreamEnumHandler {
-		public List<SampleEnum> streamEnum(BuilderFactory _factory);
+		public Multi<SampleEnum> streamEnum(BuilderFactory _factory);
 	}
 
 	public interface StreamInlineEnumHandler {
-		public List<StreamInlineEnum_Result$> streamInlineEnum(BuilderFactory _factory);
+		public Multi<StreamInlineEnum_Result$> streamInlineEnum(BuilderFactory _factory);
 	}
 
 	public interface StreamRecordHandler {
-		public List<SimpleRecord.Data> streamRecord(BuilderFactory _factory);
+		public Multi<SimpleRecord.Data> streamRecord(BuilderFactory _factory);
 	}
 
 	public interface StreamUnionHandler {
-		public List<Union.Data> streamUnion(BuilderFactory _factory);
+		public Multi<Union.Data> streamUnion(BuilderFactory _factory);
 	}
 
 }
