@@ -42,8 +42,6 @@ function generateContent(
 	fqn: (type: string) => string,
 ) {
 	const Singleton = fqn('jakarta.inject.Singleton');
-	const Response = fqn('jakarta.ws.rs.core.Response');
-	const ResponseBuilder = fqn('jakarta.ws.rs.core.Response.ResponseBuilder');
 	const node = new CompositeGeneratorNode();
 
 	node.append(`@${Singleton}`, NL);
@@ -59,44 +57,76 @@ function generateContent(
 				params.unshift('String $contentType');
 				params.unshift(`${toResultType(o.resultType, artifactConfig, fqn, o.name, s.name)} $result`);
 			}
-			classBody.append(`public ${ResponseBuilder} ${o.name}(${params.join(', ')}) {`, NL);
+			const ReturnBuilder = o.resultType?.streaming
+				? fqn('org.jboss.resteasy.reactive.RestMulti') + '.SyncRestMulti.Builder<byte[]>'
+				: fqn('jakarta.ws.rs.core.Response.ResponseBuilder');
+			classBody.append(`public ${ReturnBuilder} ${o.name}(${params.join(', ')}) {`, NL);
 			classBody.indent(methodBody => {
 				const code = o.meta?.rest?.results.find(r => r.error === undefined)?.statusCode ?? (o.resultType ? 200 : 204);
 				if (o.resultType) {
-					if (o.resultType.variant === 'stream') {
-						if (o.resultType.type === 'file') {
-							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
-						} else {
-							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
-						}
-					} else if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
-						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
-						const _Support =
-							o.resultType.variant === 'scalar'
-								? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
-								: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
-						if (o.resultType.array) {
+					if (o.resultType.streaming) {
+						const RestMulti = fqn('org.jboss.resteasy.reactive.RestMulti');
+						if (o.resultType.variant === 'stream') {
+							throw new Error(`Streaming return type cannot be a stream: ${o.name}`);
+						} else if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
+							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+							const _Support =
+								o.resultType.variant === 'scalar'
+									? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+									: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
 							const content = toNodeTree(`
-							return ${Response}.status(${code.toFixed()})
-								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result.stream().map(${_Support}::${o.resultType.type}ToJson).toList(), $contentType, /* FIXME */ null)));`);
+							return ${RestMulti}.fromMultiData($result.map(e -> ${JsonUtils}.encodeValue(${_Support}.${o.resultType.type}ToJson(e), $contentType, /* FIXME */ null)))
+								.header("Content-Type", $contentType)
+								.status(${code.toFixed()});
+							`);
 							methodBody.append(content);
 						} else {
+							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 							const content = toNodeTree(`
-							return ${Response}.status(${code.toFixed()})
-								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${_Support}.${o.resultType.type}ToJson($result), $contentType, /* FIXME */ null)));`);
+							return ${RestMulti}.fromMultiData($result.map(e -> ${JsonUtils}.encodeValue(e, $contentType, /* FIXME */ null)))
+								.header("Content-Type", $contentType)
+								.status(${code.toFixed()});
+							`);
 							methodBody.append(content);
 						}
 					} else {
-						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
-						const content = toNodeTree(`
+						const Response = fqn('jakarta.ws.rs.core.Response');
+						if (o.resultType.variant === 'stream') {
+							if (o.resultType.type === 'file') {
+								methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
+							} else {
+								methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
+							}
+						} else if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
+							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+							const _Support =
+								o.resultType.variant === 'scalar'
+									? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+									: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+							if (o.resultType.array) {
+								const content = toNodeTree(`
+							return ${Response}.status(${code.toFixed()})
+								.type($contentType)
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result.stream().map(${_Support}::${o.resultType.type}ToJson).toList(), $contentType, /* FIXME */ null)));`);
+								methodBody.append(content);
+							} else {
+								const content = toNodeTree(`
+							return ${Response}.status(${code.toFixed()})
+								.type($contentType)
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${_Support}.${o.resultType.type}ToJson($result), $contentType, /* FIXME */ null)));`);
+								methodBody.append(content);
+							}
+						} else {
+							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+							const content = toNodeTree(`
 							return ${Response}.status(${code.toFixed()})
 								.type($contentType)
 								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, $contentType, /* FIXME */ null)));`);
-						methodBody.append(content);
+							methodBody.append(content);
+						}
 					}
 				} else {
+					const Response = fqn('jakarta.ws.rs.core.Response');
 					methodBody.append(`return ${Response}.status(${code.toFixed()});`, NL);
 				}
 			});
@@ -198,7 +228,11 @@ function toResultType(
 	}
 
 	if (type.array) {
-		rvType = `${fqn('java.util.List')}<${rvType}>`;
+		if (type.streaming) {
+			rvType = `${fqn('io.smallrye.mutiny.Multi')}<${rvType}>`;
+		} else {
+			rvType = `${fqn('java.util.List')}<${rvType}>`;
+		}
 	}
 
 	return rvType;
