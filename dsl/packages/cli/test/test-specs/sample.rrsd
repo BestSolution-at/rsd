@@ -1076,4 +1076,8 @@ resource ListStreamingService at '/api/liststreaming' {
 	GET streamInlineEnum at 'streamInlineEnum'
 	GET streamRecord at 'streamRecord'
 	GET streamUnion at 'streamUnion'
+	/*GET streamError at 'streamError' => {
+		200
+		400: SampleErrorWithValue
+	}*/
 }

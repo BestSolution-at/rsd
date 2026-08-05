@@ -1997,4 +1997,5 @@ service ListStreamingService {
 	operation streamInlineEnum(): @stream enum A | B[];
 	operation streamRecord(): @stream SimpleRecord[];
 	operation streamUnion(): @stream Union[];
+	// Add once we have Result-on Server operation streamError(): @stream string[] throws SampleErrorWithValue;
 }
