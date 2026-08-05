@@ -5,6 +5,7 @@ import java.util.stream.IntStream;
 import org.jboss.resteasy.reactive.RestMulti;
 
 import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -17,6 +18,13 @@ public class GreetingResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String hello() {
 		return "Hello from Quarkus REST";
+	}
+
+	@GET
+	@Path("/uni")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Uni<String> helloUni() {
+		return Uni.createFrom().item("Hello from Quarkus REST");
 	}
 
 	@GET
@@ -48,10 +56,11 @@ public class GreetingResource {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// emitter.fail(new Throwable("Error at 1"));
+			emitter.fail(new Throwable("Error at 1"));
 			emitter.complete();
 		});
-		var m = RestMulti.fromMultiData(source).encodeAsJsonArray(false).build();
+		var m = RestMulti.fromMultiData(source.onFailure().recoverWithItem(t -> "Error".getBytes()))
+				.encodeAsJsonArray(false).build();
 		return m;
 
 	}
