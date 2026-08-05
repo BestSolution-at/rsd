@@ -1,0 +1,17 @@
+package dev.rsdlang.sample.server.service.handler.liststreaming;
+
+import dev.rsdlang.sample.server.service.impl.ListStreamingServiceServiceImpl;
+import dev.rsdlang.sample.server.service.BuilderFactory;
+import io.smallrye.mutiny.Multi;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class StreamLocalDateHandlerImpl implements ListStreamingServiceServiceImpl.StreamLocalDateHandler {
+
+	@Override
+	public Multi<java.time.LocalDate> streamLocalDate(BuilderFactory _factory) {
+		// Implement your streaming logic here
+		return Multi.createFrom().empty();
+	}
+
+}

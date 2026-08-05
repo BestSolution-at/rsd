@@ -1978,3 +1978,24 @@ service EnumSubstition_Service {
 	operation multiBody(valueA: DayOfWeek, valueB: Month): string;
 	operation fail() throws SampleErrorEnumSub;
 }
+
+service ListStreamingService {
+	operation streamBoolean(): @stream boolean[];
+	operation streamShort(): @stream short[];
+	operation streamInt(): @stream int[];
+	operation streamLong(): @stream long[];
+	operation streamFloat(): @stream float[];
+	operation streamDouble(): @stream double[];
+	operation streamString(): @stream string[];
+	operation streamLocalDate(): @stream local-date[];
+	operation streamLocalDateTime(): @stream local-date-time[];
+	operation streamLocalTime(): @stream local-time[];
+	operation streamOffsetDateTime(): @stream offset-date-time[];
+	operation streamZonedDateTime(): @stream zoned-date-time[];
+	operation streamScalar(): @stream Range[];
+	operation streamEnum(): @stream SampleEnum[];
+	operation streamInlineEnum(): @stream enum A | B[];
+	operation streamRecord(): @stream SimpleRecord[];
+	operation streamUnion(): @stream Union[];
+	// Add once we have Result-on Server operation streamError(): @stream string[] throws SampleErrorWithValue;
+}

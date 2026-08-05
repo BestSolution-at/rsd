@@ -4828,6 +4828,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -4854,6 +4855,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -4880,6 +4882,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -4906,6 +4909,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -4932,6 +4936,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -4958,6 +4963,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -4984,6 +4990,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -5010,6 +5017,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -5036,6 +5044,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -5062,6 +5071,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -5088,6 +5098,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -5114,6 +5125,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -5140,6 +5152,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -5166,6 +5179,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -5301,6 +5315,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -5345,6 +5360,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -5650,6 +5666,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -5676,6 +5693,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -5702,6 +5720,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -5728,6 +5747,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -5754,6 +5774,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -5780,6 +5801,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -5806,6 +5828,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -5832,6 +5855,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -5858,6 +5882,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -5884,6 +5909,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -5910,6 +5936,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -5936,6 +5963,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -5962,6 +5990,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -5988,6 +6017,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -6014,6 +6044,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -6040,6 +6071,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -6108,6 +6140,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -6152,6 +6185,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -6196,6 +6230,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -6240,6 +6275,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -6284,6 +6320,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -6328,6 +6365,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -6372,6 +6410,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -6416,6 +6455,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -6460,6 +6500,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -6504,6 +6545,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -6548,6 +6590,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -6592,6 +6635,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -6636,6 +6680,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -6680,6 +6725,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -6741,6 +6787,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -6791,6 +6838,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -6825,6 +6873,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -6859,6 +6908,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -6893,6 +6943,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -6927,6 +6978,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -6961,6 +7013,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -6995,6 +7048,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7029,6 +7083,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7063,6 +7118,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -7097,6 +7153,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7131,6 +7188,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7165,6 +7223,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7199,6 +7258,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -7233,6 +7293,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7267,6 +7328,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7301,6 +7363,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7335,6 +7398,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -7369,6 +7433,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7403,6 +7468,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7437,6 +7503,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7471,6 +7538,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -7505,6 +7573,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7539,6 +7608,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7573,6 +7643,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7607,6 +7678,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -7641,6 +7713,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7675,6 +7748,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7709,6 +7783,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7743,6 +7818,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -7777,6 +7853,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7811,6 +7888,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7845,6 +7923,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7879,6 +7958,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -7913,6 +7993,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7947,6 +8028,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -7981,6 +8063,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8015,6 +8098,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -8049,6 +8133,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8083,6 +8168,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8117,6 +8203,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8151,6 +8238,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -8185,6 +8273,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8219,6 +8308,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8253,6 +8343,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8287,6 +8378,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -8321,6 +8413,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8355,6 +8448,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8389,6 +8483,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8423,6 +8518,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -8457,6 +8553,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8491,6 +8588,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8525,6 +8623,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8559,6 +8658,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -8593,6 +8693,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8627,6 +8728,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8661,6 +8763,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8707,6 +8810,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "inline-enum",
             "type": {
               "@type": "InlineEnumType",
@@ -8765,6 +8869,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8811,6 +8916,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8857,6 +8963,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -8924,6 +9031,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -8991,6 +9099,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -9058,6 +9167,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -9125,6 +9235,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -9181,6 +9292,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -9215,6 +9327,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -9249,6 +9362,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9283,6 +9397,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9317,6 +9432,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9351,6 +9467,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "union",
             "type": "Union",
             "doc": ""
@@ -9385,6 +9502,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9419,6 +9537,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9453,6 +9572,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9487,6 +9607,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "PatchableRecord",
             "doc": ""
@@ -9521,6 +9642,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "PatchableRecord",
             "doc": ""
@@ -9555,6 +9677,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "PatchableRecord",
             "doc": ""
@@ -9589,6 +9712,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "PatchableRecord",
             "doc": ""
@@ -9641,6 +9765,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -9681,6 +9806,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9721,6 +9847,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9761,6 +9888,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9801,6 +9929,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -9841,6 +9970,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9881,6 +10011,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9921,6 +10052,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -9961,6 +10093,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -10001,6 +10134,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10041,6 +10175,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10081,6 +10216,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10121,6 +10257,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -10161,6 +10298,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10201,6 +10339,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10241,6 +10380,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10281,6 +10421,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -10321,6 +10462,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10361,6 +10503,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10401,6 +10544,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10441,6 +10585,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -10481,6 +10626,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10521,6 +10667,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10561,6 +10708,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10601,6 +10749,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -10641,6 +10790,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10681,6 +10831,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10721,6 +10872,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10761,6 +10913,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -10801,6 +10954,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10841,6 +10995,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10881,6 +11036,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -10921,6 +11077,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -10961,6 +11118,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11001,6 +11159,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11041,6 +11200,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11081,6 +11241,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -11121,6 +11282,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11161,6 +11323,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11201,6 +11364,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11241,6 +11405,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -11281,6 +11446,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11321,6 +11487,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11361,6 +11528,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11401,6 +11569,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -11441,6 +11610,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11481,6 +11651,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11521,6 +11692,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11561,6 +11733,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -11601,6 +11774,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11641,6 +11815,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11681,6 +11856,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11721,6 +11897,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -11761,6 +11938,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11801,6 +11979,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11841,6 +12020,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -11893,6 +12073,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "inline-enum",
             "type": {
               "@type": "InlineEnumType",
@@ -11957,6 +12138,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12009,6 +12191,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12061,6 +12244,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12135,6 +12319,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -12209,6 +12394,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12283,6 +12469,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12357,6 +12544,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12397,6 +12585,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -12437,6 +12626,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12477,6 +12667,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12517,6 +12708,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12732,6 +12924,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -12772,6 +12965,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12812,6 +13006,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -12852,6 +13047,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12892,6 +13088,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -12932,6 +13129,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -12972,6 +13170,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -13012,6 +13211,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13052,6 +13252,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -13092,6 +13293,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13132,6 +13334,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -13172,6 +13375,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13212,6 +13416,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -13252,6 +13457,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13292,6 +13498,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -13332,6 +13539,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13372,6 +13580,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -13412,6 +13621,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13452,6 +13662,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -13492,6 +13703,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13532,6 +13744,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -13572,6 +13785,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13612,6 +13826,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -13652,6 +13867,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13692,6 +13908,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -13732,6 +13949,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13772,6 +13990,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -13812,6 +14031,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -13886,6 +14106,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -13960,6 +14181,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -14000,6 +14222,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -14040,6 +14263,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14086,6 +14310,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -14120,6 +14345,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14154,6 +14380,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14188,6 +14415,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14222,6 +14450,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -14256,6 +14485,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14290,6 +14520,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14324,6 +14555,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14358,6 +14590,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -14392,6 +14625,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14426,6 +14660,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14460,6 +14695,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14494,6 +14730,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -14528,6 +14765,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14562,6 +14800,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14596,6 +14835,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14630,6 +14870,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -14664,6 +14905,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14698,6 +14940,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14732,6 +14975,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14766,6 +15010,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -14800,6 +15045,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14834,6 +15080,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14868,6 +15115,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14902,6 +15150,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -14936,6 +15185,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -14970,6 +15220,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15004,6 +15255,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15038,6 +15290,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -15072,6 +15325,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15106,6 +15360,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15140,6 +15395,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15174,6 +15430,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -15208,6 +15465,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15242,6 +15500,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15276,6 +15535,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15310,6 +15570,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -15344,6 +15605,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15378,6 +15640,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15412,6 +15675,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15446,6 +15710,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -15480,6 +15745,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15514,6 +15780,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15548,6 +15815,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15582,6 +15850,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -15616,6 +15885,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15650,6 +15920,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15684,6 +15955,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15718,6 +15990,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -15752,6 +16025,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15786,6 +16060,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15820,6 +16095,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15854,6 +16130,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -15888,6 +16165,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15922,6 +16200,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -15956,6 +16235,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16002,6 +16282,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "inline-enum",
             "type": {
               "@type": "InlineEnumType",
@@ -16060,6 +16341,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16106,6 +16388,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16152,6 +16435,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16219,6 +16503,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -16286,6 +16571,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16353,6 +16639,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16420,6 +16707,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16454,6 +16742,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -16488,6 +16777,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16522,6 +16812,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16556,6 +16847,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -16608,6 +16900,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -16648,6 +16941,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -16688,6 +16982,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -16728,6 +17023,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -16768,6 +17064,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -16808,6 +17105,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -16848,6 +17146,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -16888,6 +17187,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -16928,6 +17228,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -16968,6 +17269,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -17008,6 +17310,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -17048,6 +17351,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -17088,6 +17392,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -17128,6 +17433,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -17180,6 +17486,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "inline-enum",
             "type": {
               "@type": "InlineEnumType",
@@ -17283,6 +17590,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -17323,6 +17631,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -17375,6 +17684,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "boolean",
             "doc": ""
@@ -17415,6 +17725,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17455,6 +17766,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17495,6 +17807,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17535,6 +17848,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "short",
             "doc": ""
@@ -17575,6 +17889,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17615,6 +17930,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17655,6 +17971,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17695,6 +18012,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -17735,6 +18053,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17775,6 +18094,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17815,6 +18135,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17855,6 +18176,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "long",
             "doc": ""
@@ -17895,6 +18217,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17935,6 +18258,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -17975,6 +18299,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18015,6 +18340,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "float",
             "doc": ""
@@ -18055,6 +18381,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18095,6 +18422,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18135,6 +18463,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18175,6 +18504,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "double",
             "doc": ""
@@ -18215,6 +18545,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18255,6 +18586,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18295,6 +18627,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18335,6 +18668,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -18375,6 +18709,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18415,6 +18750,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18455,6 +18791,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18495,6 +18832,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date",
             "doc": ""
@@ -18535,6 +18873,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18575,6 +18914,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18615,6 +18955,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18655,6 +18996,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-date-time",
             "doc": ""
@@ -18695,6 +19037,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18735,6 +19078,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18775,6 +19119,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18815,6 +19160,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "local-time",
             "doc": ""
@@ -18855,6 +19201,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18895,6 +19242,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18935,6 +19283,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -18975,6 +19324,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "offset-date-time",
             "doc": ""
@@ -19015,6 +19365,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19055,6 +19406,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19095,6 +19447,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19135,6 +19488,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "zoned-date-time",
             "doc": ""
@@ -19175,6 +19529,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19215,6 +19570,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19255,6 +19611,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19295,6 +19652,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "scalar",
             "type": "ZoneId",
             "doc": ""
@@ -19335,6 +19693,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19375,6 +19734,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19415,6 +19775,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19455,6 +19816,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "SampleEnum",
             "doc": ""
@@ -19495,6 +19857,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19535,6 +19898,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19575,6 +19939,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19627,6 +19992,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "inline-enum",
             "type": {
               "@type": "InlineEnumType",
@@ -19691,6 +20057,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19743,6 +20110,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19795,6 +20163,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -19886,6 +20255,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -19977,6 +20347,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -20068,6 +20439,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -20159,6 +20531,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -20199,6 +20572,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "record",
             "type": "SimpleRecord",
             "doc": ""
@@ -20239,6 +20613,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -20279,6 +20654,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -20319,6 +20695,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -20365,6 +20742,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20403,6 +20781,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20441,6 +20820,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20479,6 +20859,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20517,6 +20898,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20555,6 +20937,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20593,6 +20976,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20631,6 +21015,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20669,6 +21054,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20703,6 +21089,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20737,6 +21124,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20771,6 +21159,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20805,6 +21194,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20839,6 +21229,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20873,6 +21264,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -20907,6 +21299,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -21062,6 +21455,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "UploadMixedResult",
             "doc": ""
@@ -21217,6 +21611,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "UploadMixedResult",
             "doc": ""
@@ -21372,6 +21767,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "UploadMixedResult",
             "doc": ""
@@ -21527,6 +21923,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "UploadMixedResult",
             "doc": ""
@@ -21697,6 +22094,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "record",
             "type": "MixedResult",
             "doc": ""
@@ -21742,6 +22140,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -21787,6 +22186,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "builtin",
             "type": "int",
             "doc": ""
@@ -21811,6 +22211,7 @@
             "array": false,
             "variant": "stream",
             "type": "file",
+            "streaming": false,
             "doc": ""
           },
           "errors": [
@@ -21849,6 +22250,7 @@
             "array": false,
             "variant": "stream",
             "type": "blob",
+            "streaming": false,
             "doc": ""
           },
           "errors": [
@@ -21897,6 +22299,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "Range",
             "doc": ""
@@ -21919,6 +22322,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "scalar",
             "type": "Range",
             "doc": ""
@@ -21953,6 +22357,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "Range",
             "doc": ""
@@ -21987,6 +22392,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22021,6 +22427,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22055,6 +22462,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22089,6 +22497,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "scalar",
             "type": "Range",
             "doc": ""
@@ -22123,6 +22532,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22157,6 +22567,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22191,6 +22602,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22231,6 +22643,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "Range",
             "doc": ""
@@ -22271,6 +22684,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22311,6 +22725,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22351,6 +22766,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22391,6 +22807,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "scalar",
             "type": "Range",
             "doc": ""
@@ -22431,6 +22848,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22471,6 +22889,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22511,6 +22930,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22551,6 +22971,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "scalar",
             "type": "Range",
             "doc": ""
@@ -22591,6 +23012,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22631,6 +23053,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22671,6 +23094,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22711,6 +23135,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "scalar",
             "type": "Range",
             "doc": ""
@@ -22751,6 +23176,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22791,6 +23217,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22831,6 +23258,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -22876,6 +23304,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -22941,6 +23370,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "DayOfWeek",
             "doc": ""
@@ -22963,6 +23393,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "DayOfWeek",
             "doc": ""
@@ -22997,6 +23428,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "DayOfWeek",
             "doc": ""
@@ -23031,6 +23463,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23065,6 +23498,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23099,6 +23533,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23133,6 +23568,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "DayOfWeek",
             "doc": ""
@@ -23167,6 +23603,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23201,6 +23638,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23235,6 +23673,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23275,6 +23714,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "DayOfWeek",
             "doc": ""
@@ -23315,6 +23755,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23355,6 +23796,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23395,6 +23837,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23435,6 +23878,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "DayOfWeek",
             "doc": ""
@@ -23475,6 +23919,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23515,6 +23960,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23555,6 +24001,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23595,6 +24042,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "DayOfWeek",
             "doc": ""
@@ -23635,6 +24083,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23675,6 +24124,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23715,6 +24165,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23755,6 +24206,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": true,
+            "streaming": false,
             "variant": "enum",
             "type": "DayOfWeek",
             "doc": ""
@@ -23795,6 +24247,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23835,6 +24288,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23875,6 +24329,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "enum",
             "type": "NilResult",
             "doc": ""
@@ -23920,6 +24375,7 @@
           "resultType": {
             "@type": "ReturnType",
             "array": false,
+            "streaming": false,
             "variant": "builtin",
             "type": "string",
             "doc": ""
@@ -23969,6 +24425,421 @@
       "meta": {
         "rest": {
           "path": "/api/enumsubstition"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "ListStreamingService",
+      "doc": "",
+      "operations": [
+        {
+          "@type": "Operation",
+          "name": "streamBoolean",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "boolean",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamBoolean",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamShort",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "short",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamShort",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamInt",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "int",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamInt",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamLong",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "long",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamLong",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamFloat",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "float",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamFloat",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamDouble",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "double",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamDouble",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamString",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "string",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamString",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamLocalDate",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "local-date",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamLocalDate",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamLocalDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "local-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamLocalDateTime",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamLocalTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "local-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamLocalTime",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamOffsetDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "offset-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamOffsetDateTime",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamZonedDateTime",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "builtin",
+            "type": "zoned-date-time",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamZonedDateTime",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamScalar",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "scalar",
+            "type": "Range",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamScalar",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamEnum",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "enum",
+            "type": "SampleEnum",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamEnum",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamInlineEnum",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "inline-enum",
+            "type": {
+              "@type": "InlineEnumType",
+              "entries": [
+                {
+                  "@type": "EnumEntry",
+                  "name": "A"
+                },
+                {
+                  "@type": "EnumEntry",
+                  "name": "B"
+                }
+              ]
+            },
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamInlineEnum",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamRecord",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "record",
+            "type": "SimpleRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamRecord",
+              "results": []
+            }
+          }
+        },
+        {
+          "@type": "Operation",
+          "name": "streamUnion",
+          "doc": "",
+          "parameters": [],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "union",
+            "type": "Union",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "GET",
+              "path": "streamUnion",
+              "results": []
+            }
+          }
+        }
+      ],
+      "meta": {
+        "rest": {
+          "path": "/api/liststreaming"
         }
       }
     }

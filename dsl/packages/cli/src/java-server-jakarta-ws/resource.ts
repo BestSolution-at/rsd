@@ -65,7 +65,6 @@ function _generateResource(
 
 	const ApplicationScoped = fqn('jakarta.enterprise.context.ApplicationScoped');
 	const Path = fqn('jakarta.ws.rs.Path');
-	const Produces = fqn('jakarta.ws.rs.Produces');
 	const Consumes = fqn('jakarta.ws.rs.Consumes');
 	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
 	const Inject = fqn('jakarta.inject.Inject');
@@ -78,7 +77,11 @@ function _generateResource(
 	const node = new CompositeGeneratorNode();
 	node.append(`@${ApplicationScoped}`, NL);
 	node.append(`@${Path}("${s.meta.rest.path.replaceAll('$', '')}")`, NL);
-	node.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
+	// content negotiation does not work currently with Multi - https://github.com/BestSolution-at/rsd/issues/93
+	if (!s.operations.some(o => o.resultType?.streaming)) {
+		const Produces = fqn('jakarta.ws.rs.Produces');
+		node.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
+	}
 	node.append(`@${Consumes}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 	node.append(`public class ${s.name}Resource {`, NL);
 	node.indent(cBody => {
@@ -207,7 +210,11 @@ function _generateResource(
 					serviceParams.unshift(...artifactConfig.scopeValues.map(v => `$${v.name}`));
 				}
 
-				cBody.append(`public ${fqn('jakarta.ws.rs.core.Response')} ${o.name}(${params.join(', ')}) {`, NL);
+				const returnType = o.resultType?.streaming
+					? fqn('io.smallrye.mutiny.Multi')
+					: fqn('jakarta.ws.rs.core.Response');
+
+				cBody.append(`public ${returnType} ${o.name}(${params.join(', ')}) {`, NL);
 				cBody.indent(mBody => {
 					if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
 						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
@@ -385,7 +392,9 @@ function generateResourceMethod(
 	packageName: string,
 	contentEncodings: ContentTypeEncoding,
 ) {
-	const Response = fqn('jakarta.ws.rs.core.Response');
+	const ReturnType = o.resultType?.streaming
+		? fqn('io.smallrye.mutiny.Multi') + '<byte[]>'
+		: fqn('jakarta.ws.rs.core.Response');
 	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
 
 	const multiBody = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
@@ -444,7 +453,7 @@ function generateResourceMethod(
 
 	if (params.length > 0) {
 		if (params.length > 1) {
-			cBody.append(`public ${Response} ${o.name}(`, NL);
+			cBody.append(`public ${ReturnType} ${o.name}(`, NL);
 			cBody.indent(tmp =>
 				tmp.indent(paramIndent => {
 					params.forEach((p, idx, arr) => {
@@ -458,10 +467,10 @@ function generateResourceMethod(
 				}),
 			);
 		} else {
-			cBody.append(`public ${Response} ${o.name}(${params[0]}) {`, NL);
+			cBody.append(`public ${ReturnType} ${o.name}(${params[0]}) {`, NL);
 		}
 	} else {
-		cBody.append(`public ${Response} ${o.name}() {`, NL);
+		cBody.append(`public ${ReturnType} ${o.name}() {`, NL);
 	}
 	cBody.indent(mBody => {
 		o.parameters.forEach(p => {

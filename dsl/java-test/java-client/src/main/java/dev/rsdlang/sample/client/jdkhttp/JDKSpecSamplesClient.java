@@ -25,6 +25,7 @@ import dev.rsdlang.sample.client.jdkhttp.impl.ListBodyParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.ListHeaderParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.ListQueryParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.ListSampleServiceServiceImpl;
+import dev.rsdlang.sample.client.jdkhttp.impl.ListStreamingServiceServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.PathParameterTypeServiceServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.QueryParameterTypesServiceImpl;
 import dev.rsdlang.sample.client.jdkhttp.impl.SampleServiceServiceImpl;
@@ -33,6 +34,7 @@ import dev.rsdlang.sample.client.ListBodyParameterTypesService;
 import dev.rsdlang.sample.client.ListHeaderParameterTypesService;
 import dev.rsdlang.sample.client.ListQueryParameterTypesService;
 import dev.rsdlang.sample.client.ListSampleServiceService;
+import dev.rsdlang.sample.client.ListStreamingServiceService;
 import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.CyclicNodeA;
 import dev.rsdlang.sample.client.model.CyclicNodeB;
@@ -354,6 +356,7 @@ public class JDKSpecSamplesClient implements SpecSamplesClient {
 		registerServiceCreator(BinaryTypesService.class, BinaryTypesServiceImpl::new);
 		registerServiceCreator(ScalarSubstition_ServiceService.class, ScalarSubstition_ServiceServiceImpl::new);
 		registerServiceCreator(EnumSubstition_ServiceService.class, EnumSubstition_ServiceServiceImpl::new);
+		registerServiceCreator(ListStreamingServiceService.class, ListStreamingServiceServiceImpl::new);
 	}
 
 	private static void registerBuilderCreator(Class<?> clazz, Supplier<Object> constructor) {
