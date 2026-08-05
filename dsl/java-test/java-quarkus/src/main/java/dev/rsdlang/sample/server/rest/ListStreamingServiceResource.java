@@ -16,7 +16,7 @@ import io.smallrye.mutiny.Multi;
 
 @ApplicationScoped
 @Path("/api/liststreaming")
-@Consumes({ "application/json", "application/vnd.msgpack" })
+@Consumes({"application/json", "application/vnd.msgpack"})
 public class ListStreamingServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
@@ -25,8 +25,7 @@ public class ListStreamingServiceResource {
 	private final ListStreamingServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListStreamingServiceResource(ListStreamingServiceService service,
-			ListStreamingServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListStreamingServiceResource(ListStreamingServiceService service, ListStreamingServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
