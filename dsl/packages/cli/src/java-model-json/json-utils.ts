@@ -813,6 +813,10 @@ ${toString(emptyObjectValues, '\t')}
 	public static boolean mapBoolean(JsonObject object, String property) {
 		return object.getBoolean(property);
 	}
+	
+	public static boolean mapBoolean(JsonValue value) {
+		return value == JsonValue.TRUE;
+	}
 
 	// ----------------
 
@@ -859,6 +863,13 @@ ${toString(emptyObjectValues, '\t')}
 			return Optional.of(mapShort(object, property));
 		}
 		return Optional.empty();
+	}
+
+	public static short mapShort(JsonValue value) {
+		if (value instanceof JsonNumber n) {
+			return (short) n.intValue();
+		}
+		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
 	}
 
 	// ----------------
@@ -911,6 +922,13 @@ ${toString(emptyObjectValues, '\t')}
 		return OptionalInt.empty();
 	}
 
+	public static int mapInt(JsonValue value) {
+		if (value instanceof JsonNumber n) {
+			return n.intValue();
+		}
+		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 	public static Optional<List<Long>> mapNullLongs(JsonObject object, String property) {
 		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().longValue()).map(Stream::toList);
@@ -957,6 +975,13 @@ ${toString(emptyObjectValues, '\t')}
 		return OptionalLong.empty();
 	}
 
+	public static long mapLong(JsonValue value) {
+		if (value instanceof JsonNumber n) {
+			return n.longValue();
+		}
+		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 	public static Optional<List<Float>> mapNullFloats(JsonObject object, String property) {
 		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue()).map(Stream::toList);
@@ -1001,6 +1026,13 @@ ${toString(emptyObjectValues, '\t')}
 			return Optional.of(mapFloat(object, property));
 		}
 		return Optional.empty();
+	}
+
+	public static float mapFloat(JsonValue value) {
+		if (value instanceof JsonNumber n) {
+			return (float) n.doubleValue();
+		}
+		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
 	}
 
 	// ----------------
@@ -1053,6 +1085,13 @@ ${toString(emptyObjectValues, '\t')}
 		return OptionalDouble.empty();
 	}
 
+	public static double mapDouble(JsonValue value) {
+		if (value instanceof JsonNumber n) {
+			return n.doubleValue();
+		}
+		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 	public static Optional<List<String>> mapNullStrings(JsonObject object, String property) {
 		return mapToNullStream(object, property, JsonString.class,
@@ -1103,6 +1142,13 @@ ${toString(emptyObjectValues, '\t')}
 		return Optional.empty();
 	}
 
+	public static String mapString(JsonValue value) {
+		if (value instanceof JsonString s) {
+			return s.getString();
+		}
+		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 	public static Optional<List<LocalDate>> mapNullLocalDates(JsonObject object,
 			String property) {
@@ -1137,6 +1183,13 @@ ${toString(emptyObjectValues, '\t')}
 
 	public static LocalDate mapLocalDate(JsonObject object, String property) {
 		return mapLiteral(object, property, LocalDate::parse);
+	}
+
+	public static LocalDate mapLocalDate(JsonValue value) {
+		if (value instanceof JsonString s) {
+			return LocalDate.parse(s.getString());
+		}
+		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
 	}
 
 	// ----------------
@@ -1174,6 +1227,13 @@ ${toString(emptyObjectValues, '\t')}
 		return mapLiteral(object, property, LocalDateTime::parse);
 	}
 
+	public static LocalDateTime mapLocalDateTime(JsonValue value) {
+		if (value instanceof JsonString s) {
+			return LocalDateTime.parse(s.getString());
+		}
+		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 	public static Optional<List<ZonedDateTime>> mapNullZonedDateTimes(JsonObject object, String property) {
 		return mapNullLiterals(object, property, ZonedDateTime::parse);
@@ -1209,6 +1269,13 @@ ${toString(emptyObjectValues, '\t')}
 		return mapLiteral(object, property, ZonedDateTime::parse);
 	}
 
+	public static ZonedDateTime mapZonedDateTime(JsonValue value) {
+		if (value instanceof JsonString s) {
+			return ZonedDateTime.parse(s.getString());
+		}
+		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 	public static Optional<List<LocalTime>> mapNullLocalTimes(JsonObject object, String property) {
 		return mapNullLiterals(object, property, LocalTime::parse);
@@ -1242,6 +1309,13 @@ ${toString(emptyObjectValues, '\t')}
 		return mapLiteral(object, property, LocalTime::parse);
 	}
 
+	public static LocalTime mapLocalTime(JsonValue value) {
+		if (value instanceof JsonString s) {
+			return LocalTime.parse(s.getString());
+		}
+		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 	public static Optional<List<OffsetDateTime>> mapNullOffsetDateTimes(JsonObject object, String property) {
 		return mapNullLiterals(object, property, OffsetDateTime::parse);
@@ -1273,6 +1347,13 @@ ${toString(emptyObjectValues, '\t')}
 
 	public static OffsetDateTime mapOffsetDateTime(JsonObject object, String property) {
 		return mapLiteral(object, property, OffsetDateTime::parse);
+	}
+
+	public static OffsetDateTime mapOffsetDateTime(JsonValue value) {
+		if (value instanceof JsonString s) {
+			return OffsetDateTime.parse(s.getString());
+		}
+		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
 	}
 
 	// ----------------
