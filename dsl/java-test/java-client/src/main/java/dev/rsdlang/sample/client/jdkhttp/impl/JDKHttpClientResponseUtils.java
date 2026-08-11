@@ -3,7 +3,13 @@ package dev.rsdlang.sample.client.jdkhttp.impl;
 
 import java.io.InputStream;
 import java.io.IOException;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodySubscriber;
+import java.net.http.HttpResponse.BodySubscribers;
+import java.net.http.HttpResponse.ResponseInfo;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,10 +19,14 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
+import java.util.concurrent.Flow;
+import java.util.concurrent.Flow.Subscription;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.List;
 
 import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
 
 import dev.rsdlang.sample.client.model.impl.json._BlobImpl;
 import dev.rsdlang.sample.client.model.impl.json._FileImpl;
@@ -260,6 +270,66 @@ public class JDKHttpClientResponseUtils {
 			return _JsonUtils.parseLiterals(body, contentType(response), OffsetDateTime::parse);
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
+		}
+	}
+
+	public static BodySubscriber<Void> streamSubscriber(
+			ResponseInfo responseInfo,
+			Consumer<JsonValue> consumer,
+			_JsonUtils.TypeInfo<?> typeInfo) {
+		var contentType = responseInfo.headers()
+				.firstValue("Content-Type")
+				.orElseThrow(() -> new IllegalStateException("Response is missing Content-Type header"));
+		try {
+				var subscriber = new StreamSubscriber(contentType, consumer);
+				return BodySubscribers.fromSubscriber(subscriber);
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
+	}
+
+	static class StreamSubscriber implements Flow.Subscriber<List<ByteBuffer>> {
+		private final PipedOutputStream out = new PipedOutputStream();
+		private final PipedInputStream in;
+		private Subscription subscription;
+
+		StreamSubscriber(String contentType, Consumer<JsonValue> consumer) throws IOException {
+			in = new PipedInputStream(out, 16 * 1024); // match/exceed typical onNext chunk size
+			Thread.ofVirtual().start(() -> {
+				_JsonUtils.decodeStream(in, contentType, consumer, null);
+			});
+		}
+
+		public void onSubscribe(Subscription s) {
+			subscription = s;
+			s.request(1);
+		}
+
+		public void onNext(List<ByteBuffer> items) {
+			try {
+				for (ByteBuffer bb : items) {
+					byte[] b = new byte[bb.remaining()];
+					bb.get(b);
+					out.write(b); // blocks here if the unpacker thread is behind — built-in backpressure
+				}
+				subscription.request(1);
+			} catch (IOException e) {
+				subscription.cancel();
+			}
+		}
+
+		public void onError(Throwable t) {
+			try {
+				out.close();
+			} catch (IOException ignored) {
+			}
+		}
+
+		public void onComplete() {
+			try {
+				out.close();
+			} catch (IOException ignored) {
+			}
 		}
 	}
 

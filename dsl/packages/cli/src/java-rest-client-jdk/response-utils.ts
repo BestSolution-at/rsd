@@ -19,7 +19,6 @@ export function generateJDKHttpClientResponseUtils(
 	importCollector.importType('java.io.InputStream');
 	importCollector.importType('java.io.PipedInputStream');
 	importCollector.importType('java.io.PipedOutputStream');
-	importCollector.importType('java.io.ByteArrayInputStream');
 
 	importCollector.importType('java.net.http.HttpResponse');
 	importCollector.importType('java.net.http.HttpResponse.BodySubscriber');
@@ -35,7 +34,6 @@ export function generateJDKHttpClientResponseUtils(
 	importCollector.importType('java.util.function.Consumer');
 	importCollector.importType('java.util.List');
 	importCollector.importType('java.util.function.Function');
-	importCollector.importType('java.util.Optional');
 	importCollector.importType('java.util.concurrent.Flow');
 	importCollector.importType('java.util.concurrent.Flow.Subscription');
 	importCollector.importType('jakarta.json.JsonValue');
@@ -304,65 +302,23 @@ public class JDKHttpClientResponseUtils {
 		var contentType = responseInfo.headers()
 				.firstValue("Content-Type")
 				.orElseThrow(() -> new IllegalStateException("Response is missing Content-Type header"));
-		if (contentType.startsWith("application/json")) {
-			System.err.println("Streaming JSON response");
-			return BodySubscribers.ofByteArrayConsumer(new ByteConsumer(b -> {
-				consumer.accept(_JsonUtils.decodeValue(new ByteArrayInputStream(b), contentType, typeInfo));
-			}));
-		} else if (contentType.startsWith("application/vnd.msgpack")) {
-			System.err.println("Streaming MsgPack response");
-			try {
-				var subscriber = new MsgpackStreamSubscriber(consumer);
+		try {
+				var subscriber = new StreamSubscriber(contentType, consumer);
 				return BodySubscribers.fromSubscriber(subscriber);
 			} catch (IOException e) {
 				throw new IllegalStateException(e);
 			}
-		} else {
-			throw new IllegalStateException("Streaming is not supported for content type: " + contentType);
-		}
 	}
 
-	static class ByteConsumer implements Consumer<Optional<byte[]>> {
-		byte[] buffer = new byte[0];
-
-		private final Consumer<byte[]> consumer;
-
-		ByteConsumer(Consumer<byte[]> consumer) {
-			this.consumer = consumer;
-		}
-
-		@Override
-		public void accept(Optional<byte[]> bytes) {
-			bytes.ifPresent(b -> {
-				if (b[b.length - 1] == '\\n') {
-					if (buffer.length == 0) {
-						consumer.accept(b);
-					} else {
-						var newBuffer = new byte[buffer.length + b.length];
-						System.arraycopy(buffer, 0, newBuffer, 0, buffer.length);
-						System.arraycopy(b, 0, newBuffer, buffer.length, b.length);
-						consumer.accept(newBuffer);
-						buffer = new byte[0];
-					}
-				} else {
-					var newBuffer = new byte[buffer.length + b.length];
-					System.arraycopy(buffer, 0, newBuffer, 0, buffer.length);
-					System.arraycopy(b, 0, newBuffer, buffer.length, b.length);
-					buffer = newBuffer;
-				}
-			});
-		}
-	}
-
-	static class MsgpackStreamSubscriber implements Flow.Subscriber<List<ByteBuffer>> {
+	static class StreamSubscriber implements Flow.Subscriber<List<ByteBuffer>> {
 		private final PipedOutputStream out = new PipedOutputStream();
 		private final PipedInputStream in;
 		private Subscription subscription;
 
-		MsgpackStreamSubscriber(Consumer<JsonValue> consumer) throws IOException {
+		StreamSubscriber(String contentType, Consumer<JsonValue> consumer) throws IOException {
 			in = new PipedInputStream(out, 16 * 1024); // match/exceed typical onNext chunk size
 			Thread.ofVirtual().start(() -> {
-				_JsonUtils.decodeStream(in, "application/vnd.msgpack", consumer, null);
+				_JsonUtils.decodeStream(in, contentType, consumer, null);
 			});
 		}
 
