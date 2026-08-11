@@ -17,16 +17,29 @@ export function generateJDKHttpClientResponseUtils(
 
 	const importCollector = new JavaImportsCollector(packageName);
 	importCollector.importType('java.io.InputStream');
+	importCollector.importType('java.io.PipedInputStream');
+	importCollector.importType('java.io.PipedOutputStream');
+	importCollector.importType('java.io.ByteArrayInputStream');
 
 	importCollector.importType('java.net.http.HttpResponse');
+	importCollector.importType('java.net.http.HttpResponse.BodySubscriber');
+	importCollector.importType('java.net.http.HttpResponse.BodySubscribers');
+	importCollector.importType('java.net.http.HttpResponse.ResponseInfo');
+	importCollector.importType('java.nio.ByteBuffer');
 	importCollector.importType('java.nio.charset.StandardCharsets');
 	importCollector.importType('java.time.LocalDate');
 	importCollector.importType('java.time.LocalDateTime');
 	importCollector.importType('java.time.LocalTime');
 	importCollector.importType('java.time.OffsetDateTime');
 	importCollector.importType('java.time.ZonedDateTime');
+	importCollector.importType('java.util.function.Consumer');
 	importCollector.importType('java.util.List');
 	importCollector.importType('java.util.function.Function');
+	importCollector.importType('java.util.Optional');
+	importCollector.importType('java.util.concurrent.Flow');
+	importCollector.importType('java.util.concurrent.Flow.Subscription');
+	importCollector.importType('jakarta.json.JsonValue');
+
 	importCollector.importType('java.io.IOException');
 	if (hasStreamResult(model)) {
 		importCollector.importType('java.nio.file.Files');
@@ -281,6 +294,108 @@ public class JDKHttpClientResponseUtils {
 			return _JsonUtils.parseLiterals(body, contentType(response), OffsetDateTime::parse);
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
+		}
+	}
+
+	public static BodySubscriber<Void> streamSubscriber(
+			ResponseInfo responseInfo,
+			Consumer<JsonValue> consumer,
+			_JsonUtils.TypeInfo<?> typeInfo) {
+		var contentType = responseInfo.headers()
+				.firstValue("Content-Type")
+				.orElseThrow(() -> new IllegalStateException("Response is missing Content-Type header"));
+		if (contentType.startsWith("application/json")) {
+			System.err.println("Streaming JSON response");
+			return BodySubscribers.ofByteArrayConsumer(new ByteConsumer(b -> {
+				consumer.accept(_JsonUtils.decodeValue(new ByteArrayInputStream(b), contentType, typeInfo));
+			}));
+		} else if (contentType.startsWith("application/vnd.msgpack")) {
+			System.err.println("Streaming MsgPack response");
+			try {
+				var subscriber = new MsgpackStreamSubscriber(consumer);
+				return BodySubscribers.fromSubscriber(subscriber);
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
+		} else {
+			throw new IllegalStateException("Streaming is not supported for content type: " + contentType);
+		}
+	}
+
+	static class ByteConsumer implements Consumer<Optional<byte[]>> {
+		byte[] buffer = new byte[0];
+
+		private final Consumer<byte[]> consumer;
+
+		ByteConsumer(Consumer<byte[]> consumer) {
+			this.consumer = consumer;
+		}
+
+		@Override
+		public void accept(Optional<byte[]> bytes) {
+			bytes.ifPresent(b -> {
+				if (b[b.length - 1] == '\\n') {
+					if (buffer.length == 0) {
+						consumer.accept(b);
+					} else {
+						var newBuffer = new byte[buffer.length + b.length];
+						System.arraycopy(buffer, 0, newBuffer, 0, buffer.length);
+						System.arraycopy(b, 0, newBuffer, buffer.length, b.length);
+						consumer.accept(newBuffer);
+						buffer = new byte[0];
+					}
+				} else {
+					var newBuffer = new byte[buffer.length + b.length];
+					System.arraycopy(buffer, 0, newBuffer, 0, buffer.length);
+					System.arraycopy(b, 0, newBuffer, buffer.length, b.length);
+					buffer = newBuffer;
+				}
+			});
+		}
+	}
+
+	static class MsgpackStreamSubscriber implements Flow.Subscriber<List<ByteBuffer>> {
+		private final PipedOutputStream out = new PipedOutputStream();
+		private final PipedInputStream in;
+		private Subscription subscription;
+
+		MsgpackStreamSubscriber(Consumer<JsonValue> consumer) throws IOException {
+			in = new PipedInputStream(out, 16 * 1024); // match/exceed typical onNext chunk size
+			Thread.ofVirtual().start(() -> {
+				_JsonUtils.decodeStream(in, "application/vnd.msgpack", consumer, null);
+			});
+		}
+
+		public void onSubscribe(Subscription s) {
+			subscription = s;
+			s.request(1);
+		}
+
+		public void onNext(List<ByteBuffer> items) {
+			try {
+				for (ByteBuffer bb : items) {
+					byte[] b = new byte[bb.remaining()];
+					bb.get(b);
+					out.write(b); // blocks here if the unpacker thread is behind — built-in backpressure
+				}
+				subscription.request(1);
+			} catch (IOException e) {
+				subscription.cancel();
+			}
+		}
+
+		public void onError(Throwable t) {
+			try {
+				out.close();
+			} catch (IOException ignored) {
+			}
+		}
+
+		public void onComplete() {
+			try {
+				out.close();
+			} catch (IOException ignored) {
+			}
 		}
 	}
 }`);
