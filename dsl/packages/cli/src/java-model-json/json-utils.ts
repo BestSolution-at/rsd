@@ -4,8 +4,10 @@ import { toNodeTree } from '../util.js';
 type EncodingPlugin = {
 	encodeFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
 	decodeFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
+	decodeStreamFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
 	encodingFunctionName: string;
 	decodingFunctionName: string;
+	decodeStreamFunctionName: string;
 	emptyObjectBytes: number[];
 	encodeEmptyValueFunctionName: string;
 	encodeEmptyObjectFunctionName: string;
@@ -15,8 +17,10 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 	'application/vnd.msgpack': {
 		encodeFunction: generateMsgPackEncodeValueFunction,
 		decodeFunction: generateMsgPackDecodeValueFunction,
+		decodeStreamFunction: generateMsgPackDecodeStreamFunction,
 		encodingFunctionName: 'encodeMsgPackValue',
 		decodingFunctionName: 'decodeMsgPackValue',
+		decodeStreamFunctionName: 'decodeMsgPackStream',
 		emptyObjectBytes: [-128],
 		encodeEmptyValueFunctionName: 'encodeEmptyMsgpackValue',
 		encodeEmptyObjectFunctionName: 'encodeEmptyMsgpackObject',
@@ -24,8 +28,10 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 	'application/json': {
 		encodeFunction: generateJsonEncodeValueFunction,
 		decodeFunction: generateJsonDecodeValueFunction,
+		decodeStreamFunction: generateJsonDecodeStreamFunction,
 		encodingFunctionName: 'encodeJsonValue',
 		decodingFunctionName: 'decodeJsonValue',
+		decodeStreamFunctionName: 'decodeJsonStream',
 		emptyObjectBytes: [123, 125],
 		encodeEmptyValueFunctionName: 'encodeEmptyJsonValue',
 		encodeEmptyObjectFunctionName: 'encodeEmptyJsonObject',
@@ -183,6 +189,58 @@ private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker pack
 `);
 }
 
+function generateJsonDecodeStreamFunction(fqn: (t: string) => string): CompositeGeneratorNode {
+	const InputStream = fqn('java.io.InputStream');
+	const Consumer = fqn('java.util.function.Consumer');
+	const JsonValue = fqn('jakarta.json.JsonValue');
+	const BufferedReader = fqn('java.io.BufferedReader');
+	const InputStreamReader = fqn('java.io.InputStreamReader');
+	const StandardCharsets = fqn('java.nio.charset.StandardCharsets');
+	const StringReader = fqn('java.io.StringReader');
+	const Json = fqn('jakarta.json.Json');
+	return toNodeTree(`
+private static void decodeJsonStream(${InputStream} stream, ${Consumer}<${JsonValue}> consumer) {
+	var reader = new ${BufferedReader}(new ${InputStreamReader}(stream, ${StandardCharsets}.UTF_8));
+	String line;
+	try {
+		while ((line = reader.readLine()) != null) {
+			var jsonReader = ${Json}.createReader(new ${StringReader}(line));
+			var jsonValue = jsonReader.readValue();
+			consumer.accept(jsonValue);
+		}
+	} catch (IOException e) {
+		throw new IllegalStateException(e);
+	}
+}`);
+}
+
+function generateMsgPackDecodeStreamFunction(fqn: (t: string) => string): CompositeGeneratorNode {
+	const InputStream = fqn('java.io.InputStream');
+	const Consumer = fqn('java.util.function.Consumer');
+	const JsonValue = fqn('jakarta.json.JsonValue');
+	const MessagePack = fqn('org.msgpack.core.MessagePack');
+	const MessagePackException = fqn('org.msgpack.core.MessagePackException');
+	const JsonException = fqn('jakarta.json.JsonException');
+	const MsgpackJson = fqn('at.bestsolution.msgpack.json.MsgpackJson');
+	return toNodeTree(`
+private static void decodeMsgPackStream(${InputStream} stream, ${Consumer}<${JsonValue}> consumer) {
+	try {
+		var unpacker = ${MessagePack}.newDefaultUnpacker(stream);
+		var msgpackJson = ${MsgpackJson}.builder()
+				.build();
+		while (unpacker.hasNext()) {
+			var jsonValue = msgpackJson.decode(unpacker);
+			consumer.accept(jsonValue);
+			unpacker.skipValue(); // skip the newline
+		}
+	} catch (${MessagePackException} e) {
+		throw new ${JsonException}(e.getMessage(), e);
+	} catch (IOException e) {
+		throw new IllegalStateException(e);
+	}
+}`);
+}
+
 export function generateJsonUtilsContent(
 	fqn: (type: string) => string,
 	modelApiPackage: string,
@@ -326,6 +384,7 @@ export function generateJsonUtilsContent(
 
 	const JsonValue = fqn('jakarta.json.JsonValue');
 	const InputStream = fqn('java.io.InputStream');
+	const Consumer = fqn('java.util.function.Consumer');
 
 	const decodeValueMethods = new CompositeGeneratorNode();
 	decodeValueMethods.append(
@@ -355,12 +414,43 @@ export function generateJsonUtilsContent(
 		}
 	});
 	decodeValueMethods.append('}', NL, NL);
+	decodeValueMethods.append(
+		`public static void decodeStream(${InputStream} stream, String contentType, ${Consumer}<${JsonValue}> consumer, TypeInfo<?> typeInfo) {`,
+		NL,
+	);
+	decodeValueMethods.indent(mBody => {
+		if (contentTypeEncodings.length > 1) {
+			mBody.append('switch (contentType) {', NL);
+			mBody.indent(switchBody => {
+				contentTypeEncodings.forEach(enc => {
+					switchBody.append(`case "${enc}" -> ${encodingPlugins[enc].decodeStreamFunctionName}(stream, consumer);`, NL);
+				});
+				switchBody.append(
+					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
+					NL,
+				);
+			});
+			mBody.append('};', NL);
+		} else {
+			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
+			mBody.indent(blockBody => {
+				blockBody.append(
+					`return ${encodingPlugins[contentTypeEncodings[0]].decodeStreamFunctionName}(stream, consumer);`,
+					NL,
+				);
+			});
+			mBody.append('}', NL);
+			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
+		}
+	});
+	decodeValueMethods.append('}', NL, NL);
 
 	const decodeFunctions = new CompositeGeneratorNode();
 	decodeFunctions.indent(content => {
 		content.append(decodeValueMethods, NL);
 		contentTypeEncodings.forEach(enc => {
 			content.append(encodingPlugins[enc].decodeFunction(fqn), NL, NL);
+			content.append(encodingPlugins[enc].decodeStreamFunction(fqn), NL, NL);
 		});
 	});
 
