@@ -77,6 +77,7 @@ function generateContent(
 							const content = toNodeTree(`
 							return ${RestMulti}.fromMultiData($result.map(e -> ${JsonUtils}.encodeValue(${_Support}.${o.resultType.type}ToJson(e), $contentType, /* FIXME */ null)))
 								.header("Content-Type", $contentType)
+								.encodeAsJsonArray(false)
 								.status(${code.toFixed()});
 							`);
 							methodBody.append(content);
@@ -85,6 +86,7 @@ function generateContent(
 							const content = toNodeTree(`
 							return ${RestMulti}.fromMultiData($result.map(e -> ${JsonUtils}.encodeValue(e, $contentType, /* FIXME */ null)))
 								.header("Content-Type", $contentType)
+								.encodeAsJsonArray(false)
 								.status(${code.toFixed()});
 							`);
 							methodBody.append(content);
