@@ -88,19 +88,22 @@ function toMethod(
 	fqn: (type: string) => string,
 ) {
 	const parameters = allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name));
+	const [rvType, errorType] = toResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name);
+	let rv;
+	if (o.resultType?.streaming) {
+		const StreamConsumer = fqn(`${artifactConfig.rootPackageName}.StreamConsumer`);
+		parameters.push(`${StreamConsumer}<${rvType}, ${errorType}> consumer`);
+		rv = 'void';
+	} else {
+		rv = `${fqn(`${artifactConfig.rootPackageName}.Result`)}<${rvType}, ${errorType}>`;
+	}
+
 	if (parameters.length <= 1) {
-		child.append(
-			toNode(
-				[
-					`public ${toResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`,
-				],
-				false,
-			),
-		);
+		child.append(toNode([`public ${rv} ${o.name}(${parameters.join(', ')})`], false));
 	} else {
 		child.append(
 			toNode([
-				`public ${toResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name)} ${o.name}(`,
+				`public ${rv} ${o.name}(`,
 				[parameters.filter((_, idx, arr) => idx + 1 < arr.length).map(p => p + ', ')],
 			]),
 		);
@@ -135,13 +138,12 @@ function toResultType(
 	artifactConfig: JavaClientAPIGeneratorConfig,
 	fqn: (type: string) => string,
 	methodName: string,
-) {
-	const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
+): [string, string] {
 	const error = computeErrorType(errors, services, artifactConfig, fqn);
 
 	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
 	if (type === undefined) {
-		return `${Result}<Void, ${error}>`;
+		return ['Void', error];
 	}
 
 	let rvType: string;
@@ -171,11 +173,11 @@ function toResultType(
 		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
 	}
 
-	if (type.array) {
+	if (type.array && !type.streaming) {
 		rvType = `${fqn('java.util.List')}<${rvType}>`;
 	}
 
-	return `${Result}<${rvType}, ${error}>`;
+	return [rvType, error];
 }
 
 function computeErrorType(
