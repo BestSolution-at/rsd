@@ -10,8 +10,7 @@ public class StreamLongHandlerImpl implements ListStreamingServiceServiceImpl.St
 
 	@Override
 	public Multi<Long> streamLong(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(Long.MIN_VALUE, Long.MAX_VALUE);
 	}
 
 }

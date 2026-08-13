@@ -276,12 +276,13 @@ public class JDKHttpClientResponseUtils {
 	public static BodySubscriber<Void> streamSubscriber(
 			ResponseInfo responseInfo,
 			Consumer<JsonValue> consumer,
+			Runnable finisher,
 			_JsonUtils.TypeInfo<?> typeInfo) {
 		var contentType = responseInfo.headers()
 				.firstValue("Content-Type")
 				.orElseThrow(() -> new IllegalStateException("Response is missing Content-Type header"));
 		try {
-				var subscriber = new StreamSubscriber(contentType, consumer);
+				var subscriber = new StreamSubscriber(contentType, consumer, finisher);
 				return BodySubscribers.fromSubscriber(subscriber);
 			} catch (IOException e) {
 				throw new IllegalStateException(e);
@@ -291,12 +292,16 @@ public class JDKHttpClientResponseUtils {
 	static class StreamSubscriber implements Flow.Subscriber<List<ByteBuffer>> {
 		private final PipedOutputStream out = new PipedOutputStream();
 		private final PipedInputStream in;
-		private Subscription subscription;
+		private volatile Subscription subscription;
 
-		StreamSubscriber(String contentType, Consumer<JsonValue> consumer) throws IOException {
+		StreamSubscriber(String contentType, Consumer<JsonValue> consumer, Runnable finisher) throws IOException {
 			in = new PipedInputStream(out, 16 * 1024); // match/exceed typical onNext chunk size
 			Thread.ofVirtual().start(() -> {
-				_JsonUtils.decodeStream(in, contentType, consumer, null);
+				try {
+					_JsonUtils.decodeStream(in, contentType, consumer, null);
+				} finally {
+					finisher.run();
+				}
 			});
 		}
 

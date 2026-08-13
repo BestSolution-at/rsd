@@ -10,8 +10,9 @@ public class StreamLocalDateTimeHandlerImpl implements ListStreamingServiceServi
 
 	@Override
 	public Multi<java.time.LocalDateTime> streamLocalDateTime(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(
+				java.time.LocalDateTime.parse("2020-01-01T00:00:00"),
+				java.time.LocalDateTime.parse("1970-01-01T00:00:00"));
 	}
 
 }

@@ -10,7 +10,6 @@ public class StreamIntHandlerImpl implements ListStreamingServiceServiceImpl.Str
 
 	@Override
 	public Multi<Integer> streamInt(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 }

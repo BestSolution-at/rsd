@@ -11,7 +11,7 @@ public class StreamDoubleHandlerImpl
 
 	@Override
 	public Multi<Double> streamDouble(BuilderFactory _factory) {
-		return Multi.createFrom().items(1.0, 2.0, 3.0, 4.0, 5.0);
+		return Multi.createFrom().items(Double.MIN_VALUE, Double.MAX_VALUE);
 	}
 
 }

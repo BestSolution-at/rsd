@@ -1,29 +1,34 @@
 package dev.rsdlang;
 
-import java.io.ByteArrayInputStream;
+import java.util.concurrent.CountDownLatch;
+
+import dev.rsdlang.sample.client.ListStreamingServiceService;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+
+import java.io.IOException;
+import java.net.URI;
 
 public class Main {
-	public static void main(String[] args) {
 
-		var stream = new ByteArrayInputStream(new byte[0]);
-		if (stream.markSupported()) {
-			stream.mark(1);
-			int x = stream.read();
-			stream.reset();
-			System.err.println(x);
-		} else {
-			System.out.println("mark not supported");
-		}
-	}
-
-	private static <T, U extends X<T>> U createX(Class<T> type) {
-		return null;
-	}
-
-	static class X<T> {
-	}
-
-	static class Y<Q, T extends X<Q>> {
-
+	public static void main(String[] args) throws IOException, InterruptedException {
+		var client = JDKSpecSamplesClient.builder()
+				.baseURI(URI.create("http://localhost:3000"))
+				.build();
+		System.err.println(Thread.currentThread() + " - Starting streamRecord");
+		CountDownLatch latch = new CountDownLatch(1);
+		var service = client.service(ListStreamingServiceService.class);
+		service.streamRecord((data, error, done) -> {
+			System.err.println(Thread.currentThread() + " - In consumer");
+			if (error != null) {
+				System.err.println("Error: " + error);
+			} else if (data != null) {
+				System.out.println("Data: " + data);
+			}
+			if (done) {
+				System.out.println("Done streaming");
+				latch.countDown();
+			}
+		});
+		latch.await();
 	}
 }

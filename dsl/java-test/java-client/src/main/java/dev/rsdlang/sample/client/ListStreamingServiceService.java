@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-import java.util.List;
 
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
@@ -17,38 +16,38 @@ public interface ListStreamingServiceService extends BaseService {
 		A,
 		B,
 	}
-	public Result<List<Boolean>, RSDError.$GenericError> streamBoolean();
+	public void streamBoolean(StreamConsumer<Boolean, RSDError.$GenericError> consumer);
 
-	public Result<List<Short>, RSDError.$GenericError> streamShort();
+	public void streamShort(StreamConsumer<Short, RSDError.$GenericError> consumer);
 
-	public Result<List<Integer>, RSDError.$GenericError> streamInt();
+	public void streamInt(StreamConsumer<Integer, RSDError.$GenericError> consumer);
 
-	public Result<List<Long>, RSDError.$GenericError> streamLong();
+	public void streamLong(StreamConsumer<Long, RSDError.$GenericError> consumer);
 
-	public Result<List<Float>, RSDError.$GenericError> streamFloat();
+	public void streamFloat(StreamConsumer<Float, RSDError.$GenericError> consumer);
 
-	public Result<List<Double>, RSDError.$GenericError> streamDouble();
+	public void streamDouble(StreamConsumer<Double, RSDError.$GenericError> consumer);
 
-	public Result<List<String>, RSDError.$GenericError> streamString();
+	public void streamString(StreamConsumer<String, RSDError.$GenericError> consumer);
 
-	public Result<List<LocalDate>, RSDError.$GenericError> streamLocalDate();
+	public void streamLocalDate(StreamConsumer<LocalDate, RSDError.$GenericError> consumer);
 
-	public Result<List<LocalDateTime>, RSDError.$GenericError> streamLocalDateTime();
+	public void streamLocalDateTime(StreamConsumer<LocalDateTime, RSDError.$GenericError> consumer);
 
-	public Result<List<LocalTime>, RSDError.$GenericError> streamLocalTime();
+	public void streamLocalTime(StreamConsumer<LocalTime, RSDError.$GenericError> consumer);
 
-	public Result<List<OffsetDateTime>, RSDError.$GenericError> streamOffsetDateTime();
+	public void streamOffsetDateTime(StreamConsumer<OffsetDateTime, RSDError.$GenericError> consumer);
 
-	public Result<List<ZonedDateTime>, RSDError.$GenericError> streamZonedDateTime();
+	public void streamZonedDateTime(StreamConsumer<ZonedDateTime, RSDError.$GenericError> consumer);
 
-	public Result<List<MyRange>, RSDError.$GenericError> streamScalar();
+	public void streamScalar(StreamConsumer<MyRange, RSDError.$GenericError> consumer);
 
-	public Result<List<SampleEnum>, RSDError.$GenericError> streamEnum();
+	public void streamEnum(StreamConsumer<SampleEnum, RSDError.$GenericError> consumer);
 
-	public Result<List<StreamInlineEnum_Result$>, RSDError.$GenericError> streamInlineEnum();
+	public void streamInlineEnum(StreamConsumer<StreamInlineEnum_Result$, RSDError.$GenericError> consumer);
 
-	public Result<List<SimpleRecord.Data>, RSDError.$GenericError> streamRecord();
+	public void streamRecord(StreamConsumer<SimpleRecord.Data, RSDError.$GenericError> consumer);
 
-	public Result<List<Union.Data>, RSDError.$GenericError> streamUnion();
+	public void streamUnion(StreamConsumer<Union.Data, RSDError.$GenericError> consumer);
 
 }

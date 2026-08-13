@@ -1,5 +1,6 @@
 package dev.rsdlang;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import org.jboss.resteasy.reactive.RestMulti;
@@ -42,21 +43,46 @@ public class GreetingResource {
 		// return ("\"Even number " + i + "\"").getBytes();
 		// });
 		var source = Multi.createFrom().<byte[]>emitter(emitter -> {
-			emitter.emit("Even number 0".getBytes());
+			/*
+			 * var w = new byte[16382];
+			 * Arrays.fill(w, (byte) 'A');
+			 * emitter.emit(w);
+			 */
+
+			// var x = new byte[16383];
+			// Arrays.fill(x, (byte) 'A');
+			// x[16380] = '!';
+			// x[16381] = '\r';
+			// x[16382] = '\n';
+			// emitter.emit(x);
+
+			// var y = new byte[16384];
+			// Arrays.fill(y, (byte) 'A');
+			// y[16381] = '!';
+			// y[16382] = '\r';
+			// y[16383] = '\n';
+			// emitter.emit(y);
+
+			// emitter.emit("Even number \n".repeat(2000).getBytes());
+			emitter.emit("\"A\"".getBytes());
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			emitter.emit("Even number 1".getBytes());
+
+			emitter.emit("\"B\"".getBytes());
+			// emitter.emit("A".getBytes());
+			// emitter.emit("A".getBytes());
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			emitter.fail(new Throwable("Error at 1"));
+			// emitter.fail(new Throwable("Error at 1"));
 			emitter.complete();
 		});
 		var m = RestMulti.fromMultiData(source.onFailure().recoverWithItem(t -> "Error".getBytes()))

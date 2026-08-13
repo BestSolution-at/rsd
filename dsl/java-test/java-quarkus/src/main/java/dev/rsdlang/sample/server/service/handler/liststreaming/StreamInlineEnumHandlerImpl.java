@@ -11,8 +11,7 @@ public class StreamInlineEnumHandlerImpl implements ListStreamingServiceServiceI
 
 	@Override
 	public Multi<StreamInlineEnum_Result$> streamInlineEnum(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(StreamInlineEnum_Result$.A, StreamInlineEnum_Result$.B);
 	}
 
 }

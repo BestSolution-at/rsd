@@ -1,0 +1,25 @@
+package dev.rsdlang.sample.client;
+
+import java.util.function.Consumer;
+
+public interface StreamConsumer<T, E extends RSDError> {
+	public void accept(T value, E error, boolean isComplete);
+
+	public static <T, E extends RSDError> StreamConsumer<T, E> of(
+			Consumer<T> valueConsumer,
+			Consumer<E> errorConsumer,
+			Runnable completeConsumer) {
+		return new StreamConsumer<T, E>() {
+			@Override
+			public void accept(T value, E error, boolean isComplete) {
+				if (error != null) {
+					errorConsumer.accept(error);
+				} else if (isComplete) {
+					completeConsumer.run();
+				} else {
+					valueConsumer.accept(value);
+				}
+			}
+		};
+	}
+}

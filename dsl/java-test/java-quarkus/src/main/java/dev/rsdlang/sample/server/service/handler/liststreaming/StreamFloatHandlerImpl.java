@@ -10,8 +10,7 @@ public class StreamFloatHandlerImpl implements ListStreamingServiceServiceImpl.S
 
 	@Override
 	public Multi<Float> streamFloat(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(Float.MIN_VALUE, Float.MAX_VALUE);
 	}
 
 }

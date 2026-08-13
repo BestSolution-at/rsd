@@ -4,14 +4,14 @@ import dev.rsdlang.sample.server.service.impl.ListStreamingServiceServiceImpl;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 import io.smallrye.mutiny.Multi;
 import jakarta.enterprise.context.ApplicationScoped;
+
 @ApplicationScoped
 public class StreamShortHandlerHandlerImpl
 		implements ListStreamingServiceServiceImpl.StreamShortHandler {
 
 	@Override
 	public Multi<Short> streamShort(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(Short.MIN_VALUE, Short.MAX_VALUE);
 	}
 
 }

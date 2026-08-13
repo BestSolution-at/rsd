@@ -11,7 +11,6 @@ public class StreamBooleanHandlerImpl implements ListStreamingServiceServiceImpl
 
 	@Override
 	public Multi<Boolean> streamBoolean(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(true, false);
 	}
 }

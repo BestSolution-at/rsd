@@ -11,8 +11,9 @@ public class StreamZonedDateTimeHandlerImpl
 
 	@Override
 	public Multi<java.time.ZonedDateTime> streamZonedDateTime(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(
+				java.time.ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Vienna]"),
+				java.time.ZonedDateTime.parse("1970-01-01T00:00:00+01:00[Europe/Vienna]"));
 	}
 
 }

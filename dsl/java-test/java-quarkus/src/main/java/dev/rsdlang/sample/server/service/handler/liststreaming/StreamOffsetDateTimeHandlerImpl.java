@@ -10,8 +10,9 @@ public class StreamOffsetDateTimeHandlerImpl implements ListStreamingServiceServ
 
 	@Override
 	public Multi<java.time.OffsetDateTime> streamOffsetDateTime(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(
+				java.time.OffsetDateTime.parse("2020-01-01T00:00:00+00:00"),
+				java.time.OffsetDateTime.parse("1970-01-01T00:00:00+00:00"));
 	}
 
 }

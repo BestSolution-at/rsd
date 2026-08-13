@@ -11,8 +11,7 @@ public class StreamEnumHandlerImpl implements ListStreamingServiceServiceImpl.St
 
 	@Override
 	public Multi<SampleEnum> streamEnum(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(SampleEnum.A, SampleEnum.B);
 	}
 
 }

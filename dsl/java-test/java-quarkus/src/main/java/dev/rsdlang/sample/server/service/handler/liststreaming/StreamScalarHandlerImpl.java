@@ -11,8 +11,7 @@ public class StreamScalarHandlerImpl implements ListStreamingServiceServiceImpl.
 
 	@Override
 	public Multi<MyRange> streamScalar(BuilderFactory _factory) {
-		// Implement your streaming logic here
-		return Multi.createFrom().empty();
+		return Multi.createFrom().items(new MyRange(1, 10), new MyRange(20, 30));
 	}
 
 }
