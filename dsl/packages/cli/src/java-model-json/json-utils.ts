@@ -713,6 +713,13 @@ ${toString(emptyObjectValues, '\t')}
 				.map(Stream::toList);
 	}
 
+	public static <T> T mapLiteral(JsonValue value, Function<String, T> converter) {
+		if (value instanceof JsonString s) {
+			return converter.apply(s.getString());
+		}
+		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 
 	public static <T> T mapObject(JsonObject object, String property,
