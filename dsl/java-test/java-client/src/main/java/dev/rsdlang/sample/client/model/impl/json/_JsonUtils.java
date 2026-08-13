@@ -2326,7 +2326,6 @@ public class _JsonUtils {
 			while (unpacker.hasNext()) {
 				var jsonValue = msgpackJson.decode(unpacker);
 				consumer.accept(jsonValue);
-				unpacker.skipValue(); // skip the newline
 			}
 		} catch (MessagePackException e) {
 			throw new JsonException(e.getMessage(), e);

@@ -25,119 +25,119 @@ public class ListStreamingServiceResourceResponseBuilder {
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamBoolean(Multi<Boolean> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamShort(Multi<Short> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamInt(Multi<Integer> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamLong(Multi<Long> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamFloat(Multi<Float> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamDouble(Multi<Double> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamString(Multi<String> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalDate(Multi<LocalDate> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalDateTime(Multi<LocalDateTime> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalTime(Multi<LocalTime> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamOffsetDateTime(Multi<OffsetDateTime> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamZonedDateTime(Multi<ZonedDateTime> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamScalar(Multi<MyRange> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(_ScalarSupport.RangeToJson(e), $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamEnum(Multi<SampleEnum> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(_EnumSupport.SampleEnumToJson(e), $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamInlineEnum(Multi<ListStreamingServiceService.StreamInlineEnum_Result$> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamRecord(Multi<SimpleRecord.Data> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamUnion(Multi<Union.Data> $result, String $contentType) {
 		return RestMulti.fromMultiData($result.map(e -> _JsonUtils.encodeValue(e, $contentType, /* FIXME */ null)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray(!$contentType.equals("application/json"))
 			.status(200);
 	}
 

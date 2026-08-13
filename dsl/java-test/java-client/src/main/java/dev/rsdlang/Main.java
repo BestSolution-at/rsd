@@ -4,6 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 import dev.rsdlang.sample.client.ListStreamingServiceService;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
+import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,6 +14,7 @@ public class Main {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		var client = JDKSpecSamplesClient.builder()
 				.baseURI(URI.create("http://localhost:3000"))
+				.contentTypeEncoding(ContentTypeEncoding.APPLICATION_JSON)
 				.build();
 		System.err.println(Thread.currentThread() + " - Starting streamRecord");
 		CountDownLatch latch = new CountDownLatch(1);
