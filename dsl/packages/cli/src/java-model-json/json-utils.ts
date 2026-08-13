@@ -231,7 +231,6 @@ private static void decodeMsgPackStream(${InputStream} stream, ${Consumer}<${Jso
 		while (unpacker.hasNext()) {
 			var jsonValue = msgpackJson.decode(unpacker);
 			consumer.accept(jsonValue);
-			unpacker.skipValue(); // skip the newline
 		}
 	} catch (${MessagePackException} e) {
 		throw new ${JsonException}(e.getMessage(), e);
