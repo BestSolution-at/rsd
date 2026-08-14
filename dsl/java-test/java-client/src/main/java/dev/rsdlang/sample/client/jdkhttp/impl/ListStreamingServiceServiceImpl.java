@@ -68,6 +68,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamBoolean", null, null);
 				this.lifecycleHook.onFinally("streamBoolean");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -119,6 +120,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamShort", null, null);
 				this.lifecycleHook.onFinally("streamShort");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -170,6 +172,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamInt", null, null);
 				this.lifecycleHook.onFinally("streamInt");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -221,6 +224,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamLong", null, null);
 				this.lifecycleHook.onFinally("streamLong");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -272,6 +276,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamFloat", null, null);
 				this.lifecycleHook.onFinally("streamFloat");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -323,6 +328,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamDouble", null, null);
 				this.lifecycleHook.onFinally("streamDouble");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -374,6 +380,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamString", null, null);
 				this.lifecycleHook.onFinally("streamString");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -425,6 +432,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamLocalDate", null, null);
 				this.lifecycleHook.onFinally("streamLocalDate");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -476,6 +484,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamLocalDateTime", null, null);
 				this.lifecycleHook.onFinally("streamLocalDateTime");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -527,6 +536,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamLocalTime", null, null);
 				this.lifecycleHook.onFinally("streamLocalTime");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -578,6 +588,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamOffsetDateTime", null, null);
 				this.lifecycleHook.onFinally("streamOffsetDateTime");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -629,6 +640,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamZonedDateTime", null, null);
 				this.lifecycleHook.onFinally("streamZonedDateTime");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -680,6 +692,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamScalar", null, null);
 				this.lifecycleHook.onFinally("streamScalar");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -731,6 +744,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamEnum", null, null);
 				this.lifecycleHook.onFinally("streamEnum");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -782,6 +796,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamInlineEnum", null, null);
 				this.lifecycleHook.onFinally("streamInlineEnum");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -833,6 +848,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamRecord", null, null);
 				this.lifecycleHook.onFinally("streamRecord");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
@@ -884,6 +900,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			Runnable $onComplete = () -> {
 				$clientSupplier.close();
 				$consumer.accept(null, null, true);
+				this.lifecycleHook.onSuccess("streamUnion", null, null);
 				this.lifecycleHook.onFinally("streamUnion");
 			};
 			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {

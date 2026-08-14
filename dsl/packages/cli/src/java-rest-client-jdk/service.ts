@@ -823,6 +823,7 @@ function generateResponseDispatchStream(
 ${Runnable} $onComplete = () -> {
 	$clientSupplier.close();
 	$consumer.accept(null, null, true);
+	this.lifecycleHook.onSuccess("${o.name}", null, null);
 	this.lifecycleHook.onFinally("${o.name}");
 };`);
 
