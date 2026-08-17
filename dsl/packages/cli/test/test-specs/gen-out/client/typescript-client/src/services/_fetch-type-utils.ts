@@ -209,12 +209,16 @@ function decodeMsgPackStream<T>(
 		const stream = response.body;
 		async function readStream() {
 			const streamDecoder = new Decoder({ useBigInt64: true });
+			let count = 0;
 			for await (const record of streamDecoder.decodeStream(stream)) {
-				if (guard(record)) {
-					comsumer(record);
-				} else {
-					console.error('Invalid result', record);
+				if(count % 2 === 0) {
+					if (guard(record)) {
+						comsumer(record);
+					} else {
+						console.error('Invalid result', record);
+					}
 				}
+				count += 1;
 			}
 		}
 		return readStream();
