@@ -33,16 +33,27 @@ function generateServiceContent(
 	node.append(`export interface ${s.name}Service {`, NL);
 	node.indent(classBody => {
 		s.operations.forEach(o => {
-			const parameters = o.parameters.map(p => toParameter(p, anyNoneOptionalAfter(p, o.parameters), fqn));
-			const Result = fqn('Result:./_result-utils.ts', true);
-			classBody.append(
-				`${o.name}(${parameters.join(', ')}): Promise<${Result}<${toResultType(
-					o.resultType,
-					config,
-					fqn,
-				)}, ${toErrorType(o.operationErrors, fqn)}>>;`,
-				NL,
-			);
+			if (o.resultType?.streaming) {
+				const parameters = o.parameters.map(p => toParameter(p, anyNoneOptionalAfter(p, o.parameters), fqn));
+				classBody.append(`${o.name}($callbacks: {`, NL);
+				classBody.indent(callbacksBody => {
+					callbacksBody.append(`value: (value: ${toResultType(o.resultType, config, fqn)}) => void;`, NL);
+					callbacksBody.append(`error: (error: ${toErrorType(o.operationErrors, fqn)}) => void;`, NL);
+					callbacksBody.append(`final: () => void;`, NL);
+				});
+				classBody.append(`}, ${parameters.join(', ')}): Promise<void>;`, NL);
+			} else {
+				const parameters = o.parameters.map(p => toParameter(p, anyNoneOptionalAfter(p, o.parameters), fqn));
+				const Result = fqn('Result:./_result-utils.ts', true);
+				classBody.append(
+					`${o.name}(${parameters.join(', ')}): Promise<${Result}<${toResultType(
+						o.resultType,
+						config,
+						fqn,
+					)}, ${toErrorType(o.operationErrors, fqn)}>>;`,
+					NL,
+				);
+			}
 		});
 	});
 	node.append('}', NL);
@@ -87,7 +98,7 @@ function toResultType(
 	} else {
 		type = 'any';
 	}
-	if (result.array) {
+	if (result.array && !result.streaming) {
 		type = `${type}[]`;
 	}
 	return type;

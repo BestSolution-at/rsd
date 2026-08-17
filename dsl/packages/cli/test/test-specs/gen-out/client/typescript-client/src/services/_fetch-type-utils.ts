@@ -109,8 +109,15 @@ export function decodeResponse<T>(response: Response, guard: (value: unknown) =>
 
 async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
 	const text = await response.text();
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const data = JSON.parse(text, (_, v: unknown, ...args: unknown[]) => {
+	const data = parseJson(text);
+	if (!guard(data)) {
+		throw new Error('Invalid result');
+	}
+	return data;
+}
+
+function parseJson(text: string): unknown {
+	return JSON.parse(text, (_, v: unknown, ...args: unknown[]) => {
 		if (typeof v === 'number') {
 			const context = args[0];
 			if (context && typeof context === 'object' && 'source' in context && typeof context.source === 'string') {
@@ -127,11 +134,8 @@ async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => 
 
 		return v;
 	});
-	if (!guard(data)) {
-		throw new Error('Invalid result');
-	}
-	return data;
 }
+
 
 const decoder = new Decoder({ useBigInt64: true });
 async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
@@ -141,5 +145,81 @@ async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) 
 		throw new Error('Invalid result');
 	}
 	return data;
+}
+
+export function decodeResponseStream<T>(response: Response, guard: (value: unknown) => value is T, comsumer: (value: T) => void): Promise<void> {
+	const contentType = response.headers.get('Content-Type')?.split(';')[0]?.trim();
+	switch (contentType) {
+		case 'application/json':
+			return decodeJsonStream<T>(response, guard, comsumer);
+		case 'application/vnd.msgpack':
+			return decodeMsgPackStream<T>(response, guard, comsumer);
+		default:
+			throw new Error(`Unsupported response content type: ${String(contentType)}`);
+	}
+}
+
+function decodeJsonStream<T>(
+	response: Response,
+	guard: (value: unknown) => value is T,
+	comsumer: (value: T) => void,
+): Promise<void> {
+	const stream = response.body;
+	if (stream) {
+		const textDecoder = new TextDecoder();
+		const stream: ReadableStream<Uint8Array> = response.body;
+
+		async function readStream() {
+			let buffer = '';
+			for await (const value of stream) {
+				const text = textDecoder.decode(value, { stream: true });
+				buffer += text;
+
+				const lines = buffer.split('\n');
+				// Pop the last line from the array and keep it in the
+				// buffer for the next iteration. If the line ended with
+				// newline the element will be an empty string, which is fine.
+				buffer = lines.pop() ?? '';
+				for (const line of lines) {
+					if (line.trim().length > 0) {
+						const data = parseJson(line);
+						if (guard(data)) {
+							comsumer(data);
+						} else {
+							console.error('Invalid result', data);
+						}
+					}
+				}
+			}
+		}
+
+		return readStream();
+	} else {
+		return Promise.reject(new Error(`Response body is not available for JSON stream decoding`));
+	}
+}
+
+function decodeMsgPackStream<T>(
+	response: Response,
+	guard: (value: unknown) => value is T,
+	comsumer: (value: T) => void,
+): Promise<void> {
+	const stream = response.body;
+	if (stream) {
+		const stream = response.body;
+		async function readStream() {
+			const streamDecoder = new Decoder({ useBigInt64: true });
+			for await (const record of streamDecoder.decodeStream(stream)) {
+				if (guard(record)) {
+					comsumer(record);
+				} else {
+					console.error('Invalid result', record);
+				}
+			}
+		}
+		return readStream();
+	} else {
+		return Promise.reject(new Error(`Response body is not available for MessagePack stream decoding`));
+	}
 }
 
