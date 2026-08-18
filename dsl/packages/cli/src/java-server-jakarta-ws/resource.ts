@@ -77,11 +77,6 @@ function _generateResource(
 	const node = new CompositeGeneratorNode();
 	node.append(`@${ApplicationScoped}`, NL);
 	node.append(`@${Path}("${s.meta.rest.path.replaceAll('$', '')}")`, NL);
-	// content negotiation does not work currently with Multi - https://github.com/BestSolution-at/rsd/issues/93
-	if (!s.operations.some(o => o.resultType?.streaming)) {
-		const Produces = fqn('jakarta.ws.rs.Produces');
-		node.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
-	}
 	node.append(`@${Consumes}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 	node.append(`public class ${s.name}Resource {`, NL);
 	node.indent(cBody => {
@@ -158,6 +153,11 @@ function _generateResource(
 				if (meta.path) {
 					cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
 				}
+				// content negotiation does not work currently with Multi - https://github.com/BestSolution-at/rsd/issues/93
+				if (!o.resultType?.streaming) {
+					const Produces = fqn('jakarta.ws.rs.Produces');
+					cBody.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
+				}
 
 				cBody.append(generateResourceMethod(o, s, artifactConfig, fqn, packageName, contentTypeEncodings));
 			});
@@ -172,6 +172,11 @@ function _generateResource(
 				cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
 				if (o.meta.rest.path) {
 					cBody.append(`@${Path}("${o.meta.rest.path.replaceAll('$', '')}")`, NL);
+				}
+				// content negotiation does not work currently with Multi - https://github.com/BestSolution-at/rsd/issues/93
+				if (!o.resultType?.streaming) {
+					const Produces = fqn('jakarta.ws.rs.Produces');
+					cBody.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 				}
 				cBody.append(
 					`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,

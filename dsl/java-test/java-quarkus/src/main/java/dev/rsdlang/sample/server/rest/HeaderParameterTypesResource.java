@@ -25,7 +25,6 @@ import dev.rsdlang.sample.server.service.HeaderParameterTypesService;
 
 @ApplicationScoped
 @Path("/api/headerparametertypes")
-@Produces({"application/json", "application/vnd.msgpack"})
 @Consumes({"application/json", "application/vnd.msgpack"})
 public class HeaderParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
@@ -61,6 +60,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleBooleanHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleBooleanHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -71,6 +71,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleBooleanHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleBooleanHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -81,6 +82,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleBooleanHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleBooleanHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -91,6 +93,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleBooleanHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleBooleanHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -101,6 +104,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleShortHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleShortHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -111,6 +115,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleShortHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleShortHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -121,6 +126,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleShortHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleShortHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -131,6 +137,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleShortHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleShortHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -141,6 +148,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleIntHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleIntHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -151,6 +159,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleIntHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleIntHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -161,6 +170,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleIntHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleIntHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -171,6 +181,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleIntHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleIntHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -181,6 +192,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLongHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLongHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -191,6 +203,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLongHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLongHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -201,6 +214,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLongHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLongHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -211,6 +225,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLongHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLongHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -221,6 +236,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleFloatHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleFloatHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -231,6 +247,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleFloatHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleFloatHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -241,6 +258,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleFloatHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleFloatHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -251,6 +269,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleFloatHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleFloatHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -261,6 +280,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleDoubleHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleDoubleHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -271,6 +291,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleDoubleHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleDoubleHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -281,6 +302,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleDoubleHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleDoubleHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -291,6 +313,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleDoubleHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleDoubleHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -301,6 +324,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleStringHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleStringHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -311,6 +335,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleStringHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleStringHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -321,6 +346,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleStringHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleStringHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -331,6 +357,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleStringHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleStringHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -341,6 +368,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -351,6 +379,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -361,6 +390,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -371,6 +401,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -381,6 +412,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateTimeHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateTimeHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -391,6 +423,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateTimeHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateTimeHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -401,6 +434,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateTimeHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateTimeHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -411,6 +445,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateTimeHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateTimeHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -421,6 +456,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalTimeHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalTimeHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -431,6 +467,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalTimeHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalTimeHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -441,6 +478,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalTimeHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalTimeHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -451,6 +489,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalTimeHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalTimeHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -461,6 +500,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleOffsetDateTimeHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleOffsetDateTimeHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -471,6 +511,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleOffsetDateTimeHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleOffsetDateTimeHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -481,6 +522,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleOffsetDateTimeHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleOffsetDateTimeHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -491,6 +533,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleOffsetDateTimeHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleOffsetDateTimeHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -501,6 +544,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleZonedDateTimeHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleZonedDateTimeHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -511,6 +555,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleZonedDateTimeHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleZonedDateTimeHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -521,6 +566,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleZonedDateTimeHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleZonedDateTimeHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -531,6 +577,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleZonedDateTimeHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleZonedDateTimeHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -541,6 +588,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleScalarHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleScalarHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -551,6 +599,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleScalarHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleScalarHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -561,6 +610,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleScalarHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleScalarHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -571,6 +621,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleScalarHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleScalarHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -581,6 +632,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleEnumHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleEnumHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -591,6 +643,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleEnumHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleEnumHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -601,6 +654,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleEnumHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleEnumHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -611,6 +665,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleEnumHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleEnumHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -621,6 +676,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleInlineEnumHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleInlineEnumHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -631,6 +687,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleInlineEnumHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleInlineEnumHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -641,6 +698,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleInlineEnumHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleInlineEnumHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -651,6 +709,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("simpleInlineEnumHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleInlineEnumHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("headerValue") String _headerValue) {
@@ -661,6 +720,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("multiHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
@@ -675,6 +735,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("multiHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
@@ -689,6 +750,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("multiHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
@@ -703,6 +765,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("multiHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("valueA") String _valueA,
@@ -717,6 +780,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("recordHeaderParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response recordHeaderParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
@@ -728,6 +792,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("recordHeaderParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response recordHeaderParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
@@ -739,6 +804,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("recordHeaderParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response recordHeaderParamNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
@@ -750,6 +816,7 @@ public class HeaderParameterTypesResource {
 
 	@GET
 	@Path("recordHeaderParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response recordHeaderParamOptNil(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
@@ -761,6 +828,7 @@ public class HeaderParameterTypesResource {
 
 	@POST
 	@Path("mixed/{pathString}/{pathNumber}")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response mixed(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,

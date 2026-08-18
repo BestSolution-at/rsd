@@ -29,7 +29,6 @@ import dev.rsdlang.sample.server.service.SampleServiceService;
 
 @ApplicationScoped
 @Path("/api/samplerecords")
-@Produces({"application/json", "application/vnd.msgpack"})
 @Consumes({"application/json", "application/vnd.msgpack"})
 public class SampleServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
@@ -65,6 +64,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("boolean")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getBoolean(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getBoolean(builderFactory);
 		return responseBuilder.getBoolean(result, computeResponseContentType($acceptHeaders)).build();
@@ -72,6 +72,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("short")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getShort(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getShort(builderFactory);
 		return responseBuilder.getShort(result, computeResponseContentType($acceptHeaders)).build();
@@ -79,6 +80,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("int")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getInt(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getInt(builderFactory);
 		return responseBuilder.getInt(result, computeResponseContentType($acceptHeaders)).build();
@@ -86,6 +88,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("long")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getLong(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getLong(builderFactory);
 		return responseBuilder.getLong(result, computeResponseContentType($acceptHeaders)).build();
@@ -93,6 +96,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("float")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getFloat(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getFloat(builderFactory);
 		return responseBuilder.getFloat(result, computeResponseContentType($acceptHeaders)).build();
@@ -100,6 +104,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("double")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getDouble(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getDouble(builderFactory);
 		return responseBuilder.getDouble(result, computeResponseContentType($acceptHeaders)).build();
@@ -107,6 +112,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("string")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getString(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getString(builderFactory);
 		return responseBuilder.getString(result, computeResponseContentType($acceptHeaders)).build();
@@ -114,6 +120,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("localdate")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getLocalDate(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getLocalDate(builderFactory);
 		return responseBuilder.getLocalDate(result, computeResponseContentType($acceptHeaders)).build();
@@ -121,6 +128,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("localdatetime")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getLocalDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getLocalDateTime(builderFactory);
 		return responseBuilder.getLocalDateTime(result, computeResponseContentType($acceptHeaders)).build();
@@ -128,6 +136,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("localtime")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getLocalTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getLocalTime(builderFactory);
 		return responseBuilder.getLocalTime(result, computeResponseContentType($acceptHeaders)).build();
@@ -135,6 +144,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("offsetdatetime")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getOffsetDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getOffsetDateTime(builderFactory);
 		return responseBuilder.getOffsetDateTime(result, computeResponseContentType($acceptHeaders)).build();
@@ -142,6 +152,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("zoneddatetime")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getZonedDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getZonedDateTime(builderFactory);
 		return responseBuilder.getZonedDateTime(result, computeResponseContentType($acceptHeaders)).build();
@@ -149,6 +160,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("scalar")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getScalar(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getScalar(builderFactory);
 		return responseBuilder.getScalar(result, computeResponseContentType($acceptHeaders)).build();
@@ -156,6 +168,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("enum")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.getEnum(builderFactory);
 		return responseBuilder.getEnum(result, computeResponseContentType($acceptHeaders)).build();
@@ -163,6 +176,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("voidoperation")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response voidOperation(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		service.voidOperation(builderFactory);
 		return responseBuilder.voidOperation().build();
@@ -170,6 +184,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("erroroperation")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response errorOperation(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.errorOperation(builderFactory);
@@ -181,6 +196,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("multierroroperation")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiErrorOperation(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.multiErrorOperation(builderFactory);
@@ -194,6 +210,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simplerecord/{key}")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getSimpleRecord(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("key") String _key) {
@@ -204,6 +221,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simplerecordwitherror/{key}")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getSimpleRecordWithError(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("key") String _key) {
@@ -218,6 +236,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simpleerrorwithvalue")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getSimpleErrorWithValue(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.getSimpleErrorWithValue(builderFactory);
@@ -229,6 +248,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simpleerrorint")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getSimpleErrorInt(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.getSimpleErrorInt(builderFactory);
@@ -240,6 +260,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simpleerrorboolean")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getSimpleErrorBoolean(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.getSimpleErrorBoolean(builderFactory);
@@ -251,6 +272,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simpleerrorenum")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getSimpleErrorEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.getSimpleErrorEnum(builderFactory);
@@ -262,6 +284,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simpleerrorscalar")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getSimpleErrorScalar(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.getSimpleErrorScalar(builderFactory);
@@ -273,6 +296,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("simpleerrorunion")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response getSimpleErrorUnion(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.getSimpleErrorUnion(builderFactory);
@@ -284,6 +308,7 @@ public class SampleServiceResource {
 
 	@GET
 	@Path("multi-error")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiErrorSameCode(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("errorType") String _errorType) {
