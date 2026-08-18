@@ -1214,10 +1214,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static String mapString(JsonValue value) {
-		if (value instanceof JsonString s) {
-			return s.getString();
-		}
-		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+		return mapLiteral(value, Function.identity());
 	}
 
 	// ----------------
@@ -1257,10 +1254,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static LocalDate mapLocalDate(JsonValue value) {
-		if (value instanceof JsonString s) {
-			return LocalDate.parse(s.getString());
-		}
-		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+		return mapLiteral(value, LocalDate::parse);
 	}
 
 	// ----------------
@@ -1299,10 +1293,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static LocalDateTime mapLocalDateTime(JsonValue value) {
-		if (value instanceof JsonString s) {
-			return LocalDateTime.parse(s.getString());
-		}
-		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+		return mapLiteral(value, LocalDateTime::parse);
 	}
 
 	// ----------------
@@ -1341,10 +1332,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static ZonedDateTime mapZonedDateTime(JsonValue value) {
-		if (value instanceof JsonString s) {
-			return ZonedDateTime.parse(s.getString());
-		}
-		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+		return mapLiteral(value, ZonedDateTime::parse);
 	}
 
 	// ----------------
@@ -1381,10 +1369,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static LocalTime mapLocalTime(JsonValue value) {
-		if (value instanceof JsonString s) {
-			return LocalTime.parse(s.getString());
-		}
-		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+		return mapLiteral(value, LocalTime::parse);
 	}
 
 	// ----------------
@@ -1421,10 +1406,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static OffsetDateTime mapOffsetDateTime(JsonValue value) {
-		if (value instanceof JsonString s) {
-			return OffsetDateTime.parse(s.getString());
-		}
-		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+		return mapLiteral(value, OffsetDateTime::parse);
 	}
 
 	// ----------------
