@@ -276,7 +276,7 @@ public class JDKHttpClientResponseUtils {
 	public static BodySubscriber<Void> streamSubscriber(
 			ResponseInfo responseInfo,
 			Consumer<JsonValue> consumer,
-			Runnable finisher,
+			Consumer<Throwable> finisher,
 			_JsonUtils.TypeInfo<?> typeInfo) {
 		var contentType = responseInfo.headers()
 				.firstValue("Content-Type")
@@ -293,14 +293,18 @@ public class JDKHttpClientResponseUtils {
 		private final PipedOutputStream out = new PipedOutputStream();
 		private final PipedInputStream in;
 		private volatile Subscription subscription;
+		private volatile Throwable error;
 
-		StreamSubscriber(String contentType, Consumer<JsonValue> consumer, Runnable finisher) throws IOException {
+		StreamSubscriber(String contentType, Consumer<JsonValue> consumer, Consumer<Throwable> finisher) throws IOException {
 			in = new PipedInputStream(out, 16 * 1024); // match/exceed typical onNext chunk size
 			Thread.ofVirtual().start(() -> {
+				Throwable decodeError = null;
 				try {
 					_JsonUtils.decodeStream(in, contentType, consumer, null);
+				} catch (RuntimeException e) {
+					decodeError = e;
 				} finally {
-					finisher.run();
+					finisher.accept(error != null ? error : decodeError);
 				}
 			});
 		}
@@ -320,10 +324,15 @@ public class JDKHttpClientResponseUtils {
 				subscription.request(1);
 			} catch (IOException e) {
 				subscription.cancel();
+				try {
+					out.close();
+				} catch (IOException ignored) {
+				}
 			}
 		}
 
 		public void onError(Throwable t) {
+			error = t;
 			try {
 				out.close();
 			} catch (IOException ignored) {

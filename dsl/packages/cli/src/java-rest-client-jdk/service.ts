@@ -814,16 +814,22 @@ function generateResponseDispatchStream(
 	if (o.resultType === undefined) {
 		throw new Error(`Operation ${o.name} is marked as streaming but has no result type defined.`);
 	}
-	const Runnable = fqn('java.lang.Runnable');
 	const Consumer = fqn('java.util.function.Consumer');
 	const JsonValue = fqn('jakarta.json.JsonValue');
 	const BodyHandler = fqn('java.net.http.HttpResponse.BodyHandler');
+	const RSDError = fqn(`${artifactConfig.rootPackageName}.RSDError`);
 
 	const Finisher = toNodeTree(`
-${Runnable} $onComplete = () -> {
+${Consumer}<Throwable> $onComplete = $streamError -> {
 	$clientSupplier.close();
-	$consumer.accept(null, null, true);
-	this.lifecycleHook.onSuccess("${o.name}", null, null);
+	if ($streamError != null) {
+		var $error = new ${RSDError}.$GenericError(${RSDError}.Type._Native, "Unexpected error while streaming operation ${o.name}", $streamError);
+		$consumer.accept(null, $error, true);
+		this.lifecycleHook.onCatch("${o.name}", $error);
+	} else {
+		$consumer.accept(null, null, true);
+		this.lifecycleHook.onSuccess("${o.name}", null, null);
+	}
 	this.lifecycleHook.onFinally("${o.name}");
 };`);
 
