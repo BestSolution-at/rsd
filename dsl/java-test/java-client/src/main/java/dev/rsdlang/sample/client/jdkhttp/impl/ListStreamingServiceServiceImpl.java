@@ -90,7 +90,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamBoolean", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamBoolean", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamBoolean", $error);
 					this.lifecycleHook.onFinally("streamBoolean");
@@ -148,7 +148,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamShort", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamShort", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamShort", $error);
 					this.lifecycleHook.onFinally("streamShort");
@@ -206,7 +206,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamInt", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamInt", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamInt", $error);
 					this.lifecycleHook.onFinally("streamInt");
@@ -264,7 +264,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamLong", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamLong", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamLong", $error);
 					this.lifecycleHook.onFinally("streamLong");
@@ -322,7 +322,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamFloat", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamFloat", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamFloat", $error);
 					this.lifecycleHook.onFinally("streamFloat");
@@ -380,7 +380,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamDouble", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamDouble", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamDouble", $error);
 					this.lifecycleHook.onFinally("streamDouble");
@@ -438,7 +438,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamString", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamString", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamString", $error);
 					this.lifecycleHook.onFinally("streamString");
@@ -496,7 +496,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamLocalDate", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamLocalDate", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamLocalDate", $error);
 					this.lifecycleHook.onFinally("streamLocalDate");
@@ -554,7 +554,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamLocalDateTime", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamLocalDateTime", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamLocalDateTime", $error);
 					this.lifecycleHook.onFinally("streamLocalDateTime");
@@ -612,7 +612,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamLocalTime", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamLocalTime", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamLocalTime", $error);
 					this.lifecycleHook.onFinally("streamLocalTime");
@@ -670,7 +670,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamOffsetDateTime", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamOffsetDateTime", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamOffsetDateTime", $error);
 					this.lifecycleHook.onFinally("streamOffsetDateTime");
@@ -728,7 +728,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamZonedDateTime", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamZonedDateTime", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamZonedDateTime", $error);
 					this.lifecycleHook.onFinally("streamZonedDateTime");
@@ -786,7 +786,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamScalar", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamScalar", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamScalar", $error);
 					this.lifecycleHook.onFinally("streamScalar");
@@ -844,7 +844,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamEnum", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamEnum", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamEnum", $error);
 					this.lifecycleHook.onFinally("streamEnum");
@@ -902,7 +902,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamInlineEnum", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamInlineEnum", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamInlineEnum", $error);
 					this.lifecycleHook.onFinally("streamInlineEnum");
@@ -960,7 +960,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamRecord", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamRecord", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamRecord", $error);
 					this.lifecycleHook.onFinally("streamRecord");
@@ -1018,7 +1018,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			$responseFuture.whenComplete(($response, $e) -> {
 				if ($e != null) {
 					$clientSupplier.close();
-					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation §streamUnion", $e);
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamUnion", $e);
 					$consumer.accept(null, $error, true);
 					this.lifecycleHook.onCatch("streamUnion", $error);
 					this.lifecycleHook.onFinally("streamUnion");
