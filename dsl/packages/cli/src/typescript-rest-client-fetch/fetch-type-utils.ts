@@ -113,6 +113,22 @@ function generateFetchTypeUtilsContent(
 
 		export function decodeAsciiString(text: string): string {
 			return text.replace(/\\\\u([0-9a-fA-F]{4})/g, (_, g1) => String.fromCharCode(parseInt(String(g1), 16)));
+		}
+
+		async function* toAsyncIterable(stream: ReadableStream<Uint8Array>): AsyncGenerator<Uint8Array> {
+			const reader = stream.getReader();
+			try {
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+				while (true) {
+					const { done, value } = await reader.read();
+					if (done) {
+						return;
+					}
+					yield value;
+				}
+			} finally {
+				reader.releaseLock();
+			}
 		}`);
 
 	result.append(basic, NL, NL);
@@ -299,11 +315,11 @@ function decodeJsonStream<T>(
 	const stream = response.body;
 	if (stream) {
 		const textDecoder = new TextDecoder();
-		const stream: ReadableStream<Uint8Array> = response.body;
+		const iterable = toAsyncIterable(stream);
 
 		async function readStream() {
 			let buffer = '';
-			for await (const value of stream) {
+			for await (const value of iterable) {
 				const text = textDecoder.decode(value, { stream: true });
 				buffer += text;
 
@@ -341,11 +357,12 @@ function decodeMsgPackStream<T>(
 ): Promise<void> {
 	const stream = response.body;
 	if (stream) {
-		const stream = response.body;
+		const iterable = toAsyncIterable(stream);
+
 		async function readStream() {
 			const streamDecoder = new ${fqn('Decoder:@msgpack/msgpack', false)}({ useBigInt64: true });
 			let count = 0;
-			for await (const record of streamDecoder.decodeStream(stream)) {
+			for await (const record of streamDecoder.decodeStream(iterable)) {
 				if(count % 2 === 0) {
 					if (guard(record)) {
 						comsumer(record);
