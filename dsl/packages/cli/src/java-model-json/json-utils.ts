@@ -435,6 +435,7 @@ export function generateJsonUtilsContent(
 			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
 			mBody.indent(blockBody => {
 				blockBody.append(`${encodingPlugins[contentTypeEncodings[0]].decodeStreamFunctionName}(stream, consumer);`, NL);
+				blockBody.append('return;', NL);
 			});
 			mBody.append('}', NL);
 			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
