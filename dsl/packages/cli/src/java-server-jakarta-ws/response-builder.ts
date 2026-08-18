@@ -75,7 +75,8 @@ function generateContent(
 									? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
 									: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
 							const content = toNodeTree(`
-							return ${RestMulti}.fromMultiData($result.map(e -> ${JsonUtils}.encodeValue(${_Support}.${o.resultType.type}ToJson(e), $contentType, /* FIXME */ null)))
+							var $encoder = ${JsonUtils}.createStreamEncoder($contentType);
+							return ${RestMulti}.fromMultiData($result.map(e -> $encoder.apply(${_Support}.${o.resultType.type}ToJson(e))))
 								.header("Content-Type", $contentType)
 								.encodeAsJsonArray(false)
 								.status(${code.toFixed()});
@@ -84,7 +85,8 @@ function generateContent(
 						} else {
 							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 							const content = toNodeTree(`
-							return ${RestMulti}.fromMultiData($result.map(e -> ${JsonUtils}.encodeValue(e, $contentType, /* FIXME */ null)))
+							var $encoder = ${JsonUtils}.createStreamEncoder($contentType);
+							return ${RestMulti}.fromMultiData($result.map(e -> $encoder.apply(e)))
 								.header("Content-Type", $contentType)
 								.encodeAsJsonArray(false)
 								.status(${code.toFixed()});

@@ -8,6 +8,7 @@ type EncodingPlugin = {
 	encodingFunctionName: string;
 	decodingFunctionName: string;
 	decodeStreamFunctionName: string;
+	createStreamEncoderFunctionName: string;
 	emptyObjectBytes: number[];
 	encodeEmptyValueFunctionName: string;
 	encodeEmptyObjectFunctionName: string;
@@ -21,6 +22,7 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 		encodingFunctionName: 'encodeMsgPackValue',
 		decodingFunctionName: 'decodeMsgPackValue',
 		decodeStreamFunctionName: 'decodeMsgPackStream',
+		createStreamEncoderFunctionName: 'createMsgPackStreamEncoder',
 		emptyObjectBytes: [-128],
 		encodeEmptyValueFunctionName: 'encodeEmptyMsgpackValue',
 		encodeEmptyObjectFunctionName: 'encodeEmptyMsgpackObject',
@@ -32,6 +34,7 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 		encodingFunctionName: 'encodeJsonValue',
 		decodingFunctionName: 'decodeJsonValue',
 		decodeStreamFunctionName: 'decodeJsonStream',
+		createStreamEncoderFunctionName: 'createJsonStreamEncoder',
 		emptyObjectBytes: [123, 125],
 		encodeEmptyValueFunctionName: 'encodeEmptyJsonValue',
 		encodeEmptyObjectFunctionName: 'encodeEmptyJsonObject',
@@ -54,6 +57,7 @@ private static ${JsonValue} decodeJsonValue(${InputStream} stream) {
 function generateJsonEncodeValueFunction(fqn: (t: string) => string): CompositeGeneratorNode {
 	const StringWriter = fqn('java.io.StringWriter');
 	const OutputStream = fqn('java.io.OutputStream');
+	const Function = fqn('java.util.function.Function');
 
 	const Json = fqn('jakarta.json.Json');
 	const JsonGenerator = fqn('jakarta.json.stream.JsonGenerator');
@@ -73,6 +77,20 @@ private static byte[] encodeJsonValue(Object data) {
 		encodeJsonValue(generator, data);
 	}
 	return stringWriter.toString().getBytes();
+}
+
+// Reuses a single StringWriter's buffer across all elements of a stream instead of
+// allocating a fresh one per element; a fresh JsonGenerator is still created per
+// element since JsonGenerator does not support writing multiple root-level values.
+private static ${Function}<Object, byte[]> createJsonStreamEncoder() {
+	var stringWriter = new ${StringWriter}();
+	return data -> {
+		stringWriter.getBuffer().setLength(0);
+		try (var generator = ${Json}.createGenerator(stringWriter)) {
+			encodeJsonValue(generator, data);
+		}
+		return stringWriter.toString().getBytes();
+	};
 }
 
 private static void encodeJsonValue(${OutputStream} stream, Object data) {
@@ -145,6 +163,7 @@ function generateMsgPackEncodeValueFunction(fqn: (t: string) => string): Composi
 	fqn('org.msgpack.core.MessagePack');
 	fqn('org.msgpack.core.MessagePacker');
 	fqn('at.bestsolution.msgpack.json.MsgpackJson');
+	const Function = fqn('java.util.function.Function');
 	return toNodeTree(`
 // -----------------
 private static byte[] encodeEmptyMsgpackValue() {
@@ -168,6 +187,25 @@ private static byte[] encodeMsgPackValue(Object data) {
 	} catch (IOException e) {
 		throw new IllegalStateException(e);
 	}
+}
+
+// Reuses a single MsgpackJson (stateless) and MessageBufferPacker across all elements
+// of a stream instead of allocating both per element; the packer is cleared (its
+// documented reuse pattern) rather than closed/reallocated between elements.
+private static ${Function}<Object, byte[]> createMsgPackStreamEncoder() {
+	var msgpackJson = MsgpackJson.builder()
+			.build();
+	var packer = MessagePack.newDefaultBufferPacker();
+	return data -> {
+		try {
+			packer.clear();
+			encodeMsgPackValue(msgpackJson, packer, createJsonValue(data));
+			packer.flush();
+			return packer.toByteArray();
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
+	};
 }
 
 private static void encodeMsgPackValue(OutputStream stream, Object data) {
@@ -307,6 +345,34 @@ export function generateJsonUtilsContent(
 			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
 			mBody.indent(blockBody => {
 				blockBody.append(`return ${encodingPlugins[contentTypeEncodings[0]].encodingFunctionName}(data);`, NL);
+			});
+			mBody.append('}', NL);
+			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
+		}
+	});
+	encodeValueMethods.append('}', NL);
+	encodeValueMethods.appendNewLine();
+	encodeValueMethods.append(
+		`public static ${fqn('java.util.function.Function')}<Object, byte[]> createStreamEncoder(String contentType) {`,
+		NL,
+	);
+	encodeValueMethods.indent(mBody => {
+		if (contentTypeEncodings.length > 1) {
+			mBody.append('return switch (contentType) {', NL);
+			mBody.indent(switchBody => {
+				contentTypeEncodings.forEach(enc => {
+					switchBody.append(`case "${enc}" -> ${encodingPlugins[enc].createStreamEncoderFunctionName}();`, NL);
+				});
+				switchBody.append(
+					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
+					NL,
+				);
+			});
+			mBody.append('};', NL);
+		} else {
+			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
+			mBody.indent(blockBody => {
+				blockBody.append(`return ${encodingPlugins[contentTypeEncodings[0]].createStreamEncoderFunctionName}();`, NL);
 			});
 			mBody.append('}', NL);
 			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);

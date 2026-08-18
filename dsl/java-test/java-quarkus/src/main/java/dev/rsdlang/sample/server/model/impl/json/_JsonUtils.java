@@ -1053,6 +1053,14 @@ public class _JsonUtils {
 		};
 	}
 
+	public static Function<Object, byte[]> createStreamEncoder(String contentType) {
+		return switch (contentType) {
+			case "application/json" -> createJsonStreamEncoder();
+			case "application/vnd.msgpack" -> createMsgPackStreamEncoder();
+			default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));
+		};
+	}
+
 	public static byte[] encodeEmptyValue(String contentType) {
 		return switch (contentType) {
 			case "application/json" -> encodeEmptyJsonValue();
@@ -1083,6 +1091,20 @@ public class _JsonUtils {
 			encodeJsonValue(generator, data);
 		}
 		return stringWriter.toString().getBytes();
+	}
+
+	// Reuses a single StringWriter's buffer across all elements of a stream instead of
+	// allocating a fresh one per element; a fresh JsonGenerator is still created per
+	// element since JsonGenerator does not support writing multiple root-level values.
+	private static Function<Object, byte[]> createJsonStreamEncoder() {
+		var stringWriter = new StringWriter();
+		return data -> {
+			stringWriter.getBuffer().setLength(0);
+			try (var generator = Json.createGenerator(stringWriter)) {
+				encodeJsonValue(generator, data);
+			}
+			return stringWriter.toString().getBytes();
+		};
 	}
 
 	private static void encodeJsonValue(OutputStream stream, Object data) {
@@ -1149,6 +1171,25 @@ public class _JsonUtils {
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
+	}
+
+	// Reuses a single MsgpackJson (stateless) and MessageBufferPacker across all elements
+	// of a stream instead of allocating both per element; the packer is cleared (its
+	// documented reuse pattern) rather than closed/reallocated between elements.
+	private static Function<Object, byte[]> createMsgPackStreamEncoder() {
+		var msgpackJson = MsgpackJson.builder()
+				.build();
+		var packer = MessagePack.newDefaultBufferPacker();
+		return data -> {
+			try {
+				packer.clear();
+				encodeMsgPackValue(msgpackJson, packer, createJsonValue(data));
+				packer.flush();
+				return packer.toByteArray();
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
+		};
 	}
 
 	private static void encodeMsgPackValue(OutputStream stream, Object data) {
