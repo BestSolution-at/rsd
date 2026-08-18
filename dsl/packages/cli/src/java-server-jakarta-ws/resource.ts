@@ -154,7 +154,8 @@ function _generateResource(
 					cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
 				}
 				// content negotiation does not work currently with Multi - https://github.com/BestSolution-at/rsd/issues/93
-				if (!o.resultType?.streaming) {
+				// file/blob results produce their own dynamic content type (see _RestUtils.toStreamResponse), not JSON/msgpack
+				if (!o.resultType?.streaming && o.resultType?.variant !== 'stream') {
 					const Produces = fqn('jakarta.ws.rs.Produces');
 					cBody.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 				}
@@ -174,7 +175,8 @@ function _generateResource(
 					cBody.append(`@${Path}("${o.meta.rest.path.replaceAll('$', '')}")`, NL);
 				}
 				// content negotiation does not work currently with Multi - https://github.com/BestSolution-at/rsd/issues/93
-				if (!o.resultType?.streaming) {
+				// file/blob results produce their own dynamic content type (see _RestUtils.toStreamResponse), not JSON/msgpack
+				if (!o.resultType?.streaming && o.resultType?.variant !== 'stream') {
 					const Produces = fqn('jakarta.ws.rs.Produces');
 					cBody.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 				}

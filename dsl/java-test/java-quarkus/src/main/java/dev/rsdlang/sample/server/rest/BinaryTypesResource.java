@@ -71,7 +71,6 @@ public class BinaryTypesResource {
 
 	@GET
 	@Path("downloadFile")
-	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response downloadFile(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			var result = service.downloadFile(builderFactory);
@@ -83,7 +82,6 @@ public class BinaryTypesResource {
 
 	@GET
 	@Path("downloadBlob")
-	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response downloadBlob(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			var result = service.downloadBlob(builderFactory);

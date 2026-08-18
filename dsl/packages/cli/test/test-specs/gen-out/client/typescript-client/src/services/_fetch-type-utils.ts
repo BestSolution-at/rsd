@@ -152,6 +152,7 @@ function parseJson(text: string): unknown {
 	});
 }
 
+
 const decoder = new Decoder({ useBigInt64: true });
 async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
 	const arrayBuffer = await response.arrayBuffer();
@@ -162,11 +163,7 @@ async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) 
 	return data;
 }
 
-export function decodeResponseStream<T>(
-	response: Response,
-	guard: (value: unknown) => value is T,
-	comsumer: (value: T) => void,
-): Promise<void> {
+export function decodeResponseStream<T>(response: Response, guard: (value: unknown) => value is T, comsumer: (value: T) => void): Promise<void> {
 	const contentType = response.headers.get('Content-Type')?.split(';')[0]?.trim();
 	switch (contentType) {
 		case 'application/json':
@@ -231,7 +228,7 @@ function decodeMsgPackStream<T>(
 			const streamDecoder = new Decoder({ useBigInt64: true });
 			let count = 0;
 			for await (const record of streamDecoder.decodeStream(iterable)) {
-				if (count % 2 === 0) {
+				if(count % 2 === 0) {
 					if (guard(record)) {
 						comsumer(record);
 					} else {
@@ -246,3 +243,4 @@ function decodeMsgPackStream<T>(
 		return Promise.reject(new Error(`Response body is not available for MessagePack stream decoding`));
 	}
 }
+
