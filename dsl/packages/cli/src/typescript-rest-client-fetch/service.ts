@@ -907,7 +907,8 @@ function handleOkResult(
 				}
 			}
 			if (o.resultType.streaming) {
-				node.append(`onSuccess?.('${o.name}', undefined);`, NL);
+				const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
+				node.append(`${safeExecute}(undefined, () => onSuccess?.('${o.name}', undefined));`, NL);
 				node.append('return;', NL);
 			} else {
 				const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
@@ -935,7 +936,8 @@ function handleOkResult(
 				node.append(`const $result = ${fromJSON}($data);`, NL);
 			}
 			if (o.resultType.streaming) {
-				node.append(`onSuccess?.('${o.name}', undefined);`, NL);
+				const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
+				node.append(`${safeExecute}(undefined, () => onSuccess?.('${o.name}', undefined));`, NL);
 				node.append('return;', NL);
 			} else {
 				const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
