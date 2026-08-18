@@ -877,6 +877,7 @@ ${Consumer}<${JsonValue}> $jsonValueConsumer = $jsonValue -> {
 						mBody.append('}', NL);
 					}
 				});
+				mBody.append(`throw new IllegalStateException("Error results not yet supported");`, NL);
 			} else {
 				mBody.append('if ($ri.statusCode() == 200) {', NL);
 				mBody.indent(block => {
