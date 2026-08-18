@@ -314,6 +314,7 @@ public class JDKHttpClientResponseUtils {
 	static class StreamSubscriber implements Flow.Subscriber<List<ByteBuffer>> {
 		private final PipedOutputStream out = new PipedOutputStream();
 		private final PipedInputStream in;
+		private final byte[] scratch = new byte[16 * 1024];
 		private volatile Subscription subscription;
 		private volatile Throwable error;
 
@@ -339,9 +340,11 @@ public class JDKHttpClientResponseUtils {
 		public void onNext(List<ByteBuffer> items) {
 			try {
 				for (ByteBuffer bb : items) {
-					byte[] b = new byte[bb.remaining()];
-					bb.get(b);
-					out.write(b); // blocks here if the unpacker thread is behind — built-in backpressure
+					while (bb.hasRemaining()) {
+						int n = Math.min(bb.remaining(), scratch.length);
+						bb.get(scratch, 0, n);
+						out.write(scratch, 0, n); // blocks here if the unpacker thread is behind — built-in backpressure
+					}
 				}
 				subscription.request(1);
 			} catch (IOException e) {
