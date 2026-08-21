@@ -480,7 +480,7 @@ function fnStreamEnum(props: ServiceProps<api.service.ErrorType>): api.service.L
 			const $response = await fetchAPI($path, { ...$init, method: 'GET' });
 
 			if ($response.status === 200) {
-				await decodeResponseStream($response, api.utils.isString, $value => { $callbacks.value(api.model.SampleEnumFromJSON($value)) });
+				await decodeResponseStream($response, api.utils.isString, $value => { $callbacks.value(api.model.SampleEnumFromJSON($value)); });
 				safeExecute(undefined, () => onSuccess?.('streamEnum', undefined));
 				return;
 			}

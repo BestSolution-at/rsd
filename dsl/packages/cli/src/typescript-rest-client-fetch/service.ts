@@ -784,6 +784,7 @@ function handleOkResult(
 	const node = new CompositeGeneratorNode();
 
 	const OK = `${fqn(`api:${config.apiNamespacePath}`, false)}.result.OK`;
+
 	if (o.resultType === undefined) {
 		const Void = `${fqn(`api:${config.apiNamespacePath}`, false)}.result.Void`;
 		const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
@@ -809,115 +810,67 @@ function handleOkResult(
 		const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
 		node.append(`return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`, NL);
 	} else {
-		if (
-			isMBuiltinType(o.resultType.type) ||
-			o.resultType.variant === 'scalar' ||
-			o.resultType.variant === 'enum' ||
-			isMInlineEnumType(o.resultType.type)
-		) {
-			if (o.resultType.array) {
-				if (o.resultType.streaming) {
-					const decodeResponseStream = fqn('decodeResponseStream:./_fetch-type-utils.ts', false);
-					if (isMBuiltinType(o.resultType.type)) {
-						const guard = builtinFromJsonTypeGuard(o.resultType.type, fqn);
-						const fromJSON = builtinFromJSON(o.resultType.type, fqn, '../model/');
-						const consumer = `$value => { $callbacks.value(${fromJSON}($value)); }`;
-						node.append(`await ${decodeResponseStream}($response, ${guard}, ${consumer});`, NL);
-					} else if (o.resultType.variant === 'scalar') {
-						const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-						const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
-						const consumer = `$value => { $callbacks.value(${fromJSON}($value)); }`;
-						node.append(`await ${decodeResponseStream}($response, ${guard}, ${consumer});`, NL);
-					} else if (o.resultType.variant === 'enum') {
-						const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-						const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
-						const consumer = `$value => { $callbacks.value(${fromJSON}($value)) }`;
-						node.append(`await ${decodeResponseStream}($response, ${guard}, ${consumer});`, NL);
-					} else if (o.resultType.variant === 'inline-enum') {
-						const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-						const fromJSON = `${toFirstUpper(o.name)}ResultFromJSON`;
-						const consumer = `$value => { $callbacks.value(${fromJSON}($value)); }`;
-						node.append(`await ${decodeResponseStream}($response, ${guard}, ${consumer});`, NL);
-					} else {
-						throw new Error(`Unsupported result type ${o.resultType.variant}`); // To be implemented
-					}
-				} else {
-					const decodeResponse = fqn('decodeResponse:./_fetch-type-utils.ts', false);
-					const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
-					if (isMBuiltinType(o.resultType.type)) {
-						const guard = builtinFromJsonTypeGuard(o.resultType.type, fqn);
-						const fromJSON = builtinFromJSON(o.resultType.type, fqn, '../model/');
-						node.append(
-							`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`,
-							NL,
-						);
-						node.append(`const $result = $data.map(${fromJSON});`, NL);
-					} else if (o.resultType.variant === 'scalar') {
-						const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-						const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
-						node.append(
-							`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`,
-							NL,
-						);
-						node.append(`const $result = $data.map(${fromJSON});`, NL);
-					} else if (o.resultType.variant === 'enum') {
-						const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-						const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
-						node.append(
-							`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`,
-							NL,
-						);
-						node.append(`const $result = $data.map(${fromJSON});`, NL);
-					} else if (o.resultType.variant === 'inline-enum') {
-						const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-						const fromJSON = `${toFirstUpper(o.name)}ResultFromJSON`;
-						node.append(
-							`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`,
-							NL,
-						);
-						node.append(`const $result = $data.map(${fromJSON});`, NL);
-					} else {
-						throw new Error(`Unsupported result type ${o.resultType.variant}`); // To be implemented
-					}
-				}
-			} else {
-				const decodeResponse = fqn('decodeResponse:./_fetch-type-utils.ts', false);
-				if (isMBuiltinType(o.resultType.type)) {
-					const guard = builtinFromJsonTypeGuard(o.resultType.type, fqn);
-					const fromJSON = builtinFromJSON(o.resultType.type, fqn, '../model/');
-					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
-					node.append(`const $result = ${fromJSON}($data);`, NL);
-				} else if (o.resultType.variant === 'scalar') {
-					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
-					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
-					node.append(`const $result = ${fromJSON}($data);`, NL);
-				} else if (o.resultType.variant === 'enum') {
-					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					const fromJSON = fqn(`api:${config.apiNamespacePath}`, false) + `.model.${o.resultType.type}FromJSON`;
-					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
-					node.append(`const $result = ${fromJSON}($data);`, NL);
-				} else if (o.resultType.variant === 'inline-enum') {
-					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`;
-					node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
-					const fromJSON = `${toFirstUpper(o.name)}ResultFromJSON`;
-					node.append(`const $result = ${fromJSON}($data);`, NL);
-				} else {
-					throw new Error(`Unsupported result type ${o.resultType.variant}`); // To be implemented
-				}
-			}
-			if (o.resultType.streaming) {
-				const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
+		function appendOnSuccessAndReturn(streaming: boolean) {
+			const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
+			if (streaming) {
 				node.append(`${safeExecute}(undefined, () => onSuccess?.('${o.name}', undefined));`, NL);
 				node.append('return;', NL);
 			} else {
-				const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
 				node.append(`return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`, NL);
 			}
+		}
+
+		const resultType = o.resultType;
+		if (
+			isMBuiltinType(resultType.type) ||
+			resultType.variant === 'scalar' ||
+			resultType.variant === 'enum' ||
+			isMInlineEnumType(resultType.type)
+		) {
+			const computeGuardAndFromJSON = (): { guard: string; fromJSON: string } => {
+				if (isMBuiltinType(resultType.type)) {
+					return {
+						guard: builtinFromJsonTypeGuard(resultType.type, fqn),
+						fromJSON: builtinFromJSON(resultType.type, fqn, '../model/'),
+					};
+				} else if (resultType.variant === 'scalar' || resultType.variant === 'enum') {
+					return {
+						guard: fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`,
+						fromJSON: fqn(`api:${config.apiNamespacePath}`, false) + `.model.${resultType.type}FromJSON`,
+					};
+				} else if (resultType.variant === 'inline-enum') {
+					return {
+						guard: fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isString`,
+						fromJSON: `${toFirstUpper(o.name)}ResultFromJSON`,
+					};
+				} else {
+					throw new Error(`Unsupported result type ${resultType.variant}`); // To be implemented
+				}
+			};
+
+			if (resultType.array) {
+				const { guard, fromJSON } = computeGuardAndFromJSON();
+				if (resultType.streaming) {
+					const decodeResponseStream = fqn('decodeResponseStream:./_fetch-type-utils.ts', false);
+					const consumer = `$value => { $callbacks.value(${fromJSON}($value)); }`;
+					node.append(`await ${decodeResponseStream}($response, ${guard}, ${consumer});`, NL);
+				} else {
+					const decodeResponse = fqn('decodeResponse:./_fetch-type-utils.ts', false);
+					const isTypedArrayGuard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isTypedArray`;
+					node.append(`const $data = await ${decodeResponse}($response, v => ${isTypedArrayGuard}(v, ${guard}));`, NL);
+					node.append(`const $result = $data.map(${fromJSON});`, NL);
+				}
+			} else {
+				const { guard, fromJSON } = computeGuardAndFromJSON();
+				const decodeResponse = fqn('decodeResponse:./_fetch-type-utils.ts', false);
+				node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
+				node.append(`const $result = ${fromJSON}($data);`, NL);
+			}
+			appendOnSuccessAndReturn(resultType.streaming);
 		} else {
-			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${o.resultType.type}FromJSON`;
-			if (o.resultType.array) {
-				if (o.resultType.streaming) {
+			const fromJSON = `${fqn(`api:${config.apiNamespacePath}`, false)}.model.${resultType.type}FromJSON`;
+			if (resultType.array) {
+				if (resultType.streaming) {
 					const decodeResponseStream = fqn('decodeResponseStream:./_fetch-type-utils.ts', false);
 					const guard = fqn(`api:${config.apiNamespacePath}`, false) + `.utils.isRecord`;
 					const consumer = `$value => { $callbacks.value(${fromJSON}($value)); }`;
@@ -935,14 +888,7 @@ function handleOkResult(
 				node.append(`const $data = await ${decodeResponse}($response, ${guard});`, NL);
 				node.append(`const $result = ${fromJSON}($data);`, NL);
 			}
-			if (o.resultType.streaming) {
-				const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
-				node.append(`${safeExecute}(undefined, () => onSuccess?.('${o.name}', undefined));`, NL);
-				node.append('return;', NL);
-			} else {
-				const safeExecute = fqn('safeExecute:./_fetch-type-utils.ts', false);
-				node.append(`return ${safeExecute}(${OK}($result), () => onSuccess?.('${o.name}', $result));`, NL);
-			}
+			appendOnSuccessAndReturn(resultType.streaming);
 		}
 	}
 	return node;
