@@ -1,6 +1,7 @@
 import { CompositeGeneratorNode, IndentNode, NL, toString } from 'langium/generate';
 import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import {
+	computeAPIResultType,
 	computeParameterAPITypeNG,
 	computeParameterValueType,
 	generateCompilationUnit,
@@ -20,7 +21,6 @@ import {
 	isMScalarType,
 	MBuiltinType,
 	MOperation,
-	MOperationError,
 	MParameter,
 	MResolvedOperation,
 	MResolvedService,
@@ -34,7 +34,6 @@ import {
 } from '../java-model-json/shared.js';
 import { computePath } from '../rest-utils.js';
 import { toCamelCaseIdentifier, toFirstUpper, toNodeTree } from '../util.js';
-import { computeServiceErrorCombination } from '../java-client-api/service-errors.js';
 
 export function generateService(
 	s: MResolvedService,
@@ -146,7 +145,7 @@ function appendMethodSignature(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 ) {
-	const [rvType, error] = toAPIResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name);
+	const [rvType, error] = computeAPIResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name);
 	const parameters = allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name));
 	let rv;
 	if (o.resultType?.streaming) {
@@ -1217,78 +1216,6 @@ function toResultType(
 	}
 
 	return rvType;
-}
-
-function toAPIResultType(
-	type: MReturnType | undefined,
-	errors: readonly MOperationError[],
-	services: readonly MResolvedService[],
-	artifactConfig: JavaRestClientJDKGeneratorConfig,
-	fqn: (type: string) => string,
-	methodName: string,
-): [string, string] {
-	const error = computeErrorType(errors, services, artifactConfig, fqn);
-
-	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
-	if (type === undefined) {
-		return ['Void', error];
-	}
-
-	let rvType: string;
-	if (type.variant === 'stream') {
-		if (type.type === 'file') {
-			rvType = fqn(`${dtoPkg}.RSDFile`);
-		} else {
-			rvType = fqn(`${dtoPkg}.RSDBlob`);
-		}
-	} else if (type.variant === 'union' || type.variant === 'record') {
-		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
-	} else if (type.variant === 'enum') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else if (type.variant === 'inline-enum') {
-		rvType = toFirstUpper(methodName) + '_Result$';
-	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
-	}
-
-	if (type.array && !type.streaming) {
-		rvType = `${fqn('java.util.List')}<${rvType}>`;
-	}
-
-	return [rvType, error];
-}
-
-function computeErrorType(
-	errors: readonly MOperationError[],
-	services: readonly MResolvedService[],
-	artifactConfig: JavaRestClientJDKGeneratorConfig,
-	fqn: (type: string) => string,
-) {
-	if (errors.length === 0) {
-		return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
-	} else {
-		const combinations = computeServiceErrorCombination(services);
-		const errorNames = errors
-			.map(e => e.error)
-			.sort()
-			.join(',');
-		const errorCombination = combinations.get(errorNames);
-		if (errorCombination) {
-			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + `.${errorCombination.interfaceName}`;
-		} else {
-			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
-		}
-	}
 }
 
 function generateServiceData(

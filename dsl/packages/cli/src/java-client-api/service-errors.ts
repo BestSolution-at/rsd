@@ -1,36 +1,8 @@
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 
 import { Artifact } from '../artifact-generator.js';
-import { JavaClientAPIGeneratorConfig, toPath } from '../java-gen-utils.js';
+import { computeServiceErrorCombination, JavaClientAPIGeneratorConfig, toPath } from '../java-gen-utils.js';
 import { MResolvedError, MResolvedService } from '../model.js';
-
-export type ServiceErrorCombination = {
-	interfaceName: string;
-	errorNames: readonly string[];
-};
-
-export function computeServiceErrorCombination(
-	services: readonly MResolvedService[],
-): Map<string, ServiceErrorCombination> {
-	const errorNames = new Map<string, ServiceErrorCombination>();
-	services
-		.flatMap(s => s.operations)
-		.forEach(op => {
-			if (op.operationErrors.length > 0) {
-				const key = op.operationErrors
-					.map(e => e.error)
-					.toSorted((e1, e2) => e1.localeCompare(e2))
-					.join(',');
-				if (!errorNames.has(key)) {
-					errorNames.set(key, {
-						interfaceName: `E${(errorNames.size + 1).toFixed()}`,
-						errorNames: op.operationErrors.map(e => e.error),
-					});
-				}
-			}
-		});
-	return errorNames;
-}
 
 function generateTypeContent(errors: readonly MResolvedError[]) {
 	const node = new CompositeGeneratorNode();

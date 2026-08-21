@@ -2,6 +2,7 @@ import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { ArtifactGeneratorConfig } from './artifact-generator.js';
 import {
 	MBuiltinType,
+	MOperationError,
 	MParameter,
 	MParameterInlineEnumType,
 	MParameterNoneInlineEnumType,
@@ -10,7 +11,9 @@ import {
 	MResolvedMixinType,
 	MResolvedRecordType,
 	MResolvedScalarType,
+	MResolvedService,
 	MResolvedUnionType,
+	MReturnType,
 	isMBuiltinType,
 	isMEnumType,
 	isMInlineEnumType,
@@ -107,6 +110,106 @@ export function resolveObjectType(
 		return fqn(nativeSubstitutes[type].type);
 	}
 	return type;
+}
+
+export type ServiceErrorCombination = {
+	interfaceName: string;
+	errorNames: readonly string[];
+};
+
+export function computeServiceErrorCombination(
+	services: readonly MResolvedService[],
+): Map<string, ServiceErrorCombination> {
+	const errorNames = new Map<string, ServiceErrorCombination>();
+	services
+		.flatMap(s => s.operations)
+		.forEach(op => {
+			if (op.operationErrors.length > 0) {
+				const key = op.operationErrors
+					.map(e => e.error)
+					.toSorted((e1, e2) => e1.localeCompare(e2))
+					.join(',');
+				if (!errorNames.has(key)) {
+					errorNames.set(key, {
+						interfaceName: `E${(errorNames.size + 1).toFixed()}`,
+						errorNames: op.operationErrors.map(e => e.error),
+					});
+				}
+			}
+		});
+	return errorNames;
+}
+
+export function computeErrorType(
+	errors: readonly MOperationError[],
+	services: readonly MResolvedService[],
+	artifactConfig: { rootPackageName: string },
+	fqn: (type: string) => string,
+) {
+	if (errors.length === 0) {
+		return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
+	} else {
+		const combinations = computeServiceErrorCombination(services);
+		const errorNames = errors
+			.map(e => e.error)
+			.sort()
+			.join(',');
+		const errorCombination = combinations.get(errorNames);
+		if (errorCombination) {
+			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + `.${errorCombination.interfaceName}`;
+		} else {
+			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
+		}
+	}
+}
+
+export function computeAPIResultType(
+	type: MReturnType | undefined,
+	errors: readonly MOperationError[],
+	services: readonly MResolvedService[],
+	artifactConfig: { rootPackageName: string; nativeTypeSubstitutes?: JavaNativeTypeSubstitutes },
+	fqn: (type: string) => string,
+	methodName: string,
+): [string, string] {
+	const error = computeErrorType(errors, services, artifactConfig, fqn);
+
+	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
+	if (type === undefined) {
+		return ['Void', error];
+	}
+
+	let rvType: string;
+	if (type.variant === 'stream') {
+		if (type.type === 'file') {
+			rvType = fqn(`${dtoPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${dtoPkg}.RSDBlob`);
+		}
+	} else if (type.variant === 'union' || type.variant === 'record') {
+		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
+	} else if (type.variant === 'enum') {
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else if (type.variant === 'inline-enum') {
+		rvType = toFirstUpper(methodName) + '_Result$';
+	} else if (type.variant === 'scalar') {
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else {
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
+	}
+
+	if (type.array && !type.streaming) {
+		rvType = `${fqn('java.util.List')}<${rvType}>`;
+	}
+
+	return [rvType, error];
 }
 
 export function computeParameterValueType(
