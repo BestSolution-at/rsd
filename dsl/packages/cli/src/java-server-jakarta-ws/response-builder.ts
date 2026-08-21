@@ -66,33 +66,27 @@ function generateContent(
 				if (o.resultType) {
 					if (o.resultType.streaming) {
 						const RestMulti = fqn('org.jboss.resteasy.reactive.RestMulti');
-						if (o.resultType.variant === 'stream') {
+						const resultType = o.resultType;
+						if (resultType.variant === 'stream') {
 							throw new Error(`Streaming return type cannot be a stream: ${o.name}`);
-						} else if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
-							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+						}
+						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+						let elementToJson = '$el';
+						if (resultType.variant === 'scalar' || resultType.variant === 'enum') {
 							const _Support =
-								o.resultType.variant === 'scalar'
+								resultType.variant === 'scalar'
 									? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
 									: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
-							const content = toNodeTree(`
-							var $encoder = ${JsonUtils}.createStreamEncoder($contentType);
-							return ${RestMulti}.fromMultiData($result.map(e -> $encoder.apply(${_Support}.${o.resultType.type}ToJson(e))))
-								.header("Content-Type", $contentType)
-								.encodeAsJsonArray(false)
-								.status(${code.toFixed()});
-							`);
-							methodBody.append(content);
-						} else {
-							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
-							const content = toNodeTree(`
-							var $encoder = ${JsonUtils}.createStreamEncoder($contentType);
-							return ${RestMulti}.fromMultiData($result.map(e -> $encoder.apply(e)))
-								.header("Content-Type", $contentType)
-								.encodeAsJsonArray(false)
-								.status(${code.toFixed()});
-							`);
-							methodBody.append(content);
+							elementToJson = `${_Support}.${resultType.type}ToJson($el)`;
 						}
+						const content = toNodeTree(`
+						var $encoder = ${JsonUtils}.createStreamEncoder($contentType);
+						return ${RestMulti}.fromMultiData($result.map($el -> $encoder.apply(${elementToJson})))
+							.header("Content-Type", $contentType)
+							.encodeAsJsonArray(false)
+							.status(${code.toFixed()});
+						`);
+						methodBody.append(content);
 					} else {
 						const Response = fqn('jakarta.ws.rs.core.Response');
 						if (o.resultType.variant === 'stream') {

@@ -24,7 +24,7 @@ import org.jboss.resteasy.reactive.RestMulti;
 public class ListStreamingServiceResourceResponseBuilder {
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamBoolean(Multi<Boolean> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -32,7 +32,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamShort(Multi<Short> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -40,7 +40,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamInt(Multi<Integer> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -48,7 +48,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamLong(Multi<Long> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -56,7 +56,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamFloat(Multi<Float> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -64,7 +64,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamDouble(Multi<Double> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -72,7 +72,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamString(Multi<String> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -80,7 +80,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalDate(Multi<LocalDate> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -88,7 +88,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalDateTime(Multi<LocalDateTime> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -96,7 +96,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamLocalTime(Multi<LocalTime> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -104,7 +104,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamOffsetDateTime(Multi<OffsetDateTime> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -112,7 +112,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamZonedDateTime(Multi<ZonedDateTime> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -120,7 +120,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamScalar(Multi<MyRange> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(_ScalarSupport.RangeToJson(e))))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply(_ScalarSupport.RangeToJson($el))))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -128,7 +128,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamEnum(Multi<SampleEnum> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(_EnumSupport.SampleEnumToJson(e))))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply(_EnumSupport.SampleEnumToJson($el))))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -136,7 +136,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamInlineEnum(Multi<ListStreamingServiceService.StreamInlineEnum_Result$> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -144,7 +144,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamRecord(Multi<SimpleRecord.Data> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);
@@ -152,7 +152,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamUnion(Multi<Union.Data> $result, String $contentType) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
-		return RestMulti.fromMultiData($result.map(e -> $encoder.apply(e)))
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
 			.encodeAsJsonArray(false)
 			.status(200);

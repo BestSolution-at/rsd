@@ -363,7 +363,7 @@ function decodeMsgPackStream<T>(
 			const streamDecoder = new ${fqn('Decoder:@msgpack/msgpack', false)}({ useBigInt64: true });
 			let count = 0;
 			for await (const record of streamDecoder.decodeStream(iterable)) {
-				if(count % 2 === 0) {
+				if (count % 2 === 0) {
 					if (guard(record)) {
 						comsumer(record);
 					} else {
