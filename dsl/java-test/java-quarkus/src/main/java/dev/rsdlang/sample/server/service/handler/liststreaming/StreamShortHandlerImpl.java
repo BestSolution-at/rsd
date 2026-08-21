@@ -6,7 +6,7 @@ import io.smallrye.mutiny.Multi;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class StreamShortHandlerHandlerImpl
+public class StreamShortHandlerImpl
 		implements ListStreamingServiceServiceImpl.StreamShortHandler {
 
 	@Override
