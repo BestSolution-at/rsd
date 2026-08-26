@@ -817,9 +817,14 @@ function generateResponseDispatchStream(
 	const JsonValue = fqn('jakarta.json.JsonValue');
 	const BodyHandler = fqn('java.net.http.HttpResponse.BodyHandler');
 	const RSDError = fqn(`${artifactConfig.rootPackageName}.RSDError`);
+	const AtomicBoolean = fqn('java.util.concurrent.atomic.AtomicBoolean');
 
 	const Finisher = toNodeTree(`
+${AtomicBoolean} $completed = new ${AtomicBoolean}(false);
 ${Consumer}<Throwable> $onComplete = $streamError -> {
+	if (!$completed.compareAndSet(false, true)) {
+		return;
+	}
 	$clientSupplier.close();
 	if ($streamError != null) {
 		var $error = new ${RSDError}.$GenericError(${RSDError}.Type._Native, "Unexpected error while streaming operation ${o.name}", $streamError);
@@ -900,7 +905,7 @@ ${Consumer}<${JsonValue}> $jsonValueConsumer = $jsonValue -> {
 	methodBody.append(`var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);`, NL);
 	methodBody.append(`$responseFuture.whenComplete(($response, $e) -> {`, NL);
 	methodBody.indent(mBody => {
-		mBody.append('if ($e != null) {', NL);
+		mBody.append('if ($e != null && $completed.compareAndSet(false, true)) {', NL);
 		mBody.indent(block => {
 			block.append('$clientSupplier.close();', NL);
 			block.append(

@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 import jakarta.json.JsonValue;
@@ -64,7 +65,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamBoolean", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamBoolean", $streamError);
@@ -88,7 +93,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamBoolean", $e);
 					$consumer.accept(null, $error, true);
@@ -122,7 +127,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamShort", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamShort", $streamError);
@@ -146,7 +155,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamShort", $e);
 					$consumer.accept(null, $error, true);
@@ -180,7 +189,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamInt", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamInt", $streamError);
@@ -204,7 +217,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamInt", $e);
 					$consumer.accept(null, $error, true);
@@ -238,7 +251,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamLong", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamLong", $streamError);
@@ -262,7 +279,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamLong", $e);
 					$consumer.accept(null, $error, true);
@@ -296,7 +313,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamFloat", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamFloat", $streamError);
@@ -320,7 +341,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamFloat", $e);
 					$consumer.accept(null, $error, true);
@@ -354,7 +375,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamDouble", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamDouble", $streamError);
@@ -378,7 +403,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamDouble", $e);
 					$consumer.accept(null, $error, true);
@@ -412,7 +437,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamString", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamString", $streamError);
@@ -436,7 +465,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamString", $e);
 					$consumer.accept(null, $error, true);
@@ -470,7 +499,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamLocalDate", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamLocalDate", $streamError);
@@ -494,7 +527,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamLocalDate", $e);
 					$consumer.accept(null, $error, true);
@@ -528,7 +561,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamLocalDateTime", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamLocalDateTime", $streamError);
@@ -552,7 +589,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamLocalDateTime", $e);
 					$consumer.accept(null, $error, true);
@@ -586,7 +623,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamLocalTime", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamLocalTime", $streamError);
@@ -610,7 +651,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamLocalTime", $e);
 					$consumer.accept(null, $error, true);
@@ -644,7 +685,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamOffsetDateTime", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamOffsetDateTime", $streamError);
@@ -668,7 +713,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamOffsetDateTime", $e);
 					$consumer.accept(null, $error, true);
@@ -702,7 +747,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamZonedDateTime", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamZonedDateTime", $streamError);
@@ -726,7 +775,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamZonedDateTime", $e);
 					$consumer.accept(null, $error, true);
@@ -760,7 +809,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamScalar", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamScalar", $streamError);
@@ -784,7 +837,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamScalar", $e);
 					$consumer.accept(null, $error, true);
@@ -818,7 +871,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamEnum", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamEnum", $streamError);
@@ -842,7 +899,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamEnum", $e);
 					$consumer.accept(null, $error, true);
@@ -876,7 +933,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamInlineEnum", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamInlineEnum", $streamError);
@@ -900,7 +961,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamInlineEnum", $e);
 					$consumer.accept(null, $error, true);
@@ -934,7 +995,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamRecord", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamRecord", $streamError);
@@ -958,7 +1023,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamRecord", $e);
 					$consumer.accept(null, $error, true);
@@ -992,7 +1057,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			this.lifecycleHook.preRequest("streamUnion", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
 
+			AtomicBoolean $completed = new AtomicBoolean(false);
 			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
 				$clientSupplier.close();
 				if ($streamError != null) {
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation streamUnion", $streamError);
@@ -1016,7 +1085,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			};
 			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
 			$responseFuture.whenComplete(($response, $e) -> {
-				if ($e != null) {
+				if ($e != null && $completed.compareAndSet(false, true)) {
 					$clientSupplier.close();
 					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamUnion", $e);
 					$consumer.accept(null, $error, true);
