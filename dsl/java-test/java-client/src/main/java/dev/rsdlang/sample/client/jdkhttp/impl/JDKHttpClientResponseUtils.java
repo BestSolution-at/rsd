@@ -326,6 +326,7 @@ public class JDKHttpClientResponseUtils {
 				}
 				subscription.request(1);
 			} catch (IOException e) {
+				error = e;
 				subscription.cancel();
 				try {
 					out.close();
