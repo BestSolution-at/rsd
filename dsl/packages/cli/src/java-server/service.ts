@@ -2,13 +2,13 @@ import { CompositeGeneratorNode, IndentNode, NL, toString } from 'langium/genera
 import { Artifact } from '../artifact-generator.js';
 import {
 	computeParameterAPIType,
+	computeServerResultType,
 	generateCompilationUnit,
 	JavaImportsCollector,
 	JavaServerGeneratorConfig,
-	resolveType,
 	toPath,
 } from '../java-gen-utils.js';
-import { MOperation, MParameter, MReturnType, MService } from '../model.js';
+import { MOperation, MParameter, MService } from '../model.js';
 import { toFirstUpper } from '../util.js';
 
 export function generateService(s: MService, artifactConfig: JavaServerGeneratorConfig): Artifact {
@@ -94,7 +94,7 @@ export function generateServiceSignature(
 		...scopeValues,
 		...allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name)),
 	].join(', ');
-	child.append(`public ${toResultType(o.resultType, artifactConfig, fqn, o.name)} ${o.name}(${parameters})`);
+	child.append(`public ${computeServerResultType(o.resultType, artifactConfig, fqn, o.name)} ${o.name}(${parameters})`);
 	if (o.operationErrors.length > 0) {
 		child.appendNewLine();
 		child.indent(outer => {
@@ -154,51 +154,3 @@ function toParameter(
 	return `${type} ${parameter.name}`;
 }
 
-function toResultType(
-	type: MReturnType | undefined,
-	artifactConfig: JavaServerGeneratorConfig,
-	fqn: (type: string) => string,
-	methodName: string,
-) {
-	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
-	if (type === undefined) {
-		return 'void';
-	}
-
-	let rvType: string;
-	if (type.variant === 'stream') {
-		if (type.type === 'file') {
-			rvType = fqn(`${dtoPkg}.RSDFile`);
-		} else {
-			rvType = fqn(`${dtoPkg}.RSDBlob`);
-		}
-	} else if (type.variant === 'union' || type.variant === 'record') {
-		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
-	} else if (type.variant === 'enum') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else if (type.variant === 'inline-enum') {
-		rvType = toFirstUpper(methodName) + '_Result$';
-	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, type.array);
-	}
-
-	if (type.array) {
-		if (type.streaming) {
-			rvType = `${fqn('io.smallrye.mutiny.Multi')}<${rvType}>`;
-		} else {
-			rvType = `${fqn('java.util.List')}<${rvType}>`;
-		}
-	}
-
-	return rvType;
-}

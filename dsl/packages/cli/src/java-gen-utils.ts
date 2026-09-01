@@ -212,6 +212,67 @@ export function computeAPIResultType(
 	return [rvType, error];
 }
 
+/**
+ * Resolves the plain Java return type for a server-side operation (the
+ * `XxxService` interface method and the JAX-RS resource's response-builder
+ * method) - streaming results become `Multi<T>`, everything else `List<T>`.
+ * Unlike {@link computeAPIResultType}, this has no error/Result<T,E> wrapping,
+ * since server code reports errors via checked exceptions instead.
+ *
+ * `inlineEnumPrefix` qualifies the generated `Xxx_Result$` inline-enum type
+ * for callers that reference it from outside the `XxxService` interface it is
+ * nested in (e.g. `${Service}.`); callers inside that interface leave it empty.
+ */
+export function computeServerResultType(
+	type: MReturnType | undefined,
+	artifactConfig: { rootPackageName: string; nativeTypeSubstitutes?: JavaNativeTypeSubstitutes },
+	fqn: (type: string) => string,
+	methodName: string,
+	inlineEnumPrefix = '',
+): string {
+	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
+	if (type === undefined) {
+		return 'void';
+	}
+
+	let rvType: string;
+	if (type.variant === 'stream') {
+		if (type.type === 'file') {
+			rvType = fqn(`${dtoPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${dtoPkg}.RSDBlob`);
+		}
+	} else if (type.variant === 'union' || type.variant === 'record') {
+		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
+	} else if (type.variant === 'enum') {
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else if (type.variant === 'inline-enum') {
+		rvType = inlineEnumPrefix + toFirstUpper(methodName) + '_Result$';
+	} else if (type.variant === 'scalar') {
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else {
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, type.array);
+	}
+
+	if (type.array) {
+		if (type.streaming) {
+			rvType = `${fqn('io.smallrye.mutiny.Multi')}<${rvType}>`;
+		} else {
+			rvType = `${fqn('java.util.List')}<${rvType}>`;
+		}
+	}
+
+	return rvType;
+}
+
 export function computeParameterValueType(
 	parameter: MParameterNoneInlineEnumType,
 	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
