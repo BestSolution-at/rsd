@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
+import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.Union;
@@ -51,5 +52,7 @@ public interface ListStreamingServiceService {
 	public Multi<SimpleRecord.Data> streamRecord(BuilderFactory _factory);
 
 	public Multi<Union.Data> streamUnion(BuilderFactory _factory);
+
+	public Multi<SimpleRecord.Data> uploadFileStreamRecords(BuilderFactory _factory, RSDFile data);
 
 }

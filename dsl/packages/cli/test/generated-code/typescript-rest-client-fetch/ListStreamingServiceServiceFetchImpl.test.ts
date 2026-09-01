@@ -421,4 +421,35 @@ describe('ListStreamingServiceServiceImpl', () => {
 			});
 		});
 	});
+
+	describe('uploadFileStreamRecords', () => {
+		test.each([json, msgpack])('should stream records with $encoding', async ({ service }) => {
+			const file = new File(['Hello\nWorld\nStreaming'], 'hello.txt', { type: 'text/plain' });
+			const values: api.model.SimpleRecord[] = [];
+			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
+			let finalCalled = false;
+
+			await service.uploadFileStreamRecords(
+				{
+					value: value => {
+						values.push(value);
+					},
+					error: error => {
+						errors.push(error);
+					},
+					final: () => {
+						finalCalled = true;
+					},
+				},
+				file,
+			);
+
+			expect(values).toHaveLength(3);
+			expect(errors).toHaveLength(0);
+			expect(finalCalled).toBe(true);
+			expect(values[0]).toStrictEqual({ key: 'line-0', version: '1', value: 'Hello' });
+			expect(values[1]).toStrictEqual({ key: 'line-1', version: '1', value: 'World' });
+			expect(values[2]).toStrictEqual({ key: 'line-2', version: '1', value: 'Streaming' });
+		});
+	});
 });

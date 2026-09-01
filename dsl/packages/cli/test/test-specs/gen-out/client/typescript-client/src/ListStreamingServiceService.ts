@@ -92,4 +92,9 @@ export interface ListStreamingServiceService {
 		error: (error: StatusRSDError | NativeRSDError) => void;
 		final: () => void;
 	}, ): Promise<void>;
+	uploadFileStreamRecords($callbacks: {
+		value: (value: SimpleRecord) => void;
+		error: (error: StatusRSDError | NativeRSDError) => void;
+		final: () => void;
+	}, data: File): Promise<void>;
 }

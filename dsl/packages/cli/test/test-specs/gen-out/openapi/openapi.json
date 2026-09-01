@@ -18279,6 +18279,51 @@
           }
         }
       }
+    },
+    "/api/liststreaming/uploadFileStreamRecords": {
+      "post": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_uploadFileStreamRecords",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SimpleRecord"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

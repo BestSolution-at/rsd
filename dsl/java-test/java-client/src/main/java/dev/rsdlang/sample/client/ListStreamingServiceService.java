@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
+import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.Union;
@@ -49,5 +50,9 @@ public interface ListStreamingServiceService extends BaseService {
 	public void streamRecord(StreamConsumer<SimpleRecord.Data, RSDError.$GenericError> consumer);
 
 	public void streamUnion(StreamConsumer<Union.Data, RSDError.$GenericError> consumer);
+
+	public void uploadFileStreamRecords(
+			RSDFile data, 
+			StreamConsumer<SimpleRecord.Data, RSDError.$GenericError> consumer);
 
 }

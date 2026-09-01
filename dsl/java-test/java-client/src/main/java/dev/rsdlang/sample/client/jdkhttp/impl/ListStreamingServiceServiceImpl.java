@@ -11,6 +11,7 @@ import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
+import java.util.Objects;
 
 import jakarta.json.JsonValue;
 
@@ -21,6 +22,7 @@ import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.client.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.UnionDataImpl;
+import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SampleEnum;
 import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.Union;
@@ -1102,6 +1104,77 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation streamUnion", e);
 			this.lifecycleHook.onCatch("streamUnion", $error);
 			this.lifecycleHook.onFinally("streamUnion");
+		}
+	}
+
+	public void uploadFileStreamRecords(RSDFile data, StreamConsumer<SimpleRecord.Data, RSDError.$GenericError> $consumer) {
+		Objects.requireNonNull(data, "data must not be null");
+
+		var $path = "%s/api/liststreaming/uploadFileStreamRecords".formatted(
+				this.baseURI());
+
+		var $uri = URI.create($path);
+		var $clientSupplier = this.client.httpClientSupplier();
+		try {
+			var $formDataBuilder = RSDFormDataPublisherBuilder.create();
+			$formDataBuilder.addBlob("data", data);
+			var $formData = $formDataBuilder.build();
+			var $body = $formData.publisher();
+			var $contentType = $formData.contentType();
+
+			var $requestBuilder = HttpRequest.newBuilder()
+					.uri($uri)
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
+					.header("Content-Type", $contentType)
+					.POST($body);
+			this.lifecycleHook.preRequest("uploadFileStreamRecords", client.createRequestBuilderAdaptable($requestBuilder));
+			var $request = $requestBuilder.build();
+
+			AtomicBoolean $completed = new AtomicBoolean(false);
+			Consumer<Throwable> $onComplete = $streamError -> {
+				if (!$completed.compareAndSet(false, true)) {
+					return;
+				}
+				$clientSupplier.close();
+				if ($streamError != null) {
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while streaming operation uploadFileStreamRecords", $streamError);
+					$consumer.accept(null, $error, true);
+					this.lifecycleHook.onCatch("uploadFileStreamRecords", $error);
+				} else {
+					$consumer.accept(null, null, true);
+					this.lifecycleHook.onSuccess("uploadFileStreamRecords", null, null);
+				}
+				this.lifecycleHook.onFinally("uploadFileStreamRecords");
+			};
+			Consumer<JsonValue> $jsonValueConsumer = $jsonValue -> {
+				$consumer.accept(SimpleRecordDataImpl.of($jsonValue.asJsonObject()), null, false);
+			};
+
+			BodyHandler<Void> $bodyHandler = $ri -> {
+				if ($ri.statusCode() == 200) {
+					return JDKHttpClientResponseUtils.streamSubscriber($ri, $jsonValueConsumer, $onComplete, null);
+				}
+				throw new IllegalStateException("Error results not yet supported");
+			};
+			var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);
+			$responseFuture.whenComplete(($response, $e) -> {
+				if ($e != null && $completed.compareAndSet(false, true)) {
+					$clientSupplier.close();
+					var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileStreamRecords", $e);
+					$consumer.accept(null, $error, true);
+					this.lifecycleHook.onCatch("uploadFileStreamRecords", $error);
+					this.lifecycleHook.onFinally("uploadFileStreamRecords");
+				}
+			});
+		} catch (Exception e) {
+			$clientSupplier.close();
+			if (e instanceof InterruptedException) {
+				Thread.currentThread().interrupt();
+			}
+
+			var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation uploadFileStreamRecords", e);
+			this.lifecycleHook.onCatch("uploadFileStreamRecords", $error);
+			this.lifecycleHook.onFinally("uploadFileStreamRecords");
 		}
 	}
 }

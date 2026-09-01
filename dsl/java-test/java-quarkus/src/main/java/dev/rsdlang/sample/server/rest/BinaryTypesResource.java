@@ -100,6 +100,7 @@ public class BinaryTypesResource {
 		var result = service.uploadFile(builderFactory, data);
 		return responseBuilder.uploadFile(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@POST
 	@Path("uploadFileOpt")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -109,6 +110,7 @@ public class BinaryTypesResource {
 		var result = service.uploadFileOpt(builderFactory, data);
 		return responseBuilder.uploadFileOpt(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@POST
 	@Path("uploadFileNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -118,6 +120,7 @@ public class BinaryTypesResource {
 		var result = service.uploadFileNil(builderFactory, data);
 		return responseBuilder.uploadFileNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@POST
 	@Path("uploadFileOptNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -127,6 +130,7 @@ public class BinaryTypesResource {
 		var result = service.uploadFileOptNil(builderFactory, data);
 		return responseBuilder.uploadFileOptNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@POST
 	@Path("uploadBlob")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -136,6 +140,7 @@ public class BinaryTypesResource {
 		var result = service.uploadBlob(builderFactory, data);
 		return responseBuilder.uploadBlob(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@POST
 	@Path("uploadBlobOpt")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -145,6 +150,7 @@ public class BinaryTypesResource {
 		var result = service.uploadBlobOpt(builderFactory, data);
 		return responseBuilder.uploadBlobOpt(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@POST
 	@Path("uploadBlobNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -154,6 +160,7 @@ public class BinaryTypesResource {
 		var result = service.uploadBlobNil(builderFactory, data);
 		return responseBuilder.uploadBlobNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@POST
 	@Path("uploadBlobOptNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -163,6 +170,7 @@ public class BinaryTypesResource {
 		var result = service.uploadBlobOptNil(builderFactory, data);
 		return responseBuilder.uploadBlobOptNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadFileList")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -172,6 +180,7 @@ public class BinaryTypesResource {
 		var result = service.uploadFileList(builderFactory, data);
 		return responseBuilder.uploadFileList(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadFileListOpt")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -181,6 +190,7 @@ public class BinaryTypesResource {
 		var result = service.uploadFileListOpt(builderFactory, data);
 		return responseBuilder.uploadFileListOpt(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadFileListNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -190,6 +200,7 @@ public class BinaryTypesResource {
 		var result = service.uploadFileListNil(builderFactory, data);
 		return responseBuilder.uploadFileListNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadFileListOptNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -199,6 +210,7 @@ public class BinaryTypesResource {
 		var result = service.uploadFileListOptNil(builderFactory, data);
 		return responseBuilder.uploadFileListOptNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadBlobList")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -208,6 +220,7 @@ public class BinaryTypesResource {
 		var result = service.uploadBlobList(builderFactory, data);
 		return responseBuilder.uploadBlobList(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadBlobListOpt")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -217,6 +230,7 @@ public class BinaryTypesResource {
 		var result = service.uploadBlobListOpt(builderFactory, data);
 		return responseBuilder.uploadBlobListOpt(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadBlobListNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -226,6 +240,7 @@ public class BinaryTypesResource {
 		var result = service.uploadBlobListNil(builderFactory, data);
 		return responseBuilder.uploadBlobListNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadBlobListOptNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -235,6 +250,7 @@ public class BinaryTypesResource {
 		var result = service.uploadBlobListOptNil(builderFactory, data);
 		return responseBuilder.uploadBlobListOptNil(result, computeResponseContentType($acceptHeaders), data).build();
 	}
+
 	@PUT
 	@Path("uploadMixed")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -257,6 +273,7 @@ public class BinaryTypesResource {
 		var result = service.uploadMixed(builderFactory, text, number, rec, scalar_, dayOfWeek, textList, numberList, recList, scalarList, monthList, dataFile, dataBlob);
 		return responseBuilder.uploadMixed(result, computeResponseContentType($acceptHeaders), text, number, rec, scalar_, dayOfWeek, textList, numberList, recList, scalarList, monthList, dataFile, dataBlob).build();
 	}
+
 	@PUT
 	@Path("uploadMixedOpt")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -279,6 +296,7 @@ public class BinaryTypesResource {
 		var result = service.uploadMixedOpt(builderFactory, text, number, rec, scalar_, dayOfWeek, textList, numberList, recList, scalarList, monthList, dataFile, dataBlob);
 		return responseBuilder.uploadMixedOpt(result, computeResponseContentType($acceptHeaders), text, number, rec, scalar_, dayOfWeek, textList, numberList, recList, scalarList, monthList, dataFile, dataBlob).build();
 	}
+
 	@PUT
 	@Path("uploadMixedNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -301,6 +319,7 @@ public class BinaryTypesResource {
 		var result = service.uploadMixedNil(builderFactory, text, number, rec, scalar_, dayOfWeek, textList, numberList, recList, scalarList, monthList, dataFile, dataBlob);
 		return responseBuilder.uploadMixedNil(result, computeResponseContentType($acceptHeaders), text, number, rec, scalar_, dayOfWeek, textList, numberList, recList, scalarList, monthList, dataFile, dataBlob).build();
 	}
+
 	@PUT
 	@Path("uploadMixedOptNil")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -323,6 +342,7 @@ public class BinaryTypesResource {
 		var result = service.uploadMixedOptNil(builderFactory, text, number, rec, scalar_, dayOfWeek, textList, numberList, recList, scalarList, monthList, dataFile, dataBlob);
 		return responseBuilder.uploadMixedOptNil(result, computeResponseContentType($acceptHeaders), text, number, rec, scalar_, dayOfWeek, textList, numberList, recList, scalarList, monthList, dataFile, dataBlob).build();
 	}
+
 	@POST
 	@Path("mixed/{pathString}/{pathNumber}")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -340,6 +360,7 @@ public class BinaryTypesResource {
 		var result = service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
 		return responseBuilder.mixed(result, computeResponseContentType($acceptHeaders), pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob).build();
 	}
+
 	@POST
 	@Path("singleBodyAddition")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -352,6 +373,7 @@ public class BinaryTypesResource {
 		var result = service.singleBodyAddition(builderFactory, name, dataBlob);
 		return responseBuilder.singleBodyAddition(result, computeResponseContentType($acceptHeaders), name, dataBlob).build();
 	}
+
 	@POST
 	@Path("twoBinariesAddition")
 	@Produces({"application/json", "application/vnd.msgpack"})
@@ -362,4 +384,5 @@ public class BinaryTypesResource {
 		var result = service.twoBinariesAddition(builderFactory, dataBlob, dataFile);
 		return responseBuilder.twoBinariesAddition(result, computeResponseContentType($acceptHeaders), dataBlob, dataFile).build();
 	}
+
 }

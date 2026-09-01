@@ -34,6 +34,7 @@ export function createListStreamingServiceService(props: ServiceProps<api.servic
 		streamInlineEnum: fnStreamInlineEnum(props),
 		streamRecord: fnStreamRecord(props),
 		streamUnion: fnStreamUnion(props),
+		uploadFileStreamRecords: fnUploadFileStreamRecords(props),
 	};
 }
 function fnStreamBoolean(props: ServiceProps<api.service.ErrorType>): api.service.ListStreamingServiceService['streamBoolean'] {
@@ -593,6 +594,42 @@ function fnStreamUnion(props: ServiceProps<api.service.ErrorType>): api.service.
 		} finally {
 			$callbacks.final();
 			final?.('streamUnion');
+		}
+	};
+}
+
+function fnUploadFileStreamRecords(props: ServiceProps<api.service.ErrorType>): api.service.ListStreamingServiceService['uploadFileStreamRecords'] {
+	const { baseUrl, fetchAPI = fetch, lifecycleHandlers = {} } = props;
+	const { preFetch, onSuccess, onCatch, final } = lifecycleHandlers;
+	return async ($callbacks, data: File) => {
+		try {
+			const $init = (await preFetch?.('uploadFileStreamRecords')) ?? {};
+			const $headers = new Headers($init.headers ?? {});
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
+			$init.headers = $headers;
+
+			const $path = `${baseUrl}/api/liststreaming/uploadFileStreamRecords`;
+			const $body = new FormData();
+			$body.append('data', data);
+			if ($body.values().next().done) {
+				$body.append('_rsdQuarkusBugDummy', '');
+			}
+			const $response = await fetchAPI($path, { ...$init, method: 'POST', body: $body });
+			if ($response.status === 200) {
+				await decodeResponseStream($response, api.utils.isRecord, $value => { $callbacks.value(api.model.SimpleRecordFromJSON($value)); });
+				safeExecute(undefined, () => onSuccess?.('uploadFileStreamRecords', undefined));
+				return;
+			}
+			const err = { _type: '_Status', message: await $response.text(), status: $response.status } as const;
+			$callbacks.error(err);
+		} catch (e) {
+			onCatch?.('uploadFileStreamRecords', e);
+			const ee = e instanceof Error ? e : new Error('', { cause: e });
+			const err = { _type: '_Native', message: ee.message, error: ee } as const;
+			$callbacks.error(err);
+		} finally {
+			$callbacks.final();
+			final?.('uploadFileStreamRecords');
 		}
 	};
 }

@@ -7,13 +7,17 @@ import java.util.regex.Pattern;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.service.ListStreamingServiceService;
 import io.smallrye.mutiny.Multi;
+import org.jboss.resteasy.reactive.multipart.FileUpload;
+import org.jboss.resteasy.reactive.RestForm;
 
 @ApplicationScoped
 @Path("/api/liststreaming")
@@ -312,6 +316,25 @@ public class ListStreamingServiceResource {
 	public Multi<byte[]> streamUnion(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamUnion(builderFactory);
 		return responseBuilder.streamUnion(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@POST
+	@Path("uploadFileStreamRecords")
+	@Produces("application/json")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Multi<byte[]> uploadFileStreamRecordsAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") FileUpload _data) {
+		var data = builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName());
+		var result = service.uploadFileStreamRecords(builderFactory, data);
+		return responseBuilder.uploadFileStreamRecords(result, "application/json", data).build();
+	}
+
+	@POST
+	@Path("uploadFileStreamRecords")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Multi<byte[]> uploadFileStreamRecords(@HeaderParam("Accept") List<String> $acceptHeaders, @RestForm("data") FileUpload _data) {
+		var data = builderFactory.createFile(_data.filePath(), _data.contentType(), _data.fileName());
+		var result = service.uploadFileStreamRecords(builderFactory, data);
+		return responseBuilder.uploadFileStreamRecords(result, computeStreamResponseContentType($acceptHeaders), data).build();
 	}
 
 }

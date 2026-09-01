@@ -9,6 +9,7 @@ import java.time.ZonedDateTime;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
+import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.Union;
@@ -36,8 +37,9 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 	private final StreamInlineEnumHandler streamInlineEnumHandler;
 	private final StreamRecordHandler streamRecordHandler;
 	private final StreamUnionHandler streamUnionHandler;
+	private final UploadFileStreamRecordsHandler uploadFileStreamRecordsHandler;
 
-	public ListStreamingServiceServiceImpl(StreamBooleanHandler streamBooleanHandler, StreamShortHandler streamShortHandler, StreamIntHandler streamIntHandler, StreamLongHandler streamLongHandler, StreamFloatHandler streamFloatHandler, StreamDoubleHandler streamDoubleHandler, StreamStringHandler streamStringHandler, StreamLocalDateHandler streamLocalDateHandler, StreamLocalDateTimeHandler streamLocalDateTimeHandler, StreamLocalTimeHandler streamLocalTimeHandler, StreamOffsetDateTimeHandler streamOffsetDateTimeHandler, StreamZonedDateTimeHandler streamZonedDateTimeHandler, StreamScalarHandler streamScalarHandler, StreamEnumHandler streamEnumHandler, StreamInlineEnumHandler streamInlineEnumHandler, StreamRecordHandler streamRecordHandler, StreamUnionHandler streamUnionHandler) {
+	public ListStreamingServiceServiceImpl(StreamBooleanHandler streamBooleanHandler, StreamShortHandler streamShortHandler, StreamIntHandler streamIntHandler, StreamLongHandler streamLongHandler, StreamFloatHandler streamFloatHandler, StreamDoubleHandler streamDoubleHandler, StreamStringHandler streamStringHandler, StreamLocalDateHandler streamLocalDateHandler, StreamLocalDateTimeHandler streamLocalDateTimeHandler, StreamLocalTimeHandler streamLocalTimeHandler, StreamOffsetDateTimeHandler streamOffsetDateTimeHandler, StreamZonedDateTimeHandler streamZonedDateTimeHandler, StreamScalarHandler streamScalarHandler, StreamEnumHandler streamEnumHandler, StreamInlineEnumHandler streamInlineEnumHandler, StreamRecordHandler streamRecordHandler, StreamUnionHandler streamUnionHandler, UploadFileStreamRecordsHandler uploadFileStreamRecordsHandler) {
 		this.streamBooleanHandler = streamBooleanHandler;
 		this.streamShortHandler = streamShortHandler;
 		this.streamIntHandler = streamIntHandler;
@@ -55,6 +57,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		this.streamInlineEnumHandler = streamInlineEnumHandler;
 		this.streamRecordHandler = streamRecordHandler;
 		this.streamUnionHandler = streamUnionHandler;
+		this.uploadFileStreamRecordsHandler = uploadFileStreamRecordsHandler;
 	}
 
 	@Override
@@ -142,6 +145,11 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		return streamUnionHandler.streamUnion(_factory);
 	}
 
+	@Override
+	public Multi<SimpleRecord.Data> uploadFileStreamRecords(BuilderFactory _factory, RSDFile data) {
+		return uploadFileStreamRecordsHandler.uploadFileStreamRecords(_factory, data);
+	}
+
 	public interface StreamBooleanHandler {
 		public Multi<Boolean> streamBoolean(BuilderFactory _factory);
 	}
@@ -208,6 +216,10 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 
 	public interface StreamUnionHandler {
 		public Multi<Union.Data> streamUnion(BuilderFactory _factory);
+	}
+
+	public interface UploadFileStreamRecordsHandler {
+		public Multi<SimpleRecord.Data> uploadFileStreamRecords(BuilderFactory _factory, RSDFile data);
 	}
 
 }

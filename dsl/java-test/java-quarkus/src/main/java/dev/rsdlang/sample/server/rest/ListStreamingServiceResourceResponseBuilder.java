@@ -12,6 +12,7 @@ import jakarta.inject.Singleton;
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
+import dev.rsdlang.sample.server.model.RSDFile;
 import dev.rsdlang.sample.server.model.SampleEnum;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.model.Union;
@@ -151,6 +152,14 @@ public class ListStreamingServiceResourceResponseBuilder {
 	}
 
 	public RestMulti.SyncRestMulti.Builder<byte[]> streamUnion(Multi<Union.Data> $result, String $contentType) {
+		var $encoder = _JsonUtils.createStreamEncoder($contentType);
+		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
+			.header("Content-Type", $contentType)
+			.encodeAsJsonArray("application/json".equals($contentType))
+			.status(200);
+	}
+
+	public RestMulti.SyncRestMulti.Builder<byte[]> uploadFileStreamRecords(Multi<SimpleRecord.Data> $result, String $contentType, RSDFile data) {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)

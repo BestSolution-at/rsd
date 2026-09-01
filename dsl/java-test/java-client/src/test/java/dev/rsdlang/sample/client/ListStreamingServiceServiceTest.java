@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -23,7 +25,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import dev.rsdlang.sample.client.ListStreamingServiceService.StreamInlineEnum_Result$;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient;
 import dev.rsdlang.sample.client.jdkhttp.JDKSpecSamplesClient.ContentTypeEncoding;
+import dev.rsdlang.sample.client.model.RSDFile;
 import dev.rsdlang.sample.client.model.SampleEnum;
+import dev.rsdlang.sample.client.model.SimpleRecord;
 import dev.rsdlang.sample.client.model.UnionA;
 import dev.rsdlang.sample.client.model.UnionB;
 
@@ -43,6 +47,13 @@ public class ListStreamingServiceServiceTest {
 				JSON.service(ListStreamingServiceService.class),
 				MSGPACK.service(ListStreamingServiceService.class),
 		};
+	}
+
+	private static RSDFile file(ListStreamingServiceService service, String content) throws IOException {
+		var tmp = Files.createTempFile("test", ".txt");
+		Files.writeString(tmp, content);
+		tmp.toFile().deleteOnExit();
+		return service.client().createFile(tmp, "text/plain", tmp.getFileName().toString());
 	}
 
 	record StreamResult<T, E>(List<T> value, List<E> error) {
@@ -252,6 +263,20 @@ public class ListStreamingServiceServiceTest {
 		assertEquals("Bar", result.value().get(1).shared());
 		assertEquals("A", ((UnionA.Data) result.value().get(0)).valueA());
 		assertEquals("B", ((UnionB.Data) result.value().get(1)).valueB());
+	}
+
+	@ParameterizedTest
+	@MethodSource("serviceProvider")
+	public void uploadFileStreamRecords(ListStreamingServiceService service) throws IOException {
+		var uploaded = file(service, "Hello\nWorld\nStreaming");
+		var result = runStream(
+				(StreamConsumer<SimpleRecord.Data, RSDError.$GenericError> consumer) -> service
+						.uploadFileStreamRecords(uploaded, consumer));
+		assertEquals(0, result.error().size());
+		assertEquals(3, result.value().size());
+		assertEquals("Hello", result.value().get(0).value());
+		assertEquals("World", result.value().get(1).value());
+		assertEquals("Streaming", result.value().get(2).value());
 	}
 
 }
