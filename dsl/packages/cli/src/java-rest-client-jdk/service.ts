@@ -920,7 +920,7 @@ ${Consumer}<${JsonValue}> $jsonValueConsumer = $jsonValue -> {
 		mBody.indent(block => {
 			block.append('$clientSupplier.close();', NL);
 			block.append(
-				`var $error = new RSDError.$GenericError(RSDError.Type._Native, "Unexpected error while executing operation ${o.name}", $e);`,
+				`var $error = new ${RSDError}.$GenericError(${RSDError}.Type._Native, "Unexpected error while executing operation ${o.name}", $e);`,
 				NL,
 			);
 			block.append(`$consumer.accept(null, $error, true);`, NL);
