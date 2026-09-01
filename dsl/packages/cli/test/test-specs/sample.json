@@ -24835,6 +24835,41 @@
               "results": []
             }
           }
+        },
+        {
+          "@type": "Operation",
+          "name": "uploadFileStreamRecords",
+          "doc": "",
+          "parameters": [
+            {
+              "@type": "Parameter",
+              "name": "data",
+              "array": false,
+              "nullable": false,
+              "optional": false,
+              "patch": false,
+              "variant": "stream",
+              "type": "file",
+              "doc": ""
+            }
+          ],
+          "resultType": {
+            "@type": "ReturnType",
+            "array": true,
+            "streaming": true,
+            "variant": "record",
+            "type": "SimpleRecord",
+            "doc": ""
+          },
+          "errors": [],
+          "operationErrors": [],
+          "meta": {
+            "rest": {
+              "method": "POST",
+              "path": "uploadFileStreamRecords",
+              "results": []
+            }
+          }
         }
       ],
       "meta": {

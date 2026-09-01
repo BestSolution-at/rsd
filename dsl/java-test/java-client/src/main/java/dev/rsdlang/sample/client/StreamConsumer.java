@@ -15,10 +15,16 @@ public interface StreamConsumer<T, E extends RSDError> {
 			public void accept(T value, E error, boolean isComplete) {
 				if (error != null) {
 					errorConsumer.accept(error);
-				} else if (isComplete) {
+					if (isComplete) {
+						completeConsumer.run();
+					}
+				} else if (value == null && isComplete) {
 					completeConsumer.run();
 				} else {
 					valueConsumer.accept(value);
+					if (isComplete) {
+						completeConsumer.run();
+					}
 				}
 			}
 		};
