@@ -804,6 +804,13 @@ ${toString(emptyObjectValues, '\t')}
 		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
 	}
 
+	public static <T> T mapNumberLiteral(JsonValue value, Function<JsonNumber, T> converter) {
+		if (value instanceof JsonNumber n) {
+			return converter.apply(n);
+		}
+		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 
 	public static <T> T mapObject(JsonObject object, String property,
@@ -957,10 +964,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static short mapShort(JsonValue value) {
-		if (value instanceof JsonNumber n) {
-			return (short) n.intValue();
-		}
-		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+		return mapNumberLiteral(value, n -> (short) n.intValue());
 	}
 
 	// ----------------
@@ -1014,10 +1018,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static int mapInt(JsonValue value) {
-		if (value instanceof JsonNumber n) {
-			return n.intValue();
-		}
-		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+		return mapNumberLiteral(value, JsonNumber::intValue);
 	}
 
 	// ----------------
@@ -1067,10 +1068,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static long mapLong(JsonValue value) {
-		if (value instanceof JsonNumber n) {
-			return n.longValue();
-		}
-		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+		return mapNumberLiteral(value, JsonNumber::longValue);
 	}
 
 	// ----------------
@@ -1120,10 +1118,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static float mapFloat(JsonValue value) {
-		if (value instanceof JsonNumber n) {
-			return (float) n.doubleValue();
-		}
-		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+		return mapNumberLiteral(value, n -> (float) n.doubleValue());
 	}
 
 	// ----------------
@@ -1177,10 +1172,7 @@ ${toString(emptyObjectValues, '\t')}
 	}
 
 	public static double mapDouble(JsonValue value) {
-		if (value instanceof JsonNumber n) {
-			return n.doubleValue();
-		}
-		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+		return mapNumberLiteral(value, JsonNumber::doubleValue);
 	}
 
 	// ----------------
