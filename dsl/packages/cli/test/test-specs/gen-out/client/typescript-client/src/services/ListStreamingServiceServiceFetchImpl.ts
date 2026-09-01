@@ -43,7 +43,7 @@ function fnStreamBoolean(props: ServiceProps<api.service.ErrorType>): api.servic
 		try {
 			const $init = (await preFetch?.('streamBoolean')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -76,7 +76,7 @@ function fnStreamShort(props: ServiceProps<api.service.ErrorType>): api.service.
 		try {
 			const $init = (await preFetch?.('streamShort')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -109,7 +109,7 @@ function fnStreamInt(props: ServiceProps<api.service.ErrorType>): api.service.Li
 		try {
 			const $init = (await preFetch?.('streamInt')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -142,7 +142,7 @@ function fnStreamLong(props: ServiceProps<api.service.ErrorType>): api.service.L
 		try {
 			const $init = (await preFetch?.('streamLong')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -175,7 +175,7 @@ function fnStreamFloat(props: ServiceProps<api.service.ErrorType>): api.service.
 		try {
 			const $init = (await preFetch?.('streamFloat')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -208,7 +208,7 @@ function fnStreamDouble(props: ServiceProps<api.service.ErrorType>): api.service
 		try {
 			const $init = (await preFetch?.('streamDouble')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -241,7 +241,7 @@ function fnStreamString(props: ServiceProps<api.service.ErrorType>): api.service
 		try {
 			const $init = (await preFetch?.('streamString')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -274,7 +274,7 @@ function fnStreamLocalDate(props: ServiceProps<api.service.ErrorType>): api.serv
 		try {
 			const $init = (await preFetch?.('streamLocalDate')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -307,7 +307,7 @@ function fnStreamLocalDateTime(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('streamLocalDateTime')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -340,7 +340,7 @@ function fnStreamLocalTime(props: ServiceProps<api.service.ErrorType>): api.serv
 		try {
 			const $init = (await preFetch?.('streamLocalTime')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -373,7 +373,7 @@ function fnStreamOffsetDateTime(props: ServiceProps<api.service.ErrorType>): api
 		try {
 			const $init = (await preFetch?.('streamOffsetDateTime')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -406,7 +406,7 @@ function fnStreamZonedDateTime(props: ServiceProps<api.service.ErrorType>): api.
 		try {
 			const $init = (await preFetch?.('streamZonedDateTime')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -439,7 +439,7 @@ function fnStreamScalar(props: ServiceProps<api.service.ErrorType>): api.service
 		try {
 			const $init = (await preFetch?.('streamScalar')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -472,7 +472,7 @@ function fnStreamEnum(props: ServiceProps<api.service.ErrorType>): api.service.L
 		try {
 			const $init = (await preFetch?.('streamEnum')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -505,7 +505,7 @@ function fnStreamInlineEnum(props: ServiceProps<api.service.ErrorType>): api.ser
 		try {
 			const $init = (await preFetch?.('streamInlineEnum')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -538,7 +538,7 @@ function fnStreamRecord(props: ServiceProps<api.service.ErrorType>): api.service
 		try {
 			const $init = (await preFetch?.('streamRecord')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 
@@ -571,7 +571,7 @@ function fnStreamUnion(props: ServiceProps<api.service.ErrorType>): api.service.
 		try {
 			const $init = (await preFetch?.('streamUnion')) ?? {};
 			const $headers = new Headers($init.headers ?? {});
-			$headers.append('Accept', encodingType(props));
+			$headers.append('Accept', encodingType(props) === 'application/json' ? 'application/x-ndjson' : encodingType(props));
 			$headers.append('Content-Type', encodingType(props));
 			$init.headers = $headers;
 

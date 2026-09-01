@@ -10,6 +10,7 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.service.ListStreamingServiceService;
 import io.smallrye.mutiny.Multi;
@@ -49,123 +50,268 @@ public class ListStreamingServiceResource {
 		};
 	}
 
+	static String computeStreamResponseContentType(List<String> acceptHeader) {
+		return acceptHeader.stream()
+				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
+				.map(String::trim)
+				.filter(e -> "application/vnd.msgpack".equals(e) || "application/x-ndjson".equals(e))
+				.findFirst()
+				.orElse("application/x-ndjson");
+	}
+
+	@GET
+	@Path("streamBoolean")
+	@Produces("application/json")
+	public Multi<byte[]> streamBooleanAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamBoolean(builderFactory);
+		return responseBuilder.streamBoolean(result, "application/json").build();
+	}
+
 	@GET
 	@Path("streamBoolean")
 	public Multi<byte[]> streamBoolean(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamBoolean(builderFactory);
-		return responseBuilder.streamBoolean(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamBoolean(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamShort")
+	@Produces("application/json")
+	public Multi<byte[]> streamShortAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamShort(builderFactory);
+		return responseBuilder.streamShort(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamShort")
 	public Multi<byte[]> streamShort(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamShort(builderFactory);
-		return responseBuilder.streamShort(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamShort(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamInt")
+	@Produces("application/json")
+	public Multi<byte[]> streamIntAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamInt(builderFactory);
+		return responseBuilder.streamInt(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamInt")
 	public Multi<byte[]> streamInt(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamInt(builderFactory);
-		return responseBuilder.streamInt(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamInt(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamLong")
+	@Produces("application/json")
+	public Multi<byte[]> streamLongAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamLong(builderFactory);
+		return responseBuilder.streamLong(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamLong")
 	public Multi<byte[]> streamLong(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamLong(builderFactory);
-		return responseBuilder.streamLong(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamLong(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamFloat")
+	@Produces("application/json")
+	public Multi<byte[]> streamFloatAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamFloat(builderFactory);
+		return responseBuilder.streamFloat(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamFloat")
 	public Multi<byte[]> streamFloat(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamFloat(builderFactory);
-		return responseBuilder.streamFloat(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamFloat(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamDouble")
+	@Produces("application/json")
+	public Multi<byte[]> streamDoubleAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamDouble(builderFactory);
+		return responseBuilder.streamDouble(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamDouble")
 	public Multi<byte[]> streamDouble(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamDouble(builderFactory);
-		return responseBuilder.streamDouble(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamDouble(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamString")
+	@Produces("application/json")
+	public Multi<byte[]> streamStringAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamString(builderFactory);
+		return responseBuilder.streamString(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamString")
 	public Multi<byte[]> streamString(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamString(builderFactory);
-		return responseBuilder.streamString(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamString(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamLocalDate")
+	@Produces("application/json")
+	public Multi<byte[]> streamLocalDateAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamLocalDate(builderFactory);
+		return responseBuilder.streamLocalDate(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamLocalDate")
 	public Multi<byte[]> streamLocalDate(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamLocalDate(builderFactory);
-		return responseBuilder.streamLocalDate(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamLocalDate(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamLocalDateTime")
+	@Produces("application/json")
+	public Multi<byte[]> streamLocalDateTimeAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamLocalDateTime(builderFactory);
+		return responseBuilder.streamLocalDateTime(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamLocalDateTime")
 	public Multi<byte[]> streamLocalDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamLocalDateTime(builderFactory);
-		return responseBuilder.streamLocalDateTime(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamLocalDateTime(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamLocalTime")
+	@Produces("application/json")
+	public Multi<byte[]> streamLocalTimeAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamLocalTime(builderFactory);
+		return responseBuilder.streamLocalTime(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamLocalTime")
 	public Multi<byte[]> streamLocalTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamLocalTime(builderFactory);
-		return responseBuilder.streamLocalTime(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamLocalTime(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamOffsetDateTime")
+	@Produces("application/json")
+	public Multi<byte[]> streamOffsetDateTimeAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamOffsetDateTime(builderFactory);
+		return responseBuilder.streamOffsetDateTime(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamOffsetDateTime")
 	public Multi<byte[]> streamOffsetDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamOffsetDateTime(builderFactory);
-		return responseBuilder.streamOffsetDateTime(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamOffsetDateTime(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamZonedDateTime")
+	@Produces("application/json")
+	public Multi<byte[]> streamZonedDateTimeAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamZonedDateTime(builderFactory);
+		return responseBuilder.streamZonedDateTime(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamZonedDateTime")
 	public Multi<byte[]> streamZonedDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamZonedDateTime(builderFactory);
-		return responseBuilder.streamZonedDateTime(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamZonedDateTime(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamScalar")
+	@Produces("application/json")
+	public Multi<byte[]> streamScalarAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamScalar(builderFactory);
+		return responseBuilder.streamScalar(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamScalar")
 	public Multi<byte[]> streamScalar(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamScalar(builderFactory);
-		return responseBuilder.streamScalar(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamScalar(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamEnum")
+	@Produces("application/json")
+	public Multi<byte[]> streamEnumAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamEnum(builderFactory);
+		return responseBuilder.streamEnum(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamEnum")
 	public Multi<byte[]> streamEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamEnum(builderFactory);
-		return responseBuilder.streamEnum(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamEnum(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamInlineEnum")
+	@Produces("application/json")
+	public Multi<byte[]> streamInlineEnumAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamInlineEnum(builderFactory);
+		return responseBuilder.streamInlineEnum(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamInlineEnum")
 	public Multi<byte[]> streamInlineEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamInlineEnum(builderFactory);
-		return responseBuilder.streamInlineEnum(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamInlineEnum(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamRecord")
+	@Produces("application/json")
+	public Multi<byte[]> streamRecordAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamRecord(builderFactory);
+		return responseBuilder.streamRecord(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamRecord")
 	public Multi<byte[]> streamRecord(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamRecord(builderFactory);
-		return responseBuilder.streamRecord(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamRecord(result, computeStreamResponseContentType($acceptHeaders)).build();
+	}
+
+	@GET
+	@Path("streamUnion")
+	@Produces("application/json")
+	public Multi<byte[]> streamUnionAsJsonArray(@HeaderParam("Accept") List<String> $acceptHeaders) {
+		var result = service.streamUnion(builderFactory);
+		return responseBuilder.streamUnion(result, "application/json").build();
 	}
 
 	@GET
 	@Path("streamUnion")
 	public Multi<byte[]> streamUnion(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.streamUnion(builderFactory);
-		return responseBuilder.streamUnion(result, computeResponseContentType($acceptHeaders)).build();
+		return responseBuilder.streamUnion(result, computeStreamResponseContentType($acceptHeaders)).build();
 	}
 
 }

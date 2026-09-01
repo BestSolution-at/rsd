@@ -60,7 +60,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamBoolean", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -122,7 +122,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamShort", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -184,7 +184,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamInt", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -246,7 +246,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamLong", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -308,7 +308,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamFloat", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -370,7 +370,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamDouble", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -432,7 +432,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamString", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -494,7 +494,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamLocalDate", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -556,7 +556,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamLocalDateTime", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -618,7 +618,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamLocalTime", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -680,7 +680,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamOffsetDateTime", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -742,7 +742,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamZonedDateTime", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -804,7 +804,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamScalar", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -866,7 +866,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamEnum", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -928,7 +928,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamInlineEnum", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -990,7 +990,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamRecord", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();
@@ -1052,7 +1052,7 @@ public class ListStreamingServiceServiceImpl implements ListStreamingServiceServ
 		try {
 			var $requestBuilder = HttpRequest.newBuilder()
 					.uri($uri)
-					.header("Accept", this.contentType())
+					.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())
 					.GET();
 			this.lifecycleHook.preRequest("streamUnion", client.createRequestBuilderAdaptable($requestBuilder));
 			var $request = $requestBuilder.build();

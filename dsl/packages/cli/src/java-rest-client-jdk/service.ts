@@ -761,7 +761,18 @@ function generateRequestBuilderChain(
 	methodBody.indent(tmp => {
 		tmp.indent(l => {
 			l.append(`.uri($uri)`, NL);
-			l.append(`.header("Accept", this.contentType())`, NL);
+			if (o.resultType?.streaming) {
+				// A streaming result requests the complete-array response when JSON-encoded (the
+				// server only supports that as a distinct "give me the whole array" endpoint) - for
+				// actual element-by-element streaming, request application/x-ndjson instead. msgpack
+				// streaming is unaffected: it has no separate complete-array variant.
+				l.append(
+					`.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())`,
+					NL,
+				);
+			} else {
+				l.append(`.header("Accept", this.contentType())`, NL);
+			}
 
 			if (
 				allParameters.some(

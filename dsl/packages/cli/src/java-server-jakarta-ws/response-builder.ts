@@ -83,7 +83,7 @@ function generateContent(
 						var $encoder = ${JsonUtils}.createStreamEncoder($contentType);
 						return ${RestMulti}.fromMultiData($result.map($el -> $encoder.apply(${elementToJson})))
 							.header("Content-Type", $contentType)
-							.encodeAsJsonArray(false)
+							.encodeAsJsonArray("application/json".equals($contentType))
 							.status(${code.toFixed()});
 						`);
 						methodBody.append(content);

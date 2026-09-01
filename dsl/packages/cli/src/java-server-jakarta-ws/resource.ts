@@ -139,6 +139,27 @@ function _generateResource(
 				mBody.append('};', NL);
 			});
 			cBody.append('}', NL, NL);
+
+			if (s.operations.some(o => o.resultType?.streaming)) {
+				cBody.append('static String computeStreamResponseContentType(List<String> acceptHeader) {', NL);
+				cBody.indent(mBody => {
+					mBody.append('return acceptHeader.stream()', NL);
+					mBody.indent(tmp => {
+						tmp.indent(inner => {
+							inner.append('.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)', NL);
+							inner.append('.map(String::trim)', NL);
+							const streamEncodings = contentTypeEncodings.filter(e => e !== 'application/json');
+							inner.append(
+								`.filter(e -> ${streamEncodings.map(e => `"${e}".equals(e)`).join(' || ')} || "application/x-ndjson".equals(e))`,
+								NL,
+							);
+							inner.append('.findFirst()', NL);
+							inner.append('.orElse("application/x-ndjson");', NL);
+						});
+					});
+				});
+				cBody.append('}', NL, NL);
+			}
 		}
 
 		s.operations
@@ -149,6 +170,23 @@ function _generateResource(
 				}
 
 				const meta = o.meta.rest;
+
+				// Streaming (Multi) results only support a single static @Produces value per JAX-RS
+				// method (see https://github.com/BestSolution-at/rsd/issues/93), so a "complete JSON
+				// array" variant is generated as a sibling method sharing the same @Path, alongside
+				// the negotiated msgpack/ndjson streaming variant below.
+				if (o.resultType?.streaming && contentTypeEncodings.includes('application/json')) {
+					cBody.append(`@${fqn(`jakarta.ws.rs.${meta.method}`)}`, NL);
+					if (meta.path) {
+						cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
+					}
+					const Produces = fqn('jakarta.ws.rs.Produces');
+					cBody.append(`@${Produces}("application/json")`, NL);
+					cBody.append(
+						generateResourceMethod(o, s, artifactConfig, fqn, packageName, contentTypeEncodings, 'json-array'),
+					);
+				}
+
 				cBody.append(`@${fqn(`jakarta.ws.rs.${meta.method}`)}`, NL);
 				if (meta.path) {
 					cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
@@ -160,7 +198,17 @@ function _generateResource(
 					cBody.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 				}
 
-				cBody.append(generateResourceMethod(o, s, artifactConfig, fqn, packageName, contentTypeEncodings));
+				cBody.append(
+					generateResourceMethod(
+						o,
+						s,
+						artifactConfig,
+						fqn,
+						packageName,
+						contentTypeEncodings,
+						o.resultType?.streaming ? 'negotiate-stream' : undefined,
+					),
+				);
 			});
 
 		s.operations
@@ -398,10 +446,12 @@ function generateResourceMethod(
 	fqn: (type: string) => string,
 	packageName: string,
 	contentEncodings: ContentTypeEncoding,
+	streamVariant?: 'json-array' | 'negotiate-stream',
 ) {
 	const ReturnType = o.resultType?.streaming
 		? fqn('io.smallrye.mutiny.Multi') + '<byte[]>'
 		: fqn('jakarta.ws.rs.core.Response');
+	const javaMethodName = streamVariant === 'json-array' ? `${o.name}AsJsonArray` : o.name;
 	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
 
 	const multiBody = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
@@ -460,7 +510,7 @@ function generateResourceMethod(
 
 	if (params.length > 0) {
 		if (params.length > 1) {
-			cBody.append(`public ${ReturnType} ${o.name}(`, NL);
+			cBody.append(`public ${ReturnType} ${javaMethodName}(`, NL);
 			cBody.indent(tmp =>
 				tmp.indent(paramIndent => {
 					params.forEach((p, idx, arr) => {
@@ -474,10 +524,10 @@ function generateResourceMethod(
 				}),
 			);
 		} else {
-			cBody.append(`public ${ReturnType} ${o.name}(${params[0]}) {`, NL);
+			cBody.append(`public ${ReturnType} ${javaMethodName}(${params[0]}) {`, NL);
 		}
 	} else {
-		cBody.append(`public ${ReturnType} ${o.name}() {`, NL);
+		cBody.append(`public ${ReturnType} ${javaMethodName}() {`, NL);
 	}
 	cBody.indent(mBody => {
 		o.parameters.forEach(p => {
@@ -538,7 +588,7 @@ function generateResourceMethod(
 		if (errors && errors.length > 0) {
 			mBody.append('try {', NL);
 			mBody.indent(inner => {
-				inner.append(okResultContent(o, serviceParams, contentEncodings));
+				inner.append(okResultContent(o, serviceParams, contentEncodings, streamVariant));
 			});
 			errors.forEach(e => {
 				const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
@@ -557,7 +607,7 @@ function generateResourceMethod(
 			});
 			mBody.append('}', NL);
 		} else {
-			mBody.append(okResultContent(o, serviceParams, contentEncodings));
+			mBody.append(okResultContent(o, serviceParams, contentEncodings, streamVariant));
 		}
 	});
 	cBody.append('}', NL);
@@ -1061,11 +1111,20 @@ function okResultContent(
 	o: MOperation,
 	serviceParams: string[],
 	contentEncodings: ContentTypeEncoding,
+	streamVariant?: 'json-array' | 'negotiate-stream',
 ): CompositeGeneratorNode {
 	const node = new CompositeGeneratorNode();
 
-	const contentEncoding =
-		contentEncodings.length > 1 ? 'computeResponseContentType($acceptHeaders)' : `"${contentEncodings[0]}"`;
+	let contentEncoding: string;
+	if (streamVariant === 'json-array') {
+		contentEncoding = '"application/json"';
+	} else if (streamVariant === 'negotiate-stream') {
+		contentEncoding =
+			contentEncodings.length > 1 ? 'computeStreamResponseContentType($acceptHeaders)' : '"application/x-ndjson"';
+	} else {
+		contentEncoding =
+			contentEncodings.length > 1 ? 'computeResponseContentType($acceptHeaders)' : `"${contentEncodings[0]}"`;
+	}
 
 	if (o.resultType) {
 		if (serviceParams.length === 0) {

@@ -392,7 +392,18 @@ function generateRemoteInvoke(
 
 	node.append(`const $headers = new Headers($init.headers ?? {});`, NL);
 	const hasStreamParam = o.parameters.some(p => p.variant === 'stream');
-	node.append(`$headers.append('Accept', ${encodingTypeCall});`, NL);
+	if (o.resultType?.streaming) {
+		// A streaming result requests the complete-array response when JSON-encoded (the server
+		// only supports that as a distinct "give me the whole array" endpoint) - for actual
+		// element-by-element streaming, request application/x-ndjson instead. msgpack streaming is
+		// unaffected: it has no separate complete-array variant.
+		node.append(
+			`$headers.append('Accept', ${encodingTypeCall} === 'application/json' ? 'application/x-ndjson' : ${encodingTypeCall});`,
+			NL,
+		);
+	} else {
+		node.append(`$headers.append('Accept', ${encodingTypeCall});`, NL);
+	}
 	if (!hasStreamParam) {
 		node.append(`$headers.append('Content-Type', ${encodingTypeCall});`, NL);
 	}

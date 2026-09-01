@@ -362,11 +362,14 @@ export function generateJsonUtilsContent(
 		NL,
 	);
 	encodeValueMethods.indent(mBody => {
+		// application/x-ndjson streams are JSON-per-line: they share the JSON element encoder,
+		// just with different response framing (see java-server-jakarta-ws/response-builder.ts).
 		if (contentTypeEncodings.length > 1) {
 			mBody.append('return switch (contentType) {', NL);
 			mBody.indent(switchBody => {
 				contentTypeEncodings.forEach(enc => {
-					switchBody.append(`case "${enc}" -> ${encodingPlugins[enc].createStreamEncoderFunctionName}();`, NL);
+					const labels = enc === 'application/json' ? `"${enc}", "application/x-ndjson"` : `"${enc}"`;
+					switchBody.append(`case ${labels} -> ${encodingPlugins[enc].createStreamEncoderFunctionName}();`, NL);
 				});
 				switchBody.append(
 					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
@@ -375,7 +378,11 @@ export function generateJsonUtilsContent(
 			});
 			mBody.append('};', NL);
 		} else {
-			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
+			const condition =
+				contentTypeEncodings[0] === 'application/json'
+					? `"${contentTypeEncodings[0]}".equals(contentType) || "application/x-ndjson".equals(contentType)`
+					: `"${contentTypeEncodings[0]}".equals(contentType)`;
+			mBody.append(`if (${condition}) {`, NL);
 			mBody.indent(blockBody => {
 				blockBody.append(`return ${encodingPlugins[contentTypeEncodings[0]].createStreamEncoderFunctionName}();`, NL);
 			});
@@ -490,11 +497,14 @@ export function generateJsonUtilsContent(
 		NL,
 	);
 	decodeValueMethods.indent(mBody => {
+		// application/x-ndjson streams are JSON-per-line: they share the JSON stream decoder,
+		// just with different response framing (see java-server-jakarta-ws/response-builder.ts).
 		if (contentTypeEncodings.length > 1) {
 			mBody.append('switch (contentType) {', NL);
 			mBody.indent(switchBody => {
 				contentTypeEncodings.forEach(enc => {
-					switchBody.append(`case "${enc}" -> ${encodingPlugins[enc].decodeStreamFunctionName}(stream, consumer);`, NL);
+					const labels = enc === 'application/json' ? `"${enc}", "application/x-ndjson"` : `"${enc}"`;
+					switchBody.append(`case ${labels} -> ${encodingPlugins[enc].decodeStreamFunctionName}(stream, consumer);`, NL);
 				});
 				switchBody.append(
 					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
@@ -503,7 +513,11 @@ export function generateJsonUtilsContent(
 			});
 			mBody.append('};', NL);
 		} else {
-			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
+			const condition =
+				contentTypeEncodings[0] === 'application/json'
+					? `"${contentTypeEncodings[0]}".equals(contentType) || "application/x-ndjson".equals(contentType)`
+					: `"${contentTypeEncodings[0]}".equals(contentType)`;
+			mBody.append(`if (${condition}) {`, NL);
 			mBody.indent(blockBody => {
 				blockBody.append(`${encodingPlugins[contentTypeEncodings[0]].decodeStreamFunctionName}(stream, consumer);`, NL);
 				blockBody.append('return;', NL);

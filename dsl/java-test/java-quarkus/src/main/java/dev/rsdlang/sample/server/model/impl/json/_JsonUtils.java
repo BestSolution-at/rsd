@@ -1037,7 +1037,7 @@ public class _JsonUtils {
 
 	public static Function<Object, byte[]> createStreamEncoder(String contentType) {
 		return switch (contentType) {
-			case "application/json" -> createJsonStreamEncoder();
+			case "application/json", "application/x-ndjson" -> createJsonStreamEncoder();
 			case "application/vnd.msgpack" -> createMsgPackStreamEncoder();
 			default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));
 		};
@@ -2303,7 +2303,7 @@ public class _JsonUtils {
 
 	public static void decodeStream(InputStream stream, String contentType, Consumer<JsonValue> consumer, TypeInfo<?> typeInfo) {
 		switch (contentType) {
-			case "application/json" -> decodeJsonStream(stream, consumer);
+			case "application/json", "application/x-ndjson" -> decodeJsonStream(stream, consumer);
 			case "application/vnd.msgpack" -> decodeMsgPackStream(stream, consumer);
 			default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));
 		};

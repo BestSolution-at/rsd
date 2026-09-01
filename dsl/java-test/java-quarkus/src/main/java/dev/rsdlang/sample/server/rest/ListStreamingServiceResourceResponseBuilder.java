@@ -26,7 +26,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -34,7 +34,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -42,7 +42,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -50,7 +50,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -58,7 +58,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -66,7 +66,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -74,7 +74,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -82,7 +82,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -90,7 +90,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -98,7 +98,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -106,7 +106,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -114,7 +114,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -122,7 +122,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply(_ScalarSupport.RangeToJson($el))))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -130,7 +130,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply(_EnumSupport.SampleEnumToJson($el))))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -138,7 +138,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -146,7 +146,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 
@@ -154,7 +154,7 @@ public class ListStreamingServiceResourceResponseBuilder {
 		var $encoder = _JsonUtils.createStreamEncoder($contentType);
 		return RestMulti.fromMultiData($result.map($el -> $encoder.apply($el)))
 			.header("Content-Type", $contentType)
-			.encodeAsJsonArray(false)
+			.encodeAsJsonArray("application/json".equals($contentType))
 			.status(200);
 	}
 

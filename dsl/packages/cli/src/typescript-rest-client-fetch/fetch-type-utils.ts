@@ -207,6 +207,11 @@ function generateFetchTypeUtilsContent(
 		mBody.indent(switchBody => {
 			encodings.forEach(enc => {
 				switchBody.append(`case '${enc}':`, NL);
+				// application/x-ndjson streams are JSON-per-line: they share the JSON stream decoder,
+				// just with different response framing (see java-server-jakarta-ws/response-builder.ts).
+				if (enc === 'application/json') {
+					switchBody.append(`case 'application/x-ndjson':`, NL);
+				}
 				switchBody.indent(casBody => {
 					casBody.append(`return ${encodingPlugins[enc].decodeStreamFunctionName}<T>(response, guard, comsumer);`, NL);
 				});

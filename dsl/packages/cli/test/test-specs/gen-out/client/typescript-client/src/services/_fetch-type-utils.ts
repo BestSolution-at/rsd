@@ -170,6 +170,7 @@ export function decodeResponseStream<T>(
 	const contentType = response.headers.get('Content-Type')?.split(';')[0]?.trim();
 	switch (contentType) {
 		case 'application/json':
+		case 'application/x-ndjson':
 			return decodeJsonStream<T>(response, guard, comsumer);
 		case 'application/vnd.msgpack':
 			return decodeMsgPackStream<T>(response, guard, comsumer);
