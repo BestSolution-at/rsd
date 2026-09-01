@@ -94,36 +94,23 @@ function generateContent(
 					} else {
 						const Response = fqn('jakarta.ws.rs.core.Response');
 						if (o.resultType.variant === 'stream') {
-							if (o.resultType.type === 'file') {
-								methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
-							} else {
-								methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
-							}
-						} else if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
-							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
-							const _Support =
-								o.resultType.variant === 'scalar'
-									? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
-									: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
-							if (o.resultType.array) {
-								const content = toNodeTree(`
-							return ${Response}.status(${code.toFixed()})
-								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result.stream().map(${_Support}::${o.resultType.type}ToJson).toList(), $contentType, /* FIXME */ null)));`);
-								methodBody.append(content);
-							} else {
-								const content = toNodeTree(`
-							return ${Response}.status(${code.toFixed()})
-								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${_Support}.${o.resultType.type}ToJson($result), $contentType, /* FIXME */ null)));`);
-								methodBody.append(content);
-							}
+							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
 						} else {
 							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+							let resultExpr = '$result';
+							if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
+								const _Support =
+									o.resultType.variant === 'scalar'
+										? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+										: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+								resultExpr = o.resultType.array
+									? `$result.stream().map(${_Support}::${o.resultType.type}ToJson).toList()`
+									: `${_Support}.${o.resultType.type}ToJson($result)`;
+							}
 							const content = toNodeTree(`
 							return ${Response}.status(${code.toFixed()})
 								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, $contentType, /* FIXME */ null)));`);
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${resultExpr}, $contentType, /* FIXME */ null)));`);
 							methodBody.append(content);
 						}
 					}
