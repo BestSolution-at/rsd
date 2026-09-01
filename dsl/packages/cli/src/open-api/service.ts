@@ -79,13 +79,21 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 							format: 'binary',
 						};
 					}
+					const content: Record<string, unknown> = {
+						'application/json': {
+							schema,
+						},
+					};
+					if (o.resultType.streaming && 'items' in schema) {
+						// Streaming operations also support application/x-ndjson: the same element
+						// schema, one JSON value per line, instead of a single JSON array.
+						content['application/x-ndjson'] = {
+							schema: schema.items,
+						};
+					}
 					responses[s] = {
 						description: o.resultType.doc,
-						content: {
-							'application/json': {
-								schema,
-							},
-						},
+						content,
 					};
 				} else {
 					responses['204'] = {

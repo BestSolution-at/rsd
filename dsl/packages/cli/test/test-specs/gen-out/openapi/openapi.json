@@ -17857,6 +17857,11 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "boolean"
+                }
               }
             }
           }
@@ -17882,6 +17887,12 @@
                     "type": "number",
                     "format": "int32"
                   }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "int32"
                 }
               }
             }
@@ -17909,6 +17920,12 @@
                     "format": "int32"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "int32"
+                }
               }
             }
           }
@@ -17934,6 +17951,12 @@
                     "type": "number",
                     "format": "int64"
                   }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "int64"
                 }
               }
             }
@@ -17961,6 +17984,12 @@
                     "format": "float"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "float"
+                }
               }
             }
           }
@@ -17987,6 +18016,12 @@
                     "format": "double"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
               }
             }
           }
@@ -18011,6 +18046,11 @@
                   "items": {
                     "type": "string"
                   }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -18039,6 +18079,13 @@
                     "format": "date"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
+                  "format": "date"
+                }
               }
             }
           }
@@ -18065,6 +18112,13 @@
                     "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
                     "format": "local-date-time"
                   }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
+                  "format": "local-date-time"
                 }
               }
             }
@@ -18093,6 +18147,13 @@
                     "format": "time"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                }
               }
             }
           }
@@ -18118,6 +18179,12 @@
                     "type": "string",
                     "format": "date-time"
                   }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
                 }
               }
             }
@@ -18145,6 +18212,12 @@
                     "format": "zoned-date-time"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "format": "zoned-date-time"
+                }
               }
             }
           }
@@ -18170,6 +18243,11 @@
                     "type": "string"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string"
+                }
               }
             }
           }
@@ -18194,6 +18272,11 @@
                   "items": {
                     "$ref": "#/components/schemas/SampleEnum"
                   }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/SampleEnum"
                 }
               }
             }
@@ -18224,6 +18307,15 @@
                     ]
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
               }
             }
           }
@@ -18249,6 +18341,11 @@
                     "$ref": "#/components/schemas/SimpleRecord"
                   }
                 }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleRecord"
+                }
               }
             }
           }
@@ -18273,6 +18370,11 @@
                   "items": {
                     "$ref": "#/components/schemas/Union"
                   }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/Union"
                 }
               }
             }
@@ -18318,6 +18420,11 @@
                   "items": {
                     "$ref": "#/components/schemas/SimpleRecord"
                   }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleRecord"
                 }
               }
             }
