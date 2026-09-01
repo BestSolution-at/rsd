@@ -269,7 +269,12 @@ private static void decodeMsgPackStream(${InputStream} stream, ${Consumer}<${Jso
 		while (unpacker.hasNext()) {
 			var jsonValue = msgpackJson.decode(unpacker);
 			consumer.accept(jsonValue);
-			unpacker.skipValue(); // All entries end with a newline
+			// RestMulti's encodeAsJsonArray(false) mode unconditionally appends a literal '\\n'
+			// after every streamed item (see PublisherResponseHandler.StreamingMultiSubscriber /
+			// LINE_SEPARATOR) - there is no way to disable this for binary encodings. That '\\n'
+			// (0x0A) is itself a valid one-byte msgpack positive-fixint, so it decodes cleanly as
+			// its own value here; skip it before reading the next real item.
+			unpacker.skipValue();
 		}
 	} catch (${MessagePackException} e) {
 		throw new ${JsonException}(e.getMessage(), e);

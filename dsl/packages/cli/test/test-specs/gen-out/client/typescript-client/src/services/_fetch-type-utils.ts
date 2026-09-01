@@ -226,6 +226,11 @@ function decodeMsgPackStream<T>(
 
 		async function readStream() {
 			const streamDecoder = new Decoder({ useBigInt64: true });
+			// RestMulti's encodeAsJsonArray(false) mode unconditionally appends a literal '\n'
+			// after every streamed item (server-side StreamingMultiSubscriber / LINE_SEPARATOR) -
+			// there is no way to disable this for binary encodings. That '\n' (0x0A) is itself a
+			// valid one-byte msgpack positive-fixint, so it decodes cleanly as its own record here;
+			// every even-indexed record is real data, every odd-indexed one is that separator.
 			let count = 0;
 			for await (const record of streamDecoder.decodeStream(iterable)) {
 				if (count % 2 === 0) {
