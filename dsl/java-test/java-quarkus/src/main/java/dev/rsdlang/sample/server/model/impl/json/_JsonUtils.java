@@ -1072,7 +1072,7 @@ public class _JsonUtils {
 		try (var generator = Json.createGenerator(stringWriter)) {
 			encodeJsonValue(generator, data);
 		}
-		return stringWriter.toString().getBytes();
+		return stringWriter.toString().getBytes(StandardCharsets.UTF_8);
 	}
 
 	// Reuses a single StringWriter's buffer across all elements of a stream instead of
@@ -1085,7 +1085,7 @@ public class _JsonUtils {
 			try (var generator = Json.createGenerator(stringWriter)) {
 				encodeJsonValue(generator, data);
 			}
-			return stringWriter.toString().getBytes();
+			return stringWriter.toString().getBytes(StandardCharsets.UTF_8);
 		};
 	}
 

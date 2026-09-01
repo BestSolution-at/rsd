@@ -58,6 +58,7 @@ function generateJsonEncodeValueFunction(fqn: (t: string) => string): CompositeG
 	const StringWriter = fqn('java.io.StringWriter');
 	const OutputStream = fqn('java.io.OutputStream');
 	const Function = fqn('java.util.function.Function');
+	const StandardCharsets = fqn('java.nio.charset.StandardCharsets');
 
 	const Json = fqn('jakarta.json.Json');
 	const JsonGenerator = fqn('jakarta.json.stream.JsonGenerator');
@@ -76,7 +77,7 @@ private static byte[] encodeJsonValue(Object data) {
 	try (var generator = ${Json}.createGenerator(stringWriter)) {
 		encodeJsonValue(generator, data);
 	}
-	return stringWriter.toString().getBytes();
+	return stringWriter.toString().getBytes(${StandardCharsets}.UTF_8);
 }
 
 // Reuses a single StringWriter's buffer across all elements of a stream instead of
@@ -89,7 +90,7 @@ private static ${Function}<Object, byte[]> createJsonStreamEncoder() {
 		try (var generator = ${Json}.createGenerator(stringWriter)) {
 			encodeJsonValue(generator, data);
 		}
-		return stringWriter.toString().getBytes();
+		return stringWriter.toString().getBytes(${StandardCharsets}.UTF_8);
 	};
 }
 
