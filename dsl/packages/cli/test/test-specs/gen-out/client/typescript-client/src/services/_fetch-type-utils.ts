@@ -152,7 +152,6 @@ function parseJson(text: string): unknown {
 	});
 }
 
-
 const decoder = new Decoder({ useBigInt64: true });
 async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
 	const arrayBuffer = await response.arrayBuffer();
@@ -163,14 +162,18 @@ async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) 
 	return data;
 }
 
-export function decodeResponseStream<T>(response: Response, guard: (value: unknown) => value is T, comsumer: (value: T) => void): Promise<void> {
+export function decodeResponseStream<T>(
+	response: Response,
+	guard: (value: unknown) => value is T,
+	consumer: (value: T) => void,
+): Promise<void> {
 	const contentType = response.headers.get('Content-Type')?.split(';')[0]?.trim();
 	switch (contentType) {
 		case 'application/json':
 		case 'application/x-ndjson':
-			return decodeJsonStream<T>(response, guard, comsumer);
+			return decodeJsonStream<T>(response, guard, consumer);
 		case 'application/vnd.msgpack':
-			return decodeMsgPackStream<T>(response, guard, comsumer);
+			return decodeMsgPackStream<T>(response, guard, consumer);
 		default:
 			throw new Error(`Unsupported response content type: ${String(contentType)}`);
 	}
@@ -179,7 +182,7 @@ export function decodeResponseStream<T>(response: Response, guard: (value: unkno
 function decodeJsonStream<T>(
 	response: Response,
 	guard: (value: unknown) => value is T,
-	comsumer: (value: T) => void,
+	consumer: (value: T) => void,
 ): Promise<void> {
 	const stream = response.body;
 	if (stream) {
@@ -201,7 +204,7 @@ function decodeJsonStream<T>(
 					if (line.trim().length > 0) {
 						const data = parseJson(line);
 						if (guard(data)) {
-							comsumer(data);
+							consumer(data);
 						} else {
 							console.error('Invalid result', data);
 						}
@@ -219,7 +222,7 @@ function decodeJsonStream<T>(
 function decodeMsgPackStream<T>(
 	response: Response,
 	guard: (value: unknown) => value is T,
-	comsumer: (value: T) => void,
+	consumer: (value: T) => void,
 ): Promise<void> {
 	const stream = response.body;
 	if (stream) {
@@ -236,7 +239,7 @@ function decodeMsgPackStream<T>(
 			for await (const record of streamDecoder.decodeStream(iterable)) {
 				if (count % 2 === 0) {
 					if (guard(record)) {
-						comsumer(record);
+						consumer(record);
 					} else {
 						console.error('Invalid result', record);
 					}
@@ -249,4 +252,3 @@ function decodeMsgPackStream<T>(
 		return Promise.reject(new Error(`Response body is not available for MessagePack stream decoding`));
 	}
 }
-

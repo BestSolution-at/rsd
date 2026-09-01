@@ -198,7 +198,7 @@ function generateFetchTypeUtilsContent(
 	});
 
 	result.append(
-		'export function decodeResponseStream<T>(response: Response, guard: (value: unknown) => value is T, comsumer: (value: T) => void): Promise<void> {',
+		'export function decodeResponseStream<T>(response: Response, guard: (value: unknown) => value is T, consumer: (value: T) => void): Promise<void> {',
 		NL,
 	);
 	result.indent(mBody => {
@@ -213,7 +213,7 @@ function generateFetchTypeUtilsContent(
 					switchBody.append(`case 'application/x-ndjson':`, NL);
 				}
 				switchBody.indent(casBody => {
-					casBody.append(`return ${encodingPlugins[enc].decodeStreamFunctionName}<T>(response, guard, comsumer);`, NL);
+					casBody.append(`return ${encodingPlugins[enc].decodeStreamFunctionName}<T>(response, guard, consumer);`, NL);
 				});
 			});
 			switchBody.append('default:', NL);
@@ -315,7 +315,7 @@ function generateJsonStreamDecodeResponseFunction() {
 function decodeJsonStream<T>(
 	response: Response,
 	guard: (value: unknown) => value is T,
-	comsumer: (value: T) => void,
+	consumer: (value: T) => void,
 ): Promise<void> {
 	const stream = response.body;
 	if (stream) {
@@ -337,7 +337,7 @@ function decodeJsonStream<T>(
 					if (line.trim().length > 0) {
 						const data = parseJson(line);
 						if (guard(data)) {
-							comsumer(data);
+							consumer(data);
 						} else {
 							console.error('Invalid result', data);
 						}
@@ -358,7 +358,7 @@ function generateMsgPackStreamDecodeResponseFunction(fqn: (t: string, typeOnly: 
 function decodeMsgPackStream<T>(
 	response: Response,
 	guard: (value: unknown) => value is T,
-	comsumer: (value: T) => void,
+	consumer: (value: T) => void,
 ): Promise<void> {
 	const stream = response.body;
 	if (stream) {
@@ -375,7 +375,7 @@ function decodeMsgPackStream<T>(
 			for await (const record of streamDecoder.decodeStream(iterable)) {
 				if (count % 2 === 0) {
 					if (guard(record)) {
-						comsumer(record);
+						consumer(record);
 					} else {
 						console.error('Invalid result', record);
 					}
