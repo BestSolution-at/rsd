@@ -1174,8 +1174,15 @@ function okResultContent(
 	if (streamVariant === 'json-array') {
 		contentEncoding = '"application/json"';
 	} else if (streamVariant === 'negotiate-stream') {
-		contentEncoding =
-			contentEncodings.length > 1 ? 'computeStreamResponseContentType($acceptHeaders)' : '"application/x-ndjson"';
+		if (contentEncodings.length > 1) {
+			contentEncoding = 'computeStreamResponseContentType($acceptHeaders)';
+		} else if (contentEncodings[0] === 'application/json') {
+			// application/json is claimed by the AsJsonArray sibling method, so the sole
+			// negotiated method falls back to ndjson framing for that one case.
+			contentEncoding = '"application/x-ndjson"';
+		} else {
+			contentEncoding = `"${contentEncodings[0]}"`;
+		}
 	} else {
 		contentEncoding =
 			contentEncodings.length > 1 ? 'computeResponseContentType($acceptHeaders)' : `"${contentEncodings[0]}"`;

@@ -422,6 +422,9 @@ function generateOperationMethod(
 				`var $error = new ${RSDError}.$GenericError(${RSDError}.Type._Native, "Unexpected error while executing operation ${o.name}", e);`,
 				NL,
 			);
+			if (o.resultType?.streaming) {
+				catchBlock.append(`$consumer.accept(null, $error, true);`, NL);
+			}
 			catchBlock.append(`this.lifecycleHook.onCatch("${o.name}", $error);`, NL);
 			if (o.resultType?.streaming) {
 				catchBlock.append(`this.lifecycleHook.onFinally("${o.name}");`, NL);
