@@ -12,6 +12,7 @@ import {
 
 import { Range } from '../../test-specs/gen-out/client/typescript-client/src/model/_Scalars.js';
 import { SampleEnum } from '../../test-specs/gen-out/client/typescript-client-openapi/src/index.js';
+import { createOpenAPIListStreamingServiceService } from '../openapi-adapter/ListStreamingServiceService.adapter.js';
 
 const jsonService = createListStreamingServiceService({
 	baseUrl: 'http://localhost:3000',
@@ -22,18 +23,17 @@ const msgpackService = createListStreamingServiceService({
 	encoding: 'application/vnd.msgpack',
 });
 
-// No Stream available
-// const openAPIService = createOpenAPIListSampleServiceService({
-// 	baseUrl: 'http://localhost:3000',
-// });
+const openAPIService = createOpenAPIListStreamingServiceService({
+	baseUrl: 'http://localhost:3000',
+});
 
 const json = { service: jsonService, encoding: 'application/json' as const };
 const msgpack = { service: msgpackService, encoding: 'application/vnd.msgpack' as const };
-// const openAPI = { service: openAPIService, encoding: 'application/json via OpenAPI' as const };
+const openapi = { service: openAPIService, encoding: 'application/json via OpenAPI' as const };
 
 describe('ListStreamingServiceServiceImpl', () => {
 	describe('streamBoolean', () => {
-		test.each([json, msgpack])('should stream booleans with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream booleans with $encoding', async ({ service }) => {
 			const values: boolean[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -54,7 +54,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamShort', () => {
-		test.each([json, msgpack])('should stream shorts with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream shorts with $encoding', async ({ service }) => {
 			const values: number[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -75,7 +75,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamInt', () => {
-		test.each([json, msgpack])('should stream ints with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream ints with $encoding', async ({ service }) => {
 			const values: number[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -96,7 +96,10 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamLong', () => {
-		test.each([json, msgpack])('should stream longs with $encoding', async ({ service }) => {
+		// OpenAPI Generator decodes longs as plain `number`, which cannot represent
+		// Long.MIN_VALUE/MAX_VALUE without losing precision - see ListBodyParameterTypesServiceFetchImpl.test.ts
+		// for the same limitation on the request side.
+		test.each([json, msgpack /*, openapi */])('should stream longs with $encoding', async ({ service }) => {
 			const values: RSDLong[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -117,7 +120,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamFloat', () => {
-		test.each([json, msgpack])('should stream floats with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream floats with $encoding', async ({ service }) => {
 			const values: number[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -138,7 +141,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamDouble', () => {
-		test.each([json, msgpack])('should stream doubles with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream doubles with $encoding', async ({ service }) => {
 			const values: number[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -159,7 +162,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamString', () => {
-		test.each([json, msgpack])('should stream strings with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream strings with $encoding', async ({ service }) => {
 			const values: string[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -186,7 +189,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamLocalDate', () => {
-		test.each([json, msgpack])('should stream local-dates with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream local-dates with $encoding', async ({ service }) => {
 			const values: RSDLocalDate[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -207,7 +210,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamLocalDateTime', () => {
-		test.each([json, msgpack])('should stream local-date-times with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream local-date-times with $encoding', async ({ service }) => {
 			const values: RSDLocalDateTime[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -228,7 +231,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamLocalTime', () => {
-		test.each([json, msgpack])('should stream local-times with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream local-times with $encoding', async ({ service }) => {
 			const values: RSDLocalTime[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -249,7 +252,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamOffsetDateTime', () => {
-		test.each([json, msgpack])('should stream offset-date-times with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream offset-date-times with $encoding', async ({ service }) => {
 			const values: RSDOffsetDateTime[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -270,7 +273,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamZonedDateTime', () => {
-		test.each([json, msgpack])('should stream zoned-date-times with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream zoned-date-times with $encoding', async ({ service }) => {
 			const values: RSDZonedDateTime[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -291,7 +294,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamScalar', () => {
-		test.each([json, msgpack])('should stream scalars with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream scalars with $encoding', async ({ service }) => {
 			const values: Range[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -318,7 +321,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamEnum', () => {
-		test.each([json, msgpack])('should stream enums with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream enums with $encoding', async ({ service }) => {
 			const values: SampleEnum[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -339,7 +342,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamInlineEnum', () => {
-		test.each([json, msgpack])('should stream inline-enums with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream inline-enums with $encoding', async ({ service }) => {
 			const values: ('A' | 'B')[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -360,7 +363,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamRecord', () => {
-		test.each([json, msgpack])('should stream records with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream records with $encoding', async ({ service }) => {
 			const values: api.model.SimpleRecord[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -388,7 +391,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('streamUnion', () => {
-		test.each([json, msgpack])('should stream unions with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream unions with $encoding', async ({ service }) => {
 			const values: api.model.Union[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
 			let finalCalled = false;
@@ -423,7 +426,7 @@ describe('ListStreamingServiceServiceImpl', () => {
 	});
 
 	describe('uploadFileStreamRecords', () => {
-		test.each([json, msgpack])('should stream records with $encoding', async ({ service }) => {
+		test.each([json, msgpack, openapi])('should stream records with $encoding', async ({ service }) => {
 			const file = new File(['Hello\nWorld\nStreaming'], 'hello.txt', { type: 'text/plain' });
 			const values: api.model.SimpleRecord[] = [];
 			const errors: (api.service.StatusRSDError | api.service.NativeRSDError)[] = [];
