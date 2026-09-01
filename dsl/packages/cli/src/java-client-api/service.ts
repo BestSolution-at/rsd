@@ -4,14 +4,13 @@ import { Artifact } from '../artifact-generator.js';
 import {
 	JavaImportsCollector,
 	JavaClientAPIGeneratorConfig,
+	computeAPIResultType,
 	generateCompilationUnit,
-	resolveType,
 	toPath,
 	computeParameterAPIType,
 } from '../java-gen-utils.js';
-import { MOperation, MOperationError, MParameter, MResolvedService, MReturnType, MService } from '../model.js';
+import { MOperation, MParameter, MResolvedService, MService } from '../model.js';
 import { toFirstUpper, toNode } from '../util.js';
-import { computeServiceErrorCombination } from './service-errors.js';
 
 export function generateService(
 	s: MService,
@@ -88,19 +87,22 @@ function toMethod(
 	fqn: (type: string) => string,
 ) {
 	const parameters = allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name));
+	const [rvType, errorType] = computeAPIResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name);
+	let rv;
+	if (o.resultType?.streaming) {
+		const StreamConsumer = fqn(`${artifactConfig.rootPackageName}.StreamConsumer`);
+		parameters.push(`${StreamConsumer}<${rvType}, ${errorType}> consumer`);
+		rv = 'void';
+	} else {
+		rv = `${fqn(`${artifactConfig.rootPackageName}.Result`)}<${rvType}, ${errorType}>`;
+	}
+
 	if (parameters.length <= 1) {
-		child.append(
-			toNode(
-				[
-					`public ${toResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`,
-				],
-				false,
-			),
-		);
+		child.append(toNode([`public ${rv} ${o.name}(${parameters.join(', ')})`], false));
 	} else {
 		child.append(
 			toNode([
-				`public ${toResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name)} ${o.name}(`,
+				`public ${rv} ${o.name}(`,
 				[parameters.filter((_, idx, arr) => idx + 1 < arr.length).map(p => p + ', ')],
 			]),
 		);
@@ -128,75 +130,3 @@ function toParameter(
 	return `${type} ${parameter.name}`;
 }
 
-function toResultType(
-	type: MReturnType | undefined,
-	errors: readonly MOperationError[],
-	services: readonly MResolvedService[],
-	artifactConfig: JavaClientAPIGeneratorConfig,
-	fqn: (type: string) => string,
-	methodName: string,
-) {
-	const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
-	const error = computeErrorType(errors, services, artifactConfig, fqn);
-
-	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
-	if (type === undefined) {
-		return `${Result}<Void, ${error}>`;
-	}
-
-	let rvType: string;
-	if (type.variant === 'stream') {
-		if (type.type === 'file') {
-			rvType = fqn(`${dtoPkg}.RSDFile`);
-		} else {
-			rvType = fqn(`${dtoPkg}.RSDBlob`);
-		}
-	} else if (type.variant === 'union' || type.variant === 'record') {
-		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
-	} else if (type.variant === 'enum') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else if (type.variant === 'inline-enum') {
-		rvType = toFirstUpper(methodName) + '_Result$';
-	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
-	}
-
-	if (type.array) {
-		rvType = `${fqn('java.util.List')}<${rvType}>`;
-	}
-
-	return `${Result}<${rvType}, ${error}>`;
-}
-
-function computeErrorType(
-	errors: readonly MOperationError[],
-	services: readonly MResolvedService[],
-	artifactConfig: JavaClientAPIGeneratorConfig,
-	fqn: (type: string) => string,
-) {
-	if (errors.length === 0) {
-		return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
-	} else {
-		const combinations = computeServiceErrorCombination(services);
-		const errorNames = errors
-			.map(e => e.error)
-			.sort()
-			.join(',');
-		const errorCombination = combinations.get(errorNames);
-		if (errorCombination) {
-			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + `.${errorCombination.interfaceName}`;
-		} else {
-			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
-		}
-	}
-}

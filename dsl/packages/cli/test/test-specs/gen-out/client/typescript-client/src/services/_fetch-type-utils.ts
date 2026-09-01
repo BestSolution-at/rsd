@@ -61,6 +61,22 @@ export function decodeAsciiString(text: string): string {
 	return text.replace(/\\u([0-9a-fA-F]{4})/g, (_, g1) => String.fromCharCode(parseInt(String(g1), 16)));
 }
 
+async function* toAsyncIterable(stream: ReadableStream<Uint8Array>): AsyncGenerator<Uint8Array> {
+	const reader = stream.getReader();
+	try {
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+		while (true) {
+			const { done, value } = await reader.read();
+			if (done) {
+				return;
+			}
+			yield value;
+		}
+	} finally {
+		reader.releaseLock();
+	}
+}
+
 export function encodeValue(type: ContentTypeEncodings, value: unknown) {
 	switch (type) {
 		case 'application/vnd.msgpack':
@@ -109,8 +125,15 @@ export function decodeResponse<T>(response: Response, guard: (value: unknown) =>
 
 async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
 	const text = await response.text();
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const data = JSON.parse(text, (_, v: unknown, ...args: unknown[]) => {
+	const data = parseJson(text);
+	if (!guard(data)) {
+		throw new Error('Invalid result');
+	}
+	return data;
+}
+
+function parseJson(text: string): unknown {
+	return JSON.parse(text, (_, v: unknown, ...args: unknown[]) => {
 		if (typeof v === 'number') {
 			const context = args[0];
 			if (context && typeof context === 'object' && 'source' in context && typeof context.source === 'string') {
@@ -127,11 +150,8 @@ async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => 
 
 		return v;
 	});
-	if (!guard(data)) {
-		throw new Error('Invalid result');
-	}
-	return data;
 }
+
 
 const decoder = new Decoder({ useBigInt64: true });
 async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
@@ -141,5 +161,92 @@ async function decodeMsgPackBody<T>(response: Response, guard: (value: unknown) 
 		throw new Error('Invalid result');
 	}
 	return data;
+}
+
+export function decodeResponseStream<T>(response: Response, guard: (value: unknown) => value is T, consumer: (value: T) => void): Promise<void> {
+	const contentType = response.headers.get('Content-Type')?.split(';')[0]?.trim();
+	switch (contentType) {
+		case 'application/json':
+		case 'application/x-ndjson':
+			return decodeJsonStream<T>(response, guard, consumer);
+		case 'application/vnd.msgpack':
+			return decodeMsgPackStream<T>(response, guard, consumer);
+		default:
+			throw new Error(`Unsupported response content type: ${String(contentType)}`);
+	}
+}
+
+function decodeJsonStream<T>(
+	response: Response,
+	guard: (value: unknown) => value is T,
+	consumer: (value: T) => void,
+): Promise<void> {
+	const stream = response.body;
+	if (stream) {
+		const textDecoder = new TextDecoder();
+		const iterable = toAsyncIterable(stream);
+
+		async function readStream() {
+			let buffer = '';
+			for await (const value of iterable) {
+				const text = textDecoder.decode(value, { stream: true });
+				buffer += text;
+
+				const lines = buffer.split('\n');
+				// Pop the last line from the array and keep it in the
+				// buffer for the next iteration. If the line ended with
+				// newline the element will be an empty string, which is fine.
+				buffer = lines.pop() ?? '';
+				for (const line of lines) {
+					if (line.trim().length > 0) {
+						const data = parseJson(line);
+						if (guard(data)) {
+							consumer(data);
+						} else {
+							console.error('Invalid result', data);
+						}
+					}
+				}
+			}
+		}
+
+		return readStream();
+	} else {
+		return Promise.reject(new Error(`Response body is not available for JSON stream decoding`));
+	}
+}
+
+function decodeMsgPackStream<T>(
+	response: Response,
+	guard: (value: unknown) => value is T,
+	consumer: (value: T) => void,
+): Promise<void> {
+	const stream = response.body;
+	if (stream) {
+		const iterable = toAsyncIterable(stream);
+
+		async function readStream() {
+			const streamDecoder = new Decoder({ useBigInt64: true });
+			// RestMulti's encodeAsJsonArray(false) mode unconditionally appends a literal '\n'
+			// after every streamed item (server-side StreamingMultiSubscriber / LINE_SEPARATOR) -
+			// there is no way to disable this for binary encodings. That '\n' (0x0A) is itself a
+			// valid one-byte msgpack positive-fixint, so it decodes cleanly as its own record here;
+			// every even-indexed record is real data, every odd-indexed one is that separator.
+			let count = 0;
+			for await (const record of streamDecoder.decodeStream(iterable)) {
+				if (count % 2 === 0) {
+					if (guard(record)) {
+						consumer(record);
+					} else {
+						console.error('Invalid result', record);
+					}
+				}
+				count += 1;
+			}
+		}
+		return readStream();
+	} else {
+		return Promise.reject(new Error(`Response body is not available for MessagePack stream decoding`));
+	}
 }
 

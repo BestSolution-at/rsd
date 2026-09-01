@@ -360,6 +360,7 @@ export type MReturnTypeInlineEnumType = {
 	type: MInlineEnumType;
 	array: boolean;
 	arrayMaxLength?: number;
+	streaming: boolean;
 	doc: string;
 };
 
@@ -369,6 +370,7 @@ export type MReturnTypeNoneInlineEnumType = {
 	type: string;
 	array: boolean;
 	arrayMaxLength?: number;
+	streaming: boolean;
 	doc: string;
 };
 

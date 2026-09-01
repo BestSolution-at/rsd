@@ -6,6 +6,7 @@ apis/ListBodyParameterTypesApi.ts
 apis/ListHeaderParameterTypesApi.ts
 apis/ListQueryParameterTypesApi.ts
 apis/ListSampleServiceApi.ts
+apis/ListStreamingServiceApi.ts
 apis/PathParameterTypeServiceApi.ts
 apis/QueryParameterTypesApi.ts
 apis/SampleServiceApi.ts
@@ -66,6 +67,7 @@ docs/ListBodyParameterTypesListMultiBodyParamRequest.md
 docs/ListHeaderParameterTypesApi.md
 docs/ListQueryParameterTypesApi.md
 docs/ListSampleServiceApi.md
+docs/ListStreamingServiceApi.md
 docs/MixedResult.md
 docs/MixinRecord.md
 docs/Month.md

@@ -2,13 +2,13 @@ import { CompositeGeneratorNode, NL, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import {
 	computeParameterAPIType,
+	computeServerResultType,
 	generateCompilationUnit,
 	JavaImportsCollector,
 	JavaServerJakartaWSGeneratorConfig,
-	resolveType,
 	toPath,
 } from '../java-gen-utils.js';
-import { MParameter, MResolvedRSDModel, MResolvedService, MReturnType } from '../model.js';
+import { MParameter, MResolvedRSDModel, MResolvedService } from '../model.js';
 import { toFirstUpper, toNodeTree } from '../util.js';
 
 export function generateResponseBuilder(
@@ -42,8 +42,6 @@ function generateContent(
 	fqn: (type: string) => string,
 ) {
 	const Singleton = fqn('jakarta.inject.Singleton');
-	const Response = fqn('jakarta.ws.rs.core.Response');
-	const ResponseBuilder = fqn('jakarta.ws.rs.core.Response.ResponseBuilder');
 	const node = new CompositeGeneratorNode();
 
 	node.append(`@${Singleton}`, NL);
@@ -57,46 +55,67 @@ function generateContent(
 
 			if (o.resultType !== undefined) {
 				params.unshift('String $contentType');
-				params.unshift(`${toResultType(o.resultType, artifactConfig, fqn, o.name, s.name)} $result`);
+				const inlineEnumPrefix =
+					o.resultType.variant === 'inline-enum'
+						? `${fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`)}.`
+						: '';
+				params.unshift(`${computeServerResultType(o.resultType, artifactConfig, fqn, o.name, inlineEnumPrefix)} $result`);
 			}
-			classBody.append(`public ${ResponseBuilder} ${o.name}(${params.join(', ')}) {`, NL);
+			const ReturnBuilder = o.resultType?.streaming
+				? fqn('org.jboss.resteasy.reactive.RestMulti') + '.SyncRestMulti.Builder<byte[]>'
+				: fqn('jakarta.ws.rs.core.Response.ResponseBuilder');
+			classBody.append(`public ${ReturnBuilder} ${o.name}(${params.join(', ')}) {`, NL);
 			classBody.indent(methodBody => {
 				const code = o.meta?.rest?.results.find(r => r.error === undefined)?.statusCode ?? (o.resultType ? 200 : 204);
 				if (o.resultType) {
-					if (o.resultType.variant === 'stream') {
-						if (o.resultType.type === 'file') {
-							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
-						} else {
-							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
+					if (o.resultType.streaming) {
+						const RestMulti = fqn('org.jboss.resteasy.reactive.RestMulti');
+						const resultType = o.resultType;
+						if (resultType.variant === 'stream') {
+							throw new Error(`Streaming return type cannot be a stream: ${o.name}`);
 						}
-					} else if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
 						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
-						const _Support =
-							o.resultType.variant === 'scalar'
-								? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
-								: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
-						if (o.resultType.array) {
-							const content = toNodeTree(`
-							return ${Response}.status(${code.toFixed()})
-								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result.stream().map(${_Support}::${o.resultType.type}ToJson).toList(), $contentType, /* FIXME */ null)));`);
-							methodBody.append(content);
-						} else {
-							const content = toNodeTree(`
-							return ${Response}.status(${code.toFixed()})
-								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${_Support}.${o.resultType.type}ToJson($result), $contentType, /* FIXME */ null)));`);
-							methodBody.append(content);
+						let elementToJson = '$el';
+						if (resultType.variant === 'scalar' || resultType.variant === 'enum') {
+							const _Support =
+								resultType.variant === 'scalar'
+									? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+									: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+							elementToJson = `${_Support}.${resultType.type}ToJson($el)`;
 						}
-					} else {
-						const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 						const content = toNodeTree(`
+						var $encoder = ${JsonUtils}.createStreamEncoder($contentType);
+						return ${RestMulti}.fromMultiData($result.map($el -> $encoder.apply(${elementToJson})))
+							.header("Content-Type", $contentType)
+							.encodeAsJsonArray("application/json".equals($contentType))
+							.status(${code.toFixed()});
+						`);
+						methodBody.append(content);
+					} else {
+						const Response = fqn('jakarta.ws.rs.core.Response');
+						if (o.resultType.variant === 'stream') {
+							methodBody.append(`return _RestUtils.toStreamResponse(${code.toFixed()}, $result);`, NL);
+						} else {
+							const JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+							let resultExpr = '$result';
+							if (o.resultType.variant === 'scalar' || o.resultType.variant === 'enum') {
+								const _Support =
+									o.resultType.variant === 'scalar'
+										? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+										: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+								resultExpr = o.resultType.array
+									? `$result.stream().map(${_Support}::${o.resultType.type}ToJson).toList()`
+									: `${_Support}.${o.resultType.type}ToJson($result)`;
+							}
+							const content = toNodeTree(`
 							return ${Response}.status(${code.toFixed()})
 								.type($contentType)
-								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, $result, $contentType, /* FIXME */ null)));`);
-						methodBody.append(content);
+								.entity(_RestUtils.toStreamOutput(stream -> ${JsonUtils}.encodeValue(stream, ${resultExpr}, $contentType, /* FIXME */ null)));`);
+							methodBody.append(content);
+						}
 					}
 				} else {
+					const Response = fqn('jakarta.ws.rs.core.Response');
 					methodBody.append(`return ${Response}.status(${code.toFixed()});`, NL);
 				}
 			});
@@ -157,49 +176,3 @@ function toParameter(
 	return `${type} ${parameter.name}`;
 }
 
-function toResultType(
-	type: MReturnType | undefined,
-	artifactConfig: JavaServerJakartaWSGeneratorConfig,
-	fqn: (type: string) => string,
-	methodName: string,
-	serviceName: string,
-) {
-	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
-	if (type === undefined) {
-		return 'void';
-	}
-
-	let rvType: string;
-	if (type.variant === 'stream') {
-		if (type.type === 'file') {
-			rvType = fqn(`${dtoPkg}.RSDFile`);
-		} else {
-			rvType = fqn(`${dtoPkg}.RSDBlob`);
-		}
-	} else if (type.variant === 'union' || type.variant === 'record') {
-		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
-	} else if (type.variant === 'enum') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else if (type.variant === 'inline-enum') {
-		const Service = fqn(`${artifactConfig.rootPackageName}.service.${serviceName}Service`);
-		rvType = Service + '.' + toFirstUpper(methodName) + '_Result$';
-	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, type.array);
-	}
-
-	if (type.array) {
-		rvType = `${fqn('java.util.List')}<${rvType}>`;
-	}
-
-	return rvType;
-}

@@ -1057,3 +1057,29 @@ resource EnumSubstition_Service at '/api/enumsubstition' {
 
 	POST multiBody at 'multiBody'
 }
+
+resource ListStreamingService at '/api/liststreaming' {
+	GET streamBoolean at 'streamBoolean'
+	GET streamShort at 'streamShort'
+	GET streamInt at 'streamInt'
+	GET streamLong at 'streamLong'
+	GET streamFloat at 'streamFloat'
+	GET streamDouble at 'streamDouble'
+	GET streamString at 'streamString'
+	GET streamLocalDate at 'streamLocalDate'
+	GET streamLocalDateTime at 'streamLocalDateTime'
+	GET streamLocalTime at 'streamLocalTime'
+	GET streamOffsetDateTime at 'streamOffsetDateTime'
+	GET streamZonedDateTime at 'streamZonedDateTime'
+	GET streamScalar at 'streamScalar'
+	GET streamEnum at 'streamEnum'
+	GET streamInlineEnum at 'streamInlineEnum'
+	GET streamRecord at 'streamRecord'
+	GET streamUnion at 'streamUnion'
+	/*GET streamError at 'streamError' => {
+		200
+		400: SampleErrorWithValue
+	}*/
+
+	POST uploadFileStreamRecords at 'uploadFileStreamRecords'
+}

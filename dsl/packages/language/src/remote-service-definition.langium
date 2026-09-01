@@ -1,40 +1,40 @@
 grammar RemoteServiceDefinition
 
 entry RSDModel:
-    elements+=UserType*
+	elements+=UserType*
     errors+=ErrorType*
     services+=Service*
 ;
 
 UserType:
-    EnumType | RecordType | MixinType | UnionType | ScalarType;
+	EnumType | RecordType | MixinType | UnionType | ScalarType;
 
 ScalarType:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'scalar' name=ID ';';
 
 BuiltinType returns string:
-    'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'local-time'|'offset-date-time'|'zoned-date-time';
+	'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'local-time'|'offset-date-time'|'zoned-date-time';
 
 StreamType returns string:
-    'blob' | 'file';
+	'blob' | 'file';
 
 EnumType:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'enum' name=ID '='
         entries+=EnumEntry ( '|' entries+=EnumEntry )*
     ';';
 
 InlineEnumType:
-    'enum' entries+=EnumEntry ( '|' entries+=EnumEntry )*
+	'enum' entries+=EnumEntry ( '|' entries+=EnumEntry )*
 ;
 
 EnumEntry:
-    name=ID ('=' (value=INT|STRING))?
+	name=ID ('=' (value=INT|STRING))?
 ;
 
 RecordType:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     patchable?='patchable'? 'record' name=ID
     '{'
         (
@@ -47,18 +47,18 @@ RecordType:
 ;
 
 UnionRecord:
-    record=[RecordType:ID] ('(' value=STRING ')')?
+	record=[RecordType:ID] ('(' value=STRING ')')?
 ;
 
 UnionType:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     patchable?='patchable'? 'union' name=ID '='
         records+=UnionRecord ('|' records+=UnionRecord )+
     ('descriminated-with' descProp=ID)? ';'
 ;
 
 MixinType:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'mixin' name=ID '{'
         (
             keyProperty=KeyProperty
@@ -69,48 +69,50 @@ MixinType:
 ;
 
 KeyProperty:
-    '@id' name=ID ':' typeRef=BuiltinType doc=SL_DOC_COMMENT?;
+	'@id' name=ID ':' typeRef=BuiltinType doc=SL_DOC_COMMENT?;
 
 RevisionProperty:
-    '@rev' name=ID ':' typeRef=BuiltinType doc=SL_DOC_COMMENT?;
+	'@rev' name=ID ':' typeRef=BuiltinType doc=SL_DOC_COMMENT?;
 
 NamedType:
-    name=ID optional?='?'? ':' (typeRef=TypeRef | inlineEnum=InlineEnumType) (array?='[' maxLength=INT? ']')? nullable?='?'?
+	name=ID optional?='?'? ':' (typeRef=TypeRef | inlineEnum=InlineEnumType) (array?='[' maxLength=INT? ']')? nullable?='?'?
 ;
 
 Property:
-    readonly?='@readonly'? namedType=NamedType doc=SL_DOC_COMMENT?;
+	readonly?='@readonly'? namedType=NamedType doc=SL_DOC_COMMENT?;
 
 TypeRef:
-    (builtin=BuiltinType | refType=[UserType:ID])
+	(builtin=BuiltinType | refType=[UserType:ID])
 ;
 
 Service:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'service' name=ID '{'
         operations+=Operation*
     '}'
 ;
 
 Parameter:
-    patch?='@patch'? namedType=ParameterNamedType
+	patch?='@patch'? namedType=ParameterNamedType
 ;
 
 ParameterNamedType:
-    name=ID optional?='?'? ':' (typeRef=TypeRef | inlineEnum=InlineEnumType | stream=StreamType) (array?='[' maxLength=INT? ']')? nullable?='?'?
+	name=ID optional?='?'? ':' (typeRef=TypeRef | inlineEnum=InlineEnumType | stream=StreamType) (array?='[' maxLength=INT? ']')? nullable?='?'?
 ;
 
 ReturnType:
-    ((typeRef=TypeRef | inlineEnum=InlineEnumType ) (array?='[' maxLength=INT? ']')?) | stream=StreamType
+	( streaming?='@stream' (typeRef=TypeRef | inlineEnum=InlineEnumType ) array?='[' maxLength=INT? ']') | 
+	( (typeRef=TypeRef | inlineEnum=InlineEnumType ) (array?='[' maxLength=INT? ']')?) | 
+	stream=StreamType
 ;
 
 ErrorType:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'error' name=ID ('=' value=TypeRef)? ';'
 ;
 
 Operation:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'operation' name=ID '(' (parameters+=Parameter ( ',' parameters+=Parameter )*)? ')' 
     (':' returnType=ReturnType)?
     ('throws' failures+=OperationFail* )? 
@@ -118,7 +120,7 @@ Operation:
 ;
 
 OperationFail:
-    error=[ErrorType:ID] doc=SL_DOC_COMMENT?
+	error=[ErrorType:ID] doc=SL_DOC_COMMENT?
 ;
 
 hidden terminal WS: /\s+/;

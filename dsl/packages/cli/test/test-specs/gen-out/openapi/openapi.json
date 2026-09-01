@@ -52,6 +52,10 @@
     {
       "name": "EnumSubstition_Service",
       "description": ""
+    },
+    {
+      "name": "ListStreamingService",
+      "description": ""
     }
   ],
   "paths": {
@@ -17827,6 +17831,600 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DayOfWeek"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamBoolean": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamBoolean",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamShort": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamShort",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "int32"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamInt": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamInt",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "int32"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamLong": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamLong",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "int64"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamFloat": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamFloat",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "float"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamDouble": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamDouble",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamString": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamString",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamLocalDate": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamLocalDate",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
+                    "format": "date"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamLocalDateTime": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamLocalDateTime",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
+                    "format": "local-date-time"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
+                  "format": "local-date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamLocalTime": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamLocalTime",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                    "format": "time"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamOffsetDateTime": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamOffsetDateTime",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamZonedDateTime": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamZonedDateTime",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "zoned-date-time"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "format": "zoned-date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamScalar": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamScalar",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamEnum": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamEnum",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SampleEnum"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/SampleEnum"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamInlineEnum": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamInlineEnum",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "A",
+                      "B"
+                    ]
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamRecord": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamRecord",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SimpleRecord"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleRecord"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/streamUnion": {
+      "get": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_streamUnion",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Union"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/Union"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/liststreaming/uploadFileStreamRecords": {
+      "post": {
+        "tags": [
+          "ListStreamingService"
+        ],
+        "description": "",
+        "operationId": "ListStreamingService_uploadFileStreamRecords",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SimpleRecord"
+                  }
+                }
+              },
+              "application/x-ndjson": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimpleRecord"
                 }
               }
             }

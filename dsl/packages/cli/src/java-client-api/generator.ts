@@ -28,6 +28,7 @@ import { generateService } from './service.js';
 import { generateError } from './error.js';
 import { generateMixin } from './mixin.js';
 import { generateStreamDTO } from './stream-dto.js';
+import { generateStreamConsumer } from './stream-consumer.js';
 import { generateScalar } from './scalar.js';
 import { generateResult } from './result.js';
 import { generateServiceErrors } from './service-errors.js';
@@ -63,6 +64,7 @@ function generate(
 
 	const result = model.elements.map(e => generateType(e, artifactConfig)).filter(isDefined);
 	result.push(generateResult(artifactConfig));
+	result.push(generateStreamConsumer(artifactConfig));
 	result.push(generateServiceErrors(artifactConfig, model.services, model.errors));
 	result.push(
 		...model.errors.map(e => generateError(e, model.services, artifactConfig, artifactConfig.rootPackageName)),

@@ -2,6 +2,7 @@ import { CompositeGeneratorNode, NL } from 'langium/generate';
 import { ArtifactGeneratorConfig } from './artifact-generator.js';
 import {
 	MBuiltinType,
+	MOperationError,
 	MParameter,
 	MParameterInlineEnumType,
 	MParameterNoneInlineEnumType,
@@ -10,7 +11,9 @@ import {
 	MResolvedMixinType,
 	MResolvedRecordType,
 	MResolvedScalarType,
+	MResolvedService,
 	MResolvedUnionType,
+	MReturnType,
 	isMBuiltinType,
 	isMEnumType,
 	isMInlineEnumType,
@@ -107,6 +110,167 @@ export function resolveObjectType(
 		return fqn(nativeSubstitutes[type].type);
 	}
 	return type;
+}
+
+export type ServiceErrorCombination = {
+	interfaceName: string;
+	errorNames: readonly string[];
+};
+
+export function computeServiceErrorCombination(
+	services: readonly MResolvedService[],
+): Map<string, ServiceErrorCombination> {
+	const errorNames = new Map<string, ServiceErrorCombination>();
+	services
+		.flatMap(s => s.operations)
+		.forEach(op => {
+			if (op.operationErrors.length > 0) {
+				const key = op.operationErrors
+					.map(e => e.error)
+					.toSorted((e1, e2) => e1.localeCompare(e2))
+					.join(',');
+				if (!errorNames.has(key)) {
+					errorNames.set(key, {
+						interfaceName: `E${(errorNames.size + 1).toFixed()}`,
+						errorNames: op.operationErrors.map(e => e.error),
+					});
+				}
+			}
+		});
+	return errorNames;
+}
+
+export function computeErrorType(
+	errors: readonly MOperationError[],
+	services: readonly MResolvedService[],
+	artifactConfig: { rootPackageName: string },
+	fqn: (type: string) => string,
+) {
+	if (errors.length === 0) {
+		return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
+	} else {
+		const combinations = computeServiceErrorCombination(services);
+		const errorNames = errors
+			.map(e => e.error)
+			.sort()
+			.join(',');
+		const errorCombination = combinations.get(errorNames);
+		if (errorCombination) {
+			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + `.${errorCombination.interfaceName}`;
+		} else {
+			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
+		}
+	}
+}
+
+export function computeAPIResultType(
+	type: MReturnType | undefined,
+	errors: readonly MOperationError[],
+	services: readonly MResolvedService[],
+	artifactConfig: { rootPackageName: string; nativeTypeSubstitutes?: JavaNativeTypeSubstitutes },
+	fqn: (type: string) => string,
+	methodName: string,
+): [string, string] {
+	const error = computeErrorType(errors, services, artifactConfig, fqn);
+
+	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
+	if (type === undefined) {
+		return ['Void', error];
+	}
+
+	let rvType: string;
+	if (type.variant === 'stream') {
+		if (type.type === 'file') {
+			rvType = fqn(`${dtoPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${dtoPkg}.RSDBlob`);
+		}
+	} else if (type.variant === 'union' || type.variant === 'record') {
+		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
+	} else if (type.variant === 'enum') {
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else if (type.variant === 'inline-enum') {
+		rvType = toFirstUpper(methodName) + '_Result$';
+	} else if (type.variant === 'scalar') {
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else {
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
+	}
+
+	if (type.array && !type.streaming) {
+		rvType = `${fqn('java.util.List')}<${rvType}>`;
+	}
+
+	return [rvType, error];
+}
+
+/**
+ * Resolves the plain Java return type for a server-side operation (the
+ * `XxxService` interface method and the JAX-RS resource's response-builder
+ * method) - streaming results become `Multi<T>`, everything else `List<T>`.
+ * Unlike {@link computeAPIResultType}, this has no error/Result<T,E> wrapping,
+ * since server code reports errors via checked exceptions instead.
+ *
+ * `inlineEnumPrefix` qualifies the generated `Xxx_Result$` inline-enum type
+ * for callers that reference it from outside the `XxxService` interface it is
+ * nested in (e.g. `${Service}.`); callers inside that interface leave it empty.
+ */
+export function computeServerResultType(
+	type: MReturnType | undefined,
+	artifactConfig: { rootPackageName: string; nativeTypeSubstitutes?: JavaNativeTypeSubstitutes },
+	fqn: (type: string) => string,
+	methodName: string,
+	inlineEnumPrefix = '',
+): string {
+	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
+	if (type === undefined) {
+		return 'void';
+	}
+
+	let rvType: string;
+	if (type.variant === 'stream') {
+		if (type.type === 'file') {
+			rvType = fqn(`${dtoPkg}.RSDFile`);
+		} else {
+			rvType = fqn(`${dtoPkg}.RSDBlob`);
+		}
+	} else if (type.variant === 'union' || type.variant === 'record') {
+		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
+	} else if (type.variant === 'enum') {
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else if (type.variant === 'inline-enum') {
+		rvType = inlineEnumPrefix + toFirstUpper(methodName) + '_Result$';
+	} else if (type.variant === 'scalar') {
+		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
+			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
+		} else {
+			rvType = fqn(`${dtoPkg}.${type.type}`);
+		}
+	} else {
+		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, type.array);
+	}
+
+	if (type.array) {
+		if (type.streaming) {
+			rvType = `${fqn('io.smallrye.mutiny.Multi')}<${rvType}>`;
+		} else {
+			rvType = `${fqn('java.util.List')}<${rvType}>`;
+		}
+	}
+
+	return rvType;
 }
 
 export function computeParameterValueType(

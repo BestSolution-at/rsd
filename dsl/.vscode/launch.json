@@ -9,6 +9,20 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "at.bestsolution.Main",
+            "projectName": "msg-package-java"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "dev.rsdlang.Main",
+            "projectName": "java-client"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "dev.rsdlang.Main",
             "projectName": "person-java-client"
         },

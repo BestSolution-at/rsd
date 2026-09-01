@@ -314,6 +314,7 @@ function mapReturnType(returnType: ReturnType, doc: string): MReturnType {
 			arrayMaxLength: returnType.maxLength,
 			variant: 'stream',
 			type: returnType.stream,
+			streaming: false, // not yet supported
 			doc,
 		};
 	}
@@ -321,6 +322,7 @@ function mapReturnType(returnType: ReturnType, doc: string): MReturnType {
 		'@type': 'ReturnType',
 		array: returnType.array,
 		arrayMaxLength: returnType.maxLength,
+		streaming: returnType.streaming,
 		...computeTypeAndVariant(returnType),
 		doc,
 	};

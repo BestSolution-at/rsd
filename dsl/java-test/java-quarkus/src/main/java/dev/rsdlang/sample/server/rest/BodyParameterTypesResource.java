@@ -30,7 +30,6 @@ import dev.rsdlang.sample.server.service.BodyParameterTypesService;
 
 @ApplicationScoped
 @Path("/api/bodyparametertypes")
-@Produces({"application/json", "application/vnd.msgpack"})
 @Consumes({"application/json", "application/vnd.msgpack"})
 public class BodyParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
@@ -66,6 +65,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleBooleanBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleBooleanBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -77,6 +77,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleBooleanBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleBooleanBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -88,6 +89,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleBooleanBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleBooleanBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -99,6 +101,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleBooleanBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleBooleanBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -110,6 +113,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleShortBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleShortBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -121,6 +125,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleShortBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleShortBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -132,6 +137,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleShortBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleShortBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -143,6 +149,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleShortBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleShortBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -154,6 +161,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleIntBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleIntBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -165,6 +173,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleIntBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleIntBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -176,6 +185,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleIntBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleIntBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -187,6 +197,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleIntBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleIntBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -198,6 +209,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLongBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLongBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -209,6 +221,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLongBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLongBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -220,6 +233,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLongBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLongBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -231,6 +245,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLongBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLongBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -242,6 +257,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleFloatBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleFloatBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -253,6 +269,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleFloatBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleFloatBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -264,6 +281,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleFloatBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleFloatBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -275,6 +293,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleFloatBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleFloatBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -286,6 +305,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleDoubleBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleDoubleBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -297,6 +317,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleDoubleBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleDoubleBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -308,6 +329,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleDoubleBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleDoubleBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -319,6 +341,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleDoubleBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleDoubleBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -330,6 +353,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleStringBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleStringBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -341,6 +365,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleStringBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleStringBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -352,6 +377,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleStringBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleStringBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -363,6 +389,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleStringBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleStringBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -374,6 +401,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalDateBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -385,6 +413,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalDateBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -396,6 +425,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalDateBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -407,6 +437,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalDateBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -418,6 +449,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalDateTimeBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -429,6 +461,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalDateTimeBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateTimeBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -440,6 +473,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalDateTimeBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateTimeBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -451,6 +485,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalDateTimeBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalDateTimeBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -462,6 +497,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalTimeBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -473,6 +509,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalTimeBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalTimeBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -484,6 +521,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalTimeBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalTimeBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -495,6 +533,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleLocalTimeBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleLocalTimeBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -506,6 +545,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleOffsetDateTimeBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleOffsetDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -517,6 +557,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleOffsetDateTimeBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleOffsetDateTimeBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -528,6 +569,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleOffsetDateTimeBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleOffsetDateTimeBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -539,6 +581,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleOffsetDateTimeBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleOffsetDateTimeBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -550,6 +593,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleZonedDateTimeBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleZonedDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -561,6 +605,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleZonedDateTimeBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleZonedDateTimeBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -572,6 +617,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleZonedDateTimeBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleZonedDateTimeBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -583,6 +629,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleZonedDateTimeBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleZonedDateTimeBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -594,6 +641,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleScalarBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleScalarBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -605,6 +653,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleScalarBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleScalarBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -616,6 +665,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleScalarBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleScalarBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -627,6 +677,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleScalarBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleScalarBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -638,6 +689,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleEnumBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleEnumBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -649,6 +701,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleEnumBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleEnumBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -660,6 +713,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleEnumBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleEnumBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -671,6 +725,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleEnumBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleEnumBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -682,6 +737,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleInlineEnumBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleInlineEnumBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -693,6 +749,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleInlineEnumBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleInlineEnumBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -704,6 +761,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleInlineEnumBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleInlineEnumBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -715,6 +773,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("simpleInlineEnumBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response simpleInlineEnumBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -726,6 +785,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("multiBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -737,6 +797,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("multiBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -748,6 +809,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("multiBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -759,6 +821,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("multiBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -770,6 +833,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("multiBodyParamFirst")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response multiBodyParamFirst(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -781,6 +845,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("recordBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response recordBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -792,6 +857,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("recordBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response recordBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -803,6 +869,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("recordBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response recordBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -814,6 +881,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("recordBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response recordBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -825,6 +893,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("unionBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response unionBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -836,6 +905,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("unionBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response unionBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -847,6 +917,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("unionBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response unionBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -858,6 +929,7 @@ public class BodyParameterTypesResource {
 
 	@POST
 	@Path("unionBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response unionBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -869,6 +941,7 @@ public class BodyParameterTypesResource {
 
 	@PATCH
 	@Path("patchableRecordBodyParam")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response patchableRecordBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -880,6 +953,7 @@ public class BodyParameterTypesResource {
 
 	@PATCH
 	@Path("patchableRecordBodyParamOpt")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response patchableRecordBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -891,6 +965,7 @@ public class BodyParameterTypesResource {
 
 	@PATCH
 	@Path("patchableRecordBodyParamNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response patchableRecordBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
@@ -902,6 +977,7 @@ public class BodyParameterTypesResource {
 
 	@PATCH
 	@Path("patchableRecordBodyParamOptNil")
+	@Produces({"application/json", "application/vnd.msgpack"})
 	public Response patchableRecordBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,

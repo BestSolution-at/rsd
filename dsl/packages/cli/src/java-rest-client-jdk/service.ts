@@ -1,6 +1,7 @@
 import { CompositeGeneratorNode, IndentNode, NL, toString } from 'langium/generate';
 import { Artifact, ArtifactGenerationConfig } from '../artifact-generator.js';
 import {
+	computeAPIResultType,
 	computeParameterAPITypeNG,
 	computeParameterValueType,
 	generateCompilationUnit,
@@ -20,7 +21,6 @@ import {
 	isMScalarType,
 	MBuiltinType,
 	MOperation,
-	MOperationError,
 	MParameter,
 	MResolvedOperation,
 	MResolvedService,
@@ -34,7 +34,6 @@ import {
 } from '../java-model-json/shared.js';
 import { computePath } from '../rest-utils.js';
 import { toCamelCaseIdentifier, toFirstUpper, toNodeTree } from '../util.js';
-import { computeServiceErrorCombination } from '../java-client-api/service-errors.js';
 
 export function generateService(
 	s: MResolvedService,
@@ -146,10 +145,17 @@ function appendMethodSignature(
 	artifactConfig: JavaRestClientJDKGeneratorConfig,
 	fqn: (type: string) => string,
 ) {
+	const [rvType, error] = computeAPIResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name);
 	const parameters = allParameters.map(p => toParameter(p, artifactConfig, fqn, o.name));
-	node.append(
-		`public ${toAPIResultType(o.resultType, o.operationErrors, services, artifactConfig, fqn, o.name)} ${o.name}(${parameters.join(', ')})`,
-	);
+	let rv;
+	if (o.resultType?.streaming) {
+		rv = 'void';
+		const StreamConsumer = fqn(`${artifactConfig.rootPackageName}.StreamConsumer`);
+		parameters.push(`${StreamConsumer}<${rvType}, ${error}> $consumer`);
+	} else {
+		rv = `${fqn(`${artifactConfig.rootPackageName}.Result`)}<${rvType}, ${error}>`;
+	}
+	node.append(`public ${rv} ${o.name}(${parameters.join(', ')})`);
 	node.append(' {', NL);
 }
 
@@ -387,7 +393,13 @@ function generateOperationMethod(
 			methodBody.append(`var $uri = ${URI}.create($path);`, NL);
 		}
 
-		methodBody.append('try(var $clientSupplier = this.client.httpClientSupplier()) {', NL);
+		if (o.resultType?.streaming) {
+			methodBody.append('var $clientSupplier = this.client.httpClientSupplier();', NL);
+			methodBody.append('try {', NL);
+		} else {
+			methodBody.append('try(var $clientSupplier = this.client.httpClientSupplier()) {', NL);
+		}
+
 		methodBody.indent(tryBlock => {
 			if (o.parameters.find(p => p.variant === 'stream')) {
 				tryBlock.append('var $formDataBuilder = RSDFormDataPublisherBuilder.create();', NL);
@@ -396,6 +408,10 @@ function generateOperationMethod(
 		});
 		methodBody.append(`} catch (Exception e) {`, NL);
 		methodBody.indent(catchBlock => {
+			if (o.resultType?.streaming) {
+				catchBlock.append('$clientSupplier.close();', NL);
+			}
+
 			catchBlock.append('if (e instanceof InterruptedException) {', NL);
 			catchBlock.indent(interruptBlock => {
 				interruptBlock.append('Thread.currentThread().interrupt();', NL);
@@ -406,15 +422,26 @@ function generateOperationMethod(
 				`var $error = new ${RSDError}.$GenericError(${RSDError}.Type._Native, "Unexpected error while executing operation ${o.name}", e);`,
 				NL,
 			);
+			if (o.resultType?.streaming) {
+				catchBlock.append(`$consumer.accept(null, $error, true);`, NL);
+			}
 			catchBlock.append(`this.lifecycleHook.onCatch("${o.name}", $error);`, NL);
-			const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
-			catchBlock.append(`return ${Result}.err($error);`, NL);
+			if (o.resultType?.streaming) {
+				catchBlock.append(`this.lifecycleHook.onFinally("${o.name}");`, NL);
+			} else {
+				const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
+				catchBlock.append(`return ${Result}.err($error);`, NL);
+			}
 		});
-		methodBody.append('} finally {', NL);
-		methodBody.indent(finallyBlock => {
-			finallyBlock.append(`this.lifecycleHook.onFinally("${o.name}");`, NL);
-		});
-		methodBody.append('}', NL);
+		if (o.resultType?.streaming) {
+			methodBody.append('}', NL);
+		} else {
+			methodBody.append('} finally {', NL);
+			methodBody.indent(finallyBlock => {
+				finallyBlock.append(`this.lifecycleHook.onFinally("${o.name}");`, NL);
+			});
+			methodBody.append('}', NL);
+		}
 	});
 	node.append('}', NL);
 }
@@ -441,7 +468,11 @@ function generateInvocation(
 	}
 
 	generateRequestBuilderChain(o, methodBody, method, allParameters, hasHeaderParams, fqn);
-	generateResponseDispatch(methodBody, o, artifactConfig, fqn);
+	if (o.resultType?.streaming) {
+		generateResponseDispatchStream(methodBody, o, artifactConfig, fqn);
+	} else {
+		generateResponseDispatch(methodBody, o, artifactConfig, fqn);
+	}
 
 	methodBody.append();
 	return methodBody;
@@ -733,7 +764,18 @@ function generateRequestBuilderChain(
 	methodBody.indent(tmp => {
 		tmp.indent(l => {
 			l.append(`.uri($uri)`, NL);
-			l.append(`.header("Accept", this.contentType())`, NL);
+			if (o.resultType?.streaming) {
+				// A streaming result requests the complete-array response when JSON-encoded (the
+				// server only supports that as a distinct "give me the whole array" endpoint) - for
+				// actual element-by-element streaming, request application/x-ndjson instead. msgpack
+				// streaming is unaffected: it has no separate complete-array variant.
+				l.append(
+					`.header("Accept", this.contentType().equals("application/json") ? "application/x-ndjson" : this.contentType())`,
+					NL,
+				);
+			} else {
+				l.append(`.header("Accept", this.contentType())`, NL);
+			}
 
 			if (
 				allParameters.some(
@@ -774,6 +816,123 @@ function generateRequestBuilderChain(
 	);
 	methodBody.append('var $request = $requestBuilder.build();', NL);
 	methodBody.appendNewLine();
+}
+
+function generateResponseDispatchStream(
+	methodBody: CompositeGeneratorNode,
+	o: MResolvedOperation,
+	artifactConfig: JavaRestClientJDKGeneratorConfig,
+	fqn: (type: string) => string,
+) {
+	if (o.resultType === undefined) {
+		throw new Error(`Operation ${o.name} is marked as streaming but has no result type defined.`);
+	}
+	const Consumer = fqn('java.util.function.Consumer');
+	const JsonValue = fqn('jakarta.json.JsonValue');
+	const BodyHandler = fqn('java.net.http.HttpResponse.BodyHandler');
+	const RSDError = fqn(`${artifactConfig.rootPackageName}.RSDError`);
+	const AtomicBoolean = fqn('java.util.concurrent.atomic.AtomicBoolean');
+
+	const Finisher = toNodeTree(`
+${AtomicBoolean} $completed = new ${AtomicBoolean}(false);
+${Consumer}<Throwable> $onComplete = $streamError -> {
+	if (!$completed.compareAndSet(false, true)) {
+		return;
+	}
+	$clientSupplier.close();
+	if ($streamError != null) {
+		var $error = new ${RSDError}.$GenericError(${RSDError}.Type._Native, "Unexpected error while streaming operation ${o.name}", $streamError);
+		$consumer.accept(null, $error, true);
+		this.lifecycleHook.onCatch("${o.name}", $error);
+	} else {
+		$consumer.accept(null, null, true);
+		this.lifecycleHook.onSuccess("${o.name}", null, null);
+	}
+	this.lifecycleHook.onFinally("${o.name}");
+};`);
+
+	let converter: string;
+	if (o.resultType.variant === 'inline-enum') {
+		const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+		const EnumName = toFirstUpper(o.name) + '_Result$';
+		converter = `${_JsonUtils}.mapLiteral($jsonValue, ${EnumName}::valueOf)`;
+	} else if (o.resultType.variant === 'builtin') {
+		const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+		converter = `${_JsonUtils}.map${toCamelCaseIdentifier(toFirstUpper(o.resultType.type))}($jsonValue)`;
+	} else if (o.resultType.variant === 'record' || o.resultType.variant === 'union') {
+		const modelPkg = `${artifactConfig.rootPackageName}.model.impl.json`;
+		const modelType = fqn(`${modelPkg}.${o.resultType.type}DataImpl`);
+		converter = `${modelType}.of($jsonValue.asJsonObject())`;
+	} else if (o.resultType.variant === 'scalar') {
+		const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+		converter = `${_JsonUtils}.mapLiteral($jsonValue, ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)}::${o.resultType.type}FromJson)`;
+	} else if (o.resultType.variant === 'enum') {
+		const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+		converter = `${_JsonUtils}.mapLiteral($jsonValue, ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`)}::${o.resultType.type}FromJson)`;
+	} else {
+		throw new Error(`Unsupported result type variant: ${o.resultType.variant}`);
+	}
+	const JsonValueConsumer = toNodeTree(`
+${Consumer}<${JsonValue}> $jsonValueConsumer = $jsonValue -> {
+	$consumer.accept(${converter}, null, false);
+};
+`);
+	methodBody.append(Finisher, NL);
+	methodBody.append(JsonValueConsumer, NL);
+	methodBody.append(`${BodyHandler}<Void> $bodyHandler = $ri -> {`, NL);
+	methodBody.indent(mBody => {
+		if (o.resultType) {
+			if (o.meta?.rest?.results.length) {
+				o.meta.rest.results.forEach(r => {
+					if (r.error === undefined) {
+						mBody.append(`if ($ri.statusCode() == ${r.statusCode.toFixed()}) {`, NL);
+						mBody.indent(block => {
+							block.append(
+								`return JDKHttpClientResponseUtils.streamSubscriber($ri, $jsonValueConsumer, $onComplete, null);`,
+								NL,
+							);
+						});
+						mBody.append('}', NL);
+					} else {
+						mBody.append(`if ($ri.statusCode() == ${r.statusCode.toFixed()}) {`, NL);
+						mBody.indent(block => {
+							block.append(`throw new IllegalStateException("Error results not yet supported");`, NL);
+						});
+						mBody.append('}', NL);
+					}
+				});
+				mBody.append(`throw new IllegalStateException("Error results not yet supported");`, NL);
+			} else {
+				mBody.append('if ($ri.statusCode() == 200) {', NL);
+				mBody.indent(block => {
+					block.append(
+						`return JDKHttpClientResponseUtils.streamSubscriber($ri, $jsonValueConsumer, $onComplete, null);`,
+						NL,
+					);
+				});
+				mBody.append('}', NL);
+				mBody.append(`throw new IllegalStateException("Error results not yet supported");`, NL);
+			}
+		}
+	});
+	methodBody.append('};', NL);
+	methodBody.append(`var $responseFuture = $clientSupplier.get().sendAsync($request, $bodyHandler);`, NL);
+	methodBody.append(`$responseFuture.whenComplete(($response, $e) -> {`, NL);
+	methodBody.indent(mBody => {
+		mBody.append('if ($e != null && $completed.compareAndSet(false, true)) {', NL);
+		mBody.indent(block => {
+			block.append('$clientSupplier.close();', NL);
+			block.append(
+				`var $error = new ${RSDError}.$GenericError(${RSDError}.Type._Native, "Unexpected error while executing operation ${o.name}", $e);`,
+				NL,
+			);
+			block.append(`$consumer.accept(null, $error, true);`, NL);
+			block.append(`this.lifecycleHook.onCatch("${o.name}", $error);`, NL);
+			block.append(`this.lifecycleHook.onFinally("${o.name}");`, NL);
+		});
+		mBody.append('}', NL);
+	});
+	methodBody.append('});', NL);
 }
 
 function generateResponseDispatch(
@@ -1076,79 +1235,6 @@ function toResultType(
 	}
 
 	return rvType;
-}
-
-function toAPIResultType(
-	type: MReturnType | undefined,
-	errors: readonly MOperationError[],
-	services: readonly MResolvedService[],
-	artifactConfig: JavaRestClientJDKGeneratorConfig,
-	fqn: (type: string) => string,
-	methodName: string,
-) {
-	const Result = fqn(`${artifactConfig.rootPackageName}.Result`);
-	const error = computeErrorType(errors, services, artifactConfig, fqn);
-
-	const dtoPkg = `${artifactConfig.rootPackageName}.model`;
-	if (type === undefined) {
-		return `${Result}<Void, ${error}>`;
-	}
-
-	let rvType: string;
-	if (type.variant === 'stream') {
-		if (type.type === 'file') {
-			rvType = fqn(`${dtoPkg}.RSDFile`);
-		} else {
-			rvType = fqn(`${dtoPkg}.RSDBlob`);
-		}
-	} else if (type.variant === 'union' || type.variant === 'record') {
-		rvType = fqn(`${dtoPkg}.${type.type}`) + '.Data';
-	} else if (type.variant === 'enum') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else if (type.variant === 'inline-enum') {
-		rvType = toFirstUpper(methodName) + '_Result$';
-	} else if (type.variant === 'scalar') {
-		if (artifactConfig.nativeTypeSubstitutes !== undefined && type.type in artifactConfig.nativeTypeSubstitutes) {
-			rvType = fqn(artifactConfig.nativeTypeSubstitutes[type.type].type);
-		} else {
-			rvType = fqn(`${dtoPkg}.${type.type}`);
-		}
-	} else {
-		rvType = resolveType(type.type, artifactConfig.nativeTypeSubstitutes, fqn, true);
-	}
-
-	if (type.array) {
-		rvType = `${fqn('java.util.List')}<${rvType}>`;
-	}
-
-	return `${Result}<${rvType}, ${error}>`;
-}
-
-function computeErrorType(
-	errors: readonly MOperationError[],
-	services: readonly MResolvedService[],
-	artifactConfig: JavaRestClientJDKGeneratorConfig,
-	fqn: (type: string) => string,
-) {
-	if (errors.length === 0) {
-		return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
-	} else {
-		const combinations = computeServiceErrorCombination(services);
-		const errorNames = errors
-			.map(e => e.error)
-			.sort()
-			.join(',');
-		const errorCombination = combinations.get(errorNames);
-		if (errorCombination) {
-			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + `.${errorCombination.interfaceName}`;
-		} else {
-			return fqn(`${artifactConfig.rootPackageName}.RSDError`) + '.$GenericError';
-		}
-	}
 }
 
 function generateServiceData(

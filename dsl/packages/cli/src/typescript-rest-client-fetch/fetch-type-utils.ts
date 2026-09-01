@@ -9,22 +9,28 @@ import { toNodeTree } from '../util.js';
 type EncodingPlugin = {
 	encodeFunction: (fqn: (t: string, typeOnly: boolean) => string) => CompositeGeneratorNode;
 	decodeFunction: (fqn: (t: string, typeOnly: boolean) => string) => CompositeGeneratorNode;
+	decodeStreamFunction: (fqn: (t: string, typeOnly: boolean) => string) => CompositeGeneratorNode;
 	encodingFunctionName: string;
 	decodingFunctionName: string;
+	decodeStreamFunctionName: string;
 };
 
 const encodingPlugins: Record<string, EncodingPlugin> = {
 	'application/json': {
 		encodeFunction: generateJsonEncodeValueFunction,
 		decodeFunction: generateJsonDecodeResponseFunction,
+		decodeStreamFunction: generateJsonStreamDecodeResponseFunction,
 		encodingFunctionName: 'encodeJsonBody',
 		decodingFunctionName: 'decodeJsonBody',
+		decodeStreamFunctionName: 'decodeJsonStream',
 	},
 	'application/vnd.msgpack': {
 		encodeFunction: generateMsgPackEncodeValueFunction,
 		decodeFunction: generateMsgPackDecodeResponseFunction,
+		decodeStreamFunction: generateMsgPackStreamDecodeResponseFunction,
 		encodingFunctionName: 'encodeMsgPackBody',
 		decodingFunctionName: 'decodeMsgPackBody',
+		decodeStreamFunctionName: 'decodeMsgPackStream',
 	},
 };
 
@@ -107,6 +113,22 @@ function generateFetchTypeUtilsContent(
 
 		export function decodeAsciiString(text: string): string {
 			return text.replace(/\\\\u([0-9a-fA-F]{4})/g, (_, g1) => String.fromCharCode(parseInt(String(g1), 16)));
+		}
+
+		async function* toAsyncIterable(stream: ReadableStream<Uint8Array>): AsyncGenerator<Uint8Array> {
+			const reader = stream.getReader();
+			try {
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+				while (true) {
+					const { done, value } = await reader.read();
+					if (done) {
+						return;
+					}
+					yield value;
+				}
+			} finally {
+				reader.releaseLock();
+			}
 		}`);
 
 	result.append(basic, NL, NL);
@@ -175,6 +197,39 @@ function generateFetchTypeUtilsContent(
 		result.append(encodingPlugins[enc].decodeFunction(fqn), NL, NL);
 	});
 
+	result.append(
+		'export function decodeResponseStream<T>(response: Response, guard: (value: unknown) => value is T, consumer: (value: T) => void): Promise<void> {',
+		NL,
+	);
+	result.indent(mBody => {
+		mBody.append("const contentType = response.headers.get('Content-Type')?.split(';')[0]?.trim();", NL);
+		mBody.append('switch (contentType) {', NL);
+		mBody.indent(switchBody => {
+			encodings.forEach(enc => {
+				switchBody.append(`case '${enc}':`, NL);
+				// application/x-ndjson streams are JSON-per-line: they share the JSON stream decoder,
+				// just with different response framing (see java-server-jakarta-ws/response-builder.ts).
+				if (enc === 'application/json') {
+					switchBody.append(`case 'application/x-ndjson':`, NL);
+				}
+				switchBody.indent(casBody => {
+					casBody.append(`return ${encodingPlugins[enc].decodeStreamFunctionName}<T>(response, guard, consumer);`, NL);
+				});
+			});
+			switchBody.append('default:', NL);
+			switchBody.indent(defBody => {
+				defBody.append('throw new Error(`Unsupported response content type: ${String(contentType)}`);', NL);
+			});
+		});
+		mBody.append('}', NL);
+	});
+	result.append('}', NL, NL);
+
+	// Generate decoding stream function
+	encodings.forEach(enc => {
+		result.append(encodingPlugins[enc].decodeStreamFunction(fqn), NL, NL);
+	});
+
 	return result;
 }
 
@@ -213,8 +268,15 @@ function generateJsonDecodeResponseFunction() {
 	return toNodeTree(`
 		async function decodeJsonBody<T>(response: Response, guard: (value: unknown) => value is T): Promise<T> {
 			const text = await response.text();
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			const data = JSON.parse(text, (_, v: unknown, ...args: unknown[]) => {
+			const data = parseJson(text);
+			if (!guard(data)) {
+				throw new Error('Invalid result');
+			}
+			return data;
+		}
+
+		function parseJson(text: string): unknown {
+			return JSON.parse(text, (_, v: unknown, ...args: unknown[]) => {
 				if (typeof v === 'number') {
 					const context = args[0];
 					if (context && typeof context === 'object' && 'source' in context && typeof context.source === 'string') {
@@ -231,11 +293,8 @@ function generateJsonDecodeResponseFunction() {
 
 				return v;
 			});
-			if (!guard(data)) {
-				throw new Error('Invalid result');
-			}
-			return data;
-		}`);
+		}
+		`);
 }
 
 function generateMsgPackDecodeResponseFunction(fqn: (t: string, typeOnly: boolean) => string) {
@@ -249,4 +308,84 @@ function generateMsgPackDecodeResponseFunction(fqn: (t: string, typeOnly: boolea
 			}
 			return data;
 		}`);
+}
+
+function generateJsonStreamDecodeResponseFunction() {
+	return toNodeTree(`
+function decodeJsonStream<T>(
+	response: Response,
+	guard: (value: unknown) => value is T,
+	consumer: (value: T) => void,
+): Promise<void> {
+	const stream = response.body;
+	if (stream) {
+		const textDecoder = new TextDecoder();
+		const iterable = toAsyncIterable(stream);
+
+		async function readStream() {
+			let buffer = '';
+			for await (const value of iterable) {
+				const text = textDecoder.decode(value, { stream: true });
+				buffer += text;
+
+				const lines = buffer.split('\\n');
+				// Pop the last line from the array and keep it in the
+				// buffer for the next iteration. If the line ended with
+				// newline the element will be an empty string, which is fine.
+				buffer = lines.pop() ?? '';
+				for (const line of lines) {
+					if (line.trim().length > 0) {
+						const data = parseJson(line);
+						if (guard(data)) {
+							consumer(data);
+						} else {
+							console.error('Invalid result', data);
+						}
+					}
+				}
+			}
+		}
+
+		return readStream();
+	} else {
+		return Promise.reject(new Error(\`Response body is not available for JSON stream decoding\`));
+	}
+}`);
+}
+
+function generateMsgPackStreamDecodeResponseFunction(fqn: (t: string, typeOnly: boolean) => string) {
+	return toNodeTree(`
+function decodeMsgPackStream<T>(
+	response: Response,
+	guard: (value: unknown) => value is T,
+	consumer: (value: T) => void,
+): Promise<void> {
+	const stream = response.body;
+	if (stream) {
+		const iterable = toAsyncIterable(stream);
+
+		async function readStream() {
+			const streamDecoder = new ${fqn('Decoder:@msgpack/msgpack', false)}({ useBigInt64: true });
+			// RestMulti's encodeAsJsonArray(false) mode unconditionally appends a literal '\\n'
+			// after every streamed item (server-side StreamingMultiSubscriber / LINE_SEPARATOR) -
+			// there is no way to disable this for binary encodings. That '\\n' (0x0A) is itself a
+			// valid one-byte msgpack positive-fixint, so it decodes cleanly as its own record here;
+			// every even-indexed record is real data, every odd-indexed one is that separator.
+			let count = 0;
+			for await (const record of streamDecoder.decodeStream(iterable)) {
+				if (count % 2 === 0) {
+					if (guard(record)) {
+						consumer(record);
+					} else {
+						console.error('Invalid result', record);
+					}
+				}
+				count += 1;
+			}
+		}
+		return readStream();
+	} else {
+		return Promise.reject(new Error(\`Response body is not available for MessagePack stream decoding\`));
+	}
+}`);
 }

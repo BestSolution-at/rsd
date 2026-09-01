@@ -212,15 +212,21 @@ public interface ${Type} {
 		/**
 		 * Called if the request was successful. The value parameter contains the
 		 * deserialized response body.
-		 * 
+		 *
+		 * For streaming operations, this is called once after the last element has
+		 * been streamed, with a {@code null} value and a {@code null} responseAdapter,
+		 * since the response is no longer available at that point.
+		 *
 		 * @param method          the method name of the service method that was called
 		 *                        (e.g. "getUser", "createUser", etc.)
-		 * @param value           the deserialized response body
+		 * @param value           the deserialized response body, or {@code null} for
+		 *                        streaming operations
 		 * @param responseAdapter allows to adapt the response specific to the
 		 *                        implementation used eg. HttpResponse for JDK
 		 *                        HttpClient, Response for OkHttp, etc. so that it can
 		 *                        be accessed for additional information, e.g. to read
-		 *                        headers, status code, etc.
+		 *                        headers, status code, etc. {@code null} for streaming
+		 *                        operations.
 		 */
 		void onSuccess(String method, Object value, Adaptable responseAdapter);
 

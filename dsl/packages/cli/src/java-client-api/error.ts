@@ -1,6 +1,7 @@
 import { CompositeGeneratorNode, toString } from 'langium/generate';
 import { Artifact } from '../artifact-generator.js';
 import {
+	computeServiceErrorCombination,
 	generateCompilationUnit,
 	JavaClientAPIGeneratorConfig,
 	JavaImportsCollector,
@@ -8,7 +9,6 @@ import {
 	toPath,
 } from '../java-gen-utils.js';
 import { MResolvedError, MResolvedService } from '../model.js';
-import { computeServiceErrorCombination } from './service-errors.js';
 import { toNodeTree } from '../util.js';
 
 export function generateError(

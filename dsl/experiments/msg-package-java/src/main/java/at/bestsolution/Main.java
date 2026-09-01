@@ -1,5 +1,6 @@
 package at.bestsolution;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -536,17 +537,29 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-		System.out.println("Hello world!");
+		System.out.println("PAcker Hello world!");
 		var v = Json.createReader(Main.class.getResourceAsStream("sample.json")).readValue();
 		try (MessageBufferPacker packer = org.msgpack.core.MessagePack.newDefaultBufferPacker()) {
 			encodeJson(v, packer);
+			encodeJson(v, packer);
 			packer.close();
 			byte[] bytes = packer.toByteArray();
+			System.err.println("Packed " + bytes.length + " bytes");
 
-			var unpacker = org.msgpack.core.MessagePack.newDefaultUnpacker(bytes);
+			byte[] newBytes = new byte[bytes.length + 1];
+			System.arraycopy(bytes, 0, newBytes, 0, bytes.length / 2);
+			newBytes[bytes.length / 2] = '\n';
+			System.arraycopy(bytes, bytes.length / 2, newBytes, bytes.length / 2 + 1, bytes.length / 2);
+
+			System.err.println(newBytes[bytes.length / 2]);
+			System.err.println("Packed with newline " + newBytes[bytes.length / 2] + " bytes");
+
+			var unpacker = org.msgpack.core.MessagePack.newDefaultUnpacker(new ByteArrayInputStream(newBytes));
 			while (unpacker.hasNext()) {
-				var format = unpacker.getNextFormat();
-				System.err.println(format);
+				// var format = unpacker.getNextFormat();
+				// System.err.println(format);
+				decodeJson(unpacker)
+						.ifPresent(c -> System.err.println("Item => " + c.getValueType() + "\n"));
 			}
 
 			/*

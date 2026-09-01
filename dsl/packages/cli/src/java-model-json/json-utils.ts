@@ -4,8 +4,11 @@ import { toNodeTree } from '../util.js';
 type EncodingPlugin = {
 	encodeFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
 	decodeFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
+	decodeStreamFunction: (fqn: (t: string) => string) => CompositeGeneratorNode;
 	encodingFunctionName: string;
 	decodingFunctionName: string;
+	decodeStreamFunctionName: string;
+	createStreamEncoderFunctionName: string;
 	emptyObjectBytes: number[];
 	encodeEmptyValueFunctionName: string;
 	encodeEmptyObjectFunctionName: string;
@@ -15,8 +18,11 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 	'application/vnd.msgpack': {
 		encodeFunction: generateMsgPackEncodeValueFunction,
 		decodeFunction: generateMsgPackDecodeValueFunction,
+		decodeStreamFunction: generateMsgPackDecodeStreamFunction,
 		encodingFunctionName: 'encodeMsgPackValue',
 		decodingFunctionName: 'decodeMsgPackValue',
+		decodeStreamFunctionName: 'decodeMsgPackStream',
+		createStreamEncoderFunctionName: 'createMsgPackStreamEncoder',
 		emptyObjectBytes: [-128],
 		encodeEmptyValueFunctionName: 'encodeEmptyMsgpackValue',
 		encodeEmptyObjectFunctionName: 'encodeEmptyMsgpackObject',
@@ -24,8 +30,11 @@ const encodingPlugins: Record<string, EncodingPlugin> = {
 	'application/json': {
 		encodeFunction: generateJsonEncodeValueFunction,
 		decodeFunction: generateJsonDecodeValueFunction,
+		decodeStreamFunction: generateJsonDecodeStreamFunction,
 		encodingFunctionName: 'encodeJsonValue',
 		decodingFunctionName: 'decodeJsonValue',
+		decodeStreamFunctionName: 'decodeJsonStream',
+		createStreamEncoderFunctionName: 'createJsonStreamEncoder',
 		emptyObjectBytes: [123, 125],
 		encodeEmptyValueFunctionName: 'encodeEmptyJsonValue',
 		encodeEmptyObjectFunctionName: 'encodeEmptyJsonObject',
@@ -48,6 +57,8 @@ private static ${JsonValue} decodeJsonValue(${InputStream} stream) {
 function generateJsonEncodeValueFunction(fqn: (t: string) => string): CompositeGeneratorNode {
 	const StringWriter = fqn('java.io.StringWriter');
 	const OutputStream = fqn('java.io.OutputStream');
+	const Function = fqn('java.util.function.Function');
+	const StandardCharsets = fqn('java.nio.charset.StandardCharsets');
 
 	const Json = fqn('jakarta.json.Json');
 	const JsonGenerator = fqn('jakarta.json.stream.JsonGenerator');
@@ -66,7 +77,21 @@ private static byte[] encodeJsonValue(Object data) {
 	try (var generator = ${Json}.createGenerator(stringWriter)) {
 		encodeJsonValue(generator, data);
 	}
-	return stringWriter.toString().getBytes();
+	return stringWriter.toString().getBytes(${StandardCharsets}.UTF_8);
+}
+
+// Reuses a single StringWriter's buffer across all elements of a stream instead of
+// allocating a fresh one per element; a fresh JsonGenerator is still created per
+// element since JsonGenerator does not support writing multiple root-level values.
+private static ${Function}<Object, byte[]> createJsonStreamEncoder() {
+	var stringWriter = new ${StringWriter}();
+	return data -> {
+		stringWriter.getBuffer().setLength(0);
+		try (var generator = ${Json}.createGenerator(stringWriter)) {
+			encodeJsonValue(generator, data);
+		}
+		return stringWriter.toString().getBytes(${StandardCharsets}.UTF_8);
+	};
 }
 
 private static void encodeJsonValue(${OutputStream} stream, Object data) {
@@ -139,6 +164,7 @@ function generateMsgPackEncodeValueFunction(fqn: (t: string) => string): Composi
 	fqn('org.msgpack.core.MessagePack');
 	fqn('org.msgpack.core.MessagePacker');
 	fqn('at.bestsolution.msgpack.json.MsgpackJson');
+	const Function = fqn('java.util.function.Function');
 	return toNodeTree(`
 // -----------------
 private static byte[] encodeEmptyMsgpackValue() {
@@ -164,6 +190,25 @@ private static byte[] encodeMsgPackValue(Object data) {
 	}
 }
 
+// Reuses a single MsgpackJson (stateless) and MessageBufferPacker across all elements
+// of a stream instead of allocating both per element; the packer is cleared (its
+// documented reuse pattern) rather than closed/reallocated between elements.
+private static ${Function}<Object, byte[]> createMsgPackStreamEncoder() {
+	var msgpackJson = MsgpackJson.builder()
+			.build();
+	var packer = MessagePack.newDefaultBufferPacker();
+	return data -> {
+		try {
+			packer.clear();
+			encodeMsgPackValue(msgpackJson, packer, createJsonValue(data));
+			packer.flush();
+			return packer.toByteArray();
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
+	};
+}
+
 private static void encodeMsgPackValue(OutputStream stream, Object data) {
 	try {
 		var msgpackJson = MsgpackJson.builder()
@@ -181,6 +226,63 @@ private static void encodeMsgPackValue(MsgpackJson generator, MessagePacker pack
 	generator.encode(packer, createJsonValue(data));
 }
 `);
+}
+
+function generateJsonDecodeStreamFunction(fqn: (t: string) => string): CompositeGeneratorNode {
+	const InputStream = fqn('java.io.InputStream');
+	const Consumer = fqn('java.util.function.Consumer');
+	const JsonValue = fqn('jakarta.json.JsonValue');
+	const BufferedReader = fqn('java.io.BufferedReader');
+	const InputStreamReader = fqn('java.io.InputStreamReader');
+	const StandardCharsets = fqn('java.nio.charset.StandardCharsets');
+	const StringReader = fqn('java.io.StringReader');
+	const Json = fqn('jakarta.json.Json');
+	return toNodeTree(`
+private static void decodeJsonStream(${InputStream} stream, ${Consumer}<${JsonValue}> consumer) {
+	var reader = new ${BufferedReader}(new ${InputStreamReader}(stream, ${StandardCharsets}.UTF_8));
+	String line;
+	try {
+		while ((line = reader.readLine()) != null) {
+			var jsonReader = ${Json}.createReader(new ${StringReader}(line));
+			var jsonValue = jsonReader.readValue();
+			consumer.accept(jsonValue);
+		}
+	} catch (IOException e) {
+		throw new IllegalStateException(e);
+	}
+}`);
+}
+
+function generateMsgPackDecodeStreamFunction(fqn: (t: string) => string): CompositeGeneratorNode {
+	const InputStream = fqn('java.io.InputStream');
+	const Consumer = fqn('java.util.function.Consumer');
+	const JsonValue = fqn('jakarta.json.JsonValue');
+	const MessagePack = fqn('org.msgpack.core.MessagePack');
+	const MessagePackException = fqn('org.msgpack.core.MessagePackException');
+	const JsonException = fqn('jakarta.json.JsonException');
+	const MsgpackJson = fqn('at.bestsolution.msgpack.json.MsgpackJson');
+	return toNodeTree(`
+private static void decodeMsgPackStream(${InputStream} stream, ${Consumer}<${JsonValue}> consumer) {
+	try {
+		var unpacker = ${MessagePack}.newDefaultUnpacker(stream);
+		var msgpackJson = ${MsgpackJson}.builder()
+				.build();
+		while (unpacker.hasNext()) {
+			var jsonValue = msgpackJson.decode(unpacker);
+			consumer.accept(jsonValue);
+			// RestMulti's encodeAsJsonArray(false) mode unconditionally appends a literal '\\n'
+			// after every streamed item (see PublisherResponseHandler.StreamingMultiSubscriber /
+			// LINE_SEPARATOR) - there is no way to disable this for binary encodings. That '\\n'
+			// (0x0A) is itself a valid one-byte msgpack positive-fixint, so it decodes cleanly as
+			// its own value here; skip it before reading the next real item.
+			unpacker.skipValue();
+		}
+	} catch (${MessagePackException} e) {
+		throw new ${JsonException}(e.getMessage(), e);
+	} catch (IOException e) {
+		throw new IllegalStateException(e);
+	}
+}`);
 }
 
 export function generateJsonUtilsContent(
@@ -249,6 +351,41 @@ export function generateJsonUtilsContent(
 			mBody.append(`if ("${contentTypeEncodings[0]}".equals(contentType)) {`, NL);
 			mBody.indent(blockBody => {
 				blockBody.append(`return ${encodingPlugins[contentTypeEncodings[0]].encodingFunctionName}(data);`, NL);
+			});
+			mBody.append('}', NL);
+			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
+		}
+	});
+	encodeValueMethods.append('}', NL);
+	encodeValueMethods.appendNewLine();
+	encodeValueMethods.append(
+		`public static ${fqn('java.util.function.Function')}<Object, byte[]> createStreamEncoder(String contentType) {`,
+		NL,
+	);
+	encodeValueMethods.indent(mBody => {
+		// application/x-ndjson streams are JSON-per-line: they share the JSON element encoder,
+		// just with different response framing (see java-server-jakarta-ws/response-builder.ts).
+		if (contentTypeEncodings.length > 1) {
+			mBody.append('return switch (contentType) {', NL);
+			mBody.indent(switchBody => {
+				contentTypeEncodings.forEach(enc => {
+					const labels = enc === 'application/json' ? `"${enc}", "application/x-ndjson"` : `"${enc}"`;
+					switchBody.append(`case ${labels} -> ${encodingPlugins[enc].createStreamEncoderFunctionName}();`, NL);
+				});
+				switchBody.append(
+					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
+					NL,
+				);
+			});
+			mBody.append('};', NL);
+		} else {
+			const condition =
+				contentTypeEncodings[0] === 'application/json'
+					? `"${contentTypeEncodings[0]}".equals(contentType) || "application/x-ndjson".equals(contentType)`
+					: `"${contentTypeEncodings[0]}".equals(contentType)`;
+			mBody.append(`if (${condition}) {`, NL);
+			mBody.indent(blockBody => {
+				blockBody.append(`return ${encodingPlugins[contentTypeEncodings[0]].createStreamEncoderFunctionName}();`, NL);
 			});
 			mBody.append('}', NL);
 			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
@@ -326,6 +463,7 @@ export function generateJsonUtilsContent(
 
 	const JsonValue = fqn('jakarta.json.JsonValue');
 	const InputStream = fqn('java.io.InputStream');
+	const Consumer = fqn('java.util.function.Consumer');
 
 	const decodeValueMethods = new CompositeGeneratorNode();
 	decodeValueMethods.append(
@@ -355,12 +493,48 @@ export function generateJsonUtilsContent(
 		}
 	});
 	decodeValueMethods.append('}', NL, NL);
+	decodeValueMethods.append(
+		`public static void decodeStream(${InputStream} stream, String contentType, ${Consumer}<${JsonValue}> consumer, TypeInfo<?> typeInfo) {`,
+		NL,
+	);
+	decodeValueMethods.indent(mBody => {
+		// application/x-ndjson streams are JSON-per-line: they share the JSON stream decoder,
+		// just with different response framing (see java-server-jakarta-ws/response-builder.ts).
+		if (contentTypeEncodings.length > 1) {
+			mBody.append('switch (contentType) {', NL);
+			mBody.indent(switchBody => {
+				contentTypeEncodings.forEach(enc => {
+					const labels = enc === 'application/json' ? `"${enc}", "application/x-ndjson"` : `"${enc}"`;
+					switchBody.append(`case ${labels} -> ${encodingPlugins[enc].decodeStreamFunctionName}(stream, consumer);`, NL);
+				});
+				switchBody.append(
+					'default -> throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));',
+					NL,
+				);
+			});
+			mBody.append('};', NL);
+		} else {
+			const condition =
+				contentTypeEncodings[0] === 'application/json'
+					? `"${contentTypeEncodings[0]}".equals(contentType) || "application/x-ndjson".equals(contentType)`
+					: `"${contentTypeEncodings[0]}".equals(contentType)`;
+			mBody.append(`if (${condition}) {`, NL);
+			mBody.indent(blockBody => {
+				blockBody.append(`${encodingPlugins[contentTypeEncodings[0]].decodeStreamFunctionName}(stream, consumer);`, NL);
+				blockBody.append('return;', NL);
+			});
+			mBody.append('}', NL);
+			mBody.append(`throw new IllegalArgumentException("Unsupported content type: ".formatted(contentType));`, NL);
+		}
+	});
+	decodeValueMethods.append('}', NL, NL);
 
 	const decodeFunctions = new CompositeGeneratorNode();
 	decodeFunctions.indent(content => {
 		content.append(decodeValueMethods, NL);
 		contentTypeEncodings.forEach(enc => {
 			content.append(encodingPlugins[enc].decodeFunction(fqn), NL, NL);
+			content.append(encodingPlugins[enc].decodeStreamFunction(fqn), NL, NL);
 		});
 	});
 
@@ -623,6 +797,20 @@ ${toString(emptyObjectValues, '\t')}
 				.map(Stream::toList);
 	}
 
+	public static <T> T mapLiteral(JsonValue value, Function<String, T> converter) {
+		if (value instanceof JsonString s) {
+			return converter.apply(s.getString());
+		}
+		throw new IllegalArgumentException("Expected JsonString but got: " + value.getClass().getName());
+	}
+
+	public static <T> T mapNumberLiteral(JsonValue value, Function<JsonNumber, T> converter) {
+		if (value instanceof JsonNumber n) {
+			return converter.apply(n);
+		}
+		throw new IllegalArgumentException("Expected JsonNumber but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 
 	public static <T> T mapObject(JsonObject object, String property,
@@ -723,6 +911,10 @@ ${toString(emptyObjectValues, '\t')}
 	public static boolean mapBoolean(JsonObject object, String property) {
 		return object.getBoolean(property);
 	}
+	
+	public static boolean mapBoolean(JsonValue value) {
+		return value == JsonValue.TRUE;
+	}
 
 	// ----------------
 
@@ -769,6 +961,10 @@ ${toString(emptyObjectValues, '\t')}
 			return Optional.of(mapShort(object, property));
 		}
 		return Optional.empty();
+	}
+
+	public static short mapShort(JsonValue value) {
+		return mapNumberLiteral(value, n -> (short) n.intValue());
 	}
 
 	// ----------------
@@ -821,6 +1017,10 @@ ${toString(emptyObjectValues, '\t')}
 		return OptionalInt.empty();
 	}
 
+	public static int mapInt(JsonValue value) {
+		return mapNumberLiteral(value, JsonNumber::intValue);
+	}
+
 	// ----------------
 	public static Optional<List<Long>> mapNullLongs(JsonObject object, String property) {
 		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().longValue()).map(Stream::toList);
@@ -867,6 +1067,10 @@ ${toString(emptyObjectValues, '\t')}
 		return OptionalLong.empty();
 	}
 
+	public static long mapLong(JsonValue value) {
+		return mapNumberLiteral(value, JsonNumber::longValue);
+	}
+
 	// ----------------
 	public static Optional<List<Float>> mapNullFloats(JsonObject object, String property) {
 		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().floatValue()).map(Stream::toList);
@@ -911,6 +1115,10 @@ ${toString(emptyObjectValues, '\t')}
 			return Optional.of(mapFloat(object, property));
 		}
 		return Optional.empty();
+	}
+
+	public static float mapFloat(JsonValue value) {
+		return mapNumberLiteral(value, n -> (float) n.doubleValue());
 	}
 
 	// ----------------
@@ -963,6 +1171,10 @@ ${toString(emptyObjectValues, '\t')}
 		return OptionalDouble.empty();
 	}
 
+	public static double mapDouble(JsonValue value) {
+		return mapNumberLiteral(value, JsonNumber::doubleValue);
+	}
+
 	// ----------------
 	public static Optional<List<String>> mapNullStrings(JsonObject object, String property) {
 		return mapToNullStream(object, property, JsonString.class,
@@ -1013,6 +1225,10 @@ ${toString(emptyObjectValues, '\t')}
 		return Optional.empty();
 	}
 
+	public static String mapString(JsonValue value) {
+		return mapLiteral(value, Function.identity());
+	}
+
 	// ----------------
 	public static Optional<List<LocalDate>> mapNullLocalDates(JsonObject object,
 			String property) {
@@ -1047,6 +1263,10 @@ ${toString(emptyObjectValues, '\t')}
 
 	public static LocalDate mapLocalDate(JsonObject object, String property) {
 		return mapLiteral(object, property, LocalDate::parse);
+	}
+
+	public static LocalDate mapLocalDate(JsonValue value) {
+		return mapLiteral(value, LocalDate::parse);
 	}
 
 	// ----------------
@@ -1084,6 +1304,10 @@ ${toString(emptyObjectValues, '\t')}
 		return mapLiteral(object, property, LocalDateTime::parse);
 	}
 
+	public static LocalDateTime mapLocalDateTime(JsonValue value) {
+		return mapLiteral(value, LocalDateTime::parse);
+	}
+
 	// ----------------
 	public static Optional<List<ZonedDateTime>> mapNullZonedDateTimes(JsonObject object, String property) {
 		return mapNullLiterals(object, property, ZonedDateTime::parse);
@@ -1119,6 +1343,10 @@ ${toString(emptyObjectValues, '\t')}
 		return mapLiteral(object, property, ZonedDateTime::parse);
 	}
 
+	public static ZonedDateTime mapZonedDateTime(JsonValue value) {
+		return mapLiteral(value, ZonedDateTime::parse);
+	}
+
 	// ----------------
 	public static Optional<List<LocalTime>> mapNullLocalTimes(JsonObject object, String property) {
 		return mapNullLiterals(object, property, LocalTime::parse);
@@ -1152,6 +1380,10 @@ ${toString(emptyObjectValues, '\t')}
 		return mapLiteral(object, property, LocalTime::parse);
 	}
 
+	public static LocalTime mapLocalTime(JsonValue value) {
+		return mapLiteral(value, LocalTime::parse);
+	}
+
 	// ----------------
 	public static Optional<List<OffsetDateTime>> mapNullOffsetDateTimes(JsonObject object, String property) {
 		return mapNullLiterals(object, property, OffsetDateTime::parse);
@@ -1183,6 +1415,10 @@ ${toString(emptyObjectValues, '\t')}
 
 	public static OffsetDateTime mapOffsetDateTime(JsonObject object, String property) {
 		return mapLiteral(object, property, OffsetDateTime::parse);
+	}
+
+	public static OffsetDateTime mapOffsetDateTime(JsonValue value) {
+		return mapLiteral(value, OffsetDateTime::parse);
 	}
 
 	// ----------------

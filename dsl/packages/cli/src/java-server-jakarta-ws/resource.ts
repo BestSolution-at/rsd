@@ -65,7 +65,6 @@ function _generateResource(
 
 	const ApplicationScoped = fqn('jakarta.enterprise.context.ApplicationScoped');
 	const Path = fqn('jakarta.ws.rs.Path');
-	const Produces = fqn('jakarta.ws.rs.Produces');
 	const Consumes = fqn('jakarta.ws.rs.Consumes');
 	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
 	const Inject = fqn('jakarta.inject.Inject');
@@ -78,7 +77,6 @@ function _generateResource(
 	const node = new CompositeGeneratorNode();
 	node.append(`@${ApplicationScoped}`, NL);
 	node.append(`@${Path}("${s.meta.rest.path.replaceAll('$', '')}")`, NL);
-	node.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 	node.append(`@${Consumes}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 	node.append(`public class ${s.name}Resource {`, NL);
 	node.indent(cBody => {
@@ -141,6 +139,27 @@ function _generateResource(
 				mBody.append('};', NL);
 			});
 			cBody.append('}', NL, NL);
+
+			if (s.operations.some(o => o.resultType?.streaming)) {
+				cBody.append('static String computeStreamResponseContentType(List<String> acceptHeader) {', NL);
+				cBody.indent(mBody => {
+					mBody.append('return acceptHeader.stream()', NL);
+					mBody.indent(tmp => {
+						tmp.indent(inner => {
+							inner.append('.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)', NL);
+							inner.append('.map(String::trim)', NL);
+							const streamEncodings = contentTypeEncodings.filter(e => e !== 'application/json');
+							inner.append(
+								`.filter(e -> ${streamEncodings.map(e => `"${e}".equals(e)`).join(' || ')} || "application/x-ndjson".equals(e))`,
+								NL,
+							);
+							inner.append('.findFirst()', NL);
+							inner.append('.orElse("application/x-ndjson");', NL);
+						});
+					});
+				});
+				cBody.append('}', NL, NL);
+			}
 		}
 
 		s.operations
@@ -151,12 +170,45 @@ function _generateResource(
 				}
 
 				const meta = o.meta.rest;
+
+				// Streaming (Multi) results only support a single static @Produces value per JAX-RS
+				// method (see https://github.com/BestSolution-at/rsd/issues/93), so a "complete JSON
+				// array" variant is generated as a sibling method sharing the same @Path, alongside
+				// the negotiated msgpack/ndjson streaming variant below.
+				if (o.resultType?.streaming && contentTypeEncodings.includes('application/json')) {
+					cBody.append(`@${fqn(`jakarta.ws.rs.${meta.method}`)}`, NL);
+					if (meta.path) {
+						cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
+					}
+					const Produces = fqn('jakarta.ws.rs.Produces');
+					cBody.append(`@${Produces}("application/json")`, NL);
+					cBody.append(
+						generateResourceMethod(o, s, artifactConfig, fqn, packageName, contentTypeEncodings, 'json-array'),
+					);
+				}
+
 				cBody.append(`@${fqn(`jakarta.ws.rs.${meta.method}`)}`, NL);
 				if (meta.path) {
 					cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
 				}
+				// content negotiation does not work currently with Multi - https://github.com/BestSolution-at/rsd/issues/93
+				// file/blob results produce their own dynamic content type (see _RestUtils.toStreamResponse), not JSON/msgpack
+				if (!o.resultType?.streaming && o.resultType?.variant !== 'stream') {
+					const Produces = fqn('jakarta.ws.rs.Produces');
+					cBody.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
+				}
 
-				cBody.append(generateResourceMethod(o, s, artifactConfig, fqn, packageName, contentTypeEncodings));
+				cBody.append(
+					generateResourceMethod(
+						o,
+						s,
+						artifactConfig,
+						fqn,
+						packageName,
+						contentTypeEncodings,
+						o.resultType?.streaming ? 'negotiate-stream' : undefined,
+					),
+				);
 			});
 
 		s.operations
@@ -166,205 +218,62 @@ function _generateResource(
 					return;
 				}
 
-				cBody.append(`@${fqn(`jakarta.ws.rs.${o.meta.rest.method}`)}`, NL);
-				if (o.meta.rest.path) {
-					cBody.append(`@${Path}("${o.meta.rest.path.replaceAll('$', '')}")`, NL);
+				const meta = o.meta.rest;
+
+				// Streaming (Multi) results only support a single static @Produces value per JAX-RS
+				// method (see https://github.com/BestSolution-at/rsd/issues/93), so a "complete JSON
+				// array" variant is generated as a sibling method sharing the same @Path, alongside
+				// the negotiated msgpack/ndjson streaming variant below - mirrors the primary
+				// operations loop above.
+				if (o.resultType?.streaming && contentTypeEncodings.includes('application/json')) {
+					cBody.append(`@${fqn(`jakarta.ws.rs.${meta.method}`)}`, NL);
+					if (meta.path) {
+						cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
+					}
+					const Produces = fqn('jakarta.ws.rs.Produces');
+					cBody.append(`@${Produces}("application/json")`, NL);
+					cBody.append(
+						`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,
+						NL,
+					);
+					cBody.append(
+						generateStreamUploadResourceMethod(
+							o,
+							s,
+							artifactConfig,
+							fqn,
+							packageName,
+							contentTypeEncodings,
+							'json-array',
+						),
+					);
+				}
+
+				cBody.append(`@${fqn(`jakarta.ws.rs.${meta.method}`)}`, NL);
+				if (meta.path) {
+					cBody.append(`@${Path}("${meta.path.replaceAll('$', '')}")`, NL);
+				}
+				// content negotiation does not work currently with Multi - https://github.com/BestSolution-at/rsd/issues/93
+				// file/blob results produce their own dynamic content type (see _RestUtils.toStreamResponse), not JSON/msgpack
+				if (!o.resultType?.streaming && o.resultType?.variant !== 'stream') {
+					const Produces = fqn('jakarta.ws.rs.Produces');
+					cBody.append(`@${Produces}({${contentTypeEncodings.map(e => `"${e}"`).join(', ')}})`, NL);
 				}
 				cBody.append(
 					`@${fqn('jakarta.ws.rs.Consumes')}(${fqn('jakarta.ws.rs.core.MediaType')}.MULTIPART_FORM_DATA)`,
 					NL,
 				);
-				const params: string[] = o.parameters
-					.filter(p => p.variant === 'stream' || p.meta?.rest?.source !== undefined)
-					.map(p => toParameter(p, true, artifactConfig, fqn, true));
-				const nullableStreamParams = o.parameters
-					.filter(p => p.variant === 'stream' && p.optional && p.nullable)
-					.map(p => `@RestForm("_rsdNull-${p.name}") boolean $is${toFirstUpper(p.name)}Null`);
-				params.push(...nullableStreamParams);
-				if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
-					params.unshift(`@RestForm("_rsdPayload") FileUpload $_payload`);
-				}
-				let headerQueryContentType = `"${contentTypeEncodings[0]}"`;
-				if (contentTypeEncodings.length > 1) {
-					const HeaderParam = fqn('jakarta.ws.rs.HeaderParam');
-					const List = fqn('java.util.List');
-					if (
-						o.parameters.some(
-							p =>
-								(p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') &&
-								(p.variant === 'record' || p.variant === 'union'),
-						)
-					) {
-						params.unshift(`@${HeaderParam}("X-RSD-Param-Content-Type") String $headerQueryContentType`);
-						headerQueryContentType = 'computeRequestContentType($headerQueryContentType)';
-					}
-					params.unshift(`@${HeaderParam}("Accept") ${List}<String> $acceptHeaders`);
-				}
-				const serviceParams: string[] = [];
-
-				serviceParams.push(...o.parameters.map(p => p.name));
-				if (artifactConfig.scopeValues) {
-					serviceParams.unshift(...artifactConfig.scopeValues.map(v => `$${v.name}`));
-				}
-
-				cBody.append(`public ${fqn('jakarta.ws.rs.core.Response')} ${o.name}(${params.join(', ')}) {`, NL);
-				cBody.indent(mBody => {
-					if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
-						const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
-						const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-						mBody.append(
-							`var $payloadJson = ${_JsonUtils}.parseValue($_payload.filePath(), $_payload.contentType(), ${_JsonUtils}.TypeInfo.value(${Type}.class)).asJsonObject();`,
-							NL,
-						);
-						mBody.append(`var $payload = new ${Type}($payloadJson);`, NL);
-						/*o.parameters
-							.filter(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)
-							.forEach(p => {
-								mBody.append(`var ${p.name} = $payload.${p.name}();`, NL);
-							});*/
-					}
-
-					o.parameters.forEach(p => {
-						if (p.variant === 'stream') {
-							if (p.type === 'file') {
-								if (p.array) {
-									if (p.optional && p.nullable) {
-										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>`;
-										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.<${type}>nill() : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
-											NL,
-										);
-									} else if (p.optional || p.nullable) {
-										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
-											NL,
-										);
-									} else {
-										mBody.append(
-											`var ${p.name} = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();`,
-											NL,
-										);
-									}
-								} else {
-									if (p.optional && p.nullable) {
-										const nillType = fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`);
-										const type = fqn(`${artifactConfig.rootPackageName}.model.RSDFile`);
-										mBody.append(
-											`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName()));`,
-											NL,
-										);
-									} else if (p.optional || p.nullable) {
-										mBody.append(
-											`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>empty();`,
-											NL,
-										);
-									} else {
-										mBody.append(
-											`var ${p.name} = builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName());`,
-											NL,
-										);
-									}
-								}
-							} else {
-								if (p.array) {
-									if (p.optional && p.nullable) {
-										const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>`;
-										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
-											NL,
-										);
-									} else if (p.optional || p.nullable) {
-										mBody.append(
-											`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
-											NL,
-										);
-									} else {
-										mBody.append(
-											`var ${p.name} = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();`,
-											NL,
-										);
-									}
-								} else {
-									if (p.optional && p.nullable) {
-										const nillType = fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`);
-										const type = fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`);
-										mBody.append(
-											`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType()));`,
-											NL,
-										);
-									} else if (p.optional || p.nullable) {
-										mBody.append(
-											`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>empty();`,
-											NL,
-										);
-									} else {
-										mBody.append(
-											`var ${p.name} = builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType());`,
-											NL,
-										);
-									}
-								}
-							}
-						} else {
-							if (p.meta?.rest?.source === undefined) {
-								mBody.append(`var ${p.name} = $payload.${p.name}();`, NL);
-							} else if (p.variant === 'record' || p.variant === 'union') {
-								mBody.append(
-									recordUnionParameter(
-										p,
-										artifactConfig,
-										fqn,
-										packageName,
-										false,
-										'/*WILL NOT BE USED*/',
-										headerQueryContentType,
-									),
-								);
-							} else if (p.variant === 'builtin') {
-								mBody.append(builtinParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
-							} else if (p.variant === 'enum') {
-								mBody.append(enumParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
-							} else if (p.variant === 'inline-enum') {
-								mBody.append(
-									inlineEnumParameter(p, o, Service, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`),
-								);
-							} else {
-								mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
-							}
-						}
-					});
-					if (artifactConfig.scopeValues) {
-						artifactConfig.scopeValues.forEach(v => {
-							mBody.append(`var $${v.name} = this.${v.name}Provider.${v.name}();`, NL);
-						});
-					}
-					const errors = o.meta?.rest?.results.filter(e => e.error);
-					if (errors && errors.length > 0) {
-						mBody.append('try {', NL);
-						mBody.indent(inner => {
-							inner.append(okResultContent(o, serviceParams, contentTypeEncodings));
-						});
-						errors.forEach(e => {
-							const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
-							mBody.append(`} catch (${Type} e) {`, NL);
-							mBody.indent(inner => {
-								const err = o.resolved.errors.find(r => r.name === e.error);
-								if (isMScalarType(err?.resolvedContentType) || isMEnumType(err?.resolvedContentType)) {
-									const _Support = isMScalarType(err.resolvedContentType)
-										? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
-										: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
-									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_Support}::toJson);`, NL);
-								} else {
-									inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
-								}
-							});
-						});
-						mBody.append('}', NL);
-					} else {
-						mBody.append(okResultContent(o, serviceParams, contentTypeEncodings));
-					}
-				});
-				cBody.append('}', NL);
+				cBody.append(
+					generateStreamUploadResourceMethod(
+						o,
+						s,
+						artifactConfig,
+						fqn,
+						packageName,
+						contentTypeEncodings,
+						o.resultType?.streaming ? 'negotiate-stream' : undefined,
+					),
+				);
 			});
 	});
 
@@ -377,6 +286,214 @@ function _generateResource(
 	};
 }
 
+function generateStreamUploadResourceMethod(
+	o: MResolvedOperation,
+	s: MResolvedService,
+	artifactConfig: JavaServerJakartaWSGeneratorConfig,
+	fqn: (type: string) => string,
+	packageName: string,
+	contentTypeEncodings: ContentTypeEncoding,
+	streamVariant?: 'json-array' | 'negotiate-stream',
+) {
+	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
+	const javaMethodName = streamVariant === 'json-array' ? `${o.name}AsJsonArray` : o.name;
+
+	const params: string[] = o.parameters
+		.filter(p => p.variant === 'stream' || p.meta?.rest?.source !== undefined)
+		.map(p => toParameter(p, true, artifactConfig, fqn, true));
+	const nullableStreamParams = o.parameters
+		.filter(p => p.variant === 'stream' && p.optional && p.nullable)
+		.map(p => `@RestForm("_rsdNull-${p.name}") boolean $is${toFirstUpper(p.name)}Null`);
+	params.push(...nullableStreamParams);
+	if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
+		params.unshift(`@RestForm("_rsdPayload") FileUpload $_payload`);
+	}
+	let headerQueryContentType = `"${contentTypeEncodings[0]}"`;
+	if (contentTypeEncodings.length > 1) {
+		const HeaderParam = fqn('jakarta.ws.rs.HeaderParam');
+		const List = fqn('java.util.List');
+		if (
+			o.parameters.some(
+				p =>
+					(p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') &&
+					(p.variant === 'record' || p.variant === 'union'),
+			)
+		) {
+			params.unshift(`@${HeaderParam}("X-RSD-Param-Content-Type") String $headerQueryContentType`);
+			headerQueryContentType = 'computeRequestContentType($headerQueryContentType)';
+		}
+		params.unshift(`@${HeaderParam}("Accept") ${List}<String> $acceptHeaders`);
+	}
+	const serviceParams: string[] = [];
+
+	serviceParams.push(...o.parameters.map(p => p.name));
+	if (artifactConfig.scopeValues) {
+		serviceParams.unshift(...artifactConfig.scopeValues.map(v => `$${v.name}`));
+	}
+
+	const returnType = o.resultType?.streaming
+		? fqn('io.smallrye.mutiny.Multi') + '<byte[]>'
+		: fqn('jakarta.ws.rs.core.Response');
+
+	const cBody = new CompositeGeneratorNode();
+	cBody.append(`public ${returnType} ${javaMethodName}(${params.join(', ')}) {`, NL);
+	cBody.indent(mBody => {
+		if (o.parameters.some(p => p.variant !== 'stream' && p.meta?.rest?.source === undefined)) {
+			const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
+			const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
+			mBody.append(
+				`var $payloadJson = ${_JsonUtils}.parseValue($_payload.filePath(), $_payload.contentType(), ${_JsonUtils}.TypeInfo.value(${Type}.class)).asJsonObject();`,
+				NL,
+			);
+			mBody.append(`var $payload = new ${Type}($payloadJson);`, NL);
+		}
+
+		o.parameters.forEach(p => {
+			if (p.variant === 'stream') {
+				if (p.type === 'file') {
+					if (p.array) {
+						if (p.optional && p.nullable) {
+							const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>`;
+							mBody.append(
+								`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.<${type}>nill() : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+								NL,
+							);
+						} else if (p.optional || p.nullable) {
+							mBody.append(
+								`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList());`,
+								NL,
+							);
+						} else {
+							mBody.append(
+								`var ${p.name} = _data.stream().map($e -> builderFactory.createFile($e.filePath(), $e.contentType(), $e.fileName())).toList();`,
+								NL,
+							);
+						}
+					} else {
+						if (p.optional && p.nullable) {
+							const nillType = fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`);
+							const type = fqn(`${artifactConfig.rootPackageName}.model.RSDFile`);
+							mBody.append(
+								`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName()));`,
+								NL,
+							);
+						} else if (p.optional || p.nullable) {
+							mBody.append(
+								`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.model.RSDFile`)}>empty();`,
+								NL,
+							);
+						} else {
+							mBody.append(
+								`var ${p.name} = builderFactory.createFile(_${p.name}.filePath(), _${p.name}.contentType(), _${p.name}.fileName());`,
+								NL,
+							);
+						}
+					}
+				} else {
+					if (p.array) {
+						if (p.optional && p.nullable) {
+							const type = `${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>`;
+							mBody.append(
+								`var ${p.name} = _data == null || _data.isEmpty() ? ($is${toFirstUpper(p.name)}Null ? _NillableImpl.<${type}>nill() : _NillableImpl.<${type}>undefined()) : ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`)}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+								NL,
+							);
+						} else if (p.optional || p.nullable) {
+							mBody.append(
+								`var ${p.name} = _data == null || _data.isEmpty() ? ${fqn('java.util.Optional')}.<${fqn('java.util.List')}<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>>empty() : ${fqn('java.util.Optional')}.of(_data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList());`,
+								NL,
+							);
+						} else {
+							mBody.append(
+								`var ${p.name} = _data.stream().map($e -> builderFactory.createBlob($e.filePath(), $e.contentType())).toList();`,
+								NL,
+							);
+						}
+					} else {
+						if (p.optional && p.nullable) {
+							const nillType = fqn(`${artifactConfig.rootPackageName}.model.impl.json._NillableImpl`);
+							const type = fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`);
+							mBody.append(
+								`var ${p.name} = _${p.name} == null ? ($is${toFirstUpper(p.name)}Null ? ${nillType}.<${type}>nill() : ${nillType}.<${type}>undefined()) : ${nillType}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType()));`,
+								NL,
+							);
+						} else if (p.optional || p.nullable) {
+							mBody.append(
+								`var ${p.name} = _${p.name} != null ? ${fqn('java.util.Optional')}.of(builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType())) : Optional.<${fqn(`${artifactConfig.rootPackageName}.model.RSDBlob`)}>empty();`,
+								NL,
+							);
+						} else {
+							mBody.append(
+								`var ${p.name} = builderFactory.createBlob(_${p.name}.filePath(), _${p.name}.contentType());`,
+								NL,
+							);
+						}
+					}
+				}
+			} else {
+				if (p.meta?.rest?.source === undefined) {
+					mBody.append(`var ${p.name} = $payload.${p.name}();`, NL);
+				} else if (p.variant === 'record' || p.variant === 'union') {
+					mBody.append(
+						recordUnionParameter(
+							p,
+							artifactConfig,
+							fqn,
+							packageName,
+							false,
+							'/*WILL NOT BE USED*/',
+							headerQueryContentType,
+						),
+					);
+				} else if (p.variant === 'builtin') {
+					mBody.append(builtinParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
+				} else if (p.variant === 'enum') {
+					mBody.append(enumParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
+				} else if (p.variant === 'inline-enum') {
+					mBody.append(
+						inlineEnumParameter(p, o, Service, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`),
+					);
+				} else {
+					mBody.append(scalarParameter(p, artifactConfig, fqn, packageName, false, `"/*WILL NOT BE USED*/"`));
+				}
+			}
+		});
+		if (artifactConfig.scopeValues) {
+			artifactConfig.scopeValues.forEach(v => {
+				mBody.append(`var $${v.name} = this.${v.name}Provider.${v.name}();`, NL);
+			});
+		}
+		const errors = o.meta?.rest?.results.filter(e => e.error);
+		if (errors && errors.length > 0) {
+			mBody.append('try {', NL);
+			mBody.indent(inner => {
+				inner.append(okResultContent(o, serviceParams, contentTypeEncodings, streamVariant));
+			});
+			errors.forEach(e => {
+				const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
+				mBody.append(`} catch (${Type} e) {`, NL);
+				mBody.indent(inner => {
+					const err = o.resolved.errors.find(r => r.name === e.error);
+					if (isMScalarType(err?.resolvedContentType) || isMEnumType(err?.resolvedContentType)) {
+						const _Support = isMScalarType(err.resolvedContentType)
+							? fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`)
+							: fqn(`${artifactConfig.rootPackageName}.model.impl.json._EnumSupport`);
+						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e, ${_Support}::toJson);`, NL);
+					} else {
+						inner.append(`return _RestUtils.toResponse(${e.statusCode.toFixed()}, e);`, NL);
+					}
+				});
+			});
+			mBody.append('}', NL);
+		} else {
+			mBody.append(okResultContent(o, serviceParams, contentTypeEncodings, streamVariant));
+		}
+	});
+	cBody.append('}', NL);
+	cBody.appendNewLine();
+
+	return cBody;
+}
+
 function generateResourceMethod(
 	o: MResolvedOperation,
 	s: MResolvedService,
@@ -384,8 +501,12 @@ function generateResourceMethod(
 	fqn: (type: string) => string,
 	packageName: string,
 	contentEncodings: ContentTypeEncoding,
+	streamVariant?: 'json-array' | 'negotiate-stream',
 ) {
-	const Response = fqn('jakarta.ws.rs.core.Response');
+	const ReturnType = o.resultType?.streaming
+		? fqn('io.smallrye.mutiny.Multi') + '<byte[]>'
+		: fqn('jakarta.ws.rs.core.Response');
+	const javaMethodName = streamVariant === 'json-array' ? `${o.name}AsJsonArray` : o.name;
 	const Service = fqn(`${artifactConfig.rootPackageName}.service.${s.name}Service`);
 
 	const multiBody = o.parameters.filter(p => p.meta?.rest?.source === undefined).length > 1;
@@ -444,7 +565,7 @@ function generateResourceMethod(
 
 	if (params.length > 0) {
 		if (params.length > 1) {
-			cBody.append(`public ${Response} ${o.name}(`, NL);
+			cBody.append(`public ${ReturnType} ${javaMethodName}(`, NL);
 			cBody.indent(tmp =>
 				tmp.indent(paramIndent => {
 					params.forEach((p, idx, arr) => {
@@ -458,10 +579,10 @@ function generateResourceMethod(
 				}),
 			);
 		} else {
-			cBody.append(`public ${Response} ${o.name}(${params[0]}) {`, NL);
+			cBody.append(`public ${ReturnType} ${javaMethodName}(${params[0]}) {`, NL);
 		}
 	} else {
-		cBody.append(`public ${Response} ${o.name}() {`, NL);
+		cBody.append(`public ${ReturnType} ${javaMethodName}() {`, NL);
 	}
 	cBody.indent(mBody => {
 		o.parameters.forEach(p => {
@@ -522,7 +643,7 @@ function generateResourceMethod(
 		if (errors && errors.length > 0) {
 			mBody.append('try {', NL);
 			mBody.indent(inner => {
-				inner.append(okResultContent(o, serviceParams, contentEncodings));
+				inner.append(okResultContent(o, serviceParams, contentEncodings, streamVariant));
 			});
 			errors.forEach(e => {
 				const Type = fqn(`${artifactConfig.rootPackageName}.service.${e.error ?? ''}Exception`);
@@ -541,7 +662,7 @@ function generateResourceMethod(
 			});
 			mBody.append('}', NL);
 		} else {
-			mBody.append(okResultContent(o, serviceParams, contentEncodings));
+			mBody.append(okResultContent(o, serviceParams, contentEncodings, streamVariant));
 		}
 	});
 	cBody.append('}', NL);
@@ -1045,11 +1166,27 @@ function okResultContent(
 	o: MOperation,
 	serviceParams: string[],
 	contentEncodings: ContentTypeEncoding,
+	streamVariant?: 'json-array' | 'negotiate-stream',
 ): CompositeGeneratorNode {
 	const node = new CompositeGeneratorNode();
 
-	const contentEncoding =
-		contentEncodings.length > 1 ? 'computeResponseContentType($acceptHeaders)' : `"${contentEncodings[0]}"`;
+	let contentEncoding: string;
+	if (streamVariant === 'json-array') {
+		contentEncoding = '"application/json"';
+	} else if (streamVariant === 'negotiate-stream') {
+		if (contentEncodings.length > 1) {
+			contentEncoding = 'computeStreamResponseContentType($acceptHeaders)';
+		} else if (contentEncodings[0] === 'application/json') {
+			// application/json is claimed by the AsJsonArray sibling method, so the sole
+			// negotiated method falls back to ndjson framing for that one case.
+			contentEncoding = '"application/x-ndjson"';
+		} else {
+			contentEncoding = `"${contentEncodings[0]}"`;
+		}
+	} else {
+		contentEncoding =
+			contentEncodings.length > 1 ? 'computeResponseContentType($acceptHeaders)' : `"${contentEncodings[0]}"`;
+	}
 
 	if (o.resultType) {
 		if (serviceParams.length === 0) {

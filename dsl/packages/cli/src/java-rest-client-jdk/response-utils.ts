@@ -17,16 +17,27 @@ export function generateJDKHttpClientResponseUtils(
 
 	const importCollector = new JavaImportsCollector(packageName);
 	importCollector.importType('java.io.InputStream');
+	importCollector.importType('java.io.PipedInputStream');
+	importCollector.importType('java.io.PipedOutputStream');
 
 	importCollector.importType('java.net.http.HttpResponse');
+	importCollector.importType('java.net.http.HttpResponse.BodySubscriber');
+	importCollector.importType('java.net.http.HttpResponse.BodySubscribers');
+	importCollector.importType('java.net.http.HttpResponse.ResponseInfo');
+	importCollector.importType('java.nio.ByteBuffer');
 	importCollector.importType('java.nio.charset.StandardCharsets');
 	importCollector.importType('java.time.LocalDate');
 	importCollector.importType('java.time.LocalDateTime');
 	importCollector.importType('java.time.LocalTime');
 	importCollector.importType('java.time.OffsetDateTime');
 	importCollector.importType('java.time.ZonedDateTime');
+	importCollector.importType('java.util.function.Consumer');
 	importCollector.importType('java.util.List');
 	importCollector.importType('java.util.function.Function');
+	importCollector.importType('java.util.concurrent.Flow');
+	importCollector.importType('java.util.concurrent.Flow.Subscription');
+	importCollector.importType('jakarta.json.JsonValue');
+
 	importCollector.importType('java.io.IOException');
 	if (hasStreamResult(model)) {
 		importCollector.importType('java.nio.file.Files');
@@ -281,6 +292,84 @@ public class JDKHttpClientResponseUtils {
 			return _JsonUtils.parseLiterals(body, contentType(response), OffsetDateTime::parse);
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
+		}
+	}
+
+	public static BodySubscriber<Void> streamSubscriber(
+			ResponseInfo responseInfo,
+			Consumer<JsonValue> consumer,
+			Consumer<Throwable> finisher,
+			_JsonUtils.TypeInfo<?> typeInfo) {
+		var contentType = responseInfo.headers()
+				.firstValue("Content-Type")
+				.orElseThrow(() -> new IllegalStateException("Response is missing Content-Type header"));
+		try {
+				var subscriber = new StreamSubscriber(contentType, consumer, finisher);
+				return BodySubscribers.fromSubscriber(subscriber);
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
+	}
+
+	static class StreamSubscriber implements Flow.Subscriber<List<ByteBuffer>> {
+		private final PipedOutputStream out = new PipedOutputStream();
+		private final PipedInputStream in;
+		private final byte[] scratch = new byte[16 * 1024];
+		private volatile Subscription subscription;
+		private volatile Throwable error;
+
+		StreamSubscriber(String contentType, Consumer<JsonValue> consumer, Consumer<Throwable> finisher) throws IOException {
+			in = new PipedInputStream(out, 16 * 1024); // match/exceed typical onNext chunk size
+			Thread.ofVirtual().start(() -> {
+				Throwable decodeError = null;
+				try {
+					_JsonUtils.decodeStream(in, contentType, consumer, null);
+				} catch (RuntimeException e) {
+					decodeError = e;
+				} finally {
+					finisher.accept(error != null ? error : decodeError);
+				}
+			});
+		}
+
+		public void onSubscribe(Subscription s) {
+			subscription = s;
+			s.request(1);
+		}
+
+		public void onNext(List<ByteBuffer> items) {
+			try {
+				for (ByteBuffer bb : items) {
+					while (bb.hasRemaining()) {
+						int n = Math.min(bb.remaining(), scratch.length);
+						bb.get(scratch, 0, n);
+						out.write(scratch, 0, n); // blocks here if the unpacker thread is behind — built-in backpressure
+					}
+				}
+				subscription.request(1);
+			} catch (IOException e) {
+				error = e;
+				subscription.cancel();
+				try {
+					out.close();
+				} catch (IOException ignored) {
+				}
+			}
+		}
+
+		public void onError(Throwable t) {
+			error = t;
+			try {
+				out.close();
+			} catch (IOException ignored) {
+			}
+		}
+
+		public void onComplete() {
+			try {
+				out.close();
+			} catch (IOException ignored) {
+			}
 		}
 	}
 }`);
