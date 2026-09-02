@@ -1,94 +1,98 @@
 grammar RemoteServicePersistence
 
 entry RSDPersistenceModel:
-    enums+=PEnumType*
+	enums+=PEnumType*
     scalars+=PScalarType*
     mixins+=PMixinEntity*
-    entities+=PEntity+
+    entities+=PBaseEntity+
 ;
 
 PScalarType:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'scalar' name=ID ';';
 
 PBuiltinType returns string:
-    'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'zoned-date-time';
+	'boolean'|'short'|'int'|'string'|'float'|'double'|'long'|'local-date'|'local-date-time'|'local-time'|'offset-date-time'|'zoned-date-time';
 
 PEnumType:
-    doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
+	doc=(SL_DOC_COMMENT|ML_DOC_COMMENT)?
     'enum' name=ID '='
         entries+=PEnumEntry ( '|' entries+=PEnumEntry )*
     ';';
 
 PEnumEntry:
-    name=ID ('=' (value=INT|STRING))?
+	name=ID ('=' (value=INT|STRING))?
 ;
 
 PMixinEntity:
-    'mixin' name=ID '{'
-    '}'
+	'mixin' name=ID '{'
+		properties+=PProperty*
+		uniques+=PUniqueConstraint*
+	'}'
 ;
+
+PBaseEntity:
+	PEntity|PAbstractEntity;
 
 PEntity:
-    'entity' name=ID ('extends' parent=[PEntity:ID]'('(descrimatorValue=STRING|INT)')')? '{'
+	'entity' name=ID ('extends' parent=[PAbstractEntity:ID]'('(descrimatorValue=STRING|INT)')')? '{'
+				('include' mixins+=[PMixinEntity:ID])*
         properties+=PProperty*
         uniques+=PUniqueConstraint*
-        descrimination=PDescrimination?
     '}'
 ;
 
+PAbstractEntity:
+	'abstract' 'entity' name=ID '('discriminator=ID ':' discriminatorType=('string'|'int')')' '{'
+				('include' mixins+=[PMixinEntity:ID])*
+				properties+=PProperty*
+				uniques+=PUniqueConstraint*
+		'}';
+
 PProperty:
-    PValueProperty|PKeyProperty|PRevProperty|PReferenceProperty
+	PValueProperty|PKeyProperty|PRevProperty|PReferenceProperty
 ;
 
 PValueType:
-    PScalarType | PEnumType
+	PScalarType | PEnumType
 ;
 
 PValueTypeRef:
-    (builtin=PBuiltinType | refType=[PValueType:ID])
+	(builtin=PBuiltinType | refType=[PValueType:ID])
 ;
 
 PValueProperty:
-    name=ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' propName=ID
+	name=ID optional?='?'? ':' type=PValueTypeRef array?='[]'?
 ;
 
 PKeyProperty:
-    '@id' name=ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' propName=ID
+	'@id' name=ID ':' type=PValueTypeRef array?='[]'?
 ;
 
 PRevProperty:
-    '@rev' name=ID ':' type=PValueTypeRef array?='[]'? optional?='?'? 'as' propName=ID
+	'@rev' name=ID ':' type=PValueTypeRef array?='[]'?
 ;
 
 PUniqueConstraint:
-    'unique-key' name=ID '(' props+=[PProperty:ID] (',' props+=[PProperty:ID])* ')'
+	'@unique-key' name=ID '(' props+=[PProperty:ID] (',' props+=[PProperty:ID])* ')'
 ;
 
-PDescrimination:
-    'descriminated-by' name=ID ':' columnType=('string'|'int') 'as' propName=ID;
 
 PReferenceProperty:
-    POneToManyProperty
-    |
-    PManyToOneProperty
-    |
-    POneToOneProperty
+	PRefProperty
+	| PContainerProperty | PContainsProperty
 ;
 
-POneToManyProperty:
-    ('one-to-many' type=[PEntity:ID] ('.' ref=[PManyToOneProperty:ID])? 'as' propName=ID )
+PRefProperty:
+	('@ref'  name=ID optional?='?'? ':' type=[PBaseEntity:ID] array?='[]'? ('on' ref=[PRefProperty:ID])? )
 ;
 
-PManyToOneProperty:
-    ('many-to-one' name=ID ':' type=[PEntity:ID] 'as' propName=ID )
-;
+PContainsProperty:
+	'@contains' name=ID optional?='?'? ':' type=[PBaseEntity:ID] array?='[]'? ('on' ref=[PContainerProperty:ID])?;
 
-POneToOneProperty:
-    ('one-to-one' name=ID ':' type=[PEntity:ID] 'as' propName=ID )
-    |
-    ('one-to-one' type=[PEntity:ID] '.' ref=ID 'as' propName=ID )
-;
+PContainerProperty:
+	'@container' name=ID ':' type=[PBaseEntity:ID];
+
 
 hidden terminal WS: /\s+/;
 terminal ID: /[_a-zA-Z][\w_]*/;

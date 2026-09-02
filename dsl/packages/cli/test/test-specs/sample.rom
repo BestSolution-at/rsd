@@ -1,0 +1,57 @@
+mixin Base {
+	@id id: string
+	@rev rev: string
+	createdAt: zoned-date-time
+	updatedAt?: zoned-date-time
+}
+
+entity Person {
+	include Base
+
+	firstname: string
+	lastname: string
+
+	@contains addresses: Address[] on person
+	@contains employee?: Employee on person
+	@contains customer?: Customer on person
+}
+
+entity Customer {
+	loyaltyPoints: int
+
+	@ref companies: Company[]
+	@container person: Person
+}
+
+abstract entity Employee(employeeType: string) {
+	include Base
+
+	@ref company?: Company
+	@container person: Person
+}
+
+entity FullTimeEmployee extends Employee('FULL_TIME') {
+	salary: double
+}
+
+entity PartTimeEmployee extends Employee('PART_TIME') {
+	hourlyRate: double
+}
+
+entity Address {
+	include Base
+
+	street: 	string
+	city: 		string
+	zipcode: 	string
+
+	@container person: Employee
+}
+
+entity Company {
+	include Base
+
+	name: string
+	@ref employees: Employee[] on company
+	@ref customers: Customer[] on companies
+}
