@@ -84,6 +84,7 @@ export function generateService(s: MResolvedService, artifactConfig: OpenAPIGene
 					const content: Record<string, unknown> = {};
 					if (
 						artifactConfig.contentTypeEncodings === undefined ||
+						artifactConfig.contentTypeEncodings.length === 0 ||
 						artifactConfig.contentTypeEncodings.includes('application/json')
 					) {
 						content['application/json'] = {
