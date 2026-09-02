@@ -102,8 +102,11 @@ export function generateService(s: MResolvedService, artifactConfig: OpenAPIGene
 						artifactConfig.contentTypeEncodings === undefined ||
 						artifactConfig.contentTypeEncodings.includes('application/vnd.msgpack')
 					) {
+						// Streaming operations negotiate application/vnd.msgpack the same way as
+						// application/x-ndjson: a raw sequence of individually-encoded elements,
+						// not a single msgpack-encoded array.
 						content['application/vnd.msgpack'] = {
-							schema,
+							schema: o.resultType.streaming && 'items' in schema ? schema.items : schema,
 						};
 					}
 

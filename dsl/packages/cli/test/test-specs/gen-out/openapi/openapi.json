@@ -20547,10 +20547,7 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "boolean"
-                  }
+                  "type": "boolean"
                 }
               }
             }
@@ -20587,11 +20584,8 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "format": "int32"
-                  }
+                  "type": "number",
+                  "format": "int32"
                 }
               }
             }
@@ -20628,11 +20622,8 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "format": "int32"
-                  }
+                  "type": "number",
+                  "format": "int32"
                 }
               }
             }
@@ -20669,11 +20660,8 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "format": "int64"
-                  }
+                  "type": "number",
+                  "format": "int64"
                 }
               }
             }
@@ -20710,11 +20698,8 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "format": "float"
-                  }
+                  "type": "number",
+                  "format": "float"
                 }
               }
             }
@@ -20751,11 +20736,8 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "format": "double"
-                  }
+                  "type": "number",
+                  "format": "double"
                 }
               }
             }
@@ -20790,10 +20772,7 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                  "type": "string"
                 }
               }
             }
@@ -20832,12 +20811,9 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
-                    "format": "date"
-                  }
+                  "type": "string",
+                  "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\d",
+                  "format": "date"
                 }
               }
             }
@@ -20876,12 +20852,9 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
-                    "format": "local-date-time"
-                  }
+                  "type": "string",
+                  "pattern": "\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d",
+                  "format": "local-date-time"
                 }
               }
             }
@@ -20920,12 +20893,9 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "pattern": "\\d\\d:\\d\\d:\\d\\d",
-                    "format": "time"
-                  }
+                  "type": "string",
+                  "pattern": "\\d\\d:\\d\\d:\\d\\d",
+                  "format": "time"
                 }
               }
             }
@@ -20962,11 +20932,8 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "date-time"
-                  }
+                  "type": "string",
+                  "format": "date-time"
                 }
               }
             }
@@ -21003,11 +20970,8 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "zoned-date-time"
-                  }
+                  "type": "string",
+                  "format": "zoned-date-time"
                 }
               }
             }
@@ -21042,10 +21006,7 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                  "type": "string"
                 }
               }
             }
@@ -21080,10 +21041,7 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SampleEnum"
-                  }
+                  "$ref": "#/components/schemas/SampleEnum"
                 }
               }
             }
@@ -21126,14 +21084,11 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "A",
-                      "B"
-                    ]
-                  }
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B"
+                  ]
                 }
               }
             }
@@ -21168,10 +21123,7 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SimpleRecord"
-                  }
+                  "$ref": "#/components/schemas/SimpleRecord"
                 }
               }
             }
@@ -21206,10 +21158,7 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Union"
-                  }
+                  "$ref": "#/components/schemas/Union"
                 }
               }
             }
@@ -21264,10 +21213,7 @@
               },
               "application/vnd.msgpack": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SimpleRecord"
-                  }
+                  "$ref": "#/components/schemas/SimpleRecord"
                 }
               }
             }
