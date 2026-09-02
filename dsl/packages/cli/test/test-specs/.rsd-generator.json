@@ -114,7 +114,8 @@
         {
             "name": "openapi",
             "targetFolder": "./gen-out/openapi",
-            "specFileName": "openapi"
+            "specFileName": "openapi",
+						"contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
         }
     ]
 }

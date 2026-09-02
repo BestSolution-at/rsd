@@ -10,6 +10,7 @@ export type OpenAPIGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	specFileName: string;
 	staticSpec?: Record<string, unknown>;
+	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
 };
 
 function isOpenAPIGeneratorConfig(artifactConfig: ArtifactGeneratorConfig): artifactConfig is OpenAPIGeneratorConfig {
@@ -52,7 +53,7 @@ function generateOpenAPISpec(model: MResolvedRSDModel, artifactConfig: OpenAPIGe
 		});
 	let paths: Record<string, unknown> = {};
 	model.services
-		.map(s => generateService(s))
+		.map(s => generateService(s, artifactConfig))
 		.forEach(x => {
 			paths = { ...paths, ...x };
 		});

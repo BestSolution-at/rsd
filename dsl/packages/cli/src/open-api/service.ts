@@ -7,9 +7,10 @@ import {
 	MResolvedOperation,
 	MResolvedService,
 } from '../model.js';
+import { OpenAPIGeneratorConfig } from './generator.js';
 import { generateBuilinProperty, nullableProcessor } from './record.js';
 
-export function generateService(s: MResolvedService): Record<string, unknown> {
+export function generateService(s: MResolvedService, artifactConfig: OpenAPIGeneratorConfig): Record<string, unknown> {
 	const rv: Record<string, Record<string, unknown>> = {};
 	const prefix = (s.meta?.rest?.path ?? '').replaceAll('$', '') + '/';
 	s.operations.forEach(o => {
@@ -79,18 +80,37 @@ export function generateService(s: MResolvedService): Record<string, unknown> {
 							format: 'binary',
 						};
 					}
-					const content: Record<string, unknown> = {
-						'application/json': {
+
+					const content: Record<string, unknown> = {};
+					if (
+						artifactConfig.contentTypeEncodings === undefined ||
+						artifactConfig.contentTypeEncodings.length === 0 ||
+						artifactConfig.contentTypeEncodings.includes('application/json')
+					) {
+						content['application/json'] = {
 							schema,
-						},
-					};
-					if (o.resultType.streaming && 'items' in schema) {
-						// Streaming operations also support application/x-ndjson: the same element
-						// schema, one JSON value per line, instead of a single JSON array.
-						content['application/x-ndjson'] = {
-							schema: schema.items,
+						};
+						if (o.resultType.streaming && 'items' in schema) {
+							// Streaming operations also support application/x-ndjson: the same element
+							// schema, one JSON value per line, instead of a single JSON array.
+							content['application/x-ndjson'] = {
+								schema: schema.items,
+							};
+						}
+					}
+
+					if (
+						artifactConfig.contentTypeEncodings === undefined ||
+						artifactConfig.contentTypeEncodings.includes('application/vnd.msgpack')
+					) {
+						// Streaming operations negotiate application/vnd.msgpack the same way as
+						// application/x-ndjson: a raw sequence of individually-encoded elements,
+						// not a single msgpack-encoded array.
+						content['application/vnd.msgpack'] = {
+							schema: o.resultType.streaming && 'items' in schema ? schema.items : schema,
 						};
 					}
+
 					responses[s] = {
 						description: o.resultType.doc,
 						content,
