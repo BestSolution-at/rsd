@@ -117,10 +117,14 @@ function mapNoneInlineEnumTypeRequestParameters(
 	}
 
 	if (parameter.variant === 'union') {
-		const unionTypes = model.elements.filter(isMResolvedUnionType).find(u => u.name === parameter.type)?.types;
-		type.push(...(unionTypes ?? []));
+		const unionTypes = model.elements.filter(isMResolvedUnionType).find(u => u.name === parameter.type)?.types ?? [];
+		type.push(...(parameter.patch ? unionTypes.map(t => `${t}Patch`) : unionTypes));
 	} else if (parameter.variant === 'record') {
-		type.push(parameter.type);
+		if (parameter.patch) {
+			type.push(`${parameter.type}Patch`);
+		} else {
+			type.push(parameter.type);
+		}
 	} else if (parameter.variant === 'enum') {
 		type.push(parameter.type);
 	} else if (parameter.variant === 'builtin') {

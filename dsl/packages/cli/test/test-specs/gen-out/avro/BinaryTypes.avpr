@@ -1175,11 +1175,15 @@
       "fields": [
         {
           "name": "month",
-          "type": "Month"
+          "type": [
+            "null",
+            "Month"
+          ]
         },
         {
           "name": "month_Null",
           "type": [
+            "null",
             "Month",
             "NULL"
           ]
@@ -1239,11 +1243,15 @@
         },
         {
           "name": "dayOfWeek",
-          "type": "DayOfWeek"
+          "type": [
+            "null",
+            "DayOfWeek"
+          ]
         },
         {
           "name": "dayOfWeek_Null",
           "type": [
+            "null",
             "DayOfWeek",
             "NULL"
           ]
@@ -2118,7 +2126,10 @@
         },
         {
           "name": "value",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         }
       ]
     },
@@ -2201,51 +2212,87 @@
         },
         {
           "name": "valueBoolean",
-          "type": "boolean"
+          "type": [
+            "null",
+            "boolean"
+          ]
         },
         {
           "name": "valueShort",
-          "type": "int"
+          "type": [
+            "null",
+            "int"
+          ]
         },
         {
           "name": "valueInt",
-          "type": "int"
+          "type": [
+            "null",
+            "int"
+          ]
         },
         {
           "name": "valueLong",
-          "type": "long"
+          "type": [
+            "null",
+            "long"
+          ]
         },
         {
           "name": "valueFloat",
-          "type": "float"
+          "type": [
+            "null",
+            "float"
+          ]
         },
         {
           "name": "valueDouble",
-          "type": "double"
+          "type": [
+            "null",
+            "double"
+          ]
         },
         {
           "name": "valueString",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "valueLocalDate",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "valueLocalDateTime",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "valueLocalTime",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "valueOffsetDateTime",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "valueZonedDateTime",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         }
       ]
     },
@@ -2564,6 +2611,7 @@
         {
           "name": "valueBoolean",
           "type": [
+            "null",
             "boolean",
             "NULL"
           ]
@@ -2571,6 +2619,7 @@
         {
           "name": "valueShort",
           "type": [
+            "null",
             "int",
             "NULL"
           ]
@@ -2578,6 +2627,7 @@
         {
           "name": "valueInt",
           "type": [
+            "null",
             "int",
             "NULL"
           ]
@@ -2585,6 +2635,7 @@
         {
           "name": "valueLong",
           "type": [
+            "null",
             "long",
             "NULL"
           ]
@@ -2592,6 +2643,7 @@
         {
           "name": "valueFloat",
           "type": [
+            "null",
             "float",
             "NULL"
           ]
@@ -2599,6 +2651,7 @@
         {
           "name": "valueDouble",
           "type": [
+            "null",
             "double",
             "NULL"
           ]
@@ -2606,6 +2659,7 @@
         {
           "name": "valueString",
           "type": [
+            "null",
             "string",
             "NULL"
           ]
@@ -2613,6 +2667,7 @@
         {
           "name": "valueLocalDate",
           "type": [
+            "null",
             "string",
             "NULL"
           ]
@@ -2620,6 +2675,7 @@
         {
           "name": "valueLocalDateTime",
           "type": [
+            "null",
             "string",
             "NULL"
           ]
@@ -2627,6 +2683,7 @@
         {
           "name": "valueLocalTime",
           "type": [
+            "null",
             "string",
             "NULL"
           ]
@@ -2634,6 +2691,7 @@
         {
           "name": "valueOffsetDateTime",
           "type": [
+            "null",
             "string",
             "NULL"
           ]
@@ -2641,6 +2699,7 @@
         {
           "name": "valueZonedDateTime",
           "type": [
+            "null",
             "string",
             "NULL"
           ]
@@ -5681,11 +5740,15 @@
         },
         {
           "name": "value",
-          "type": "SampleEnum"
+          "type": [
+            "null",
+            "SampleEnum"
+          ]
         },
         {
           "name": "value_Null",
           "type": [
+            "null",
             "SampleEnum",
             "NULL"
           ]
@@ -6031,6 +6094,7 @@
         {
           "name": "value_Null",
           "type": [
+            "null",
             {
               "type": "enum",
               "name": "PatchableEnumInlineRecord_value_Null_Enum",
@@ -6385,11 +6449,15 @@
         },
         {
           "name": "value",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "value_Null",
           "type": [
+            "null",
             "string",
             "NULL"
           ]
@@ -6684,11 +6752,15 @@
         },
         {
           "name": "value",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "value_Null",
           "type": [
+            "null",
             "string",
             "NULL"
           ]
@@ -7647,11 +7719,17 @@
         },
         {
           "name": "shared",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "valueA",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         }
       ]
     },
@@ -7694,11 +7772,17 @@
         },
         {
           "name": "shared",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         },
         {
           "name": "valueB",
-          "type": "string"
+          "type": [
+            "null",
+            "string"
+          ]
         }
       ]
     },

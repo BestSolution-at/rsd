@@ -197,7 +197,7 @@ function mapPatchableProperty(prop: MResolvedPropery, recordName: string): AvroF
 		}
 	} else {
 		const rv = mapProperty(prop, recordName);
-		if (prop.optional) {
+		if (!prop.array) {
 			if (typeof rv.type === 'string') {
 				rv.type = ['null', rv.type];
 			} else if (Array.isArray(rv.type) && !rv.type.includes('null')) {
