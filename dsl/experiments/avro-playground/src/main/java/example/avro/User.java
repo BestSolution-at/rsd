@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class User extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -3588479540582100558L;
+  private static final long serialVersionUID = -8171686911901988167L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"User\",\"namespace\":\"example.avro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"favorite_number\",\"type\":[\"int\",\"null\"]},{\"name\":\"favorite_color\",\"type\":[\"string\",\"null\"]}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"User\",\"namespace\":\"example.avro\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"favorite_number\",\"type\":[\"int\",\"null\"]},{\"name\":\"favorite_color\",\"type\":[\"string\",\"null\"]},{\"name\":\"address\",\"type\":[{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"}]}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -75,6 +75,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   private java.lang.CharSequence name;
   private java.lang.Integer favorite_number;
   private java.lang.CharSequence favorite_color;
+  private java.lang.Object address;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -88,11 +89,13 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
    * @param name The new value for name
    * @param favorite_number The new value for favorite_number
    * @param favorite_color The new value for favorite_color
+   * @param address The new value for address
    */
-  public User(java.lang.CharSequence name, java.lang.Integer favorite_number, java.lang.CharSequence favorite_color) {
+  public User(java.lang.CharSequence name, java.lang.Integer favorite_number, java.lang.CharSequence favorite_color, java.lang.Object address) {
     this.name = name;
     this.favorite_number = favorite_number;
     this.favorite_color = favorite_color;
+    this.address = address;
   }
 
   @Override
@@ -108,6 +111,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     case 0: return name;
     case 1: return favorite_number;
     case 2: return favorite_color;
+    case 3: return address;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -120,6 +124,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     case 0: name = (java.lang.CharSequence)value$; break;
     case 1: favorite_number = (java.lang.Integer)value$; break;
     case 2: favorite_color = (java.lang.CharSequence)value$; break;
+    case 3: address = value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -176,6 +181,23 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
   }
 
   /**
+   * Gets the value of the 'address' field.
+   * @return The value of the 'address' field.
+   */
+  public java.lang.Object getAddress() {
+    return address;
+  }
+
+
+  /**
+   * Sets the value of the 'address' field.
+   * @param value the value to set.
+   */
+  public void setAddress(java.lang.Object value) {
+    this.address = value;
+  }
+
+  /**
    * Creates a new User RecordBuilder.
    * @return A new User RecordBuilder
    */
@@ -219,6 +241,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     private java.lang.CharSequence name;
     private java.lang.Integer favorite_number;
     private java.lang.CharSequence favorite_color;
+    private java.lang.Object address;
 
     /** Creates a new Builder */
     private Builder() {
@@ -243,6 +266,10 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
         this.favorite_color = data().deepCopy(fields()[2].schema(), other.favorite_color);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
+      if (isValidValue(fields()[3], other.address)) {
+        this.address = data().deepCopy(fields()[3].schema(), other.address);
+        fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
     }
 
     /**
@@ -262,6 +289,10 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       if (isValidValue(fields()[2], other.favorite_color)) {
         this.favorite_color = data().deepCopy(fields()[2].schema(), other.favorite_color);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.address)) {
+        this.address = data().deepCopy(fields()[3].schema(), other.address);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -385,6 +416,46 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
       return this;
     }
 
+    /**
+      * Gets the value of the 'address' field.
+      * @return The value.
+      */
+    public java.lang.Object getAddress() {
+      return address;
+    }
+
+
+    /**
+      * Sets the value of the 'address' field.
+      * @param value The value of 'address'.
+      * @return This builder.
+      */
+    public example.avro.User.Builder setAddress(java.lang.Object value) {
+      validate(fields()[3], value);
+      this.address = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'address' field has been set.
+      * @return True if the 'address' field has been set, false otherwise.
+      */
+    public boolean hasAddress() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'address' field.
+      * @return This builder.
+      */
+    public example.avro.User.Builder clearAddress() {
+      address = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public User build() {
@@ -393,6 +464,7 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
         record.name = fieldSetFlags()[0] ? this.name : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.favorite_number = fieldSetFlags()[1] ? this.favorite_number : (java.lang.Integer) defaultValue(fields()[1]);
         record.favorite_color = fieldSetFlags()[2] ? this.favorite_color : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.address = fieldSetFlags()[3] ? this.address :  defaultValue(fields()[3]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -420,83 +492,6 @@ public class User extends org.apache.avro.specific.SpecificRecordBase implements
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
-  @Override protected boolean hasCustomCoders() { return true; }
-
-  @Override public void customEncode(org.apache.avro.io.Encoder out)
-    throws java.io.IOException
-  {
-    out.writeString(this.name);
-
-    if (this.favorite_number == null) {
-      out.writeIndex(1);
-      out.writeNull();
-    } else {
-      out.writeIndex(0);
-      out.writeInt(this.favorite_number);
-    }
-
-    if (this.favorite_color == null) {
-      out.writeIndex(1);
-      out.writeNull();
-    } else {
-      out.writeIndex(0);
-      out.writeString(this.favorite_color);
-    }
-
-  }
-
-  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
-    throws java.io.IOException
-  {
-    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
-    if (fieldOrder == null) {
-      this.name = in.readString(this.name instanceof Utf8 ? (Utf8)this.name : null);
-
-      if (in.readIndex() != 0) {
-        in.readNull();
-        this.favorite_number = null;
-      } else {
-        this.favorite_number = in.readInt();
-      }
-
-      if (in.readIndex() != 0) {
-        in.readNull();
-        this.favorite_color = null;
-      } else {
-        this.favorite_color = in.readString(this.favorite_color instanceof Utf8 ? (Utf8)this.favorite_color : null);
-      }
-
-    } else {
-      for (int i = 0; i < 3; i++) {
-        switch (fieldOrder[i].pos()) {
-        case 0:
-          this.name = in.readString(this.name instanceof Utf8 ? (Utf8)this.name : null);
-          break;
-
-        case 1:
-          if (in.readIndex() != 0) {
-            in.readNull();
-            this.favorite_number = null;
-          } else {
-            this.favorite_number = in.readInt();
-          }
-          break;
-
-        case 2:
-          if (in.readIndex() != 0) {
-            in.readNull();
-            this.favorite_color = null;
-          } else {
-            this.favorite_color = in.readString(this.favorite_color instanceof Utf8 ? (Utf8)this.favorite_color : null);
-          }
-          break;
-
-        default:
-          throw new java.io.IOException("Corrupt ResolvingDecoder.");
-        }
-      }
-    }
-  }
 }
 
 
