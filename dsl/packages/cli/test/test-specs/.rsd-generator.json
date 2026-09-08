@@ -116,6 +116,13 @@
             "targetFolder": "./gen-out/openapi",
             "specFileName": "openapi",
 						"contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
-        }
+        },
+				{
+					"name": "avro",
+					"targetFolder": "./gen-out/avro",
+					"specFileName": "sample",
+					"generateProtocols": true,
+					"namespace": "dev.rsdlang.sample.avro"
+				}
     ]
 }
