@@ -1,0 +1,8523 @@
+{
+  "namespace": "dev.rsdlang.sample.avro",
+  "protocol": "ScalarSubstition_Service",
+  "doc": "",
+  "types": [
+    {
+      "type": "enum",
+      "name": "NULL",
+      "symbols": [
+        "NULL"
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "enum",
+      "name": "SampleEnum",
+      "doc": "",
+      "symbols": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "enum",
+      "name": "SampleEnumWithCustValue",
+      "doc": "",
+      "symbols": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "enum",
+      "name": "Month",
+      "doc": "",
+      "symbols": [
+        "JANUARY",
+        "FEBRUARY",
+        "MARCH",
+        "APRIL",
+        "MAY",
+        "JUNE",
+        "JULY",
+        "AUGUST",
+        "SEPTEMBER",
+        "OCTOBER",
+        "NOVEMBER",
+        "DECEMBER"
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "enum",
+      "name": "DayOfWeek",
+      "doc": "",
+      "symbols": [
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY"
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "enum",
+      "name": "NilResult",
+      "doc": "",
+      "symbols": [
+        "UNDEFINED",
+        "NULL",
+        "DEFINED"
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_KeyVersion",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_KeyVersion_Int_Int",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "int"
+        },
+        {
+          "name": "version",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_Basic",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "valueBoolean",
+          "type": "boolean"
+        },
+        {
+          "name": "valueShort",
+          "type": "int"
+        },
+        {
+          "name": "valueInt",
+          "type": "int"
+        },
+        {
+          "name": "valueLong",
+          "type": "long"
+        },
+        {
+          "name": "valueFloat",
+          "type": "float"
+        },
+        {
+          "name": "valueDouble",
+          "type": "double"
+        },
+        {
+          "name": "valueString",
+          "type": "string"
+        },
+        {
+          "name": "valueLocalDate",
+          "type": "string"
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": "string"
+        },
+        {
+          "name": "valueLocalTime",
+          "type": "string"
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": "string"
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_Basic_Optional",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "valueBoolean",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "int",
+            "null"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "int",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "long",
+            "null"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "float",
+            "null"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "double",
+            "null"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_Basic_Null",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "valueBoolean",
+          "type": [
+            "boolean",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "int",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "int",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "long",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "float",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "double",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_Basic_Optional_Null",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "valueBoolean",
+          "type": [
+            "boolean",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "int",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "int",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "long",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "float",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "double",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_Basic_List",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "valueBoolean",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        },
+        {
+          "name": "valueShort",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "valueInt",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "valueLong",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        },
+        {
+          "name": "valueFloat",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        },
+        {
+          "name": "valueDouble",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        },
+        {
+          "name": "valueString",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalDate",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_Basic_List_Optional",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_Basic_List_Null",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "SimpleRecord_Basic_List_Optional_Null",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": "SampleEnum"
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "SampleEnum",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "SampleEnum",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "SampleEnum",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "month",
+          "type": "Month"
+        },
+        {
+          "name": "month_Null",
+          "type": [
+            "Month",
+            "NULL"
+          ]
+        },
+        {
+          "name": "month_Opt",
+          "type": [
+            "Month",
+            "null"
+          ]
+        },
+        {
+          "name": "month_Opt_Null",
+          "type": [
+            "Month",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "monthList",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        },
+        {
+          "name": "monthList_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "Month"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "monthList_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "Month"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "monthList_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "Month"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeek",
+          "type": "DayOfWeek"
+        },
+        {
+          "name": "dayOfWeek_Null",
+          "type": [
+            "DayOfWeek",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeek_Opt",
+          "type": [
+            "DayOfWeek",
+            "null"
+          ]
+        },
+        {
+          "name": "dayOfWeek_Opt_Null",
+          "type": [
+            "DayOfWeek",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeekList",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        },
+        {
+          "name": "dayOfWeekList_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "DayOfWeek"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeekList_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "DayOfWeek"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "dayOfWeekList_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "DayOfWeek"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_SubstitutionPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "month",
+          "type": [
+            "null",
+            "Month"
+          ]
+        },
+        {
+          "name": "month_Null",
+          "type": [
+            "null",
+            "Month",
+            "NULL"
+          ]
+        },
+        {
+          "name": "month_Opt",
+          "type": [
+            "Month",
+            "null"
+          ]
+        },
+        {
+          "name": "month_Opt_Null",
+          "type": [
+            "Month",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "monthList",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        },
+        {
+          "name": "monthList_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "Month"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "monthList_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "Month"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "monthList_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "Month"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeek",
+          "type": [
+            "null",
+            "DayOfWeek"
+          ]
+        },
+        {
+          "name": "dayOfWeek_Null",
+          "type": [
+            "null",
+            "DayOfWeek",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeek_Opt",
+          "type": [
+            "DayOfWeek",
+            "null"
+          ]
+        },
+        {
+          "name": "dayOfWeek_Opt_Null",
+          "type": [
+            "DayOfWeek",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeekList",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        },
+        {
+          "name": "dayOfWeekList_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "DayOfWeek"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeekList_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "DayOfWeek"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "dayOfWeekList_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "DayOfWeek"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_monthListPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_monthList_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_monthList_OptPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_monthList_Opt_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_dayOfWeekListPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_dayOfWeekList_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_dayOfWeekList_OptPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_monthListPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_monthList_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_monthList_OptPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_monthList_Opt_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "Month"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_dayOfWeekListPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_dayOfWeekList_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_dayOfWeekList_OptPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "DayOfWeek"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "EnumInlineRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": {
+            "type": "enum",
+            "name": "EnumInlineRecord_value_Enum",
+            "symbols": [
+              "A",
+              "B"
+            ]
+          }
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            {
+              "type": "enum",
+              "name": "EnumInlineRecord_value_Null_Enum",
+              "symbols": [
+                "C",
+                "D"
+              ]
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            {
+              "type": "enum",
+              "name": "EnumInlineRecord_value_Opt_Enum",
+              "symbols": [
+                "E",
+                "F"
+              ]
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            {
+              "type": "enum",
+              "name": "EnumInlineRecord_value_Opt_Null_Enum",
+              "symbols": [
+                "G",
+                "H"
+              ]
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "EnumInlineRecord_list_Enum",
+              "symbols": [
+                "A",
+                "B"
+              ]
+            }
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": {
+                "type": "enum",
+                "name": "EnumInlineRecord_list_Null_Enum",
+                "symbols": [
+                  "C",
+                  "D"
+                ]
+              }
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": {
+                "type": "enum",
+                "name": "EnumInlineRecord_list_Opt_Null_Enum",
+                "symbols": [
+                  "G",
+                  "H"
+                ]
+              }
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "ScalarRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "ScalarRecord_Substitution",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "RecordOfRecords",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": "SimpleRecord_Basic"
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "SimpleRecord_Basic",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "SimpleRecord_Basic",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "SimpleRecord_Basic",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "SimpleRecord_Basic"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "SimpleRecord_Basic"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "SimpleRecord_Basic"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "SimpleRecord_Basic"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "RecordWithUnions",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": [
+            "UnionA",
+            "UnionB"
+          ]
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "UnionA",
+            "UnionB",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "UnionA",
+            "UnionB",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "UnionA",
+            "UnionB",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": [
+              "UnionA",
+              "UnionB"
+            ]
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "UnionA",
+                "UnionB"
+              ]
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "UnionA",
+                "UnionB"
+              ]
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "UnionA",
+                "UnionB"
+              ]
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "UnionA",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "shared",
+          "type": "string"
+        },
+        {
+          "name": "valueA",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "UnionB",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "shared",
+          "type": "string"
+        },
+        {
+          "name": "valueB",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "TreeNode",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "children",
+          "type": {
+            "type": "array",
+            "items": "TreeNode"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "CyclicNodeA",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "nodeB",
+          "type": "CyclicNodeB"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "CyclicNodeB",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "nodeA",
+          "type": "CyclicNodeA"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": "boolean"
+        },
+        {
+          "name": "valueShort",
+          "type": "int"
+        },
+        {
+          "name": "valueInt",
+          "type": "int"
+        },
+        {
+          "name": "valueLong",
+          "type": "long"
+        },
+        {
+          "name": "valueFloat",
+          "type": "float"
+        },
+        {
+          "name": "valueDouble",
+          "type": "double"
+        },
+        {
+          "name": "valueString",
+          "type": "string"
+        },
+        {
+          "name": "valueLocalDate",
+          "type": "string"
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": "string"
+        },
+        {
+          "name": "valueLocalTime",
+          "type": "string"
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": "string"
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_BasicPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            "null",
+            "boolean"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "null",
+            "int"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "null",
+            "int"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "null",
+            "long"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "null",
+            "float"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "null",
+            "double"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_Optional",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "int",
+            "null"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "int",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "long",
+            "null"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "float",
+            "null"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "double",
+            "null"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_OptionalPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "int",
+            "null"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "int",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "long",
+            "null"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "float",
+            "null"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "double",
+            "null"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_Null",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            "boolean",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "int",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "int",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "long",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "float",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "double",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_NullPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            "null",
+            "boolean",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "null",
+            "int",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "null",
+            "int",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "null",
+            "long",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "null",
+            "float",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "null",
+            "double",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "null",
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "null",
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "null",
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "null",
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "null",
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "null",
+            "string",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_Optional_Null",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            "boolean",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "int",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "int",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "long",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "float",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "double",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_Optional_NullPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            "boolean",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            "int",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            "int",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            "long",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            "float",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            "double",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        },
+        {
+          "name": "valueShort",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "valueInt",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "valueLong",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        },
+        {
+          "name": "valueFloat",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        },
+        {
+          "name": "valueDouble",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        },
+        {
+          "name": "valueString",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalDate",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_ListPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        },
+        {
+          "name": "valueShort",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "valueInt",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "valueLong",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        },
+        {
+          "name": "valueFloat",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        },
+        {
+          "name": "valueDouble",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        },
+        {
+          "name": "valueString",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalDate",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueLocalTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueBooleanPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueShortPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueIntPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueLongPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueFloatPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueDoublePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueStringPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueLocalDatePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueLocalDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueLocalTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueOffsetDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueZonedDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueBooleanPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueShortPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueIntPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueLongPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueFloatPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueDoublePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueStringPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueLocalDatePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueLocalDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueLocalTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueOffsetDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_valueZonedDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_OptionalPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueBooleanPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueShortPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueIntPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueLongPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueFloatPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueDoublePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueStringPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueLocalDatePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueLocalDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueLocalTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueZonedDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueBooleanPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueShortPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueIntPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueLongPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueFloatPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueDoublePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueStringPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueLocalDatePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueLocalDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueLocalTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_valueZonedDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_NullPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueBooleanPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueShortPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueIntPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueLongPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueFloatPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueDoublePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueStringPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueLocalDatePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueLocalDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueLocalTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueZonedDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueBooleanPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueShortPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueIntPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueLongPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueFloatPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueDoublePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueStringPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueLocalDatePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueLocalDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueLocalTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Null_valueZonedDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_NullPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "valueBoolean",
+          "type": [
+            {
+              "type": "array",
+              "items": "boolean"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueShort",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueInt",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLong",
+          "type": [
+            {
+              "type": "array",
+              "items": "long"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueFloat",
+          "type": [
+            {
+              "type": "array",
+              "items": "float"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueDouble",
+          "type": [
+            {
+              "type": "array",
+              "items": "double"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueString",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDate",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueLocalTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueOffsetDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "valueZonedDateTime",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueBooleanPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueShortPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueIntPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueLongPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueFloatPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueDoublePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueStringPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueLocalDatePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueZonedDateTimePatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueBooleanPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueShortPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueIntPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "int"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueLongPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "long"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueFloatPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "float"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueDoublePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "double"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueStringPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueLocalDatePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecord_Basic_List_Optional_Null_valueZonedDateTimePatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "SampleEnum"
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "SampleEnum",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "SampleEnum",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "SampleEnum",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecordPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": [
+            "null",
+            "SampleEnum"
+          ]
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "null",
+            "SampleEnum",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "SampleEnum",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "SampleEnum",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "SampleEnum"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord_listPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord_list_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord_list_OptPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord_list_Opt_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord_listPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord_list_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord_list_OptPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumRecord_list_Opt_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "SampleEnum"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumInlineRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": {
+            "type": "enum",
+            "name": "PatchableEnumInlineRecord_value_Enum",
+            "symbols": [
+              "A",
+              "B"
+            ]
+          }
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_value_Null_Enum",
+              "symbols": [
+                "C",
+                "D"
+              ]
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_value_Opt_Enum",
+              "symbols": [
+                "E",
+                "F"
+              ]
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_value_Opt_Null_Enum",
+              "symbols": [
+                "G",
+                "H"
+              ]
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Enum",
+              "symbols": [
+                "A",
+                "B"
+              ]
+            }
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": {
+                "type": "enum",
+                "name": "PatchableEnumInlineRecord_list_Null_Enum",
+                "symbols": [
+                  "C",
+                  "D"
+                ]
+              }
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": {
+                "type": "enum",
+                "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+                "symbols": [
+                  "G",
+                  "H"
+                ]
+              }
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumInlineRecordPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": {
+            "type": "enum",
+            "name": "PatchableEnumInlineRecord_value_Enum",
+            "symbols": [
+              "A",
+              "B"
+            ]
+          }
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "null",
+            {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_value_Null_Enum",
+              "symbols": [
+                "C",
+                "D"
+              ]
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_value_Opt_Enum",
+              "symbols": [
+                "E",
+                "F"
+              ]
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_value_Opt_Null_Enum",
+              "symbols": [
+                "G",
+                "H"
+              ]
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Enum",
+              "symbols": [
+                "A",
+                "B"
+              ]
+            }
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": {
+                "type": "enum",
+                "name": "PatchableEnumInlineRecord_list_Null_Enum",
+                "symbols": [
+                  "C",
+                  "D"
+                ]
+              }
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": {
+                "type": "enum",
+                "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+                "symbols": [
+                  "G",
+                  "H"
+                ]
+              }
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumInlineRecord_listPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Enum",
+              "symbols": [
+                "A",
+                "B"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumInlineRecord_list_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Null_Enum",
+              "symbols": [
+                "C",
+                "D"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumInlineRecord_list_Opt_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+              "symbols": [
+                "G",
+                "H"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumInlineRecord_listPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Enum",
+              "symbols": [
+                "A",
+                "B"
+              ]
+            }
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Enum",
+              "symbols": [
+                "A",
+                "B"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumInlineRecord_list_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Null_Enum",
+              "symbols": [
+                "C",
+                "D"
+              ]
+            }
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Null_Enum",
+              "symbols": [
+                "C",
+                "D"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableEnumInlineRecord_list_Opt_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+              "symbols": [
+                "G",
+                "H"
+              ]
+            }
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+              "symbols": [
+                "G",
+                "H"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecordPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "null",
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_listPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_list_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_list_OptPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_list_Opt_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_listPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_list_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_list_OptPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_list_Opt_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_SubstitutionPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "null",
+            "string",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution_listPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution_list_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution_list_OptPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution_listPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution_list_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution_list_OptPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "PatchableRecord_Basic"
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "PatchableRecord_Basic",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "PatchableRecord_Basic",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "PatchableRecord_Basic",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "PatchableRecord_Basic"
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": "PatchableRecord_Basic"
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": "PatchableRecord_Basic"
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecordsPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": [
+            "null",
+            "PatchableRecordOfRecords",
+            "PatchableRecordOfRecordsPatch"
+          ]
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordOfRecords",
+            "PatchableRecordOfRecordsPatch"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordOfRecords",
+            "PatchableRecordOfRecordsPatch"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordOfRecords",
+            "PatchableRecordOfRecordsPatch"
+          ]
+        },
+        {
+          "name": "list",
+          "type": [
+            "null",
+            "PatchableRecordOfRecords_listPatchReplace",
+            "PatchableRecordOfRecords_listPatchMerge"
+          ]
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordOfRecords_list_NullPatchReplace",
+            "PatchableRecordOfRecords_list_NullPatchMerge"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordOfRecords_list_OptPatchReplace",
+            "PatchableRecordOfRecords_list_OptPatchMerge"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordOfRecords_list_Opt_NullPatchReplace",
+            "PatchableRecordOfRecords_list_Opt_NullPatchMerge"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords_listPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords_list_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords_list_OptPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords_list_Opt_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords_listPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        },
+        {
+          "name": "updates",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_BasicPatch"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords_list_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        },
+        {
+          "name": "updates",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_BasicPatch"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords_list_OptPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        },
+        {
+          "name": "updates",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_BasicPatch"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordOfRecords_list_Opt_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_Basic"
+          }
+        },
+        {
+          "name": "updates",
+          "type": {
+            "type": "array",
+            "items": "PatchableRecord_BasicPatch"
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": [
+            "PatchableUnionA",
+            "PatchableUnionB"
+          ]
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "PatchableUnionA",
+            "PatchableUnionB",
+            "NULL"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "PatchableUnionA",
+            "PatchableUnionB",
+            "null"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "PatchableUnionA",
+            "PatchableUnionB",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "list",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "PatchableUnionA",
+                "PatchableUnionB"
+              ]
+            },
+            "NULL"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "PatchableUnionA",
+                "PatchableUnionB"
+              ]
+            },
+            "null"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            {
+              "type": "array",
+              "items": [
+                "PatchableUnionA",
+                "PatchableUnionB"
+              ]
+            },
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnionPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": [
+            "null",
+            "PatchableRecordWithUnion",
+            "PatchableRecordWithUnionPatch"
+          ]
+        },
+        {
+          "name": "value_Null",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordWithUnion",
+            "PatchableRecordWithUnionPatch"
+          ]
+        },
+        {
+          "name": "value_Opt",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordWithUnion",
+            "PatchableRecordWithUnionPatch"
+          ]
+        },
+        {
+          "name": "value_Opt_Null",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordWithUnion",
+            "PatchableRecordWithUnionPatch"
+          ]
+        },
+        {
+          "name": "list",
+          "type": [
+            "null",
+            "PatchableRecordWithUnion_listPatchReplace",
+            "PatchableRecordWithUnion_listPatchMerge"
+          ]
+        },
+        {
+          "name": "list_Null",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordWithUnion_list_NullPatchReplace",
+            "PatchableRecordWithUnion_list_NullPatchMerge"
+          ]
+        },
+        {
+          "name": "list_Opt",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordWithUnion_list_OptPatchReplace",
+            "PatchableRecordWithUnion_list_OptPatchMerge"
+          ]
+        },
+        {
+          "name": "list_Opt_Null",
+          "type": [
+            "null",
+            "NULL",
+            "PatchableRecordWithUnion_list_Opt_NullPatchReplace",
+            "PatchableRecordWithUnion_list_Opt_NullPatchMerge"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion_listPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion_list_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion_list_OptPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion_list_Opt_NullPatchReplace",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "elements",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion_listPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        },
+        {
+          "name": "updates",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionAPatch",
+              "PatchableUnionBPatch"
+            ]
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion_list_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        },
+        {
+          "name": "updates",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionAPatch",
+              "PatchableUnionBPatch"
+            ]
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion_list_OptPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        },
+        {
+          "name": "updates",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionAPatch",
+              "PatchableUnionBPatch"
+            ]
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableRecordWithUnion_list_Opt_NullPatchMerge",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "additions",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionA",
+              "PatchableUnionB"
+            ]
+          }
+        },
+        {
+          "name": "updates",
+          "type": {
+            "type": "array",
+            "items": [
+              "PatchableUnionAPatch",
+              "PatchableUnionBPatch"
+            ]
+          }
+        },
+        {
+          "name": "removals",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableUnionA",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "shared",
+          "type": "string"
+        },
+        {
+          "name": "valueA",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableUnionAPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "shared",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "valueA",
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableUnionB",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "shared",
+          "type": "string"
+        },
+        {
+          "name": "valueB",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "PatchableUnionBPatch",
+      "namespace": "dev.rsdlang.sample.avro",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "type": "string"
+        },
+        {
+          "name": "shared",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        {
+          "name": "valueB",
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "MixinRecord",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "sample",
+          "type": "string"
+        },
+        {
+          "name": "mValueString",
+          "type": "string"
+        },
+        {
+          "name": "mValueString2",
+          "type": "string"
+        },
+        {
+          "name": "myUnion",
+          "type": [
+            "UnionA",
+            "UnionB"
+          ]
+        },
+        {
+          "name": "myRecord",
+          "type": "SimpleRecord"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "UploadMixedResult",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "text",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "number",
+          "type": [
+            "int",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "rec",
+          "type": [
+            "SimpleRecord",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "_scalar",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dayOfWeek",
+          "type": [
+            "DayOfWeek",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "textList",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "numberList",
+          "type": [
+            {
+              "type": "array",
+              "items": "int"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "recList",
+          "type": [
+            {
+              "type": "array",
+              "items": "SimpleRecord"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "scalarList",
+          "type": [
+            {
+              "type": "array",
+              "items": "string"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "monthList",
+          "type": [
+            {
+              "type": "array",
+              "items": "Month"
+            },
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dataFileContent",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        },
+        {
+          "name": "dataBlobContent",
+          "type": [
+            "string",
+            "null",
+            "NULL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "MixedResult",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "pathString",
+          "type": "string"
+        },
+        {
+          "name": "pathNumber",
+          "type": "int"
+        },
+        {
+          "name": "headerString",
+          "type": "string"
+        },
+        {
+          "name": "headerNumber",
+          "type": "int"
+        },
+        {
+          "name": "headerRecord",
+          "type": "SimpleRecord"
+        },
+        {
+          "name": "queryString",
+          "type": "string"
+        },
+        {
+          "name": "queryNumber",
+          "type": "int"
+        },
+        {
+          "name": "queryRecord",
+          "type": "SimpleRecord"
+        },
+        {
+          "name": "dataBlob",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "type": "record",
+      "name": "ErrorData",
+      "namespace": "dev.rsdlang.sample.avro",
+      "doc": "",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "name": "SampleError",
+      "type": "error",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "name": "SampleError2",
+      "type": "error",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "error",
+      "name": "SampleErrorWithValue",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "ErrorData"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "error",
+      "name": "SampleErrorInt",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "error",
+      "name": "SampleErrorBoolean",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "error",
+      "name": "SampleErrorEnum",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "SampleEnum"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "error",
+      "name": "SampleErrorScalar",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "error",
+      "name": "SampleErrorUnion",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": [
+            "UnionA",
+            "UnionB"
+          ]
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "error",
+      "name": "SampleErrorScalarSub",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "namespace": "dev.rsdlang.sample.avro",
+      "type": "error",
+      "name": "SampleErrorEnumSub",
+      "fields": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "DayOfWeek"
+        }
+      ]
+    }
+  ],
+  "messages": {
+    "get": {
+      "request": [],
+      "response": "string",
+      "doc": ""
+    },
+    "list": {
+      "request": [],
+      "response": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": ""
+    },
+    "post": {
+      "request": [
+        {
+          "name": "range",
+          "type": "string"
+        }
+      ],
+      "response": "string",
+      "doc": ""
+    },
+    "postOpt": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "postNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "NULL",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "postOptNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "null",
+            "NULL",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "postList": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ],
+      "response": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": ""
+    },
+    "postListOpt": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "postListNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "NULL",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "postListOptNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "null",
+              "NULL",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "query": {
+      "request": [
+        {
+          "name": "range",
+          "type": "string"
+        }
+      ],
+      "response": "string",
+      "doc": ""
+    },
+    "queryOpt": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "queryNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "NULL",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "queryOptNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "null",
+            "NULL",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "queryList": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ],
+      "response": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": ""
+    },
+    "queryListOpt": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "queryListNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "NULL",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "queryListOptNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "null",
+              "NULL",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "header": {
+      "request": [
+        {
+          "name": "range",
+          "type": "string"
+        }
+      ],
+      "response": "string",
+      "doc": ""
+    },
+    "headerOpt": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "headerNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "NULL",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "headerOptNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": [
+            "null",
+            "NULL",
+            "string"
+          ]
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "headerList": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": "string"
+          }
+        }
+      ],
+      "response": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": ""
+    },
+    "headerListOpt": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "headerListNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "NULL",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "headerListOptNull": {
+      "request": [
+        {
+          "name": "range",
+          "type": {
+            "type": "array",
+            "items": [
+              "null",
+              "NULL",
+              "string"
+            ]
+          }
+        }
+      ],
+      "response": "NilResult",
+      "doc": ""
+    },
+    "multiBody": {
+      "request": [
+        {
+          "name": "valueA",
+          "type": "string"
+        },
+        {
+          "name": "valueB",
+          "type": "string"
+        }
+      ],
+      "response": "string",
+      "doc": ""
+    },
+    "fail": {
+      "request": [],
+      "response": "null",
+      "doc": "",
+      "errors": [
+        "SampleErrorScalarSub"
+      ]
+    }
+  }
+}
