@@ -1205,40 +1205,37 @@
         },
         {
           "name": "monthList",
-          "type": {
-            "type": "array",
-            "items": "Month"
-          }
+          "type": [
+            "null",
+            "EnumRecord_Substitution_monthListPatchReplace",
+            "EnumRecord_Substitution_monthListPatchMerge"
+          ]
         },
         {
           "name": "monthList_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "Month"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "EnumRecord_Substitution_monthList_NullPatchReplace",
+            "EnumRecord_Substitution_monthList_NullPatchMerge"
           ]
         },
         {
           "name": "monthList_Opt",
           "type": [
-            {
-              "type": "array",
-              "items": "Month"
-            },
-            "null"
+            "null",
+            "NULL",
+            "EnumRecord_Substitution_monthList_OptPatchReplace",
+            "EnumRecord_Substitution_monthList_OptPatchMerge"
           ]
         },
         {
           "name": "monthList_Opt_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "Month"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "EnumRecord_Substitution_monthList_Opt_NullPatchReplace",
+            "EnumRecord_Substitution_monthList_Opt_NullPatchMerge"
           ]
         },
         {
@@ -1273,40 +1270,37 @@
         },
         {
           "name": "dayOfWeekList",
-          "type": {
-            "type": "array",
-            "items": "DayOfWeek"
-          }
+          "type": [
+            "null",
+            "EnumRecord_Substitution_dayOfWeekListPatchReplace",
+            "EnumRecord_Substitution_dayOfWeekListPatchMerge"
+          ]
         },
         {
           "name": "dayOfWeekList_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "DayOfWeek"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "EnumRecord_Substitution_dayOfWeekList_NullPatchReplace",
+            "EnumRecord_Substitution_dayOfWeekList_NullPatchMerge"
           ]
         },
         {
           "name": "dayOfWeekList_Opt",
           "type": [
-            {
-              "type": "array",
-              "items": "DayOfWeek"
-            },
-            "null"
+            "null",
+            "NULL",
+            "EnumRecord_Substitution_dayOfWeekList_OptPatchReplace",
+            "EnumRecord_Substitution_dayOfWeekList_OptPatchMerge"
           ]
         },
         {
           "name": "dayOfWeekList_Opt_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "DayOfWeek"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchReplace",
+            "EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchMerge"
           ]
         }
       ]
@@ -3044,87 +3038,99 @@
         },
         {
           "name": "valueBoolean",
-          "type": {
-            "type": "array",
-            "items": "boolean"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueBooleanPatchReplace",
+            "PatchableRecord_Basic_List_valueBooleanPatchMerge"
+          ]
         },
         {
           "name": "valueShort",
-          "type": {
-            "type": "array",
-            "items": "int"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueShortPatchReplace",
+            "PatchableRecord_Basic_List_valueShortPatchMerge"
+          ]
         },
         {
           "name": "valueInt",
-          "type": {
-            "type": "array",
-            "items": "int"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueIntPatchReplace",
+            "PatchableRecord_Basic_List_valueIntPatchMerge"
+          ]
         },
         {
           "name": "valueLong",
-          "type": {
-            "type": "array",
-            "items": "long"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueLongPatchReplace",
+            "PatchableRecord_Basic_List_valueLongPatchMerge"
+          ]
         },
         {
           "name": "valueFloat",
-          "type": {
-            "type": "array",
-            "items": "float"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueFloatPatchReplace",
+            "PatchableRecord_Basic_List_valueFloatPatchMerge"
+          ]
         },
         {
           "name": "valueDouble",
-          "type": {
-            "type": "array",
-            "items": "double"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueDoublePatchReplace",
+            "PatchableRecord_Basic_List_valueDoublePatchMerge"
+          ]
         },
         {
           "name": "valueString",
-          "type": {
-            "type": "array",
-            "items": "string"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueStringPatchReplace",
+            "PatchableRecord_Basic_List_valueStringPatchMerge"
+          ]
         },
         {
           "name": "valueLocalDate",
-          "type": {
-            "type": "array",
-            "items": "string"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueLocalDatePatchReplace",
+            "PatchableRecord_Basic_List_valueLocalDatePatchMerge"
+          ]
         },
         {
           "name": "valueLocalDateTime",
-          "type": {
-            "type": "array",
-            "items": "string"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueLocalDateTimePatchReplace",
+            "PatchableRecord_Basic_List_valueLocalDateTimePatchMerge"
+          ]
         },
         {
           "name": "valueLocalTime",
-          "type": {
-            "type": "array",
-            "items": "string"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueLocalTimePatchReplace",
+            "PatchableRecord_Basic_List_valueLocalTimePatchMerge"
+          ]
         },
         {
           "name": "valueOffsetDateTime",
-          "type": {
-            "type": "array",
-            "items": "string"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueOffsetDateTimePatchReplace",
+            "PatchableRecord_Basic_List_valueOffsetDateTimePatchMerge"
+          ]
         },
         {
           "name": "valueZonedDateTime",
-          "type": {
-            "type": "array",
-            "items": "string"
-          }
+          "type": [
+            "null",
+            "PatchableRecord_Basic_List_valueZonedDateTimePatchReplace",
+            "PatchableRecord_Basic_List_valueZonedDateTimePatchMerge"
+          ]
         }
       ]
     },
@@ -3700,121 +3706,109 @@
         {
           "name": "valueBoolean",
           "type": [
-            {
-              "type": "array",
-              "items": "boolean"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueBooleanPatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueBooleanPatchMerge"
           ]
         },
         {
           "name": "valueShort",
           "type": [
-            {
-              "type": "array",
-              "items": "int"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueShortPatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueShortPatchMerge"
           ]
         },
         {
           "name": "valueInt",
           "type": [
-            {
-              "type": "array",
-              "items": "int"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueIntPatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueIntPatchMerge"
           ]
         },
         {
           "name": "valueLong",
           "type": [
-            {
-              "type": "array",
-              "items": "long"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueLongPatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueLongPatchMerge"
           ]
         },
         {
           "name": "valueFloat",
           "type": [
-            {
-              "type": "array",
-              "items": "float"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueFloatPatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueFloatPatchMerge"
           ]
         },
         {
           "name": "valueDouble",
           "type": [
-            {
-              "type": "array",
-              "items": "double"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueDoublePatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueDoublePatchMerge"
           ]
         },
         {
           "name": "valueString",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueStringPatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueStringPatchMerge"
           ]
         },
         {
           "name": "valueLocalDate",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueLocalDatePatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueLocalDatePatchMerge"
           ]
         },
         {
           "name": "valueLocalDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueLocalDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueLocalDateTimePatchMerge"
           ]
         },
         {
           "name": "valueLocalTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueLocalTimePatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueLocalTimePatchMerge"
           ]
         },
         {
           "name": "valueOffsetDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchMerge"
           ]
         },
         {
           "name": "valueZonedDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_valueZonedDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Optional_valueZonedDateTimePatchMerge"
           ]
         }
       ]
@@ -4391,121 +4385,109 @@
         {
           "name": "valueBoolean",
           "type": [
-            {
-              "type": "array",
-              "items": "boolean"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueBooleanPatchReplace",
+            "PatchableRecord_Basic_List_Null_valueBooleanPatchMerge"
           ]
         },
         {
           "name": "valueShort",
           "type": [
-            {
-              "type": "array",
-              "items": "int"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueShortPatchReplace",
+            "PatchableRecord_Basic_List_Null_valueShortPatchMerge"
           ]
         },
         {
           "name": "valueInt",
           "type": [
-            {
-              "type": "array",
-              "items": "int"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueIntPatchReplace",
+            "PatchableRecord_Basic_List_Null_valueIntPatchMerge"
           ]
         },
         {
           "name": "valueLong",
           "type": [
-            {
-              "type": "array",
-              "items": "long"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueLongPatchReplace",
+            "PatchableRecord_Basic_List_Null_valueLongPatchMerge"
           ]
         },
         {
           "name": "valueFloat",
           "type": [
-            {
-              "type": "array",
-              "items": "float"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueFloatPatchReplace",
+            "PatchableRecord_Basic_List_Null_valueFloatPatchMerge"
           ]
         },
         {
           "name": "valueDouble",
           "type": [
-            {
-              "type": "array",
-              "items": "double"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueDoublePatchReplace",
+            "PatchableRecord_Basic_List_Null_valueDoublePatchMerge"
           ]
         },
         {
           "name": "valueString",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueStringPatchReplace",
+            "PatchableRecord_Basic_List_Null_valueStringPatchMerge"
           ]
         },
         {
           "name": "valueLocalDate",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueLocalDatePatchReplace",
+            "PatchableRecord_Basic_List_Null_valueLocalDatePatchMerge"
           ]
         },
         {
           "name": "valueLocalDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueLocalDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Null_valueLocalDateTimePatchMerge"
           ]
         },
         {
           "name": "valueLocalTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueLocalTimePatchReplace",
+            "PatchableRecord_Basic_List_Null_valueLocalTimePatchMerge"
           ]
         },
         {
           "name": "valueOffsetDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Null_valueOffsetDateTimePatchMerge"
           ]
         },
         {
           "name": "valueZonedDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableRecord_Basic_List_Null_valueZonedDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Null_valueZonedDateTimePatchMerge"
           ]
         }
       ]
@@ -5094,133 +5076,109 @@
         {
           "name": "valueBoolean",
           "type": [
-            {
-              "type": "array",
-              "items": "boolean"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueBooleanPatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueBooleanPatchMerge"
           ]
         },
         {
           "name": "valueShort",
           "type": [
-            {
-              "type": "array",
-              "items": "int"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueShortPatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueShortPatchMerge"
           ]
         },
         {
           "name": "valueInt",
           "type": [
-            {
-              "type": "array",
-              "items": "int"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueIntPatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueIntPatchMerge"
           ]
         },
         {
           "name": "valueLong",
           "type": [
-            {
-              "type": "array",
-              "items": "long"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueLongPatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueLongPatchMerge"
           ]
         },
         {
           "name": "valueFloat",
           "type": [
-            {
-              "type": "array",
-              "items": "float"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueFloatPatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueFloatPatchMerge"
           ]
         },
         {
           "name": "valueDouble",
           "type": [
-            {
-              "type": "array",
-              "items": "double"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueDoublePatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueDoublePatchMerge"
           ]
         },
         {
           "name": "valueString",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueStringPatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueStringPatchMerge"
           ]
         },
         {
           "name": "valueLocalDate",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueLocalDatePatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueLocalDatePatchMerge"
           ]
         },
         {
           "name": "valueLocalDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchMerge"
           ]
         },
         {
           "name": "valueLocalTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchMerge"
           ]
         },
         {
           "name": "valueOffsetDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchMerge"
           ]
         },
         {
           "name": "valueZonedDateTime",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableRecord_Basic_List_Optional_Null_valueZonedDateTimePatchReplace",
+            "PatchableRecord_Basic_List_Optional_Null_valueZonedDateTimePatchMerge"
           ]
         }
       ]
@@ -5770,40 +5728,37 @@
         },
         {
           "name": "list",
-          "type": {
-            "type": "array",
-            "items": "SampleEnum"
-          }
+          "type": [
+            "null",
+            "PatchableEnumRecord_listPatchReplace",
+            "PatchableEnumRecord_listPatchMerge"
+          ]
         },
         {
           "name": "list_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "SampleEnum"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableEnumRecord_list_NullPatchReplace",
+            "PatchableEnumRecord_list_NullPatchMerge"
           ]
         },
         {
           "name": "list_Opt",
           "type": [
-            {
-              "type": "array",
-              "items": "SampleEnum"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableEnumRecord_list_OptPatchReplace",
+            "PatchableEnumRecord_list_OptPatchMerge"
           ]
         },
         {
           "name": "list_Opt_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "SampleEnum"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableEnumRecord_list_Opt_NullPatchReplace",
+            "PatchableEnumRecord_list_Opt_NullPatchMerge"
           ]
         }
       ]
@@ -6137,51 +6092,28 @@
         },
         {
           "name": "list",
-          "type": {
-            "type": "array",
-            "items": {
-              "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Enum",
-              "symbols": [
-                "A",
-                "B"
-              ]
-            }
-          }
+          "type": [
+            "null",
+            "PatchableEnumInlineRecord_listPatchReplace",
+            "PatchableEnumInlineRecord_listPatchMerge"
+          ]
         },
         {
           "name": "list_Null",
           "type": [
-            {
-              "type": "array",
-              "items": {
-                "type": "enum",
-                "name": "PatchableEnumInlineRecord_list_Null_Enum",
-                "symbols": [
-                  "C",
-                  "D"
-                ]
-              }
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableEnumInlineRecord_list_NullPatchReplace",
+            "PatchableEnumInlineRecord_list_NullPatchMerge"
           ]
         },
         {
           "name": "list_Opt_Null",
           "type": [
-            {
-              "type": "array",
-              "items": {
-                "type": "enum",
-                "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
-                "symbols": [
-                  "G",
-                  "H"
-                ]
-              }
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableEnumInlineRecord_list_Opt_NullPatchReplace",
+            "PatchableEnumInlineRecord_list_Opt_NullPatchMerge"
           ]
         }
       ]
@@ -6479,40 +6411,37 @@
         },
         {
           "name": "list",
-          "type": {
-            "type": "array",
-            "items": "string"
-          }
+          "type": [
+            "null",
+            "PatchableScalarRecord_listPatchReplace",
+            "PatchableScalarRecord_listPatchMerge"
+          ]
         },
         {
           "name": "list_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableScalarRecord_list_NullPatchReplace",
+            "PatchableScalarRecord_list_NullPatchMerge"
           ]
         },
         {
           "name": "list_Opt",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableScalarRecord_list_OptPatchReplace",
+            "PatchableScalarRecord_list_OptPatchMerge"
           ]
         },
         {
           "name": "list_Opt_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableScalarRecord_list_Opt_NullPatchReplace",
+            "PatchableScalarRecord_list_Opt_NullPatchMerge"
           ]
         }
       ]
@@ -6782,40 +6711,37 @@
         },
         {
           "name": "list",
-          "type": {
-            "type": "array",
-            "items": "string"
-          }
+          "type": [
+            "null",
+            "PatchableScalarRecord_Substitution_listPatchReplace",
+            "PatchableScalarRecord_Substitution_listPatchMerge"
+          ]
         },
         {
           "name": "list_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "NULL"
+            "null",
+            "NULL",
+            "PatchableScalarRecord_Substitution_list_NullPatchReplace",
+            "PatchableScalarRecord_Substitution_list_NullPatchMerge"
           ]
         },
         {
           "name": "list_Opt",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
-            "null"
+            "null",
+            "NULL",
+            "PatchableScalarRecord_Substitution_list_OptPatchReplace",
+            "PatchableScalarRecord_Substitution_list_OptPatchMerge"
           ]
         },
         {
           "name": "list_Opt_Null",
           "type": [
-            {
-              "type": "array",
-              "items": "string"
-            },
             "null",
-            "NULL"
+            "NULL",
+            "PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace",
+            "PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge"
           ]
         }
       ]

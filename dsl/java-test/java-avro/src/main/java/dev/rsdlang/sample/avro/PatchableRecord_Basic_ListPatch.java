@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -8260600459092340982L;
+  private static final long serialVersionUID = -461065968051367367L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_ListPatch\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"key\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"valueBoolean\",\"type\":{\"type\":\"array\",\"items\":\"boolean\"}},{\"name\":\"valueShort\",\"type\":{\"type\":\"array\",\"items\":\"int\"}},{\"name\":\"valueInt\",\"type\":{\"type\":\"array\",\"items\":\"int\"}},{\"name\":\"valueLong\",\"type\":{\"type\":\"array\",\"items\":\"long\"}},{\"name\":\"valueFloat\",\"type\":{\"type\":\"array\",\"items\":\"float\"}},{\"name\":\"valueDouble\",\"type\":{\"type\":\"array\",\"items\":\"double\"}},{\"name\":\"valueString\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"valueLocalDate\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"valueLocalDateTime\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"valueLocalTime\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"valueOffsetDateTime\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"valueZonedDateTime\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_ListPatch\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"key\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"valueBoolean\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueBooleanPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"boolean\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueBooleanPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"boolean\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"boolean\"}}]}]},{\"name\":\"valueShort\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueShortPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"int\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueShortPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"int\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"int\"}}]}]},{\"name\":\"valueInt\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueIntPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"int\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueIntPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"int\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"int\"}}]}]},{\"name\":\"valueLong\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueLongPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"long\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueLongPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"long\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"long\"}}]}]},{\"name\":\"valueFloat\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueFloatPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"float\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueFloatPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"float\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"float\"}}]}]},{\"name\":\"valueDouble\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueDoublePatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"double\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueDoublePatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"double\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"double\"}}]}]},{\"name\":\"valueString\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueStringPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueStringPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]},{\"name\":\"valueLocalDate\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueLocalDatePatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueLocalDatePatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]},{\"name\":\"valueLocalDateTime\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueLocalDateTimePatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueLocalDateTimePatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]},{\"name\":\"valueLocalTime\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueLocalTimePatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueLocalTimePatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]},{\"name\":\"valueOffsetDateTime\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueOffsetDateTimePatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueOffsetDateTimePatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]},{\"name\":\"valueZonedDateTime\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueZonedDateTimePatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableRecord_Basic_List_valueZonedDateTimePatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -74,18 +74,18 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
 
   private java.lang.CharSequence key;
   private java.lang.CharSequence version;
-  private java.util.List<java.lang.Boolean> valueBoolean;
-  private java.util.List<java.lang.Integer> valueShort;
-  private java.util.List<java.lang.Integer> valueInt;
-  private java.util.List<java.lang.Long> valueLong;
-  private java.util.List<java.lang.Float> valueFloat;
-  private java.util.List<java.lang.Double> valueDouble;
-  private java.util.List<java.lang.CharSequence> valueString;
-  private java.util.List<java.lang.CharSequence> valueLocalDate;
-  private java.util.List<java.lang.CharSequence> valueLocalDateTime;
-  private java.util.List<java.lang.CharSequence> valueLocalTime;
-  private java.util.List<java.lang.CharSequence> valueOffsetDateTime;
-  private java.util.List<java.lang.CharSequence> valueZonedDateTime;
+  private java.lang.Object valueBoolean;
+  private java.lang.Object valueShort;
+  private java.lang.Object valueInt;
+  private java.lang.Object valueLong;
+  private java.lang.Object valueFloat;
+  private java.lang.Object valueDouble;
+  private java.lang.Object valueString;
+  private java.lang.Object valueLocalDate;
+  private java.lang.Object valueLocalDateTime;
+  private java.lang.Object valueLocalTime;
+  private java.lang.Object valueOffsetDateTime;
+  private java.lang.Object valueZonedDateTime;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -111,7 +111,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * @param valueOffsetDateTime The new value for valueOffsetDateTime
    * @param valueZonedDateTime The new value for valueZonedDateTime
    */
-  public PatchableRecord_Basic_ListPatch(java.lang.CharSequence key, java.lang.CharSequence version, java.util.List<java.lang.Boolean> valueBoolean, java.util.List<java.lang.Integer> valueShort, java.util.List<java.lang.Integer> valueInt, java.util.List<java.lang.Long> valueLong, java.util.List<java.lang.Float> valueFloat, java.util.List<java.lang.Double> valueDouble, java.util.List<java.lang.CharSequence> valueString, java.util.List<java.lang.CharSequence> valueLocalDate, java.util.List<java.lang.CharSequence> valueLocalDateTime, java.util.List<java.lang.CharSequence> valueLocalTime, java.util.List<java.lang.CharSequence> valueOffsetDateTime, java.util.List<java.lang.CharSequence> valueZonedDateTime) {
+  public PatchableRecord_Basic_ListPatch(java.lang.CharSequence key, java.lang.CharSequence version, java.lang.Object valueBoolean, java.lang.Object valueShort, java.lang.Object valueInt, java.lang.Object valueLong, java.lang.Object valueFloat, java.lang.Object valueDouble, java.lang.Object valueString, java.lang.Object valueLocalDate, java.lang.Object valueLocalDateTime, java.lang.Object valueLocalTime, java.lang.Object valueOffsetDateTime, java.lang.Object valueZonedDateTime) {
     this.key = key;
     this.version = version;
     this.valueBoolean = valueBoolean;
@@ -163,18 +163,18 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
     switch (field$) {
     case 0: key = (java.lang.CharSequence)value$; break;
     case 1: version = (java.lang.CharSequence)value$; break;
-    case 2: valueBoolean = (java.util.List<java.lang.Boolean>)value$; break;
-    case 3: valueShort = (java.util.List<java.lang.Integer>)value$; break;
-    case 4: valueInt = (java.util.List<java.lang.Integer>)value$; break;
-    case 5: valueLong = (java.util.List<java.lang.Long>)value$; break;
-    case 6: valueFloat = (java.util.List<java.lang.Float>)value$; break;
-    case 7: valueDouble = (java.util.List<java.lang.Double>)value$; break;
-    case 8: valueString = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 9: valueLocalDate = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 10: valueLocalDateTime = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 11: valueLocalTime = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 12: valueOffsetDateTime = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 13: valueZonedDateTime = (java.util.List<java.lang.CharSequence>)value$; break;
+    case 2: valueBoolean = value$; break;
+    case 3: valueShort = value$; break;
+    case 4: valueInt = value$; break;
+    case 5: valueLong = value$; break;
+    case 6: valueFloat = value$; break;
+    case 7: valueDouble = value$; break;
+    case 8: valueString = value$; break;
+    case 9: valueLocalDate = value$; break;
+    case 10: valueLocalDateTime = value$; break;
+    case 11: valueLocalTime = value$; break;
+    case 12: valueOffsetDateTime = value$; break;
+    case 13: valueZonedDateTime = value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -217,7 +217,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueBoolean' field.
    * @return The value of the 'valueBoolean' field.
    */
-  public java.util.List<java.lang.Boolean> getValueBoolean() {
+  public java.lang.Object getValueBoolean() {
     return valueBoolean;
   }
 
@@ -226,7 +226,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueBoolean' field.
    * @param value the value to set.
    */
-  public void setValueBoolean(java.util.List<java.lang.Boolean> value) {
+  public void setValueBoolean(java.lang.Object value) {
     this.valueBoolean = value;
   }
 
@@ -234,7 +234,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueShort' field.
    * @return The value of the 'valueShort' field.
    */
-  public java.util.List<java.lang.Integer> getValueShort() {
+  public java.lang.Object getValueShort() {
     return valueShort;
   }
 
@@ -243,7 +243,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueShort' field.
    * @param value the value to set.
    */
-  public void setValueShort(java.util.List<java.lang.Integer> value) {
+  public void setValueShort(java.lang.Object value) {
     this.valueShort = value;
   }
 
@@ -251,7 +251,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueInt' field.
    * @return The value of the 'valueInt' field.
    */
-  public java.util.List<java.lang.Integer> getValueInt() {
+  public java.lang.Object getValueInt() {
     return valueInt;
   }
 
@@ -260,7 +260,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueInt' field.
    * @param value the value to set.
    */
-  public void setValueInt(java.util.List<java.lang.Integer> value) {
+  public void setValueInt(java.lang.Object value) {
     this.valueInt = value;
   }
 
@@ -268,7 +268,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueLong' field.
    * @return The value of the 'valueLong' field.
    */
-  public java.util.List<java.lang.Long> getValueLong() {
+  public java.lang.Object getValueLong() {
     return valueLong;
   }
 
@@ -277,7 +277,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueLong' field.
    * @param value the value to set.
    */
-  public void setValueLong(java.util.List<java.lang.Long> value) {
+  public void setValueLong(java.lang.Object value) {
     this.valueLong = value;
   }
 
@@ -285,7 +285,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueFloat' field.
    * @return The value of the 'valueFloat' field.
    */
-  public java.util.List<java.lang.Float> getValueFloat() {
+  public java.lang.Object getValueFloat() {
     return valueFloat;
   }
 
@@ -294,7 +294,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueFloat' field.
    * @param value the value to set.
    */
-  public void setValueFloat(java.util.List<java.lang.Float> value) {
+  public void setValueFloat(java.lang.Object value) {
     this.valueFloat = value;
   }
 
@@ -302,7 +302,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueDouble' field.
    * @return The value of the 'valueDouble' field.
    */
-  public java.util.List<java.lang.Double> getValueDouble() {
+  public java.lang.Object getValueDouble() {
     return valueDouble;
   }
 
@@ -311,7 +311,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueDouble' field.
    * @param value the value to set.
    */
-  public void setValueDouble(java.util.List<java.lang.Double> value) {
+  public void setValueDouble(java.lang.Object value) {
     this.valueDouble = value;
   }
 
@@ -319,7 +319,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueString' field.
    * @return The value of the 'valueString' field.
    */
-  public java.util.List<java.lang.CharSequence> getValueString() {
+  public java.lang.Object getValueString() {
     return valueString;
   }
 
@@ -328,7 +328,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueString' field.
    * @param value the value to set.
    */
-  public void setValueString(java.util.List<java.lang.CharSequence> value) {
+  public void setValueString(java.lang.Object value) {
     this.valueString = value;
   }
 
@@ -336,7 +336,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueLocalDate' field.
    * @return The value of the 'valueLocalDate' field.
    */
-  public java.util.List<java.lang.CharSequence> getValueLocalDate() {
+  public java.lang.Object getValueLocalDate() {
     return valueLocalDate;
   }
 
@@ -345,7 +345,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueLocalDate' field.
    * @param value the value to set.
    */
-  public void setValueLocalDate(java.util.List<java.lang.CharSequence> value) {
+  public void setValueLocalDate(java.lang.Object value) {
     this.valueLocalDate = value;
   }
 
@@ -353,7 +353,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueLocalDateTime' field.
    * @return The value of the 'valueLocalDateTime' field.
    */
-  public java.util.List<java.lang.CharSequence> getValueLocalDateTime() {
+  public java.lang.Object getValueLocalDateTime() {
     return valueLocalDateTime;
   }
 
@@ -362,7 +362,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueLocalDateTime' field.
    * @param value the value to set.
    */
-  public void setValueLocalDateTime(java.util.List<java.lang.CharSequence> value) {
+  public void setValueLocalDateTime(java.lang.Object value) {
     this.valueLocalDateTime = value;
   }
 
@@ -370,7 +370,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueLocalTime' field.
    * @return The value of the 'valueLocalTime' field.
    */
-  public java.util.List<java.lang.CharSequence> getValueLocalTime() {
+  public java.lang.Object getValueLocalTime() {
     return valueLocalTime;
   }
 
@@ -379,7 +379,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueLocalTime' field.
    * @param value the value to set.
    */
-  public void setValueLocalTime(java.util.List<java.lang.CharSequence> value) {
+  public void setValueLocalTime(java.lang.Object value) {
     this.valueLocalTime = value;
   }
 
@@ -387,7 +387,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueOffsetDateTime' field.
    * @return The value of the 'valueOffsetDateTime' field.
    */
-  public java.util.List<java.lang.CharSequence> getValueOffsetDateTime() {
+  public java.lang.Object getValueOffsetDateTime() {
     return valueOffsetDateTime;
   }
 
@@ -396,7 +396,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueOffsetDateTime' field.
    * @param value the value to set.
    */
-  public void setValueOffsetDateTime(java.util.List<java.lang.CharSequence> value) {
+  public void setValueOffsetDateTime(java.lang.Object value) {
     this.valueOffsetDateTime = value;
   }
 
@@ -404,7 +404,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Gets the value of the 'valueZonedDateTime' field.
    * @return The value of the 'valueZonedDateTime' field.
    */
-  public java.util.List<java.lang.CharSequence> getValueZonedDateTime() {
+  public java.lang.Object getValueZonedDateTime() {
     return valueZonedDateTime;
   }
 
@@ -413,7 +413,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
    * Sets the value of the 'valueZonedDateTime' field.
    * @param value the value to set.
    */
-  public void setValueZonedDateTime(java.util.List<java.lang.CharSequence> value) {
+  public void setValueZonedDateTime(java.lang.Object value) {
     this.valueZonedDateTime = value;
   }
 
@@ -460,18 +460,18 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
 
     private java.lang.CharSequence key;
     private java.lang.CharSequence version;
-    private java.util.List<java.lang.Boolean> valueBoolean;
-    private java.util.List<java.lang.Integer> valueShort;
-    private java.util.List<java.lang.Integer> valueInt;
-    private java.util.List<java.lang.Long> valueLong;
-    private java.util.List<java.lang.Float> valueFloat;
-    private java.util.List<java.lang.Double> valueDouble;
-    private java.util.List<java.lang.CharSequence> valueString;
-    private java.util.List<java.lang.CharSequence> valueLocalDate;
-    private java.util.List<java.lang.CharSequence> valueLocalDateTime;
-    private java.util.List<java.lang.CharSequence> valueLocalTime;
-    private java.util.List<java.lang.CharSequence> valueOffsetDateTime;
-    private java.util.List<java.lang.CharSequence> valueZonedDateTime;
+    private java.lang.Object valueBoolean;
+    private java.lang.Object valueShort;
+    private java.lang.Object valueInt;
+    private java.lang.Object valueLong;
+    private java.lang.Object valueFloat;
+    private java.lang.Object valueDouble;
+    private java.lang.Object valueString;
+    private java.lang.Object valueLocalDate;
+    private java.lang.Object valueLocalDateTime;
+    private java.lang.Object valueLocalTime;
+    private java.lang.Object valueOffsetDateTime;
+    private java.lang.Object valueZonedDateTime;
 
     /** Creates a new Builder */
     private Builder() {
@@ -690,7 +690,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueBoolean' field.
       * @return The value.
       */
-    public java.util.List<java.lang.Boolean> getValueBoolean() {
+    public java.lang.Object getValueBoolean() {
       return valueBoolean;
     }
 
@@ -700,7 +700,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueBoolean'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueBoolean(java.util.List<java.lang.Boolean> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueBoolean(java.lang.Object value) {
       validate(fields()[2], value);
       this.valueBoolean = value;
       fieldSetFlags()[2] = true;
@@ -730,7 +730,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueShort' field.
       * @return The value.
       */
-    public java.util.List<java.lang.Integer> getValueShort() {
+    public java.lang.Object getValueShort() {
       return valueShort;
     }
 
@@ -740,7 +740,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueShort'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueShort(java.util.List<java.lang.Integer> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueShort(java.lang.Object value) {
       validate(fields()[3], value);
       this.valueShort = value;
       fieldSetFlags()[3] = true;
@@ -770,7 +770,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueInt' field.
       * @return The value.
       */
-    public java.util.List<java.lang.Integer> getValueInt() {
+    public java.lang.Object getValueInt() {
       return valueInt;
     }
 
@@ -780,7 +780,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueInt'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueInt(java.util.List<java.lang.Integer> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueInt(java.lang.Object value) {
       validate(fields()[4], value);
       this.valueInt = value;
       fieldSetFlags()[4] = true;
@@ -810,7 +810,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueLong' field.
       * @return The value.
       */
-    public java.util.List<java.lang.Long> getValueLong() {
+    public java.lang.Object getValueLong() {
       return valueLong;
     }
 
@@ -820,7 +820,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueLong'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueLong(java.util.List<java.lang.Long> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueLong(java.lang.Object value) {
       validate(fields()[5], value);
       this.valueLong = value;
       fieldSetFlags()[5] = true;
@@ -850,7 +850,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueFloat' field.
       * @return The value.
       */
-    public java.util.List<java.lang.Float> getValueFloat() {
+    public java.lang.Object getValueFloat() {
       return valueFloat;
     }
 
@@ -860,7 +860,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueFloat'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueFloat(java.util.List<java.lang.Float> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueFloat(java.lang.Object value) {
       validate(fields()[6], value);
       this.valueFloat = value;
       fieldSetFlags()[6] = true;
@@ -890,7 +890,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueDouble' field.
       * @return The value.
       */
-    public java.util.List<java.lang.Double> getValueDouble() {
+    public java.lang.Object getValueDouble() {
       return valueDouble;
     }
 
@@ -900,7 +900,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueDouble'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueDouble(java.util.List<java.lang.Double> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueDouble(java.lang.Object value) {
       validate(fields()[7], value);
       this.valueDouble = value;
       fieldSetFlags()[7] = true;
@@ -930,7 +930,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueString' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getValueString() {
+    public java.lang.Object getValueString() {
       return valueString;
     }
 
@@ -940,7 +940,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueString'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueString(java.util.List<java.lang.CharSequence> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueString(java.lang.Object value) {
       validate(fields()[8], value);
       this.valueString = value;
       fieldSetFlags()[8] = true;
@@ -970,7 +970,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueLocalDate' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getValueLocalDate() {
+    public java.lang.Object getValueLocalDate() {
       return valueLocalDate;
     }
 
@@ -980,7 +980,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueLocalDate'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueLocalDate(java.util.List<java.lang.CharSequence> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueLocalDate(java.lang.Object value) {
       validate(fields()[9], value);
       this.valueLocalDate = value;
       fieldSetFlags()[9] = true;
@@ -1010,7 +1010,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueLocalDateTime' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getValueLocalDateTime() {
+    public java.lang.Object getValueLocalDateTime() {
       return valueLocalDateTime;
     }
 
@@ -1020,7 +1020,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueLocalDateTime'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueLocalDateTime(java.util.List<java.lang.CharSequence> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueLocalDateTime(java.lang.Object value) {
       validate(fields()[10], value);
       this.valueLocalDateTime = value;
       fieldSetFlags()[10] = true;
@@ -1050,7 +1050,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueLocalTime' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getValueLocalTime() {
+    public java.lang.Object getValueLocalTime() {
       return valueLocalTime;
     }
 
@@ -1060,7 +1060,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueLocalTime'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueLocalTime(java.util.List<java.lang.CharSequence> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueLocalTime(java.lang.Object value) {
       validate(fields()[11], value);
       this.valueLocalTime = value;
       fieldSetFlags()[11] = true;
@@ -1090,7 +1090,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueOffsetDateTime' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getValueOffsetDateTime() {
+    public java.lang.Object getValueOffsetDateTime() {
       return valueOffsetDateTime;
     }
 
@@ -1100,7 +1100,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueOffsetDateTime'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueOffsetDateTime(java.util.List<java.lang.CharSequence> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueOffsetDateTime(java.lang.Object value) {
       validate(fields()[12], value);
       this.valueOffsetDateTime = value;
       fieldSetFlags()[12] = true;
@@ -1130,7 +1130,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * Gets the value of the 'valueZonedDateTime' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getValueZonedDateTime() {
+    public java.lang.Object getValueZonedDateTime() {
       return valueZonedDateTime;
     }
 
@@ -1140,7 +1140,7 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
       * @param value The value of 'valueZonedDateTime'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueZonedDateTime(java.util.List<java.lang.CharSequence> value) {
+    public dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch.Builder setValueZonedDateTime(java.lang.Object value) {
       validate(fields()[13], value);
       this.valueZonedDateTime = value;
       fieldSetFlags()[13] = true;
@@ -1173,18 +1173,18 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
         PatchableRecord_Basic_ListPatch record = new PatchableRecord_Basic_ListPatch();
         record.key = fieldSetFlags()[0] ? this.key : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.version = fieldSetFlags()[1] ? this.version : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.valueBoolean = fieldSetFlags()[2] ? this.valueBoolean : (java.util.List<java.lang.Boolean>) defaultValue(fields()[2]);
-        record.valueShort = fieldSetFlags()[3] ? this.valueShort : (java.util.List<java.lang.Integer>) defaultValue(fields()[3]);
-        record.valueInt = fieldSetFlags()[4] ? this.valueInt : (java.util.List<java.lang.Integer>) defaultValue(fields()[4]);
-        record.valueLong = fieldSetFlags()[5] ? this.valueLong : (java.util.List<java.lang.Long>) defaultValue(fields()[5]);
-        record.valueFloat = fieldSetFlags()[6] ? this.valueFloat : (java.util.List<java.lang.Float>) defaultValue(fields()[6]);
-        record.valueDouble = fieldSetFlags()[7] ? this.valueDouble : (java.util.List<java.lang.Double>) defaultValue(fields()[7]);
-        record.valueString = fieldSetFlags()[8] ? this.valueString : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[8]);
-        record.valueLocalDate = fieldSetFlags()[9] ? this.valueLocalDate : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[9]);
-        record.valueLocalDateTime = fieldSetFlags()[10] ? this.valueLocalDateTime : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[10]);
-        record.valueLocalTime = fieldSetFlags()[11] ? this.valueLocalTime : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[11]);
-        record.valueOffsetDateTime = fieldSetFlags()[12] ? this.valueOffsetDateTime : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[12]);
-        record.valueZonedDateTime = fieldSetFlags()[13] ? this.valueZonedDateTime : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[13]);
+        record.valueBoolean = fieldSetFlags()[2] ? this.valueBoolean :  defaultValue(fields()[2]);
+        record.valueShort = fieldSetFlags()[3] ? this.valueShort :  defaultValue(fields()[3]);
+        record.valueInt = fieldSetFlags()[4] ? this.valueInt :  defaultValue(fields()[4]);
+        record.valueLong = fieldSetFlags()[5] ? this.valueLong :  defaultValue(fields()[5]);
+        record.valueFloat = fieldSetFlags()[6] ? this.valueFloat :  defaultValue(fields()[6]);
+        record.valueDouble = fieldSetFlags()[7] ? this.valueDouble :  defaultValue(fields()[7]);
+        record.valueString = fieldSetFlags()[8] ? this.valueString :  defaultValue(fields()[8]);
+        record.valueLocalDate = fieldSetFlags()[9] ? this.valueLocalDate :  defaultValue(fields()[9]);
+        record.valueLocalDateTime = fieldSetFlags()[10] ? this.valueLocalDateTime :  defaultValue(fields()[10]);
+        record.valueLocalTime = fieldSetFlags()[11] ? this.valueLocalTime :  defaultValue(fields()[11]);
+        record.valueOffsetDateTime = fieldSetFlags()[12] ? this.valueOffsetDateTime :  defaultValue(fields()[12]);
+        record.valueZonedDateTime = fieldSetFlags()[13] ? this.valueZonedDateTime :  defaultValue(fields()[13]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -1212,583 +1212,6 @@ public class PatchableRecord_Basic_ListPatch extends org.apache.avro.specific.Sp
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
-  @Override protected boolean hasCustomCoders() { return true; }
-
-  @Override public void customEncode(org.apache.avro.io.Encoder out)
-    throws java.io.IOException
-  {
-    out.writeString(this.key);
-
-    out.writeString(this.version);
-
-    long size0 = this.valueBoolean.size();
-    out.writeArrayStart();
-    out.setItemCount(size0);
-    long actualSize0 = 0;
-    for (java.lang.Boolean e0: this.valueBoolean) {
-      actualSize0++;
-      out.startItem();
-      out.writeBoolean(e0);
-    }
-    out.writeArrayEnd();
-    if (actualSize0 != size0)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size0 + ", but element count was " + actualSize0 + ".");
-
-    long size1 = this.valueShort.size();
-    out.writeArrayStart();
-    out.setItemCount(size1);
-    long actualSize1 = 0;
-    for (java.lang.Integer e1: this.valueShort) {
-      actualSize1++;
-      out.startItem();
-      out.writeInt(e1);
-    }
-    out.writeArrayEnd();
-    if (actualSize1 != size1)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size1 + ", but element count was " + actualSize1 + ".");
-
-    long size2 = this.valueInt.size();
-    out.writeArrayStart();
-    out.setItemCount(size2);
-    long actualSize2 = 0;
-    for (java.lang.Integer e2: this.valueInt) {
-      actualSize2++;
-      out.startItem();
-      out.writeInt(e2);
-    }
-    out.writeArrayEnd();
-    if (actualSize2 != size2)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size2 + ", but element count was " + actualSize2 + ".");
-
-    long size3 = this.valueLong.size();
-    out.writeArrayStart();
-    out.setItemCount(size3);
-    long actualSize3 = 0;
-    for (java.lang.Long e3: this.valueLong) {
-      actualSize3++;
-      out.startItem();
-      out.writeLong(e3);
-    }
-    out.writeArrayEnd();
-    if (actualSize3 != size3)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size3 + ", but element count was " + actualSize3 + ".");
-
-    long size4 = this.valueFloat.size();
-    out.writeArrayStart();
-    out.setItemCount(size4);
-    long actualSize4 = 0;
-    for (java.lang.Float e4: this.valueFloat) {
-      actualSize4++;
-      out.startItem();
-      out.writeFloat(e4);
-    }
-    out.writeArrayEnd();
-    if (actualSize4 != size4)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size4 + ", but element count was " + actualSize4 + ".");
-
-    long size5 = this.valueDouble.size();
-    out.writeArrayStart();
-    out.setItemCount(size5);
-    long actualSize5 = 0;
-    for (java.lang.Double e5: this.valueDouble) {
-      actualSize5++;
-      out.startItem();
-      out.writeDouble(e5);
-    }
-    out.writeArrayEnd();
-    if (actualSize5 != size5)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size5 + ", but element count was " + actualSize5 + ".");
-
-    long size6 = this.valueString.size();
-    out.writeArrayStart();
-    out.setItemCount(size6);
-    long actualSize6 = 0;
-    for (java.lang.CharSequence e6: this.valueString) {
-      actualSize6++;
-      out.startItem();
-      out.writeString(e6);
-    }
-    out.writeArrayEnd();
-    if (actualSize6 != size6)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size6 + ", but element count was " + actualSize6 + ".");
-
-    long size7 = this.valueLocalDate.size();
-    out.writeArrayStart();
-    out.setItemCount(size7);
-    long actualSize7 = 0;
-    for (java.lang.CharSequence e7: this.valueLocalDate) {
-      actualSize7++;
-      out.startItem();
-      out.writeString(e7);
-    }
-    out.writeArrayEnd();
-    if (actualSize7 != size7)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size7 + ", but element count was " + actualSize7 + ".");
-
-    long size8 = this.valueLocalDateTime.size();
-    out.writeArrayStart();
-    out.setItemCount(size8);
-    long actualSize8 = 0;
-    for (java.lang.CharSequence e8: this.valueLocalDateTime) {
-      actualSize8++;
-      out.startItem();
-      out.writeString(e8);
-    }
-    out.writeArrayEnd();
-    if (actualSize8 != size8)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size8 + ", but element count was " + actualSize8 + ".");
-
-    long size9 = this.valueLocalTime.size();
-    out.writeArrayStart();
-    out.setItemCount(size9);
-    long actualSize9 = 0;
-    for (java.lang.CharSequence e9: this.valueLocalTime) {
-      actualSize9++;
-      out.startItem();
-      out.writeString(e9);
-    }
-    out.writeArrayEnd();
-    if (actualSize9 != size9)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size9 + ", but element count was " + actualSize9 + ".");
-
-    long size10 = this.valueOffsetDateTime.size();
-    out.writeArrayStart();
-    out.setItemCount(size10);
-    long actualSize10 = 0;
-    for (java.lang.CharSequence e10: this.valueOffsetDateTime) {
-      actualSize10++;
-      out.startItem();
-      out.writeString(e10);
-    }
-    out.writeArrayEnd();
-    if (actualSize10 != size10)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size10 + ", but element count was " + actualSize10 + ".");
-
-    long size11 = this.valueZonedDateTime.size();
-    out.writeArrayStart();
-    out.setItemCount(size11);
-    long actualSize11 = 0;
-    for (java.lang.CharSequence e11: this.valueZonedDateTime) {
-      actualSize11++;
-      out.startItem();
-      out.writeString(e11);
-    }
-    out.writeArrayEnd();
-    if (actualSize11 != size11)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size11 + ", but element count was " + actualSize11 + ".");
-
-  }
-
-  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
-    throws java.io.IOException
-  {
-    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
-    if (fieldOrder == null) {
-      this.key = in.readString(this.key instanceof Utf8 ? (Utf8)this.key : null);
-
-      this.version = in.readString(this.version instanceof Utf8 ? (Utf8)this.version : null);
-
-      long size0 = in.readArrayStart();
-      java.util.List<java.lang.Boolean> a0 = this.valueBoolean;
-      if (a0 == null) {
-        a0 = new SpecificData.Array<java.lang.Boolean>((int)size0, SCHEMA$.getField("valueBoolean").schema());
-        this.valueBoolean = a0;
-      } else a0.clear();
-      SpecificData.Array<java.lang.Boolean> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Boolean>)a0 : null);
-      for ( ; 0 < size0; size0 = in.arrayNext()) {
-        for ( ; size0 != 0; size0--) {
-          java.lang.Boolean e0 = (ga0 != null ? ga0.peek() : null);
-          e0 = in.readBoolean();
-          a0.add(e0);
-        }
-      }
-
-      long size1 = in.readArrayStart();
-      java.util.List<java.lang.Integer> a1 = this.valueShort;
-      if (a1 == null) {
-        a1 = new SpecificData.Array<java.lang.Integer>((int)size1, SCHEMA$.getField("valueShort").schema());
-        this.valueShort = a1;
-      } else a1.clear();
-      SpecificData.Array<java.lang.Integer> ga1 = (a1 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Integer>)a1 : null);
-      for ( ; 0 < size1; size1 = in.arrayNext()) {
-        for ( ; size1 != 0; size1--) {
-          java.lang.Integer e1 = (ga1 != null ? ga1.peek() : null);
-          e1 = in.readInt();
-          a1.add(e1);
-        }
-      }
-
-      long size2 = in.readArrayStart();
-      java.util.List<java.lang.Integer> a2 = this.valueInt;
-      if (a2 == null) {
-        a2 = new SpecificData.Array<java.lang.Integer>((int)size2, SCHEMA$.getField("valueInt").schema());
-        this.valueInt = a2;
-      } else a2.clear();
-      SpecificData.Array<java.lang.Integer> ga2 = (a2 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Integer>)a2 : null);
-      for ( ; 0 < size2; size2 = in.arrayNext()) {
-        for ( ; size2 != 0; size2--) {
-          java.lang.Integer e2 = (ga2 != null ? ga2.peek() : null);
-          e2 = in.readInt();
-          a2.add(e2);
-        }
-      }
-
-      long size3 = in.readArrayStart();
-      java.util.List<java.lang.Long> a3 = this.valueLong;
-      if (a3 == null) {
-        a3 = new SpecificData.Array<java.lang.Long>((int)size3, SCHEMA$.getField("valueLong").schema());
-        this.valueLong = a3;
-      } else a3.clear();
-      SpecificData.Array<java.lang.Long> ga3 = (a3 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Long>)a3 : null);
-      for ( ; 0 < size3; size3 = in.arrayNext()) {
-        for ( ; size3 != 0; size3--) {
-          java.lang.Long e3 = (ga3 != null ? ga3.peek() : null);
-          e3 = in.readLong();
-          a3.add(e3);
-        }
-      }
-
-      long size4 = in.readArrayStart();
-      java.util.List<java.lang.Float> a4 = this.valueFloat;
-      if (a4 == null) {
-        a4 = new SpecificData.Array<java.lang.Float>((int)size4, SCHEMA$.getField("valueFloat").schema());
-        this.valueFloat = a4;
-      } else a4.clear();
-      SpecificData.Array<java.lang.Float> ga4 = (a4 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Float>)a4 : null);
-      for ( ; 0 < size4; size4 = in.arrayNext()) {
-        for ( ; size4 != 0; size4--) {
-          java.lang.Float e4 = (ga4 != null ? ga4.peek() : null);
-          e4 = in.readFloat();
-          a4.add(e4);
-        }
-      }
-
-      long size5 = in.readArrayStart();
-      java.util.List<java.lang.Double> a5 = this.valueDouble;
-      if (a5 == null) {
-        a5 = new SpecificData.Array<java.lang.Double>((int)size5, SCHEMA$.getField("valueDouble").schema());
-        this.valueDouble = a5;
-      } else a5.clear();
-      SpecificData.Array<java.lang.Double> ga5 = (a5 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Double>)a5 : null);
-      for ( ; 0 < size5; size5 = in.arrayNext()) {
-        for ( ; size5 != 0; size5--) {
-          java.lang.Double e5 = (ga5 != null ? ga5.peek() : null);
-          e5 = in.readDouble();
-          a5.add(e5);
-        }
-      }
-
-      long size6 = in.readArrayStart();
-      java.util.List<java.lang.CharSequence> a6 = this.valueString;
-      if (a6 == null) {
-        a6 = new SpecificData.Array<java.lang.CharSequence>((int)size6, SCHEMA$.getField("valueString").schema());
-        this.valueString = a6;
-      } else a6.clear();
-      SpecificData.Array<java.lang.CharSequence> ga6 = (a6 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a6 : null);
-      for ( ; 0 < size6; size6 = in.arrayNext()) {
-        for ( ; size6 != 0; size6--) {
-          java.lang.CharSequence e6 = (ga6 != null ? ga6.peek() : null);
-          e6 = in.readString(e6 instanceof Utf8 ? (Utf8)e6 : null);
-          a6.add(e6);
-        }
-      }
-
-      long size7 = in.readArrayStart();
-      java.util.List<java.lang.CharSequence> a7 = this.valueLocalDate;
-      if (a7 == null) {
-        a7 = new SpecificData.Array<java.lang.CharSequence>((int)size7, SCHEMA$.getField("valueLocalDate").schema());
-        this.valueLocalDate = a7;
-      } else a7.clear();
-      SpecificData.Array<java.lang.CharSequence> ga7 = (a7 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a7 : null);
-      for ( ; 0 < size7; size7 = in.arrayNext()) {
-        for ( ; size7 != 0; size7--) {
-          java.lang.CharSequence e7 = (ga7 != null ? ga7.peek() : null);
-          e7 = in.readString(e7 instanceof Utf8 ? (Utf8)e7 : null);
-          a7.add(e7);
-        }
-      }
-
-      long size8 = in.readArrayStart();
-      java.util.List<java.lang.CharSequence> a8 = this.valueLocalDateTime;
-      if (a8 == null) {
-        a8 = new SpecificData.Array<java.lang.CharSequence>((int)size8, SCHEMA$.getField("valueLocalDateTime").schema());
-        this.valueLocalDateTime = a8;
-      } else a8.clear();
-      SpecificData.Array<java.lang.CharSequence> ga8 = (a8 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a8 : null);
-      for ( ; 0 < size8; size8 = in.arrayNext()) {
-        for ( ; size8 != 0; size8--) {
-          java.lang.CharSequence e8 = (ga8 != null ? ga8.peek() : null);
-          e8 = in.readString(e8 instanceof Utf8 ? (Utf8)e8 : null);
-          a8.add(e8);
-        }
-      }
-
-      long size9 = in.readArrayStart();
-      java.util.List<java.lang.CharSequence> a9 = this.valueLocalTime;
-      if (a9 == null) {
-        a9 = new SpecificData.Array<java.lang.CharSequence>((int)size9, SCHEMA$.getField("valueLocalTime").schema());
-        this.valueLocalTime = a9;
-      } else a9.clear();
-      SpecificData.Array<java.lang.CharSequence> ga9 = (a9 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a9 : null);
-      for ( ; 0 < size9; size9 = in.arrayNext()) {
-        for ( ; size9 != 0; size9--) {
-          java.lang.CharSequence e9 = (ga9 != null ? ga9.peek() : null);
-          e9 = in.readString(e9 instanceof Utf8 ? (Utf8)e9 : null);
-          a9.add(e9);
-        }
-      }
-
-      long size10 = in.readArrayStart();
-      java.util.List<java.lang.CharSequence> a10 = this.valueOffsetDateTime;
-      if (a10 == null) {
-        a10 = new SpecificData.Array<java.lang.CharSequence>((int)size10, SCHEMA$.getField("valueOffsetDateTime").schema());
-        this.valueOffsetDateTime = a10;
-      } else a10.clear();
-      SpecificData.Array<java.lang.CharSequence> ga10 = (a10 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a10 : null);
-      for ( ; 0 < size10; size10 = in.arrayNext()) {
-        for ( ; size10 != 0; size10--) {
-          java.lang.CharSequence e10 = (ga10 != null ? ga10.peek() : null);
-          e10 = in.readString(e10 instanceof Utf8 ? (Utf8)e10 : null);
-          a10.add(e10);
-        }
-      }
-
-      long size11 = in.readArrayStart();
-      java.util.List<java.lang.CharSequence> a11 = this.valueZonedDateTime;
-      if (a11 == null) {
-        a11 = new SpecificData.Array<java.lang.CharSequence>((int)size11, SCHEMA$.getField("valueZonedDateTime").schema());
-        this.valueZonedDateTime = a11;
-      } else a11.clear();
-      SpecificData.Array<java.lang.CharSequence> ga11 = (a11 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a11 : null);
-      for ( ; 0 < size11; size11 = in.arrayNext()) {
-        for ( ; size11 != 0; size11--) {
-          java.lang.CharSequence e11 = (ga11 != null ? ga11.peek() : null);
-          e11 = in.readString(e11 instanceof Utf8 ? (Utf8)e11 : null);
-          a11.add(e11);
-        }
-      }
-
-    } else {
-      for (int i = 0; i < 14; i++) {
-        switch (fieldOrder[i].pos()) {
-        case 0:
-          this.key = in.readString(this.key instanceof Utf8 ? (Utf8)this.key : null);
-          break;
-
-        case 1:
-          this.version = in.readString(this.version instanceof Utf8 ? (Utf8)this.version : null);
-          break;
-
-        case 2:
-          long size0 = in.readArrayStart();
-          java.util.List<java.lang.Boolean> a0 = this.valueBoolean;
-          if (a0 == null) {
-            a0 = new SpecificData.Array<java.lang.Boolean>((int)size0, SCHEMA$.getField("valueBoolean").schema());
-            this.valueBoolean = a0;
-          } else a0.clear();
-          SpecificData.Array<java.lang.Boolean> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Boolean>)a0 : null);
-          for ( ; 0 < size0; size0 = in.arrayNext()) {
-            for ( ; size0 != 0; size0--) {
-              java.lang.Boolean e0 = (ga0 != null ? ga0.peek() : null);
-              e0 = in.readBoolean();
-              a0.add(e0);
-            }
-          }
-          break;
-
-        case 3:
-          long size1 = in.readArrayStart();
-          java.util.List<java.lang.Integer> a1 = this.valueShort;
-          if (a1 == null) {
-            a1 = new SpecificData.Array<java.lang.Integer>((int)size1, SCHEMA$.getField("valueShort").schema());
-            this.valueShort = a1;
-          } else a1.clear();
-          SpecificData.Array<java.lang.Integer> ga1 = (a1 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Integer>)a1 : null);
-          for ( ; 0 < size1; size1 = in.arrayNext()) {
-            for ( ; size1 != 0; size1--) {
-              java.lang.Integer e1 = (ga1 != null ? ga1.peek() : null);
-              e1 = in.readInt();
-              a1.add(e1);
-            }
-          }
-          break;
-
-        case 4:
-          long size2 = in.readArrayStart();
-          java.util.List<java.lang.Integer> a2 = this.valueInt;
-          if (a2 == null) {
-            a2 = new SpecificData.Array<java.lang.Integer>((int)size2, SCHEMA$.getField("valueInt").schema());
-            this.valueInt = a2;
-          } else a2.clear();
-          SpecificData.Array<java.lang.Integer> ga2 = (a2 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Integer>)a2 : null);
-          for ( ; 0 < size2; size2 = in.arrayNext()) {
-            for ( ; size2 != 0; size2--) {
-              java.lang.Integer e2 = (ga2 != null ? ga2.peek() : null);
-              e2 = in.readInt();
-              a2.add(e2);
-            }
-          }
-          break;
-
-        case 5:
-          long size3 = in.readArrayStart();
-          java.util.List<java.lang.Long> a3 = this.valueLong;
-          if (a3 == null) {
-            a3 = new SpecificData.Array<java.lang.Long>((int)size3, SCHEMA$.getField("valueLong").schema());
-            this.valueLong = a3;
-          } else a3.clear();
-          SpecificData.Array<java.lang.Long> ga3 = (a3 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Long>)a3 : null);
-          for ( ; 0 < size3; size3 = in.arrayNext()) {
-            for ( ; size3 != 0; size3--) {
-              java.lang.Long e3 = (ga3 != null ? ga3.peek() : null);
-              e3 = in.readLong();
-              a3.add(e3);
-            }
-          }
-          break;
-
-        case 6:
-          long size4 = in.readArrayStart();
-          java.util.List<java.lang.Float> a4 = this.valueFloat;
-          if (a4 == null) {
-            a4 = new SpecificData.Array<java.lang.Float>((int)size4, SCHEMA$.getField("valueFloat").schema());
-            this.valueFloat = a4;
-          } else a4.clear();
-          SpecificData.Array<java.lang.Float> ga4 = (a4 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Float>)a4 : null);
-          for ( ; 0 < size4; size4 = in.arrayNext()) {
-            for ( ; size4 != 0; size4--) {
-              java.lang.Float e4 = (ga4 != null ? ga4.peek() : null);
-              e4 = in.readFloat();
-              a4.add(e4);
-            }
-          }
-          break;
-
-        case 7:
-          long size5 = in.readArrayStart();
-          java.util.List<java.lang.Double> a5 = this.valueDouble;
-          if (a5 == null) {
-            a5 = new SpecificData.Array<java.lang.Double>((int)size5, SCHEMA$.getField("valueDouble").schema());
-            this.valueDouble = a5;
-          } else a5.clear();
-          SpecificData.Array<java.lang.Double> ga5 = (a5 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.Double>)a5 : null);
-          for ( ; 0 < size5; size5 = in.arrayNext()) {
-            for ( ; size5 != 0; size5--) {
-              java.lang.Double e5 = (ga5 != null ? ga5.peek() : null);
-              e5 = in.readDouble();
-              a5.add(e5);
-            }
-          }
-          break;
-
-        case 8:
-          long size6 = in.readArrayStart();
-          java.util.List<java.lang.CharSequence> a6 = this.valueString;
-          if (a6 == null) {
-            a6 = new SpecificData.Array<java.lang.CharSequence>((int)size6, SCHEMA$.getField("valueString").schema());
-            this.valueString = a6;
-          } else a6.clear();
-          SpecificData.Array<java.lang.CharSequence> ga6 = (a6 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a6 : null);
-          for ( ; 0 < size6; size6 = in.arrayNext()) {
-            for ( ; size6 != 0; size6--) {
-              java.lang.CharSequence e6 = (ga6 != null ? ga6.peek() : null);
-              e6 = in.readString(e6 instanceof Utf8 ? (Utf8)e6 : null);
-              a6.add(e6);
-            }
-          }
-          break;
-
-        case 9:
-          long size7 = in.readArrayStart();
-          java.util.List<java.lang.CharSequence> a7 = this.valueLocalDate;
-          if (a7 == null) {
-            a7 = new SpecificData.Array<java.lang.CharSequence>((int)size7, SCHEMA$.getField("valueLocalDate").schema());
-            this.valueLocalDate = a7;
-          } else a7.clear();
-          SpecificData.Array<java.lang.CharSequence> ga7 = (a7 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a7 : null);
-          for ( ; 0 < size7; size7 = in.arrayNext()) {
-            for ( ; size7 != 0; size7--) {
-              java.lang.CharSequence e7 = (ga7 != null ? ga7.peek() : null);
-              e7 = in.readString(e7 instanceof Utf8 ? (Utf8)e7 : null);
-              a7.add(e7);
-            }
-          }
-          break;
-
-        case 10:
-          long size8 = in.readArrayStart();
-          java.util.List<java.lang.CharSequence> a8 = this.valueLocalDateTime;
-          if (a8 == null) {
-            a8 = new SpecificData.Array<java.lang.CharSequence>((int)size8, SCHEMA$.getField("valueLocalDateTime").schema());
-            this.valueLocalDateTime = a8;
-          } else a8.clear();
-          SpecificData.Array<java.lang.CharSequence> ga8 = (a8 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a8 : null);
-          for ( ; 0 < size8; size8 = in.arrayNext()) {
-            for ( ; size8 != 0; size8--) {
-              java.lang.CharSequence e8 = (ga8 != null ? ga8.peek() : null);
-              e8 = in.readString(e8 instanceof Utf8 ? (Utf8)e8 : null);
-              a8.add(e8);
-            }
-          }
-          break;
-
-        case 11:
-          long size9 = in.readArrayStart();
-          java.util.List<java.lang.CharSequence> a9 = this.valueLocalTime;
-          if (a9 == null) {
-            a9 = new SpecificData.Array<java.lang.CharSequence>((int)size9, SCHEMA$.getField("valueLocalTime").schema());
-            this.valueLocalTime = a9;
-          } else a9.clear();
-          SpecificData.Array<java.lang.CharSequence> ga9 = (a9 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a9 : null);
-          for ( ; 0 < size9; size9 = in.arrayNext()) {
-            for ( ; size9 != 0; size9--) {
-              java.lang.CharSequence e9 = (ga9 != null ? ga9.peek() : null);
-              e9 = in.readString(e9 instanceof Utf8 ? (Utf8)e9 : null);
-              a9.add(e9);
-            }
-          }
-          break;
-
-        case 12:
-          long size10 = in.readArrayStart();
-          java.util.List<java.lang.CharSequence> a10 = this.valueOffsetDateTime;
-          if (a10 == null) {
-            a10 = new SpecificData.Array<java.lang.CharSequence>((int)size10, SCHEMA$.getField("valueOffsetDateTime").schema());
-            this.valueOffsetDateTime = a10;
-          } else a10.clear();
-          SpecificData.Array<java.lang.CharSequence> ga10 = (a10 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a10 : null);
-          for ( ; 0 < size10; size10 = in.arrayNext()) {
-            for ( ; size10 != 0; size10--) {
-              java.lang.CharSequence e10 = (ga10 != null ? ga10.peek() : null);
-              e10 = in.readString(e10 instanceof Utf8 ? (Utf8)e10 : null);
-              a10.add(e10);
-            }
-          }
-          break;
-
-        case 13:
-          long size11 = in.readArrayStart();
-          java.util.List<java.lang.CharSequence> a11 = this.valueZonedDateTime;
-          if (a11 == null) {
-            a11 = new SpecificData.Array<java.lang.CharSequence>((int)size11, SCHEMA$.getField("valueZonedDateTime").schema());
-            this.valueZonedDateTime = a11;
-          } else a11.clear();
-          SpecificData.Array<java.lang.CharSequence> ga11 = (a11 instanceof SpecificData.Array ? (SpecificData.Array<java.lang.CharSequence>)a11 : null);
-          for ( ; 0 < size11; size11 = in.arrayNext()) {
-            for ( ; size11 != 0; size11--) {
-              java.lang.CharSequence e11 = (ga11 != null ? ga11.peek() : null);
-              e11 = in.readString(e11 instanceof Utf8 ? (Utf8)e11 : null);
-              a11.add(e11);
-            }
-          }
-          break;
-
-        default:
-          throw new java.io.IOException("Corrupt ResolvingDecoder.");
-        }
-      }
-    }
-  }
 }
 
 

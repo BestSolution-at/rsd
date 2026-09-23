@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4791561283823428237L;
+  private static final long serialVersionUID = 4135201964575487993L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EnumRecord_SubstitutionPatch\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"month\",\"type\":[\"null\",{\"type\":\"enum\",\"name\":\"Month\",\"doc\":\"\",\"symbols\":[\"JANUARY\",\"FEBRUARY\",\"MARCH\",\"APRIL\",\"MAY\",\"JUNE\",\"JULY\",\"AUGUST\",\"SEPTEMBER\",\"OCTOBER\",\"NOVEMBER\",\"DECEMBER\"]}]},{\"name\":\"month_Null\",\"type\":[\"null\",\"Month\",{\"type\":\"enum\",\"name\":\"NULL\",\"symbols\":[\"NULL\"]}]},{\"name\":\"month_Opt\",\"type\":[\"Month\",\"null\"]},{\"name\":\"month_Opt_Null\",\"type\":[\"Month\",\"null\",\"NULL\"]},{\"name\":\"monthList\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}},{\"name\":\"monthList_Null\",\"type\":[{\"type\":\"array\",\"items\":\"Month\"},\"NULL\"]},{\"name\":\"monthList_Opt\",\"type\":[{\"type\":\"array\",\"items\":\"Month\"},\"null\"]},{\"name\":\"monthList_Opt_Null\",\"type\":[{\"type\":\"array\",\"items\":\"Month\"},\"null\",\"NULL\"]},{\"name\":\"dayOfWeek\",\"type\":[\"null\",{\"type\":\"enum\",\"name\":\"DayOfWeek\",\"doc\":\"\",\"symbols\":[\"MONDAY\",\"TUESDAY\",\"WEDNESDAY\",\"THURSDAY\",\"FRIDAY\",\"SATURDAY\",\"SUNDAY\"]}]},{\"name\":\"dayOfWeek_Null\",\"type\":[\"null\",\"DayOfWeek\",\"NULL\"]},{\"name\":\"dayOfWeek_Opt\",\"type\":[\"DayOfWeek\",\"null\"]},{\"name\":\"dayOfWeek_Opt_Null\",\"type\":[\"DayOfWeek\",\"null\",\"NULL\"]},{\"name\":\"dayOfWeekList\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}},{\"name\":\"dayOfWeekList_Null\",\"type\":[{\"type\":\"array\",\"items\":\"DayOfWeek\"},\"NULL\"]},{\"name\":\"dayOfWeekList_Opt\",\"type\":[{\"type\":\"array\",\"items\":\"DayOfWeek\"},\"null\"]},{\"name\":\"dayOfWeekList_Opt_Null\",\"type\":[{\"type\":\"array\",\"items\":\"DayOfWeek\"},\"null\",\"NULL\"]}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EnumRecord_SubstitutionPatch\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"month\",\"type\":[\"null\",{\"type\":\"enum\",\"name\":\"Month\",\"doc\":\"\",\"symbols\":[\"JANUARY\",\"FEBRUARY\",\"MARCH\",\"APRIL\",\"MAY\",\"JUNE\",\"JULY\",\"AUGUST\",\"SEPTEMBER\",\"OCTOBER\",\"NOVEMBER\",\"DECEMBER\"]}]},{\"name\":\"month_Null\",\"type\":[\"null\",\"Month\",{\"type\":\"enum\",\"name\":\"NULL\",\"symbols\":[\"NULL\"]}]},{\"name\":\"month_Opt\",\"type\":[\"Month\",\"null\"]},{\"name\":\"month_Opt_Null\",\"type\":[\"Month\",\"null\",\"NULL\"]},{\"name\":\"monthList\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_monthListPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}}]},{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_monthListPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}}]}]},{\"name\":\"monthList_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_monthList_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}}]},{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_monthList_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}}]}]},{\"name\":\"monthList_Opt\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_monthList_OptPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}}]},{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_monthList_OptPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}}]}]},{\"name\":\"monthList_Opt_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_monthList_Opt_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}}]},{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_monthList_Opt_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"Month\"}}]}]},{\"name\":\"dayOfWeek\",\"type\":[\"null\",{\"type\":\"enum\",\"name\":\"DayOfWeek\",\"doc\":\"\",\"symbols\":[\"MONDAY\",\"TUESDAY\",\"WEDNESDAY\",\"THURSDAY\",\"FRIDAY\",\"SATURDAY\",\"SUNDAY\"]}]},{\"name\":\"dayOfWeek_Null\",\"type\":[\"null\",\"DayOfWeek\",\"NULL\"]},{\"name\":\"dayOfWeek_Opt\",\"type\":[\"DayOfWeek\",\"null\"]},{\"name\":\"dayOfWeek_Opt_Null\",\"type\":[\"DayOfWeek\",\"null\",\"NULL\"]},{\"name\":\"dayOfWeekList\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_dayOfWeekListPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}}]},{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_dayOfWeekListPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}}]}]},{\"name\":\"dayOfWeekList_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_dayOfWeekList_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}}]},{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_dayOfWeekList_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}}]}]},{\"name\":\"dayOfWeekList_Opt\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_dayOfWeekList_OptPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}}]},{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_dayOfWeekList_OptPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}}]}]},{\"name\":\"dayOfWeekList_Opt_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}}]},{\"type\":\"record\",\"name\":\"EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"DayOfWeek\"}}]}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -76,17 +76,17 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
   private java.lang.Object month_Null;
   private dev.rsdlang.sample.avro.Month month_Opt;
   private java.lang.Object month_Opt_Null;
-  private java.util.List<dev.rsdlang.sample.avro.Month> monthList;
+  private java.lang.Object monthList;
   private java.lang.Object monthList_Null;
-  private java.util.List<dev.rsdlang.sample.avro.Month> monthList_Opt;
+  private java.lang.Object monthList_Opt;
   private java.lang.Object monthList_Opt_Null;
   private dev.rsdlang.sample.avro.DayOfWeek dayOfWeek;
   private java.lang.Object dayOfWeek_Null;
   private dev.rsdlang.sample.avro.DayOfWeek dayOfWeek_Opt;
   private java.lang.Object dayOfWeek_Opt_Null;
-  private java.util.List<dev.rsdlang.sample.avro.DayOfWeek> dayOfWeekList;
+  private java.lang.Object dayOfWeekList;
   private java.lang.Object dayOfWeekList_Null;
-  private java.util.List<dev.rsdlang.sample.avro.DayOfWeek> dayOfWeekList_Opt;
+  private java.lang.Object dayOfWeekList_Opt;
   private java.lang.Object dayOfWeekList_Opt_Null;
 
   /**
@@ -115,7 +115,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * @param dayOfWeekList_Opt The new value for dayOfWeekList_Opt
    * @param dayOfWeekList_Opt_Null The new value for dayOfWeekList_Opt_Null
    */
-  public EnumRecord_SubstitutionPatch(dev.rsdlang.sample.avro.Month month, java.lang.Object month_Null, dev.rsdlang.sample.avro.Month month_Opt, java.lang.Object month_Opt_Null, java.util.List<dev.rsdlang.sample.avro.Month> monthList, java.lang.Object monthList_Null, java.util.List<dev.rsdlang.sample.avro.Month> monthList_Opt, java.lang.Object monthList_Opt_Null, dev.rsdlang.sample.avro.DayOfWeek dayOfWeek, java.lang.Object dayOfWeek_Null, dev.rsdlang.sample.avro.DayOfWeek dayOfWeek_Opt, java.lang.Object dayOfWeek_Opt_Null, java.util.List<dev.rsdlang.sample.avro.DayOfWeek> dayOfWeekList, java.lang.Object dayOfWeekList_Null, java.util.List<dev.rsdlang.sample.avro.DayOfWeek> dayOfWeekList_Opt, java.lang.Object dayOfWeekList_Opt_Null) {
+  public EnumRecord_SubstitutionPatch(dev.rsdlang.sample.avro.Month month, java.lang.Object month_Null, dev.rsdlang.sample.avro.Month month_Opt, java.lang.Object month_Opt_Null, java.lang.Object monthList, java.lang.Object monthList_Null, java.lang.Object monthList_Opt, java.lang.Object monthList_Opt_Null, dev.rsdlang.sample.avro.DayOfWeek dayOfWeek, java.lang.Object dayOfWeek_Null, dev.rsdlang.sample.avro.DayOfWeek dayOfWeek_Opt, java.lang.Object dayOfWeek_Opt_Null, java.lang.Object dayOfWeekList, java.lang.Object dayOfWeekList_Null, java.lang.Object dayOfWeekList_Opt, java.lang.Object dayOfWeekList_Opt_Null) {
     this.month = month;
     this.month_Null = month_Null;
     this.month_Opt = month_Opt;
@@ -173,17 +173,17 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
     case 1: month_Null = value$; break;
     case 2: month_Opt = (dev.rsdlang.sample.avro.Month)value$; break;
     case 3: month_Opt_Null = value$; break;
-    case 4: monthList = (java.util.List<dev.rsdlang.sample.avro.Month>)value$; break;
+    case 4: monthList = value$; break;
     case 5: monthList_Null = value$; break;
-    case 6: monthList_Opt = (java.util.List<dev.rsdlang.sample.avro.Month>)value$; break;
+    case 6: monthList_Opt = value$; break;
     case 7: monthList_Opt_Null = value$; break;
     case 8: dayOfWeek = (dev.rsdlang.sample.avro.DayOfWeek)value$; break;
     case 9: dayOfWeek_Null = value$; break;
     case 10: dayOfWeek_Opt = (dev.rsdlang.sample.avro.DayOfWeek)value$; break;
     case 11: dayOfWeek_Opt_Null = value$; break;
-    case 12: dayOfWeekList = (java.util.List<dev.rsdlang.sample.avro.DayOfWeek>)value$; break;
+    case 12: dayOfWeekList = value$; break;
     case 13: dayOfWeekList_Null = value$; break;
-    case 14: dayOfWeekList_Opt = (java.util.List<dev.rsdlang.sample.avro.DayOfWeek>)value$; break;
+    case 14: dayOfWeekList_Opt = value$; break;
     case 15: dayOfWeekList_Opt_Null = value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
@@ -261,7 +261,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * Gets the value of the 'monthList' field.
    * @return The value of the 'monthList' field.
    */
-  public java.util.List<dev.rsdlang.sample.avro.Month> getMonthList() {
+  public java.lang.Object getMonthList() {
     return monthList;
   }
 
@@ -270,7 +270,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * Sets the value of the 'monthList' field.
    * @param value the value to set.
    */
-  public void setMonthList(java.util.List<dev.rsdlang.sample.avro.Month> value) {
+  public void setMonthList(java.lang.Object value) {
     this.monthList = value;
   }
 
@@ -295,7 +295,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * Gets the value of the 'monthList_Opt' field.
    * @return The value of the 'monthList_Opt' field.
    */
-  public java.util.List<dev.rsdlang.sample.avro.Month> getMonthListOpt() {
+  public java.lang.Object getMonthListOpt() {
     return monthList_Opt;
   }
 
@@ -304,7 +304,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * Sets the value of the 'monthList_Opt' field.
    * @param value the value to set.
    */
-  public void setMonthListOpt(java.util.List<dev.rsdlang.sample.avro.Month> value) {
+  public void setMonthListOpt(java.lang.Object value) {
     this.monthList_Opt = value;
   }
 
@@ -397,7 +397,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * Gets the value of the 'dayOfWeekList' field.
    * @return The value of the 'dayOfWeekList' field.
    */
-  public java.util.List<dev.rsdlang.sample.avro.DayOfWeek> getDayOfWeekList() {
+  public java.lang.Object getDayOfWeekList() {
     return dayOfWeekList;
   }
 
@@ -406,7 +406,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * Sets the value of the 'dayOfWeekList' field.
    * @param value the value to set.
    */
-  public void setDayOfWeekList(java.util.List<dev.rsdlang.sample.avro.DayOfWeek> value) {
+  public void setDayOfWeekList(java.lang.Object value) {
     this.dayOfWeekList = value;
   }
 
@@ -431,7 +431,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * Gets the value of the 'dayOfWeekList_Opt' field.
    * @return The value of the 'dayOfWeekList_Opt' field.
    */
-  public java.util.List<dev.rsdlang.sample.avro.DayOfWeek> getDayOfWeekListOpt() {
+  public java.lang.Object getDayOfWeekListOpt() {
     return dayOfWeekList_Opt;
   }
 
@@ -440,7 +440,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
    * Sets the value of the 'dayOfWeekList_Opt' field.
    * @param value the value to set.
    */
-  public void setDayOfWeekListOpt(java.util.List<dev.rsdlang.sample.avro.DayOfWeek> value) {
+  public void setDayOfWeekListOpt(java.lang.Object value) {
     this.dayOfWeekList_Opt = value;
   }
 
@@ -506,17 +506,17 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
     private java.lang.Object month_Null;
     private dev.rsdlang.sample.avro.Month month_Opt;
     private java.lang.Object month_Opt_Null;
-    private java.util.List<dev.rsdlang.sample.avro.Month> monthList;
+    private java.lang.Object monthList;
     private java.lang.Object monthList_Null;
-    private java.util.List<dev.rsdlang.sample.avro.Month> monthList_Opt;
+    private java.lang.Object monthList_Opt;
     private java.lang.Object monthList_Opt_Null;
     private dev.rsdlang.sample.avro.DayOfWeek dayOfWeek;
     private java.lang.Object dayOfWeek_Null;
     private dev.rsdlang.sample.avro.DayOfWeek dayOfWeek_Opt;
     private java.lang.Object dayOfWeek_Opt_Null;
-    private java.util.List<dev.rsdlang.sample.avro.DayOfWeek> dayOfWeekList;
+    private java.lang.Object dayOfWeekList;
     private java.lang.Object dayOfWeekList_Null;
-    private java.util.List<dev.rsdlang.sample.avro.DayOfWeek> dayOfWeekList_Opt;
+    private java.lang.Object dayOfWeekList_Opt;
     private java.lang.Object dayOfWeekList_Opt_Null;
 
     /** Creates a new Builder */
@@ -832,7 +832,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
       * Gets the value of the 'monthList' field.
       * @return The value.
       */
-    public java.util.List<dev.rsdlang.sample.avro.Month> getMonthList() {
+    public java.lang.Object getMonthList() {
       return monthList;
     }
 
@@ -842,7 +842,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
       * @param value The value of 'monthList'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.EnumRecord_SubstitutionPatch.Builder setMonthList(java.util.List<dev.rsdlang.sample.avro.Month> value) {
+    public dev.rsdlang.sample.avro.EnumRecord_SubstitutionPatch.Builder setMonthList(java.lang.Object value) {
       validate(fields()[4], value);
       this.monthList = value;
       fieldSetFlags()[4] = true;
@@ -912,7 +912,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
       * Gets the value of the 'monthList_Opt' field.
       * @return The value.
       */
-    public java.util.List<dev.rsdlang.sample.avro.Month> getMonthListOpt() {
+    public java.lang.Object getMonthListOpt() {
       return monthList_Opt;
     }
 
@@ -922,7 +922,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
       * @param value The value of 'monthList_Opt'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.EnumRecord_SubstitutionPatch.Builder setMonthListOpt(java.util.List<dev.rsdlang.sample.avro.Month> value) {
+    public dev.rsdlang.sample.avro.EnumRecord_SubstitutionPatch.Builder setMonthListOpt(java.lang.Object value) {
       validate(fields()[6], value);
       this.monthList_Opt = value;
       fieldSetFlags()[6] = true;
@@ -1152,7 +1152,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
       * Gets the value of the 'dayOfWeekList' field.
       * @return The value.
       */
-    public java.util.List<dev.rsdlang.sample.avro.DayOfWeek> getDayOfWeekList() {
+    public java.lang.Object getDayOfWeekList() {
       return dayOfWeekList;
     }
 
@@ -1162,7 +1162,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
       * @param value The value of 'dayOfWeekList'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.EnumRecord_SubstitutionPatch.Builder setDayOfWeekList(java.util.List<dev.rsdlang.sample.avro.DayOfWeek> value) {
+    public dev.rsdlang.sample.avro.EnumRecord_SubstitutionPatch.Builder setDayOfWeekList(java.lang.Object value) {
       validate(fields()[12], value);
       this.dayOfWeekList = value;
       fieldSetFlags()[12] = true;
@@ -1232,7 +1232,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
       * Gets the value of the 'dayOfWeekList_Opt' field.
       * @return The value.
       */
-    public java.util.List<dev.rsdlang.sample.avro.DayOfWeek> getDayOfWeekListOpt() {
+    public java.lang.Object getDayOfWeekListOpt() {
       return dayOfWeekList_Opt;
     }
 
@@ -1242,7 +1242,7 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
       * @param value The value of 'dayOfWeekList_Opt'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.EnumRecord_SubstitutionPatch.Builder setDayOfWeekListOpt(java.util.List<dev.rsdlang.sample.avro.DayOfWeek> value) {
+    public dev.rsdlang.sample.avro.EnumRecord_SubstitutionPatch.Builder setDayOfWeekListOpt(java.lang.Object value) {
       validate(fields()[14], value);
       this.dayOfWeekList_Opt = value;
       fieldSetFlags()[14] = true;
@@ -1317,17 +1317,17 @@ public class EnumRecord_SubstitutionPatch extends org.apache.avro.specific.Speci
         record.month_Null = fieldSetFlags()[1] ? this.month_Null :  defaultValue(fields()[1]);
         record.month_Opt = fieldSetFlags()[2] ? this.month_Opt : (dev.rsdlang.sample.avro.Month) defaultValue(fields()[2]);
         record.month_Opt_Null = fieldSetFlags()[3] ? this.month_Opt_Null :  defaultValue(fields()[3]);
-        record.monthList = fieldSetFlags()[4] ? this.monthList : (java.util.List<dev.rsdlang.sample.avro.Month>) defaultValue(fields()[4]);
+        record.monthList = fieldSetFlags()[4] ? this.monthList :  defaultValue(fields()[4]);
         record.monthList_Null = fieldSetFlags()[5] ? this.monthList_Null :  defaultValue(fields()[5]);
-        record.monthList_Opt = fieldSetFlags()[6] ? this.monthList_Opt : (java.util.List<dev.rsdlang.sample.avro.Month>) defaultValue(fields()[6]);
+        record.monthList_Opt = fieldSetFlags()[6] ? this.monthList_Opt :  defaultValue(fields()[6]);
         record.monthList_Opt_Null = fieldSetFlags()[7] ? this.monthList_Opt_Null :  defaultValue(fields()[7]);
         record.dayOfWeek = fieldSetFlags()[8] ? this.dayOfWeek : (dev.rsdlang.sample.avro.DayOfWeek) defaultValue(fields()[8]);
         record.dayOfWeek_Null = fieldSetFlags()[9] ? this.dayOfWeek_Null :  defaultValue(fields()[9]);
         record.dayOfWeek_Opt = fieldSetFlags()[10] ? this.dayOfWeek_Opt : (dev.rsdlang.sample.avro.DayOfWeek) defaultValue(fields()[10]);
         record.dayOfWeek_Opt_Null = fieldSetFlags()[11] ? this.dayOfWeek_Opt_Null :  defaultValue(fields()[11]);
-        record.dayOfWeekList = fieldSetFlags()[12] ? this.dayOfWeekList : (java.util.List<dev.rsdlang.sample.avro.DayOfWeek>) defaultValue(fields()[12]);
+        record.dayOfWeekList = fieldSetFlags()[12] ? this.dayOfWeekList :  defaultValue(fields()[12]);
         record.dayOfWeekList_Null = fieldSetFlags()[13] ? this.dayOfWeekList_Null :  defaultValue(fields()[13]);
-        record.dayOfWeekList_Opt = fieldSetFlags()[14] ? this.dayOfWeekList_Opt : (java.util.List<dev.rsdlang.sample.avro.DayOfWeek>) defaultValue(fields()[14]);
+        record.dayOfWeekList_Opt = fieldSetFlags()[14] ? this.dayOfWeekList_Opt :  defaultValue(fields()[14]);
         record.dayOfWeekList_Opt_Null = fieldSetFlags()[15] ? this.dayOfWeekList_Opt_Null :  defaultValue(fields()[15]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {

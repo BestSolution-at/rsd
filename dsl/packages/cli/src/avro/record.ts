@@ -170,7 +170,7 @@ function computePropertyType_InlineEnum(prop: MPropertyInlineProperty, recordNam
 }
 
 function mapPatchableProperty(prop: MResolvedPropery, recordName: string): AvroField {
-	if (prop.variant === 'record' || prop.variant === 'union') {
+	if (prop.variant === 'record' || prop.variant === 'union' || prop.array) {
 		if (prop.array) {
 			const type: AvroType[] = ['null'];
 			if (prop.nullable || prop.optional) {
@@ -197,12 +197,10 @@ function mapPatchableProperty(prop: MResolvedPropery, recordName: string): AvroF
 		}
 	} else {
 		const rv = mapProperty(prop, recordName);
-		if (!prop.array) {
-			if (typeof rv.type === 'string') {
-				rv.type = ['null', rv.type];
-			} else if (Array.isArray(rv.type) && !rv.type.includes('null')) {
-				rv.type = ['null', ...rv.type];
-			}
+		if (typeof rv.type === 'string') {
+			rv.type = ['null', rv.type];
+		} else if (Array.isArray(rv.type) && !rv.type.includes('null')) {
+			rv.type = ['null', ...rv.type];
 		}
 		return rv;
 	}

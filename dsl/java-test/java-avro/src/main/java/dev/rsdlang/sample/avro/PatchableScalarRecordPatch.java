@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class PatchableScalarRecordPatch extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -8644395980500709705L;
+  private static final long serialVersionUID = 5794175075542649449L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PatchableScalarRecordPatch\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"key\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"value\",\"type\":[\"null\",\"string\"]},{\"name\":\"value_Null\",\"type\":[\"null\",\"string\",{\"type\":\"enum\",\"name\":\"NULL\",\"symbols\":[\"NULL\"]}]},{\"name\":\"value_Opt\",\"type\":[\"string\",\"null\"]},{\"name\":\"value_Opt_Null\",\"type\":[\"string\",\"null\",\"NULL\"]},{\"name\":\"list\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"list_Null\",\"type\":[{\"type\":\"array\",\"items\":\"string\"},\"NULL\"]},{\"name\":\"list_Opt\",\"type\":[{\"type\":\"array\",\"items\":\"string\"},\"null\"]},{\"name\":\"list_Opt_Null\",\"type\":[{\"type\":\"array\",\"items\":\"string\"},\"null\",\"NULL\"]}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PatchableScalarRecordPatch\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"key\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"value\",\"type\":[\"null\",\"string\"]},{\"name\":\"value_Null\",\"type\":[\"null\",\"string\",{\"type\":\"enum\",\"name\":\"NULL\",\"symbols\":[\"NULL\"]}]},{\"name\":\"value_Opt\",\"type\":[\"string\",\"null\"]},{\"name\":\"value_Opt_Null\",\"type\":[\"string\",\"null\",\"NULL\"]},{\"name\":\"list\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableScalarRecord_listPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableScalarRecord_listPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]},{\"name\":\"list_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"PatchableScalarRecord_list_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableScalarRecord_list_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]},{\"name\":\"list_Opt\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"PatchableScalarRecord_list_OptPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableScalarRecord_list_OptPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]},{\"name\":\"list_Opt_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"PatchableScalarRecord_list_Opt_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]},{\"type\":\"record\",\"name\":\"PatchableScalarRecord_list_Opt_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"string\"}}]}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -78,9 +78,9 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
   private java.lang.Object value_Null;
   private java.lang.CharSequence value_Opt;
   private java.lang.Object value_Opt_Null;
-  private java.util.List<java.lang.CharSequence> list;
+  private java.lang.Object list;
   private java.lang.Object list_Null;
-  private java.util.List<java.lang.CharSequence> list_Opt;
+  private java.lang.Object list_Opt;
   private java.lang.Object list_Opt_Null;
 
   /**
@@ -103,7 +103,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
    * @param list_Opt The new value for list_Opt
    * @param list_Opt_Null The new value for list_Opt_Null
    */
-  public PatchableScalarRecordPatch(java.lang.CharSequence key, java.lang.CharSequence version, java.lang.CharSequence value, java.lang.Object value_Null, java.lang.CharSequence value_Opt, java.lang.Object value_Opt_Null, java.util.List<java.lang.CharSequence> list, java.lang.Object list_Null, java.util.List<java.lang.CharSequence> list_Opt, java.lang.Object list_Opt_Null) {
+  public PatchableScalarRecordPatch(java.lang.CharSequence key, java.lang.CharSequence version, java.lang.CharSequence value, java.lang.Object value_Null, java.lang.CharSequence value_Opt, java.lang.Object value_Opt_Null, java.lang.Object list, java.lang.Object list_Null, java.lang.Object list_Opt, java.lang.Object list_Opt_Null) {
     this.key = key;
     this.version = version;
     this.value = value;
@@ -151,9 +151,9 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
     case 3: value_Null = value$; break;
     case 4: value_Opt = (java.lang.CharSequence)value$; break;
     case 5: value_Opt_Null = value$; break;
-    case 6: list = (java.util.List<java.lang.CharSequence>)value$; break;
+    case 6: list = value$; break;
     case 7: list_Null = value$; break;
-    case 8: list_Opt = (java.util.List<java.lang.CharSequence>)value$; break;
+    case 8: list_Opt = value$; break;
     case 9: list_Opt_Null = value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
@@ -265,7 +265,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
    * Gets the value of the 'list' field.
    * @return The value of the 'list' field.
    */
-  public java.util.List<java.lang.CharSequence> getList() {
+  public java.lang.Object getList() {
     return list;
   }
 
@@ -274,7 +274,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
    * Sets the value of the 'list' field.
    * @param value the value to set.
    */
-  public void setList(java.util.List<java.lang.CharSequence> value) {
+  public void setList(java.lang.Object value) {
     this.list = value;
   }
 
@@ -299,7 +299,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
    * Gets the value of the 'list_Opt' field.
    * @return The value of the 'list_Opt' field.
    */
-  public java.util.List<java.lang.CharSequence> getListOpt() {
+  public java.lang.Object getListOpt() {
     return list_Opt;
   }
 
@@ -308,7 +308,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
    * Sets the value of the 'list_Opt' field.
    * @param value the value to set.
    */
-  public void setListOpt(java.util.List<java.lang.CharSequence> value) {
+  public void setListOpt(java.lang.Object value) {
     this.list_Opt = value;
   }
 
@@ -376,9 +376,9 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
     private java.lang.Object value_Null;
     private java.lang.CharSequence value_Opt;
     private java.lang.Object value_Opt_Null;
-    private java.util.List<java.lang.CharSequence> list;
+    private java.lang.Object list;
     private java.lang.Object list_Null;
-    private java.util.List<java.lang.CharSequence> list_Opt;
+    private java.lang.Object list_Opt;
     private java.lang.Object list_Opt_Null;
 
     /** Creates a new Builder */
@@ -726,7 +726,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
       * Gets the value of the 'list' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getList() {
+    public java.lang.Object getList() {
       return list;
     }
 
@@ -736,7 +736,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
       * @param value The value of 'list'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableScalarRecordPatch.Builder setList(java.util.List<java.lang.CharSequence> value) {
+    public dev.rsdlang.sample.avro.PatchableScalarRecordPatch.Builder setList(java.lang.Object value) {
       validate(fields()[6], value);
       this.list = value;
       fieldSetFlags()[6] = true;
@@ -806,7 +806,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
       * Gets the value of the 'list_Opt' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getListOpt() {
+    public java.lang.Object getListOpt() {
       return list_Opt;
     }
 
@@ -816,7 +816,7 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
       * @param value The value of 'list_Opt'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableScalarRecordPatch.Builder setListOpt(java.util.List<java.lang.CharSequence> value) {
+    public dev.rsdlang.sample.avro.PatchableScalarRecordPatch.Builder setListOpt(java.lang.Object value) {
       validate(fields()[8], value);
       this.list_Opt = value;
       fieldSetFlags()[8] = true;
@@ -893,9 +893,9 @@ public class PatchableScalarRecordPatch extends org.apache.avro.specific.Specifi
         record.value_Null = fieldSetFlags()[3] ? this.value_Null :  defaultValue(fields()[3]);
         record.value_Opt = fieldSetFlags()[4] ? this.value_Opt : (java.lang.CharSequence) defaultValue(fields()[4]);
         record.value_Opt_Null = fieldSetFlags()[5] ? this.value_Opt_Null :  defaultValue(fields()[5]);
-        record.list = fieldSetFlags()[6] ? this.list : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[6]);
+        record.list = fieldSetFlags()[6] ? this.list :  defaultValue(fields()[6]);
         record.list_Null = fieldSetFlags()[7] ? this.list_Null :  defaultValue(fields()[7]);
-        record.list_Opt = fieldSetFlags()[8] ? this.list_Opt : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[8]);
+        record.list_Opt = fieldSetFlags()[8] ? this.list_Opt :  defaultValue(fields()[8]);
         record.list_Opt_Null = fieldSetFlags()[9] ? this.list_Opt_Null :  defaultValue(fields()[9]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
