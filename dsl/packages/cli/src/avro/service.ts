@@ -31,7 +31,7 @@ export function generateProtocolContent(
 	const messages: Record<string, AvroMessage> = {};
 
 	for (const operation of service.operations) {
-		messages[operation.name] = mapOperationToAvroMessage(operation, model);
+		messages[operation.name] = mapOperationToAvroMessage(operation, service.name, model);
 	}
 
 	const recordTypes = model.elements
@@ -62,9 +62,15 @@ export function generateProtocolContent(
 	};
 }
 
-function mapOperationToAvroMessage(operation: MResolvedOperation, model: MResolvedRSDModel): AvroMessage {
+function mapOperationToAvroMessage(
+	operation: MResolvedOperation,
+	serviceName: string,
+	model: MResolvedRSDModel,
+): AvroMessage {
 	return {
-		request: operation.parameters.map(parameter => mapToRequestParameters(parameter, operation.name, model)),
+		request: operation.parameters.map(parameter =>
+			mapToRequestParameters(parameter, operation.name, serviceName, model),
+		),
 		response: mapReturnType(operation.resultType, operation.name, model),
 		doc: operation.doc,
 		errors: operation.operationErrors.length > 0 ? operation.operationErrors.map(error => error.error) : undefined,
@@ -74,6 +80,7 @@ function mapOperationToAvroMessage(operation: MResolvedOperation, model: MResolv
 function mapToRequestParameters(
 	parameter: MParameter,
 	operationName: string,
+	serviceName: string,
 	model: MResolvedRSDModel,
 ): AvroRequestParameter {
 	if (isMParameterNoneInlineEnumType(parameter)) {
@@ -86,7 +93,7 @@ function mapToRequestParameters(
 					type: 'array',
 					items: {
 						type: 'enum',
-						name: `${parameter.name}_Enum`,
+						name: `${serviceName}_${operationName}_${parameter.name}_Enum`,
 						symbols: parameter.type.entries.map(e => e.name),
 					},
 				},
@@ -96,7 +103,7 @@ function mapToRequestParameters(
 				name: parameter.name,
 				type: {
 					type: 'enum',
-					name: `${operationName}_${parameter.name}_Enum`,
+					name: `${serviceName}_${operationName}_${parameter.name}_Enum`,
 					symbols: parameter.type.entries.map(e => e.name),
 				},
 			};

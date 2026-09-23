@@ -668,7 +668,7 @@ export type JavaRestClientJDKGeneratorConfig = ArtifactGeneratorConfig & {
 	/** @deprecated */
 	nativeTypeSubstitues?: Record<string, string>;
 	nativeTypeSubstitutes?: JavaNativeTypeSubstitutes;
-	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
+	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack' | 'application/avro')[];
 };
 
 export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
@@ -678,7 +678,7 @@ export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
 	nativeTypeSubstitues?: Record<string, string>;
 	nativeTypeSubstitutes?: JavaNativeTypeSubstitutes;
 	scopeValues?: { type: string; name: string }[];
-	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
+	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack' | 'application/avro')[];
 };
 
 export type JavaServerGeneratorConfig = ArtifactGeneratorConfig & {

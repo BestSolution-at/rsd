@@ -13,7 +13,7 @@ import { generateRecordContent } from './record.js';
 import { generateEnum } from './enum.js';
 import { generateProtocolContent } from './service.js';
 
-export type AvroGeneratorConfig = ArtifactGenerationConfig & {
+export type AvroGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
 	specFileName: string;
 	generateProtocols?: boolean;

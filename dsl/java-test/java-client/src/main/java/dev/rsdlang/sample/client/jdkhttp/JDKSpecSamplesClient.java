@@ -156,7 +156,8 @@ import dev.rsdlang.sample.client.SpecSamplesClient;
 public class JDKSpecSamplesClient implements SpecSamplesClient {
 	public enum ContentTypeEncoding {
 		APPLICATION_JSON("application/json"),
-		APPLICATION_VND_MSGPACK("application/vnd.msgpack");
+		APPLICATION_VND_MSGPACK("application/vnd.msgpack"),
+		APPLICATION_AVRO("application/avro");
 
 		public final String contentType;
 

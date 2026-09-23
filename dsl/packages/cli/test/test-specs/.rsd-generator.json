@@ -64,7 +64,7 @@
                     "toJson": "::toString"
                 }
             },
-            "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
+            "contentTypeEncodings": ["application/json", "application/vnd.msgpack", "application/avro"]
         },
         {
             "name": "java-server-base",
@@ -119,7 +119,7 @@
         },
 				{
 					"name": "avro",
-					"targetFolder": "./gen-out/avro",
+					"targetFolder": "../../../../java-test/java-avro/src/main/avro",
 					"specFileName": "sample",
 					"generateProtocols": true,
 					"namespace": "dev.rsdlang.sample.avro"
