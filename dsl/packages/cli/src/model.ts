@@ -216,6 +216,10 @@ export function isMPropertyNoneInlineProperty(value: MProperty): value is MPrope
 	);
 }
 
+export function isMPropertyBuiltin<T extends MProperty>(value: T): value is T & { type: MBuiltinType } {
+	return value.variant === 'builtin';
+}
+
 export function isMPropertyInlineResolvedProperty(
 	value: unknown,
 ): value is MPropertyNoneInlineProperty & MResolvedPropery {

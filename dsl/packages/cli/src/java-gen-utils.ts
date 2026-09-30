@@ -862,3 +862,15 @@ export function primitiveToObject(type: string) {
 export type ImportGroup = {
 	readonly imports: readonly string[];
 };
+
+export function OptionalType(fqn: (type: string) => string) {
+	return fqn('java.util.Optional');
+}
+
+export function NillableType(fqn: (type: string) => string, basePackageName: string) {
+	return _BaseType(fqn, basePackageName) + '.Nillable';
+}
+
+export function _BaseType(fqn: (type: string) => string, basePackageName: string) {
+	return fqn(`${basePackageName}._Base`);
+}

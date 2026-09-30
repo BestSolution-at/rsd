@@ -522,6 +522,13 @@ public class _AvroUtils {
 		throw new IllegalArgumentException("Expected Number but got: " + value.getClass().getName());
 	}
 
+	public static int mapInteger(Object value) {
+		if (value instanceof Number n) {
+			return n.intValue();
+		}
+		throw new IllegalArgumentException("Expected Number but got: " + value.getClass().getName());
+	}
+
 	// ----------------
 	public static Optional<List<Long>> mapNullLongs(GenericRecord object, String property) {
 		return mapToNullStream(object, property, Number.class, v -> v.longValue()).map(Stream::toList);
@@ -846,7 +853,7 @@ public class _AvroUtils {
 		return mapLiteral(object, property, ZonedDateTime::parse);
 	}
 
-	public static ZonedDateTime mapZonedDateTime(GenericRecord value) {
+	public static ZonedDateTime mapZonedDateTime(Object value) {
 		return mapLiteral(value, ZonedDateTime::parse);
 	}
 

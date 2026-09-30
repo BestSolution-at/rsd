@@ -52,68 +52,82 @@ export function generatePatchPropertyAccessor(
 	basePackageName: string,
 	fqn: (type: string) => string,
 ) {
-	const node = new CompositeGeneratorNode();
+	return new CompositeGeneratorNode(
+		generatePatchPropertyAccessorSignatur(property, nativeTypeSubstitutes, basePackageName, fqn) + ';',
+		NL,
+	);
+}
+
+export function generatePatchPropertyAccessorSignatur(
+	property: MResolvedBaseProperty,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
 	if (isMKeyProperty(property) || isMRevisionProperty(property)) {
 		const type = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
 			withArray: false,
 			withOptional: false,
 		});
-		node.append(`public ${type} ${property.name}();`, NL);
+		return `public ${type} ${property.name}()`;
 	} else if (
 		property.variant === 'builtin' ||
 		property.variant === 'enum' ||
 		property.variant === 'inline-enum' ||
 		property.variant === 'scalar'
 	) {
-		let type = primitiveToObject(
-			computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
-				withArray: false,
-				withOptional: false,
-			}),
-		);
+		let type;
 
 		if (property.array) {
 			type = `${toFirstUpper(property.name)}Change`;
+		} else {
+			type = primitiveToObject(
+				computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
+					withArray: false,
+					withOptional: false,
+				}),
+			);
 		}
 
 		if (property.optional || property.nullable) {
-			node.append(`public _Base.Nillable<${type}> ${property.name}();`, NL);
+			const _Base = fqn(`${basePackageName}._Base`);
+			return `public ${_Base}.Nillable<${type}> ${property.name}()`;
 		} else {
 			if (type === 'Integer') {
 				const Optional = fqn('java.util.OptionalInt');
-				node.append(`public ${Optional} ${property.name}();`, NL);
+				return `public ${Optional} ${property.name}()`;
 			} else if (type === 'Long') {
 				const Optional = fqn('java.util.OptionalLong');
-				node.append(`public ${Optional} ${property.name}();`, NL);
+				return `public ${Optional} ${property.name}()`;
 			} else if (type === 'Double') {
 				const Optional = fqn('java.util.OptionalDouble');
-				node.append(`public ${Optional} ${property.name}();`, NL);
+				return `public ${Optional} ${property.name}()`;
 			} else {
 				const Optional = fqn('java.util.Optional');
-				node.append(`public ${Optional}<${type}> ${property.name}();`, NL);
+				return `public ${Optional}<${type}> ${property.name}()`;
 			}
 		}
 	} else {
-		let type = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
-			withArray: false,
-			withOptional: false,
-		});
+		let type;
 
 		if (property.array) {
 			type = `${toFirstUpper(property.name)}Change`;
 		} else {
+			type = computeAPITypeNG(property, nativeTypeSubstitutes, basePackageName, fqn, {
+				withArray: false,
+				withOptional: false,
+			});
 			type = `${basePackageName}.${property.type}`;
 		}
 
 		if (property.optional || property.nullable) {
-			node.append(`public _Base.Nillable<${type}> ${property.name}();`, NL);
+			const _Base = fqn(`${basePackageName}._Base`);
+			return `public ${_Base}.Nillable<${type}> ${property.name}()`;
 		} else {
 			const Optional = fqn('java.util.Optional');
-			node.append(`public ${Optional}<${type}> ${property.name}();`, NL);
+			return `public ${Optional}<${type}> ${property.name}()`;
 		}
 	}
-
-	return node;
 }
 
 export function generatePatchBuilderPropertyAccessor(
