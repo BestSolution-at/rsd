@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 
 import dev.rsdlang.sample.avro.SimpleRecord;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion;
@@ -21,6 +26,7 @@ public class GenerateTestFiles {
 		SimpleRecord();
 		SimpleRecord_KeyVersion_Int_Int();
 		SimpleRecord_KeyVersion();
+		SimpleRecord_Basic();
 	}
 
 	private static void SimpleRecord() {
@@ -43,6 +49,24 @@ public class GenerateTestFiles {
 		record.setKey("2");
 		record.setVersion("2");
 		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord_KeyVersion.Data.avro"));
+	}
+
+	private static void SimpleRecord_Basic() {
+		var record = new dev.rsdlang.sample.avro.SimpleRecord_Basic();
+		record.setValueBoolean(false);
+		record.setValueDouble(Double.MAX_VALUE);
+		record.setValueFloat(Float.MAX_VALUE);
+		record.setValueInt(Integer.MAX_VALUE);
+		record.setValueLocalDate(LocalDate.parse("2020-01-01").toString());
+		record.setValueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00").toString());
+		record.setValueLocalTime(LocalTime.parse("10:00").toString());
+		record.setValueLong(Long.MAX_VALUE);
+		record.setValueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00").toString());
+		record.setValueShort(Short.MAX_VALUE);
+		record.setValueString("the string value");
+		record.setValueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]").toString());
+
+		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord_Basic.Data.avro"));
 	}
 
 	private static <T extends SpecificRecordBase> void persist(T record, Path path) {
