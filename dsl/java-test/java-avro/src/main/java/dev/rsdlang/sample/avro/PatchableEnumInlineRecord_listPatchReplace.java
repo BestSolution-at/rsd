@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -4020641321080494619L;
+  private static final long serialVersionUID = 7447926919624655450L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_listPatchReplace\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_list_Enum\",\"symbols\":[\"A\",\"B\"]}}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_listPatchReplace\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_list\",\"symbols\":[\"A\",\"B\"]}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -72,7 +72,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
     return DECODER.decode(b);
   }
 
-  private java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> elements;
+  private java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> elements;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -85,7 +85,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
    * All-args constructor.
    * @param elements The new value for elements
    */
-  public PatchableEnumInlineRecord_listPatchReplace(java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> elements) {
+  public PatchableEnumInlineRecord_listPatchReplace(java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> elements) {
     this.elements = elements;
   }
 
@@ -109,7 +109,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: elements = (java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum>)value$; break;
+    case 0: elements = (java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list>)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -118,7 +118,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
    * Gets the value of the 'elements' field.
    * @return The value of the 'elements' field.
    */
-  public java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> getElements() {
+  public java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> getElements() {
     return elements;
   }
 
@@ -127,7 +127,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
    * Sets the value of the 'elements' field.
    * @param value the value to set.
    */
-  public void setElements(java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> value) {
+  public void setElements(java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> value) {
     this.elements = value;
   }
 
@@ -172,7 +172,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<PatchableEnumInlineRecord_listPatchReplace>
     implements org.apache.avro.data.RecordBuilder<PatchableEnumInlineRecord_listPatchReplace> {
 
-    private java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> elements;
+    private java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> elements;
 
     /** Creates a new Builder */
     private Builder() {
@@ -207,7 +207,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
       * Gets the value of the 'elements' field.
       * @return The value.
       */
-    public java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> getElements() {
+    public java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> getElements() {
       return elements;
     }
 
@@ -217,7 +217,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
       * @param value The value of 'elements'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_listPatchReplace.Builder setElements(java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> value) {
+    public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_listPatchReplace.Builder setElements(java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> value) {
       validate(fields()[0], value);
       this.elements = value;
       fieldSetFlags()[0] = true;
@@ -248,7 +248,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
     public PatchableEnumInlineRecord_listPatchReplace build() {
       try {
         PatchableEnumInlineRecord_listPatchReplace record = new PatchableEnumInlineRecord_listPatchReplace();
-        record.elements = fieldSetFlags()[0] ? this.elements : (java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum>) defaultValue(fields()[0]);
+        record.elements = fieldSetFlags()[0] ? this.elements : (java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list>) defaultValue(fields()[0]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -285,7 +285,7 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
     out.writeArrayStart();
     out.setItemCount(size0);
     long actualSize0 = 0;
-    for (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum e0: this.elements) {
+    for (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list e0: this.elements) {
       actualSize0++;
       out.startItem();
       out.writeEnum(e0.ordinal());
@@ -302,16 +302,16 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
       long size0 = in.readArrayStart();
-      java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> a0 = this.elements;
+      java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> a0 = this.elements;
       if (a0 == null) {
-        a0 = new SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum>((int)size0, SCHEMA$.getField("elements").schema());
+        a0 = new SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list>((int)size0, SCHEMA$.getField("elements").schema());
         this.elements = a0;
       } else a0.clear();
-      SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum>)a0 : null);
+      SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list>)a0 : null);
       for ( ; 0 < size0; size0 = in.arrayNext()) {
         for ( ; size0 != 0; size0--) {
-          dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum e0 = (ga0 != null ? ga0.peek() : null);
-          e0 = dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum.values()[in.readEnum()];
+          dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list e0 = (ga0 != null ? ga0.peek() : null);
+          e0 = dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list.values()[in.readEnum()];
           a0.add(e0);
         }
       }
@@ -321,16 +321,16 @@ public class PatchableEnumInlineRecord_listPatchReplace extends org.apache.avro.
         switch (fieldOrder[i].pos()) {
         case 0:
           long size0 = in.readArrayStart();
-          java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> a0 = this.elements;
+          java.util.List<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> a0 = this.elements;
           if (a0 == null) {
-            a0 = new SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum>((int)size0, SCHEMA$.getField("elements").schema());
+            a0 = new SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list>((int)size0, SCHEMA$.getField("elements").schema());
             this.elements = a0;
           } else a0.clear();
-          SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum>)a0 : null);
+          SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list>)a0 : null);
           for ( ; 0 < size0; size0 = in.arrayNext()) {
             for ( ; size0 != 0; size0--) {
-              dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum e0 = (ga0 != null ? ga0.peek() : null);
-              e0 = dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list_Enum.values()[in.readEnum()];
+              dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list e0 = (ga0 != null ? ga0.peek() : null);
+              e0 = dev.rsdlang.sample.avro.PatchableEnumInlineRecord_list.values()[in.readEnum()];
               a0.add(e0);
             }
           }

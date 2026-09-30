@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2350311573224994678L;
+  private static final long serialVersionUID = 8846587890512973256L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecordPatch\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"key\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"value\",\"type\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_value_Enum\",\"symbols\":[\"A\",\"B\"]}},{\"name\":\"value_Null\",\"type\":[\"null\",{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_value_Null_Enum\",\"symbols\":[\"C\",\"D\"]},{\"type\":\"enum\",\"name\":\"NULL\",\"symbols\":[\"NULL\"]}]},{\"name\":\"value_Opt\",\"type\":[{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_value_Opt_Enum\",\"symbols\":[\"E\",\"F\"]},\"null\"]},{\"name\":\"value_Opt_Null\",\"type\":[{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_value_Opt_Null_Enum\",\"symbols\":[\"G\",\"H\"]},\"null\",\"NULL\"]},{\"name\":\"list\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_listPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_list_Enum\",\"symbols\":[\"A\",\"B\"]}}}]},{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_listPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Enum\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Enum\"}}]}]},{\"name\":\"list_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_list_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_list_Null_Enum\",\"symbols\":[\"C\",\"D\"]}}}]},{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_list_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Null_Enum\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Null_Enum\"}}]}]},{\"name\":\"list_Opt_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_list_Opt_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_list_Opt_Null_Enum\",\"symbols\":[\"G\",\"H\"]}}}]},{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_list_Opt_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Opt_Null_Enum\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Opt_Null_Enum\"}}]}]}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecordPatch\",\"namespace\":\"dev.rsdlang.sample.avro\",\"fields\":[{\"name\":\"key\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"value\",\"type\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_value\",\"symbols\":[\"A\",\"B\"]}},{\"name\":\"value_Null\",\"type\":[\"null\",{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_value_Null\",\"symbols\":[\"C\",\"D\"]},{\"type\":\"enum\",\"name\":\"NULL\",\"symbols\":[\"NULL\"]}]},{\"name\":\"value_Opt\",\"type\":[{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_value_Opt\",\"symbols\":[\"E\",\"F\"]},\"null\"]},{\"name\":\"value_Opt_Null\",\"type\":[{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_value_Opt_Null\",\"symbols\":[\"G\",\"H\"]},\"null\",\"NULL\"]},{\"name\":\"list\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_listPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_list\",\"symbols\":[\"A\",\"B\"]}}}]},{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_listPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list\"}}]}]},{\"name\":\"list_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_list_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_list_Null\",\"symbols\":[\"C\",\"D\"]}}}]},{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_list_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Null\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Null\"}}]}]},{\"name\":\"list_Opt_Null\",\"type\":[\"null\",\"NULL\",{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_list_Opt_NullPatchReplace\",\"fields\":[{\"name\":\"elements\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"PatchableEnumInlineRecord_list_Opt_Null\",\"symbols\":[\"G\",\"H\"]}}}]},{\"type\":\"record\",\"name\":\"PatchableEnumInlineRecord_list_Opt_NullPatchMerge\",\"fields\":[{\"name\":\"additions\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Opt_Null\"}},{\"name\":\"removals\",\"type\":{\"type\":\"array\",\"items\":\"PatchableEnumInlineRecord_list_Opt_Null\"}}]}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -74,9 +74,9 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
 
   private java.lang.CharSequence key;
   private java.lang.CharSequence version;
-  private dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum value;
+  private dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value value;
   private java.lang.Object value_Null;
-  private dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum value_Opt;
+  private dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt value_Opt;
   private java.lang.Object value_Opt_Null;
   private java.lang.Object list;
   private java.lang.Object list_Null;
@@ -101,7 +101,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
    * @param list_Null The new value for list_Null
    * @param list_Opt_Null The new value for list_Opt_Null
    */
-  public PatchableEnumInlineRecordPatch(java.lang.CharSequence key, java.lang.CharSequence version, dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum value, java.lang.Object value_Null, dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum value_Opt, java.lang.Object value_Opt_Null, java.lang.Object list, java.lang.Object list_Null, java.lang.Object list_Opt_Null) {
+  public PatchableEnumInlineRecordPatch(java.lang.CharSequence key, java.lang.CharSequence version, dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value value, java.lang.Object value_Null, dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt value_Opt, java.lang.Object value_Opt_Null, java.lang.Object list, java.lang.Object list_Null, java.lang.Object list_Opt_Null) {
     this.key = key;
     this.version = version;
     this.value = value;
@@ -143,9 +143,9 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
     switch (field$) {
     case 0: key = (java.lang.CharSequence)value$; break;
     case 1: version = (java.lang.CharSequence)value$; break;
-    case 2: value = (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum)value$; break;
+    case 2: value = (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value)value$; break;
     case 3: value_Null = value$; break;
-    case 4: value_Opt = (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum)value$; break;
+    case 4: value_Opt = (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt)value$; break;
     case 5: value_Opt_Null = value$; break;
     case 6: list = value$; break;
     case 7: list_Null = value$; break;
@@ -192,7 +192,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
    * Gets the value of the 'value' field.
    * @return The value of the 'value' field.
    */
-  public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum getValue() {
+  public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value getValue() {
     return value;
   }
 
@@ -201,7 +201,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
    * Sets the value of the 'value' field.
    * @param value the value to set.
    */
-  public void setValue(dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum value) {
+  public void setValue(dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value value) {
     this.value = value;
   }
 
@@ -226,7 +226,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
    * Gets the value of the 'value_Opt' field.
    * @return The value of the 'value_Opt' field.
    */
-  public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum getValueOpt() {
+  public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt getValueOpt() {
     return value_Opt;
   }
 
@@ -235,7 +235,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
    * Sets the value of the 'value_Opt' field.
    * @param value the value to set.
    */
-  public void setValueOpt(dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum value) {
+  public void setValueOpt(dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt value) {
     this.value_Opt = value;
   }
 
@@ -350,9 +350,9 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
 
     private java.lang.CharSequence key;
     private java.lang.CharSequence version;
-    private dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum value;
+    private dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value value;
     private java.lang.Object value_Null;
-    private dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum value_Opt;
+    private dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt value_Opt;
     private java.lang.Object value_Opt_Null;
     private java.lang.Object list;
     private java.lang.Object list_Null;
@@ -535,7 +535,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
       * Gets the value of the 'value' field.
       * @return The value.
       */
-    public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum getValue() {
+    public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value getValue() {
       return value;
     }
 
@@ -545,7 +545,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
       * @param value The value of 'value'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableEnumInlineRecordPatch.Builder setValue(dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum value) {
+    public dev.rsdlang.sample.avro.PatchableEnumInlineRecordPatch.Builder setValue(dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value value) {
       validate(fields()[2], value);
       this.value = value;
       fieldSetFlags()[2] = true;
@@ -615,7 +615,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
       * Gets the value of the 'value_Opt' field.
       * @return The value.
       */
-    public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum getValueOpt() {
+    public dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt getValueOpt() {
       return value_Opt;
     }
 
@@ -625,7 +625,7 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
       * @param value The value of 'value_Opt'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.PatchableEnumInlineRecordPatch.Builder setValueOpt(dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum value) {
+    public dev.rsdlang.sample.avro.PatchableEnumInlineRecordPatch.Builder setValueOpt(dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt value) {
       validate(fields()[4], value);
       this.value_Opt = value;
       fieldSetFlags()[4] = true;
@@ -818,9 +818,9 @@ public class PatchableEnumInlineRecordPatch extends org.apache.avro.specific.Spe
         PatchableEnumInlineRecordPatch record = new PatchableEnumInlineRecordPatch();
         record.key = fieldSetFlags()[0] ? this.key : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.version = fieldSetFlags()[1] ? this.version : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.value = fieldSetFlags()[2] ? this.value : (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Enum) defaultValue(fields()[2]);
+        record.value = fieldSetFlags()[2] ? this.value : (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value) defaultValue(fields()[2]);
         record.value_Null = fieldSetFlags()[3] ? this.value_Null :  defaultValue(fields()[3]);
-        record.value_Opt = fieldSetFlags()[4] ? this.value_Opt : (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt_Enum) defaultValue(fields()[4]);
+        record.value_Opt = fieldSetFlags()[4] ? this.value_Opt : (dev.rsdlang.sample.avro.PatchableEnumInlineRecord_value_Opt) defaultValue(fields()[4]);
         record.value_Opt_Null = fieldSetFlags()[5] ? this.value_Opt_Null :  defaultValue(fields()[5]);
         record.list = fieldSetFlags()[6] ? this.list :  defaultValue(fields()[6]);
         record.list_Null = fieldSetFlags()[7] ? this.list_Null :  defaultValue(fields()[7]);

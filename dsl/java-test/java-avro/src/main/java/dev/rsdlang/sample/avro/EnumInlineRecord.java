@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7546780558591962852L;
+  private static final long serialVersionUID = 2304359332727201236L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EnumInlineRecord\",\"namespace\":\"dev.rsdlang.sample.avro\",\"doc\":\"\",\"fields\":[{\"name\":\"value\",\"type\":{\"type\":\"enum\",\"name\":\"EnumInlineRecord_value_Enum\",\"symbols\":[\"A\",\"B\"]}},{\"name\":\"value_Null\",\"type\":[{\"type\":\"enum\",\"name\":\"EnumInlineRecord_value_Null_Enum\",\"symbols\":[\"C\",\"D\"]},{\"type\":\"enum\",\"name\":\"NULL\",\"symbols\":[\"NULL\"]}]},{\"name\":\"value_Opt\",\"type\":[{\"type\":\"enum\",\"name\":\"EnumInlineRecord_value_Opt_Enum\",\"symbols\":[\"E\",\"F\"]},\"null\"]},{\"name\":\"value_Opt_Null\",\"type\":[{\"type\":\"enum\",\"name\":\"EnumInlineRecord_value_Opt_Null_Enum\",\"symbols\":[\"G\",\"H\"]},\"null\",\"NULL\"]},{\"name\":\"list\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"EnumInlineRecord_list_Enum\",\"symbols\":[\"A\",\"B\"]}}},{\"name\":\"list_Null\",\"type\":[{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"EnumInlineRecord_list_Null_Enum\",\"symbols\":[\"C\",\"D\"]}},\"NULL\"]},{\"name\":\"list_Opt_Null\",\"type\":[{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"EnumInlineRecord_list_Opt_Null_Enum\",\"symbols\":[\"G\",\"H\"]}},\"null\",\"NULL\"]}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"EnumInlineRecord\",\"namespace\":\"dev.rsdlang.sample.avro\",\"doc\":\"\",\"fields\":[{\"name\":\"value\",\"type\":{\"type\":\"enum\",\"name\":\"EnumInlineRecord_value\",\"symbols\":[\"A\",\"B\"]}},{\"name\":\"value_Null\",\"type\":[{\"type\":\"enum\",\"name\":\"EnumInlineRecord_value_Null\",\"symbols\":[\"C\",\"D\"]},{\"type\":\"enum\",\"name\":\"NULL\",\"symbols\":[\"NULL\"]}]},{\"name\":\"value_Opt\",\"type\":[{\"type\":\"enum\",\"name\":\"EnumInlineRecord_value_Opt\",\"symbols\":[\"E\",\"F\"]},\"null\"]},{\"name\":\"value_Opt_Null\",\"type\":[{\"type\":\"enum\",\"name\":\"EnumInlineRecord_value_Opt_Null\",\"symbols\":[\"G\",\"H\"]},\"null\",\"NULL\"]},{\"name\":\"list\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"EnumInlineRecord_list\",\"symbols\":[\"A\",\"B\"]}}},{\"name\":\"list_Null\",\"type\":[{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"EnumInlineRecord_list_Null\",\"symbols\":[\"C\",\"D\"]}},\"NULL\"]},{\"name\":\"list_Opt_Null\",\"type\":[{\"type\":\"array\",\"items\":{\"type\":\"enum\",\"name\":\"EnumInlineRecord_list_Opt_Null\",\"symbols\":[\"G\",\"H\"]}},\"null\",\"NULL\"]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -72,11 +72,11 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
     return DECODER.decode(b);
   }
 
-  private dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum value;
+  private dev.rsdlang.sample.avro.EnumInlineRecord_value value;
   private java.lang.Object value_Null;
-  private dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum value_Opt;
+  private dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt value_Opt;
   private java.lang.Object value_Opt_Null;
-  private java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum> list;
+  private java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list> list;
   private java.lang.Object list_Null;
   private java.lang.Object list_Opt_Null;
 
@@ -97,7 +97,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
    * @param list_Null The new value for list_Null
    * @param list_Opt_Null The new value for list_Opt_Null
    */
-  public EnumInlineRecord(dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum value, java.lang.Object value_Null, dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum value_Opt, java.lang.Object value_Opt_Null, java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum> list, java.lang.Object list_Null, java.lang.Object list_Opt_Null) {
+  public EnumInlineRecord(dev.rsdlang.sample.avro.EnumInlineRecord_value value, java.lang.Object value_Null, dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt value_Opt, java.lang.Object value_Opt_Null, java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list> list, java.lang.Object list_Null, java.lang.Object list_Opt_Null) {
     this.value = value;
     this.value_Null = value_Null;
     this.value_Opt = value_Opt;
@@ -133,11 +133,11 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: value = (dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum)value$; break;
+    case 0: value = (dev.rsdlang.sample.avro.EnumInlineRecord_value)value$; break;
     case 1: value_Null = value$; break;
-    case 2: value_Opt = (dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum)value$; break;
+    case 2: value_Opt = (dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt)value$; break;
     case 3: value_Opt_Null = value$; break;
-    case 4: list = (java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum>)value$; break;
+    case 4: list = (java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list>)value$; break;
     case 5: list_Null = value$; break;
     case 6: list_Opt_Null = value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
@@ -148,7 +148,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
    * Gets the value of the 'value' field.
    * @return The value of the 'value' field.
    */
-  public dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum getValue() {
+  public dev.rsdlang.sample.avro.EnumInlineRecord_value getValue() {
     return value;
   }
 
@@ -157,7 +157,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
    * Sets the value of the 'value' field.
    * @param value the value to set.
    */
-  public void setValue(dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum value) {
+  public void setValue(dev.rsdlang.sample.avro.EnumInlineRecord_value value) {
     this.value = value;
   }
 
@@ -182,7 +182,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
    * Gets the value of the 'value_Opt' field.
    * @return The value of the 'value_Opt' field.
    */
-  public dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum getValueOpt() {
+  public dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt getValueOpt() {
     return value_Opt;
   }
 
@@ -191,7 +191,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
    * Sets the value of the 'value_Opt' field.
    * @param value the value to set.
    */
-  public void setValueOpt(dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum value) {
+  public void setValueOpt(dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt value) {
     this.value_Opt = value;
   }
 
@@ -216,7 +216,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
    * Gets the value of the 'list' field.
    * @return The value of the 'list' field.
    */
-  public java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum> getList() {
+  public java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list> getList() {
     return list;
   }
 
@@ -225,7 +225,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
    * Sets the value of the 'list' field.
    * @param value the value to set.
    */
-  public void setList(java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum> value) {
+  public void setList(java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list> value) {
     this.list = value;
   }
 
@@ -304,11 +304,11 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<EnumInlineRecord>
     implements org.apache.avro.data.RecordBuilder<EnumInlineRecord> {
 
-    private dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum value;
+    private dev.rsdlang.sample.avro.EnumInlineRecord_value value;
     private java.lang.Object value_Null;
-    private dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum value_Opt;
+    private dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt value_Opt;
     private java.lang.Object value_Opt_Null;
-    private java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum> list;
+    private java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list> list;
     private java.lang.Object list_Null;
     private java.lang.Object list_Opt_Null;
 
@@ -393,7 +393,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
       * Gets the value of the 'value' field.
       * @return The value.
       */
-    public dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum getValue() {
+    public dev.rsdlang.sample.avro.EnumInlineRecord_value getValue() {
       return value;
     }
 
@@ -403,7 +403,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'value'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.EnumInlineRecord.Builder setValue(dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum value) {
+    public dev.rsdlang.sample.avro.EnumInlineRecord.Builder setValue(dev.rsdlang.sample.avro.EnumInlineRecord_value value) {
       validate(fields()[0], value);
       this.value = value;
       fieldSetFlags()[0] = true;
@@ -473,7 +473,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
       * Gets the value of the 'value_Opt' field.
       * @return The value.
       */
-    public dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum getValueOpt() {
+    public dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt getValueOpt() {
       return value_Opt;
     }
 
@@ -483,7 +483,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'value_Opt'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.EnumInlineRecord.Builder setValueOpt(dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum value) {
+    public dev.rsdlang.sample.avro.EnumInlineRecord.Builder setValueOpt(dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt value) {
       validate(fields()[2], value);
       this.value_Opt = value;
       fieldSetFlags()[2] = true;
@@ -553,7 +553,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
       * Gets the value of the 'list' field.
       * @return The value.
       */
-    public java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum> getList() {
+    public java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list> getList() {
       return list;
     }
 
@@ -563,7 +563,7 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'list'.
       * @return This builder.
       */
-    public dev.rsdlang.sample.avro.EnumInlineRecord.Builder setList(java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum> value) {
+    public dev.rsdlang.sample.avro.EnumInlineRecord.Builder setList(java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list> value) {
       validate(fields()[4], value);
       this.list = value;
       fieldSetFlags()[4] = true;
@@ -674,11 +674,11 @@ public class EnumInlineRecord extends org.apache.avro.specific.SpecificRecordBas
     public EnumInlineRecord build() {
       try {
         EnumInlineRecord record = new EnumInlineRecord();
-        record.value = fieldSetFlags()[0] ? this.value : (dev.rsdlang.sample.avro.EnumInlineRecord_value_Enum) defaultValue(fields()[0]);
+        record.value = fieldSetFlags()[0] ? this.value : (dev.rsdlang.sample.avro.EnumInlineRecord_value) defaultValue(fields()[0]);
         record.value_Null = fieldSetFlags()[1] ? this.value_Null :  defaultValue(fields()[1]);
-        record.value_Opt = fieldSetFlags()[2] ? this.value_Opt : (dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt_Enum) defaultValue(fields()[2]);
+        record.value_Opt = fieldSetFlags()[2] ? this.value_Opt : (dev.rsdlang.sample.avro.EnumInlineRecord_value_Opt) defaultValue(fields()[2]);
         record.value_Opt_Null = fieldSetFlags()[3] ? this.value_Opt_Null :  defaultValue(fields()[3]);
-        record.list = fieldSetFlags()[4] ? this.list : (java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list_Enum>) defaultValue(fields()[4]);
+        record.list = fieldSetFlags()[4] ? this.list : (java.util.List<dev.rsdlang.sample.avro.EnumInlineRecord_list>) defaultValue(fields()[4]);
         record.list_Null = fieldSetFlags()[5] ? this.list_Null :  defaultValue(fields()[5]);
         record.list_Opt_Null = fieldSetFlags()[6] ? this.list_Opt_Null :  defaultValue(fields()[6]);
         return record;

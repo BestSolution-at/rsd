@@ -3,6 +3,8 @@ import { toNodeTree } from '../util.js';
 import {
 	allResolvedRecordProperties,
 	isMEnumType,
+	isMPropertyInlineResolvedProperty,
+	isMResolvedProperty,
 	isMResolvedRecordType,
 	isMResolvedUnionType,
 	MResolvedRSDModel,
@@ -100,6 +102,28 @@ public class _AvroSchema {
 				model.elements
 					.filter(e => isMResolvedRecordType(e) || isMResolvedUnionType(e) || isMEnumType(e))
 					.forEach((element, idx, arr) => {
+						if (isMResolvedRecordType(element)) {
+							const props = allResolvedRecordProperties(element);
+							if (element.patchable) {
+								rv.append(element.name + 'Patch,', NL);
+								rv.append(
+									...props
+										.filter(isMResolvedProperty)
+										.filter(p => p.array)
+										.flatMap(p => {
+											return [
+												element.name + '_' + p.name + 'PatchReplace,',
+												NL,
+												element.name + '_' + p.name + 'PatchMerge,',
+												NL,
+											];
+										}),
+								);
+							}
+						} else if (isMResolvedUnionType(element) && element.patchable) {
+							rv.append(element.name + 'Patch,', NL);
+						}
+
 						if (arr.length - 1 === idx) {
 							rv.append(element.name);
 						} else {

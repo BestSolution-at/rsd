@@ -164,7 +164,7 @@ function computePropertyType_NoneInlineEnum(
 function computePropertyType_InlineEnum(prop: MPropertyInlineProperty, recordName: string): AvroEnum {
 	return {
 		type: 'enum',
-		name: `${recordName}_${prop.name}_Enum`,
+		name: `${recordName}_${prop.name}`,
 		symbols: prop.type.entries.map(e => e.name),
 	};
 }

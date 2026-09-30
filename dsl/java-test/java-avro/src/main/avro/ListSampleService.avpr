@@ -1595,7 +1595,7 @@
           "name": "value",
           "type": {
             "type": "enum",
-            "name": "EnumInlineRecord_value_Enum",
+            "name": "EnumInlineRecord_value",
             "symbols": [
               "A",
               "B"
@@ -1607,7 +1607,7 @@
           "type": [
             {
               "type": "enum",
-              "name": "EnumInlineRecord_value_Null_Enum",
+              "name": "EnumInlineRecord_value_Null",
               "symbols": [
                 "C",
                 "D"
@@ -1621,7 +1621,7 @@
           "type": [
             {
               "type": "enum",
-              "name": "EnumInlineRecord_value_Opt_Enum",
+              "name": "EnumInlineRecord_value_Opt",
               "symbols": [
                 "E",
                 "F"
@@ -1635,7 +1635,7 @@
           "type": [
             {
               "type": "enum",
-              "name": "EnumInlineRecord_value_Opt_Null_Enum",
+              "name": "EnumInlineRecord_value_Opt_Null",
               "symbols": [
                 "G",
                 "H"
@@ -1651,7 +1651,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "EnumInlineRecord_list_Enum",
+              "name": "EnumInlineRecord_list",
               "symbols": [
                 "A",
                 "B"
@@ -1666,7 +1666,7 @@
               "type": "array",
               "items": {
                 "type": "enum",
-                "name": "EnumInlineRecord_list_Null_Enum",
+                "name": "EnumInlineRecord_list_Null",
                 "symbols": [
                   "C",
                   "D"
@@ -1683,7 +1683,7 @@
               "type": "array",
               "items": {
                 "type": "enum",
-                "name": "EnumInlineRecord_list_Opt_Null_Enum",
+                "name": "EnumInlineRecord_list_Opt_Null",
                 "symbols": [
                   "G",
                   "H"
@@ -5921,7 +5921,7 @@
           "name": "value",
           "type": {
             "type": "enum",
-            "name": "PatchableEnumInlineRecord_value_Enum",
+            "name": "PatchableEnumInlineRecord_value",
             "symbols": [
               "A",
               "B"
@@ -5933,7 +5933,7 @@
           "type": [
             {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_value_Null_Enum",
+              "name": "PatchableEnumInlineRecord_value_Null",
               "symbols": [
                 "C",
                 "D"
@@ -5947,7 +5947,7 @@
           "type": [
             {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_value_Opt_Enum",
+              "name": "PatchableEnumInlineRecord_value_Opt",
               "symbols": [
                 "E",
                 "F"
@@ -5961,7 +5961,7 @@
           "type": [
             {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_value_Opt_Null_Enum",
+              "name": "PatchableEnumInlineRecord_value_Opt_Null",
               "symbols": [
                 "G",
                 "H"
@@ -5977,7 +5977,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Enum",
+              "name": "PatchableEnumInlineRecord_list",
               "symbols": [
                 "A",
                 "B"
@@ -5992,7 +5992,7 @@
               "type": "array",
               "items": {
                 "type": "enum",
-                "name": "PatchableEnumInlineRecord_list_Null_Enum",
+                "name": "PatchableEnumInlineRecord_list_Null",
                 "symbols": [
                   "C",
                   "D"
@@ -6009,7 +6009,7 @@
               "type": "array",
               "items": {
                 "type": "enum",
-                "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+                "name": "PatchableEnumInlineRecord_list_Opt_Null",
                 "symbols": [
                   "G",
                   "H"
@@ -6039,7 +6039,7 @@
           "name": "value",
           "type": {
             "type": "enum",
-            "name": "PatchableEnumInlineRecord_value_Enum",
+            "name": "PatchableEnumInlineRecord_value",
             "symbols": [
               "A",
               "B"
@@ -6052,7 +6052,7 @@
             "null",
             {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_value_Null_Enum",
+              "name": "PatchableEnumInlineRecord_value_Null",
               "symbols": [
                 "C",
                 "D"
@@ -6066,7 +6066,7 @@
           "type": [
             {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_value_Opt_Enum",
+              "name": "PatchableEnumInlineRecord_value_Opt",
               "symbols": [
                 "E",
                 "F"
@@ -6080,7 +6080,7 @@
           "type": [
             {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_value_Opt_Null_Enum",
+              "name": "PatchableEnumInlineRecord_value_Opt_Null",
               "symbols": [
                 "G",
                 "H"
@@ -6129,7 +6129,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Enum",
+              "name": "PatchableEnumInlineRecord_list",
               "symbols": [
                 "A",
                 "B"
@@ -6150,7 +6150,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Null_Enum",
+              "name": "PatchableEnumInlineRecord_list_Null",
               "symbols": [
                 "C",
                 "D"
@@ -6171,7 +6171,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+              "name": "PatchableEnumInlineRecord_list_Opt_Null",
               "symbols": [
                 "G",
                 "H"
@@ -6192,7 +6192,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Enum",
+              "name": "PatchableEnumInlineRecord_list",
               "symbols": [
                 "A",
                 "B"
@@ -6206,7 +6206,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Enum",
+              "name": "PatchableEnumInlineRecord_list",
               "symbols": [
                 "A",
                 "B"
@@ -6227,7 +6227,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Null_Enum",
+              "name": "PatchableEnumInlineRecord_list_Null",
               "symbols": [
                 "C",
                 "D"
@@ -6241,7 +6241,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Null_Enum",
+              "name": "PatchableEnumInlineRecord_list_Null",
               "symbols": [
                 "C",
                 "D"
@@ -6262,7 +6262,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+              "name": "PatchableEnumInlineRecord_list_Opt_Null",
               "symbols": [
                 "G",
                 "H"
@@ -6276,7 +6276,7 @@
             "type": "array",
             "items": {
               "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Opt_Null_Enum",
+              "name": "PatchableEnumInlineRecord_list_Opt_Null",
               "symbols": [
                 "G",
                 "H"

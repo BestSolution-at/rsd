@@ -28,6 +28,7 @@ import { generateEnumSupportContent } from '../java-model-avro/enum-support.js';
 import { generateScalarSupportContent } from '../java-model-avro/scalar-support.js';
 import { generateUnionContent } from '../java-model-avro/union.js';
 import { generateRecordPatchContent } from '../java-model-avro/record-patch.js';
+import { generateUnionPatchContent } from '../java-model-avro/union-patch.js';
 
 export function generateAvro(
 	model: MResolvedRSDModel,
@@ -209,7 +210,6 @@ function generateUnion(t: MResolvedUnionType, artifactConfig: JavaRestClientJDKG
 		});
 	}
 
-	/*
 	if (t.resolved.records.find(r => r.patchable) !== undefined) {
 		const importCollector = new JavaImportsCollector(packageName);
 		const fqn = importCollector.importType.bind(importCollector);
@@ -231,7 +231,7 @@ function generateUnion(t: MResolvedUnionType, artifactConfig: JavaRestClientJDKG
 			),
 			path: toPath(artifactConfig.targetFolder, packageName),
 		});
-	}*/
+	}
 
 	return result;
 }

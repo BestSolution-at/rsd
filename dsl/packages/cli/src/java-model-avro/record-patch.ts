@@ -12,6 +12,7 @@ import {
 	MResolvedPropery,
 	isMPropertyNoneInlineProperty,
 	isMPropertyBuiltin,
+	MPropertyNoneInlineProperty,
 } from '../model.js';
 import { toFirstUpper, toNodeTree } from '../util.js';
 import {
@@ -244,50 +245,76 @@ function SetChange(
 		withArray: false,
 		withOptional: false,
 	});
-	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
-
 	if (prop.variant === 'union' || prop.variant === 'record') {
-		return toNodeTree(`
+		return SetChangeUnionRecord(prefix, type, fqn, prop);
+	} else if (prop.variant === 'inline-enum') {
+		return SetChangeInlineEnum(prefix, type, fqn);
+	} else if (prop.variant === 'enum') {
+		return SetChangeEnum(prefix, type, fqn, prop);
+	} else if (prop.variant === 'scalar') {
+		return SetChangeScalar(prefix, type, fqn, prop);
+	}
+	return SetChangeBuiltin(prefix, type, fqn);
+}
+
+function SetChangeUnionRecord(
+	prefix: string,
+	type: string,
+	fqn: (type: string) => string,
+	prop: MPropertyNoneInlineProperty,
+) {
+	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
+	return toNodeTree(`
 static class ${prefix}SetChangeImpl extends _ChangeSupport.ObjectElementsChange<${type}> implements ${prefix}SetChange {
 	${prefix}SetChangeImpl(${GenericRecord} data) {
 			super(data, ${prop.type}DataImpl::of);
 	}
 }
 `);
-	}
+}
 
-	if (prop.variant === 'inline-enum') {
-		const GenericEnumSymbol = fqn('org.apache.avro.generic.GenericEnumSymbol');
-		return toNodeTree(`
+function SetChangeInlineEnum(prefix: string, type: string, fqn: (type: string) => string) {
+	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
+	const GenericEnumSymbol = fqn('org.apache.avro.generic.GenericEnumSymbol');
+	return toNodeTree(`
 static class ${prefix}SetChangeImpl extends _ChangeSupport.ValueElementsChange<${type}> implements ${prefix}SetChange {
 	${prefix}SetChangeImpl(${GenericRecord} data) {
 			super(data, $v -> _EnumSupport.fromAvro((${GenericEnumSymbol}<?>)$v, ${type}.class));
 		}
 	}
 `);
-	}
+}
 
-	if (prop.variant === 'enum') {
-		const GenericEnumSymbol = fqn('org.apache.avro.generic.GenericEnumSymbol');
-		return toNodeTree(`
+function SetChangeEnum(prefix: string, type: string, fqn: (type: string) => string, prop: MPropertyNoneInlineProperty) {
+	const GenericEnumSymbol = fqn('org.apache.avro.generic.GenericEnumSymbol');
+	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
+	return toNodeTree(`
 static class ${prefix}SetChangeImpl extends _ChangeSupport.ValueElementsChange<${type}> implements ${prefix}SetChange {
 	${prefix}SetChangeImpl(${GenericRecord} data) {
 			super(data, $v -> _EnumSupport.${prop.type}FromAvro((${GenericEnumSymbol}<?>)$v));
 		}
 	}
 `);
-	}
+}
 
-	if (prop.variant === 'scalar') {
-		return toNodeTree(`
+function SetChangeScalar(
+	prefix: string,
+	type: string,
+	fqn: (type: string) => string,
+	prop: MPropertyNoneInlineProperty,
+) {
+	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
+	return toNodeTree(`
 static class ${prefix}SetChangeImpl extends _ChangeSupport.ValueElementsChange<${type}> implements ${prefix}SetChange {
 	${prefix}SetChangeImpl(${GenericRecord} data) {
 			super(data, $v -> _ScalarSupport.${prop.type}FromAvro((String)$v));
 		}
 	}
 `);
-	}
+}
 
+function SetChangeBuiltin(prefix: string, type: string, fqn: (type: string) => string) {
+	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
 	return toNodeTree(`
 static class ${prefix}SetChangeImpl extends _ChangeSupport.ValueElementsChange<${type}> implements ${prefix}SetChange {
 	${prefix}SetChangeImpl(${GenericRecord} data) {
@@ -307,14 +334,7 @@ function ListChange(
 	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
 
 	if (prop.variant === 'union' || prop.variant === 'record') {
-		const type = fqn(`${interfaceBasePackage}.${prop.type}`);
-		return toNodeTree(`
-static class ${prefix}MergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<${type}.Data, ${type}.Patch, String> implements ${prefix}MergeChange {
-	${prefix}MergeChangeImpl(${GenericRecord} data) {
-		super(data, ${prop.type}DataImpl::of, ${prop.type}PatchImpl::of, _AvroUtils::mapString);
-	}
-}
-`);
+		return ListChangeUnionRecord(prefix, prop, interfaceBasePackage, fqn);
 	}
 
 	const type = computeAPITypeNG(prop, nativeTypeSubstitutes, interfaceBasePackage, fqn, {
@@ -367,6 +387,23 @@ static class ${prefix}MergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveI
 static class ${prefix}MergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<${type}, ${type}> implements ${prefix}MergeChange {
 	${prefix}MergeChangeImpl(${GenericRecord} data) {
 		super(data, _AvroUtils::map${type}, _AvroUtils::map${type});
+	}
+}
+`);
+}
+
+function ListChangeUnionRecord(
+	prefix: string,
+	prop: MPropertyNoneInlineProperty,
+	interfaceBasePackage: string,
+	fqn: (type: string) => string,
+) {
+	const type = fqn(`${interfaceBasePackage}.${prop.type}`);
+	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
+	return toNodeTree(`
+static class ${prefix}MergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveUpdateImpl<${type}.Data, ${type}.Patch, String> implements ${prefix}MergeChange {
+	${prefix}MergeChangeImpl(${GenericRecord} data) {
+		super(data, ${prop.type}DataImpl::of, ${prop.type}PatchImpl::of, _AvroUtils::mapString);
 	}
 }
 `);
