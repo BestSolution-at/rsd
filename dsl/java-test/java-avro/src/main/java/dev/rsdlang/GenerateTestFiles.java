@@ -17,6 +17,8 @@ import java.time.ZonedDateTime;
 import dev.rsdlang.sample.avro.SimpleRecord;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion_Int_Int;
+import dev.rsdlang.sample.avro.SimpleRecord_Basic;
+import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -27,6 +29,7 @@ public class GenerateTestFiles {
 		SimpleRecord_KeyVersion_Int_Int();
 		SimpleRecord_KeyVersion();
 		SimpleRecord_Basic();
+		SimpleRecord_Basic_Optional();
 	}
 
 	private static void SimpleRecord() {
@@ -52,7 +55,7 @@ public class GenerateTestFiles {
 	}
 
 	private static void SimpleRecord_Basic() {
-		var record = new dev.rsdlang.sample.avro.SimpleRecord_Basic();
+		var record = new SimpleRecord_Basic();
 		record.setValueBoolean(false);
 		record.setValueDouble(Double.MAX_VALUE);
 		record.setValueFloat(Float.MAX_VALUE);
@@ -67,6 +70,26 @@ public class GenerateTestFiles {
 		record.setValueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]").toString());
 
 		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord_Basic.Data.avro"));
+	}
+
+	private static void SimpleRecord_Basic_Optional() {
+		var record = new SimpleRecord_Basic_Optional();
+		record.setValueBoolean(false);
+		record.setValueDouble(Double.MAX_VALUE);
+		record.setValueFloat(Float.MAX_VALUE);
+		record.setValueInt(Integer.MAX_VALUE);
+		record.setValueLocalDate(LocalDate.parse("2020-01-01").toString());
+		record.setValueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00").toString());
+		record.setValueLocalTime(LocalTime.parse("10:00").toString());
+		record.setValueLong(Long.MAX_VALUE);
+		record.setValueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00").toString());
+		record.setValueShort(Integer.valueOf(Short.MAX_VALUE));
+		record.setValueString("the string value");
+		record
+				.setValueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]").toString());
+
+		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord_Basic_Optional.Data.avro"));
+		persist(new SimpleRecord_Basic_Optional(), CLIENT_BASE_PATH.resolve("SimpleRecord_Basic_Optional.Empty.Data.avro"));
 	}
 
 	private static <T extends SpecificRecordBase> void persist(T record, Path path) {
