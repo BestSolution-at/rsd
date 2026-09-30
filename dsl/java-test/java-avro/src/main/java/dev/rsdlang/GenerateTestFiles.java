@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 import dev.rsdlang.sample.avro.SimpleRecord;
+import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion;
+import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion_Int_Int;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -17,14 +19,30 @@ public class GenerateTestFiles {
 
 	public static void main(String[] args) {
 		SimpleRecord();
+		SimpleRecord_KeyVersion_Int_Int();
+		SimpleRecord_KeyVersion();
 	}
 
 	private static void SimpleRecord() {
-		SimpleRecord record = new SimpleRecord();
+		var record = new SimpleRecord();
 		record.setKey("1");
 		record.setVersion("1");
 		record.setValue("the value");
 		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord.Data.avro"));
+	}
+
+	private static void SimpleRecord_KeyVersion_Int_Int() {
+		var record = new SimpleRecord_KeyVersion_Int_Int();
+		record.setKey(1);
+		record.setVersion(1);
+		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord_KeyVersion_Int_Int.Data.avro"));
+	}
+
+	private static void SimpleRecord_KeyVersion() {
+		var record = new SimpleRecord_KeyVersion();
+		record.setKey("2");
+		record.setVersion("2");
+		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord_KeyVersion.Data.avro"));
 	}
 
 	private static <T extends SpecificRecordBase> void persist(T record, Path path) {
@@ -38,4 +56,5 @@ public class GenerateTestFiles {
 			throw new RuntimeException(e);
 		}
 	}
+
 }
