@@ -116,7 +116,7 @@ public class _AvroUtils {
 	}
 
 	private static String getString(GenericRecord object, String property) {
-		return (String) object.get(property);
+		return object.get(property).toString();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -166,7 +166,7 @@ public class _AvroUtils {
 
 	public static <T> T mapLiteral(GenericRecord object, String property,
 			Function<String, T> converter) {
-		return converter.apply((String) object.get(property));
+		return converter.apply(object.get(property).toString());
 	}
 
 	public static <T> Optional<T> mapNullLiteral(GenericRecord object, String property, Function<String, T> converter) {

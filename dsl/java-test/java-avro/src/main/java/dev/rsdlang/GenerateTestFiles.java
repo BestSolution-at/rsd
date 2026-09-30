@@ -1,7 +1,5 @@
 package dev.rsdlang;
 
-import org.apache.avro.file.DataFileWriter;
-import org.apache.avro.io.DatumWriter;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.apache.avro.specific.SpecificRecordBase;
@@ -15,7 +13,7 @@ import dev.rsdlang.sample.avro.SimpleRecord;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
-			"/Users/tomschindl/git-beso/rsd/dsl/java-test/java-client/src/test/resources/dev/rsdlang/sample/client/model/impl/avro/");
+			"/Users/tomschindl/git-beso/rsd/dsl/java-test/java-client/src/test/resources/dev/rsdlang/sample/client/model");
 
 	public static void main(String[] args) {
 		SimpleRecord();
@@ -26,7 +24,7 @@ public class GenerateTestFiles {
 		record.setKey("1");
 		record.setVersion("1");
 		record.setValue("the value");
-		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecordDataImpl.avro"));
+		persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord.Data.avro"));
 	}
 
 	private static <T extends SpecificRecordBase> void persist(T record, Path path) {
