@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
 
-public class ScalarRecordDataTest extends BaseTest {
+public class ScalarRecord_DataTest extends BaseTest {
 
 	@Nested
 	class Filled {

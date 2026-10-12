@@ -40,6 +40,7 @@ public class GenerateTestFiles {
 		SimpleRecord_Basic_Null();
 		SimpleRecord_Basic_Optional_Null();
 		ScalarRecord();
+		ScalarRecord_Substitution();
 	}
 
 	private static void SimpleRecord() {
