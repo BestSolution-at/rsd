@@ -37,5 +37,20 @@
 		"type": "record",
 		"name": "Union",
 		"fields": [{ "name": "x", "type": ["A", "B"] }]
+	},
+
+	{
+		"namespace": "example.avro",
+		"type": "record",
+		"name": "DoubleSample",
+		"fields": [
+			{
+				"name": "doubleArray",
+				"type": {
+					"type": "array",
+					"items": "double"
+				}
+			}
+		]
 	}
 ]

@@ -1,7 +1,9 @@
 package at.bestsolution;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.avro.Schema;
 import org.apache.avro.SchemaParser;
@@ -13,13 +15,37 @@ import org.apache.avro.io.DatumReader;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificDatumWriter;
+import org.apache.avro.util.ClassSecurityValidator;
 
 import example.avro.A;
+import example.avro.DoubleSample;
 import example.avro.Union;
 import example.avro.User;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
+		var doubleSample = new DoubleSample();
+		doubleSample.setDoubleArray(List.of(Double.MIN_VALUE, Double.MAX_VALUE));
+
+		DatumWriter<DoubleSample> userDatumWriter = new SpecificDatumWriter<DoubleSample>(DoubleSample.class);
+		DataFileWriter<DoubleSample> dataFileWriter = new DataFileWriter<DoubleSample>(userDatumWriter);
+		dataFileWriter.create(doubleSample.getSchema(), new File("/tmp/bla.avro"));
+		dataFileWriter.append(doubleSample);
+		dataFileWriter.close();
+
+		DatumReader<DoubleSample> datumReader = new SpecificDatumReader<DoubleSample>(DoubleSample.class);
+		DataFileReader<DoubleSample> dataFileReader = new DataFileReader<DoubleSample>(
+				new File("/tmp/bla.avro"), datumReader);
+		DoubleSample readSample = null;
+		while (dataFileReader.hasNext()) {
+			readSample = dataFileReader.next(readSample);
+			System.out.println(readSample.getClass());
+			System.err.println(readSample.getDoubleArray());
+		}
+		dataFileReader.close();
+	}
+
+	private static void handleUnion() throws IOException {
 		var union = new Union();
 		union.setX(new A("Hello"));
 
