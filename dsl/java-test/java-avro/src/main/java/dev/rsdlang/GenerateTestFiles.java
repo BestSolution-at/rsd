@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 import dev.rsdlang.sample.avro.NULL;
 import dev.rsdlang.sample.avro.SimpleRecord;
@@ -22,6 +23,8 @@ import dev.rsdlang.sample.avro.SimpleRecord_Basic;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional_Null;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_Null;
+import dev.rsdlang.sample.avro.ScalarRecord;
+import dev.rsdlang.sample.avro.ScalarRecord_Substitution;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -36,6 +39,7 @@ public class GenerateTestFiles {
 		SimpleRecord_Basic_Optional();
 		SimpleRecord_Basic_Null();
 		SimpleRecord_Basic_Optional_Null();
+		ScalarRecord();
 	}
 
 	private static void SimpleRecord() {
@@ -168,6 +172,88 @@ public class GenerateTestFiles {
 			record.setValueString(NULL.NULL);
 			record.setValueZonedDateTime(NULL.NULL);
 			persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord_Basic_Null.Null.Data.avro"));
+		}
+	}
+
+	private static void ScalarRecord() {
+		{
+			var record = new ScalarRecord();
+			record.setValue("Europe/Paris");
+			record.setValueNull("Europe/Paris");
+			record.setValueOpt("Europe/Paris");
+			record.setValueOptNull("Europe/Paris");
+			record.setList(List.of("Europe/Paris", "America/Los_Angeles"));
+			record.setListNull(List.of("Europe/Paris", "America/Los_Angeles"));
+			record.setListOpt(List.of("Europe/Paris", "America/Los_Angeles"));
+			record.setListOptNull(List.of("Europe/Paris", "America/Los_Angeles"));
+			persist(record, CLIENT_BASE_PATH.resolve("ScalarRecord.Data.avro"));
+		}
+
+		{
+			var record = new ScalarRecord();
+			record.setValue("Europe/Paris");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(null);
+			record.setValueOptNull(NULL.NULL);
+			record.setList(List.of("Europe/Paris", "America/Los_Angeles"));
+			record.setListNull(NULL.NULL);
+			record.setListOpt(null);
+			record.setListOptNull(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("ScalarRecord.Null.Data.avro"));
+		}
+
+		{
+			var record = new ScalarRecord();
+			record.setValue("Europe/Paris");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(null);
+			record.setValueOptNull(null);
+			record.setList(List.of("Europe/Paris", "America/Los_Angeles"));
+			record.setListNull(NULL.NULL);
+			record.setListOpt(null);
+			record.setListOptNull(null);
+			persist(record, CLIENT_BASE_PATH.resolve("ScalarRecord.Minimal.Data.avro"));
+		}
+	}
+
+	private static void ScalarRecord_Substitution() {
+		{
+			var record = new ScalarRecord_Substitution();
+			record.setValue("[0,1]");
+			record.setValueNull("[0,1]");
+			record.setValueOpt("[0,1]");
+			record.setValueOptNull("[0,1]");
+			record.setList(List.of("[0,1]", "[1,2]"));
+			record.setListNull(List.of("[0,1]", "[1,2]"));
+			record.setListOpt(List.of("[0,1]", "[1,2]"));
+			record.setListOptNull(List.of("[0,1]", "[1,2]"));
+			persist(record, CLIENT_BASE_PATH.resolve("ScalarRecord_Substitution.Data.avro"));
+		}
+
+		{
+			var record = new ScalarRecord_Substitution();
+			record.setValue("[0,1]");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(null);
+			record.setValueOptNull(NULL.NULL);
+			record.setList(List.of("[0,1]", "[1,2]"));
+			record.setListNull(NULL.NULL);
+			record.setListOpt(null);
+			record.setListOptNull(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("ScalarRecord_Substitution.Null.Data.avro"));
+		}
+
+		{
+			var record = new ScalarRecord_Substitution();
+			record.setValue("[0,1]");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(null);
+			record.setValueOptNull(null);
+			record.setList(List.of("[0,1]", "[1,2]"));
+			record.setListNull(NULL.NULL);
+			record.setListOpt(null);
+			record.setListOptNull(null);
+			persist(record, CLIENT_BASE_PATH.resolve("ScalarRecord_Substitution.Minimal.Data.avro"));
 		}
 	}
 

@@ -4,12 +4,14 @@ import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericEnumSymbol;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.generic.GenericRecordBuilder;
+import org.apache.avro.util.Utf8;
 
 import dev.rsdlang.sample.client.model._Base;
 import jakarta.json.JsonNumber;
 
 import org.apache.avro.Schema;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -196,27 +198,27 @@ public class _AvroUtils {
 
 	public static <T> List<T> mapLiterals(GenericRecord object, String property,
 			Function<String, T> mapper) {
-		return mapToStream(object, property, String.class, mapper).toList();
+		return mapToStream(object, property, Utf8.class, Objects::toString).map(mapper).toList();
 	}
 
 	public static <T> Optional<List<T>> mapNullLiterals(GenericRecord object, String property,
 			Function<String, T> mapper) {
-		return mapToNullStream(object, property, String.class, Function.identity()).map(s -> s.map(mapper))
+		return mapToNullStream(object, property, Utf8.class, Objects::toString).map(s -> s.map(mapper))
 				.map(Stream::toList);
 	}
 
 	public static <T> Optional<List<T>> mapOptLiterals(GenericRecord object, String property,
 			Function<String, T> mapper) {
-		return mapToOptStream(object, property, String.class,
-				Function.identity()).map(s -> s.map(mapper))
+		return mapToOptStream(object, property, Utf8.class,
+				Objects::toString).map(s -> s.map(mapper))
 				.map(Stream::toList);
 	}
 
 	public static <T> _Base.Nillable<List<T>> mapNilLiterals(GenericRecord object,
 			String property,
 			Function<String, T> mapper) {
-		return mapToNilStream(object, property, String.class,
-				Function.identity()).map(s -> s.map(mapper))
+		return mapToNilStream(object, property, Utf8.class,
+				Objects::toString).map(s -> s.map(mapper))
 				.map(Stream::toList);
 	}
 
