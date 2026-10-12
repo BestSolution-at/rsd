@@ -7,7 +7,6 @@ import org.apache.avro.generic.GenericRecordBuilder;
 import org.apache.avro.util.Utf8;
 
 import dev.rsdlang.sample.client.model._Base;
-import jakarta.json.JsonNumber;
 
 import org.apache.avro.Schema;
 import java.util.List;
@@ -416,20 +415,20 @@ public class _AvroUtils {
 	// ----------------
 
 	public static Optional<List<Short>> mapNullShorts(GenericRecord object, String property) {
-		return mapToNullStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue()).map(Stream::toList);
+		return mapToNullStream(object, property, Number.class, Number::shortValue).map(Stream::toList);
 	}
 
 	public static _Base.Nillable<List<Short>> mapNilShorts(GenericRecord object,
 			String property) {
-		return mapToNilStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue()).map(Stream::toList);
+		return mapToNilStream(object, property, Number.class, Number::shortValue).map(Stream::toList);
 	}
 
 	public static Optional<List<Short>> mapOptShorts(GenericRecord object, String property) {
-		return mapToOptStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue()).map(Stream::toList);
+		return mapToOptStream(object, property, Number.class, Number::shortValue).map(Stream::toList);
 	}
 
 	public static List<Short> mapShorts(GenericRecord object, String property) {
-		return mapToStream(object, property, JsonNumber.class, v -> v.numberValue().shortValue()).toList();
+		return mapToStream(object, property, Number.class, Number::shortValue).toList();
 	}
 
 	public static Optional<Short> mapNullShort(GenericRecord object, String property) {
@@ -469,24 +468,24 @@ public class _AvroUtils {
 
 	// ----------------
 	public static Optional<List<Integer>> mapNullInts(GenericRecord object, String property) {
-		return mapToNullStream(object, property, JsonNumber.class,
-				JsonNumber::intValue).map(Stream::toList);
+		return mapToNullStream(object, property, Number.class,
+				Number::intValue).map(Stream::toList);
 	}
 
 	public static _Base.Nillable<List<Integer>> mapNilInts(GenericRecord object,
 			String property) {
-		return mapToNilStream(object, property, JsonNumber.class,
-				JsonNumber::intValue).map(Stream::toList);
+		return mapToNilStream(object, property, Number.class,
+				Number::intValue).map(Stream::toList);
 	}
 
 	public static Optional<List<Integer>> mapOptInts(GenericRecord object, String property) {
-		return mapToOptStream(object, property, JsonNumber.class,
-				JsonNumber::intValue).map(Stream::toList);
+		return mapToOptStream(object, property, Number.class,
+				Number::intValue).map(Stream::toList);
 	}
 
 	public static List<Integer> mapInts(GenericRecord object, String property) {
-		return mapToStream(object, property, JsonNumber.class,
-				JsonNumber::intValue).toList();
+		return mapToStream(object, property, Number.class,
+				Number::intValue).toList();
 	}
 
 	public static OptionalInt mapNullInt(GenericRecord object, String property) {
@@ -654,8 +653,12 @@ public class _AvroUtils {
 	}
 
 	public static List<Double> mapDoubles(GenericRecord object, String property) {
-		return mapToStream(object, property, Number.class,
-				v -> v.doubleValue()).toList();
+		System.err.println("Mapping doubles for property: " + property);
+		return mapToStream(object, property, Object.class,
+				v -> {
+					System.err.println(" =======> " + v);
+					return ((Number) v).doubleValue();
+				}).toList();
 	}
 
 	public static OptionalDouble mapNullDouble(GenericRecord object, String property) {
@@ -695,20 +698,20 @@ public class _AvroUtils {
 
 	// ----------------
 	public static Optional<List<String>> mapNullStrings(GenericRecord object, String property) {
-		return mapToNullStream(object, property, String.class, Function.identity()).map(Stream::toList);
+		return mapToNullStream(object, property, Utf8.class, Objects::toString).map(Stream::toList);
 	}
 
 	public static _Base.Nillable<List<String>> mapNilStrings(GenericRecord object,
 			String property) {
-		return mapToNilStream(object, property, String.class, Function.identity()).map(Stream::toList);
+		return mapToNilStream(object, property, Utf8.class, Objects::toString).map(Stream::toList);
 	}
 
 	public static Optional<List<String>> mapOptStrings(GenericRecord object, String property) {
-		return mapToOptStream(object, property, String.class, Function.identity()).map(Stream::toList);
+		return mapToOptStream(object, property, Utf8.class, Objects::toString).map(Stream::toList);
 	}
 
 	public static List<String> mapStrings(GenericRecord object, String property) {
-		return mapToStream(object, property, String.class, Function.identity()).toList();
+		return mapToStream(object, property, Utf8.class, Objects::toString).toList();
 	}
 
 	public static Optional<String> mapNullString(GenericRecord object, String property) {
