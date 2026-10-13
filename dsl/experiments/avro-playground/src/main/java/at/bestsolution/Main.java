@@ -1,6 +1,5 @@
 package at.bestsolution;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -15,7 +14,6 @@ import org.apache.avro.io.DatumReader;
 import org.apache.avro.io.DatumWriter;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificDatumWriter;
-import org.apache.avro.util.ClassSecurityValidator;
 
 import example.avro.A;
 import example.avro.DoubleSample;

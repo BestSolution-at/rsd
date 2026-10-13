@@ -85,7 +85,7 @@ public class SimpleRecord_Basic_List_DataTest extends BaseTest {
 	void valueDouble(SimpleRecord_Basic_List.Data record) {
 		var data = record.valueDouble();
 		assertEquals(2, data.size());
-		// assertEquals(Double.MIN_VALUE, data.get(0));
+		assertEquals(Double.MIN_VALUE, data.get(0));
 		assertEquals(Double.MAX_VALUE, data.get(1));
 	}
 

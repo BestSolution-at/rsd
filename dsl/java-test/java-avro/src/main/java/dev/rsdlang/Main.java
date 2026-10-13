@@ -3,9 +3,6 @@ package dev.rsdlang;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-import javax.xml.validation.Schema;
-
-import org.apache.avro.SchemaParser;
 import org.apache.avro.ipc.Server;
 import org.apache.avro.ipc.netty.NettyServer;
 import org.apache.avro.ipc.netty.NettyTransceiver;
