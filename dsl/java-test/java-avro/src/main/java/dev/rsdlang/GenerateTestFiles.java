@@ -27,6 +27,7 @@ import dev.rsdlang.sample.avro.ScalarRecord;
 import dev.rsdlang.sample.avro.ScalarRecord_Substitution;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_List;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Optional;
+import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Null;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -44,6 +45,7 @@ public class GenerateTestFiles {
 
 		SimpleRecord_Basic_List();
 		SimpleRecord_Basic_List_Optional();
+		SimpleRecord_Basic_List_Null();
 
 		ScalarRecord();
 		ScalarRecord_Substitution();
@@ -323,6 +325,55 @@ public class GenerateTestFiles {
 		}
 		persist(new SimpleRecord_Basic_List_Optional(),
 				CLIENT_BASE_PATH.resolve("SimpleRecord_Basic_List_Optional.Empty.Data.avro"));
+	}
+
+	private static void SimpleRecord_Basic_List_Null() {
+		{
+			var record = new SimpleRecord_Basic_List_Null();
+			record.setValueBoolean(List.of(true, false));
+			record.setValueDouble(List.of(Double.MIN_VALUE, Double.MAX_VALUE));
+			record.setValueFloat(List.of(Float.MIN_VALUE, Float.MAX_VALUE));
+			record.setValueInt(List.of(Integer.MIN_VALUE, Integer.MAX_VALUE));
+			record.setValueLocalDate(List.of(
+					LocalDate.parse("2020-01-01").toString(),
+					LocalDate.parse("2020-12-31").toString()));
+			record.setValueLocalDateTime(List.of(
+					LocalDateTime.parse("2020-01-01T00:00:00").toString(),
+					LocalDateTime.parse("2020-12-31T00:00:00").toString()));
+			record.setValueLocalTime(List.of(
+					LocalTime.parse("00:00:00").toString(),
+					LocalTime.parse("23:59:59").toString()));
+			record.setValueLong(List.of(Long.MIN_VALUE, Long.MAX_VALUE));
+			record.setValueOffsetDateTime(List.of(
+					OffsetDateTime.parse("2020-01-01T00:00:00+01:00").toString(),
+					OffsetDateTime.parse("2020-12-31T00:00:00+01:00").toString()));
+			record.setValueShort(List.of(
+					(int) Short.MIN_VALUE,
+					(int) Short.MAX_VALUE));
+			record.setValueString(List.of("a", "b"));
+			record.setValueZonedDateTime(List.of(
+					ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]").toString(),
+					ZonedDateTime.parse("2020-12-31T00:00:00+01:00[Europe/Paris]").toString()));
+			persist(record,
+					CLIENT_BASE_PATH.resolve("SimpleRecord_Basic_List_Null.Data.avro"));
+		}
+		{
+			var record = new SimpleRecord_Basic_List_Null();
+			record.setValueBoolean(NULL.NULL);
+			record.setValueDouble(NULL.NULL);
+			record.setValueFloat(NULL.NULL);
+			record.setValueInt(NULL.NULL);
+			record.setValueLocalDate(NULL.NULL);
+			record.setValueLocalDateTime(NULL.NULL);
+			record.setValueLocalTime(NULL.NULL);
+			record.setValueLong(NULL.NULL);
+			record.setValueOffsetDateTime(NULL.NULL);
+			record.setValueShort(NULL.NULL);
+			record.setValueString(NULL.NULL);
+			record.setValueZonedDateTime(NULL.NULL);
+			persist(record,
+					CLIENT_BASE_PATH.resolve("SimpleRecord_Basic_List_Null.Null.Data.avro"));
+		}
 	}
 
 	private static <T extends SpecificRecordBase> void persist(T record, Path path) {
