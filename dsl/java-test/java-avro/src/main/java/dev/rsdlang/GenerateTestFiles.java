@@ -19,6 +19,7 @@ import dev.rsdlang.sample.avro.NULL;
 import dev.rsdlang.sample.avro.SimpleRecord;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion_Int_Int;
+import dev.rsdlang.sample.avro.TreeNode;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional_Null;
@@ -35,6 +36,8 @@ public class GenerateTestFiles {
 			"/Users/tomschindl/git-beso/rsd/dsl/java-test/java-client/src/test/resources/dev/rsdlang/sample/client/model");
 
 	public static void main(String[] args) {
+		TreeNode();
+
 		SimpleRecord();
 		SimpleRecord_KeyVersion_Int_Int();
 		SimpleRecord_KeyVersion();
@@ -427,6 +430,23 @@ public class GenerateTestFiles {
 			record.setValueZonedDateTime(NULL.NULL);
 			persist(record, CLIENT_BASE_PATH.resolve("SimpleRecord_Basic_List_Optional_Null.Null.Data.avro"));
 		}
+	}
+
+	private static void TreeNode() {
+		var record = new TreeNode();
+		record.setValue("Root");
+
+		var childA = new TreeNode();
+		childA.setValue("Child A");
+		childA.setChildren(List.of());
+
+		var childB = new TreeNode();
+		childB.setValue("Child B");
+		childB.setChildren(List.of());
+
+		record.setChildren(List.of(childA, childB));
+
+		persist(record, CLIENT_BASE_PATH.resolve("TreeNode.Data.avro"));
 	}
 
 	private static <T extends SpecificRecordBase> void persist(T record, Path path) {
