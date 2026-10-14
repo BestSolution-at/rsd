@@ -20,6 +20,8 @@ import dev.rsdlang.sample.avro.SimpleRecord;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion_Int_Int;
 import dev.rsdlang.sample.avro.TreeNode;
+import dev.rsdlang.sample.avro.UnionA;
+import dev.rsdlang.sample.avro.UnionB;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional_Null;
@@ -36,6 +38,8 @@ public class GenerateTestFiles {
 			"/Users/tomschindl/git-beso/rsd/dsl/java-test/java-client/src/test/resources/dev/rsdlang/sample/client/model");
 
 	public static void main(String[] args) {
+		Union();
+
 		TreeNode();
 
 		SimpleRecord();
@@ -449,6 +453,22 @@ public class GenerateTestFiles {
 		persist(record, CLIENT_BASE_PATH.resolve("TreeNode.Data.avro"));
 	}
 
+	private static void Union() {
+		{
+			var record = new UnionA();
+			record.setValueA("A");
+			record.setShared("Shared of A");
+			persist(record, CLIENT_BASE_PATH.resolve("UnionA.Data.avro"));
+		}
+		{
+			var record = new UnionB();
+			record.setValueB("B");
+			record.setShared("Shared of B");
+			persist(record, CLIENT_BASE_PATH.resolve("UnionB.Data.avro"));
+		}
+
+	}
+
 	private static <T extends SpecificRecordBase> void persist(T record, Path path) {
 		try (var outputStream = Files.newOutputStream(path, StandardOpenOption.CREATE,
 				StandardOpenOption.TRUNCATE_EXISTING)) {
@@ -460,5 +480,4 @@ public class GenerateTestFiles {
 			throw new RuntimeException(e);
 		}
 	}
-
 }
