@@ -1,8 +1,8 @@
 package dev.rsdlang;
 
+import org.apache.avro.generic.GenericContainer;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
-import org.apache.avro.specific.SpecificRecordBase;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -58,6 +58,8 @@ public class GenerateTestFiles {
 
 		ScalarRecord();
 		ScalarRecord_Substitution();
+
+		SampleEnum();
 	}
 
 	private static void SimpleRecord() {
@@ -469,7 +471,12 @@ public class GenerateTestFiles {
 
 	}
 
-	private static <T extends SpecificRecordBase> void persist(T record, Path path) {
+	private static void SampleEnum() {
+		persist(dev.rsdlang.sample.avro.SampleEnum.A, CLIENT_BASE_PATH.resolve("SampleEnum.A.avro"));
+		persist(dev.rsdlang.sample.avro.SampleEnum.B, CLIENT_BASE_PATH.resolve("SampleEnum.B.avro"));
+	}
+
+	private static <T extends GenericContainer> void persist(T record, Path path) {
 		try (var outputStream = Files.newOutputStream(path, StandardOpenOption.CREATE,
 				StandardOpenOption.TRUNCATE_EXISTING)) {
 			var encoder = EncoderFactory.get().binaryEncoder(outputStream, null);
