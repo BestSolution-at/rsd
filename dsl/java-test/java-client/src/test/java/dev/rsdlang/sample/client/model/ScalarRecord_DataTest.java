@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
@@ -34,31 +35,31 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value(ScalarRecord.Data record) {
 			assertEquals(ZoneId.of("Europe/Paris"), record.value());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Null(ScalarRecord.Data record) {
 			assertEquals(ZoneId.of("Europe/Paris"), record.value_Null().orElse(null));
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Opt(ScalarRecord.Data record) {
 			assertEquals(ZoneId.of("Europe/Paris"), record.value_Opt().orElse(null));
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Opt_Null(ScalarRecord.Data record) {
 			assertEquals(ZoneId.of("Europe/Paris"), record.value_Opt_Null().orElse(null));
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list(ScalarRecord.Data record) {
 			assertEquals(
 					List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")),
@@ -66,7 +67,7 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Null(ScalarRecord.Data record) {
 			assertEquals(
 					List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")),
@@ -74,7 +75,7 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Opt(ScalarRecord.Data record) {
 			assertEquals(
 					List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")),
@@ -82,7 +83,7 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Opt_Null(ScalarRecord.Data record) {
 			assertEquals(
 					List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")),
@@ -112,25 +113,25 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Null(ScalarRecord.Data record) {
 			assertTrue(record.value_Null().isEmpty());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Opt(ScalarRecord.Data record) {
 			assertTrue(record.value_Opt().isEmpty());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Opt_Null(ScalarRecord.Data record) {
 			assertTrue(record.value_Opt_Null().isUndefined());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list(ScalarRecord.Data record) {
 			assertEquals(
 					List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")),
@@ -138,19 +139,19 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Null(ScalarRecord.Data record) {
 			assertTrue(record.list_Null().isEmpty());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Opt(ScalarRecord.Data record) {
 			assertTrue(record.list_Opt().isEmpty());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Opt_Null(ScalarRecord.Data record) {
 			assertTrue(record.list_Opt_Null().isUndefined());
 		}
@@ -178,31 +179,31 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value(ScalarRecord.Data record) {
 			assertEquals(ZoneId.of("Europe/Paris"), record.value());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Null(ScalarRecord.Data record) {
 			assertTrue(record.value_Null().isEmpty());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Opt(ScalarRecord.Data record) {
 			assertTrue(record.value_Opt().isEmpty());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void value_Opt_Null(ScalarRecord.Data record) {
 			assertTrue(record.value_Opt_Null().isNull());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list(ScalarRecord.Data record) {
 			assertEquals(
 					List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")),
@@ -210,19 +211,19 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Null(ScalarRecord.Data record) {
 			assertTrue(record.list_Null().isEmpty());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Opt(ScalarRecord.Data record) {
 			assertTrue(record.list_Opt().isEmpty());
 		}
 
 		@ParameterizedTest
-		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		@MethodSource("getRecords")
 		void list_Opt_Null(ScalarRecord.Data record) {
 			assertTrue(record.list_Opt_Null().isNull());
 		}

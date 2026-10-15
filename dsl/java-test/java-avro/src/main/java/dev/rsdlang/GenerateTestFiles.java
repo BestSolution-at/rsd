@@ -32,6 +32,7 @@ import dev.rsdlang.sample.avro.SimpleRecord_Basic_List;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Optional;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Optional_Null;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Null;
+import dev.rsdlang.sample.avro.RecordWithUnions;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -60,6 +61,7 @@ public class GenerateTestFiles {
 		ScalarRecord_Substitution();
 
 		SampleEnum();
+		RecordWithUnions();
 	}
 
 	private static void SimpleRecord() {
@@ -474,6 +476,149 @@ public class GenerateTestFiles {
 	private static void SampleEnum() {
 		persist(dev.rsdlang.sample.avro.SampleEnum.A, CLIENT_BASE_PATH.resolve("SampleEnum.A.avro"));
 		persist(dev.rsdlang.sample.avro.SampleEnum.B, CLIENT_BASE_PATH.resolve("SampleEnum.B.avro"));
+	}
+
+	private static void RecordWithUnions() {
+		{
+			var record = new RecordWithUnions();
+
+			{
+				var union = new UnionA();
+				union.setValueA("A");
+				union.setShared("Shared of A");
+				record.setValue(union);
+			}
+
+			{
+				var unionB = new UnionB();
+				unionB.setValueB("B");
+				unionB.setShared("Shared of B");
+				record.setValueNull(unionB);
+			}
+
+			{
+				var union = new UnionA();
+				union.setValueA("A");
+				union.setShared("Shared of A");
+				record.setValueOpt(union);
+			}
+
+			{
+				var unionB = new UnionB();
+				unionB.setValueB("B");
+				unionB.setShared("Shared of B");
+				record.setValueOptNull(unionB);
+			}
+
+			{
+				var unionA = new UnionA();
+				unionA.setValueA("A");
+				unionA.setShared("Shared of A");
+
+				var unionB = new UnionB();
+				unionB.setValueB("B");
+				unionB.setShared("Shared of B");
+
+				record.setList(List.of(unionA, unionB));
+			}
+
+			{
+				var unionA = new UnionA();
+				unionA.setValueA("A");
+				unionA.setShared("Shared of A");
+
+				var unionB = new UnionB();
+				unionB.setValueB("B");
+				unionB.setShared("Shared of B");
+
+				record.setListNull(List.of(unionA, unionB));
+			}
+
+			{
+				var unionA = new UnionA();
+				unionA.setValueA("A");
+				unionA.setShared("Shared of A");
+
+				var unionB = new UnionB();
+				unionB.setValueB("B");
+				unionB.setShared("Shared of B");
+
+				record.setListOpt(List.of(unionA, unionB));
+			}
+
+			{
+				var unionA = new UnionA();
+				unionA.setValueA("A");
+				unionA.setShared("Shared of A");
+
+				var unionB = new UnionB();
+				unionB.setValueB("B");
+				unionB.setShared("Shared of B");
+
+				record.setListOptNull(List.of(unionA, unionB));
+			}
+			persist(record, CLIENT_BASE_PATH.resolve("RecordWithUnions.Data.avro"));
+		}
+
+		{
+			var record = new RecordWithUnions();
+			{
+				var union = new UnionA();
+				union.setValueA("A");
+				union.setShared("Shared of A");
+				record.setValue(union);
+			}
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(null);
+			record.setValueOptNull(NULL.NULL);
+
+			{
+				var unionA = new UnionA();
+				unionA.setValueA("A");
+				unionA.setShared("Shared of A");
+
+				var unionB = new UnionB();
+				unionB.setValueB("B");
+				unionB.setShared("Shared of B");
+
+				record.setList(List.of(unionA, unionB));
+			}
+			record.setListNull(NULL.NULL);
+			record.setListOpt(null);
+			record.setListOptNull(NULL.NULL);
+
+			persist(record, CLIENT_BASE_PATH.resolve("RecordWithUnions.Null.Data.avro"));
+		}
+
+		{
+			var record = new RecordWithUnions();
+			{
+				var union = new UnionA();
+				union.setValueA("A");
+				union.setShared("Shared of A");
+				record.setValue(union);
+			}
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(null);
+			record.setValueOptNull(null);
+
+			{
+				var unionA = new UnionA();
+				unionA.setValueA("A");
+				unionA.setShared("Shared of A");
+
+				var unionB = new UnionB();
+				unionB.setValueB("B");
+				unionB.setShared("Shared of B");
+
+				record.setList(List.of(unionA, unionB));
+			}
+			record.setListNull(NULL.NULL);
+			record.setListOpt(null);
+			record.setListOptNull(null);
+
+			persist(record, CLIENT_BASE_PATH.resolve("RecordWithUnions.Minimal.Data.avro"));
+		}
 	}
 
 	private static <T extends GenericContainer> void persist(T record, Path path) {
