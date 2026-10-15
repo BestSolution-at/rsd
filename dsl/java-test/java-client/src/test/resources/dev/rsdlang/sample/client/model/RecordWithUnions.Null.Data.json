@@ -1,0 +1,23 @@
+{
+	"value": {
+		"@type": "union-a",
+		"valueA": "A",
+		"shared": "Shared of A"
+	},
+	"value_Null": null,
+	"value_Opt_Null": null,
+	"list": [
+		{
+			"@type": "union-a",
+			"valueA": "A",
+			"shared": "Shared of A"
+		},
+		{
+			"@type": "union-b",
+			"valueB": "B",
+			"shared": "Shared of B"
+		}
+	],
+	"list_Null": null,
+	"list_Opt_Null": null
+}

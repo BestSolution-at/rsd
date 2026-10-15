@@ -67,7 +67,11 @@ export function ident(node: GeneratorNode, ident: number) {
 	return curNode;
 }
 
-export function toNodeTree(block: string, endWithNewLine = false): CompositeGeneratorNode {
+export function toNodeTree(
+	block: string,
+	endWithNewLine = false,
+	dynamicContentResolver?: (key: string) => GeneratorNode | undefined | null,
+): CompositeGeneratorNode {
 	const nodeStack: CompositeGeneratorNode[] = [new CompositeGeneratorNode()];
 
 	let currentIdent = 0;
@@ -115,7 +119,19 @@ export function toNodeTree(block: string, endWithNewLine = false): CompositeGene
 				nodeStack[nodeStack.length - 1].indent(c => c.append(node));
 			}
 		}
-		nodeStack[nodeStack.length - 1].append(l.replace(/\t*/, ''), lineIndex + 1 < lines.length ? NL : '');
+		const content = l.replace(/\t*/, '');
+		const topNode = nodeStack[nodeStack.length - 1];
+		const placeholderRegex = /%(\w+)%/g;
+		let lastIndex = 0;
+		let match: RegExpExecArray | null;
+		while ((match = placeholderRegex.exec(content))) {
+			if (match.index > lastIndex) {
+				topNode.append(content.substring(lastIndex, match.index));
+			}
+			topNode.append(dynamicContentResolver?.(match[1]) ?? match[0]);
+			lastIndex = placeholderRegex.lastIndex;
+		}
+		topNode.append(content.substring(lastIndex), lineIndex + 1 < lines.length ? NL : '');
 		currentIdent = ident;
 	}
 
@@ -196,5 +212,12 @@ export function hasFileStreamParameter(model: MResolvedRSDModel): boolean {
 }
 
 export function isStringSerializedType(type: MBuiltinType) {
-	return type === 'local-date' || type === 'local-date-time' || type === 'local-time' || type === 'offset-date-time' || type === 'string' || type === 'zoned-date-time';
+	return (
+		type === 'local-date' ||
+		type === 'local-date-time' ||
+		type === 'local-time' ||
+		type === 'offset-date-time' ||
+		type === 'string' ||
+		type === 'zoned-date-time'
+	);
 }

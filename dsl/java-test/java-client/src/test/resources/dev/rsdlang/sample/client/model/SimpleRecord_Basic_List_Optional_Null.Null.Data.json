@@ -1,0 +1,14 @@
+{
+	"valueBoolean": null,
+	"valueShort": null,
+	"valueInt": null,
+	"valueLong": null,
+	"valueFloat": null,
+	"valueDouble": null,
+	"valueString": null,
+	"valueLocalDate": null,
+	"valueLocalDateTime": null,
+	"valueLocalTime": null,
+	"valueOffsetDateTime": null,
+	"valueZonedDateTime": null
+}

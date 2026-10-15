@@ -216,6 +216,10 @@ export function isMPropertyNoneInlineProperty(value: MProperty): value is MPrope
 	);
 }
 
+export function isMPropertyBuiltin<T extends MProperty>(value: T): value is T & { type: MBuiltinType } {
+	return value.variant === 'builtin';
+}
+
 export function isMPropertyInlineResolvedProperty(
 	value: unknown,
 ): value is MPropertyNoneInlineProperty & MResolvedPropery {
@@ -354,6 +358,17 @@ export type MParameterNoneInlineEnumType = {
 
 export type MParameter = MParameterInlineEnumType | MParameterNoneInlineEnumType;
 
+export function isMParameterNoneInlineEnumType(value: MParameter): value is MParameterNoneInlineEnumType {
+	return (
+		value.variant === 'enum' ||
+		value.variant === 'builtin' ||
+		value.variant === 'scalar' ||
+		value.variant === 'union' ||
+		value.variant === 'record' ||
+		value.variant === 'stream'
+	);
+}
+
 export type MReturnTypeInlineEnumType = {
 	'@type': 'ReturnType';
 	variant: 'inline-enum';
@@ -375,6 +390,17 @@ export type MReturnTypeNoneInlineEnumType = {
 };
 
 export type MReturnType = MReturnTypeInlineEnumType | MReturnTypeNoneInlineEnumType;
+
+export function isMReturnTypeNoneInlineEnumType(value: MReturnType): value is MReturnTypeNoneInlineEnumType {
+	return (
+		value.variant === 'enum' ||
+		value.variant === 'builtin' ||
+		value.variant === 'scalar' ||
+		value.variant === 'union' ||
+		value.variant === 'record' ||
+		value.variant === 'stream'
+	);
+}
 
 export type MError = {
 	'@type': 'Error';

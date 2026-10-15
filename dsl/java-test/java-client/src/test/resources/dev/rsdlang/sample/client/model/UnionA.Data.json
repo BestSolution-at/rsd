@@ -1,0 +1,5 @@
+{
+	"@type": "union-a",
+	"shared": "Shared of A",
+	"valueA": "A"
+}

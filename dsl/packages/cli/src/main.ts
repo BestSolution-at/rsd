@@ -23,6 +23,7 @@ import JavaServer from './java-server/generator.js';
 import OpenAPI from './open-api/generator.js';
 import TypescriptClientAPI from './typescript-client-api/generator.js';
 import TypescriptRestClientFetch from './typescript-rest-client-fetch/generator.js';
+import Avro from './avro/generator.js';
 
 import { existsSync } from 'node:fs';
 
@@ -39,6 +40,7 @@ generatorRegistry.set(JavaServer.name, JavaServer);
 generatorRegistry.set(OpenAPI.name, OpenAPI);
 generatorRegistry.set(TypescriptClientAPI.name, TypescriptClientAPI);
 generatorRegistry.set(TypescriptRestClientFetch.name, TypescriptRestClientFetch);
+generatorRegistry.set(Avro.name, Avro);
 
 export const generateAction = async (fileName: string, opts: ModelGenerateOptions): Promise<void> => {
 	const services = createRemoteServiceDescriptionServices(NodeFileSystem);

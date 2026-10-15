@@ -1,0 +1,10 @@
+{
+	"value": "Europe/Paris",
+	"value_Null": "Europe/Paris",
+	"value_Opt": "Europe/Paris",
+	"value_Opt_Null": "Europe/Paris",
+	"list": ["Europe/Paris","America/Los_Angeles"],
+	"list_Null": ["Europe/Paris","America/Los_Angeles"],
+	"list_Opt": ["Europe/Paris","America/Los_Angeles"],
+	"list_Opt_Null": ["Europe/Paris","America/Los_Angeles"]
+}
