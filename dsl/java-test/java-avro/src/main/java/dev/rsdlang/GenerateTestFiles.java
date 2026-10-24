@@ -14,6 +14,7 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.function.Supplier;
 
 import dev.rsdlang.sample.avro.NULL;
 import dev.rsdlang.sample.avro.SimpleRecord;
@@ -33,6 +34,7 @@ import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Optional;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Optional_Null;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Null;
 import dev.rsdlang.sample.avro.RecordWithUnions;
+import dev.rsdlang.sample.avro.RecordOfRecords;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -62,6 +64,7 @@ public class GenerateTestFiles {
 
 		SampleEnum();
 		RecordWithUnions();
+		RecordOfRecords();
 	}
 
 	private static void SimpleRecord() {
@@ -618,6 +621,62 @@ public class GenerateTestFiles {
 			record.setListOptNull(null);
 
 			persist(record, CLIENT_BASE_PATH.resolve("RecordWithUnions.Minimal.Data.avro"));
+		}
+	}
+
+	private static void RecordOfRecords() {
+		Supplier<SimpleRecord_Basic> supplier = () -> {
+			var v = new SimpleRecord_Basic();
+			v.setValueBoolean(true);
+			v.setValueDouble(1.0);
+			v.setValueFloat(1.0f);
+			v.setValueInt(1);
+			v.setValueLocalDate(LocalDate.parse("2020-01-01").toString());
+			v.setValueLocalDateTime(LocalDateTime.parse("2020-01-01T10:00:00").toString());
+			v.setValueLocalTime(LocalTime.parse("10:00").toString());
+			v.setValueLong(1);
+			v.setValueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00").toString());
+			v.setValueShort(1);
+			v.setValueString("Hello");
+			v.setValueZonedDateTime(ZonedDateTime.parse("2020-12-31T00:00:00+01:00[Europe/Paris]").toString());
+			return v;
+		};
+
+		{
+			var record = new RecordOfRecords();
+			record.setValue(supplier.get());
+			record.setValueNull(supplier.get());
+			record.setValueOpt(supplier.get());
+			record.setValueOptNull(supplier.get());
+			record.setList(List.of(supplier.get()));
+			record.setListNull(List.of(supplier.get()));
+			record.setListOpt(List.of(supplier.get()));
+			record.setListOptNull(List.of(supplier.get()));
+			persist(record, CLIENT_BASE_PATH.resolve("RecordOfRecords.Data.avro"));
+		}
+		{
+			var record = new RecordOfRecords();
+			record.setValue(supplier.get());
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(null);
+			record.setValueOptNull(NULL.NULL);
+			record.setList(List.of(supplier.get()));
+			record.setListNull(NULL.NULL);
+			record.setListOpt(null);
+			record.setListOptNull(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("RecordOfRecords.Null.Data.avro"));
+		}
+		{
+			var record = new RecordOfRecords();
+			record.setValue(supplier.get());
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(null);
+			record.setValueOptNull(null);
+			record.setList(List.of(supplier.get()));
+			record.setListNull(NULL.NULL);
+			record.setListOpt(null);
+			record.setListOptNull(null);
+			persist(record, CLIENT_BASE_PATH.resolve("RecordOfRecords.Minimal.Data.avro"));
 		}
 	}
 

@@ -1,0 +1,34 @@
+{
+	"value": {
+		"valueBoolean": true,
+		"valueDouble": 1,
+		"valueFloat": 1,
+		"valueInt": 1,
+		"valueLocalDate": "2020-01-01",
+		"valueLocalDateTime": "2020-01-01T10:00:00",
+		"valueLocalTime": "10:00",
+		"valueLong": 1,
+		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00",
+		"valueShort": 1,
+		"valueString": "Hello",
+		"valueZonedDateTime": "2020-12-31T00:00:00+01:00[Europe/Paris]"
+	},
+	"value_Null": null,
+	"list": [
+		{
+			"valueBoolean": true,
+			"valueDouble": 1,
+			"valueFloat": 1,
+			"valueInt": 1,
+			"valueLocalDate": "2020-01-01",
+			"valueLocalDateTime": "2020-01-01T10:00:00",
+			"valueLocalTime": "10:00",
+			"valueLong": 1,
+			"valueOffsetDateTime": "2020-01-01T00:00:00+01:00",
+			"valueShort": 1,
+			"valueString": "Hello",
+			"valueZonedDateTime": "2020-12-31T00:00:00+01:00[Europe/Paris]"
+		}
+	],
+	"list_Null": null
+}
