@@ -1,0 +1,7 @@
+{
+	"@type": "patch:union-a",
+	"key": "a-key",
+	"version": "a-version",
+	"shared": "shared-a",
+	"valueA": "value-a"
+}

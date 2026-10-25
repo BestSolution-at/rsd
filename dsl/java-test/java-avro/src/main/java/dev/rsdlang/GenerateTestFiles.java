@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import dev.rsdlang.sample.avro.NULL;
+import dev.rsdlang.sample.avro.PatchableUnionAPatch;
+import dev.rsdlang.sample.avro.PatchableUnionBPatch;
 import dev.rsdlang.sample.avro.SimpleRecord;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion;
 import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion_Int_Int;
@@ -65,6 +67,8 @@ public class GenerateTestFiles {
 		SampleEnum();
 		RecordWithUnions();
 		RecordOfRecords();
+
+		PatchableUnion();
 	}
 
 	private static void SimpleRecord() {
@@ -677,6 +681,39 @@ public class GenerateTestFiles {
 			record.setListOpt(null);
 			record.setListOptNull(null);
 			persist(record, CLIENT_BASE_PATH.resolve("RecordOfRecords.Minimal.Data.avro"));
+		}
+	}
+
+	private static void PatchableUnion() {
+		{
+			var record = new PatchableUnionAPatch();
+			record.setKey("a-key");
+			record.setVersion("a-version");
+			record.setValueA("value-a");
+			record.setShared("shared-a");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableUnionA.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableUnionAPatch();
+			record.setKey("a-key");
+			record.setVersion("a-version");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableUnionA.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableUnionBPatch();
+			record.setKey("b-key");
+			record.setVersion("b-version");
+			record.setValueB("value-b");
+			record.setShared("shared-b");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableUnionB.Patch.avro"));
+		}
+		{
+			var record = new PatchableUnionBPatch();
+			record.setKey("b-key");
+			record.setVersion("b-version");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableUnionB.Minimal.Patch.avro"));
 		}
 	}
 
