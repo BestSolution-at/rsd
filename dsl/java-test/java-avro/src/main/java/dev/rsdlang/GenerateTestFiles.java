@@ -38,9 +38,13 @@ import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Null;
 import dev.rsdlang.sample.avro.RecordWithUnions;
 import dev.rsdlang.sample.avro.RecordOfRecords;
 import dev.rsdlang.sample.avro.PatchableScalarRecordPatch;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_listPatchMerge;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_listPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_list_NullPatchMerge;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_list_NullPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_list_OptPatchMerge;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_list_OptPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_list_Opt_NullPatchMerge;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_list_Opt_NullPatchReplace;
 
 public class GenerateTestFiles {
@@ -739,6 +743,25 @@ public class GenerateTestFiles {
 			record.setListOpt(new PatchableScalarRecord_list_OptPatchReplace(List.of("Europe/Paris")));
 			record.setListOptNull(new PatchableScalarRecord_list_Opt_NullPatchReplace(List.of("Europe/Paris")));
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord.ListReplace.Patch.avro"));
+		}
+		{
+			var record = new PatchableScalarRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+
+			record.setValue("Europe/Paris");
+			record.setValueNull("Europe/Paris");
+			record.setValueOpt("Europe/Paris");
+			record.setValueOptNull("Europe/Paris");
+
+			record.setList(new PatchableScalarRecord_listPatchMerge(List.of("Europe/Paris"), List.of("Europe/Vienna")));
+			record.setListNull(
+					new PatchableScalarRecord_list_NullPatchMerge(List.of("Europe/Paris"), List.of("Europe/Vienna")));
+			record
+					.setListOpt(new PatchableScalarRecord_list_OptPatchMerge(List.of("Europe/Paris"), List.of("Europe/Vienna")));
+			record.setListOptNull(
+					new PatchableScalarRecord_list_Opt_NullPatchMerge(List.of("Europe/Paris"), List.of("Europe/Vienna")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord.ListMerge.Patch.avro"));
 		}
 		{
 			var record = new PatchableScalarRecordPatch();
