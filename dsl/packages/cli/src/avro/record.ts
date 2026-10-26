@@ -197,12 +197,19 @@ function mapPatchableProperty(prop: MResolvedPropery, recordName: string): AvroF
 		}
 	} else {
 		const rv = mapProperty(prop, recordName);
-		if (typeof rv.type === 'string') {
-			rv.type = ['null', rv.type];
-		} else if (Array.isArray(rv.type) && !rv.type.includes('null')) {
-			rv.type = ['null', ...rv.type];
+		const type: AvroType[] = Array.isArray(rv.type) ? [...rv.type] : [rv.type];
+
+		if (!type.includes('null')) {
+			type.unshift('null');
 		}
-		return rv;
+
+		if ((prop.nullable || prop.optional) && !type.includes('NULL')) {
+			type.push('NULL');
+		}
+		return {
+			name: rv.name,
+			type,
+		};
 	}
 }
 

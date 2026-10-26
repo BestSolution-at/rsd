@@ -3,7 +3,6 @@ import { toNodeTree } from '../util.js';
 import {
 	allResolvedRecordProperties,
 	isMEnumType,
-	isMPropertyInlineResolvedProperty,
 	isMResolvedProperty,
 	isMResolvedRecordType,
 	isMResolvedUnionType,
