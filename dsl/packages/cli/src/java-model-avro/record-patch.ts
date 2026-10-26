@@ -304,10 +304,11 @@ function SetChangeScalar(
 	prop: MPropertyNoneInlineProperty,
 ) {
 	const GenericRecord = fqn('org.apache.avro.generic.GenericRecord');
+	const Objects = fqn('java.util.Objects');
 	return toNodeTree(`
 static class ${prefix}SetChangeImpl extends _ChangeSupport.ValueElementsChange<${type}> implements ${prefix}SetChange {
 	${prefix}SetChangeImpl(${GenericRecord} data) {
-			super(data, $v -> _ScalarSupport.${prop.type}FromAvro((String)$v));
+			super(data, $v -> _ScalarSupport.${prop.type}FromAvro(${Objects}.toString($v)));
 		}
 	}
 `);
@@ -371,12 +372,13 @@ static class ${prefix}MergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveI
 	}
 
 	if (prop.variant === 'scalar') {
+		const Objects = fqn('java.util.Objects');
 		return toNodeTree(`
 static class ${prefix}MergeChangeImpl extends _ChangeSupport.ListMergeAddRemoveImpl<${type}, ${type}> implements ${prefix}MergeChange {
 	${prefix}MergeChangeImpl(${GenericRecord} data) {
 		super(data, 
-			$v -> _ScalarSupport.${prop.type}FromAvro((String)$v), 
-			$v -> _ScalarSupport.${prop.type}FromAvro((String)$v)
+			$v -> _ScalarSupport.${prop.type}FromAvro(${Objects}.toString($v)), 
+			$v -> _ScalarSupport.${prop.type}FromAvro(${Objects}.toString($v))
 		);
 	}
 }
