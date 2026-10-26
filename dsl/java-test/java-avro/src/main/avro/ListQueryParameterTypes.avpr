@@ -1192,7 +1192,8 @@
           "name": "month_Opt",
           "type": [
             "Month",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
@@ -1257,7 +1258,8 @@
           "name": "dayOfWeek_Opt",
           "type": [
             "DayOfWeek",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
@@ -2407,84 +2409,96 @@
           "name": "valueBoolean",
           "type": [
             "boolean",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueShort",
           "type": [
             "int",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueInt",
           "type": [
             "int",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueLong",
           "type": [
             "long",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueFloat",
           "type": [
             "float",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueDouble",
           "type": [
             "double",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueString",
           "type": [
             "string",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueLocalDate",
           "type": [
             "string",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueLocalDateTime",
           "type": [
             "string",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueLocalTime",
           "type": [
             "string",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueOffsetDateTime",
           "type": [
             "string",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
           "name": "valueZonedDateTime",
           "type": [
             "string",
-            "null"
+            "null",
+            "NULL"
           ]
         }
       ]
@@ -5715,7 +5729,8 @@
           "name": "value_Opt",
           "type": [
             "SampleEnum",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
@@ -6037,14 +6052,17 @@
         },
         {
           "name": "value",
-          "type": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_value",
-            "symbols": [
-              "A",
-              "B"
-            ]
-          }
+          "type": [
+            "null",
+            {
+              "type": "enum",
+              "name": "PatchableEnumInlineRecord_value",
+              "symbols": [
+                "A",
+                "B"
+              ]
+            }
+          ]
         },
         {
           "name": "value_Null",
@@ -6072,7 +6090,8 @@
                 "F"
               ]
             },
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
@@ -6398,7 +6417,8 @@
           "name": "value_Opt",
           "type": [
             "string",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {
@@ -6698,7 +6718,8 @@
           "name": "value_Opt",
           "type": [
             "string",
-            "null"
+            "null",
+            "NULL"
           ]
         },
         {

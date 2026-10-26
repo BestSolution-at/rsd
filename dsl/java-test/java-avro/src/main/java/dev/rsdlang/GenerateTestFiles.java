@@ -37,6 +37,11 @@ import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Optional_Null;
 import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Null;
 import dev.rsdlang.sample.avro.RecordWithUnions;
 import dev.rsdlang.sample.avro.RecordOfRecords;
+import dev.rsdlang.sample.avro.PatchableScalarRecordPatch;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_listPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_list_NullPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_list_OptPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_list_Opt_NullPatchReplace;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -69,6 +74,7 @@ public class GenerateTestFiles {
 		RecordOfRecords();
 
 		PatchableUnion();
+		PatchableScalarRecordPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -714,6 +720,45 @@ public class GenerateTestFiles {
 			record.setKey("b-key");
 			record.setVersion("b-version");
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableUnionB.Minimal.Patch.avro"));
+		}
+	}
+
+	private static void PatchableScalarRecordPatch() {
+		{
+			var record = new PatchableScalarRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+
+			record.setValue("Europe/Paris");
+			record.setValueNull("Europe/Paris");
+			record.setValueOpt("Europe/Paris");
+			record.setValueOptNull("Europe/Paris");
+
+			record.setList(new PatchableScalarRecord_listPatchReplace(List.of("Europe/Paris")));
+			record.setListNull(new PatchableScalarRecord_list_NullPatchReplace(List.of("Europe/Paris")));
+			record.setListOpt(new PatchableScalarRecord_list_OptPatchReplace(List.of("Europe/Paris")));
+			record.setListOptNull(new PatchableScalarRecord_list_Opt_NullPatchReplace(List.of("Europe/Paris")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord.ListReplace.Patch.avro"));
+		}
+		{
+			var record = new PatchableScalarRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableScalarRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(NULL.NULL);
+			record.setValueOptNull(NULL.NULL);
+			record.setListNull(NULL.NULL);
+			record.setListOpt(NULL.NULL);
+			record.setListOptNull(NULL.NULL);
+			persist(record,
+					CLIENT_BASE_PATH.resolve("PatchableScalarRecord.Null.Patch.avro"));
 		}
 	}
 
