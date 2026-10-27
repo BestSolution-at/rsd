@@ -38,6 +38,15 @@ import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Null;
 import dev.rsdlang.sample.avro.RecordWithUnions;
 import dev.rsdlang.sample.avro.RecordOfRecords;
 import dev.rsdlang.sample.avro.PatchableScalarRecordPatch;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_SubstitutionPatch;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_listPatchMerge;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_listPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_NullPatchMerge;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_NullPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_OptPatchMerge;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_OptPatchReplace;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge;
+import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_listPatchMerge;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_listPatchReplace;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_list_NullPatchMerge;
@@ -79,6 +88,7 @@ public class GenerateTestFiles {
 
 		PatchableUnion();
 		PatchableScalarRecordPatch();
+		PatchableScalarRecord_SubstitutionPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -782,6 +792,59 @@ public class GenerateTestFiles {
 			record.setListOptNull(NULL.NULL);
 			persist(record,
 					CLIENT_BASE_PATH.resolve("PatchableScalarRecord.Null.Patch.avro"));
+		}
+	}
+
+	private static void PatchableScalarRecord_SubstitutionPatch() {
+		{
+			var record = new PatchableScalarRecord_SubstitutionPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue("[0,1]");
+			record.setValueNull("[0,1]");
+			record.setValueOpt("[0,1]");
+			record.setValueOptNull("[0,1]");
+			record.setList(new PatchableScalarRecord_Substitution_listPatchReplace(List.of("[0,1]")));
+			record.setListNull(new PatchableScalarRecord_Substitution_list_NullPatchReplace(List.of("[0,1]")));
+			record.setListOpt(new PatchableScalarRecord_Substitution_list_OptPatchReplace(List.of("[0,1]")));
+			record.setListOptNull(new PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace(List.of("[0,1]")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord_Substitution.ListReplace.Patch.avro"));
+		}
+		{
+			var record = new PatchableScalarRecord_SubstitutionPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue("[0,1]");
+			record.setValueNull("[0,1]");
+			record.setValueOpt("[0,1]");
+			record.setValueOptNull("[0,1]");
+			record.setList(new PatchableScalarRecord_Substitution_listPatchMerge(List.of("[0,1]"), List.of("[1,2]")));
+			record
+					.setListNull(new PatchableScalarRecord_Substitution_list_NullPatchMerge(List.of("[0,1]"), List.of("[1,2]")));
+			record.setListOpt(new PatchableScalarRecord_Substitution_list_OptPatchMerge(List.of("[0,1]"), List.of("[1,2]")));
+			record.setListOptNull(
+					new PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge(List.of("[0,1]"), List.of("[1,2]")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord_Substitution.ListMerge.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableScalarRecord_SubstitutionPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord_Substitution.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableScalarRecord_SubstitutionPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(NULL.NULL);
+			record.setValueOptNull(NULL.NULL);
+			record.setListNull(NULL.NULL);
+			record.setListOpt(NULL.NULL);
+			record.setListOptNull(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord_Substitution.Null.Patch.avro"));
 		}
 	}
 
