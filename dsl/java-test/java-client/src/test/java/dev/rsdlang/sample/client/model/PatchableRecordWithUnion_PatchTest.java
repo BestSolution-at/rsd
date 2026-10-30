@@ -348,4 +348,166 @@ public class PatchableRecordWithUnion_PatchTest extends BaseTest {
 					.isEqualTo("k-1:v1");
 		}
 	}
+
+	@Nested
+	class Minimal {
+		static PatchableRecordWithUnion.Patch createAvroRecord() {
+			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.PatchableRecordWithUnionPatch);
+			var record = readAvroFile("PatchableRecordWithUnion.Minimal.Patch.avro", schema);
+			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.of(record);
+		}
+
+		static PatchableRecordWithUnion.Patch createJsonRecord() {
+			var record = readJsonFile("PatchableRecordWithUnion.Minimal.Patch.json");
+			return dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.of(record);
+		}
+
+		static PatchableRecordWithUnion.Patch[] getRecords() {
+			return new PatchableRecordWithUnion.Patch[] {
+					createAvroRecord(),
+					createJsonRecord()
+			};
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void key(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.key()).isEqualTo("k-1");
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void version(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.version()).isEqualTo("v-1");
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void value(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.value()).isEmpty();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void value_Null(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.value_Null().isUndefined()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void value_Opt(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.value_Opt().isUndefined()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void value_Opt_Null(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.value_Opt_Null().isUndefined()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void list(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.list()).isEmpty();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void list_Null(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.list_Null().isUndefined()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void list_Opt(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.list_Opt().isUndefined()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void list_Opt_Null(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.list_Opt_Null().isUndefined()).isTrue();
+		}
+	}
+
+	@Nested
+	class Null {
+		static PatchableRecordWithUnion.Patch createAvroRecord() {
+			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.PatchableRecordWithUnionPatch);
+			var record = readAvroFile("PatchableRecordWithUnion.Null.Patch.avro", schema);
+			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.of(record);
+		}
+
+		static PatchableRecordWithUnion.Patch createJsonRecord() {
+			var record = readJsonFile("PatchableRecordWithUnion.Null.Patch.json");
+			return dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.of(record);
+		}
+
+		static PatchableRecordWithUnion.Patch[] getRecords() {
+			return new PatchableRecordWithUnion.Patch[] {
+					createAvroRecord(),
+					createJsonRecord()
+			};
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void key(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.key()).isEqualTo("k-1");
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void version(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.version()).isEqualTo("v-1");
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void value(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.value()).isEmpty();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void value_Null(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.value_Null().isNull()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void value_Opt(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.value_Opt().isNull()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void value_Opt_Null(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.value_Opt_Null().isNull()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void list(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.list()).isEmpty();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void list_Null(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.list_Null().isNull()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void list_Opt(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.list_Opt().isNull()).isTrue();
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void list_Opt_Null(PatchableRecordWithUnion.Patch record) {
+			assertThat(record.list_Opt_Null().isNull()).isTrue();
+		}
+	}
 }

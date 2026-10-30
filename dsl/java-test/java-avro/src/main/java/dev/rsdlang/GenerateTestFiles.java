@@ -100,6 +100,7 @@ public class GenerateTestFiles {
 		PatchableScalarRecordPatch();
 		PatchableScalarRecord_SubstitutionPatch();
 		PatchableRecordWithUnionPatch();
+		// PatchableRecordOfRecordsPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -911,6 +912,26 @@ public class GenerateTestFiles {
 							List.of(new PatchableUnionBPatch("patch-b", "v-1", null, null)),
 							List.of("k-1:v1")));
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordWithUnion.ListMerge.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecordWithUnionPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordWithUnion.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecordWithUnionPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(NULL.NULL);
+			record.setValueOptNull(NULL.NULL);
+			record.setListNull(NULL.NULL);
+			record.setListOpt(NULL.NULL);
+			record.setListOptNull(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordWithUnion.Null.Patch.avro"));
 		}
 	}
 
