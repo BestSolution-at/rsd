@@ -668,7 +668,7 @@ export type JavaRestClientJDKGeneratorConfig = ArtifactGeneratorConfig & {
 	/** @deprecated */
 	nativeTypeSubstitues?: Record<string, string>;
 	nativeTypeSubstitutes?: JavaNativeTypeSubstitutes;
-	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
+	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack' | 'application/avro')[];
 };
 
 export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
@@ -678,7 +678,7 @@ export type JavaServerJakartaWSGeneratorConfig = ArtifactGeneratorConfig & {
 	nativeTypeSubstitues?: Record<string, string>;
 	nativeTypeSubstitutes?: JavaNativeTypeSubstitutes;
 	scopeValues?: { type: string; name: string }[];
-	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack')[];
+	contentTypeEncodings?: ('application/json' | 'application/vnd.msgpack' | 'application/avro')[];
 };
 
 export type JavaServerGeneratorConfig = ArtifactGeneratorConfig & {
@@ -862,3 +862,15 @@ export function primitiveToObject(type: string) {
 export type ImportGroup = {
 	readonly imports: readonly string[];
 };
+
+export function OptionalType(fqn: (type: string) => string) {
+	return fqn('java.util.Optional');
+}
+
+export function NillableType(fqn: (type: string) => string, basePackageName: string) {
+	return _BaseType(fqn, basePackageName) + '.Nillable';
+}
+
+export function _BaseType(fqn: (type: string) => string, basePackageName: string) {
+	return fqn(`${basePackageName}._Base`);
+}

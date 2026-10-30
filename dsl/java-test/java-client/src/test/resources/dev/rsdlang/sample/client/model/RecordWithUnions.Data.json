@@ -1,0 +1,70 @@
+{
+	"value": {
+		"@type": "union-a",
+		"valueA": "A",
+		"shared": "Shared of A"
+	},
+	"value_Null": {
+		"@type": "union-b",
+		"valueB": "B",
+		"shared": "Shared of B"
+	},
+	"value_Opt": {
+		"@type": "union-a",
+		"valueA": "A",
+		"shared": "Shared of A"
+	},
+	"value_Opt_Null": {
+		"@type": "union-b",
+		"valueB": "B",
+		"shared": "Shared of B"
+	},
+	"list": [
+		{
+			"@type": "union-a",
+			"valueA": "A",
+			"shared": "Shared of A"
+		},
+		{
+			"@type": "union-b",
+			"valueB": "B",
+			"shared": "Shared of B"
+		}
+	],
+	"list_Null": [
+		{
+			"@type": "union-a",
+			"valueA": "A",
+			"shared": "Shared of A"
+		},
+		{
+			"@type": "union-b",
+			"valueB": "B",
+			"shared": "Shared of B"
+		}
+	],
+	"list_Opt": [
+		{
+			"@type": "union-a",
+			"valueA": "A",
+			"shared": "Shared of A"
+		},
+		{
+			"@type": "union-b",
+			"valueB": "B",
+			"shared": "Shared of B"
+		}
+	],
+	"list_Opt_Null": [
+		{
+			"@type": "union-a",
+			"valueA": "A",
+			"shared": "Shared of A"
+		},
+		{
+			"@type": "union-b",
+			"valueB": "B",
+			"shared": "Shared of B"
+		}
+	]
+}
