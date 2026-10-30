@@ -76,6 +76,7 @@ import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_OptPatchMerge;
 import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_OptPatchReplace;
 import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_Opt_NullPatchMerge;
 import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_Opt_NullPatchReplace;
+import dev.rsdlang.sample.avro.PatchableRecordPatch;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -112,6 +113,7 @@ public class GenerateTestFiles {
 		PatchableScalarRecord_SubstitutionPatch();
 		PatchableRecordWithUnionPatch();
 		PatchableRecordOfRecordsPatch();
+		PatchableRecordPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -1043,6 +1045,22 @@ public class GenerateTestFiles {
 			record.setListOpt(NULL.NULL);
 			record.setListOptNull(NULL.NULL);
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordOfRecords.Null.Patch.avro"));
+		}
+	}
+
+	private static void PatchableRecordPatch() {
+		{
+			var record = new PatchableRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue("a-value");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord.Full.Patch.avro"));
+		}
+		{
+			var record = new PatchableRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord.Minimal.Patch.avro"));
 		}
 	}
 
