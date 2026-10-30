@@ -65,6 +65,17 @@ import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_OptPatchMerge;
 import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_OptPatchReplace;
 import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_Opt_NullPatchMerge;
 import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_Opt_NullPatchReplace;
+import dev.rsdlang.sample.avro.PatchableRecord_Basic;
+import dev.rsdlang.sample.avro.PatchableRecord_BasicPatch;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecordsPatch;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecords_listPatchMerge;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecords_listPatchReplace;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_NullPatchMerge;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_NullPatchReplace;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_OptPatchMerge;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_OptPatchReplace;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_Opt_NullPatchMerge;
+import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_Opt_NullPatchReplace;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -100,7 +111,7 @@ public class GenerateTestFiles {
 		PatchableScalarRecordPatch();
 		PatchableScalarRecord_SubstitutionPatch();
 		PatchableRecordWithUnionPatch();
-		// PatchableRecordOfRecordsPatch();
+		PatchableRecordOfRecordsPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -932,6 +943,106 @@ public class GenerateTestFiles {
 			record.setListOpt(NULL.NULL);
 			record.setListOptNull(NULL.NULL);
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordWithUnion.Null.Patch.avro"));
+		}
+	}
+
+	private static void PatchableRecordOfRecordsPatch() {
+		{
+			Supplier<PatchableRecord_Basic> valueGenerator = () -> new PatchableRecord_Basic(
+					"data-1",
+					"v-1",
+					true,
+					1,
+					1,
+					1l,
+					1.0f,
+					1.0,
+					"Value-1",
+					"2020-01-01",
+					"2020-01-01T00:00:00",
+					"10:00:00",
+					"2020-01-01T00:00:00+00:00",
+					"2020-01-01T00:00:00+01:00[Europe/Paris]");
+			var record = new PatchableRecordOfRecordsPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue(valueGenerator.get());
+			record.setValueNull(valueGenerator.get());
+			record.setValueOpt(valueGenerator.get());
+			record.setValueOptNull(valueGenerator.get());
+			record.setList(new PatchableRecordOfRecords_listPatchReplace(List.of(valueGenerator.get())));
+			record.setListNull(new PatchableRecordOfRecords_list_NullPatchReplace(List.of(valueGenerator.get())));
+			record.setListOpt(new PatchableRecordOfRecords_list_OptPatchReplace(List.of(valueGenerator.get())));
+			record.setListOptNull(new PatchableRecordOfRecords_list_Opt_NullPatchReplace(List.of(valueGenerator.get())));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordOfRecords.ListReplace.Patch.avro"));
+		}
+
+		{
+			Supplier<PatchableRecord_Basic> valueGenerator = () -> new PatchableRecord_Basic(
+					"data-1",
+					"v-1",
+					true,
+					1,
+					1,
+					1l,
+					1.0f,
+					1.0, "Value-1",
+					"2020-01-01",
+					"2020-01-01T00:00:00",
+					"10:00:00",
+					"2020-01-01T00:00:00+00:00",
+					"2020-01-01T00:00:00+01:00[Europe/Paris]");
+			Supplier<PatchableRecord_BasicPatch> patchGenerator = () -> {
+				var rv = new PatchableRecord_BasicPatch();
+				rv.setKey("patch-k-1");
+				rv.setVersion("patch-v-1");
+				return rv;
+			};
+
+			var record = new PatchableRecordOfRecordsPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue(patchGenerator.get());
+			record.setValueNull(patchGenerator.get());
+			record.setValueOpt(patchGenerator.get());
+			record.setValueOptNull(patchGenerator.get());
+			record.setList(new PatchableRecordOfRecords_listPatchMerge(
+					List.of(valueGenerator.get()),
+					List.of(patchGenerator.get()),
+					List.of("k-1")));
+			record.setListNull(new PatchableRecordOfRecords_list_NullPatchMerge(
+					List.of(valueGenerator.get()),
+					List.of(patchGenerator.get()),
+					List.of("k-1")));
+			record.setListOpt(new PatchableRecordOfRecords_list_OptPatchMerge(
+					List.of(valueGenerator.get()),
+					List.of(patchGenerator.get()),
+					List.of("k-1")));
+			record.setListOptNull(new PatchableRecordOfRecords_list_Opt_NullPatchMerge(
+					List.of(valueGenerator.get()),
+					List.of(patchGenerator.get()),
+					List.of("k-1")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordOfRecords.ListMerge.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecordOfRecordsPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordOfRecords.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecordOfRecordsPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(NULL.NULL);
+			record.setValueOptNull(NULL.NULL);
+			record.setListNull(NULL.NULL);
+			record.setListOpt(NULL.NULL);
+			record.setListOptNull(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordOfRecords.Null.Patch.avro"));
 		}
 	}
 
