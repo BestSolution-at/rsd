@@ -188,8 +188,14 @@ function mapPatchableProperty(prop: MResolvedPropery, recordName: string): AvroF
 			if (prop.nullable || prop.optional) {
 				type.push('NULL');
 			}
-			type.push(recordName);
-			type.push(`${recordName}Patch`);
+			const propertyType = computePropertyType(prop, recordName);
+			if (Array.isArray(propertyType)) {
+				type.push(...propertyType);
+				type.push(...propertyType.map(t => `${t}Patch`));
+			} else if (typeof propertyType === 'string') {
+				type.push(propertyType);
+				type.push(`${propertyType}Patch`);
+			}
 			return {
 				name: prop.name,
 				type,

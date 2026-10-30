@@ -222,7 +222,9 @@ public class _AvroUtils {
 	}
 
 	public static <T> T mapLiteral(Object value, Function<String, T> converter) {
-		if (value instanceof String s) {
+		if (value instanceof Utf8 s) {
+			return converter.apply(s.toString());
+		} else if (value instanceof String s) {
 			return converter.apply(s);
 		}
 		throw new IllegalArgumentException("Expected String but got: " + value.getClass().getName());

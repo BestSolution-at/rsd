@@ -7001,8 +7001,8 @@
         "name": "value",
         "type": [
           "null",
-          "PatchableRecordOfRecords",
-          "PatchableRecordOfRecordsPatch"
+          "PatchableRecord_Basic",
+          "PatchableRecord_BasicPatch"
         ]
       },
       {
@@ -7010,8 +7010,8 @@
         "type": [
           "null",
           "NULL",
-          "PatchableRecordOfRecords",
-          "PatchableRecordOfRecordsPatch"
+          "PatchableRecord_Basic",
+          "PatchableRecord_BasicPatch"
         ]
       },
       {
@@ -7019,8 +7019,8 @@
         "type": [
           "null",
           "NULL",
-          "PatchableRecordOfRecords",
-          "PatchableRecordOfRecordsPatch"
+          "PatchableRecord_Basic",
+          "PatchableRecord_BasicPatch"
         ]
       },
       {
@@ -7028,8 +7028,8 @@
         "type": [
           "null",
           "NULL",
-          "PatchableRecordOfRecords",
-          "PatchableRecordOfRecordsPatch"
+          "PatchableRecord_Basic",
+          "PatchableRecord_BasicPatch"
         ]
       },
       {
@@ -7352,8 +7352,10 @@
         "name": "value",
         "type": [
           "null",
-          "PatchableRecordWithUnion",
-          "PatchableRecordWithUnionPatch"
+          "PatchableUnionA",
+          "PatchableUnionB",
+          "PatchableUnionAPatch",
+          "PatchableUnionBPatch"
         ]
       },
       {
@@ -7361,8 +7363,10 @@
         "type": [
           "null",
           "NULL",
-          "PatchableRecordWithUnion",
-          "PatchableRecordWithUnionPatch"
+          "PatchableUnionA",
+          "PatchableUnionB",
+          "PatchableUnionAPatch",
+          "PatchableUnionBPatch"
         ]
       },
       {
@@ -7370,8 +7374,10 @@
         "type": [
           "null",
           "NULL",
-          "PatchableRecordWithUnion",
-          "PatchableRecordWithUnionPatch"
+          "PatchableUnionA",
+          "PatchableUnionB",
+          "PatchableUnionAPatch",
+          "PatchableUnionBPatch"
         ]
       },
       {
@@ -7379,8 +7385,10 @@
         "type": [
           "null",
           "NULL",
-          "PatchableRecordWithUnion",
-          "PatchableRecordWithUnionPatch"
+          "PatchableUnionA",
+          "PatchableUnionB",
+          "PatchableUnionAPatch",
+          "PatchableUnionBPatch"
         ]
       },
       {

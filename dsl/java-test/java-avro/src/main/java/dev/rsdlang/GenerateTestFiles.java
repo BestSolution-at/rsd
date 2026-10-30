@@ -55,6 +55,16 @@ import dev.rsdlang.sample.avro.PatchableScalarRecord_list_OptPatchMerge;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_list_OptPatchReplace;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_list_Opt_NullPatchMerge;
 import dev.rsdlang.sample.avro.PatchableScalarRecord_list_Opt_NullPatchReplace;
+import dev.rsdlang.sample.avro.PatchableUnionA;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnionPatch;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnion_listPatchMerge;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnion_listPatchReplace;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_NullPatchMerge;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_NullPatchReplace;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_OptPatchMerge;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_OptPatchReplace;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_Opt_NullPatchMerge;
+import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_Opt_NullPatchReplace;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -89,6 +99,7 @@ public class GenerateTestFiles {
 		PatchableUnion();
 		PatchableScalarRecordPatch();
 		PatchableScalarRecord_SubstitutionPatch();
+		PatchableRecordWithUnionPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -845,6 +856,61 @@ public class GenerateTestFiles {
 			record.setListOpt(NULL.NULL);
 			record.setListOptNull(NULL.NULL);
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableScalarRecord_Substitution.Null.Patch.avro"));
+		}
+	}
+
+	private static void PatchableRecordWithUnionPatch() {
+		{
+			var record = new PatchableRecordWithUnionPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a"));
+			record.setValueNull(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a"));
+			record.setValueOpt(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a"));
+			record.setValueOptNull(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a"));
+			record.setList(new PatchableRecordWithUnion_listPatchReplace(
+					List.of(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a"))));
+			record.setListNull(new PatchableRecordWithUnion_list_NullPatchReplace(
+					List.of(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a"))));
+			record.setListOpt(new PatchableRecordWithUnion_list_OptPatchReplace(
+					List.of(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a"))));
+			record.setListOptNull(new PatchableRecordWithUnion_list_Opt_NullPatchReplace(
+					List.of(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a"))));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordWithUnion.ListReplace.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecordWithUnionPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue(new PatchableUnionBPatch("patch-b", "v-1", "shared-b", null));
+			record.setValueNull(new PatchableUnionBPatch("patch-b", "v-1", "shared-b", null));
+			record.setValueOpt(new PatchableUnionBPatch("patch-b", "v-1", "shared-b", null));
+			record.setValueOptNull(new PatchableUnionBPatch("patch-b", "v-1", "shared-b", null));
+
+			record.setList(
+					new PatchableRecordWithUnion_listPatchMerge(
+							List.of(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a")),
+							List.of(new PatchableUnionBPatch("patch-b", "v-1", null, null)),
+							List.of("k-1:v1")));
+
+			record.setListNull(
+					new PatchableRecordWithUnion_list_NullPatchMerge(
+							List.of(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a")),
+							List.of(new PatchableUnionBPatch("patch-b", "v-1", null, null)),
+							List.of("k-1:v1")));
+
+			record.setListOpt(
+					new PatchableRecordWithUnion_list_OptPatchMerge(
+							List.of(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a")),
+							List.of(new PatchableUnionBPatch("patch-b", "v-1", null, null)),
+							List.of("k-1:v1")));
+			record.setListOptNull(
+					new PatchableRecordWithUnion_list_Opt_NullPatchMerge(
+							List.of(new PatchableUnionA("data-a", "v-1", "shared-a", "value-a")),
+							List.of(new PatchableUnionBPatch("patch-b", "v-1", null, null)),
+							List.of("k-1:v1")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecordWithUnion.ListMerge.Patch.avro"));
 		}
 	}
 
