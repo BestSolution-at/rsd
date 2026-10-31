@@ -78,6 +78,7 @@ import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_Opt_NullPatchMerge;
 import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_Opt_NullPatchReplace;
 import dev.rsdlang.sample.avro.PatchableRecordPatch;
 import dev.rsdlang.sample.avro.PatchableRecord_Basic_OptionalPatch;
+import dev.rsdlang.sample.avro.PatchableRecord_Basic_Optional_NullPatch;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -117,6 +118,7 @@ public class GenerateTestFiles {
 		PatchableRecordPatch();
 		PatchableRecord_BasicPatch();
 		PatchableRecord_Basic_OptionalPatch();
+		PatchableRecord_Basic_Optional_NullPatch();
 
 	}
 
@@ -1140,6 +1142,53 @@ public class GenerateTestFiles {
 			record.setValueString(NULL.NULL);
 			record.setValueZonedDateTime(NULL.NULL);
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_Optional.Null.Patch.avro"));
+		}
+	}
+
+	private static void PatchableRecord_Basic_Optional_NullPatch() {
+		{
+			var record = new PatchableRecord_Basic_Optional_NullPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(true);
+			record.setValueDouble(1.0);
+			record.setValueFloat(1.0f);
+			record.setValueInt(1);
+			record.setValueLocalDate("2020-01-01");
+			record.setValueLocalDateTime("2020-01-01T00:00:00");
+			record.setValueLocalTime("10:00:00");
+			record.setValueLong(1l);
+			record.setValueOffsetDateTime("2020-01-01T00:00:00+02:00");
+			record.setValueShort(1);
+			record.setValueString("patch-1");
+			record.setValueZonedDateTime("2020-01-01T00:00:00+01:00[Europe/Paris]");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_Optional_Null.Full.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_Basic_Optional_NullPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_Optional_Null.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_Basic_Optional_NullPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(NULL.NULL);
+			record.setValueDouble(NULL.NULL);
+			record.setValueFloat(NULL.NULL);
+			record.setValueInt(NULL.NULL);
+			record.setValueLocalDate(NULL.NULL);
+			record.setValueLocalDateTime(NULL.NULL);
+			record.setValueLocalTime(NULL.NULL);
+			record.setValueLong(NULL.NULL);
+			record.setValueOffsetDateTime(NULL.NULL);
+			record.setValueShort(NULL.NULL);
+			record.setValueString(NULL.NULL);
+			record.setValueZonedDateTime(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_Optional_Null.Null.Patch.avro"));
 		}
 	}
 

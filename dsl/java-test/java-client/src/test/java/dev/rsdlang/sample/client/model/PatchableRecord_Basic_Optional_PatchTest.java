@@ -19,7 +19,7 @@ public class PatchableRecord_Basic_Optional_PatchTest extends BaseTest {
 	@Nested
 	class Full {
 		static PatchableRecord_Basic_Optional.Patch createAvroRecord() {
-			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.PatchableRecord_BasicPatch);
+			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.PatchableRecord_Basic_OptionalPatch);
 			var record = readAvroFile("PatchableRecord_Basic.Full.Patch.avro", schema);
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_Basic_OptionalPatchImpl.of(record);
 		}
