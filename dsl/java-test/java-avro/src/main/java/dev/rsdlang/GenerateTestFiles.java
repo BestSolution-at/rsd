@@ -114,6 +114,7 @@ public class GenerateTestFiles {
 		PatchableRecordWithUnionPatch();
 		PatchableRecordOfRecordsPatch();
 		PatchableRecordPatch();
+		PatchableRecord_BasicPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -1061,6 +1062,34 @@ public class GenerateTestFiles {
 			record.setKey("k-1");
 			record.setVersion("v-1");
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord.Minimal.Patch.avro"));
+		}
+	}
+
+	private static void PatchableRecord_BasicPatch() {
+		{
+			var record = new PatchableRecord_BasicPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(true);
+			record.setValueDouble(1.0);
+			record.setValueFloat(1.0f);
+			record.setValueInt(1);
+			record.setValueLocalDate("2020-01-01");
+			record.setValueLocalDateTime("2020-01-01T00:00:00");
+			record.setValueLocalTime("10:00:00");
+			record.setValueLong(1l);
+			record.setValueOffsetDateTime("2020-01-01T00:00:00+02:00");
+			record.setValueShort(1);
+			record.setValueString("patch-1");
+			record.setValueZonedDateTime("2020-01-01T00:00:00+01:00[Europe/Paris]");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic.Full.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_BasicPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic.Minimal.Patch.avro"));
 		}
 	}
 
