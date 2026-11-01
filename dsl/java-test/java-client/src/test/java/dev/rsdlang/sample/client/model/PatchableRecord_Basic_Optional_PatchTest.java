@@ -20,12 +20,12 @@ public class PatchableRecord_Basic_Optional_PatchTest extends BaseTest {
 	class Full {
 		static PatchableRecord_Basic_Optional.Patch createAvroRecord() {
 			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.PatchableRecord_Basic_OptionalPatch);
-			var record = readAvroFile("PatchableRecord_Basic.Full.Patch.avro", schema);
+			var record = readAvroFile("PatchableRecord_Basic_Optional.Full.Patch.avro", schema);
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_Basic_OptionalPatchImpl.of(record);
 		}
 
 		static PatchableRecord_Basic_Optional.Patch createJsonRecord() {
-			var record = readJsonFile("PatchableRecord_Basic.Full.Patch.json");
+			var record = readJsonFile("PatchableRecord_Basic_Optional.Full.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_OptionalPatchImpl.of(record);
 		}
 
