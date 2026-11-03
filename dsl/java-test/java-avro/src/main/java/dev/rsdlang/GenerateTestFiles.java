@@ -60,6 +60,7 @@ public class GenerateTestFiles {
 		PatchableRecord_Basic_NullPatch();
 		PatchableRecord_Basic_ListPatch();
 		PatchableRecord_Basic_List_OptionalPatch();
+		PatchableRecord_Basic_List_Optional_NullPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -1396,6 +1397,132 @@ public class GenerateTestFiles {
 			record.setValueString(NULL.NULL);
 			record.setValueZonedDateTime(NULL.NULL);
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional.Null.Patch.avro"));
+		}
+	}
+
+	private static void PatchableRecord_Basic_List_Optional_NullPatch() {
+		{
+			var record = new PatchableRecord_Basic_List_Optional_NullPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(
+					new PatchableRecord_Basic_List_Optional_Null_valueBooleanPatchReplace(
+							List.of(true)));
+			record.setValueDouble(
+					new PatchableRecord_Basic_List_Optional_Null_valueDoublePatchReplace(
+							List.of(1.0)));
+			record.setValueFloat(
+					new PatchableRecord_Basic_List_Optional_Null_valueFloatPatchReplace(
+							List.of(1.0f)));
+			record.setValueInt(
+					new PatchableRecord_Basic_List_Optional_Null_valueIntPatchReplace(
+							List.of(1)));
+			record.setValueLocalDate(
+					new PatchableRecord_Basic_List_Optional_Null_valueLocalDatePatchReplace(
+							List.of("2020-01-01")));
+			record.setValueLocalDateTime(
+					new PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchReplace(
+							List.of("2020-01-01T00:00:00")));
+			record.setValueLocalTime(
+					new PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchReplace(
+							List.of("00:00:00")));
+			record.setValueLong(
+					new PatchableRecord_Basic_List_Optional_Null_valueLongPatchReplace(
+							List.of(1l)));
+			record.setValueOffsetDateTime(
+					new PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchReplace(
+							List.of("2020-01-01T00:00:00+02:00")));
+			record.setValueShort(
+					new PatchableRecord_Basic_List_Optional_Null_valueShortPatchReplace(
+							List.of(1)));
+			record.setValueString(
+					new PatchableRecord_Basic_List_Optional_Null_valueStringPatchReplace(
+							List.of("string")));
+			record.setValueZonedDateTime(
+					new PatchableRecord_Basic_List_Optional_Null_valueZonedDateTimePatchReplace(
+							List.of("2020-01-01T00:00:00+01:00[Europe/Berlin]")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional_Null.ListReplace.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_Basic_List_Optional_NullPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(
+					new PatchableRecord_Basic_List_Optional_Null_valueBooleanPatchMerge(
+							List.of(true),
+							List.of(false)));
+			record.setValueDouble(
+					new PatchableRecord_Basic_List_Optional_Null_valueDoublePatchMerge(
+							List.of(1.0),
+							List.of(2.0)));
+			record.setValueFloat(
+					new PatchableRecord_Basic_List_Optional_Null_valueFloatPatchMerge(
+							List.of(1.0f),
+							List.of(2.0f)));
+			record.setValueInt(
+					new PatchableRecord_Basic_List_Optional_Null_valueIntPatchMerge(
+							List.of(1),
+							List.of(2)));
+			record.setValueLocalDate(
+					new PatchableRecord_Basic_List_Optional_Null_valueLocalDatePatchMerge(
+							List.of("2020-01-01"),
+							List.of("2020-01-02")));
+			record.setValueLocalDateTime(
+					new PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchMerge(
+							List.of("2020-01-01T00:00:00"),
+							List.of("2020-01-02T00:00:00")));
+			record.setValueLocalTime(
+					new PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchMerge(
+							List.of("00:00:00"),
+							List.of("01:00:00")));
+			record.setValueLong(
+					new PatchableRecord_Basic_List_Optional_Null_valueLongPatchMerge(
+							List.of(1l),
+							List.of(2l)));
+			record.setValueOffsetDateTime(
+					new PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchMerge(
+							List.of("2020-01-01T00:00:00+02:00"),
+							List.of("2020-01-02T00:00:00+02:00")));
+			record.setValueShort(
+					new PatchableRecord_Basic_List_Optional_Null_valueShortPatchMerge(
+							List.of(1),
+							List.of(2)));
+			record.setValueString(
+					new PatchableRecord_Basic_List_Optional_Null_valueStringPatchMerge(
+							List.of("string"),
+							List.of("another string")));
+			record.setValueZonedDateTime(
+					new PatchableRecord_Basic_List_Optional_Null_valueZonedDateTimePatchMerge(
+							List.of("2020-01-01T00:00:00+01:00[Europe/Berlin]"),
+							List.of("2020-01-02T00:00:00+01:00[Europe/Berlin]")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional_Null.ListMerge.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_Basic_List_Optional_NullPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional_Null.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_Basic_List_Optional_NullPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(NULL.NULL);
+			record.setValueDouble(NULL.NULL);
+			record.setValueFloat(NULL.NULL);
+			record.setValueInt(NULL.NULL);
+			record.setValueLocalDate(NULL.NULL);
+			record.setValueLocalDateTime(NULL.NULL);
+			record.setValueLocalTime(NULL.NULL);
+			record.setValueLong(NULL.NULL);
+			record.setValueOffsetDateTime(NULL.NULL);
+			record.setValueShort(NULL.NULL);
+			record.setValueString(NULL.NULL);
+			record.setValueZonedDateTime(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional_Null.Null.Patch.avro"));
 		}
 	}
 
