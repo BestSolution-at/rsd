@@ -62,6 +62,7 @@ public class GenerateTestFiles {
 		PatchableRecord_Basic_List_OptionalPatch();
 		PatchableRecord_Basic_List_Optional_NullPatch();
 		PatchableRecord_Basic_List_NullPatch();
+		PatchableEnumRecordPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -1650,6 +1651,81 @@ public class GenerateTestFiles {
 			record.setValueString(NULL.NULL);
 			record.setValueZonedDateTime(NULL.NULL);
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Null.Null.Patch.avro"));
+		}
+	}
+
+	private static void PatchableEnumRecordPatch() {
+		{
+			var record = new PatchableEnumRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue(SampleEnum.A);
+			record.setValueNull(SampleEnum.A);
+			record.setValueOpt(SampleEnum.A);
+			record.setValueOptNull(SampleEnum.A);
+			record.setList(
+					new PatchableEnumRecord_listPatchReplace(
+							List.of(SampleEnum.A)));
+			record.setListNull(
+					new PatchableEnumRecord_list_NullPatchReplace(
+							List.of(SampleEnum.A)));
+			record.setListOpt(
+					new PatchableEnumRecord_list_OptPatchReplace(
+							List.of(SampleEnum.A)));
+			record.setListOptNull(
+					new PatchableEnumRecord_list_Opt_NullPatchReplace(
+							List.of(SampleEnum.A)));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumRecord.ListReplace.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableEnumRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue(SampleEnum.A);
+			record.setValueNull(SampleEnum.A);
+			record.setValueOpt(SampleEnum.A);
+			record.setValueOptNull(SampleEnum.A);
+			record.setList(
+					new PatchableEnumRecord_listPatchMerge(
+							List.of(SampleEnum.A),
+							List.of(SampleEnum.B)));
+			record.setListNull(
+					new PatchableEnumRecord_list_NullPatchMerge(
+							List.of(SampleEnum.A),
+							List.of(SampleEnum.B)));
+			record.setListOpt(
+					new PatchableEnumRecord_list_OptPatchMerge(
+							List.of(SampleEnum.A),
+							List.of(SampleEnum.B)));
+			record.setListOptNull(
+					new PatchableEnumRecord_list_Opt_NullPatchMerge(
+							List.of(SampleEnum.A),
+							List.of(SampleEnum.B)));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumRecord.ListMerge.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableEnumRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumRecord.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableEnumRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(NULL.NULL);
+			record.setValueOptNull(NULL.NULL);
+
+			record.setListNull(NULL.NULL);
+			record.setListOpt(NULL.NULL);
+			record.setListOptNull(NULL.NULL);
+
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumRecord.Null.Patch.avro"));
 		}
 	}
 
