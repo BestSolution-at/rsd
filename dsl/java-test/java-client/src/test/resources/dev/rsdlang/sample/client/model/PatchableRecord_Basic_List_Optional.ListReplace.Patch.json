@@ -1,0 +1,52 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"valueBoolean": {
+		"@type": "replace",
+		"elements": [true]
+	},
+	"valueDouble": {
+		"@type": "replace",
+		"elements": [1.0]
+	},
+	"valueFloat": {
+		"@type": "replace",
+		"elements": [1.0]
+	},
+	"valueInt": {
+		"@type": "replace",
+		"elements": [1]
+	},
+	"valueLocalDate": {
+		"@type": "replace",
+		"elements": ["2020-01-01"]
+	},
+	"valueLocalDateTime": {
+		"@type": "replace",
+		"elements": ["2020-01-01T00:00:00"]
+	},
+	"valueLocalTime": {
+		"@type": "replace",
+		"elements": ["00:00:00"]
+	},
+	"valueLong": {
+		"@type": "replace",
+		"elements": [1]
+	},
+	"valueOffsetDateTime": {
+		"@type": "replace",
+		"elements": ["2020-01-01T00:00:00+02:00"]
+	},
+	"valueShort": {
+		"@type": "replace",
+		"elements": [1]
+	},
+	"valueString": {
+		"@type": "replace",
+		"elements": ["string"]
+	},
+	"valueZonedDateTime": {
+		"@type": "replace",
+		"elements": ["2020-01-01T00:00:00+01:00[Europe/Berlin]"]
+	}
+}

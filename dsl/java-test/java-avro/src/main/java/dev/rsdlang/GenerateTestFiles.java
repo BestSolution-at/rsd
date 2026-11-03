@@ -4,6 +4,8 @@ import org.apache.avro.generic.GenericContainer;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
 
+import dev.rsdlang.sample.avro.*;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,96 +17,6 @@ import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.function.Supplier;
-
-import dev.rsdlang.sample.avro.NULL;
-import dev.rsdlang.sample.avro.PatchableUnionAPatch;
-import dev.rsdlang.sample.avro.PatchableUnionBPatch;
-import dev.rsdlang.sample.avro.SimpleRecord;
-import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion;
-import dev.rsdlang.sample.avro.SimpleRecord_KeyVersion_Int_Int;
-import dev.rsdlang.sample.avro.TreeNode;
-import dev.rsdlang.sample.avro.UnionA;
-import dev.rsdlang.sample.avro.UnionB;
-import dev.rsdlang.sample.avro.SimpleRecord_Basic;
-import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional;
-import dev.rsdlang.sample.avro.SimpleRecord_Basic_Optional_Null;
-import dev.rsdlang.sample.avro.SimpleRecord_Basic_Null;
-import dev.rsdlang.sample.avro.ScalarRecord;
-import dev.rsdlang.sample.avro.ScalarRecord_Substitution;
-import dev.rsdlang.sample.avro.SimpleRecord_Basic_List;
-import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Optional;
-import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Optional_Null;
-import dev.rsdlang.sample.avro.SimpleRecord_Basic_List_Null;
-import dev.rsdlang.sample.avro.RecordWithUnions;
-import dev.rsdlang.sample.avro.RecordOfRecords;
-import dev.rsdlang.sample.avro.PatchableScalarRecordPatch;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_SubstitutionPatch;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_listPatchMerge;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_listPatchReplace;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_NullPatchMerge;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_NullPatchReplace;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_OptPatchMerge;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_OptPatchReplace;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_listPatchMerge;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_listPatchReplace;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_list_NullPatchMerge;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_list_NullPatchReplace;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_list_OptPatchMerge;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_list_OptPatchReplace;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_list_Opt_NullPatchMerge;
-import dev.rsdlang.sample.avro.PatchableScalarRecord_list_Opt_NullPatchReplace;
-import dev.rsdlang.sample.avro.PatchableUnionA;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnionPatch;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnion_listPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnion_listPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_NullPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_NullPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_OptPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_OptPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_Opt_NullPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecordWithUnion_list_Opt_NullPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic;
-import dev.rsdlang.sample.avro.PatchableRecord_BasicPatch;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecordsPatch;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecords_listPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecords_listPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_NullPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_NullPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_OptPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_OptPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_Opt_NullPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecordOfRecords_list_Opt_NullPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecordPatch;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_OptionalPatch;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_Optional_NullPatch;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_NullPatch;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_ListPatch;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueBooleanPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueBooleanPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueDoublePatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueDoublePatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueFloatPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueFloatPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueIntPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueIntPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueLocalDatePatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueLocalDatePatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueLocalDateTimePatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueLocalDateTimePatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueLocalTimePatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueLocalTimePatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueLongPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueLongPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueOffsetDateTimePatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueOffsetDateTimePatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueShortPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueShortPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueStringPatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueStringPatchReplace;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueZonedDateTimePatchMerge;
-import dev.rsdlang.sample.avro.PatchableRecord_Basic_List_valueZonedDateTimePatchReplace;
 
 public class GenerateTestFiles {
 	private static final Path CLIENT_BASE_PATH = Path.of(
@@ -147,6 +59,7 @@ public class GenerateTestFiles {
 		PatchableRecord_Basic_Optional_NullPatch();
 		PatchableRecord_Basic_NullPatch();
 		PatchableRecord_Basic_ListPatch();
+		PatchableRecord_Basic_List_OptionalPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -1357,6 +1270,132 @@ public class GenerateTestFiles {
 			record.setKey("k-1");
 			record.setVersion("v-1");
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List.Minimal.Patch.avro"));
+		}
+	}
+
+	private static void PatchableRecord_Basic_List_OptionalPatch() {
+		{
+			var record = new PatchableRecord_Basic_List_OptionalPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(
+					new PatchableRecord_Basic_List_Optional_valueBooleanPatchReplace(
+							List.of(true)));
+			record.setValueDouble(
+					new PatchableRecord_Basic_List_Optional_valueDoublePatchReplace(
+							List.of(1.0)));
+			record.setValueFloat(
+					new PatchableRecord_Basic_List_Optional_valueFloatPatchReplace(
+							List.of(1.0f)));
+			record.setValueInt(
+					new PatchableRecord_Basic_List_Optional_valueIntPatchReplace(
+							List.of(1)));
+			record.setValueLocalDate(
+					new PatchableRecord_Basic_List_Optional_valueLocalDatePatchReplace(
+							List.of("2020-01-01")));
+			record.setValueLocalDateTime(
+					new PatchableRecord_Basic_List_Optional_valueLocalDateTimePatchReplace(
+							List.of("2020-01-01T00:00:00")));
+			record.setValueLocalTime(
+					new PatchableRecord_Basic_List_Optional_valueLocalTimePatchReplace(
+							List.of("00:00:00")));
+			record.setValueLong(
+					new PatchableRecord_Basic_List_Optional_valueLongPatchReplace(
+							List.of(1l)));
+			record.setValueOffsetDateTime(
+					new PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchReplace(
+							List.of("2020-01-01T00:00:00+02:00")));
+			record.setValueShort(
+					new PatchableRecord_Basic_List_Optional_valueShortPatchReplace(
+							List.of(1)));
+			record.setValueString(
+					new PatchableRecord_Basic_List_Optional_valueStringPatchReplace(
+							List.of("string")));
+			record.setValueZonedDateTime(
+					new PatchableRecord_Basic_List_Optional_valueZonedDateTimePatchReplace(
+							List.of("2020-01-01T00:00:00+01:00[Europe/Berlin]")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional.ListReplace.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_Basic_List_OptionalPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(
+					new PatchableRecord_Basic_List_Optional_valueBooleanPatchMerge(
+							List.of(true),
+							List.of(false)));
+			record.setValueDouble(
+					new PatchableRecord_Basic_List_Optional_valueDoublePatchMerge(
+							List.of(1.0),
+							List.of(2.0)));
+			record.setValueFloat(
+					new PatchableRecord_Basic_List_Optional_valueFloatPatchMerge(
+							List.of(1.0f),
+							List.of(2.0f)));
+			record.setValueInt(
+					new PatchableRecord_Basic_List_Optional_valueIntPatchMerge(
+							List.of(1),
+							List.of(2)));
+			record.setValueLocalDate(
+					new PatchableRecord_Basic_List_Optional_valueLocalDatePatchMerge(
+							List.of("2020-01-01"),
+							List.of("2020-01-02")));
+			record.setValueLocalDateTime(
+					new PatchableRecord_Basic_List_Optional_valueLocalDateTimePatchMerge(
+							List.of("2020-01-01T00:00:00"),
+							List.of("2020-01-02T00:00:00")));
+			record.setValueLocalTime(
+					new PatchableRecord_Basic_List_Optional_valueLocalTimePatchMerge(
+							List.of("00:00:00"),
+							List.of("01:00:00")));
+			record.setValueLong(
+					new PatchableRecord_Basic_List_Optional_valueLongPatchMerge(
+							List.of(1l),
+							List.of(2l)));
+			record.setValueOffsetDateTime(
+					new PatchableRecord_Basic_List_Optional_valueOffsetDateTimePatchMerge(
+							List.of("2020-01-01T00:00:00+02:00"),
+							List.of("2020-01-02T00:00:00+02:00")));
+			record.setValueShort(
+					new PatchableRecord_Basic_List_Optional_valueShortPatchMerge(
+							List.of(1),
+							List.of(2)));
+			record.setValueString(
+					new PatchableRecord_Basic_List_Optional_valueStringPatchMerge(
+							List.of("string"),
+							List.of("another string")));
+			record.setValueZonedDateTime(
+					new PatchableRecord_Basic_List_Optional_valueZonedDateTimePatchMerge(
+							List.of("2020-01-01T00:00:00+01:00[Europe/Berlin]"),
+							List.of("2020-01-02T00:00:00+01:00[Europe/Berlin]")));
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional.ListMerge.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_Basic_List_OptionalPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableRecord_Basic_List_OptionalPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueBoolean(NULL.NULL);
+			record.setValueDouble(NULL.NULL);
+			record.setValueFloat(NULL.NULL);
+			record.setValueInt(NULL.NULL);
+			record.setValueLocalDate(NULL.NULL);
+			record.setValueLocalDateTime(NULL.NULL);
+			record.setValueLocalTime(NULL.NULL);
+			record.setValueLong(NULL.NULL);
+			record.setValueOffsetDateTime(NULL.NULL);
+			record.setValueShort(NULL.NULL);
+			record.setValueString(NULL.NULL);
+			record.setValueZonedDateTime(NULL.NULL);
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableRecord_Basic_List_Optional.Null.Patch.avro"));
 		}
 	}
 
