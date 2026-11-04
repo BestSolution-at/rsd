@@ -29,6 +29,8 @@ import { generateScalarSupportContent } from '../java-model-avro/scalar-support.
 import { generateUnionContent } from '../java-model-avro/union.js';
 import { generateRecordPatchContent } from '../java-model-avro/record-patch.js';
 import { generateUnionPatchContent } from '../java-model-avro/union-patch.js';
+import { generateAvroUtils } from './avro-utils.js';
+import { generateChangeSupport } from './avro-change-support.js';
 
 export function generateAvro(
 	model: MResolvedRSDModel,
@@ -67,6 +69,8 @@ export function generateAvro(
 	artifacts.push(...generateScalarSupport(model.elements.filter(isMScalarType), artifactConfig));
 	artifacts.push(...generateEnumSupport(model.elements.filter(isMEnumType), artifactConfig));
 	artifacts.push(generateNillable(artifactConfig));
+	artifacts.push(generateAvroUtils(artifactConfig));
+	artifacts.push(...generateChangeSupport(artifactConfig));
 
 	return artifacts;
 }

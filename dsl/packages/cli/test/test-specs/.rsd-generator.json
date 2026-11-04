@@ -109,7 +109,7 @@
                     "toJson": "::toString"
                 }
             },
-            "contentTypeEncodings": ["application/json", "application/vnd.msgpack"]
+            "contentTypeEncodings": ["application/json", "application/vnd.msgpack", "application/avro"]
         },
         {
             "name": "openapi",
