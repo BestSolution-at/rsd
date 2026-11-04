@@ -128,7 +128,7 @@ import dev.rsdlang.sample.server.model.UploadMixedResult;
 import dev.rsdlang.sample.server.service.BuilderFactory;
 
 @Singleton
-public class RestBuilderFactory implements BuilderFactory {
+public class JsonBuilderFactory implements BuilderFactory {
 	@Override
 	public <T extends _Base.BaseDataBuilder<?>> T builder(Class<T> type) {
 		if (type == SimpleRecord_KeyVersion.DataBuilder.class) {

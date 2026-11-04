@@ -1,0 +1,116 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"value": {
+		"@type": "patch:union-b",
+		"key": "patch-b",
+		"version": "v-1",
+		"shared": "shared-b"
+	},
+	"value_Null": {
+		"@type": "patch:union-b",
+		"key": "patch-b",
+		"version": "v-1",
+		"shared": "shared-b"
+	},
+	"value_Opt": {
+		"@type": "patch:union-b",
+		"key": "patch-b",
+		"version": "v-1",
+		"shared": "shared-b"
+	},
+	"value_Opt_Null": {
+		"@type": "patch:union-b",
+		"key": "patch-b",
+		"version": "v-1",
+		"shared": "shared-b"
+	},
+	"list": {
+		"@type": "merge",
+		"additions": [
+			{
+				"@type": "union-a",
+				"key": "data-a",
+				"version": "v-1",
+				"shared": "shared-a"
+			}
+		],
+		"updates": [
+			{
+				"@type": "patch:union-b",
+				"key": "patch-b",
+				"version": "v-1",
+				"shared": "shared-b"
+			}
+		],
+		"removals": [
+			"k-1:v1"
+		]
+	},
+	"list_Null": {
+		"@type": "merge",
+		"additions": [
+			{
+				"@type": "union-a",
+				"key": "data-a",
+				"version": "v-1",
+				"shared": "shared-a"
+			}
+		],
+		"updates": [
+			{
+				"@type": "patch:union-b",
+				"key": "patch-b",
+				"version": "v-1",
+				"shared": "shared-b"
+			}
+		],
+		"removals": [
+			"k-1:v1"
+		]
+	},
+	"list_Opt": {
+		"@type": "merge",
+		"additions": [
+			{
+				"@type": "union-a",
+				"key": "data-a",
+				"version": "v-1",
+				"shared": "shared-a"
+			}
+		],
+		"updates": [
+			{
+				"@type": "patch:union-b",
+				"key": "patch-b",
+				"version": "v-1",
+				"shared": "shared-b"
+			}
+		],
+		"removals": [
+			"k-1:v1"
+		]
+	},
+	"list_Opt_Null": {
+		"@type": "merge",
+		"additions": [
+			{
+				"@type": "union-a",
+				"key": "data-a",
+				"version": "v-1",
+				"shared": "shared-a"
+			}
+		],
+		"updates": [
+			{
+				"@type": "patch:union-b",
+				"key": "patch-b",
+				"version": "v-1",
+				"shared": "shared-b"
+			}
+		],
+		"removals": [
+			"k-1:v1"
+		]
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"valueBoolean": null,
+	"valueDouble": null,
+	"valueFloat": null,
+	"valueInt": null,
+	"valueLocalDate": null,
+	"valueLocalDateTime": null,
+	"valueLocalTime": null,
+	"valueLong": null,
+	"valueOffsetDateTime": null,
+	"valueShort": null,
+	"valueString": null,
+	"valueZonedDateTime": null
+}

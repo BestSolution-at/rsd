@@ -1,0 +1,13 @@
+{
+	"value": "Root",
+	"children": [
+		{
+			"value": "Child A",
+			"children": []
+		},
+		{
+			"value": "Child B",
+			"children": []
+		}
+	]
+}

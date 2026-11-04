@@ -1,0 +1,14 @@
+{
+	"valueBoolean": [true,false],
+	"valueShort": [-32768, 32767],
+	"valueInt": [-2147483648, 2147483647],
+	"valueLong": [-9223372036854775808, 9223372036854775807],
+	"valueFloat": [1.4E-45, 3.4028235e38],
+	"valueDouble": [4.9E-324, 1.7976931348623157e308],
+	"valueString": ["a","b"],
+	"valueLocalDate": ["2020-01-01","2020-12-31"],
+	"valueLocalDateTime": ["2020-01-01T00:00:00","2020-12-31T00:00:00"],
+	"valueLocalTime": ["00:00:00","23:59:59"],
+	"valueOffsetDateTime": ["2020-01-01T00:00:00+01:00","2020-12-31T00:00:00+01:00"],
+	"valueZonedDateTime": ["2020-01-01T00:00:00+01:00[Europe/Paris]","2020-12-31T00:00:00+01:00[Europe/Paris]"]
+}

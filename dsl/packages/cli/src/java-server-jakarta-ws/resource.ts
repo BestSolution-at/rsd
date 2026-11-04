@@ -86,7 +86,7 @@ function _generateResource(
 			cBody.appendNewLine();
 		}
 
-		cBody.append('private final RestBuilderFactory builderFactory;', NL);
+		cBody.append('private final JsonBuilderFactory builderFactory;', NL);
 		cBody.append(`private final ${Service} service;`, NL);
 		cBody.append(`private final ${s.name}ResourceResponseBuilder responseBuilder;`, NL);
 		if (artifactConfig.scopeValues) {
@@ -98,7 +98,7 @@ function _generateResource(
 		cBody.appendNewLine();
 		cBody.append(`@${Inject}`, NL);
 		cBody.append(
-			`public ${s.name}Resource(${Service} service, ${s.name}ResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {`,
+			`public ${s.name}Resource(${Service} service, ${s.name}ResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {`,
 			NL,
 		);
 		cBody.indent(mBody => {

@@ -1,0 +1,14 @@
+{
+	"valueBoolean": false,
+	"valueDouble": 1.7976931348623157e+308,
+	"valueFloat": 3.4028235e+38,
+	"valueInt": 2147483647,
+	"valueLocalDate": "2020-01-01",
+	"valueLocalDateTime": "2020-01-01T00:00:00",
+	"valueLocalTime": "10:00",
+	"valueLong": 9223372036854775807,
+	"valueOffsetDateTime": "2020-01-01T00:00:00+01:00",
+	"valueShort": 32767,
+	"valueString": "the string value",
+	"valueZonedDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+}

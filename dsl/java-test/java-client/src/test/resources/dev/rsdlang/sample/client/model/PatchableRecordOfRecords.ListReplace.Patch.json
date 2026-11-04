@@ -1,0 +1,156 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"value": {
+		"@type": "replace",
+		"key": "data-1",
+		"version": "v-1",
+		"valueBoolean": true,
+		"valueShort": 1,
+		"valueInt": 1,
+		"valueLong": 1,
+		"valueFloat": 1.0,
+		"valueDouble": 1.0,
+		"valueString": "Value-1",
+		"valueDate": "2020-01-01",
+		"valueDateTime": "2020-01-01T00:00:00",
+		"valueTime": "10:00:00",
+		"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
+		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+	},
+	"value_Null": {
+		"@type": "replace",
+		"key": "data-1",
+		"version": "v-1",
+		"valueBoolean": true,
+		"valueShort": 1,
+		"valueInt": 1,
+		"valueLong": 1,
+		"valueFloat": 1.0,
+		"valueDouble": 1.0,
+		"valueString": "Value-1",
+		"valueDate": "2020-01-01",
+		"valueDateTime": "2020-01-01T00:00:00",
+		"valueTime": "10:00:00",
+		"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
+		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+	},
+	"value_Opt": {
+		"@type": "replace",
+		"key": "data-1",
+		"version": "v-1",
+		"valueBoolean": true,
+		"valueShort": 1,
+		"valueInt": 1,
+		"valueLong": 1,
+		"valueFloat": 1.0,
+		"valueDouble": 1.0,
+		"valueString": "Value-1",
+		"valueDate": "2020-01-01",
+		"valueDateTime": "2020-01-01T00:00:00",
+		"valueTime": "10:00:00",
+		"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
+		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+	},
+	"value_Opt_Null": {
+		"@type": "replace",
+		"key": "data-1",
+		"version": "v-1",
+		"valueBoolean": true,
+		"valueShort": 1,
+		"valueInt": 1,
+		"valueLong": 1,
+		"valueFloat": 1.0,
+		"valueDouble": 1.0,
+		"valueString": "Value-1",
+		"valueDate": "2020-01-01",
+		"valueDateTime": "2020-01-01T00:00:00",
+		"valueTime": "10:00:00",
+		"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
+		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+	},
+	"list": {
+		"@type": "replace",
+		"elements": [
+			{
+				"key": "data-1",
+				"version": "v-1",
+				"valueBoolean": true,
+				"valueShort": 1,
+				"valueInt": 1,
+				"valueLong": 1,
+				"valueFloat": 1.0,
+				"valueDouble": 1.0,
+				"valueString": "Value-1",
+				"valueDate": "2020-01-01",
+				"valueDateTime": "2020-01-01T00:00:00",
+				"valueTime": "10:00:00",
+				"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
+				"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+			}
+		]
+	},
+	"list_Null": {
+		"@type": "replace",
+		"elements": [
+			{
+				"key": "data-1",
+				"version": "v-1",
+				"valueBoolean": true,
+				"valueShort": 1,
+				"valueInt": 1,
+				"valueLong": 1,
+				"valueFloat": 1.0,
+				"valueDouble": 1.0,
+				"valueString": "Value-1",
+				"valueDate": "2020-01-01",
+				"valueDateTime": "2020-01-01T00:00:00",
+				"valueTime": "10:00:00",
+				"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
+				"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+			}
+		]
+	},
+	"list_Opt": {
+		"@type": "replace",
+		"elements": [
+			{
+				"key": "data-1",
+				"version": "v-1",
+				"valueBoolean": true,
+				"valueShort": 1,
+				"valueInt": 1,
+				"valueLong": 1,
+				"valueFloat": 1.0,
+				"valueDouble": 1.0,
+				"valueString": "Value-1",
+				"valueDate": "2020-01-01",
+				"valueDateTime": "2020-01-01T00:00:00",
+				"valueTime": "10:00:00",
+				"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
+				"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+			}
+		]
+	},
+	"list_Opt_Null": {
+		"@type": "replace",
+		"elements": [
+			{
+				"key": "data-1",
+				"version": "v-1",
+				"valueBoolean": true,
+				"valueShort": 1,
+				"valueInt": 1,
+				"valueLong": 1,
+				"valueFloat": 1.0,
+				"valueDouble": 1.0,
+				"valueString": "Value-1",
+				"valueDate": "2020-01-01",
+				"valueDateTime": "2020-01-01T00:00:00",
+				"valueTime": "10:00:00",
+				"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
+				"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
+			}
+		]
+	}
+}

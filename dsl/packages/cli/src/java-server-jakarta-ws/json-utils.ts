@@ -17,7 +17,7 @@ export function generateJsonUtils(artifactConfig: JavaServerJakartaWSGeneratorCo
 	const node = generateJsonUtilsContent(
 		fqn,
 		`${artifactConfig.rootPackageName}.model`,
-		artifactConfig.contentTypeEncodings,
+		artifactConfig.contentTypeEncodings?.filter(e => e === 'application/json' || e === 'application/vnd.msgpack'),
 	);
 
 	return {

@@ -1,0 +1,23 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"value": "A",
+	"value_Null": "C",
+	"value_Opt": "E",
+	"value_Opt_Null": "G",
+	"list": {
+		"@type": "merge",
+		"additions": ["A"],
+		"removals": ["B"]
+	},
+	"list_Null": {
+		"@type": "merge",
+		"additions": ["C"],
+		"removals": ["D"]
+	},
+	"list_Opt_Null": {
+		"@type": "merge",
+		"additions": ["G"],
+		"removals": ["H"]
+	}
+}
