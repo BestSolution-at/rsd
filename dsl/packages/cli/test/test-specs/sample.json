@@ -4416,7 +4416,7 @@
     {
       "@type": "UnionType",
       "name": "PatchableUnion",
-      "patchable": false,
+      "patchable": true,
       "types": [
         "PatchableUnionA",
         "PatchableUnionB"

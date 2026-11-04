@@ -39,6 +39,7 @@ public class _AvroSchema {
 			schema.getTypes().stream().forEach(s -> {
 				this.typeSchemas.put(AvroTypes.valueOf(s.getName()), s);
 			});
+			%unions%
 		} catch (SchemaParseException | IOException e) {
 			throw new IllegalStateException("Failed to parse Avro schema", e);
 		}
@@ -55,57 +56,94 @@ public class _AvroSchema {
 		false,
 		(key: string) => {
 			if (key === 'types') {
-				const types: string[] = [];
-				model.elements
-					.filter(e => isMResolvedRecordType(e))
-					.forEach(e => {
-						allResolvedRecordProperties(e)
-							.filter(p => typeof p.type !== 'string')
-							.forEach(p => {
-								types.push(e.name + '_' + p.name);
-							});
-					});
-				model.elements
-					.filter(e => isMResolvedRecordType(e) || isMResolvedUnionType(e) || isMEnumType(e))
-					.forEach((element, idx, arr) => {
-						if (isMResolvedRecordType(element)) {
-							const props = allResolvedRecordProperties(element);
-							if (element.patchable) {
-								types.push(element.name + 'Patch');
-								types.push(
-									...props
-										.filter(isMResolvedProperty)
-										.filter(p => p.array)
-										.flatMap(p => {
-											return [element.name + '_' + p.name + 'PatchReplace', element.name + '_' + p.name + 'PatchMerge'];
-										}),
-								);
-							}
-						} else if (isMResolvedUnionType(element) && element.patchable) {
-							types.push(element.name + 'Patch');
-						}
-
-						if (arr.length - 1 === idx) {
-							types.push(element.name);
-						} else {
-							types.push(element.name);
-						}
-					});
-				model.errors.forEach(error => {
-					types.push(error.name);
-				});
-
-				const x = new CompositeGeneratorNode();
-				types.forEach((item, idx, arr) => {
-					if (arr.length - 1 === idx) {
-						x.append(item);
-					} else {
-						x.append(item, ',', NL);
-					}
-				});
-				return x;
+				return types(model);
+			}
+			if (key === 'unions') {
+				return unions(model);
 			}
 			return undefined;
 		},
 	);
+}
+
+function unions(model: MResolvedRSDModel) {
+	const rv = new CompositeGeneratorNode();
+	model.elements.filter(isMResolvedUnionType).forEach(union => {
+		rv.append(`this.typeSchemas.put(AvroTypes.`, union.name, ',', ' Schema.createUnion(', NL);
+		rv.indent(_ => {
+			_.indent(block => {
+				union.types.forEach((t, idx, arr) => {
+					if (idx === arr.length - 1) {
+						block.append('getTypeSchema(AvroTypes.', t, ')));', NL);
+					} else {
+						block.append('getTypeSchema(AvroTypes.', t, '),', NL);
+					}
+				});
+			});
+		});
+
+		if (union.patchable) {
+			rv.append(`this.typeSchemas.put(AvroTypes.`, union.name, 'Patch,', ' Schema.createUnion(', NL);
+			rv.indent(_ => {
+				_.indent(block => {
+					union.types.forEach((t, idx, arr) => {
+						if (idx === arr.length - 1) {
+							block.append('getTypeSchema(AvroTypes.', t, 'Patch)));', NL);
+						} else {
+							block.append('getTypeSchema(AvroTypes.', t, 'Patch),', NL);
+						}
+					});
+				});
+			});
+		}
+	});
+	return rv;
+}
+
+function types(model: MResolvedRSDModel) {
+	const types: string[] = [];
+	model.elements
+		.filter(e => isMResolvedRecordType(e))
+		.forEach(e => {
+			allResolvedRecordProperties(e)
+				.filter(p => typeof p.type !== 'string')
+				.forEach(p => {
+					types.push(e.name + '_' + p.name);
+				});
+		});
+	model.elements
+		.filter(e => isMResolvedRecordType(e) || isMResolvedUnionType(e) || isMEnumType(e))
+		.forEach(element => {
+			if (isMResolvedRecordType(element)) {
+				const props = allResolvedRecordProperties(element);
+				if (element.patchable) {
+					types.push(element.name + 'Patch');
+					types.push(
+						...props
+							.filter(isMResolvedProperty)
+							.filter(p => p.array)
+							.flatMap(p => {
+								return [element.name + '_' + p.name + 'PatchReplace', element.name + '_' + p.name + 'PatchMerge'];
+							}),
+					);
+				}
+			} else if (isMResolvedUnionType(element) && element.patchable) {
+				types.push(element.name + 'Patch');
+			}
+
+			types.push(element.name);
+		});
+	model.errors.forEach(error => {
+		types.push(error.name);
+	});
+
+	const rv = new CompositeGeneratorNode();
+	types.forEach((item, idx, arr) => {
+		if (arr.length - 1 === idx) {
+			rv.append(item);
+		} else {
+			rv.append(item, ',', NL);
+		}
+	});
+	return rv;
 }

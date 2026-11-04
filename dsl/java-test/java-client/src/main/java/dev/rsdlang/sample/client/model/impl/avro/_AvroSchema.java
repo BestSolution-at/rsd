@@ -250,6 +250,7 @@ public class _AvroSchema {
 		PatchableUnionA,
 		PatchableUnionBPatch,
 		PatchableUnionB,
+		PatchableUnionPatch,
 		PatchableUnion,
 		MixinRecord,
 		UploadMixedResult,
@@ -278,6 +279,16 @@ public class _AvroSchema {
 			schema.getTypes().stream().forEach(s -> {
 				this.typeSchemas.put(AvroTypes.valueOf(s.getName()), s);
 			});
+			this.typeSchemas.put(AvroTypes.Union, Schema.createUnion(
+					getTypeSchema(AvroTypes.UnionA),
+					getTypeSchema(AvroTypes.UnionB)));
+			this.typeSchemas.put(AvroTypes.PatchableUnion, Schema.createUnion(
+					getTypeSchema(AvroTypes.PatchableUnionA),
+					getTypeSchema(AvroTypes.PatchableUnionB)));
+			this.typeSchemas.put(AvroTypes.PatchableUnionPatch, Schema.createUnion(
+					getTypeSchema(AvroTypes.PatchableUnionAPatch),
+					getTypeSchema(AvroTypes.PatchableUnionBPatch)));
+
 		} catch (SchemaParseException | IOException e) {
 			throw new IllegalStateException("Failed to parse Avro schema", e);
 		}
