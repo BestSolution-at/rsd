@@ -4,7 +4,9 @@ import {
 	isMEnumType,
 	isMMixinType,
 	isMProperty,
+	isMPropertyInlineResolvedProperty,
 	isMRecordType,
+	isMResolvedMixinType,
 	isMResolvedRecordType,
 	MResolvedRSDModel,
 } from '../model.js';
@@ -12,6 +14,7 @@ import { AvroType } from './avro-types.js';
 import { generateRecordContent } from './record.js';
 import { generateEnum } from './enum.js';
 import { generateProtocolContent } from './service.js';
+import { generateErrorContent } from './error.js';
 
 export type AvroGeneratorConfig = ArtifactGeneratorConfig & {
 	targetFolder: string;
@@ -61,7 +64,7 @@ export function generate(
 	return rv;
 }
 
-function generateAvroSpec(model: MResolvedRSDModel, artifactConfig: AvroGeneratorConfig): AvroType[] {
+export function generateAvroSpec(model: MResolvedRSDModel, artifactConfig: AvroGeneratorConfig): AvroType[] {
 	const rv: AvroType[] = [];
 	if (
 		model.elements
@@ -82,6 +85,30 @@ function generateAvroSpec(model: MResolvedRSDModel, artifactConfig: AvroGenerato
 	model.elements.filter(isMResolvedRecordType).forEach(record => {
 		rv.push(...generateRecordContent(record, artifactConfig));
 	});
+
+	model.elements.filter(isMResolvedRecordType).forEach(record => {
+		record.properties.filter(isMPropertyInlineResolvedProperty).forEach(property => {
+			rv.push({
+				namespace: artifactConfig.namespace,
+				type: 'enum',
+				name: `${record.name}_${property.name}`,
+				symbols: property.type.entries.map(e => e.name),
+			});
+		});
+	});
+
+	model.elements.filter(isMResolvedMixinType).forEach(mixin => {
+		mixin.properties.filter(isMPropertyInlineResolvedProperty).forEach(property => {
+			rv.push({
+				namespace: artifactConfig.namespace,
+				type: 'enum',
+				name: `${mixin.name}_${property.name}`,
+				symbols: property.type.entries.map(e => e.name),
+			});
+		});
+	});
+
+	rv.push(...model.errors.map(error => generateErrorContent(error, artifactConfig)));
 
 	return rv;
 }

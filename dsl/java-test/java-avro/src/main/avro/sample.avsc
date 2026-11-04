@@ -1592,54 +1592,26 @@
     "fields": [
       {
         "name": "value",
-        "type": {
-          "type": "enum",
-          "name": "EnumInlineRecord_value",
-          "symbols": [
-            "A",
-            "B"
-          ]
-        }
+        "type": "EnumInlineRecord_value"
       },
       {
         "name": "value_Null",
         "type": [
-          {
-            "type": "enum",
-            "name": "EnumInlineRecord_value_Null",
-            "symbols": [
-              "C",
-              "D"
-            ]
-          },
+          "EnumInlineRecord_value_Null",
           "NULL"
         ]
       },
       {
         "name": "value_Opt",
         "type": [
-          {
-            "type": "enum",
-            "name": "EnumInlineRecord_value_Opt",
-            "symbols": [
-              "E",
-              "F"
-            ]
-          },
+          "EnumInlineRecord_value_Opt",
           "null"
         ]
       },
       {
         "name": "value_Opt_Null",
         "type": [
-          {
-            "type": "enum",
-            "name": "EnumInlineRecord_value_Opt_Null",
-            "symbols": [
-              "G",
-              "H"
-            ]
-          },
+          "EnumInlineRecord_value_Opt_Null",
           "null",
           "NULL"
         ]
@@ -1648,14 +1620,7 @@
         "name": "list",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "EnumInlineRecord_list",
-            "symbols": [
-              "A",
-              "B"
-            ]
-          }
+          "items": "EnumInlineRecord_list"
         }
       },
       {
@@ -1663,14 +1628,7 @@
         "type": [
           {
             "type": "array",
-            "items": {
-              "type": "enum",
-              "name": "EnumInlineRecord_list_Null",
-              "symbols": [
-                "C",
-                "D"
-              ]
-            }
+            "items": "EnumInlineRecord_list_Null"
           },
           "NULL"
         ]
@@ -1680,14 +1638,7 @@
         "type": [
           {
             "type": "array",
-            "items": {
-              "type": "enum",
-              "name": "EnumInlineRecord_list_Opt_Null",
-              "symbols": [
-                "G",
-                "H"
-              ]
-            }
+            "items": "EnumInlineRecord_list_Opt_Null"
           },
           "null",
           "NULL"
@@ -5931,54 +5882,26 @@
       },
       {
         "name": "value",
-        "type": {
-          "type": "enum",
-          "name": "PatchableEnumInlineRecord_value",
-          "symbols": [
-            "A",
-            "B"
-          ]
-        }
+        "type": "PatchableEnumInlineRecord_value"
       },
       {
         "name": "value_Null",
         "type": [
-          {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_value_Null",
-            "symbols": [
-              "C",
-              "D"
-            ]
-          },
+          "PatchableEnumInlineRecord_value_Null",
           "NULL"
         ]
       },
       {
         "name": "value_Opt",
         "type": [
-          {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_value_Opt",
-            "symbols": [
-              "E",
-              "F"
-            ]
-          },
+          "PatchableEnumInlineRecord_value_Opt",
           "null"
         ]
       },
       {
         "name": "value_Opt_Null",
         "type": [
-          {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_value_Opt_Null",
-            "symbols": [
-              "G",
-              "H"
-            ]
-          },
+          "PatchableEnumInlineRecord_value_Opt_Null",
           "null",
           "NULL"
         ]
@@ -5987,14 +5910,7 @@
         "name": "list",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list",
-            "symbols": [
-              "A",
-              "B"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list"
         }
       },
       {
@@ -6002,14 +5918,7 @@
         "type": [
           {
             "type": "array",
-            "items": {
-              "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Null",
-              "symbols": [
-                "C",
-                "D"
-              ]
-            }
+            "items": "PatchableEnumInlineRecord_list_Null"
           },
           "NULL"
         ]
@@ -6019,14 +5928,7 @@
         "type": [
           {
             "type": "array",
-            "items": {
-              "type": "enum",
-              "name": "PatchableEnumInlineRecord_list_Opt_Null",
-              "symbols": [
-                "G",
-                "H"
-              ]
-            }
+            "items": "PatchableEnumInlineRecord_list_Opt_Null"
           },
           "null",
           "NULL"
@@ -6051,42 +5953,21 @@
         "name": "value",
         "type": [
           "null",
-          {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_value",
-            "symbols": [
-              "A",
-              "B"
-            ]
-          }
+          "PatchableEnumInlineRecord_value"
         ]
       },
       {
         "name": "value_Null",
         "type": [
           "null",
-          {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_value_Null",
-            "symbols": [
-              "C",
-              "D"
-            ]
-          },
+          "PatchableEnumInlineRecord_value_Null",
           "NULL"
         ]
       },
       {
         "name": "value_Opt",
         "type": [
-          {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_value_Opt",
-            "symbols": [
-              "E",
-              "F"
-            ]
-          },
+          "PatchableEnumInlineRecord_value_Opt",
           "null",
           "NULL"
         ]
@@ -6094,14 +5975,7 @@
       {
         "name": "value_Opt_Null",
         "type": [
-          {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_value_Opt_Null",
-            "symbols": [
-              "G",
-              "H"
-            ]
-          },
+          "PatchableEnumInlineRecord_value_Opt_Null",
           "null",
           "NULL"
         ]
@@ -6143,14 +6017,7 @@
         "name": "elements",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list",
-            "symbols": [
-              "A",
-              "B"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list"
         }
       }
     ]
@@ -6164,14 +6031,7 @@
         "name": "elements",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list_Null",
-            "symbols": [
-              "C",
-              "D"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list_Null"
         }
       }
     ]
@@ -6185,14 +6045,7 @@
         "name": "elements",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list_Opt_Null",
-            "symbols": [
-              "G",
-              "H"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list_Opt_Null"
         }
       }
     ]
@@ -6206,28 +6059,14 @@
         "name": "additions",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list",
-            "symbols": [
-              "A",
-              "B"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list"
         }
       },
       {
         "name": "removals",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list",
-            "symbols": [
-              "A",
-              "B"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list"
         }
       }
     ]
@@ -6241,28 +6080,14 @@
         "name": "additions",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list_Null",
-            "symbols": [
-              "C",
-              "D"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list_Null"
         }
       },
       {
         "name": "removals",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list_Null",
-            "symbols": [
-              "C",
-              "D"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list_Null"
         }
       }
     ]
@@ -6276,28 +6101,14 @@
         "name": "additions",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list_Opt_Null",
-            "symbols": [
-              "G",
-              "H"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list_Opt_Null"
         }
       },
       {
         "name": "removals",
         "type": {
           "type": "array",
-          "items": {
-            "type": "enum",
-            "name": "PatchableEnumInlineRecord_list_Opt_Null",
-            "symbols": [
-              "G",
-              "H"
-            ]
-          }
+          "items": "PatchableEnumInlineRecord_list_Opt_Null"
         }
       }
     ]
@@ -7941,6 +7752,277 @@
       {
         "name": "message",
         "type": "string"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "EnumInlineRecord_value",
+    "symbols": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "EnumInlineRecord_value_Null",
+    "symbols": [
+      "C",
+      "D"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "EnumInlineRecord_value_Opt",
+    "symbols": [
+      "E",
+      "F"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "EnumInlineRecord_value_Opt_Null",
+    "symbols": [
+      "G",
+      "H"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "EnumInlineRecord_list",
+    "symbols": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "EnumInlineRecord_list_Null",
+    "symbols": [
+      "C",
+      "D"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "EnumInlineRecord_list_Opt_Null",
+    "symbols": [
+      "G",
+      "H"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "PatchableEnumInlineRecord_value",
+    "symbols": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "PatchableEnumInlineRecord_value_Null",
+    "symbols": [
+      "C",
+      "D"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "PatchableEnumInlineRecord_value_Opt",
+    "symbols": [
+      "E",
+      "F"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "PatchableEnumInlineRecord_value_Opt_Null",
+    "symbols": [
+      "G",
+      "H"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "PatchableEnumInlineRecord_list",
+    "symbols": [
+      "A",
+      "B"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "PatchableEnumInlineRecord_list_Null",
+    "symbols": [
+      "C",
+      "D"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "enum",
+    "name": "PatchableEnumInlineRecord_list_Opt_Null",
+    "symbols": [
+      "G",
+      "H"
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "name": "SampleError",
+    "type": "error",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "name": "SampleError2",
+    "type": "error",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "error",
+    "name": "SampleErrorWithValue",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": "ErrorData"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "error",
+    "name": "SampleErrorInt",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": "int"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "error",
+    "name": "SampleErrorBoolean",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": "boolean"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "error",
+    "name": "SampleErrorEnum",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": "SampleEnum"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "error",
+    "name": "SampleErrorScalar",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "error",
+    "name": "SampleErrorUnion",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": [
+          "UnionA",
+          "UnionB"
+        ]
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "error",
+    "name": "SampleErrorScalarSub",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "namespace": "dev.rsdlang.sample.avro",
+    "type": "error",
+    "name": "SampleErrorEnumSub",
+    "fields": [
+      {
+        "name": "message",
+        "type": "string"
+      },
+      {
+        "name": "data",
+        "type": "DayOfWeek"
       }
     ]
   }

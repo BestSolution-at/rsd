@@ -1,11 +1,6 @@
 import {
 	isMBuiltinType,
-	isMEnumType,
-	isMMixinType,
 	isMParameterNoneInlineEnumType,
-	isMProperty,
-	isMRecordType,
-	isMResolvedRecordType,
 	isMResolvedUnionType,
 	isMReturnTypeNoneInlineEnumType,
 	MParameter,
@@ -17,10 +12,7 @@ import {
 	MReturnTypeNoneInlineEnumType,
 } from '../model.js';
 import { AvroMessage, AvroProtocol, AvroRequestParameter, AvroType } from './avro-types.js';
-import { generateEnum } from './enum.js';
-import { generateErrorContent } from './error.js';
-import { AvroGeneratorConfig } from './generator.js';
-import { generateRecordContent } from './record.js';
+import { AvroGeneratorConfig, generateAvroSpec } from './generator.js';
 import { mapBuilinType } from './utils.js';
 
 export function generateProtocolContent(
@@ -34,30 +26,11 @@ export function generateProtocolContent(
 		messages[operation.name] = mapOperationToAvroMessage(operation, service.name, model);
 	}
 
-	const recordTypes = model.elements
-		.filter(isMResolvedRecordType)
-		.flatMap(record => generateRecordContent(record, artifactConfig));
-	const enumTypes = model.elements.filter(isMEnumType).map(enumType => generateEnum(enumType, artifactConfig));
-	const errorTypes = model.errors.map(error => generateErrorContent(error, artifactConfig));
-
-	const nullType: AvroType[] = [];
-	if (
-		model.elements
-			.filter(e => isMRecordType(e) || isMMixinType(e))
-			.some(e => e.properties.filter(isMProperty).some(p => p.nullable))
-	) {
-		nullType.push({
-			type: 'enum',
-			name: 'NULL',
-			symbols: ['NULL'],
-		});
-	}
-
 	return {
 		namespace: artifactConfig.namespace,
 		protocol: service.name,
 		doc: service.doc,
-		types: [...nullType, ...enumTypes, ...recordTypes, ...errorTypes],
+		types: generateAvroSpec(model, artifactConfig),
 		messages,
 	};
 }

@@ -14,7 +14,7 @@ import {
 	MResolvedRecordType,
 	MResolvedUnionType,
 } from '../model.js';
-import { AvroEnum, AvroField, AvroPrimitiveType, AvroRecord, AvroType, AvroTypeRef } from './avro-types.js';
+import { AvroField, AvroPrimitiveType, AvroRecord, AvroType, AvroTypeRef } from './avro-types.js';
 import { AvroGeneratorConfig } from './generator.js';
 import { mapBuilinType } from './utils.js';
 
@@ -161,12 +161,8 @@ function computePropertyType_NoneInlineEnum(
 	return type.length === 1 ? type[0] : type;
 }
 
-function computePropertyType_InlineEnum(prop: MPropertyInlineProperty, recordName: string): AvroEnum {
-	return {
-		type: 'enum',
-		name: `${recordName}_${prop.name}`,
-		symbols: prop.type.entries.map(e => e.name),
-	};
+function computePropertyType_InlineEnum(prop: MPropertyInlineProperty, recordName: string): NoneStructuredType {
+	return `${recordName}_${prop.name}`;
 }
 
 function mapPatchableProperty(prop: MResolvedPropery, recordName: string): AvroField {

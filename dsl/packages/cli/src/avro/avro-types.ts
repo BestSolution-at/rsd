@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type AvroType = AvroPrimitiveType | AvroEnum | AvroRecord | AvroArray | AvroTypeRef;
+export type AvroType = AvroPrimitiveType | AvroEnum | AvroRecord | AvroArray | AvroTypeRef | AvroError;
 
 export type AvroTypeRef = string;
 export type AvroPrimitiveType = 'null' | 'boolean' | 'int' | 'long' | 'float' | 'double' | 'bytes' | 'string';

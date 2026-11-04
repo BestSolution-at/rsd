@@ -131,6 +131,10 @@ export function isMMixinType(value: unknown): value is MMixinType {
 	return isObject(value) && '@type' in value && value['@type'] === 'MixinType';
 }
 
+export function isMResolvedMixinType(value: unknown): value is MResolvedMixinType {
+	return isMMixinType(value) && 'resolved' in value && isObject(value.resolved);
+}
+
 export type MRecordType = {
 	'@type': 'RecordType';
 	name: string;
@@ -220,10 +224,14 @@ export function isMPropertyBuiltin<T extends MProperty>(value: T): value is T & 
 	return value.variant === 'builtin';
 }
 
-export function isMPropertyInlineResolvedProperty(
+export function isMPropertyNoneInlineResolvedProperty(
 	value: unknown,
 ): value is MPropertyNoneInlineProperty & MResolvedPropery {
 	return isMResolvedProperty(value) && isMPropertyNoneInlineProperty(value);
+}
+
+export function isMPropertyInlineResolvedProperty(value: unknown): value is MPropertyInlineProperty & MResolvedPropery {
+	return isMResolvedProperty(value) && value.variant === 'inline-enum';
 }
 
 export type MResolvedPropery = MProperty & MResolvedBaseProperty;
