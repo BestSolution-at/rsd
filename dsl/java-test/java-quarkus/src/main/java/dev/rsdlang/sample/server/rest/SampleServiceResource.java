@@ -33,12 +33,12 @@ import dev.rsdlang.sample.server.service.SampleServiceService;
 public class SampleServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final SampleServiceService service;
 	private final SampleServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public SampleServiceResource(SampleServiceService service, SampleServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public SampleServiceResource(SampleServiceService service, SampleServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

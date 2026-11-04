@@ -26,12 +26,12 @@ import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 public class ListQueryParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ListQueryParameterTypesService service;
 	private final ListQueryParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListQueryParameterTypesResource(ListQueryParameterTypesService service, ListQueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListQueryParameterTypesResource(ListQueryParameterTypesService service, ListQueryParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

@@ -25,12 +25,12 @@ import org.jboss.resteasy.reactive.RestForm;
 public class ListStreamingServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ListStreamingServiceService service;
 	private final ListStreamingServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListStreamingServiceResource(ListStreamingServiceService service, ListStreamingServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListStreamingServiceResource(ListStreamingServiceService service, ListStreamingServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

@@ -29,12 +29,12 @@ import dev.rsdlang.sample.server.service.HeaderParameterTypesService;
 public class HeaderParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final HeaderParameterTypesService service;
 	private final HeaderParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public HeaderParameterTypesResource(HeaderParameterTypesService service, HeaderParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public HeaderParameterTypesResource(HeaderParameterTypesService service, HeaderParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

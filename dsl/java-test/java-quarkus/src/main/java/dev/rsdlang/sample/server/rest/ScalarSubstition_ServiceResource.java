@@ -28,12 +28,12 @@ import dev.rsdlang.sample.server.service.ScalarSubstition_ServiceService;
 public class ScalarSubstition_ServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ScalarSubstition_ServiceService service;
 	private final ScalarSubstition_ServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ScalarSubstition_ServiceResource(ScalarSubstition_ServiceService service, ScalarSubstition_ServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ScalarSubstition_ServiceResource(ScalarSubstition_ServiceService service, ScalarSubstition_ServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

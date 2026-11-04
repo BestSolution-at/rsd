@@ -24,12 +24,12 @@ import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 public class PathParameterTypeServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final PathParameterTypeServiceService service;
 	private final PathParameterTypeServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public PathParameterTypeServiceResource(PathParameterTypeServiceService service, PathParameterTypeServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public PathParameterTypeServiceResource(PathParameterTypeServiceService service, PathParameterTypeServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

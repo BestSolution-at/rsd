@@ -19,7 +19,7 @@ export function generateDTOBuilderFactory(
 	const fqn = importCollector.importType.bind(importCollector);
 
 	return {
-		name: 'RestBuilderFactory.java',
+		name: 'JsonBuilderFactory.java',
 		content: toString(
 			generateCompilationUnit(
 				packageName,
@@ -45,7 +45,7 @@ function generateDTOBuilderFactoryContent(
 	const JsonObject = fqn('jakarta.json.JsonObject');
 
 	node.append(`@${Singleton}`, NL);
-	node.append(`public class RestBuilderFactory implements ${DTOBuilderFactory} {`, NL);
+	node.append(`public class JsonBuilderFactory implements ${DTOBuilderFactory} {`, NL);
 	node.indent(body => {
 		body.append('@Override', NL);
 		body.append(`public <T extends ${Base}.BaseDataBuilder<?>> T builder(Class<T> type) {`, NL);

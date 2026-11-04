@@ -30,12 +30,12 @@ import dev.rsdlang.sample.server.service.ListBodyParameterTypesService;
 public class ListBodyParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ListBodyParameterTypesService service;
 	private final ListBodyParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListBodyParameterTypesResource(ListBodyParameterTypesService service, ListBodyParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListBodyParameterTypesResource(ListBodyParameterTypesService service, ListBodyParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

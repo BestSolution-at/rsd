@@ -22,12 +22,12 @@ import dev.rsdlang.sample.server.service.SampleErrorException;
 public class ListSampleServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ListSampleServiceService service;
 	private final ListSampleServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListSampleServiceResource(ListSampleServiceService service, ListSampleServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListSampleServiceResource(ListSampleServiceService service, ListSampleServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

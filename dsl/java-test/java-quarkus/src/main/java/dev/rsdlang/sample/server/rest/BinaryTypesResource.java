@@ -40,12 +40,12 @@ import org.jboss.resteasy.reactive.RestForm;
 public class BinaryTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final BinaryTypesService service;
 	private final BinaryTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public BinaryTypesResource(BinaryTypesService service, BinaryTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public BinaryTypesResource(BinaryTypesService service, BinaryTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;

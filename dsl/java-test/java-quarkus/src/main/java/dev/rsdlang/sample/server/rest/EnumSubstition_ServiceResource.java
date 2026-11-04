@@ -28,12 +28,12 @@ import dev.rsdlang.sample.server.service.SampleErrorEnumSubException;
 public class EnumSubstition_ServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final EnumSubstition_ServiceService service;
 	private final EnumSubstition_ServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public EnumSubstition_ServiceResource(EnumSubstition_ServiceService service, EnumSubstition_ServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public EnumSubstition_ServiceResource(EnumSubstition_ServiceService service, EnumSubstition_ServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
