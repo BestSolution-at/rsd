@@ -63,6 +63,7 @@ public class GenerateTestFiles {
 		PatchableRecord_Basic_List_Optional_NullPatch();
 		PatchableRecord_Basic_List_NullPatch();
 		PatchableEnumRecordPatch();
+		PatchableEnumInlineRecordPatch();
 	}
 
 	private static void SimpleRecord() {
@@ -1726,6 +1727,82 @@ public class GenerateTestFiles {
 			record.setListOptNull(NULL.NULL);
 
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumRecord.Null.Patch.avro"));
+		}
+	}
+
+	private static void PatchableEnumInlineRecordPatch() {
+		{
+			var record = new PatchableEnumInlineRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue(PatchableEnumInlineRecord_value.A);
+			record.setValueNull(PatchableEnumInlineRecord_value_Null.C);
+			record.setValueOpt(PatchableEnumInlineRecord_value_Opt.E);
+			record.setValueOptNull(PatchableEnumInlineRecord_value_Opt_Null.G);
+			record.setList(
+					new PatchableEnumInlineRecord_listPatchReplace(
+							List.of(PatchableEnumInlineRecord_list.A)));
+			record.setListNull(
+					new PatchableEnumInlineRecord_list_NullPatchReplace(
+							List.of(PatchableEnumInlineRecord_list_Null.C)));
+			// record.setListOpt(
+			// new PatchableEnumInlineRecord_list_OptPatchReplace(
+			// List.of(PatchableEnumInlineRecord_list_Opt.E)));
+			record.setListOptNull(
+					new PatchableEnumInlineRecord_list_Opt_NullPatchReplace(
+							List.of(PatchableEnumInlineRecord_list_Opt_Null.G)));
+
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumInlineRecord.ListReplace.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableEnumInlineRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValue(PatchableEnumInlineRecord_value.A);
+			record.setValueNull(PatchableEnumInlineRecord_value_Null.C);
+			record.setValueOpt(PatchableEnumInlineRecord_value_Opt.E);
+			record.setValueOptNull(PatchableEnumInlineRecord_value_Opt_Null.G);
+			record.setList(
+					new PatchableEnumInlineRecord_listPatchMerge(
+							List.of(PatchableEnumInlineRecord_list.A),
+							List.of(PatchableEnumInlineRecord_list.B)));
+			record.setListNull(
+					new PatchableEnumInlineRecord_list_NullPatchMerge(
+							List.of(PatchableEnumInlineRecord_list_Null.C),
+							List.of(PatchableEnumInlineRecord_list_Null.D)));
+			// record.setListOpt(
+			// new PatchableEnumInlineRecord_list_OptPatchReplace(
+			// List.of(PatchableEnumInlineRecord_list_Opt.E)));
+			record.setListOptNull(
+					new PatchableEnumInlineRecord_list_Opt_NullPatchMerge(
+							List.of(PatchableEnumInlineRecord_list_Opt_Null.G),
+							List.of(PatchableEnumInlineRecord_list_Opt_Null.H)));
+
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumInlineRecord.ListMerge.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableEnumInlineRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumInlineRecord.Minimal.Patch.avro"));
+		}
+
+		{
+			var record = new PatchableEnumInlineRecordPatch();
+			record.setKey("k-1");
+			record.setVersion("v-1");
+			record.setValueNull(NULL.NULL);
+			record.setValueOpt(NULL.NULL);
+			record.setValueOptNull(NULL.NULL);
+			record.setListNull(NULL.NULL);
+			// record.setListOpt(
+			// new PatchableEnumInlineRecord_list_OptPatchReplace(
+			// List.of(PatchableEnumInlineRecord_list_Opt.E)));
+			record.setListOptNull(NULL.NULL);
+
+			persist(record, CLIENT_BASE_PATH.resolve("PatchableEnumInlineRecord.Null.Patch.avro"));
 		}
 	}
 
