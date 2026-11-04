@@ -1,5 +1,6 @@
 package dev.rsdlang;
 
+import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericContainer;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
@@ -48,7 +49,7 @@ public class GenerateTestFiles {
 		RecordWithUnions();
 		RecordOfRecords();
 
-		PatchableUnion();
+		PatchableUnionPatch();
 		PatchableScalarRecordPatch();
 		PatchableScalarRecord_SubstitutionPatch();
 		PatchableRecordWithUnionPatch();
@@ -472,7 +473,13 @@ public class GenerateTestFiles {
 			record.setShared("Shared of B");
 			persist(record, CLIENT_BASE_PATH.resolve("UnionB.Data.avro"));
 		}
-
+		{
+			var schema = Schema.createUnion(UnionA.SCHEMA$, UnionB.SCHEMA$);
+			var record = new UnionA();
+			record.setValueA("A");
+			record.setShared("Shared of A");
+			persist(record, schema, CLIENT_BASE_PATH.resolve("Union.Data.avro"));
+		}
 	}
 
 	private static void SampleEnum() {
@@ -679,7 +686,7 @@ public class GenerateTestFiles {
 		}
 	}
 
-	private static void PatchableUnion() {
+	private static void PatchableUnionPatch() {
 		{
 			var record = new PatchableUnionAPatch();
 			record.setKey("a-key");
@@ -709,6 +716,16 @@ public class GenerateTestFiles {
 			record.setKey("b-key");
 			record.setVersion("b-version");
 			persist(record, CLIENT_BASE_PATH.resolve("PatchableUnionB.Minimal.Patch.avro"));
+		}
+
+		{
+			var schema = Schema.createUnion(PatchableUnionAPatch.SCHEMA$, PatchableUnionBPatch.SCHEMA$);
+			var record = new PatchableUnionAPatch();
+			record.setKey("a-key");
+			record.setVersion("a-version");
+			record.setValueA("value-a");
+			record.setShared("shared-a");
+			persist(record, schema, CLIENT_BASE_PATH.resolve("PatchableUnion.Patch.avro"));
 		}
 	}
 
@@ -1807,10 +1824,14 @@ public class GenerateTestFiles {
 	}
 
 	private static <T extends GenericContainer> void persist(T record, Path path) {
+		persist(record, record.getSchema(), path);
+	}
+
+	private static <T extends GenericContainer> void persist(T record, Schema schema, Path path) {
 		try (var outputStream = Files.newOutputStream(path, StandardOpenOption.CREATE,
 				StandardOpenOption.TRUNCATE_EXISTING)) {
 			var encoder = EncoderFactory.get().binaryEncoder(outputStream, null);
-			var writer = new SpecificDatumWriter<T>(record.getSchema());
+			var writer = new SpecificDatumWriter<T>(schema);
 			writer.write(record, encoder);
 			encoder.flush();
 		} catch (IOException e) {

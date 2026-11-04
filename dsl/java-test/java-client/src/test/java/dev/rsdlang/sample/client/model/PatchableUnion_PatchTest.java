@@ -243,4 +243,63 @@ public class PatchableUnion_PatchTest extends BaseTest {
 					.isNotPresent();
 		}
 	}
+
+	@Nested
+	class PatchableUnionPatchTest {
+		static PatchableUnion.Patch createAvroRecord() {
+			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.PatchableUnionPatch);
+			var record = readAvroFile("PatchableUnion.Patch.avro", schema);
+			return PatchableUnionPatchImpl.of(record);
+		}
+
+		static PatchableUnion.Patch createJsonRecord() {
+			var record = readJsonFile("PatchableUnion.Patch.json");
+			return dev.rsdlang.sample.client.model.impl.json.PatchableUnionPatchImpl.of(record);
+		}
+
+		static PatchableUnion.Patch[] getRecords() {
+			return new PatchableUnion.Patch[] {
+					createAvroRecord(),
+					createJsonRecord()
+			};
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void key(PatchableUnion.Patch patch) {
+			assertThat(patch)
+					.asInstanceOf(InstanceOfAssertFactories.type(PatchableUnionA.Patch.class))
+					.extracting(PatchableUnionA.Patch::key)
+					.isEqualTo("a-key");
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void version(PatchableUnion.Patch patch) {
+			assertThat(patch)
+					.asInstanceOf(InstanceOfAssertFactories.type(PatchableUnionA.Patch.class))
+					.extracting(PatchableUnionA.Patch::version)
+					.isEqualTo("a-version");
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void shared(PatchableUnion.Patch patch) {
+			assertThat(patch)
+					.asInstanceOf(InstanceOfAssertFactories.type(PatchableUnionA.Patch.class))
+					.extracting(PatchableUnionA.Patch::shared, InstanceOfAssertFactories.optional(String.class))
+					.isPresent()
+					.contains("shared-a");
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void valueA(PatchableUnion.Patch patch) {
+			assertThat(patch)
+					.asInstanceOf(InstanceOfAssertFactories.type(PatchableUnionA.Patch.class))
+					.extracting(PatchableUnionA.Patch::valueA, InstanceOfAssertFactories.optional(String.class))
+					.isPresent()
+					.contains("value-a");
+		}
+	}
 }

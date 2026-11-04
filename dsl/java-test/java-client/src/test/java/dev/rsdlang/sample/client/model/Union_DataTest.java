@@ -80,4 +80,37 @@ public class Union_DataTest extends BaseTest {
 		}
 	}
 
+	@Nested
+	class Union_Test {
+		static Union.Data createAvroRecord() {
+			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.Union);
+			var record = readAvroFile("Union.Data.avro", schema);
+			return UnionDataImpl.of(record);
+		}
+
+		static Union.Data createJsonRecord() {
+			var record = readJsonFile("Union.Data.json");
+			return dev.rsdlang.sample.client.model.impl.json.UnionDataImpl.of(record);
+		}
+
+		static Union.Data[] getRecords() {
+			return new Union.Data[] {
+					createAvroRecord(),
+					createJsonRecord()
+			};
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void shared(Union.Data record) {
+			assertEquals("Shared of A", record.shared());
+		}
+
+		@ParameterizedTest
+		@MethodSource("getRecords")
+		void valueA(Union.Data record) {
+			assertInstanceOf(UnionA.Data.class, record);
+			assertEquals("A", ((UnionA.Data) record).valueA());
+		}
+	}
 }
