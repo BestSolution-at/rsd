@@ -76,15 +76,22 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 	public static class DataBuilderImpl implements PatchableEnumRecord.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableEnumRecord);
 
+		public DataBuilderImpl() {
+			$builder.set("value_Opt", null);
+			$builder.set("value_Opt_Null", null);
+			$builder.set("list_Opt", null);
+			$builder.set("list_Opt_Null", null);
+		}
+
 		@Override
 		public PatchableEnumRecord.DataBuilder key(String key) {
-			$builder.set("key", key);
+			$builder.set("key", _AvroUtils.toAvro(key, null, false));
 			return this;
 		}
 
 		@Override
 		public PatchableEnumRecord.DataBuilder version(String version) {
-			$builder.set("version", version);
+			$builder.set("version", _AvroUtils.toAvro(version, null, false));
 			return this;
 		}
 
@@ -93,7 +100,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (value == null) {
 				return this;
 			}
-			$builder.set("value", _EnumSupport.SampleEnumToAvro(value));
+			$builder.set("value", _AvroUtils.toAvro(value, _EnumSupport::toAvro, false));
 			return this;
 		}
 
@@ -103,7 +110,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.set("value_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("value_Null", _EnumSupport.SampleEnumToAvro(value_Null));
+			$builder.set("value_Null", _AvroUtils.toAvro(value_Null, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -112,7 +119,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (value_Opt == null) {
 				return this;
 			}
-			$builder.set("value_Opt", _EnumSupport.SampleEnumToAvro(value_Opt));
+			$builder.set("value_Opt", _AvroUtils.toAvro(value_Opt, _EnumSupport::toAvro, false));
 			return this;
 		}
 
@@ -122,7 +129,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.set("value_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("value_Opt_Null", _EnumSupport.SampleEnumToAvro(value_Opt_Null));
+			$builder.set("value_Opt_Null", _AvroUtils.toAvro(value_Opt_Null, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -131,7 +138,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (list == null) {
 				return this;
 			}
-			$builder.set("list", list.stream().map(_EnumSupport::SampleEnumToAvro).toList());
+			$builder.set("list", _AvroUtils.toAvroList(list, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -141,7 +148,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.set("list_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("list_Null", list_Null.stream().map(_EnumSupport::SampleEnumToAvro).toList());
+			$builder.set("list_Null", _AvroUtils.toAvroList(list_Null, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -150,7 +157,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 			if (list_Opt == null) {
 				return this;
 			}
-			$builder.set("list_Opt", list_Opt.stream().map(_EnumSupport::SampleEnumToAvro).toList());
+			$builder.set("list_Opt", _AvroUtils.toAvroList(list_Opt, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -160,7 +167,7 @@ public class PatchableEnumRecordDataImpl extends _BaseDataImpl implements Patcha
 				$builder.set("list_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("list_Opt_Null", list_Opt_Null.stream().map(_EnumSupport::SampleEnumToAvro).toList());
+			$builder.set("list_Opt_Null", _AvroUtils.toAvroList(list_Opt_Null, _EnumSupport::toAvro));
 			return this;
 		}
 

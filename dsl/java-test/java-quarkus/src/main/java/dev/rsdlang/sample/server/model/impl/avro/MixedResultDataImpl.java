@@ -69,18 +69,21 @@ public class MixedResultDataImpl extends _BaseDataImpl implements MixedResult.Da
 	public static class DataBuilderImpl implements MixedResult.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.MixedResult);
 
+		public DataBuilderImpl() {
+		}
+
 		@Override
 		public MixedResult.DataBuilder pathString(String pathString) {
 			if (pathString == null) {
 				return this;
 			}
-			$builder.set("pathString", pathString);
+			$builder.set("pathString", _AvroUtils.toAvro(pathString, null, false));
 			return this;
 		}
 
 		@Override
 		public MixedResult.DataBuilder pathNumber(int pathNumber) {
-			$builder.set("pathNumber", pathNumber);
+			$builder.set("pathNumber", _AvroUtils.toAvro(pathNumber, null, false));
 			return this;
 		}
 
@@ -89,13 +92,13 @@ public class MixedResultDataImpl extends _BaseDataImpl implements MixedResult.Da
 			if (headerString == null) {
 				return this;
 			}
-			$builder.set("headerString", headerString);
+			$builder.set("headerString", _AvroUtils.toAvro(headerString, null, false));
 			return this;
 		}
 
 		@Override
 		public MixedResult.DataBuilder headerNumber(int headerNumber) {
-			$builder.set("headerNumber", headerNumber);
+			$builder.set("headerNumber", _AvroUtils.toAvro(headerNumber, null, false));
 			return this;
 		}
 
@@ -104,7 +107,7 @@ public class MixedResultDataImpl extends _BaseDataImpl implements MixedResult.Da
 			if (headerRecord == null) {
 				return this;
 			}
-			$builder.set("headerRecord", ((_BaseDataImpl) headerRecord).data);
+			$builder.set("headerRecord", _AvroUtils.toAvro(headerRecord, null, false));
 			return this;
 		}
 
@@ -119,13 +122,13 @@ public class MixedResultDataImpl extends _BaseDataImpl implements MixedResult.Da
 			if (queryString == null) {
 				return this;
 			}
-			$builder.set("queryString", queryString);
+			$builder.set("queryString", _AvroUtils.toAvro(queryString, null, false));
 			return this;
 		}
 
 		@Override
 		public MixedResult.DataBuilder queryNumber(int queryNumber) {
-			$builder.set("queryNumber", queryNumber);
+			$builder.set("queryNumber", _AvroUtils.toAvro(queryNumber, null, false));
 			return this;
 		}
 
@@ -134,7 +137,7 @@ public class MixedResultDataImpl extends _BaseDataImpl implements MixedResult.Da
 			if (queryRecord == null) {
 				return this;
 			}
-			$builder.set("queryRecord", ((_BaseDataImpl) queryRecord).data);
+			$builder.set("queryRecord", _AvroUtils.toAvro(queryRecord, null, false));
 			return this;
 		}
 
@@ -146,7 +149,7 @@ public class MixedResultDataImpl extends _BaseDataImpl implements MixedResult.Da
 
 		@Override
 		public MixedResult.DataBuilder dataBlob(int dataBlob) {
-			$builder.set("dataBlob", dataBlob);
+			$builder.set("dataBlob", _AvroUtils.toAvro(dataBlob, null, false));
 			return this;
 		}
 

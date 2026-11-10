@@ -1,13 +1,13 @@
 import { CompositeGeneratorNode, NL } from 'langium/generate';
 import {
 	allResolvedRecordProperties,
-	isMBuiltinType,
 	isMKeyProperty,
 	isMProperty,
+	isMResolvedProperty,
 	isMResolvedUnionType,
 	isMRevisionProperty,
-	MBuiltinType,
 	MResolvedBaseProperty,
+	MResolvedPropery,
 	MResolvedRecordType,
 	MResolvedRSDModel,
 } from '../model.js';
@@ -71,10 +71,16 @@ function generateBuilder(
 			NL,
 			NL,
 		);
-		if (t.resolved.unions.length > 0) {
-			classBody.append('public DataBuilderImpl() {', NL);
-			classBody.append('}', NL, NL);
-		}
+		classBody.append('public DataBuilderImpl() {', NL);
+		classBody.indent(initBody => {
+			props
+				.filter(isMResolvedProperty)
+				.filter(p => p.optional)
+				.forEach(prop => {
+					initBody.append(`$builder.set("${prop.name}", null);`, NL);
+				});
+		});
+		classBody.append('}', NL, NL);
 		classBody.append(generateBuilderPropertyMethods(t, props, nativeTypeSubstitutes, interfaceBasePackage, fqn));
 		classBody.append(`public ${t.name}.Data build() {`, NL);
 		classBody.indent(methodBody => {
@@ -112,7 +118,7 @@ function generateBuilderPropertyMethods(
 					methodBody.append('}', NL);
 				}
 			}
-			methodBody.append(generateJSONBuilder(prop), ';', NL);
+			methodBody.append(generateAvroBuilder(prop), ';', NL);
 			methodBody.append('return this;', NL);
 		});
 		node.append('}', NL, NL);
@@ -169,87 +175,25 @@ function isNullableType(type: string) {
 	return !PRIMTIVE_TYPES.has(type);
 }
 
-function generateJSONBuilder(prop: MResolvedBaseProperty): string {
+function computeDefaultTransform(property: MResolvedPropery) {
+	if (property.variant === 'enum') {
+		return `_EnumSupport::toAvro`;
+	} else if (property.variant === 'scalar') {
+		return `_ScalarSupport::toAvro`;
+	}
+	return 'null';
+}
+
+function generateAvroBuilder(prop: MResolvedBaseProperty): string {
 	if (isMKeyProperty(prop) || isMRevisionProperty(prop)) {
-		return builtinBuilderAccess(prop);
+		return `$builder.set("${prop.name}", _AvroUtils.toAvro(${prop.name}, null, false))`;
 	}
 
 	if (prop.array) {
-		if (isMBuiltinType(prop.type)) {
-			return builtinBuilderArrayJSONAccess({
-				type: prop.type,
-				name: prop.name,
-			});
-		} else if (prop.variant === 'scalar') {
-			return `$builder.set("${prop.name}", ${prop.name}.stream().map($e -> _ScalarSupport.${prop.type}ToAvro($e)).toList())`;
-		} else if (prop.variant === 'inline-enum') {
-			return `$builder.set("${prop.name}", ${prop.name}.stream().map( $e -> _EnumSupport.toAvro($e, _AvroSchema.AvroTypes.${prop.resolved.owner.name}_${prop.name})).toList())`;
-		} else if (prop.variant === 'enum') {
-			return `$builder.set("${prop.name}", ${prop.name}.stream().map(_EnumSupport::${prop.type}ToAvro).toList())`;
-		} else {
-			return `$builder.set("${prop.name}", ${prop.name}.stream().map( $e -> ((_BaseDataImpl) $e).data).toList())`;
-		}
+		return `$builder.set("${prop.name}", _AvroUtils.toAvroList(${prop.name}, ${computeDefaultTransform(prop)}))`;
 	}
 
-	if (isMBuiltinType(prop.type)) {
-		return builtinBuilderAccess({ type: prop.type, name: prop.name });
-	} else if (prop.variant === 'scalar') {
-		return `$builder.set("${prop.name}", _ScalarSupport.${prop.type}ToAvro(${prop.name}))`;
-	} else if (prop.variant === 'inline-enum') {
-		return `$builder.set("${prop.name}", _EnumSupport.toAvro(${prop.name}, _AvroSchema.AvroTypes.${prop.resolved.owner.name}_${prop.name}))`;
-	} else if (prop.variant === 'enum') {
-		return `$builder.set("${prop.name}", _EnumSupport.${prop.type}ToAvro(${prop.name}))`;
-	} else {
-		return `$builder.set("${prop.name}", ((_BaseDataImpl) ${prop.name}).data)`;
-	}
-}
-
-function builtinBuilderAccess(property: { type: MBuiltinType; name: string }): string {
-	switch (property.type) {
-		case 'boolean':
-		case 'double':
-		case 'float':
-		case 'int':
-		case 'long':
-		case 'short':
-		case 'string':
-			return `$builder.set("${property.name}", ${property.name})`;
-		case 'local-date':
-		case 'local-date-time':
-		case 'local-time':
-		case 'offset-date-time':
-		case 'zoned-date-time':
-			return `$builder.set("${property.name}", _AvroUtils.toString(${property.name}))`;
-	}
-}
-
-function builtinBuilderArrayJSONAccess(property: { type: MBuiltinType; name: string }): string {
-	switch (property.type) {
-		case 'boolean':
-			return `$builder.set("${property.name}", ${property.name})`;
-		case 'double':
-			return `$builder.set("${property.name}", ${property.name})`;
-		case 'float':
-			return `$builder.set("${property.name}", ${property.name})`;
-		case 'int':
-			return `$builder.set("${property.name}", ${property.name})`;
-		case 'local-date':
-			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
-		case 'local-date-time':
-			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
-		case 'local-time':
-			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
-		case 'offset-date-time':
-			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
-		case 'long':
-			return `$builder.set("${property.name}", ${property.name})`;
-		case 'short':
-			return `$builder.set("${property.name}", ${property.name})`;
-		case 'string':
-			return `$builder.set("${property.name}", ${property.name})`;
-		case 'zoned-date-time':
-			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
-	}
+	return `$builder.set("${prop.name}", _AvroUtils.toAvro(${prop.name}, ${computeDefaultTransform(prop)}, ${String(prop.nullable)}))`;
 }
 
 function generateOf(t: MResolvedRecordType, fqn: (type: string) => string) {

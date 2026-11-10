@@ -2,6 +2,8 @@ package dev.rsdlang.sample.client.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -15,6 +17,28 @@ public class TreeNode_DataTest extends BaseTest {
 		return dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.of(record);
 	}
 
+	static TreeNode.Data createAvroRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.builder();
+		builder.value("Root");
+		var childA = dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.builder()
+				.children(List.of())
+				.value("Child A").build();
+		var childB = dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.builder()
+				.children(List.of())
+				.value("Child B").build();
+		builder.children(java.util.List.of(childA, childB));
+		return builder.build();
+	}
+
+	static TreeNode.Data createJsonRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl.builder();
+		builder.value("Root");
+		var childA = dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl.builder().value("Child A").build();
+		var childB = dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl.builder().value("Child B").build();
+		builder.children(java.util.List.of(childA, childB));
+		return builder.build();
+	}
+
 	static TreeNode.Data createJsonRecord() {
 		var record = readJsonFile("TreeNode.Data.json");
 		return dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl.of(record);
@@ -23,7 +47,9 @@ public class TreeNode_DataTest extends BaseTest {
 	static TreeNode.Data[] getRecords() {
 		return new TreeNode.Data[] {
 				createAvroRecord(),
-				createJsonRecord()
+				createJsonRecord(),
+				createAvroRecordBuilder(),
+				createJsonRecordBuilder()
 		};
 	}
 

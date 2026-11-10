@@ -89,13 +89,28 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 	public static class DataBuilderImpl implements UploadMixedResult.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.UploadMixedResult);
 
+		public DataBuilderImpl() {
+			$builder.set("text", null);
+			$builder.set("number", null);
+			$builder.set("rec", null);
+			$builder.set("_scalar", null);
+			$builder.set("dayOfWeek", null);
+			$builder.set("textList", null);
+			$builder.set("numberList", null);
+			$builder.set("recList", null);
+			$builder.set("scalarList", null);
+			$builder.set("monthList", null);
+			$builder.set("dataFileContent", null);
+			$builder.set("dataBlobContent", null);
+		}
+
 		@Override
 		public UploadMixedResult.DataBuilder text(String text) {
 			if (text == null) {
 				$builder.set("text", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("text", text);
+			$builder.set("text", _AvroUtils.toAvro(text, null, true));
 			return this;
 		}
 
@@ -105,7 +120,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("number", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("number", number);
+			$builder.set("number", _AvroUtils.toAvro(number, null, true));
 			return this;
 		}
 
@@ -115,7 +130,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("rec", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("rec", ((_BaseDataImpl) rec).data);
+			$builder.set("rec", _AvroUtils.toAvro(rec, null, true));
 			return this;
 		}
 
@@ -131,7 +146,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("_scalar", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("_scalar", _ScalarSupport.ZoneIdToAvro(_scalar));
+			$builder.set("_scalar", _AvroUtils.toAvro(_scalar, _ScalarSupport::toAvro, true));
 			return this;
 		}
 
@@ -141,7 +156,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("dayOfWeek", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("dayOfWeek", _EnumSupport.DayOfWeekToAvro(dayOfWeek));
+			$builder.set("dayOfWeek", _AvroUtils.toAvro(dayOfWeek, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -151,7 +166,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("textList", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("textList", textList);
+			$builder.set("textList", _AvroUtils.toAvroList(textList, null));
 			return this;
 		}
 
@@ -161,7 +176,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("numberList", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("numberList", numberList);
+			$builder.set("numberList", _AvroUtils.toAvroList(numberList, null));
 			return this;
 		}
 
@@ -171,7 +186,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("recList", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("recList", recList.stream().map( $e -> ((_BaseDataImpl) $e).data).toList());
+			$builder.set("recList", _AvroUtils.toAvroList(recList, null));
 			return this;
 		}
 
@@ -181,7 +196,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("scalarList", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("scalarList", scalarList.stream().map($e -> _ScalarSupport.ZoneIdToAvro($e)).toList());
+			$builder.set("scalarList", _AvroUtils.toAvroList(scalarList, _ScalarSupport::toAvro));
 			return this;
 		}
 
@@ -191,7 +206,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("monthList", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("monthList", monthList.stream().map(_EnumSupport::MonthToAvro).toList());
+			$builder.set("monthList", _AvroUtils.toAvroList(monthList, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -201,7 +216,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("dataFileContent", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("dataFileContent", dataFileContent);
+			$builder.set("dataFileContent", _AvroUtils.toAvro(dataFileContent, null, true));
 			return this;
 		}
 
@@ -211,7 +226,7 @@ public class UploadMixedResultDataImpl extends _BaseDataImpl implements UploadMi
 				$builder.set("dataBlobContent", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("dataBlobContent", dataBlobContent);
+			$builder.set("dataBlobContent", _AvroUtils.toAvro(dataBlobContent, null, true));
 			return this;
 		}
 

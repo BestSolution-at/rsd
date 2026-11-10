@@ -939,4 +939,31 @@ public class _AvroUtils {
 		return mapLiteral(value, OffsetDateTime::parse);
 	}
 
+	public static <T> Object toAvro(T value, Function<T, Object> customTransformer, boolean allowNull) {
+		if (value == null && allowNull) {
+			return NULL;
+		}
+		Objects.requireNonNull(value);
+
+		if (customTransformer != null) {
+			var rv = customTransformer.apply(value);
+			return rv instanceof String ? new Utf8((String) rv) : rv;
+		}
+
+		if (value instanceof _BaseDataImpl) {
+			return ((_BaseDataImpl) value).data;
+		} else if (value instanceof Number) {
+			return value;
+		} else if (value instanceof Boolean) {
+			return value;
+		}
+		return new Utf8(toString(value));
+	}
+
+	public static <T> List<Object> toAvroList(List<T> value, Function<T, Object> customTransformer) {
+		return value.stream()
+				.map(v -> toAvro(v, customTransformer, false))
+				.toList();
+	}
+
 }

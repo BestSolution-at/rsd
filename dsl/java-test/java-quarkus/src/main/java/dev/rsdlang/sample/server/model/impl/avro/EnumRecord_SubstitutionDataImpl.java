@@ -107,12 +107,23 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 	public static class DataBuilderImpl implements EnumRecord_Substitution.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.EnumRecord_Substitution);
 
+		public DataBuilderImpl() {
+			$builder.set("month_Opt", null);
+			$builder.set("month_Opt_Null", null);
+			$builder.set("monthList_Opt", null);
+			$builder.set("monthList_Opt_Null", null);
+			$builder.set("dayOfWeek_Opt", null);
+			$builder.set("dayOfWeek_Opt_Null", null);
+			$builder.set("dayOfWeekList_Opt", null);
+			$builder.set("dayOfWeekList_Opt_Null", null);
+		}
+
 		@Override
 		public EnumRecord_Substitution.DataBuilder month(Month month) {
 			if (month == null) {
 				return this;
 			}
-			$builder.set("month", _EnumSupport.MonthToAvro(month));
+			$builder.set("month", _AvroUtils.toAvro(month, _EnumSupport::toAvro, false));
 			return this;
 		}
 
@@ -122,7 +133,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 				$builder.set("month_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("month_Null", _EnumSupport.MonthToAvro(month_Null));
+			$builder.set("month_Null", _AvroUtils.toAvro(month_Null, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -131,7 +142,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 			if (month_Opt == null) {
 				return this;
 			}
-			$builder.set("month_Opt", _EnumSupport.MonthToAvro(month_Opt));
+			$builder.set("month_Opt", _AvroUtils.toAvro(month_Opt, _EnumSupport::toAvro, false));
 			return this;
 		}
 
@@ -141,7 +152,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 				$builder.set("month_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("month_Opt_Null", _EnumSupport.MonthToAvro(month_Opt_Null));
+			$builder.set("month_Opt_Null", _AvroUtils.toAvro(month_Opt_Null, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -150,7 +161,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 			if (monthList == null) {
 				return this;
 			}
-			$builder.set("monthList", monthList.stream().map(_EnumSupport::MonthToAvro).toList());
+			$builder.set("monthList", _AvroUtils.toAvroList(monthList, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -160,7 +171,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 				$builder.set("monthList_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("monthList_Null", monthList_Null.stream().map(_EnumSupport::MonthToAvro).toList());
+			$builder.set("monthList_Null", _AvroUtils.toAvroList(monthList_Null, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -169,7 +180,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 			if (monthList_Opt == null) {
 				return this;
 			}
-			$builder.set("monthList_Opt", monthList_Opt.stream().map(_EnumSupport::MonthToAvro).toList());
+			$builder.set("monthList_Opt", _AvroUtils.toAvroList(monthList_Opt, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -179,7 +190,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 				$builder.set("monthList_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("monthList_Opt_Null", monthList_Opt_Null.stream().map(_EnumSupport::MonthToAvro).toList());
+			$builder.set("monthList_Opt_Null", _AvroUtils.toAvroList(monthList_Opt_Null, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -188,7 +199,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 			if (dayOfWeek == null) {
 				return this;
 			}
-			$builder.set("dayOfWeek", _EnumSupport.DayOfWeekToAvro(dayOfWeek));
+			$builder.set("dayOfWeek", _AvroUtils.toAvro(dayOfWeek, _EnumSupport::toAvro, false));
 			return this;
 		}
 
@@ -198,7 +209,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 				$builder.set("dayOfWeek_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("dayOfWeek_Null", _EnumSupport.DayOfWeekToAvro(dayOfWeek_Null));
+			$builder.set("dayOfWeek_Null", _AvroUtils.toAvro(dayOfWeek_Null, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -207,7 +218,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 			if (dayOfWeek_Opt == null) {
 				return this;
 			}
-			$builder.set("dayOfWeek_Opt", _EnumSupport.DayOfWeekToAvro(dayOfWeek_Opt));
+			$builder.set("dayOfWeek_Opt", _AvroUtils.toAvro(dayOfWeek_Opt, _EnumSupport::toAvro, false));
 			return this;
 		}
 
@@ -217,7 +228,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 				$builder.set("dayOfWeek_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("dayOfWeek_Opt_Null", _EnumSupport.DayOfWeekToAvro(dayOfWeek_Opt_Null));
+			$builder.set("dayOfWeek_Opt_Null", _AvroUtils.toAvro(dayOfWeek_Opt_Null, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -226,7 +237,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 			if (dayOfWeekList == null) {
 				return this;
 			}
-			$builder.set("dayOfWeekList", dayOfWeekList.stream().map(_EnumSupport::DayOfWeekToAvro).toList());
+			$builder.set("dayOfWeekList", _AvroUtils.toAvroList(dayOfWeekList, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -236,7 +247,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 				$builder.set("dayOfWeekList_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("dayOfWeekList_Null", dayOfWeekList_Null.stream().map(_EnumSupport::DayOfWeekToAvro).toList());
+			$builder.set("dayOfWeekList_Null", _AvroUtils.toAvroList(dayOfWeekList_Null, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -245,7 +256,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 			if (dayOfWeekList_Opt == null) {
 				return this;
 			}
-			$builder.set("dayOfWeekList_Opt", dayOfWeekList_Opt.stream().map(_EnumSupport::DayOfWeekToAvro).toList());
+			$builder.set("dayOfWeekList_Opt", _AvroUtils.toAvroList(dayOfWeekList_Opt, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -255,7 +266,7 @@ public class EnumRecord_SubstitutionDataImpl extends _BaseDataImpl implements En
 				$builder.set("dayOfWeekList_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("dayOfWeekList_Opt_Null", dayOfWeekList_Opt_Null.stream().map(_EnumSupport::DayOfWeekToAvro).toList());
+			$builder.set("dayOfWeekList_Opt_Null", _AvroUtils.toAvroList(dayOfWeekList_Opt_Null, _EnumSupport::toAvro));
 			return this;
 		}
 

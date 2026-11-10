@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import dev.rsdlang.sample.server.model.PatchableRecord;
 import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.generic.GenericRecordBuilder;
 
 public class PatchableRecordPatchImpl extends _BaseDataImpl implements PatchableRecord.Patch {
 
@@ -30,5 +31,43 @@ public class PatchableRecordPatchImpl extends _BaseDataImpl implements Patchable
 
 	public static PatchableRecord.Patch of(GenericRecord data) {
 		return new PatchableRecordPatchImpl(data);
+	}
+
+	public static class PatchBuilderImpl implements PatchableRecord.PatchBuilder {
+		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecordPatch);
+
+		@Override
+		public PatchableRecord.PatchBuilder key(String key) {
+				$builder.set("key", key);
+				return this;
+
+		}
+
+		@Override
+		public PatchableRecord.PatchBuilder version(String version) {
+				$builder.set("version", version);
+				return this;
+
+		}
+
+		@Override
+		public PatchableRecord.PatchBuilder value(String value) {
+			$builder.set("value", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+
+		public PatchableRecord.Patch build() {
+			return PatchableRecordPatchImpl.of($builder.build());
+		}
+	}
+
+
+	public static PatchableRecord.PatchBuilder builder() {
+		return new PatchBuilderImpl();
 	}
 }

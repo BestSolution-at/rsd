@@ -36,15 +36,18 @@ public class SimpleRecordDataImpl extends _BaseDataImpl implements SimpleRecord.
 	public static class DataBuilderImpl implements SimpleRecord.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.SimpleRecord);
 
+		public DataBuilderImpl() {
+		}
+
 		@Override
 		public SimpleRecord.DataBuilder key(String key) {
-			$builder.set("key", key);
+			$builder.set("key", _AvroUtils.toAvro(key, null, false));
 			return this;
 		}
 
 		@Override
 		public SimpleRecord.DataBuilder version(String version) {
-			$builder.set("version", version);
+			$builder.set("version", _AvroUtils.toAvro(version, null, false));
 			return this;
 		}
 
@@ -53,7 +56,7 @@ public class SimpleRecordDataImpl extends _BaseDataImpl implements SimpleRecord.
 			if (value == null) {
 				return this;
 			}
-			$builder.set("value", value);
+			$builder.set("value", _AvroUtils.toAvro(value, null, false));
 			return this;
 		}
 

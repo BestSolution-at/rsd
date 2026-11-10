@@ -39,7 +39,7 @@ public class UnionADataImpl extends _BaseDataImpl implements UnionA.Data {
 			if (shared == null) {
 				return this;
 			}
-			$builder.set("shared", shared);
+			$builder.set("shared", _AvroUtils.toAvro(shared, null, false));
 			return this;
 		}
 
@@ -48,7 +48,7 @@ public class UnionADataImpl extends _BaseDataImpl implements UnionA.Data {
 			if (valueA == null) {
 				return this;
 			}
-			$builder.set("valueA", valueA);
+			$builder.set("valueA", _AvroUtils.toAvro(valueA, null, false));
 			return this;
 		}
 

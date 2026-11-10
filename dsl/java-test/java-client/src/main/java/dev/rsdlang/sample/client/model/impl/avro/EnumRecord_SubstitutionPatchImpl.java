@@ -2,13 +2,16 @@
 package dev.rsdlang.sample.client.model.impl.avro;
 
 import java.time.Month;
+import java.util.List;
 import java.util.Optional;
 
 import dev.rsdlang.sample.client.DayOfWeek;
 import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.EnumRecord_Substitution;
+import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericEnumSymbol;
 import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.generic.GenericRecordBuilder;
 
 public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements EnumRecord_Substitution.Patch {
 	static class MonthListSetChangeImpl extends _ChangeSupport.ValueElementsChange<Month> implements MonthListSetChange {
@@ -251,5 +254,363 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 
 	public static EnumRecord_Substitution.Patch of(GenericRecord data) {
 		return new EnumRecord_SubstitutionPatchImpl(data);
+	}
+
+	public static class PatchBuilderImpl implements EnumRecord_Substitution.PatchBuilder {
+		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.EnumRecord_SubstitutionPatch);
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder month(Month value) {
+			$builder.set("month", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder month_Null(Month value) {
+			$builder.set("month_Null", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder month_Opt(Month value) {
+			$builder.set("month_Opt", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder month_Opt_Null(Month value) {
+			$builder.set("month_Opt_Null", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList(Patch.MonthListChange value) {
+			$builder.set("monthList", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				false));
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList(List<Month> monthList) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthListPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(monthList, null));
+
+			$builder.set("monthList", $change);
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList(List<Month> additions, List<Month> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthListPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("monthList", $change);
+			return this;
+		}
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Null(Patch.MonthList_NullChange value) {
+			$builder.set("monthList_Null", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Null(List<Month> monthList_Null) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_NullPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(monthList_Null, null));
+
+			$builder.set("monthList_Null", $change);
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Null(List<Month> additions, List<Month> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_NullPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("monthList_Null", $change);
+			return this;
+		}
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Opt(Patch.MonthList_OptChange value) {
+			$builder.set("monthList_Opt", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Opt(List<Month> monthList_Opt) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_OptPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(monthList_Opt, null));
+
+			$builder.set("monthList_Opt", $change);
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Opt(List<Month> additions, List<Month> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_OptPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("monthList_Opt", $change);
+			return this;
+		}
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Opt_Null(Patch.MonthList_Opt_NullChange value) {
+			$builder.set("monthList_Opt_Null", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Opt_Null(List<Month> monthList_Opt_Null) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_Opt_NullPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(monthList_Opt_Null, null));
+
+			$builder.set("monthList_Opt_Null", $change);
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder monthList_Opt_Null(List<Month> additions, List<Month> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_Opt_NullPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("monthList_Opt_Null", $change);
+			return this;
+		}
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek(DayOfWeek value) {
+			$builder.set("dayOfWeek", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Null(DayOfWeek value) {
+			$builder.set("dayOfWeek_Null", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Opt(DayOfWeek value) {
+			$builder.set("dayOfWeek_Opt", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Opt_Null(DayOfWeek value) {
+			$builder.set("dayOfWeek_Opt_Null", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList(Patch.DayOfWeekListChange value) {
+			$builder.set("dayOfWeekList", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				false));
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList(List<DayOfWeek> dayOfWeekList) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekListPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(dayOfWeekList, null));
+
+			$builder.set("dayOfWeekList", $change);
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList(List<DayOfWeek> additions, List<DayOfWeek> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekListPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("dayOfWeekList", $change);
+			return this;
+		}
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Null(Patch.DayOfWeekList_NullChange value) {
+			$builder.set("dayOfWeekList_Null", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Null(List<DayOfWeek> dayOfWeekList_Null) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_NullPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(dayOfWeekList_Null, null));
+
+			$builder.set("dayOfWeekList_Null", $change);
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Null(List<DayOfWeek> additions, List<DayOfWeek> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_NullPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("dayOfWeekList_Null", $change);
+			return this;
+		}
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt(Patch.DayOfWeekList_OptChange value) {
+			$builder.set("dayOfWeekList_Opt", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt(List<DayOfWeek> dayOfWeekList_Opt) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_OptPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(dayOfWeekList_Opt, null));
+
+			$builder.set("dayOfWeekList_Opt", $change);
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt(List<DayOfWeek> additions, List<DayOfWeek> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_OptPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("dayOfWeekList_Opt", $change);
+			return this;
+		}
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt_Null(Patch.DayOfWeekList_Opt_NullChange value) {
+			$builder.set("dayOfWeekList_Opt_Null", _AvroUtils.toAvro(
+				value, 
+				_EnumSupport::toAvro,
+				true));
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt_Null(List<DayOfWeek> dayOfWeekList_Opt_Null) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(dayOfWeekList_Opt_Null, null));
+
+			$builder.set("dayOfWeekList_Opt_Null", $change);
+			return this;
+		}
+
+		@Override
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt_Null(List<DayOfWeek> additions, List<DayOfWeek> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("dayOfWeekList_Opt_Null", $change);
+			return this;
+		}
+
+		public EnumRecord_Substitution.Patch build() {
+			return EnumRecord_SubstitutionPatchImpl.of($builder.build());
+		}
+	}
+
+
+	public static EnumRecord_Substitution.PatchBuilder builder() {
+		return new PatchBuilderImpl();
 	}
 }

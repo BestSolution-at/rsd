@@ -522,9 +522,9 @@ export function computeAPITypeNG(
 	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
 	basePackageName: string,
 	fqn: (type: string) => string,
-	config?: { withArray?: boolean; withOptional?: boolean },
+	config?: { withArray?: boolean; withOptional?: boolean; asObject?: boolean },
 ): string {
-	const { withArray = true, withOptional = true } = config ?? {};
+	const { withArray = true, withOptional = true, asObject = false } = config ?? {};
 	if (isMKeyProperty(property)) {
 		return builtinToJavaType(property.type, fqn);
 	}
@@ -535,7 +535,7 @@ export function computeAPITypeNG(
 	let type: string;
 
 	if (isMBuiltinType(property.type)) {
-		if (property.array || property.optional || property.nullable) {
+		if (property.array || property.optional || property.nullable || asObject) {
 			type = builtinToJavaObjectType(property.type, fqn);
 		} else {
 			type = builtinToJavaType(property.type, fqn);

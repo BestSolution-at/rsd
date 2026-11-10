@@ -36,15 +36,18 @@ public class PatchableRecordDataImpl extends _BaseDataImpl implements PatchableR
 	public static class DataBuilderImpl implements PatchableRecord.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecord);
 
+		public DataBuilderImpl() {
+		}
+
 		@Override
 		public PatchableRecord.DataBuilder key(String key) {
-			$builder.set("key", key);
+			$builder.set("key", _AvroUtils.toAvro(key, null, false));
 			return this;
 		}
 
 		@Override
 		public PatchableRecord.DataBuilder version(String version) {
-			$builder.set("version", version);
+			$builder.set("version", _AvroUtils.toAvro(version, null, false));
 			return this;
 		}
 
@@ -53,7 +56,7 @@ public class PatchableRecordDataImpl extends _BaseDataImpl implements PatchableR
 			if (value == null) {
 				return this;
 			}
-			$builder.set("value", value);
+			$builder.set("value", _AvroUtils.toAvro(value, null, false));
 			return this;
 		}
 

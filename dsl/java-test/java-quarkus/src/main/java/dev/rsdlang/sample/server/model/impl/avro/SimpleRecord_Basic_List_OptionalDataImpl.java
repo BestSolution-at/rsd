@@ -89,12 +89,27 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 	public static class DataBuilderImpl implements SimpleRecord_Basic_List_Optional.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.SimpleRecord_Basic_List_Optional);
 
+		public DataBuilderImpl() {
+			$builder.set("valueBoolean", null);
+			$builder.set("valueShort", null);
+			$builder.set("valueInt", null);
+			$builder.set("valueLong", null);
+			$builder.set("valueFloat", null);
+			$builder.set("valueDouble", null);
+			$builder.set("valueString", null);
+			$builder.set("valueLocalDate", null);
+			$builder.set("valueLocalDateTime", null);
+			$builder.set("valueLocalTime", null);
+			$builder.set("valueOffsetDateTime", null);
+			$builder.set("valueZonedDateTime", null);
+		}
+
 		@Override
 		public SimpleRecord_Basic_List_Optional.DataBuilder valueBoolean(List<Boolean> valueBoolean) {
 			if (valueBoolean == null) {
 				return this;
 			}
-			$builder.set("valueBoolean", valueBoolean);
+			$builder.set("valueBoolean", _AvroUtils.toAvroList(valueBoolean, null));
 			return this;
 		}
 
@@ -103,7 +118,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueShort == null) {
 				return this;
 			}
-			$builder.set("valueShort", valueShort);
+			$builder.set("valueShort", _AvroUtils.toAvroList(valueShort, null));
 			return this;
 		}
 
@@ -112,7 +127,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueInt == null) {
 				return this;
 			}
-			$builder.set("valueInt", valueInt);
+			$builder.set("valueInt", _AvroUtils.toAvroList(valueInt, null));
 			return this;
 		}
 
@@ -121,7 +136,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueLong == null) {
 				return this;
 			}
-			$builder.set("valueLong", valueLong);
+			$builder.set("valueLong", _AvroUtils.toAvroList(valueLong, null));
 			return this;
 		}
 
@@ -130,7 +145,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueFloat == null) {
 				return this;
 			}
-			$builder.set("valueFloat", valueFloat);
+			$builder.set("valueFloat", _AvroUtils.toAvroList(valueFloat, null));
 			return this;
 		}
 
@@ -139,7 +154,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueDouble == null) {
 				return this;
 			}
-			$builder.set("valueDouble", valueDouble);
+			$builder.set("valueDouble", _AvroUtils.toAvroList(valueDouble, null));
 			return this;
 		}
 
@@ -148,7 +163,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueString == null) {
 				return this;
 			}
-			$builder.set("valueString", valueString);
+			$builder.set("valueString", _AvroUtils.toAvroList(valueString, null));
 			return this;
 		}
 
@@ -157,7 +172,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueLocalDate == null) {
 				return this;
 			}
-			$builder.set("valueLocalDate", valueLocalDate.stream().map(Object::toString).toList());
+			$builder.set("valueLocalDate", _AvroUtils.toAvroList(valueLocalDate, null));
 			return this;
 		}
 
@@ -166,7 +181,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueLocalDateTime == null) {
 				return this;
 			}
-			$builder.set("valueLocalDateTime", valueLocalDateTime.stream().map(Object::toString).toList());
+			$builder.set("valueLocalDateTime", _AvroUtils.toAvroList(valueLocalDateTime, null));
 			return this;
 		}
 
@@ -175,7 +190,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueLocalTime == null) {
 				return this;
 			}
-			$builder.set("valueLocalTime", valueLocalTime.stream().map(Object::toString).toList());
+			$builder.set("valueLocalTime", _AvroUtils.toAvroList(valueLocalTime, null));
 			return this;
 		}
 
@@ -184,7 +199,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueOffsetDateTime == null) {
 				return this;
 			}
-			$builder.set("valueOffsetDateTime", valueOffsetDateTime.stream().map(Object::toString).toList());
+			$builder.set("valueOffsetDateTime", _AvroUtils.toAvroList(valueOffsetDateTime, null));
 			return this;
 		}
 
@@ -193,7 +208,7 @@ public class SimpleRecord_Basic_List_OptionalDataImpl extends _BaseDataImpl impl
 			if (valueZonedDateTime == null) {
 				return this;
 			}
-			$builder.set("valueZonedDateTime", valueZonedDateTime.stream().map(Object::toString).toList());
+			$builder.set("valueZonedDateTime", _AvroUtils.toAvroList(valueZonedDateTime, null));
 			return this;
 		}
 

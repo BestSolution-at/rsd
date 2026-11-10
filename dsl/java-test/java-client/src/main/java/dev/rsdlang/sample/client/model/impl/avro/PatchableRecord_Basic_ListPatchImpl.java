@@ -6,10 +6,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import dev.rsdlang.sample.client.model.PatchableRecord_Basic_List;
+import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.generic.GenericRecordBuilder;
 
 public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implements PatchableRecord_Basic_List.Patch {
 	static class ValueBooleanSetChangeImpl extends _ChangeSupport.ValueElementsChange<Boolean> implements ValueBooleanSetChange {
@@ -282,5 +285,429 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 
 	public static PatchableRecord_Basic_List.Patch of(GenericRecord data) {
 		return new PatchableRecord_Basic_ListPatchImpl(data);
+	}
+
+	public static class PatchBuilderImpl implements PatchableRecord_Basic_List.PatchBuilder {
+		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecord_Basic_ListPatch);
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder key(String key) {
+				$builder.set("key", key);
+				return this;
+
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder version(String version) {
+				$builder.set("version", version);
+				return this;
+
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueBoolean(Patch.ValueBooleanChange value) {
+			$builder.set("valueBoolean", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueBoolean(List<Boolean> valueBoolean) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueBooleanPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueBoolean, null));
+
+			$builder.set("valueBoolean", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueBoolean(List<Boolean> additions, List<Boolean> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueBooleanPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueBoolean", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueShort(Patch.ValueShortChange value) {
+			$builder.set("valueShort", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueShort(List<Short> valueShort) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueShortPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueShort, null));
+
+			$builder.set("valueShort", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueShort(List<Short> additions, List<Short> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueShortPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueShort", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueInt(Patch.ValueIntChange value) {
+			$builder.set("valueInt", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueInt(List<Integer> valueInt) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueIntPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueInt, null));
+
+			$builder.set("valueInt", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueInt(List<Integer> additions, List<Integer> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueIntPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueInt", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLong(Patch.ValueLongChange value) {
+			$builder.set("valueLong", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLong(List<Long> valueLong) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueLongPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueLong, null));
+
+			$builder.set("valueLong", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLong(List<Long> additions, List<Long> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueLongPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueLong", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueFloat(Patch.ValueFloatChange value) {
+			$builder.set("valueFloat", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueFloat(List<Float> valueFloat) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueFloatPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueFloat, null));
+
+			$builder.set("valueFloat", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueFloat(List<Float> additions, List<Float> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueFloatPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueFloat", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueDouble(Patch.ValueDoubleChange value) {
+			$builder.set("valueDouble", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueDouble(List<Double> valueDouble) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueDoublePatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueDouble, null));
+
+			$builder.set("valueDouble", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueDouble(List<Double> additions, List<Double> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueDoublePatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueDouble", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueString(Patch.ValueStringChange value) {
+			$builder.set("valueString", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueString(List<String> valueString) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueStringPatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueString, null));
+
+			$builder.set("valueString", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueString(List<String> additions, List<String> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueStringPatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueString", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalDate(Patch.ValueLocalDateChange value) {
+			$builder.set("valueLocalDate", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalDate(List<LocalDate> valueLocalDate) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueLocalDatePatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueLocalDate, null));
+
+			$builder.set("valueLocalDate", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalDate(List<LocalDate> additions, List<LocalDate> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueLocalDatePatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueLocalDate", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalDateTime(Patch.ValueLocalDateTimeChange value) {
+			$builder.set("valueLocalDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueLocalDateTimePatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueLocalDateTime, null));
+
+			$builder.set("valueLocalDateTime", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalDateTime(List<LocalDateTime> additions, List<LocalDateTime> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueLocalDateTimePatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueLocalDateTime", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalTime(Patch.ValueLocalTimeChange value) {
+			$builder.set("valueLocalTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalTime(List<LocalTime> valueLocalTime) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueLocalTimePatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueLocalTime, null));
+
+			$builder.set("valueLocalTime", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueLocalTime(List<LocalTime> additions, List<LocalTime> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueLocalTimePatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueLocalTime", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueOffsetDateTime(Patch.ValueOffsetDateTimeChange value) {
+			$builder.set("valueOffsetDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueOffsetDateTimePatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueOffsetDateTime, null));
+
+			$builder.set("valueOffsetDateTime", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueOffsetDateTime(List<OffsetDateTime> additions, List<OffsetDateTime> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueOffsetDateTimePatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueOffsetDateTime", $change);
+			return this;
+		}
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueZonedDateTime(Patch.ValueZonedDateTimeChange value) {
+			$builder.set("valueZonedDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueZonedDateTime(List<ZonedDateTime> valueZonedDateTime) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueZonedDateTimePatchReplace;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(valueZonedDateTime, null));
+
+			$builder.set("valueZonedDateTime", $change);
+			return this;
+		}
+
+		@Override
+		public PatchableRecord_Basic_List.PatchBuilder valueZonedDateTime(List<ZonedDateTime> additions, List<ZonedDateTime> removals) {
+			var $schema = _AvroSchema.getInstance();
+			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_valueZonedDateTimePatchMerge;
+
+			var $change = new GenericData.Record($schema.getTypeSchema($type));
+			$change.put("additions", _AvroUtils.toAvroList(additions, null));
+			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+
+			$builder.set("valueZonedDateTime", $change);
+			return this;
+		}
+
+		public PatchableRecord_Basic_List.Patch build() {
+			return PatchableRecord_Basic_ListPatchImpl.of($builder.build());
+		}
+	}
+
+
+	public static PatchableRecord_Basic_List.PatchBuilder builder() {
+		return new PatchBuilderImpl();
 	}
 }

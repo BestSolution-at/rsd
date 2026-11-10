@@ -52,12 +52,15 @@ public class MixinRecordDataImpl extends _BaseDataImpl implements MixinRecord.Da
 	public static class DataBuilderImpl implements MixinRecord.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.MixinRecord);
 
+		public DataBuilderImpl() {
+		}
+
 		@Override
 		public MixinRecord.DataBuilder sample(String sample) {
 			if (sample == null) {
 				return this;
 			}
-			$builder.set("sample", sample);
+			$builder.set("sample", _AvroUtils.toAvro(sample, null, false));
 			return this;
 		}
 
@@ -66,7 +69,7 @@ public class MixinRecordDataImpl extends _BaseDataImpl implements MixinRecord.Da
 			if (mValueString == null) {
 				return this;
 			}
-			$builder.set("mValueString", mValueString);
+			$builder.set("mValueString", _AvroUtils.toAvro(mValueString, null, false));
 			return this;
 		}
 
@@ -75,7 +78,7 @@ public class MixinRecordDataImpl extends _BaseDataImpl implements MixinRecord.Da
 			if (mValueString2 == null) {
 				return this;
 			}
-			$builder.set("mValueString2", mValueString2);
+			$builder.set("mValueString2", _AvroUtils.toAvro(mValueString2, null, false));
 			return this;
 		}
 
@@ -84,7 +87,7 @@ public class MixinRecordDataImpl extends _BaseDataImpl implements MixinRecord.Da
 			if (myUnion == null) {
 				return this;
 			}
-			$builder.set("myUnion", ((_BaseDataImpl) myUnion).data);
+			$builder.set("myUnion", _AvroUtils.toAvro(myUnion, null, false));
 			return this;
 		}
 
@@ -106,7 +109,7 @@ public class MixinRecordDataImpl extends _BaseDataImpl implements MixinRecord.Da
 			if (myRecord == null) {
 				return this;
 			}
-			$builder.set("myRecord", ((_BaseDataImpl) myRecord).data);
+			$builder.set("myRecord", _AvroUtils.toAvro(myRecord, null, false));
 			return this;
 		}
 

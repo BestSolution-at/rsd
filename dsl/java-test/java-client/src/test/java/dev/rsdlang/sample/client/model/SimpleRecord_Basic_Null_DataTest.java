@@ -3,6 +3,9 @@ package dev.rsdlang.sample.client.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
@@ -19,15 +22,51 @@ public class SimpleRecord_Basic_Null_DataTest extends BaseTest {
 		return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.of(record);
 	}
 
+	static SimpleRecord_Basic_Null.Data createAvroRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.builder();
+		builder.valueBoolean(false);
+		builder.valueDouble(Double.MAX_VALUE);
+		builder.valueFloat(Float.MAX_VALUE);
+		builder.valueInt(Integer.MAX_VALUE);
+		builder.valueLocalDate(LocalDate.parse("2020-01-01"));
+		builder.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"));
+		builder.valueLocalTime(LocalTime.parse("10:00"));
+		builder.valueLong(Long.MAX_VALUE);
+		builder.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"));
+		builder.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"));
+		builder.valueString("the string value");
+		builder.valueShort(Short.MAX_VALUE);
+		return builder.build();
+	}
+
 	static SimpleRecord_Basic_Null.Data createJsonRecord() {
 		var record = readJsonFile("SimpleRecord_Basic_Null.Data.json");
 		return dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.of(record);
 	}
 
+	static SimpleRecord_Basic_Null.Data createJsonRecordBuilderRecord() {
+		var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.builder();
+		builder.valueBoolean(false);
+		builder.valueDouble(Double.MAX_VALUE);
+		builder.valueFloat(Float.MAX_VALUE);
+		builder.valueInt(Integer.MAX_VALUE);
+		builder.valueLocalDate(LocalDate.parse("2020-01-01"));
+		builder.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"));
+		builder.valueLocalTime(LocalTime.parse("10:00"));
+		builder.valueLong(Long.MAX_VALUE);
+		builder.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"));
+		builder.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"));
+		builder.valueString("the string value");
+		builder.valueShort(Short.MAX_VALUE);
+		return builder.build();
+	}
+
 	static SimpleRecord_Basic_Null.Data[] getRecords() {
 		return new SimpleRecord_Basic_Null.Data[] {
 				createAvroRecord(),
-				createJsonRecord()
+				createAvroRecordBuilder(),
+				createJsonRecord(),
+				createJsonRecordBuilderRecord()
 		};
 	}
 
@@ -113,15 +152,51 @@ public class SimpleRecord_Basic_Null_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.of(record);
 		}
 
+		static SimpleRecord_Basic_Null.Data createAvroRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.builder();
+			builder.valueBoolean(null);
+			builder.valueDouble(null);
+			builder.valueFloat(null);
+			builder.valueInt(null);
+			builder.valueLocalDate(null);
+			builder.valueLocalDateTime(null);
+			builder.valueLocalTime(null);
+			builder.valueLong(null);
+			builder.valueOffsetDateTime(null);
+			builder.valueZonedDateTime(null);
+			builder.valueString(null);
+			builder.valueShort(null);
+			return builder.build();
+		}
+
 		static SimpleRecord_Basic_Null.Data createJsonRecord() {
 			var record = readJsonFile("SimpleRecord_Basic_Null.Null.Data.json");
 			return dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.of(record);
 		}
 
+		static SimpleRecord_Basic_Null.Data createJsonRecordBuilderRecord() {
+			var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.builder();
+			builder.valueBoolean(null);
+			builder.valueDouble(null);
+			builder.valueFloat(null);
+			builder.valueInt(null);
+			builder.valueLocalDate(null);
+			builder.valueLocalDateTime(null);
+			builder.valueLocalTime(null);
+			builder.valueLong(null);
+			builder.valueOffsetDateTime(null);
+			builder.valueZonedDateTime(null);
+			builder.valueString(null);
+			builder.valueShort(null);
+			return builder.build();
+		}
+
 		static SimpleRecord_Basic_Null.Data[] getRecords() {
 			return new SimpleRecord_Basic_Null.Data[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createAvroRecordBuilder(),
+					createJsonRecord(),
+					createJsonRecordBuilderRecord()
 			};
 		}
 

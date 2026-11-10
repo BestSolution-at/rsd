@@ -1,8 +1,10 @@
-import { CompositeGeneratorNode } from 'langium/generate';
+import { CompositeGeneratorNode, NL } from 'langium/generate';
 
 import { computeAPITypeNG, JavaNativeTypeSubstitutes } from '../java-gen-utils.js';
 import {
+	isMBuiltinType,
 	isMKeyProperty,
+	isMProperty,
 	isMPropertyBuiltin,
 	isMPropertyNoneInlineProperty,
 	isMRevisionProperty,
@@ -222,4 +224,126 @@ export function builtinAvroArrayAccess(property: {
 		return `_AvroUtils.mapNull${toFirstUpper(toCamelCaseIdentifier(property.type))}s(data, "${property.name}")`;
 	}
 	return `_AvroUtils.map${toFirstUpper(toCamelCaseIdentifier(property.type))}s(data, "${property.name}")`;
+}
+
+export function PropertyBuilderMethod(
+	prop: MResolvedBaseProperty,
+	builderName: string,
+	nativeTypeSubstitutes: JavaNativeTypeSubstitutes | undefined,
+	basePackageName: string,
+	fqn: (type: string) => string,
+) {
+	const type = computeAPITypeNG(prop, nativeTypeSubstitutes, basePackageName, fqn);
+	return toNodeTree(
+		`
+@Override
+public ${builderName} ${prop.name}(${type} ${prop.name}) {
+		%content%
+}
+`,
+		false,
+		() => PropertyBuilderMethodContent(prop),
+	);
+}
+
+function PropertyBuilderMethodContent(prop: MResolvedBaseProperty) {
+	const node = new CompositeGeneratorNode();
+	if (isMProperty(prop)) {
+		if (prop.nullable) {
+			node.append(`if (${prop.name} == null) {`, NL);
+			node.indent(block => {
+				block.append(`$builder.set("${prop.name}", _AvroUtils.NULL);`, NL);
+				block.append('return this;', NL);
+			});
+			node.append('}', NL);
+		}
+	}
+
+	node.append(generateBuilderCall(prop), ';', NL);
+	node.append('return this;', NL);
+
+	return node;
+}
+
+function generateBuilderCall(prop: MResolvedBaseProperty): string {
+	if (isMKeyProperty(prop) || isMRevisionProperty(prop)) {
+		return builtinBuilderCall(prop);
+	}
+
+	if (prop.array) {
+		if (isMBuiltinType(prop.type)) {
+			return builtinBuilderArrayCall({
+				type: prop.type,
+				name: prop.name,
+			});
+		} else if (prop.variant === 'scalar') {
+			return `$builder.set("${prop.name}", ${prop.name}.stream().map($e -> _ScalarSupport.${prop.type}ToAvro($e)).toList())`;
+		} else if (prop.variant === 'inline-enum') {
+			return `$builder.set("${prop.name}", ${prop.name}.stream().map( $e -> _EnumSupport.toAvro($e, _AvroSchema.AvroTypes.${prop.resolved.owner.name}_${prop.name})).toList())`;
+		} else if (prop.variant === 'enum') {
+			return `$builder.set("${prop.name}", ${prop.name}.stream().map(_EnumSupport::${prop.type}ToAvro).toList())`;
+		} else {
+			return `$builder.set("${prop.name}", ${prop.name}.stream().map( $e -> ((_BaseDataImpl) $e).data).toList())`;
+		}
+	}
+
+	if (isMBuiltinType(prop.type)) {
+		return builtinBuilderCall({ type: prop.type, name: prop.name });
+	} else if (prop.variant === 'scalar') {
+		return `$builder.set("${prop.name}", _ScalarSupport.${prop.type}ToAvro(${prop.name}))`;
+	} else if (prop.variant === 'inline-enum') {
+		return `$builder.set("${prop.name}", _EnumSupport.toAvro(${prop.name}, _AvroSchema.AvroTypes.${prop.resolved.owner.name}_${prop.name}))`;
+	} else if (prop.variant === 'enum') {
+		return `$builder.set("${prop.name}", _EnumSupport.${prop.type}ToAvro(${prop.name}))`;
+	} else {
+		return `$builder.set("${prop.name}", ((_BaseDataImpl) ${prop.name}).data)`;
+	}
+}
+
+function builtinBuilderCall(property: { type: MBuiltinType; name: string }): string {
+	switch (property.type) {
+		case 'boolean':
+		case 'double':
+		case 'float':
+		case 'int':
+		case 'long':
+		case 'short':
+		case 'string':
+			return `$builder.set("${property.name}", ${property.name})`;
+		case 'local-date':
+		case 'local-date-time':
+		case 'local-time':
+		case 'offset-date-time':
+		case 'zoned-date-time':
+			return `$builder.set("${property.name}", _AvroUtils.toString(${property.name}))`;
+	}
+}
+
+function builtinBuilderArrayCall(property: { type: MBuiltinType; name: string }): string {
+	switch (property.type) {
+		case 'boolean':
+			return `$builder.set("${property.name}", ${property.name})`;
+		case 'double':
+			return `$builder.set("${property.name}", ${property.name})`;
+		case 'float':
+			return `$builder.set("${property.name}", ${property.name})`;
+		case 'int':
+			return `$builder.set("${property.name}", ${property.name})`;
+		case 'local-date':
+			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
+		case 'local-date-time':
+			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
+		case 'local-time':
+			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
+		case 'offset-date-time':
+			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
+		case 'long':
+			return `$builder.set("${property.name}", ${property.name})`;
+		case 'short':
+			return `$builder.set("${property.name}", ${property.name})`;
+		case 'string':
+			return `$builder.set("${property.name}", ${property.name})`;
+		case 'zoned-date-time':
+			return `$builder.set("${property.name}", ${property.name}.stream().map(Object::toString).toList())`;
+	}
 }

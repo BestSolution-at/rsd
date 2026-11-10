@@ -15,15 +15,31 @@ public class SimpleRecord_KeyVersion_Int_Int_DataTest extends BaseTest {
 		return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_KeyVersion_Int_IntDataImpl.of(record);
 	}
 
+	static SimpleRecord_KeyVersion_Int_Int.Data createAvroRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_KeyVersion_Int_IntDataImpl.builder();
+		builder.key(1);
+		builder.version(1);
+		return builder.build();
+	}
+
 	static SimpleRecord_KeyVersion_Int_Int.Data createJsonRecord() {
 		var record = readJsonFile("SimpleRecord_KeyVersion_Int_Int.Data.json");
 		return dev.rsdlang.sample.client.model.impl.json.SimpleRecord_KeyVersion_Int_IntDataImpl.of(record);
 	}
 
+	static SimpleRecord_KeyVersion_Int_Int.Data createJsonRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_KeyVersion_Int_IntDataImpl.builder();
+		builder.key(1);
+		builder.version(1);
+		return builder.build();
+	}
+
 	static SimpleRecord_KeyVersion_Int_Int.Data[] getRecords() {
 		return new SimpleRecord_KeyVersion_Int_Int.Data[] {
 				createAvroRecord(),
-				createJsonRecord()
+				createJsonRecord(),
+				createAvroRecordBuilder(),
+				createJsonRecordBuilder()
 		};
 	}
 
@@ -31,5 +47,11 @@ public class SimpleRecord_KeyVersion_Int_Int_DataTest extends BaseTest {
 	@MethodSource("getRecords")
 	void key(SimpleRecord_KeyVersion_Int_Int.Data record) {
 		assertEquals(1, record.key());
+	}
+
+	@ParameterizedTest
+	@MethodSource("getRecords")
+	void version(SimpleRecord_KeyVersion_Int_Int.Data record) {
+		assertEquals(1, record.version());
 	}
 }

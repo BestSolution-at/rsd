@@ -79,15 +79,22 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 	public static class DataBuilderImpl implements PatchableRecordWithUnion.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecordWithUnion);
 
+		public DataBuilderImpl() {
+			$builder.set("value_Opt", null);
+			$builder.set("value_Opt_Null", null);
+			$builder.set("list_Opt", null);
+			$builder.set("list_Opt_Null", null);
+		}
+
 		@Override
 		public PatchableRecordWithUnion.DataBuilder key(String key) {
-			$builder.set("key", key);
+			$builder.set("key", _AvroUtils.toAvro(key, null, false));
 			return this;
 		}
 
 		@Override
 		public PatchableRecordWithUnion.DataBuilder version(String version) {
-			$builder.set("version", version);
+			$builder.set("version", _AvroUtils.toAvro(version, null, false));
 			return this;
 		}
 
@@ -96,7 +103,7 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 			if (value == null) {
 				return this;
 			}
-			$builder.set("value", ((_BaseDataImpl) value).data);
+			$builder.set("value", _AvroUtils.toAvro(value, null, false));
 			return this;
 		}
 
@@ -119,7 +126,7 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 				$builder.set("value_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("value_Null", ((_BaseDataImpl) value_Null).data);
+			$builder.set("value_Null", _AvroUtils.toAvro(value_Null, null, true));
 			return this;
 		}
 
@@ -141,7 +148,7 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 			if (value_Opt == null) {
 				return this;
 			}
-			$builder.set("value_Opt", ((_BaseDataImpl) value_Opt).data);
+			$builder.set("value_Opt", _AvroUtils.toAvro(value_Opt, null, false));
 			return this;
 		}
 
@@ -164,7 +171,7 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 				$builder.set("value_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("value_Opt_Null", ((_BaseDataImpl) value_Opt_Null).data);
+			$builder.set("value_Opt_Null", _AvroUtils.toAvro(value_Opt_Null, null, true));
 			return this;
 		}
 
@@ -186,7 +193,7 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 			if (list == null) {
 				return this;
 			}
-			$builder.set("list", list.stream().map( $e -> ((_BaseDataImpl) $e).data).toList());
+			$builder.set("list", _AvroUtils.toAvroList(list, null));
 			return this;
 		}
 
@@ -196,7 +203,7 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 				$builder.set("list_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("list_Null", list_Null.stream().map( $e -> ((_BaseDataImpl) $e).data).toList());
+			$builder.set("list_Null", _AvroUtils.toAvroList(list_Null, null));
 			return this;
 		}
 
@@ -205,7 +212,7 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 			if (list_Opt == null) {
 				return this;
 			}
-			$builder.set("list_Opt", list_Opt.stream().map( $e -> ((_BaseDataImpl) $e).data).toList());
+			$builder.set("list_Opt", _AvroUtils.toAvroList(list_Opt, null));
 			return this;
 		}
 
@@ -215,7 +222,7 @@ public class PatchableRecordWithUnionDataImpl extends _BaseDataImpl implements P
 				$builder.set("list_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("list_Opt_Null", list_Opt_Null.stream().map( $e -> ((_BaseDataImpl) $e).data).toList());
+			$builder.set("list_Opt_Null", _AvroUtils.toAvroList(list_Opt_Null, null));
 			return this;
 		}
 

@@ -18,12 +18,7 @@ export function toFirstLower(value: string) {
 }
 
 export type IndentBlock = (
-	| string
-	| IndentBlock
-	| GeneratorNode
-	| undefined
-	| null
-	| (() => GeneratorNode | undefined | null)
+	string | IndentBlock | GeneratorNode | undefined | null | (() => GeneratorNode | undefined | null)
 )[];
 
 export function toNode(block: IndentBlock, endWithNewLine = true) {
@@ -128,7 +123,12 @@ export function toNodeTree(
 			if (match.index > lastIndex) {
 				topNode.append(content.substring(lastIndex, match.index));
 			}
-			topNode.append(dynamicContentResolver?.(match[1]) ?? match[0]);
+
+			const dynContent = dynamicContentResolver?.(match[1]);
+			if (dynContent) {
+				topNode.append(dynContent);
+			}
+
 			lastIndex = placeholderRegex.lastIndex;
 		}
 		topNode.append(content.substring(lastIndex), lineIndex + 1 < lines.length ? NL : '');

@@ -76,15 +76,22 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 	public static class DataBuilderImpl implements PatchableScalarRecord_Substitution.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableScalarRecord_Substitution);
 
+		public DataBuilderImpl() {
+			$builder.set("value_Opt", null);
+			$builder.set("value_Opt_Null", null);
+			$builder.set("list_Opt", null);
+			$builder.set("list_Opt_Null", null);
+		}
+
 		@Override
 		public PatchableScalarRecord_Substitution.DataBuilder key(String key) {
-			$builder.set("key", key);
+			$builder.set("key", _AvroUtils.toAvro(key, null, false));
 			return this;
 		}
 
 		@Override
 		public PatchableScalarRecord_Substitution.DataBuilder version(String version) {
-			$builder.set("version", version);
+			$builder.set("version", _AvroUtils.toAvro(version, null, false));
 			return this;
 		}
 
@@ -93,7 +100,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 			if (value == null) {
 				return this;
 			}
-			$builder.set("value", _ScalarSupport.RangeToAvro(value));
+			$builder.set("value", _AvroUtils.toAvro(value, _ScalarSupport::toAvro, false));
 			return this;
 		}
 
@@ -103,7 +110,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 				$builder.set("value_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("value_Null", _ScalarSupport.RangeToAvro(value_Null));
+			$builder.set("value_Null", _AvroUtils.toAvro(value_Null, _ScalarSupport::toAvro, true));
 			return this;
 		}
 
@@ -112,7 +119,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 			if (value_Opt == null) {
 				return this;
 			}
-			$builder.set("value_Opt", _ScalarSupport.RangeToAvro(value_Opt));
+			$builder.set("value_Opt", _AvroUtils.toAvro(value_Opt, _ScalarSupport::toAvro, false));
 			return this;
 		}
 
@@ -122,7 +129,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 				$builder.set("value_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("value_Opt_Null", _ScalarSupport.RangeToAvro(value_Opt_Null));
+			$builder.set("value_Opt_Null", _AvroUtils.toAvro(value_Opt_Null, _ScalarSupport::toAvro, true));
 			return this;
 		}
 
@@ -131,7 +138,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 			if (list == null) {
 				return this;
 			}
-			$builder.set("list", list.stream().map($e -> _ScalarSupport.RangeToAvro($e)).toList());
+			$builder.set("list", _AvroUtils.toAvroList(list, _ScalarSupport::toAvro));
 			return this;
 		}
 
@@ -141,7 +148,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 				$builder.set("list_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("list_Null", list_Null.stream().map($e -> _ScalarSupport.RangeToAvro($e)).toList());
+			$builder.set("list_Null", _AvroUtils.toAvroList(list_Null, _ScalarSupport::toAvro));
 			return this;
 		}
 
@@ -150,7 +157,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 			if (list_Opt == null) {
 				return this;
 			}
-			$builder.set("list_Opt", list_Opt.stream().map($e -> _ScalarSupport.RangeToAvro($e)).toList());
+			$builder.set("list_Opt", _AvroUtils.toAvroList(list_Opt, _ScalarSupport::toAvro));
 			return this;
 		}
 
@@ -160,7 +167,7 @@ public class PatchableScalarRecord_SubstitutionDataImpl extends _BaseDataImpl im
 				$builder.set("list_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("list_Opt_Null", list_Opt_Null.stream().map($e -> _ScalarSupport.RangeToAvro($e)).toList());
+			$builder.set("list_Opt_Null", _AvroUtils.toAvroList(list_Opt_Null, _ScalarSupport::toAvro));
 			return this;
 		}
 

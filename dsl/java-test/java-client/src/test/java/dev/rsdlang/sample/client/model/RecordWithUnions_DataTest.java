@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.client.model;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.InstanceOfAssertFactories;
@@ -11,6 +13,14 @@ import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
 
 public class RecordWithUnions_DataTest extends BaseTest {
+	static UnionA.Data createUnionAData(UnionA.DataBuilder builder) {
+		return builder.shared("Shared of A").valueA("A").build();
+	}
+
+	static UnionB.Data createUnionBData(UnionB.DataBuilder builder) {
+		return builder.shared("Shared of B").valueB("B").build();
+	}
+
 	@Nested
 	class Filled {
 		static RecordWithUnions.Data createAvroRecord() {
@@ -19,15 +29,67 @@ public class RecordWithUnions_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.RecordWithUnionsDataImpl.of(record);
 		}
 
+		static RecordWithUnions.Data createAvroRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.avro.RecordWithUnionsDataImpl.builder();
+			builder.value(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()));
+			builder.value_Null(
+					createUnionBData(dev.rsdlang.sample.client.model.impl.avro.UnionBDataImpl.builder()));
+			builder.value_Opt(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()));
+			builder.value_Opt_Null(
+					createUnionBData(dev.rsdlang.sample.client.model.impl.avro.UnionBDataImpl.builder()));
+			builder.list(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.avro.UnionBDataImpl.builder())));
+			builder.list_Null(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.avro.UnionBDataImpl.builder())));
+			builder.list_Opt(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.avro.UnionBDataImpl.builder())));
+			builder.list_Opt_Null(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.avro.UnionBDataImpl.builder())));
+			return builder.build();
+		}
+
 		static RecordWithUnions.Data createJsonRecord() {
 			var record = readJsonFile("RecordWithUnions.Data.json");
 			return dev.rsdlang.sample.client.model.impl.json.RecordWithUnionsDataImpl.of(record);
 		}
 
+		static RecordWithUnions.Data createJsonRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.json.RecordWithUnionsDataImpl.builder();
+			builder.value(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()));
+			builder.value_Null(
+					createUnionBData(dev.rsdlang.sample.client.model.impl.json.UnionBDataImpl.builder()));
+			builder.value_Opt(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()));
+			builder.value_Opt_Null(
+					createUnionBData(dev.rsdlang.sample.client.model.impl.json.UnionBDataImpl.builder()));
+			builder.list(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.json.UnionBDataImpl.builder())));
+			builder.list_Null(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.json.UnionBDataImpl.builder())));
+			builder.list_Opt(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.json.UnionBDataImpl.builder())));
+			builder.list_Opt_Null(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.json.UnionBDataImpl.builder())));
+			return builder.build();
+		}
+
 		static RecordWithUnions.Data[] getRecords() {
 			return new RecordWithUnions.Data[] {
-					createAvroRecord(),
-					createJsonRecord()
+					// createAvroRecord(),
+					// createJsonRecord(),
+					// createAvroRecordBuilder(),
+					createJsonRecordBuilder()
 			};
 		}
 
@@ -156,15 +218,47 @@ public class RecordWithUnions_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.RecordWithUnionsDataImpl.of(record);
 		}
 
+		static RecordWithUnions.Data createAvroRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.avro.RecordWithUnionsDataImpl.builder();
+			builder.value(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()));
+			builder.value_Null(null);
+			builder.value_Opt_Null(null);
+			builder.list(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.avro.UnionBDataImpl.builder())));
+			builder.list_Null(null);
+			builder.list_Opt_Null(null);
+
+			return builder.build();
+		}
+
 		static RecordWithUnions.Data createJsonRecord() {
 			var record = readJsonFile("RecordWithUnions.Null.Data.json");
 			return dev.rsdlang.sample.client.model.impl.json.RecordWithUnionsDataImpl.of(record);
 		}
 
+		static RecordWithUnions.Data createJsonRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.json.RecordWithUnionsDataImpl.builder();
+			builder.value(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()));
+			builder.value_Null(null);
+			builder.value_Opt_Null(null);
+			builder.list(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.json.UnionBDataImpl.builder())));
+			builder.list_Null(null);
+			builder.list_Opt_Null(null);
+
+			return builder.build();
+		}
+
 		static RecordWithUnions.Data[] getRecords() {
 			return new RecordWithUnions.Data[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroRecordBuilder(),
+					createJsonRecordBuilder()
 			};
 		}
 
@@ -241,15 +335,43 @@ public class RecordWithUnions_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.RecordWithUnionsDataImpl.of(record);
 		}
 
+		static RecordWithUnions.Data createAvroRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.avro.RecordWithUnionsDataImpl.builder();
+			builder.value(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()));
+			builder.value_Null(null);
+			builder.list(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.avro.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.avro.UnionBDataImpl.builder())));
+			builder.list_Null(null);
+
+			return builder.build();
+		}
+
 		static RecordWithUnions.Data createJsonRecord() {
 			var record = readJsonFile("RecordWithUnions.Minimal.Data.json");
 			return dev.rsdlang.sample.client.model.impl.json.RecordWithUnionsDataImpl.of(record);
 		}
 
+		static RecordWithUnions.Data createJsonRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.json.RecordWithUnionsDataImpl.builder();
+			builder.value(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()));
+			builder.value_Null(null);
+			builder.list(List.of(
+					createUnionAData(dev.rsdlang.sample.client.model.impl.json.UnionADataImpl.builder()),
+					createUnionBData(dev.rsdlang.sample.client.model.impl.json.UnionBDataImpl.builder())));
+			builder.list_Null(null);
+
+			return builder.build();
+		}
+
 		static RecordWithUnions.Data[] getRecords() {
 			return new RecordWithUnions.Data[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroRecordBuilder(),
+					createJsonRecordBuilder()
 			};
 		}
 

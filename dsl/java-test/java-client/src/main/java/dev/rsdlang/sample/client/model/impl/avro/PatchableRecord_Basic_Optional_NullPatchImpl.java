@@ -10,6 +10,7 @@ import java.time.ZonedDateTime;
 import dev.rsdlang.sample.client.model._Base;
 import dev.rsdlang.sample.client.model.PatchableRecord_Basic_Optional_Null;
 import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.generic.GenericRecordBuilder;
 
 public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl implements PatchableRecord_Basic_Optional_Null.Patch {
 
@@ -90,5 +91,153 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 
 	public static PatchableRecord_Basic_Optional_Null.Patch of(GenericRecord data) {
 		return new PatchableRecord_Basic_Optional_NullPatchImpl(data);
+	}
+
+	public static class PatchBuilderImpl implements PatchableRecord_Basic_Optional_Null.PatchBuilder {
+		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecord_Basic_Optional_NullPatch);
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder key(String key) {
+				$builder.set("key", key);
+				return this;
+
+		}
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder version(String version) {
+				$builder.set("version", version);
+				return this;
+
+		}
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueBoolean(Boolean value) {
+			$builder.set("valueBoolean", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueShort(Short value) {
+			$builder.set("valueShort", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueInt(Integer value) {
+			$builder.set("valueInt", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLong(Long value) {
+			$builder.set("valueLong", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueFloat(Float value) {
+			$builder.set("valueFloat", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueDouble(Double value) {
+			$builder.set("valueDouble", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueString(String value) {
+			$builder.set("valueString", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLocalDate(LocalDate value) {
+			$builder.set("valueLocalDate", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLocalDateTime(LocalDateTime value) {
+			$builder.set("valueLocalDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLocalTime(LocalTime value) {
+			$builder.set("valueLocalTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueOffsetDateTime(OffsetDateTime value) {
+			$builder.set("valueOffsetDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueZonedDateTime(ZonedDateTime value) {
+			$builder.set("valueZonedDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				true));
+			return this;
+		}
+
+
+
+		public PatchableRecord_Basic_Optional_Null.Patch build() {
+			return PatchableRecord_Basic_Optional_NullPatchImpl.of($builder.build());
+		}
+	}
+
+
+	public static PatchableRecord_Basic_Optional_Null.PatchBuilder builder() {
+		return new PatchBuilderImpl();
 	}
 }

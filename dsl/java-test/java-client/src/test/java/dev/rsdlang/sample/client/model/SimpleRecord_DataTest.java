@@ -15,15 +15,33 @@ public class SimpleRecord_DataTest extends BaseTest {
 		return dev.rsdlang.sample.client.model.impl.avro.SimpleRecordDataImpl.of(record);
 	}
 
+	static SimpleRecord.Data createAvroRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecordDataImpl.builder();
+		builder.key("1");
+		builder.value("the value");
+		builder.version("1");
+		return builder.build();
+	}
+
 	static SimpleRecord.Data createJsonRecord() {
 		var record = readJsonFile("SimpleRecord.Data.json");
 		return dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl.of(record);
 	}
 
+	static SimpleRecord.Data createJsonRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl.builder();
+		builder.key("1");
+		builder.value("the value");
+		builder.version("1");
+		return builder.build();
+	}
+
 	static SimpleRecord.Data[] getRecords() {
 		return new SimpleRecord.Data[] {
 				createAvroRecord(),
-				createJsonRecord()
+				createJsonRecord(),
+				createAvroRecordBuilder(),
+				createJsonRecordBuilder()
 		};
 	}
 

@@ -3,6 +3,9 @@ package dev.rsdlang.sample.client.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
@@ -22,15 +25,51 @@ public class SimpleRecord_Basic_Optional_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.of(record);
 		}
 
+		static SimpleRecord_Basic_Optional.Data createAvroRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.builder();
+			builder.valueBoolean(false);
+			builder.valueDouble(Double.MAX_VALUE);
+			builder.valueFloat(Float.MAX_VALUE);
+			builder.valueInt(Integer.MAX_VALUE);
+			builder.valueLocalDate(LocalDate.parse("2020-01-01"));
+			builder.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"));
+			builder.valueLocalTime(LocalTime.parse("10:00"));
+			builder.valueLong(Long.MAX_VALUE);
+			builder.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"));
+			builder.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"));
+			builder.valueString("the string value");
+			builder.valueShort(Short.MAX_VALUE);
+			return builder.build();
+		}
+
 		static SimpleRecord_Basic_Optional.Data createJsonRecord() {
 			var record = readJsonFile("SimpleRecord_Basic_Optional.Data.json");
 			return dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_OptionalDataImpl.of(record);
 		}
 
+		static SimpleRecord_Basic_Optional.Data createJsonRecordBuilderRecord() {
+			var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_OptionalDataImpl.builder();
+			builder.valueBoolean(false);
+			builder.valueDouble(Double.MAX_VALUE);
+			builder.valueFloat(Float.MAX_VALUE);
+			builder.valueInt(Integer.MAX_VALUE);
+			builder.valueLocalDate(LocalDate.parse("2020-01-01"));
+			builder.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"));
+			builder.valueLocalTime(LocalTime.parse("10:00"));
+			builder.valueLong(Long.MAX_VALUE);
+			builder.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"));
+			builder.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"));
+			builder.valueString("the string value");
+			builder.valueShort(Short.MAX_VALUE);
+			return builder.build();
+		}
+
 		static SimpleRecord_Basic_Optional.Data[] getRecords() {
 			return new SimpleRecord_Basic_Optional.Data[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroRecordBuilder(),
+					createJsonRecordBuilderRecord()
 			};
 		}
 
@@ -115,15 +154,27 @@ public class SimpleRecord_Basic_Optional_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.of(record);
 		}
 
+		static SimpleRecord_Basic_Optional.Data createAvroRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.builder();
+			return builder.build();
+		}
+
 		static SimpleRecord_Basic_Optional.Data createJsonRecord() {
 			var record = readJsonFile("SimpleRecord_Basic_Optional.Empty.Data.json");
 			return dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_OptionalDataImpl.of(record);
 		}
 
+		static SimpleRecord_Basic_Optional.Data createJsonRecordBuilderRecord() {
+			var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_OptionalDataImpl.builder();
+			return builder.build();
+		}
+
 		static SimpleRecord_Basic_Optional.Data[] getRecords() {
 			return new SimpleRecord_Basic_Optional.Data[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createAvroRecordBuilder(),
+					createJsonRecord(),
+					createJsonRecordBuilderRecord()
 			};
 		}
 

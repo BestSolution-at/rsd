@@ -26,12 +26,15 @@ public class ErrorDataDataImpl extends _BaseDataImpl implements ErrorData.Data {
 	public static class DataBuilderImpl implements ErrorData.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.ErrorData);
 
+		public DataBuilderImpl() {
+		}
+
 		@Override
 		public ErrorData.DataBuilder message(String message) {
 			if (message == null) {
 				return this;
 			}
-			$builder.set("message", message);
+			$builder.set("message", _AvroUtils.toAvro(message, null, false));
 			return this;
 		}
 

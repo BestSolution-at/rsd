@@ -98,15 +98,30 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 	public static class DataBuilderImpl implements PatchableRecord_Basic_Optional_Null.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecord_Basic_Optional_Null);
 
+		public DataBuilderImpl() {
+			$builder.set("valueBoolean", null);
+			$builder.set("valueShort", null);
+			$builder.set("valueInt", null);
+			$builder.set("valueLong", null);
+			$builder.set("valueFloat", null);
+			$builder.set("valueDouble", null);
+			$builder.set("valueString", null);
+			$builder.set("valueLocalDate", null);
+			$builder.set("valueLocalDateTime", null);
+			$builder.set("valueLocalTime", null);
+			$builder.set("valueOffsetDateTime", null);
+			$builder.set("valueZonedDateTime", null);
+		}
+
 		@Override
 		public PatchableRecord_Basic_Optional_Null.DataBuilder key(String key) {
-			$builder.set("key", key);
+			$builder.set("key", _AvroUtils.toAvro(key, null, false));
 			return this;
 		}
 
 		@Override
 		public PatchableRecord_Basic_Optional_Null.DataBuilder version(String version) {
-			$builder.set("version", version);
+			$builder.set("version", _AvroUtils.toAvro(version, null, false));
 			return this;
 		}
 
@@ -116,7 +131,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueBoolean", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueBoolean", valueBoolean);
+			$builder.set("valueBoolean", _AvroUtils.toAvro(valueBoolean, null, true));
 			return this;
 		}
 
@@ -126,7 +141,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueShort", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueShort", valueShort);
+			$builder.set("valueShort", _AvroUtils.toAvro(valueShort, null, true));
 			return this;
 		}
 
@@ -136,7 +151,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueInt", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueInt", valueInt);
+			$builder.set("valueInt", _AvroUtils.toAvro(valueInt, null, true));
 			return this;
 		}
 
@@ -146,7 +161,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueLong", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueLong", valueLong);
+			$builder.set("valueLong", _AvroUtils.toAvro(valueLong, null, true));
 			return this;
 		}
 
@@ -156,7 +171,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueFloat", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueFloat", valueFloat);
+			$builder.set("valueFloat", _AvroUtils.toAvro(valueFloat, null, true));
 			return this;
 		}
 
@@ -166,7 +181,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueDouble", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueDouble", valueDouble);
+			$builder.set("valueDouble", _AvroUtils.toAvro(valueDouble, null, true));
 			return this;
 		}
 
@@ -176,7 +191,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueString", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueString", valueString);
+			$builder.set("valueString", _AvroUtils.toAvro(valueString, null, true));
 			return this;
 		}
 
@@ -186,7 +201,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueLocalDate", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueLocalDate", _AvroUtils.toString(valueLocalDate));
+			$builder.set("valueLocalDate", _AvroUtils.toAvro(valueLocalDate, null, true));
 			return this;
 		}
 
@@ -196,7 +211,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueLocalDateTime", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueLocalDateTime", _AvroUtils.toString(valueLocalDateTime));
+			$builder.set("valueLocalDateTime", _AvroUtils.toAvro(valueLocalDateTime, null, true));
 			return this;
 		}
 
@@ -206,7 +221,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueLocalTime", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueLocalTime", _AvroUtils.toString(valueLocalTime));
+			$builder.set("valueLocalTime", _AvroUtils.toAvro(valueLocalTime, null, true));
 			return this;
 		}
 
@@ -216,7 +231,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueOffsetDateTime", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueOffsetDateTime", _AvroUtils.toString(valueOffsetDateTime));
+			$builder.set("valueOffsetDateTime", _AvroUtils.toAvro(valueOffsetDateTime, null, true));
 			return this;
 		}
 
@@ -226,7 +241,7 @@ public class PatchableRecord_Basic_Optional_NullDataImpl extends _BaseDataImpl i
 				$builder.set("valueZonedDateTime", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("valueZonedDateTime", _AvroUtils.toString(valueZonedDateTime));
+			$builder.set("valueZonedDateTime", _AvroUtils.toAvro(valueZonedDateTime, null, true));
 			return this;
 		}
 

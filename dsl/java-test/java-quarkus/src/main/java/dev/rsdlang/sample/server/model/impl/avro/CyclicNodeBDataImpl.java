@@ -34,12 +34,15 @@ public class CyclicNodeBDataImpl extends _BaseDataImpl implements CyclicNodeB.Da
 	public static class DataBuilderImpl implements CyclicNodeB.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.CyclicNodeB);
 
+		public DataBuilderImpl() {
+		}
+
 		@Override
 		public CyclicNodeB.DataBuilder value(String value) {
 			if (value == null) {
 				return this;
 			}
-			$builder.set("value", value);
+			$builder.set("value", _AvroUtils.toAvro(value, null, false));
 			return this;
 		}
 
@@ -48,7 +51,7 @@ public class CyclicNodeBDataImpl extends _BaseDataImpl implements CyclicNodeB.Da
 			if (nodeA == null) {
 				return this;
 			}
-			$builder.set("nodeA", ((_BaseDataImpl) nodeA).data);
+			$builder.set("nodeA", _AvroUtils.toAvro(nodeA, null, false));
 			return this;
 		}
 

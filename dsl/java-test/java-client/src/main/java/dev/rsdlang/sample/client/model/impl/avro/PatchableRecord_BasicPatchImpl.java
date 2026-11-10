@@ -13,6 +13,7 @@ import java.util.OptionalLong;
 
 import dev.rsdlang.sample.client.model.PatchableRecord_Basic;
 import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.generic.GenericRecordBuilder;
 
 public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements PatchableRecord_Basic.Patch {
 
@@ -93,5 +94,153 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 
 	public static PatchableRecord_Basic.Patch of(GenericRecord data) {
 		return new PatchableRecord_BasicPatchImpl(data);
+	}
+
+	public static class PatchBuilderImpl implements PatchableRecord_Basic.PatchBuilder {
+		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecord_BasicPatch);
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder key(String key) {
+				$builder.set("key", key);
+				return this;
+
+		}
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder version(String version) {
+				$builder.set("version", version);
+				return this;
+
+		}
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueBoolean(boolean value) {
+			$builder.set("valueBoolean", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueShort(short value) {
+			$builder.set("valueShort", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueInt(int value) {
+			$builder.set("valueInt", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueLong(long value) {
+			$builder.set("valueLong", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueFloat(float value) {
+			$builder.set("valueFloat", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueDouble(double value) {
+			$builder.set("valueDouble", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueString(String value) {
+			$builder.set("valueString", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueLocalDate(LocalDate value) {
+			$builder.set("valueLocalDate", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueLocalDateTime(LocalDateTime value) {
+			$builder.set("valueLocalDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueLocalTime(LocalTime value) {
+			$builder.set("valueLocalTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueOffsetDateTime(OffsetDateTime value) {
+			$builder.set("valueOffsetDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableRecord_Basic.PatchBuilder valueZonedDateTime(ZonedDateTime value) {
+			$builder.set("valueZonedDateTime", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+
+		public PatchableRecord_Basic.Patch build() {
+			return PatchableRecord_BasicPatchImpl.of($builder.build());
+		}
+	}
+
+
+	public static PatchableRecord_Basic.PatchBuilder builder() {
+		return new PatchBuilderImpl();
 	}
 }

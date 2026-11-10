@@ -15,15 +15,31 @@ public class SimpleRecord_KeyVersion_DataTest extends BaseTest {
 		return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_KeyVersionDataImpl.of(record);
 	}
 
+	static SimpleRecord_KeyVersion.Data createAvroRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_KeyVersionDataImpl.builder();
+		builder.key("2");
+		builder.version("2");
+		return builder.build();
+	}
+
 	static SimpleRecord_KeyVersion.Data createJsonRecord() {
 		var record = readJsonFile("SimpleRecord_KeyVersion.Data.json");
 		return dev.rsdlang.sample.client.model.impl.json.SimpleRecord_KeyVersionDataImpl.of(record);
 	}
 
+	static SimpleRecord_KeyVersion.Data createJsonRecordBuilder() {
+		var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_KeyVersionDataImpl.builder();
+		builder.key("2");
+		builder.version("2");
+		return builder.build();
+	}
+
 	static SimpleRecord_KeyVersion.Data[] getRecords() {
 		return new SimpleRecord_KeyVersion.Data[] {
 				createAvroRecord(),
-				createJsonRecord()
+				createJsonRecord(),
+				createAvroRecordBuilder(),
+				createJsonRecordBuilder()
 		};
 	}
 

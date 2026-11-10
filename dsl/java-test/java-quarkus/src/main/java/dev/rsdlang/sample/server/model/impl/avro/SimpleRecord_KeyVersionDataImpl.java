@@ -31,15 +31,18 @@ public class SimpleRecord_KeyVersionDataImpl extends _BaseDataImpl implements Si
 	public static class DataBuilderImpl implements SimpleRecord_KeyVersion.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.SimpleRecord_KeyVersion);
 
+		public DataBuilderImpl() {
+		}
+
 		@Override
 		public SimpleRecord_KeyVersion.DataBuilder key(String key) {
-			$builder.set("key", key);
+			$builder.set("key", _AvroUtils.toAvro(key, null, false));
 			return this;
 		}
 
 		@Override
 		public SimpleRecord_KeyVersion.DataBuilder version(String version) {
-			$builder.set("version", version);
+			$builder.set("version", _AvroUtils.toAvro(version, null, false));
 			return this;
 		}
 

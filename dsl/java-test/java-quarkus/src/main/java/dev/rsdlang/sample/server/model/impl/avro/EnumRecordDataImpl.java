@@ -66,12 +66,19 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 	public static class DataBuilderImpl implements EnumRecord.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.EnumRecord);
 
+		public DataBuilderImpl() {
+			$builder.set("value_Opt", null);
+			$builder.set("value_Opt_Null", null);
+			$builder.set("list_Opt", null);
+			$builder.set("list_Opt_Null", null);
+		}
+
 		@Override
 		public EnumRecord.DataBuilder value(SampleEnum value) {
 			if (value == null) {
 				return this;
 			}
-			$builder.set("value", _EnumSupport.SampleEnumToAvro(value));
+			$builder.set("value", _AvroUtils.toAvro(value, _EnumSupport::toAvro, false));
 			return this;
 		}
 
@@ -81,7 +88,7 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 				$builder.set("value_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("value_Null", _EnumSupport.SampleEnumToAvro(value_Null));
+			$builder.set("value_Null", _AvroUtils.toAvro(value_Null, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -90,7 +97,7 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 			if (value_Opt == null) {
 				return this;
 			}
-			$builder.set("value_Opt", _EnumSupport.SampleEnumToAvro(value_Opt));
+			$builder.set("value_Opt", _AvroUtils.toAvro(value_Opt, _EnumSupport::toAvro, false));
 			return this;
 		}
 
@@ -100,7 +107,7 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 				$builder.set("value_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("value_Opt_Null", _EnumSupport.SampleEnumToAvro(value_Opt_Null));
+			$builder.set("value_Opt_Null", _AvroUtils.toAvro(value_Opt_Null, _EnumSupport::toAvro, true));
 			return this;
 		}
 
@@ -109,7 +116,7 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 			if (list == null) {
 				return this;
 			}
-			$builder.set("list", list.stream().map(_EnumSupport::SampleEnumToAvro).toList());
+			$builder.set("list", _AvroUtils.toAvroList(list, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -119,7 +126,7 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 				$builder.set("list_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("list_Null", list_Null.stream().map(_EnumSupport::SampleEnumToAvro).toList());
+			$builder.set("list_Null", _AvroUtils.toAvroList(list_Null, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -128,7 +135,7 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 			if (list_Opt == null) {
 				return this;
 			}
-			$builder.set("list_Opt", list_Opt.stream().map(_EnumSupport::SampleEnumToAvro).toList());
+			$builder.set("list_Opt", _AvroUtils.toAvroList(list_Opt, _EnumSupport::toAvro));
 			return this;
 		}
 
@@ -138,7 +145,7 @@ public class EnumRecordDataImpl extends _BaseDataImpl implements EnumRecord.Data
 				$builder.set("list_Opt_Null", _AvroUtils.NULL);
 				return this;
 			}
-			$builder.set("list_Opt_Null", list_Opt_Null.stream().map(_EnumSupport::SampleEnumToAvro).toList());
+			$builder.set("list_Opt_Null", _AvroUtils.toAvroList(list_Opt_Null, _EnumSupport::toAvro));
 			return this;
 		}
 

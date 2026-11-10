@@ -46,13 +46,13 @@ public class PatchableUnionBDataImpl extends _BaseDataImpl implements PatchableU
 
 		@Override
 		public PatchableUnionB.DataBuilder key(String key) {
-			$builder.set("key", key);
+			$builder.set("key", _AvroUtils.toAvro(key, null, false));
 			return this;
 		}
 
 		@Override
 		public PatchableUnionB.DataBuilder version(String version) {
-			$builder.set("version", version);
+			$builder.set("version", _AvroUtils.toAvro(version, null, false));
 			return this;
 		}
 
@@ -61,7 +61,7 @@ public class PatchableUnionBDataImpl extends _BaseDataImpl implements PatchableU
 			if (shared == null) {
 				return this;
 			}
-			$builder.set("shared", shared);
+			$builder.set("shared", _AvroUtils.toAvro(shared, null, false));
 			return this;
 		}
 
@@ -70,7 +70,7 @@ public class PatchableUnionBDataImpl extends _BaseDataImpl implements PatchableU
 			if (valueB == null) {
 				return this;
 			}
-			$builder.set("valueB", valueB);
+			$builder.set("valueB", _AvroUtils.toAvro(valueB, null, false));
 			return this;
 		}
 

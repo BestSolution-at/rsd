@@ -33,12 +33,15 @@ public class TreeNodeDataImpl extends _BaseDataImpl implements TreeNode.Data {
 	public static class DataBuilderImpl implements TreeNode.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.TreeNode);
 
+		public DataBuilderImpl() {
+		}
+
 		@Override
 		public TreeNode.DataBuilder value(String value) {
 			if (value == null) {
 				return this;
 			}
-			$builder.set("value", value);
+			$builder.set("value", _AvroUtils.toAvro(value, null, false));
 			return this;
 		}
 
@@ -47,7 +50,7 @@ public class TreeNodeDataImpl extends _BaseDataImpl implements TreeNode.Data {
 			if (children == null) {
 				return this;
 			}
-			$builder.set("children", children.stream().map( $e -> ((_BaseDataImpl) $e).data).toList());
+			$builder.set("children", _AvroUtils.toAvroList(children, null));
 			return this;
 		}
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import dev.rsdlang.sample.server.model.PatchableUnionA;
 import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.generic.GenericRecordBuilder;
 
 public class PatchableUnionAPatchImpl extends _BaseDataImpl implements PatchableUnionA.Patch {
 
@@ -35,5 +36,53 @@ public class PatchableUnionAPatchImpl extends _BaseDataImpl implements Patchable
 
 	public static PatchableUnionA.Patch of(GenericRecord data) {
 		return new PatchableUnionAPatchImpl(data);
+	}
+
+	public static class PatchBuilderImpl implements PatchableUnionA.PatchBuilder {
+		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableUnionAPatch);
+
+		@Override
+		public PatchableUnionA.PatchBuilder key(String key) {
+				$builder.set("key", key);
+				return this;
+
+		}
+
+		@Override
+		public PatchableUnionA.PatchBuilder version(String version) {
+				$builder.set("version", version);
+				return this;
+
+		}
+
+		@Override
+		public PatchableUnionA.PatchBuilder shared(String value) {
+			$builder.set("shared", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+		@Override
+		public PatchableUnionA.PatchBuilder valueA(String value) {
+			$builder.set("valueA", _AvroUtils.toAvro(
+				value, 
+				null,
+				false));
+			return this;
+		}
+
+
+
+		public PatchableUnionA.Patch build() {
+			return PatchableUnionAPatchImpl.of($builder.build());
+		}
+	}
+
+
+	public static PatchableUnionA.PatchBuilder builder() {
+		return new PatchBuilderImpl();
 	}
 }

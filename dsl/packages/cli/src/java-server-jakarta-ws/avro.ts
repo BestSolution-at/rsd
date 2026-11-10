@@ -31,6 +31,7 @@ import { generateRecordPatchContent } from '../java-model-avro/record-patch.js';
 import { generateUnionPatchContent } from '../java-model-avro/union-patch.js';
 import { generateAvroUtils } from './avro-utils.js';
 import { generateChangeSupport } from './avro-change-support.js';
+import { generateAvroDTOBuilderFactory } from './avro-builder-factory.js';
 
 export function generateAvro(
 	model: MResolvedRSDModel,
@@ -71,6 +72,7 @@ export function generateAvro(
 	artifacts.push(generateNillable(artifactConfig));
 	artifacts.push(generateAvroUtils(artifactConfig));
 	artifacts.push(...generateChangeSupport(artifactConfig));
+	artifacts.push(generateAvroDTOBuilderFactory(model, artifactConfig));
 
 	return artifacts;
 }

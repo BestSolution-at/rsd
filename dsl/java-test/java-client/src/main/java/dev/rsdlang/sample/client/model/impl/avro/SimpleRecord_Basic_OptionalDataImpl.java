@@ -91,12 +91,27 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 	public static class DataBuilderImpl implements SimpleRecord_Basic_Optional.DataBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.SimpleRecord_Basic_Optional);
 
+		public DataBuilderImpl() {
+			$builder.set("valueBoolean", null);
+			$builder.set("valueShort", null);
+			$builder.set("valueInt", null);
+			$builder.set("valueLong", null);
+			$builder.set("valueFloat", null);
+			$builder.set("valueDouble", null);
+			$builder.set("valueString", null);
+			$builder.set("valueLocalDate", null);
+			$builder.set("valueLocalDateTime", null);
+			$builder.set("valueLocalTime", null);
+			$builder.set("valueOffsetDateTime", null);
+			$builder.set("valueZonedDateTime", null);
+		}
+
 		@Override
 		public SimpleRecord_Basic_Optional.DataBuilder valueBoolean(Boolean valueBoolean) {
 			if (valueBoolean == null) {
 				return this;
 			}
-			$builder.set("valueBoolean", valueBoolean);
+			$builder.set("valueBoolean", _AvroUtils.toAvro(valueBoolean, null, false));
 			return this;
 		}
 
@@ -105,7 +120,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueShort == null) {
 				return this;
 			}
-			$builder.set("valueShort", valueShort);
+			$builder.set("valueShort", _AvroUtils.toAvro(valueShort, null, false));
 			return this;
 		}
 
@@ -114,7 +129,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueInt == null) {
 				return this;
 			}
-			$builder.set("valueInt", valueInt);
+			$builder.set("valueInt", _AvroUtils.toAvro(valueInt, null, false));
 			return this;
 		}
 
@@ -123,7 +138,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueLong == null) {
 				return this;
 			}
-			$builder.set("valueLong", valueLong);
+			$builder.set("valueLong", _AvroUtils.toAvro(valueLong, null, false));
 			return this;
 		}
 
@@ -132,7 +147,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueFloat == null) {
 				return this;
 			}
-			$builder.set("valueFloat", valueFloat);
+			$builder.set("valueFloat", _AvroUtils.toAvro(valueFloat, null, false));
 			return this;
 		}
 
@@ -141,7 +156,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueDouble == null) {
 				return this;
 			}
-			$builder.set("valueDouble", valueDouble);
+			$builder.set("valueDouble", _AvroUtils.toAvro(valueDouble, null, false));
 			return this;
 		}
 
@@ -150,7 +165,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueString == null) {
 				return this;
 			}
-			$builder.set("valueString", valueString);
+			$builder.set("valueString", _AvroUtils.toAvro(valueString, null, false));
 			return this;
 		}
 
@@ -159,7 +174,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueLocalDate == null) {
 				return this;
 			}
-			$builder.set("valueLocalDate", _AvroUtils.toString(valueLocalDate));
+			$builder.set("valueLocalDate", _AvroUtils.toAvro(valueLocalDate, null, false));
 			return this;
 		}
 
@@ -168,7 +183,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueLocalDateTime == null) {
 				return this;
 			}
-			$builder.set("valueLocalDateTime", _AvroUtils.toString(valueLocalDateTime));
+			$builder.set("valueLocalDateTime", _AvroUtils.toAvro(valueLocalDateTime, null, false));
 			return this;
 		}
 
@@ -177,7 +192,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueLocalTime == null) {
 				return this;
 			}
-			$builder.set("valueLocalTime", _AvroUtils.toString(valueLocalTime));
+			$builder.set("valueLocalTime", _AvroUtils.toAvro(valueLocalTime, null, false));
 			return this;
 		}
 
@@ -186,7 +201,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueOffsetDateTime == null) {
 				return this;
 			}
-			$builder.set("valueOffsetDateTime", _AvroUtils.toString(valueOffsetDateTime));
+			$builder.set("valueOffsetDateTime", _AvroUtils.toAvro(valueOffsetDateTime, null, false));
 			return this;
 		}
 
@@ -195,7 +210,7 @@ public class SimpleRecord_Basic_OptionalDataImpl extends _BaseDataImpl implement
 			if (valueZonedDateTime == null) {
 				return this;
 			}
-			$builder.set("valueZonedDateTime", _AvroUtils.toString(valueZonedDateTime));
+			$builder.set("valueZonedDateTime", _AvroUtils.toAvro(valueZonedDateTime, null, false));
 			return this;
 		}
 
