@@ -13,10 +13,6 @@ import dev.rsdlang.sample.server.model.EnumInlineRecord;
 import dev.rsdlang.sample.server.model.EnumRecord;
 import dev.rsdlang.sample.server.model.EnumRecord_Substitution;
 import dev.rsdlang.sample.server.model.ErrorData;
-import dev.rsdlang.sample.server.model.impl.avro._BlobImpl;
-import dev.rsdlang.sample.server.model.impl.avro._FileImpl;
-import dev.rsdlang.sample.server.model.impl.avro._StreamBlobImpl;
-import dev.rsdlang.sample.server.model.impl.avro._StreamFileImpl;
 import dev.rsdlang.sample.server.model.impl.avro.CyclicNodeADataImpl;
 import dev.rsdlang.sample.server.model.impl.avro.CyclicNodeBDataImpl;
 import dev.rsdlang.sample.server.model.impl.avro.EnumInlineRecordDataImpl;
@@ -520,20 +516,19 @@ public class AvroBuilderFactory implements BuilderFactory {
 		throw new IllegalArgumentException("Unsupported Builder '%s'".formatted(type));
 	}
 
-
 	public RSDBlob createBlob(Path file, String mimeType) {
-		return _BlobImpl.of(file, mimeType);
+		return null;
 	}
 
 	public RSDBlob createBlob(InputStream stream, String mimeType) {
-		return _StreamBlobImpl.of(stream, mimeType);
+		return null;
 	}
 
 	public RSDFile createFile(Path file, String mimeType, String filename) {
-		return _FileImpl.of(file, mimeType, filename);
+		return null;
 	}
 
 	public RSDFile createFile(InputStream data, String mimeType, String filename) {
-		return _StreamFileImpl.of(data, mimeType, filename);
+		return null;
 	}
 }
