@@ -131,12 +131,15 @@ public interface PatchableRecordOfRecords {
 
 		public PatchBuilder value_Null(PatchableRecord_Basic value_Null);
 		public <T extends PatchableRecord_Basic.Builder> PatchBuilder withValue_Null(Class<T> clazz, Function<T, PatchableRecord_Basic> block);
+		public PatchBuilder value_NullNull();
 
 		public PatchBuilder value_Opt(PatchableRecord_Basic value_Opt);
 		public <T extends PatchableRecord_Basic.Builder> PatchBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableRecord_Basic> block);
+		public PatchBuilder value_OptNull();
 
 		public PatchBuilder value_Opt_Null(PatchableRecord_Basic value_Opt_Null);
 		public <T extends PatchableRecord_Basic.Builder> PatchBuilder withValue_Opt_Null(Class<T> clazz, Function<T, PatchableRecord_Basic> block);
+		public PatchBuilder value_Opt_NullNull();
 
 		public PatchBuilder list(Patch.ListChange list);
 		public PatchBuilder list(List<PatchableRecord_Basic.Data> additions, List<PatchableRecord_Basic.Patch> updates, List<String> removals);
@@ -145,14 +148,17 @@ public interface PatchableRecordOfRecords {
 		public PatchBuilder list_Null(Patch.List_NullChange list_Null);
 		public PatchBuilder list_Null(List<PatchableRecord_Basic.Data> additions, List<PatchableRecord_Basic.Patch> updates, List<String> removals);
 		public PatchBuilder list_Null(List<PatchableRecord_Basic.Data> elements);
+		public PatchBuilder list_NullNull();
 
 		public PatchBuilder list_Opt(Patch.List_OptChange list_Opt);
 		public PatchBuilder list_Opt(List<PatchableRecord_Basic.Data> additions, List<PatchableRecord_Basic.Patch> updates, List<String> removals);
 		public PatchBuilder list_Opt(List<PatchableRecord_Basic.Data> elements);
+		public PatchBuilder list_OptNull();
 
 		public PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange list_Opt_Null);
 		public PatchBuilder list_Opt_Null(List<PatchableRecord_Basic.Data> additions, List<PatchableRecord_Basic.Patch> updates, List<String> removals);
 		public PatchBuilder list_Opt_Null(List<PatchableRecord_Basic.Data> elements);
+		public PatchBuilder list_Opt_NullNull();
 
 	}
 }

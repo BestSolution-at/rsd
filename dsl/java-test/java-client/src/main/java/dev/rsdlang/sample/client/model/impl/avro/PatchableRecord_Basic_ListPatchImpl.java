@@ -328,6 +328,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
+
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueBoolean(List<Boolean> valueBoolean) {
 			var $schema = _AvroSchema.getInstance();
@@ -360,6 +361,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueShort(List<Short> valueShort) {
@@ -394,6 +396,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
+
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueInt(List<Integer> valueInt) {
 			var $schema = _AvroSchema.getInstance();
@@ -426,6 +429,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueLong(List<Long> valueLong) {
@@ -460,6 +464,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
+
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueFloat(List<Float> valueFloat) {
 			var $schema = _AvroSchema.getInstance();
@@ -492,6 +497,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueDouble(List<Double> valueDouble) {
@@ -526,6 +532,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
+
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueString(List<String> valueString) {
 			var $schema = _AvroSchema.getInstance();
@@ -558,6 +565,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueLocalDate(List<LocalDate> valueLocalDate) {
@@ -592,6 +600,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
+
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime) {
 			var $schema = _AvroSchema.getInstance();
@@ -624,6 +633,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueLocalTime(List<LocalTime> valueLocalTime) {
@@ -658,6 +668,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 			return this;
 		}
 
+
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
 			var $schema = _AvroSchema.getInstance();
@@ -690,6 +701,7 @@ public class PatchableRecord_Basic_ListPatchImpl extends _BaseDataImpl implement
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableRecord_Basic_List.PatchBuilder valueZonedDateTime(List<ZonedDateTime> valueZonedDateTime) {

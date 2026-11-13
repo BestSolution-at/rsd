@@ -138,6 +138,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 		}
 
 
+
 		@Override
 		public PatchableRecord_Basic.PatchBuilder valueShort(short value) {
 			$builder.set("valueShort", _AvroUtils.toAvro(
@@ -146,6 +147,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 				false));
 			return this;
 		}
+
 
 
 		@Override
@@ -158,6 +160,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 		}
 
 
+
 		@Override
 		public PatchableRecord_Basic.PatchBuilder valueLong(long value) {
 			$builder.set("valueLong", _AvroUtils.toAvro(
@@ -166,6 +169,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 				false));
 			return this;
 		}
+
 
 
 		@Override
@@ -178,6 +182,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 		}
 
 
+
 		@Override
 		public PatchableRecord_Basic.PatchBuilder valueDouble(double value) {
 			$builder.set("valueDouble", _AvroUtils.toAvro(
@@ -186,6 +191,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 				false));
 			return this;
 		}
+
 
 
 		@Override
@@ -198,6 +204,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 		}
 
 
+
 		@Override
 		public PatchableRecord_Basic.PatchBuilder valueLocalDate(LocalDate value) {
 			$builder.set("valueLocalDate", _AvroUtils.toAvro(
@@ -206,6 +213,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 				false));
 			return this;
 		}
+
 
 
 		@Override
@@ -218,6 +226,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 		}
 
 
+
 		@Override
 		public PatchableRecord_Basic.PatchBuilder valueLocalTime(LocalTime value) {
 			$builder.set("valueLocalTime", _AvroUtils.toAvro(
@@ -226,6 +235,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 				false));
 			return this;
 		}
+
 
 
 		@Override
@@ -238,6 +248,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 		}
 
 
+
 		@Override
 		public PatchableRecord_Basic.PatchBuilder valueZonedDateTime(ZonedDateTime value) {
 			$builder.set("valueZonedDateTime", _AvroUtils.toAvro(
@@ -246,6 +257,7 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 				false));
 			return this;
 		}
+
 
 
 

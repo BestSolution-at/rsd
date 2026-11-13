@@ -119,7 +119,10 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			$builder.add("value_Null", value_Null.toString());
 			return this;
 		}
-
+		public PatchableEnumInlineRecord.PatchBuilder value_NullNull() {
+			$builder.addNull("value_Null");
+			return this;
+		}
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder value_Opt(Value_Opt$ value_Opt) {
 			if (value_Opt == null) {
@@ -129,7 +132,10 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			$builder.add("value_Opt", value_Opt.toString());
 			return this;
 		}
-
+		public PatchableEnumInlineRecord.PatchBuilder value_OptNull() {
+			$builder.addNull("value_Opt");
+			return this;
+		}
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder value_Opt_Null(Value_Opt_Null$ value_Opt_Null) {
 			if (value_Opt_Null == null) {
@@ -139,7 +145,10 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			$builder.add("value_Opt_Null", value_Opt_Null.toString());
 			return this;
 		}
-
+		public PatchableEnumInlineRecord.PatchBuilder value_Opt_NullNull() {
+			$builder.addNull("value_Opt_Null");
+			return this;
+		}
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder list(ListChange list) {
 			$builder.add("list", ((_BaseDataImpl) list).data);
@@ -165,6 +174,10 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder list_Null(List_NullChange list_Null) {
+			if (list_Null == null) {
+				$builder.addNull("list_Null");
+				return this;
+			}
 			$builder.add("list_Null", ((_BaseDataImpl) list_Null).data);
 			return this;
 		}
@@ -185,9 +198,16 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			$builder.add("list_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public PatchableEnumInlineRecord.PatchBuilder list_NullNull() {
+			$builder.addNull("list_Null");
+			return this;
+		}
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder list_Opt_Null(List_Opt_NullChange list_Opt_Null) {
+			if (list_Opt_Null == null) {
+				$builder.addNull("list_Opt_Null");
+				return this;
+			}
 			$builder.add("list_Opt_Null", ((_BaseDataImpl) list_Opt_Null).data);
 			return this;
 		}
@@ -208,7 +228,10 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			$builder.add("list_Opt_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public PatchableEnumInlineRecord.PatchBuilder list_Opt_NullNull() {
+			$builder.addNull("list_Opt_Null");
+			return this;
+		}
 		@Override
 		public PatchableEnumInlineRecord.Patch build() {
 			return new PatchableEnumInlineRecordPatchImpl($builder.build());

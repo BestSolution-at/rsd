@@ -515,6 +515,7 @@ public ${t.name}.PatchBuilder ${property.name}(${computeSignatureType(property, 
 		${String(property.nullable || property.optional)}));
 	return this;
 }
+%NullMethod%
 %WithMethod%
 %ArrayMethods%
 `,
@@ -524,10 +525,26 @@ public ${t.name}.PatchBuilder ${property.name}(${computeSignatureType(property, 
 				return WithMethod(t, property, basePackageName, fqn);
 			} else if (key === 'ArrayMethods') {
 				return ArrayMethods(t, property, nativeTypeSubstitutes, basePackageName, fqn);
+			} else if (key === 'NullMethod') {
+				return NullMethod(t, property);
 			}
 			return undefined;
 		},
 	);
+}
+
+function NullMethod(t: MResolvedRecordType, property: MResolvedPropery) {
+	if (property.optional || property.nullable) {
+		return toNodeTree(
+			`
+
+public ${t.name}.PatchBuilder ${property.name}Null() {
+	$builder.set("${property.name}", _AvroUtils.NULL);
+	return this;
+}`,
+		);
+	}
+	return undefined;
 }
 
 function computeDefaultTransform(property: MResolvedPropery) {
@@ -662,12 +679,13 @@ function ArrayMethods(
 	if (!property.array) {
 		return undefined;
 	}
-	return new CompositeGeneratorNode(
+	const rv = new CompositeGeneratorNode(
 		ArrayMethod_Set(t, property, nativeTypeSubstitutes, basePackageName, fqn),
 		NL,
 		NL,
 		ArrayMethod_Merge(t, property, nativeTypeSubstitutes, basePackageName, fqn),
 	);
+	return rv;
 }
 
 function ArrayMethod_Set(

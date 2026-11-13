@@ -134,6 +134,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 			return this;
 		}
 
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueBooleanNull() {
+			$builder.set("valueBoolean", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueShort(Short value) {
@@ -141,6 +146,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueShortNull() {
+			$builder.set("valueShort", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -154,6 +164,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 			return this;
 		}
 
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueIntNull() {
+			$builder.set("valueInt", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLong(Long value) {
@@ -161,6 +176,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLongNull() {
+			$builder.set("valueLong", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -174,6 +194,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 			return this;
 		}
 
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueFloatNull() {
+			$builder.set("valueFloat", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueDouble(Double value) {
@@ -181,6 +206,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueDoubleNull() {
+			$builder.set("valueDouble", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -194,6 +224,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 			return this;
 		}
 
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueStringNull() {
+			$builder.set("valueString", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLocalDate(LocalDate value) {
@@ -201,6 +236,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLocalDateNull() {
+			$builder.set("valueLocalDate", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -214,6 +254,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 			return this;
 		}
 
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLocalDateTimeNull() {
+			$builder.set("valueLocalDateTime", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLocalTime(LocalTime value) {
@@ -221,6 +266,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueLocalTimeNull() {
+			$builder.set("valueLocalTime", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -234,6 +284,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 			return this;
 		}
 
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueOffsetDateTimeNull() {
+			$builder.set("valueOffsetDateTime", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueZonedDateTime(ZonedDateTime value) {
@@ -241,6 +296,11 @@ public class PatchableRecord_Basic_Optional_NullPatchImpl extends _BaseDataImpl 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_Optional_Null.PatchBuilder valueZonedDateTimeNull() {
+			$builder.set("valueZonedDateTime", _AvroUtils.NULL);
 			return this;
 		}
 

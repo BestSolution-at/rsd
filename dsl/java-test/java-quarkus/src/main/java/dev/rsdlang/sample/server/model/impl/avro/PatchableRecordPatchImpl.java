@@ -65,6 +65,7 @@ public class PatchableRecordPatchImpl extends _BaseDataImpl implements Patchable
 
 
 
+
 		public PatchableRecord.Patch build() {
 			return PatchableRecordPatchImpl.of($builder.build());
 		}

@@ -191,10 +191,13 @@ public interface EnumRecord_Substitution {
 		public PatchBuilder month(Month month);
 
 		public PatchBuilder month_Null(Month month_Null);
+		public PatchBuilder month_NullNull();
 
 		public PatchBuilder month_Opt(Month month_Opt);
+		public PatchBuilder month_OptNull();
 
 		public PatchBuilder month_Opt_Null(Month month_Opt_Null);
+		public PatchBuilder month_Opt_NullNull();
 
 		public PatchBuilder monthList(Patch.MonthListChange monthList);
 		public PatchBuilder monthList(List<Month> additions, List<Month> removals);
@@ -203,22 +206,28 @@ public interface EnumRecord_Substitution {
 		public PatchBuilder monthList_Null(Patch.MonthList_NullChange monthList_Null);
 		public PatchBuilder monthList_Null(List<Month> additions, List<Month> removals);
 		public PatchBuilder monthList_Null(List<Month> elements);
+		public PatchBuilder monthList_NullNull();
 
 		public PatchBuilder monthList_Opt(Patch.MonthList_OptChange monthList_Opt);
 		public PatchBuilder monthList_Opt(List<Month> additions, List<Month> removals);
 		public PatchBuilder monthList_Opt(List<Month> elements);
+		public PatchBuilder monthList_OptNull();
 
 		public PatchBuilder monthList_Opt_Null(Patch.MonthList_Opt_NullChange monthList_Opt_Null);
 		public PatchBuilder monthList_Opt_Null(List<Month> additions, List<Month> removals);
 		public PatchBuilder monthList_Opt_Null(List<Month> elements);
+		public PatchBuilder monthList_Opt_NullNull();
 
 		public PatchBuilder dayOfWeek(DayOfWeek dayOfWeek);
 
 		public PatchBuilder dayOfWeek_Null(DayOfWeek dayOfWeek_Null);
+		public PatchBuilder dayOfWeek_NullNull();
 
 		public PatchBuilder dayOfWeek_Opt(DayOfWeek dayOfWeek_Opt);
+		public PatchBuilder dayOfWeek_OptNull();
 
 		public PatchBuilder dayOfWeek_Opt_Null(DayOfWeek dayOfWeek_Opt_Null);
+		public PatchBuilder dayOfWeek_Opt_NullNull();
 
 		public PatchBuilder dayOfWeekList(Patch.DayOfWeekListChange dayOfWeekList);
 		public PatchBuilder dayOfWeekList(List<DayOfWeek> additions, List<DayOfWeek> removals);
@@ -227,14 +236,17 @@ public interface EnumRecord_Substitution {
 		public PatchBuilder dayOfWeekList_Null(Patch.DayOfWeekList_NullChange dayOfWeekList_Null);
 		public PatchBuilder dayOfWeekList_Null(List<DayOfWeek> additions, List<DayOfWeek> removals);
 		public PatchBuilder dayOfWeekList_Null(List<DayOfWeek> elements);
+		public PatchBuilder dayOfWeekList_NullNull();
 
 		public PatchBuilder dayOfWeekList_Opt(Patch.DayOfWeekList_OptChange dayOfWeekList_Opt);
 		public PatchBuilder dayOfWeekList_Opt(List<DayOfWeek> additions, List<DayOfWeek> removals);
 		public PatchBuilder dayOfWeekList_Opt(List<DayOfWeek> elements);
+		public PatchBuilder dayOfWeekList_OptNull();
 
 		public PatchBuilder dayOfWeekList_Opt_Null(Patch.DayOfWeekList_Opt_NullChange dayOfWeekList_Opt_Null);
 		public PatchBuilder dayOfWeekList_Opt_Null(List<DayOfWeek> additions, List<DayOfWeek> removals);
 		public PatchBuilder dayOfWeekList_Opt_Null(List<DayOfWeek> elements);
+		public PatchBuilder dayOfWeekList_Opt_NullNull();
 
 	}
 }

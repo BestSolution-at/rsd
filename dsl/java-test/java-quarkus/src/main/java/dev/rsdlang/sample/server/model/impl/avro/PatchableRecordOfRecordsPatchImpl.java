@@ -174,6 +174,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
+
 		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue(Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
 			PatchableRecord_Basic.Builder b;
 			if(clazz == PatchableRecord_Basic.DataBuilder.class ) {
@@ -192,6 +193,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecordOfRecords.PatchBuilder value_NullNull() {
+			$builder.set("value_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -216,6 +222,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
+		public PatchableRecordOfRecords.PatchBuilder value_OptNull() {
+			$builder.set("value_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 		public <T extends PatchableRecord_Basic.Builder> PatchableRecordOfRecords.PatchBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableRecord_Basic> block) {
 			PatchableRecord_Basic.Builder b;
 			if(clazz == PatchableRecord_Basic.DataBuilder.class ) {
@@ -234,6 +245,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecordOfRecords.PatchBuilder value_Opt_NullNull() {
+			$builder.set("value_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -257,6 +273,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableRecordOfRecords.PatchBuilder list(List<PatchableRecord_Basic.Data> list) {
@@ -291,6 +308,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecordOfRecords.PatchBuilder list_NullNull() {
+			$builder.set("list_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -330,6 +352,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
+		public PatchableRecordOfRecords.PatchBuilder list_OptNull() {
+			$builder.set("list_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableRecordOfRecords.PatchBuilder list_Opt(List<PatchableRecord_Basic.Data> list_Opt) {
 			var $schema = _AvroSchema.getInstance();
@@ -363,6 +390,11 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecordOfRecords.PatchBuilder list_Opt_NullNull() {
+			$builder.set("list_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 

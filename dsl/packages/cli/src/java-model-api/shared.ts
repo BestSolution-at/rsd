@@ -186,5 +186,8 @@ export function generatePatchBuilderPropertyAccessor(
 			node.append(`public PatchBuilder ${property.name}(List<${type}> elements);`, NL);
 		}
 	}
+	if (property.optional || property.nullable) {
+		node.append(`public PatchBuilder ${property.name}Null();`, NL);
+	}
 	return node;
 }

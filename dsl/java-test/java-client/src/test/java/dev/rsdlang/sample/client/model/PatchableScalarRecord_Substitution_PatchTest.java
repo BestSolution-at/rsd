@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.client.model;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.InstanceOfAssertFactories;
@@ -20,15 +22,49 @@ public class PatchableScalarRecord_Substitution_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecord_SubstitutionPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord_Substitution.Patch createAvroRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecord_SubstitutionPatchImpl.builder();
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(MyRange.parse("[0,1]"))
+					.value_Null(MyRange.parse("[0,1]"))
+					.value_Opt(MyRange.parse("[0,1]"))
+					.value_Opt_Null(MyRange.parse("[0,1]"))
+					.list(List.of(MyRange.parse("[0,1]")))
+					.list_Null(List.of(MyRange.parse("[0,1]")))
+					.list_Opt(List.of(MyRange.parse("[0,1]")))
+					.list_Opt_Null(List.of(MyRange.parse("[0,1]")))
+					.build();
+		}
+
 		static PatchableScalarRecord_Substitution.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableScalarRecord_Substitution.ListReplace.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecord_SubstitutionPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord_Substitution.Patch createJsonRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecord_SubstitutionPatchImpl.builder();
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(MyRange.parse("[0,1]"))
+					.value_Null(MyRange.parse("[0,1]"))
+					.value_Opt(MyRange.parse("[0,1]"))
+					.value_Opt_Null(MyRange.parse("[0,1]"))
+					.list(List.of(MyRange.parse("[0,1]")))
+					.list_Null(List.of(MyRange.parse("[0,1]")))
+					.list_Opt(List.of(MyRange.parse("[0,1]")))
+					.list_Opt_Null(List.of(MyRange.parse("[0,1]")))
+					.build();
+		}
+
 		static PatchableScalarRecord_Substitution.Patch[] getRecords() {
 			return new PatchableScalarRecord_Substitution.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroRecordBuilder(),
+					createJsonRecordBuilder()
 			};
 		}
 
@@ -150,6 +186,22 @@ public class PatchableScalarRecord_Substitution_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecord_SubstitutionPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord_Substitution.Patch createAvroRecordBuilder() {
+			var builder = dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecord_SubstitutionPatchImpl.builder();
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(MyRange.parse("[0,1]"))
+					.value_Null(MyRange.parse("[0,1]"))
+					.value_Opt(MyRange.parse("[0,1]"))
+					.value_Opt_Null(MyRange.parse("[0,1]"))
+					.list(List.of(MyRange.parse("[0,1]")), List.of(MyRange.parse("[1,2]")))
+					.list_Null(List.of(MyRange.parse("[0,1]")), List.of(MyRange.parse("[1,2]")))
+					.list_Opt(List.of(MyRange.parse("[0,1]")), List.of(MyRange.parse("[1,2]")))
+					.list_Opt_Null(List.of(MyRange.parse("[0,1]")), List.of(MyRange.parse("[1,2]")))
+					.build();
+		}
+
 		static PatchableScalarRecord_Substitution.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableScalarRecord_Substitution.ListMerge.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecord_SubstitutionPatchImpl.of(record);
@@ -158,7 +210,8 @@ public class PatchableScalarRecord_Substitution_PatchTest extends BaseTest {
 		static PatchableScalarRecord_Substitution.Patch[] getRecords() {
 			return new PatchableScalarRecord_Substitution.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroRecordBuilder()
 			};
 		}
 
@@ -319,15 +372,31 @@ public class PatchableScalarRecord_Substitution_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecord_SubstitutionPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord_Substitution.Patch createAvroRecordBuilder() {
+			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecord_SubstitutionPatchImpl.builder()
+					.key("k-1")
+					.version("v-1")
+					.build();
+		}
+
 		static PatchableScalarRecord_Substitution.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableScalarRecord_Substitution.Minimal.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecord_SubstitutionPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord_Substitution.Patch createJsonRecordBuilder() {
+			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecord_SubstitutionPatchImpl.builder()
+					.key("k-1")
+					.version("v-1")
+					.build();
+		}
+
 		static PatchableScalarRecord_Substitution.Patch[] getRecords() {
 			return new PatchableScalarRecord_Substitution.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createAvroRecordBuilder(),
+					createJsonRecord(),
+					createJsonRecordBuilder()
 			};
 		}
 
@@ -400,15 +469,43 @@ public class PatchableScalarRecord_Substitution_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecord_SubstitutionPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord_Substitution.Patch createAvroRecordBuilder() {
+			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecord_SubstitutionPatchImpl.builder()
+					.key("k-1")
+					.version("v-1")
+					.value_NullNull()
+					.value_OptNull()
+					.value_Opt_NullNull()
+					.list_NullNull()
+					.list_OptNull()
+					.list_Opt_NullNull()
+					.build();
+		}
+
 		static PatchableScalarRecord_Substitution.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableScalarRecord_Substitution.Null.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecord_SubstitutionPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord_Substitution.Patch createJsonRecordBuilder() {
+			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecord_SubstitutionPatchImpl.builder()
+					.key("k-1")
+					.version("v-1")
+					.value_NullNull()
+					.value_OptNull()
+					.value_Opt_NullNull()
+					.list_NullNull()
+					.list_OptNull()
+					.list_Opt_NullNull()
+					.build();
+		}
+
 		static PatchableScalarRecord_Substitution.Patch[] getRecords() {
 			return new PatchableScalarRecord_Substitution.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createAvroRecordBuilder(),
+					createJsonRecord(),
+					createJsonRecordBuilder()
 			};
 		}
 

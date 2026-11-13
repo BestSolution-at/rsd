@@ -99,7 +99,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueBoolean", valueBoolean);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueBooleanNull() {
+			$builder.addNull("valueBoolean");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueShort(Short valueShort) {
 			if (valueShort == null) {
@@ -109,7 +112,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueShort", valueShort);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueShortNull() {
+			$builder.addNull("valueShort");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueInt(Integer valueInt) {
 			if (valueInt == null) {
@@ -119,7 +125,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueInt", valueInt);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueIntNull() {
+			$builder.addNull("valueInt");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueLong(Long valueLong) {
 			if (valueLong == null) {
@@ -129,7 +138,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueLong", valueLong);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueLongNull() {
+			$builder.addNull("valueLong");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueFloat(Float valueFloat) {
 			if (valueFloat == null) {
@@ -139,7 +151,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueFloat", valueFloat);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueFloatNull() {
+			$builder.addNull("valueFloat");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueDouble(Double valueDouble) {
 			if (valueDouble == null) {
@@ -149,7 +164,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueDouble", valueDouble);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueDoubleNull() {
+			$builder.addNull("valueDouble");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueString(String valueString) {
 			if (valueString == null) {
@@ -159,7 +177,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueString", valueString);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueStringNull() {
+			$builder.addNull("valueString");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueLocalDate(LocalDate valueLocalDate) {
 			if (valueLocalDate == null) {
@@ -169,7 +190,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueLocalDate", valueLocalDate.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueLocalDateNull() {
+			$builder.addNull("valueLocalDate");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueLocalDateTime(LocalDateTime valueLocalDateTime) {
 			if (valueLocalDateTime == null) {
@@ -179,7 +203,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueLocalDateTime", valueLocalDateTime.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueLocalDateTimeNull() {
+			$builder.addNull("valueLocalDateTime");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueLocalTime(LocalTime valueLocalTime) {
 			if (valueLocalTime == null) {
@@ -189,7 +216,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueLocalTime", valueLocalTime.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueLocalTimeNull() {
+			$builder.addNull("valueLocalTime");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueOffsetDateTime(OffsetDateTime valueOffsetDateTime) {
 			if (valueOffsetDateTime == null) {
@@ -199,7 +229,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueOffsetDateTime", valueOffsetDateTime.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueOffsetDateTimeNull() {
+			$builder.addNull("valueOffsetDateTime");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.PatchBuilder valueZonedDateTime(ZonedDateTime valueZonedDateTime) {
 			if (valueZonedDateTime == null) {
@@ -209,7 +242,10 @@ public class PatchableRecord_Basic_OptionalPatchImpl extends _BaseDataImpl imple
 			$builder.add("valueZonedDateTime", valueZonedDateTime.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Optional.PatchBuilder valueZonedDateTimeNull() {
+			$builder.addNull("valueZonedDateTime");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Optional.Patch build() {
 			return new PatchableRecord_Basic_OptionalPatchImpl($builder.build());

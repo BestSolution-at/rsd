@@ -187,12 +187,18 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 		}
 
 
+
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder value_Null(MyRange value) {
 			$builder.set("value_Null", _AvroUtils.toAvro(
 				value, 
 				_ScalarSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public PatchableScalarRecord_Substitution.PatchBuilder value_NullNull() {
+			$builder.set("value_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -206,6 +212,11 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			return this;
 		}
 
+		public PatchableScalarRecord_Substitution.PatchBuilder value_OptNull() {
+			$builder.set("value_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder value_Opt_Null(MyRange value) {
@@ -213,6 +224,11 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 				value, 
 				_ScalarSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public PatchableScalarRecord_Substitution.PatchBuilder value_Opt_NullNull() {
+			$builder.set("value_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -225,6 +241,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder list(List<MyRange> list) {
@@ -256,6 +273,11 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 				value, 
 				_ScalarSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public PatchableScalarRecord_Substitution.PatchBuilder list_NullNull() {
+			$builder.set("list_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -292,6 +314,11 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			return this;
 		}
 
+		public PatchableScalarRecord_Substitution.PatchBuilder list_OptNull() {
+			$builder.set("list_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt(List<MyRange> list_Opt) {
 			var $schema = _AvroSchema.getInstance();
@@ -322,6 +349,11 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 				value, 
 				_ScalarSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt_NullNull() {
+			$builder.set("list_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 

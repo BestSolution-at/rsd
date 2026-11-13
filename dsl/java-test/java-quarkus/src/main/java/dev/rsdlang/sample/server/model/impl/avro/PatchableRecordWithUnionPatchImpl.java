@@ -176,6 +176,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
+
 		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue(Class<T> clazz, Function<T, PatchableUnion> block) {
 			PatchableUnion.Builder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
@@ -198,6 +199,11 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecordWithUnion.PatchBuilder value_NullNull() {
+			$builder.set("value_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -226,6 +232,11 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
+		public PatchableRecordWithUnion.PatchBuilder value_OptNull() {
+			$builder.set("value_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 		public <T extends PatchableUnion.Builder> PatchableRecordWithUnion.PatchBuilder withValue_Opt(Class<T> clazz, Function<T, PatchableUnion> block) {
 			PatchableUnion.Builder b;
 			if (clazz == PatchableUnionA.DataBuilder.class) {
@@ -248,6 +259,11 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecordWithUnion.PatchBuilder value_Opt_NullNull() {
+			$builder.set("value_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -275,6 +291,7 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableRecordWithUnion.PatchBuilder list(List<PatchableUnion.Data> list) {
@@ -309,6 +326,11 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecordWithUnion.PatchBuilder list_NullNull() {
+			$builder.set("list_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -348,6 +370,11 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 			return this;
 		}
 
+		public PatchableRecordWithUnion.PatchBuilder list_OptNull() {
+			$builder.set("list_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableRecordWithUnion.PatchBuilder list_Opt(List<PatchableUnion.Data> list_Opt) {
 			var $schema = _AvroSchema.getInstance();
@@ -381,6 +408,11 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecordWithUnion.PatchBuilder list_Opt_NullNull() {
+			$builder.set("list_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 

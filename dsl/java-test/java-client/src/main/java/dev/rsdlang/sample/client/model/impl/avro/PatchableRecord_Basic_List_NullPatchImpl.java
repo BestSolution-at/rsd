@@ -328,6 +328,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 			return this;
 		}
 
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueBooleanNull() {
+			$builder.set("valueBoolean", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableRecord_Basic_List_Null.PatchBuilder valueBoolean(List<Boolean> valueBoolean) {
 			var $schema = _AvroSchema.getInstance();
@@ -358,6 +363,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueShortNull() {
+			$builder.set("valueShort", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -394,6 +404,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 			return this;
 		}
 
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueIntNull() {
+			$builder.set("valueInt", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableRecord_Basic_List_Null.PatchBuilder valueInt(List<Integer> valueInt) {
 			var $schema = _AvroSchema.getInstance();
@@ -424,6 +439,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueLongNull() {
+			$builder.set("valueLong", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -460,6 +480,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 			return this;
 		}
 
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueFloatNull() {
+			$builder.set("valueFloat", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableRecord_Basic_List_Null.PatchBuilder valueFloat(List<Float> valueFloat) {
 			var $schema = _AvroSchema.getInstance();
@@ -490,6 +515,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueDoubleNull() {
+			$builder.set("valueDouble", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -526,6 +556,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 			return this;
 		}
 
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueStringNull() {
+			$builder.set("valueString", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableRecord_Basic_List_Null.PatchBuilder valueString(List<String> valueString) {
 			var $schema = _AvroSchema.getInstance();
@@ -556,6 +591,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueLocalDateNull() {
+			$builder.set("valueLocalDate", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -592,6 +632,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 			return this;
 		}
 
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueLocalDateTimeNull() {
+			$builder.set("valueLocalDateTime", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableRecord_Basic_List_Null.PatchBuilder valueLocalDateTime(List<LocalDateTime> valueLocalDateTime) {
 			var $schema = _AvroSchema.getInstance();
@@ -622,6 +667,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueLocalTimeNull() {
+			$builder.set("valueLocalTime", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -658,6 +708,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 			return this;
 		}
 
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueOffsetDateTimeNull() {
+			$builder.set("valueOffsetDateTime", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableRecord_Basic_List_Null.PatchBuilder valueOffsetDateTime(List<OffsetDateTime> valueOffsetDateTime) {
 			var $schema = _AvroSchema.getInstance();
@@ -688,6 +743,11 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableRecord_Basic_List_Null.PatchBuilder valueZonedDateTimeNull() {
+			$builder.set("valueZonedDateTime", _AvroUtils.NULL);
 			return this;
 		}
 

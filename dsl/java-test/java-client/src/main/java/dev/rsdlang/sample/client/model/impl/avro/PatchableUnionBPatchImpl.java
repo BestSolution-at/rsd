@@ -70,6 +70,7 @@ public class PatchableUnionBPatchImpl extends _BaseDataImpl implements Patchable
 		}
 
 
+
 		@Override
 		public PatchableUnionB.PatchBuilder valueB(String value) {
 			$builder.set("valueB", _AvroUtils.toAvro(
@@ -78,6 +79,7 @@ public class PatchableUnionBPatchImpl extends _BaseDataImpl implements Patchable
 				false));
 			return this;
 		}
+
 
 
 

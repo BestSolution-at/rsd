@@ -161,12 +161,18 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 		}
 
 
+
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder value_Null(Value_Null$ value) {
 			$builder.set("value_Null", _AvroUtils.toAvro(
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableEnumInlineRecord.PatchBuilder value_NullNull() {
+			$builder.set("value_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -180,6 +186,11 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			return this;
 		}
 
+		public PatchableEnumInlineRecord.PatchBuilder value_OptNull() {
+			$builder.set("value_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder value_Opt_Null(Value_Opt_Null$ value) {
@@ -187,6 +198,11 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableEnumInlineRecord.PatchBuilder value_Opt_NullNull() {
+			$builder.set("value_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -199,6 +215,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 				false));
 			return this;
 		}
+
 
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder list(List<List$> list) {
@@ -233,6 +250,11 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			return this;
 		}
 
+		public PatchableEnumInlineRecord.PatchBuilder list_NullNull() {
+			$builder.set("list_Null", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public PatchableEnumInlineRecord.PatchBuilder list_Null(List<List_Null$> list_Null) {
 			var $schema = _AvroSchema.getInstance();
@@ -263,6 +285,11 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 				value, 
 				null,
 				true));
+			return this;
+		}
+
+		public PatchableEnumInlineRecord.PatchBuilder list_Opt_NullNull() {
+			$builder.set("list_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 

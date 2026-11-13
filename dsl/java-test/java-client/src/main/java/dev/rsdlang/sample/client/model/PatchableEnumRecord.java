@@ -120,10 +120,13 @@ public interface PatchableEnumRecord {
 		public PatchBuilder value(SampleEnum value);
 
 		public PatchBuilder value_Null(SampleEnum value_Null);
+		public PatchBuilder value_NullNull();
 
 		public PatchBuilder value_Opt(SampleEnum value_Opt);
+		public PatchBuilder value_OptNull();
 
 		public PatchBuilder value_Opt_Null(SampleEnum value_Opt_Null);
+		public PatchBuilder value_Opt_NullNull();
 
 		public PatchBuilder list(Patch.ListChange list);
 		public PatchBuilder list(List<SampleEnum> additions, List<SampleEnum> removals);
@@ -132,14 +135,17 @@ public interface PatchableEnumRecord {
 		public PatchBuilder list_Null(Patch.List_NullChange list_Null);
 		public PatchBuilder list_Null(List<SampleEnum> additions, List<SampleEnum> removals);
 		public PatchBuilder list_Null(List<SampleEnum> elements);
+		public PatchBuilder list_NullNull();
 
 		public PatchBuilder list_Opt(Patch.List_OptChange list_Opt);
 		public PatchBuilder list_Opt(List<SampleEnum> additions, List<SampleEnum> removals);
 		public PatchBuilder list_Opt(List<SampleEnum> elements);
+		public PatchBuilder list_OptNull();
 
 		public PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange list_Opt_Null);
 		public PatchBuilder list_Opt_Null(List<SampleEnum> additions, List<SampleEnum> removals);
 		public PatchBuilder list_Opt_Null(List<SampleEnum> elements);
+		public PatchBuilder list_Opt_NullNull();
 
 	}
 }

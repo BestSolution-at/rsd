@@ -122,10 +122,13 @@ public interface PatchableScalarRecord_Substitution {
 		public PatchBuilder value(MyRange value);
 
 		public PatchBuilder value_Null(MyRange value_Null);
+		public PatchBuilder value_NullNull();
 
 		public PatchBuilder value_Opt(MyRange value_Opt);
+		public PatchBuilder value_OptNull();
 
 		public PatchBuilder value_Opt_Null(MyRange value_Opt_Null);
+		public PatchBuilder value_Opt_NullNull();
 
 		public PatchBuilder list(Patch.ListChange list);
 		public PatchBuilder list(List<MyRange> additions, List<MyRange> removals);
@@ -134,14 +137,17 @@ public interface PatchableScalarRecord_Substitution {
 		public PatchBuilder list_Null(Patch.List_NullChange list_Null);
 		public PatchBuilder list_Null(List<MyRange> additions, List<MyRange> removals);
 		public PatchBuilder list_Null(List<MyRange> elements);
+		public PatchBuilder list_NullNull();
 
 		public PatchBuilder list_Opt(Patch.List_OptChange list_Opt);
 		public PatchBuilder list_Opt(List<MyRange> additions, List<MyRange> removals);
 		public PatchBuilder list_Opt(List<MyRange> elements);
+		public PatchBuilder list_OptNull();
 
 		public PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange list_Opt_Null);
 		public PatchBuilder list_Opt_Null(List<MyRange> additions, List<MyRange> removals);
 		public PatchBuilder list_Opt_Null(List<MyRange> elements);
+		public PatchBuilder list_Opt_NullNull();
 
 	}
 }

@@ -288,12 +288,18 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		}
 
 
+
 		@Override
 		public EnumRecord_Substitution.PatchBuilder month_Null(Month value) {
 			$builder.set("month_Null", _AvroUtils.toAvro(
 				value, 
 				_EnumSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public EnumRecord_Substitution.PatchBuilder month_NullNull() {
+			$builder.set("month_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -307,6 +313,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			return this;
 		}
 
+		public EnumRecord_Substitution.PatchBuilder month_OptNull() {
+			$builder.set("month_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public EnumRecord_Substitution.PatchBuilder month_Opt_Null(Month value) {
@@ -314,6 +325,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 				value, 
 				_EnumSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public EnumRecord_Substitution.PatchBuilder month_Opt_NullNull() {
+			$builder.set("month_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -326,6 +342,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 				false));
 			return this;
 		}
+
 
 		@Override
 		public EnumRecord_Substitution.PatchBuilder monthList(List<Month> monthList) {
@@ -357,6 +374,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 				value, 
 				_EnumSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public EnumRecord_Substitution.PatchBuilder monthList_NullNull() {
+			$builder.set("monthList_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -393,6 +415,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			return this;
 		}
 
+		public EnumRecord_Substitution.PatchBuilder monthList_OptNull() {
+			$builder.set("monthList_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public EnumRecord_Substitution.PatchBuilder monthList_Opt(List<Month> monthList_Opt) {
 			var $schema = _AvroSchema.getInstance();
@@ -423,6 +450,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 				value, 
 				_EnumSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public EnumRecord_Substitution.PatchBuilder monthList_Opt_NullNull() {
+			$builder.set("monthList_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -460,12 +492,18 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		}
 
 
+
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Null(DayOfWeek value) {
 			$builder.set("dayOfWeek_Null", _AvroUtils.toAvro(
 				value, 
 				_EnumSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_NullNull() {
+			$builder.set("dayOfWeek_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -479,6 +517,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			return this;
 		}
 
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_OptNull() {
+			$builder.set("dayOfWeek_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Opt_Null(DayOfWeek value) {
@@ -486,6 +529,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 				value, 
 				_EnumSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Opt_NullNull() {
+			$builder.set("dayOfWeek_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -498,6 +546,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 				false));
 			return this;
 		}
+
 
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList(List<DayOfWeek> dayOfWeekList) {
@@ -529,6 +578,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 				value, 
 				_EnumSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_NullNull() {
+			$builder.set("dayOfWeekList_Null", _AvroUtils.NULL);
 			return this;
 		}
 
@@ -565,6 +619,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			return this;
 		}
 
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_OptNull() {
+			$builder.set("dayOfWeekList_Opt", _AvroUtils.NULL);
+			return this;
+		}
+
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt(List<DayOfWeek> dayOfWeekList_Opt) {
 			var $schema = _AvroSchema.getInstance();
@@ -595,6 +654,11 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 				value, 
 				_EnumSupport::toAvro,
 				true));
+			return this;
+		}
+
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt_NullNull() {
+			$builder.set("dayOfWeekList_Opt_Null", _AvroUtils.NULL);
 			return this;
 		}
 
