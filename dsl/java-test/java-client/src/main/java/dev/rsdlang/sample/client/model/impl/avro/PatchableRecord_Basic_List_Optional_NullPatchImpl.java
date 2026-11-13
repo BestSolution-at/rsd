@@ -334,7 +334,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueBooleanPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueBoolean, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueBoolean, null));
 
 			$builder.set("valueBoolean", $change);
 			return this;
@@ -367,7 +367,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueShortPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueShort, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueShort, null));
 
 			$builder.set("valueShort", $change);
 			return this;
@@ -400,7 +400,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueIntPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueInt, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueInt, null));
 
 			$builder.set("valueInt", $change);
 			return this;
@@ -433,7 +433,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueLongPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueLong, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueLong, null));
 
 			$builder.set("valueLong", $change);
 			return this;
@@ -466,7 +466,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueFloatPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueFloat, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueFloat, null));
 
 			$builder.set("valueFloat", $change);
 			return this;
@@ -499,7 +499,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueDoublePatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueDouble, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueDouble, null));
 
 			$builder.set("valueDouble", $change);
 			return this;
@@ -532,7 +532,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueStringPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueString, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueString, null));
 
 			$builder.set("valueString", $change);
 			return this;
@@ -565,7 +565,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueLocalDatePatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueLocalDate, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueLocalDate, null));
 
 			$builder.set("valueLocalDate", $change);
 			return this;
@@ -598,7 +598,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueLocalDateTimePatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueLocalDateTime, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueLocalDateTime, null));
 
 			$builder.set("valueLocalDateTime", $change);
 			return this;
@@ -631,7 +631,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueLocalTimePatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueLocalTime, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueLocalTime, null));
 
 			$builder.set("valueLocalTime", $change);
 			return this;
@@ -664,7 +664,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueOffsetDateTimePatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueOffsetDateTime, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueOffsetDateTime, null));
 
 			$builder.set("valueOffsetDateTime", $change);
 			return this;
@@ -697,7 +697,7 @@ public class PatchableRecord_Basic_List_Optional_NullPatchImpl extends _BaseData
 			var $type = _AvroSchema.AvroTypes.PatchableRecord_Basic_List_Optional_Null_valueZonedDateTimePatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(valueZonedDateTime, null));
+			$change.put("elements", _AvroUtils.toAvroList(valueZonedDateTime, null));
 
 			$builder.set("valueZonedDateTime", $change);
 			return this;

@@ -264,7 +264,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			var $type = _AvroSchema.AvroTypes.PatchableRecordOfRecords_listPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(list, null));
+			$change.put("elements", _AvroUtils.toAvroList(list, null));
 
 			$builder.set("list", $change);
 			return this;
@@ -300,7 +300,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			var $type = _AvroSchema.AvroTypes.PatchableRecordOfRecords_list_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(list_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(list_Null, null));
 
 			$builder.set("list_Null", $change);
 			return this;
@@ -336,7 +336,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			var $type = _AvroSchema.AvroTypes.PatchableRecordOfRecords_list_OptPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(list_Opt, null));
+			$change.put("elements", _AvroUtils.toAvroList(list_Opt, null));
 
 			$builder.set("list_Opt", $change);
 			return this;
@@ -372,7 +372,7 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			var $type = _AvroSchema.AvroTypes.PatchableRecordOfRecords_list_Opt_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(list_Opt_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(list_Opt_Null, null));
 
 			$builder.set("list_Opt_Null", $change);
 			return this;

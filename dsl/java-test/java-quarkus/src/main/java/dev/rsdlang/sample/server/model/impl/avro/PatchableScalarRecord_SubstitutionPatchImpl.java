@@ -232,7 +232,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			var $type = _AvroSchema.AvroTypes.PatchableScalarRecord_Substitution_listPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(list, null));
+			$change.put("elements", _AvroUtils.toAvroList(list, _ScalarSupport::toAvro));
 
 			$builder.set("list", $change);
 			return this;
@@ -244,8 +244,8 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			var $type = _AvroSchema.AvroTypes.PatchableScalarRecord_Substitution_listPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _ScalarSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _ScalarSupport::toAvro));
 
 			$builder.set("list", $change);
 			return this;
@@ -265,7 +265,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			var $type = _AvroSchema.AvroTypes.PatchableScalarRecord_Substitution_list_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(list_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(list_Null, _ScalarSupport::toAvro));
 
 			$builder.set("list_Null", $change);
 			return this;
@@ -277,8 +277,8 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			var $type = _AvroSchema.AvroTypes.PatchableScalarRecord_Substitution_list_NullPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _ScalarSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _ScalarSupport::toAvro));
 
 			$builder.set("list_Null", $change);
 			return this;
@@ -298,7 +298,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			var $type = _AvroSchema.AvroTypes.PatchableScalarRecord_Substitution_list_OptPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(list_Opt, null));
+			$change.put("elements", _AvroUtils.toAvroList(list_Opt, _ScalarSupport::toAvro));
 
 			$builder.set("list_Opt", $change);
 			return this;
@@ -310,8 +310,8 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			var $type = _AvroSchema.AvroTypes.PatchableScalarRecord_Substitution_list_OptPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _ScalarSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _ScalarSupport::toAvro));
 
 			$builder.set("list_Opt", $change);
 			return this;
@@ -331,7 +331,7 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			var $type = _AvroSchema.AvroTypes.PatchableScalarRecord_Substitution_list_Opt_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(list_Opt_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(list_Opt_Null, _ScalarSupport::toAvro));
 
 			$builder.set("list_Opt_Null", $change);
 			return this;
@@ -343,8 +343,8 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			var $type = _AvroSchema.AvroTypes.PatchableScalarRecord_Substitution_list_Opt_NullPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _ScalarSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _ScalarSupport::toAvro));
 
 			$builder.set("list_Opt_Null", $change);
 			return this;

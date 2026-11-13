@@ -333,7 +333,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthListPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(monthList, null));
+			$change.put("elements", _AvroUtils.toAvroList(monthList, _EnumSupport::toAvro));
 
 			$builder.set("monthList", $change);
 			return this;
@@ -345,8 +345,8 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthListPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _EnumSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _EnumSupport::toAvro));
 
 			$builder.set("monthList", $change);
 			return this;
@@ -366,7 +366,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(monthList_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(monthList_Null, _EnumSupport::toAvro));
 
 			$builder.set("monthList_Null", $change);
 			return this;
@@ -378,8 +378,8 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_NullPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _EnumSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _EnumSupport::toAvro));
 
 			$builder.set("monthList_Null", $change);
 			return this;
@@ -399,7 +399,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_OptPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(monthList_Opt, null));
+			$change.put("elements", _AvroUtils.toAvroList(monthList_Opt, _EnumSupport::toAvro));
 
 			$builder.set("monthList_Opt", $change);
 			return this;
@@ -411,8 +411,8 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_OptPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _EnumSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _EnumSupport::toAvro));
 
 			$builder.set("monthList_Opt", $change);
 			return this;
@@ -432,7 +432,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_Opt_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(monthList_Opt_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(monthList_Opt_Null, _EnumSupport::toAvro));
 
 			$builder.set("monthList_Opt_Null", $change);
 			return this;
@@ -444,8 +444,8 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_monthList_Opt_NullPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _EnumSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _EnumSupport::toAvro));
 
 			$builder.set("monthList_Opt_Null", $change);
 			return this;
@@ -505,7 +505,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekListPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(dayOfWeekList, null));
+			$change.put("elements", _AvroUtils.toAvroList(dayOfWeekList, _EnumSupport::toAvro));
 
 			$builder.set("dayOfWeekList", $change);
 			return this;
@@ -517,8 +517,8 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekListPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _EnumSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _EnumSupport::toAvro));
 
 			$builder.set("dayOfWeekList", $change);
 			return this;
@@ -538,7 +538,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(dayOfWeekList_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(dayOfWeekList_Null, _EnumSupport::toAvro));
 
 			$builder.set("dayOfWeekList_Null", $change);
 			return this;
@@ -550,8 +550,8 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_NullPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _EnumSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _EnumSupport::toAvro));
 
 			$builder.set("dayOfWeekList_Null", $change);
 			return this;
@@ -571,7 +571,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_OptPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(dayOfWeekList_Opt, null));
+			$change.put("elements", _AvroUtils.toAvroList(dayOfWeekList_Opt, _EnumSupport::toAvro));
 
 			$builder.set("dayOfWeekList_Opt", $change);
 			return this;
@@ -583,8 +583,8 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_OptPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _EnumSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _EnumSupport::toAvro));
 
 			$builder.set("dayOfWeekList_Opt", $change);
 			return this;
@@ -604,7 +604,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(dayOfWeekList_Opt_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(dayOfWeekList_Opt_Null, _EnumSupport::toAvro));
 
 			$builder.set("dayOfWeekList_Opt_Null", $change);
 			return this;
@@ -616,8 +616,8 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			var $type = _AvroSchema.AvroTypes.EnumRecord_Substitution_dayOfWeekList_Opt_NullPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, _EnumSupport::toAvro));
+			$change.put("removals", _AvroUtils.toAvroList(removals, _EnumSupport::toAvro));
 
 			$builder.set("dayOfWeekList_Opt_Null", $change);
 			return this;

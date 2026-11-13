@@ -690,7 +690,7 @@ function ArrayMethod_Set(
 			var $type = _AvroSchema.AvroTypes.${t.name}_${property.name}PatchReplace;
 
 			var $change = new ${GenericData}.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(${property.name}, null));
+			$change.put("elements", _AvroUtils.toAvroList(${property.name}, ${computeDefaultTransform(property)}));
 
 			$builder.set("${property.name}", $change);
 			return this;
@@ -718,8 +718,8 @@ function ArrayMethod_Merge(
 				var $type = _AvroSchema.AvroTypes.${t.name}_${property.name}PatchMerge;
 
 				var $change = new ${GenericData}.Record($schema.getTypeSchema($type));
-				$change.put("additions", _AvroUtils.toAvroList(additions, null));
-				$change.put("updates", _AvroUtils.toAvroList(updates, null));
+				$change.put("additions", _AvroUtils.toAvroList(additions, ${computeDefaultTransform(property)}));
+				$change.put("updates", _AvroUtils.toAvroList(updates, ${computeDefaultTransform(property)}));
 				$change.put("removals", _AvroUtils.toAvroList(removals, null));
 
 				$builder.set("${property.name}", $change);
@@ -743,8 +743,8 @@ function ArrayMethod_Merge(
 				var $type = _AvroSchema.AvroTypes.${t.name}_${property.name}PatchMerge;
 
 				var $change = new ${GenericData}.Record($schema.getTypeSchema($type));
-				$change.put("additions", _AvroUtils.toAvroList(additions, null));
-				$change.put("removals", _AvroUtils.toAvroList(removals, null));
+				$change.put("additions", _AvroUtils.toAvroList(additions, ${computeDefaultTransform(property)}));
+				$change.put("removals", _AvroUtils.toAvroList(removals, ${computeDefaultTransform(property)}));
 
 				$builder.set("${property.name}", $change);
 				return this;
