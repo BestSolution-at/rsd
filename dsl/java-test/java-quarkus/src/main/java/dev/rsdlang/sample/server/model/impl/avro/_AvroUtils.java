@@ -954,6 +954,8 @@ public class _AvroUtils {
 			return ((_BaseDataImpl) value).data;
 		} else if (value instanceof Number) {
 			return value;
+		} else if (value instanceof Boolean) {
+			return value;
 		}
 		return new Utf8(toString(value));
 	}

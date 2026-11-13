@@ -41,6 +41,11 @@ public class PatchableUnionBPatchImpl extends _BaseDataImpl implements Patchable
 	public static class PatchBuilderImpl implements PatchableUnionB.PatchBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableUnionBPatch);
 
+		public PatchBuilderImpl() {
+			$builder.set("shared", null);
+			$builder.set("valueB", null);
+		}
+
 		@Override
 		public PatchableUnionB.PatchBuilder key(String key) {
 				$builder.set("key", key);

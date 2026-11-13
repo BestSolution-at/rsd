@@ -142,6 +142,17 @@ public class PatchableRecordWithUnionPatchImpl extends _BaseDataImpl implements 
 	public static class PatchBuilderImpl implements PatchableRecordWithUnion.PatchBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecordWithUnionPatch);
 
+		public PatchBuilderImpl() {
+			$builder.set("value", null);
+			$builder.set("value_Null", null);
+			$builder.set("value_Opt", null);
+			$builder.set("value_Opt_Null", null);
+			$builder.set("list", null);
+			$builder.set("list_Null", null);
+			$builder.set("list_Opt", null);
+			$builder.set("list_Opt_Null", null);
+		}
+
 		@Override
 		public PatchableRecordWithUnion.PatchBuilder key(String key) {
 				$builder.set("key", key);

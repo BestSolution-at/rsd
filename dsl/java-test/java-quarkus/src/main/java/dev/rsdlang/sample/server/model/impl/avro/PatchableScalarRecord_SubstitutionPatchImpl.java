@@ -152,6 +152,17 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 	public static class PatchBuilderImpl implements PatchableScalarRecord_Substitution.PatchBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableScalarRecord_SubstitutionPatch);
 
+		public PatchBuilderImpl() {
+			$builder.set("value", null);
+			$builder.set("value_Null", null);
+			$builder.set("value_Opt", null);
+			$builder.set("value_Opt_Null", null);
+			$builder.set("list", null);
+			$builder.set("list_Null", null);
+			$builder.set("list_Opt", null);
+			$builder.set("list_Opt_Null", null);
+		}
+
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder key(String key) {
 				$builder.set("key", key);

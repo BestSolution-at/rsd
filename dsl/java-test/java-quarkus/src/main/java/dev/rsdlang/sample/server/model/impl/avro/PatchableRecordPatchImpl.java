@@ -36,6 +36,10 @@ public class PatchableRecordPatchImpl extends _BaseDataImpl implements Patchable
 	public static class PatchBuilderImpl implements PatchableRecord.PatchBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecordPatch);
 
+		public PatchBuilderImpl() {
+			$builder.set("value", null);
+		}
+
 		@Override
 		public PatchableRecord.PatchBuilder key(String key) {
 				$builder.set("key", key);

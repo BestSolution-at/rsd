@@ -99,6 +99,21 @@ public class PatchableRecord_BasicPatchImpl extends _BaseDataImpl implements Pat
 	public static class PatchBuilderImpl implements PatchableRecord_Basic.PatchBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecord_BasicPatch);
 
+		public PatchBuilderImpl() {
+			$builder.set("valueBoolean", null);
+			$builder.set("valueShort", null);
+			$builder.set("valueInt", null);
+			$builder.set("valueLong", null);
+			$builder.set("valueFloat", null);
+			$builder.set("valueDouble", null);
+			$builder.set("valueString", null);
+			$builder.set("valueLocalDate", null);
+			$builder.set("valueLocalDateTime", null);
+			$builder.set("valueLocalTime", null);
+			$builder.set("valueOffsetDateTime", null);
+			$builder.set("valueZonedDateTime", null);
+		}
+
 		@Override
 		public PatchableRecord_Basic.PatchBuilder key(String key) {
 				$builder.set("key", key);

@@ -433,6 +433,8 @@ function Builder(
 		`
 public static class PatchBuilderImpl implements ${t.name}.PatchBuilder {
 	private final ${GenericRecordBuilder} $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.${t.name}Patch);
+	
+	%BuilderConstructor%
 	%KeyRevisionProps%
 	%PropertyBuilderProps%
 	public ${t.name}.Patch build() {
@@ -442,7 +444,9 @@ public static class PatchBuilderImpl implements ${t.name}.PatchBuilder {
 `,
 		true,
 		key => {
-			if (key === 'KeyRevisionProps') {
+			if (key === 'BuilderConstructor') {
+				return BuilderConstructor(t);
+			} else if (key === 'KeyRevisionProps') {
 				return KeyRevisionProps(t, nativeTypeSubstitutes, basePackageName, fqn);
 			} else if (key === 'PropertyBuilderProps') {
 				return PropertyBuilderProps(t, nativeTypeSubstitutes, basePackageName, fqn);
@@ -450,6 +454,20 @@ public static class PatchBuilderImpl implements ${t.name}.PatchBuilder {
 			return undefined;
 		},
 	);
+}
+
+function BuilderConstructor(t: MResolvedRecordType) {
+	const rv = new CompositeGeneratorNode();
+	rv.append('public PatchBuilderImpl() {', NL);
+	rv.indent(initBody => {
+		allResolvedRecordProperties(t)
+			.filter(isMResolvedProperty)
+			.forEach(prop => {
+				initBody.append(`$builder.set("${prop.name}", null);`, NL);
+			});
+	});
+	rv.append('}');
+	return rv;
 }
 
 function KeyRevisionProps(

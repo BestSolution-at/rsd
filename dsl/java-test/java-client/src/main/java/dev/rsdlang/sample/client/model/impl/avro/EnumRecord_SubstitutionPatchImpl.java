@@ -259,6 +259,25 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 	public static class PatchBuilderImpl implements EnumRecord_Substitution.PatchBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.EnumRecord_SubstitutionPatch);
 
+		public PatchBuilderImpl() {
+			$builder.set("month", null);
+			$builder.set("month_Null", null);
+			$builder.set("month_Opt", null);
+			$builder.set("month_Opt_Null", null);
+			$builder.set("monthList", null);
+			$builder.set("monthList_Null", null);
+			$builder.set("monthList_Opt", null);
+			$builder.set("monthList_Opt_Null", null);
+			$builder.set("dayOfWeek", null);
+			$builder.set("dayOfWeek_Null", null);
+			$builder.set("dayOfWeek_Opt", null);
+			$builder.set("dayOfWeek_Opt_Null", null);
+			$builder.set("dayOfWeekList", null);
+			$builder.set("dayOfWeekList_Null", null);
+			$builder.set("dayOfWeekList_Opt", null);
+			$builder.set("dayOfWeekList_Opt_Null", null);
+		}
+
 		@Override
 		public EnumRecord_Substitution.PatchBuilder month(Month value) {
 			$builder.set("month", _AvroUtils.toAvro(

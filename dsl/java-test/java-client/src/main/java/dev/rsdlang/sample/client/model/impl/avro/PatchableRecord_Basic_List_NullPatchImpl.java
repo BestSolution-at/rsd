@@ -290,6 +290,21 @@ public class PatchableRecord_Basic_List_NullPatchImpl extends _BaseDataImpl impl
 	public static class PatchBuilderImpl implements PatchableRecord_Basic_List_Null.PatchBuilder {
 		private final GenericRecordBuilder $builder = _AvroUtils.newBuilder(_AvroSchema.AvroTypes.PatchableRecord_Basic_List_NullPatch);
 
+		public PatchBuilderImpl() {
+			$builder.set("valueBoolean", null);
+			$builder.set("valueShort", null);
+			$builder.set("valueInt", null);
+			$builder.set("valueLong", null);
+			$builder.set("valueFloat", null);
+			$builder.set("valueDouble", null);
+			$builder.set("valueString", null);
+			$builder.set("valueLocalDate", null);
+			$builder.set("valueLocalDateTime", null);
+			$builder.set("valueLocalTime", null);
+			$builder.set("valueOffsetDateTime", null);
+			$builder.set("valueZonedDateTime", null);
+		}
+
 		@Override
 		public PatchableRecord_Basic_List_Null.PatchBuilder key(String key) {
 				$builder.set("key", key);
