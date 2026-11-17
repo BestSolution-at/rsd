@@ -237,7 +237,7 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 		public PatchableEnumRecord.PatchBuilder list(Patch.ListChange value) {
 			$builder.set("list", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				false));
 			return this;
 		}
@@ -271,7 +271,7 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 		public PatchableEnumRecord.PatchBuilder list_Null(Patch.List_NullChange value) {
 			$builder.set("list_Null", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}
@@ -309,7 +309,7 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 		public PatchableEnumRecord.PatchBuilder list_Opt(Patch.List_OptChange value) {
 			$builder.set("list_Opt", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}
@@ -347,7 +347,7 @@ public class PatchableEnumRecordPatchImpl extends _BaseDataImpl implements Patch
 		public PatchableEnumRecord.PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange value) {
 			$builder.set("list_Opt_Null", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}

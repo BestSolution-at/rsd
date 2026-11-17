@@ -155,7 +155,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 		public PatchableEnumInlineRecord.PatchBuilder value(Value$ value) {
 			$builder.set("value", _AvroUtils.toAvro(
 				value, 
-				null,
+				$ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_value),
 				false));
 			return this;
 		}
@@ -166,7 +166,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 		public PatchableEnumInlineRecord.PatchBuilder value_Null(Value_Null$ value) {
 			$builder.set("value_Null", _AvroUtils.toAvro(
 				value, 
-				null,
+				$ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_value_Null),
 				true));
 			return this;
 		}
@@ -181,7 +181,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 		public PatchableEnumInlineRecord.PatchBuilder value_Opt(Value_Opt$ value) {
 			$builder.set("value_Opt", _AvroUtils.toAvro(
 				value, 
-				null,
+				$ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_value_Opt),
 				true));
 			return this;
 		}
@@ -196,7 +196,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 		public PatchableEnumInlineRecord.PatchBuilder value_Opt_Null(Value_Opt_Null$ value) {
 			$builder.set("value_Opt_Null", _AvroUtils.toAvro(
 				value, 
-				null,
+				$ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_value_Opt_Null),
 				true));
 			return this;
 		}
@@ -223,7 +223,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			var $type = _AvroSchema.AvroTypes.PatchableEnumInlineRecord_listPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("elements", _AvroUtils.toAvroList(list, null));
+			$change.put("elements", _AvroUtils.toAvroList(list, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list)));
 
 			$builder.set("list", $change);
 			return this;
@@ -235,8 +235,8 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			var $type = _AvroSchema.AvroTypes.PatchableEnumInlineRecord_listPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list)));
+			$change.put("removals", _AvroUtils.toAvroList(removals, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list)));
 
 			$builder.set("list", $change);
 			return this;
@@ -261,7 +261,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			var $type = _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("elements", _AvroUtils.toAvroList(list_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(list_Null, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_Null)));
 
 			$builder.set("list_Null", $change);
 			return this;
@@ -273,8 +273,8 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			var $type = _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_NullPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_Null)));
+			$change.put("removals", _AvroUtils.toAvroList(removals, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_Null)));
 
 			$builder.set("list_Null", $change);
 			return this;
@@ -299,7 +299,7 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			var $type = _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_Opt_NullPatchReplace;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("elements", _AvroUtils.toAvroList(list_Opt_Null, null));
+			$change.put("elements", _AvroUtils.toAvroList(list_Opt_Null, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_Opt_Null)));
 
 			$builder.set("list_Opt_Null", $change);
 			return this;
@@ -311,8 +311,8 @@ public class PatchableEnumInlineRecordPatchImpl extends _BaseDataImpl implements
 			var $type = _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_Opt_NullPatchMerge;
 
 			var $change = new GenericData.Record($schema.getTypeSchema($type));
-			$change.put("additions", _AvroUtils.toAvroList(additions, null));
-			$change.put("removals", _AvroUtils.toAvroList(removals, null));
+			$change.put("additions", _AvroUtils.toAvroList(additions, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_Opt_Null)));
+			$change.put("removals", _AvroUtils.toAvroList(removals, $ienum -> _EnumSupport.toAvro($ienum, _AvroSchema.AvroTypes.PatchableEnumInlineRecord_list_Opt_Null)));
 
 			$builder.set("list_Opt_Null", $change);
 			return this;

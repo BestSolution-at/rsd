@@ -45,7 +45,7 @@ public class _EnumSupport {
 		if (value instanceof NilResult) {
 			return NilResultToAvro((NilResult) value);
 		}
-		return value;
+		throw new IllegalArgumentException("Unsupported enum type: " + value.getClass());
 	}
 
 	public static SampleEnum SampleEnumFromAvro(GenericEnumSymbol<?> s) {

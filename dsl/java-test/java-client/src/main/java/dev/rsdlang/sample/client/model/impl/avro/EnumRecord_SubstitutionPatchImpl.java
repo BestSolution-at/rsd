@@ -338,7 +338,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		public EnumRecord_Substitution.PatchBuilder monthList(Patch.MonthListChange value) {
 			$builder.set("monthList", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				false));
 			return this;
 		}
@@ -372,7 +372,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		public EnumRecord_Substitution.PatchBuilder monthList_Null(Patch.MonthList_NullChange value) {
 			$builder.set("monthList_Null", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}
@@ -410,7 +410,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		public EnumRecord_Substitution.PatchBuilder monthList_Opt(Patch.MonthList_OptChange value) {
 			$builder.set("monthList_Opt", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}
@@ -448,7 +448,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		public EnumRecord_Substitution.PatchBuilder monthList_Opt_Null(Patch.MonthList_Opt_NullChange value) {
 			$builder.set("monthList_Opt_Null", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}
@@ -542,7 +542,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList(Patch.DayOfWeekListChange value) {
 			$builder.set("dayOfWeekList", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				false));
 			return this;
 		}
@@ -576,7 +576,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Null(Patch.DayOfWeekList_NullChange value) {
 			$builder.set("dayOfWeekList_Null", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}
@@ -614,7 +614,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt(Patch.DayOfWeekList_OptChange value) {
 			$builder.set("dayOfWeekList_Opt", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}
@@ -652,7 +652,7 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt_Null(Patch.DayOfWeekList_Opt_NullChange value) {
 			$builder.set("dayOfWeekList_Opt_Null", _AvroUtils.toAvro(
 				value, 
-				_EnumSupport::toAvro,
+				null,
 				true));
 			return this;
 		}

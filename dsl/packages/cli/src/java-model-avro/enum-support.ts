@@ -55,7 +55,7 @@ export function generateEnumSupportContent(
 				});
 				mBody.append('}', NL);
 			});
-			mBody.append('return value;', NL);
+			mBody.append('throw new IllegalArgumentException("Unsupported enum type: " + value.getClass());', NL);
 		});
 		classBody.append('}', NL, NL);
 		enums.forEach(enm => {
