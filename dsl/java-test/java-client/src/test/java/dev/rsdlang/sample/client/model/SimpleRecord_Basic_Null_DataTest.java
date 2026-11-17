@@ -16,144 +16,128 @@ import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
 
 public class SimpleRecord_Basic_Null_DataTest extends BaseTest {
-	static SimpleRecord_Basic_Null.Data createAvroRecord() {
-		var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.SimpleRecord_Basic_Null);
-		var record = readAvroFile("SimpleRecord_Basic_Null.Data.avro", schema);
-		return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.of(record);
-	}
-
-	static SimpleRecord_Basic_Null.Data createAvroRecordBuilder() {
-		var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.builder();
-		builder.valueBoolean(false);
-		builder.valueDouble(Double.MAX_VALUE);
-		builder.valueFloat(Float.MAX_VALUE);
-		builder.valueInt(Integer.MAX_VALUE);
-		builder.valueLocalDate(LocalDate.parse("2020-01-01"));
-		builder.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"));
-		builder.valueLocalTime(LocalTime.parse("10:00"));
-		builder.valueLong(Long.MAX_VALUE);
-		builder.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"));
-		builder.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"));
-		builder.valueString("the string value");
-		builder.valueShort(Short.MAX_VALUE);
-		return builder.build();
-	}
-
-	static SimpleRecord_Basic_Null.Data createJsonRecord() {
-		var record = readJsonFile("SimpleRecord_Basic_Null.Data.json");
-		return dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.of(record);
-	}
-
-	static SimpleRecord_Basic_Null.Data createJsonRecordBuilderRecord() {
-		var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.builder();
-		builder.valueBoolean(false);
-		builder.valueDouble(Double.MAX_VALUE);
-		builder.valueFloat(Float.MAX_VALUE);
-		builder.valueInt(Integer.MAX_VALUE);
-		builder.valueLocalDate(LocalDate.parse("2020-01-01"));
-		builder.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"));
-		builder.valueLocalTime(LocalTime.parse("10:00"));
-		builder.valueLong(Long.MAX_VALUE);
-		builder.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"));
-		builder.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"));
-		builder.valueString("the string value");
-		builder.valueShort(Short.MAX_VALUE);
-		return builder.build();
-	}
-
-	static SimpleRecord_Basic_Null.Data[] getRecords() {
-		return new SimpleRecord_Basic_Null.Data[] {
-				createAvroRecord(),
-				createAvroRecordBuilder(),
-				createJsonRecord(),
-				createJsonRecordBuilderRecord()
-		};
-	}
-
-	// Filled
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueBoolean(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(false, record.valueBoolean().get());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueDouble(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(Double.MAX_VALUE, record.valueDouble().getAsDouble());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueFloat(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(Float.MAX_VALUE, record.valueFloat().get());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueInt(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(Integer.MAX_VALUE, record.valueInt().getAsInt());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueLocalDate(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(java.time.LocalDate.parse("2020-01-01"), record.valueLocalDate().get());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueLocalDateTime(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(java.time.LocalDateTime.parse("2020-01-01T00:00:00"), record.valueLocalDateTime().get());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueLocalTime(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(java.time.LocalTime.parse("10:00"), record.valueLocalTime().get());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueLong(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(Long.MAX_VALUE, record.valueLong().getAsLong());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueOffsetDateTime(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"), record.valueOffsetDateTime().get());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueShort(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(Short.MAX_VALUE, record.valueShort().get());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueString(SimpleRecord_Basic_Null.Data record) {
-		assertEquals("the string value", record.valueString().get());
-	}
-
-	@ParameterizedTest
-	@org.junit.jupiter.params.provider.MethodSource("getRecords")
-	void valueZonedDateTime(SimpleRecord_Basic_Null.Data record) {
-		assertEquals(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"), record.valueZonedDateTime().get());
-	}
-
 	@Nested
-	class Null {
+	class Filled {
+		static SimpleRecord_Basic_Null.Data build(SimpleRecord_Basic_Null.DataBuilder builder) {
+			builder.valueBoolean(false);
+			builder.valueDouble(Double.MAX_VALUE);
+			builder.valueFloat(Float.MAX_VALUE);
+			builder.valueInt(Integer.MAX_VALUE);
+			builder.valueLocalDate(LocalDate.parse("2020-01-01"));
+			builder.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"));
+			builder.valueLocalTime(LocalTime.parse("10:00"));
+			builder.valueLong(Long.MAX_VALUE);
+			builder.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"));
+			builder.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"));
+			builder.valueString("the string value");
+			builder.valueShort(Short.MAX_VALUE);
+			return builder.build();
+		}
+
 		static SimpleRecord_Basic_Null.Data createAvroRecord() {
 			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.SimpleRecord_Basic_Null);
-			var record = readAvroFile("SimpleRecord_Basic_Null.Null.Data.avro", schema);
+			var record = readAvroFile("SimpleRecord_Basic_Null.Data.avro", schema);
 			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.of(record);
 		}
 
 		static SimpleRecord_Basic_Null.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.builder();
+			return build(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.builder());
+		}
+
+		static SimpleRecord_Basic_Null.Data createJsonRecord() {
+			var record = readJsonFile("SimpleRecord_Basic_Null.Data.json");
+			return dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.of(record);
+		}
+
+		static SimpleRecord_Basic_Null.Data createJsonRecordBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.builder());
+		}
+
+		static SimpleRecord_Basic_Null.Data[] getRecords() {
+			return new SimpleRecord_Basic_Null.Data[] {
+					createAvroRecord(),
+					createAvroRecordBuilder(),
+					createJsonRecord(),
+					createJsonRecordBuilderRecord()
+			};
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueBoolean(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(false, record.valueBoolean().get());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueDouble(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(Double.MAX_VALUE, record.valueDouble().getAsDouble());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueFloat(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(Float.MAX_VALUE, record.valueFloat().get());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueInt(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(Integer.MAX_VALUE, record.valueInt().getAsInt());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueLocalDate(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(java.time.LocalDate.parse("2020-01-01"), record.valueLocalDate().get());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueLocalDateTime(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(java.time.LocalDateTime.parse("2020-01-01T00:00:00"), record.valueLocalDateTime().get());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueLocalTime(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(java.time.LocalTime.parse("10:00"), record.valueLocalTime().get());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueLong(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(Long.MAX_VALUE, record.valueLong().getAsLong());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueOffsetDateTime(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"), record.valueOffsetDateTime().get());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueShort(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(Short.MAX_VALUE, record.valueShort().get());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueString(SimpleRecord_Basic_Null.Data record) {
+			assertEquals("the string value", record.valueString().get());
+		}
+
+		@ParameterizedTest
+		@org.junit.jupiter.params.provider.MethodSource("getRecords")
+		void valueZonedDateTime(SimpleRecord_Basic_Null.Data record) {
+			assertEquals(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"), record.valueZonedDateTime().get());
+		}
+	}
+
+	@Nested
+	class Null {
+		static SimpleRecord_Basic_Null.Data build(SimpleRecord_Basic_Null.DataBuilder builder) {
 			builder.valueBoolean(null);
 			builder.valueDouble(null);
 			builder.valueFloat(null);
@@ -167,6 +151,16 @@ public class SimpleRecord_Basic_Null_DataTest extends BaseTest {
 			builder.valueString(null);
 			builder.valueShort(null);
 			return builder.build();
+		}
+
+		static SimpleRecord_Basic_Null.Data createAvroRecord() {
+			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.SimpleRecord_Basic_Null);
+			var record = readAvroFile("SimpleRecord_Basic_Null.Null.Data.avro", schema);
+			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.of(record);
+		}
+
+		static SimpleRecord_Basic_Null.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_NullDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_Null.Data createJsonRecord() {
@@ -175,20 +169,7 @@ public class SimpleRecord_Basic_Null_DataTest extends BaseTest {
 		}
 
 		static SimpleRecord_Basic_Null.Data createJsonRecordBuilderRecord() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.builder();
-			builder.valueBoolean(null);
-			builder.valueDouble(null);
-			builder.valueFloat(null);
-			builder.valueInt(null);
-			builder.valueLocalDate(null);
-			builder.valueLocalDateTime(null);
-			builder.valueLocalTime(null);
-			builder.valueLong(null);
-			builder.valueOffsetDateTime(null);
-			builder.valueZonedDateTime(null);
-			builder.valueString(null);
-			builder.valueShort(null);
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_NullDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_Null.Data[] getRecords() {

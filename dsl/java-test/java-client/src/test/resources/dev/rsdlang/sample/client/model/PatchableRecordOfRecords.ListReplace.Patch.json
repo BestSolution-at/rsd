@@ -12,9 +12,9 @@
 		"valueFloat": 1.0,
 		"valueDouble": 1.0,
 		"valueString": "Value-1",
-		"valueDate": "2020-01-01",
-		"valueDateTime": "2020-01-01T00:00:00",
-		"valueTime": "10:00:00",
+		"valueLocalDate": "2020-01-01",
+		"valueLocalDateTime": "2020-01-01T00:00:00",
+		"valueLocalTime": "10:00:00",
 		"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
 		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
 	},
@@ -29,9 +29,9 @@
 		"valueFloat": 1.0,
 		"valueDouble": 1.0,
 		"valueString": "Value-1",
-		"valueDate": "2020-01-01",
-		"valueDateTime": "2020-01-01T00:00:00",
-		"valueTime": "10:00:00",
+		"valueLocalDate": "2020-01-01",
+		"valueLocalDateTime": "2020-01-01T00:00:00",
+		"valueLocalTime": "10:00:00",
 		"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
 		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
 	},
@@ -46,9 +46,9 @@
 		"valueFloat": 1.0,
 		"valueDouble": 1.0,
 		"valueString": "Value-1",
-		"valueDate": "2020-01-01",
-		"valueDateTime": "2020-01-01T00:00:00",
-		"valueTime": "10:00:00",
+		"valueLocalDate": "2020-01-01",
+		"valueLocalDateTime": "2020-01-01T00:00:00",
+		"valueLocalTime": "10:00:00",
 		"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
 		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
 	},
@@ -63,9 +63,9 @@
 		"valueFloat": 1.0,
 		"valueDouble": 1.0,
 		"valueString": "Value-1",
-		"valueDate": "2020-01-01",
-		"valueDateTime": "2020-01-01T00:00:00",
-		"valueTime": "10:00:00",
+		"valueLocalDate": "2020-01-01",
+		"valueLocalDateTime": "2020-01-01T00:00:00",
+		"valueLocalTime": "10:00:00",
 		"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
 		"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
 	},
@@ -82,9 +82,9 @@
 				"valueFloat": 1.0,
 				"valueDouble": 1.0,
 				"valueString": "Value-1",
-				"valueDate": "2020-01-01",
-				"valueDateTime": "2020-01-01T00:00:00",
-				"valueTime": "10:00:00",
+				"valueLocalDate": "2020-01-01",
+				"valueLocalDateTime": "2020-01-01T00:00:00",
+				"valueLocalTime": "10:00:00",
 				"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
 				"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
 			}
@@ -103,9 +103,9 @@
 				"valueFloat": 1.0,
 				"valueDouble": 1.0,
 				"valueString": "Value-1",
-				"valueDate": "2020-01-01",
-				"valueDateTime": "2020-01-01T00:00:00",
-				"valueTime": "10:00:00",
+				"valueLocalDate": "2020-01-01",
+				"valueLocalDateTime": "2020-01-01T00:00:00",
+				"valueLocalTime": "10:00:00",
 				"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
 				"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
 			}
@@ -124,9 +124,9 @@
 				"valueFloat": 1.0,
 				"valueDouble": 1.0,
 				"valueString": "Value-1",
-				"valueDate": "2020-01-01",
-				"valueDateTime": "2020-01-01T00:00:00",
-				"valueTime": "10:00:00",
+				"valueLocalDate": "2020-01-01",
+				"valueLocalDateTime": "2020-01-01T00:00:00",
+				"valueLocalTime": "10:00:00",
 				"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
 				"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
 			}
@@ -145,9 +145,9 @@
 				"valueFloat": 1.0,
 				"valueDouble": 1.0,
 				"valueString": "Value-1",
-				"valueDate": "2020-01-01",
-				"valueDateTime": "2020-01-01T00:00:00",
-				"valueTime": "10:00:00",
+				"valueLocalDate": "2020-01-01",
+				"valueLocalDateTime": "2020-01-01T00:00:00",
+				"valueLocalTime": "10:00:00",
 				"valueZonedDateTime": "2020-01-01T00:00:00+00:00",
 				"valueOffsetDateTime": "2020-01-01T00:00:00+01:00[Europe/Paris]"
 			}

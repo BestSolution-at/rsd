@@ -10,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
-import dev.rsdlang.sample.client.model.impl.avro._AvroUtils;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
 
 public class ScalarRecord_DataTest extends BaseTest {
@@ -23,8 +22,7 @@ public class ScalarRecord_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.of(record);
 		}
 
-		static ScalarRecord.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.builder();
+		static ScalarRecord.Data build(ScalarRecord.DataBuilder builder) {
 			builder.value(ZoneId.of("Europe/Paris"));
 			builder.value_Null(ZoneId.of("Europe/Paris"));
 			builder.value_Opt(ZoneId.of("Europe/Paris"));
@@ -34,6 +32,10 @@ public class ScalarRecord_DataTest extends BaseTest {
 			builder.list_Opt(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
 			builder.list_Opt_Null(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
 			return builder.build();
+		}
+
+		static ScalarRecord.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.builder());
 		}
 
 		static ScalarRecord.Data createJsonRecord() {
@@ -42,16 +44,7 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		static ScalarRecord.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.ScalarRecordDataImpl.builder();
-			builder.value(ZoneId.of("Europe/Paris"));
-			builder.value_Null(ZoneId.of("Europe/Paris"));
-			builder.value_Opt(ZoneId.of("Europe/Paris"));
-			builder.value_Opt_Null(ZoneId.of("Europe/Paris"));
-			builder.list(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
-			builder.list_Null(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
-			builder.list_Opt(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
-			builder.list_Opt_Null(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.ScalarRecordDataImpl.builder());
 		}
 
 		static ScalarRecord.Data[] getRecords() {
@@ -129,13 +122,16 @@ public class ScalarRecord_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.of(record);
 		}
 
-		static ScalarRecord.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.builder();
+		static ScalarRecord.Data build(ScalarRecord.DataBuilder builder) {
 			builder.value(ZoneId.of("Europe/Paris"));
 			builder.value_Null(null);
 			builder.list(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
 			builder.list_Null(null);
 			return builder.build();
+		}
+
+		static ScalarRecord.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.builder());
 		}
 
 		static ScalarRecord.Data createJsonRecord() {
@@ -144,12 +140,7 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		static ScalarRecord.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.ScalarRecordDataImpl.builder();
-			builder.value(ZoneId.of("Europe/Paris"));
-			builder.value_Null(null);
-			builder.list(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
-			builder.list_Null(null);
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.ScalarRecordDataImpl.builder());
 		}
 
 		static ScalarRecord.Data[] getRecords() {
@@ -215,8 +206,7 @@ public class ScalarRecord_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.of(record);
 		}
 
-		static ScalarRecord.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.builder();
+		static ScalarRecord.Data build(ScalarRecord.DataBuilder builder) {
 			builder.value(ZoneId.of("Europe/Paris"));
 			builder.value_Null(null);
 			builder.value_Opt_Null(null);
@@ -224,6 +214,10 @@ public class ScalarRecord_DataTest extends BaseTest {
 			builder.list_Null(null);
 			builder.list_Opt_Null(null);
 			return builder.build();
+		}
+
+		static ScalarRecord.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.ScalarRecordDataImpl.builder());
 		}
 
 		static ScalarRecord.Data createJsonRecord() {
@@ -232,14 +226,7 @@ public class ScalarRecord_DataTest extends BaseTest {
 		}
 
 		static ScalarRecord.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.ScalarRecordDataImpl.builder();
-			builder.value(ZoneId.of("Europe/Paris"));
-			builder.value_Null(null);
-			builder.value_Opt_Null(null);
-			builder.list(List.of(ZoneId.of("Europe/Paris"), ZoneId.of("America/Los_Angeles")));
-			builder.list_Null(null);
-			builder.list_Opt_Null(null);
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.ScalarRecordDataImpl.builder());
 		}
 
 		static ScalarRecord.Data[] getRecords() {

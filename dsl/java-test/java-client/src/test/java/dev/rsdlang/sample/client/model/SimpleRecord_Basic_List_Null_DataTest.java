@@ -27,8 +27,7 @@ public class SimpleRecord_Basic_List_Null_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_List_NullDataImpl.of(record);
 		}
 
-		static SimpleRecord_Basic_List_Null.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_List_NullDataImpl.builder();
+		static SimpleRecord_Basic_List_Null.Data build(SimpleRecord_Basic_List_Null.DataBuilder builder) {
 			builder.valueBoolean(List.of(true, false));
 			builder.valueDouble(List.of(Double.MIN_VALUE, Double.MAX_VALUE));
 			builder.valueFloat(List.of(Float.MIN_VALUE, Float.MAX_VALUE));
@@ -52,6 +51,10 @@ public class SimpleRecord_Basic_List_Null_DataTest extends BaseTest {
 			builder.valueString(List.of("a", "b"));
 			builder.valueShort(List.of(Short.MIN_VALUE, Short.MAX_VALUE));
 			return builder.build();
+		}
+
+		static SimpleRecord_Basic_List_Null.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_List_NullDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_List_Null.Data createJsonRecord() {
@@ -60,30 +63,7 @@ public class SimpleRecord_Basic_List_Null_DataTest extends BaseTest {
 		}
 
 		static SimpleRecord_Basic_List_Null.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_List_NullDataImpl.builder();
-			builder.valueBoolean(List.of(true, false));
-			builder.valueDouble(List.of(Double.MIN_VALUE, Double.MAX_VALUE));
-			builder.valueFloat(List.of(Float.MIN_VALUE, Float.MAX_VALUE));
-			builder.valueInt(List.of(Integer.MIN_VALUE, Integer.MAX_VALUE));
-			builder.valueLocalDate(List.of(
-					LocalDate.parse("2020-01-01"),
-					LocalDate.parse("2020-12-31")));
-			builder.valueLocalDateTime(List.of(
-					LocalDateTime.parse("2020-01-01T00:00:00"),
-					LocalDateTime.parse("2020-12-31T00:00:00")));
-			builder.valueLocalTime(List.of(
-					LocalTime.parse("00:00:00"),
-					LocalTime.parse("23:59:59")));
-			builder.valueLong(List.of(Long.MIN_VALUE, Long.MAX_VALUE));
-			builder.valueOffsetDateTime(List.of(
-					OffsetDateTime.parse("2020-01-01T00:00:00+01:00"),
-					OffsetDateTime.parse("2020-12-31T00:00:00+01:00")));
-			builder.valueZonedDateTime(List.of(
-					ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"),
-					ZonedDateTime.parse("2020-12-31T00:00:00+01:00[Europe/Paris]")));
-			builder.valueString(List.of("a", "b"));
-			builder.valueShort(List.of(Short.MIN_VALUE, Short.MAX_VALUE));
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_List_NullDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_List_Null.Data[] getRecords() {
@@ -213,8 +193,7 @@ public class SimpleRecord_Basic_List_Null_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_List_NullDataImpl.of(record);
 		}
 
-		static SimpleRecord_Basic_List_Null.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_List_NullDataImpl.builder();
+		static SimpleRecord_Basic_List_Null.Data build(SimpleRecord_Basic_List_Null.DataBuilder builder) {
 			builder.valueBoolean(null);
 			builder.valueDouble(null);
 			builder.valueFloat(null);
@@ -228,6 +207,10 @@ public class SimpleRecord_Basic_List_Null_DataTest extends BaseTest {
 			builder.valueString(null);
 			builder.valueShort(null);
 			return builder.build();
+		}
+
+		static SimpleRecord_Basic_List_Null.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_List_NullDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_List_Null.Data createJsonRecord() {
@@ -236,20 +219,7 @@ public class SimpleRecord_Basic_List_Null_DataTest extends BaseTest {
 		}
 
 		static SimpleRecord_Basic_List_Null.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_List_NullDataImpl.builder();
-			builder.valueBoolean(null);
-			builder.valueDouble(null);
-			builder.valueFloat(null);
-			builder.valueInt(null);
-			builder.valueLocalDate(null);
-			builder.valueLocalDateTime(null);
-			builder.valueLocalTime(null);
-			builder.valueLong(null);
-			builder.valueOffsetDateTime(null);
-			builder.valueZonedDateTime(null);
-			builder.valueString(null);
-			builder.valueShort(null);
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_List_NullDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_List_Null.Data[] getRecords() {

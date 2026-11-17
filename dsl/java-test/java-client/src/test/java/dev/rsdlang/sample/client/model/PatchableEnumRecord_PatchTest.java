@@ -1,5 +1,6 @@
 package dev.rsdlang.sample.client.model;
 
+import java.util.List;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
 
@@ -24,10 +25,37 @@ public class PatchableEnumRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.json.PatchableEnumRecordPatchImpl.of(record);
 		}
 
+		static PatchableEnumRecord.Patch build(PatchableEnumRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(SampleEnum.A)
+					.value_Null(SampleEnum.A)
+					.value_Opt(SampleEnum.A)
+					.value_Opt_Null(SampleEnum.A)
+					.list(List.of(SampleEnum.A))
+					.list_Null(List.of(SampleEnum.A))
+					.list_Opt(List.of(SampleEnum.A))
+					.list_Opt_Null(List.of(SampleEnum.A))
+					.build();
+		}
+
+		static PatchableEnumRecord.Patch createAvroBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.PatchableEnumRecordPatchImpl.builder());
+		}
+
+		static PatchableEnumRecord.Patch createJsonBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.PatchableEnumRecordPatchImpl.builder());
+		}
+
 		static PatchableEnumRecord.Patch[] getRecords() {
 			return new PatchableEnumRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -141,10 +169,43 @@ public class PatchableEnumRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.json.PatchableEnumRecordPatchImpl.of(record);
 		}
 
+		static PatchableEnumRecord.Patch build(PatchableEnumRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(SampleEnum.A)
+					.value_Null(SampleEnum.A)
+					.value_Opt(SampleEnum.A)
+					.value_Opt_Null(SampleEnum.A)
+					.list(
+							List.of(SampleEnum.A),
+							List.of(SampleEnum.B))
+					.list_Null(
+							List.of(SampleEnum.A),
+							List.of(SampleEnum.B))
+					.list_Opt(
+							List.of(SampleEnum.A),
+							List.of(SampleEnum.B))
+					.list_Opt_Null(
+							List.of(SampleEnum.A),
+							List.of(SampleEnum.B))
+					.build();
+		}
+
+		static PatchableEnumRecord.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableEnumRecordPatchImpl.builder());
+		}
+
+		static PatchableEnumRecord.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableEnumRecordPatchImpl.builder());
+		}
+
 		static PatchableEnumRecord.Patch[] getRecords() {
 			return new PatchableEnumRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -290,10 +351,27 @@ public class PatchableEnumRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.json.PatchableEnumRecordPatchImpl.of(record);
 		}
 
+		static PatchableEnumRecord.Patch build(PatchableEnumRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.build();
+		}
+
+		static PatchableEnumRecord.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableEnumRecordPatchImpl.builder());
+		}
+
+		static PatchableEnumRecord.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableEnumRecordPatchImpl.builder());
+		}
+
 		static PatchableEnumRecord.Patch[] getRecords() {
 			return new PatchableEnumRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -377,10 +455,33 @@ public class PatchableEnumRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.json.PatchableEnumRecordPatchImpl.of(record);
 		}
 
+		static PatchableEnumRecord.Patch build(PatchableEnumRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value_NullNull()
+					.value_OptNull()
+					.value_Opt_NullNull()
+					.list_NullNull()
+					.list_OptNull()
+					.list_Opt_NullNull()
+					.build();
+		}
+
+		static PatchableEnumRecord.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableEnumRecordPatchImpl.builder());
+		}
+
+		static PatchableEnumRecord.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableEnumRecordPatchImpl.builder());
+		}
+
 		static PatchableEnumRecord.Patch[] getRecords() {
 			return new PatchableEnumRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 

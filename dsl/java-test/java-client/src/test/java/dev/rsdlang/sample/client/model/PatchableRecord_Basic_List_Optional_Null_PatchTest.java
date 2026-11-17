@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.time.ZoneId;
 
 import org.assertj.core.api.InstanceOfAssertFactories;
@@ -32,10 +33,42 @@ public class PatchableRecord_Basic_List_Optional_Null_PatchTest extends BaseTest
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_List_Optional_NullPatchImpl.of(record);
 		}
 
+		static PatchableRecord_Basic_List_Optional_Null.Patch build(
+				PatchableRecord_Basic_List_Optional_Null.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.valueBoolean(List.of(true))
+					.valueDouble(List.of(1.0))
+					.valueFloat(List.of(1.0f))
+					.valueInt(List.of(1))
+					.valueLocalDate(List.of(LocalDate.parse("2020-01-01")))
+					.valueLocalDateTime(List.of(LocalDateTime.parse("2020-01-01T00:00:00")))
+					.valueLocalTime(List.of(LocalTime.parse("00:00:00")))
+					.valueLong(List.of(1L))
+					.valueOffsetDateTime(List.of(OffsetDateTime.parse("2020-01-01T00:00:00+02:00")))
+					.valueShort(List.of((short) 1))
+					.valueString(List.of("string"))
+					.valueZonedDateTime(List.of(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Berlin]")))
+					.build();
+		}
+
+		static PatchableRecord_Basic_List_Optional_Null.Patch createAvroBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_Basic_List_Optional_NullPatchImpl.builder());
+		}
+
+		static PatchableRecord_Basic_List_Optional_Null.Patch createJsonBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_List_Optional_NullPatchImpl.builder());
+		}
+
 		static PatchableRecord_Basic_List_Optional_Null.Patch[] getRecords() {
 			return new PatchableRecord_Basic_List_Optional_Null.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -205,10 +238,66 @@ public class PatchableRecord_Basic_List_Optional_Null_PatchTest extends BaseTest
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_List_Optional_NullPatchImpl.of(record);
 		}
 
+		static PatchableRecord_Basic_List_Optional_Null.Patch build(
+				PatchableRecord_Basic_List_Optional_Null.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.valueBoolean(
+							List.of(true),
+							List.of(false))
+					.valueDouble(
+							List.of(1.0),
+							List.of(2.0))
+					.valueFloat(
+							List.of(1.0f),
+							List.of(2.0f))
+					.valueInt(
+							List.of(1),
+							List.of(2))
+					.valueLocalDate(
+							List.of(LocalDate.parse("2020-01-01")),
+							List.of(LocalDate.parse("2020-01-02")))
+					.valueLocalDateTime(
+							List.of(LocalDateTime.parse("2020-01-01T00:00:00")),
+							List.of(LocalDateTime.parse("2020-01-02T00:00:00")))
+					.valueLocalTime(
+							List.of(LocalTime.parse("00:00:00")),
+							List.of(LocalTime.parse("01:00:00")))
+					.valueLong(
+							List.of(1L),
+							List.of(2L))
+					.valueOffsetDateTime(
+							List.of(OffsetDateTime.parse("2020-01-01T00:00:00+02:00")),
+							List.of(OffsetDateTime.parse("2020-01-02T00:00:00+02:00")))
+					.valueShort(
+							List.of((short) 1),
+							List.of((short) 2))
+					.valueString(
+							List.of("string"),
+							List.of("another string"))
+					.valueZonedDateTime(
+							List.of(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Berlin]")),
+							List.of(ZonedDateTime.parse("2020-01-02T00:00:00+01:00[Europe/Berlin]")))
+					.build();
+		}
+
+		static PatchableRecord_Basic_List_Optional_Null.Patch createAvroBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_Basic_List_Optional_NullPatchImpl.builder());
+		}
+
+		static PatchableRecord_Basic_List_Optional_Null.Patch createJsonBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_List_Optional_NullPatchImpl.builder());
+		}
+
 		static PatchableRecord_Basic_List_Optional_Null.Patch[] getRecords() {
 			return new PatchableRecord_Basic_List_Optional_Null.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -468,10 +557,30 @@ public class PatchableRecord_Basic_List_Optional_Null_PatchTest extends BaseTest
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_List_Optional_NullPatchImpl.of(record);
 		}
 
+		static PatchableRecord_Basic_List_Optional_Null.Patch build(
+				PatchableRecord_Basic_List_Optional_Null.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.build();
+		}
+
+		static PatchableRecord_Basic_List_Optional_Null.Patch createAvroBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_Basic_List_Optional_NullPatchImpl.builder());
+		}
+
+		static PatchableRecord_Basic_List_Optional_Null.Patch createJsonBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_List_Optional_NullPatchImpl.builder());
+		}
+
 		static PatchableRecord_Basic_List_Optional_Null.Patch[] getRecords() {
 			return new PatchableRecord_Basic_List_Optional_Null.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -573,10 +682,42 @@ public class PatchableRecord_Basic_List_Optional_Null_PatchTest extends BaseTest
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_List_Optional_NullPatchImpl.of(record);
 		}
 
+		static PatchableRecord_Basic_List_Optional_Null.Patch build(
+				PatchableRecord_Basic_List_Optional_Null.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.valueBooleanNull()
+					.valueDoubleNull()
+					.valueFloatNull()
+					.valueIntNull()
+					.valueLocalDateNull()
+					.valueLocalDateTimeNull()
+					.valueLocalTimeNull()
+					.valueLongNull()
+					.valueOffsetDateTimeNull()
+					.valueShortNull()
+					.valueStringNull()
+					.valueZonedDateTimeNull()
+					.build();
+		}
+
+		static PatchableRecord_Basic_List_Optional_Null.Patch createAvroBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_Basic_List_Optional_NullPatchImpl.builder());
+		}
+
+		static PatchableRecord_Basic_List_Optional_Null.Patch createJsonBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.PatchableRecord_Basic_List_Optional_NullPatchImpl.builder());
+		}
+
 		static PatchableRecord_Basic_List_Optional_Null.Patch[] getRecords() {
 			return new PatchableRecord_Basic_List_Optional_Null.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 

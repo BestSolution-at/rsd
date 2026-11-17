@@ -20,14 +20,18 @@ public class PatchableUnion_PatchTest extends BaseTest {
 			return PatchableUnionPatchImpl.of(record);
 		}
 
-		static PatchableUnion.Patch createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.PatchableUnionAPatchImpl.builder();
+		static PatchableUnion.Patch build(PatchableUnionA.PatchBuilder builder) {
 			builder.key("a-key");
 			builder.version("a-version");
 			builder.shared("shared-a");
 			builder.valueA("value-a");
 
 			return builder.build();
+		}
+
+		static PatchableUnion.Patch createAvroRecordBuilder() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.PatchableUnionAPatchImpl.builder());
 		}
 
 		static PatchableUnion.Patch createJsonRecord() {
@@ -36,13 +40,8 @@ public class PatchableUnion_PatchTest extends BaseTest {
 		}
 
 		static PatchableUnion.Patch createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.PatchableUnionAPatchImpl.builder();
-			builder.key("a-key");
-			builder.version("a-version");
-			builder.shared("shared-a");
-			builder.valueA("value-a");
-
-			return builder.build();
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.PatchableUnionAPatchImpl.builder());
 		}
 
 		static PatchableUnion.Patch[] getRecords() {
@@ -101,20 +100,19 @@ public class PatchableUnion_PatchTest extends BaseTest {
 			return PatchableUnionPatchImpl.of(record);
 		}
 
-		static PatchableUnion.Patch createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.PatchableUnionAPatchImpl.builder();
+		static PatchableUnion.Patch build(PatchableUnionA.PatchBuilder builder) {
 			builder.key("a-key");
 			builder.version("a-version");
 
 			return builder.build();
 		}
 
-		static PatchableUnion.Patch createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.PatchableUnionAPatchImpl.builder();
-			builder.key("a-key");
-			builder.version("a-version");
+		static PatchableUnion.Patch createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableUnionAPatchImpl.builder());
+		}
 
-			return builder.build();
+		static PatchableUnion.Patch createJsonRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableUnionAPatchImpl.builder());
 		}
 
 		static PatchableUnion.Patch createJsonRecord() {
@@ -176,14 +174,17 @@ public class PatchableUnion_PatchTest extends BaseTest {
 			return PatchableUnionPatchImpl.of(record);
 		}
 
+		static PatchableUnion.Patch build(PatchableUnionB.PatchBuilder builder) {
+			builder.key("b-key");
+			builder.version("b-version");
+			builder.shared("shared-b");
+			builder.valueB("value-b");
+
+			return builder.build();
+		}
+
 		static PatchableUnion.Patch createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.PatchableUnionBPatchImpl.builder();
-			return builder
-					.key("b-key")
-					.version("b-version")
-					.shared("shared-b")
-					.valueB("value-b")
-					.build();
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableUnionBPatchImpl.builder());
 		}
 
 		static PatchableUnion.Patch createJsonRecord() {
@@ -192,13 +193,7 @@ public class PatchableUnion_PatchTest extends BaseTest {
 		}
 
 		static PatchableUnion.Patch createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.PatchableUnionBPatchImpl.builder();
-			return builder
-					.key("b-key")
-					.version("b-version")
-					.shared("shared-b")
-					.valueB("value-b")
-					.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableUnionBPatchImpl.builder());
 		}
 
 		static PatchableUnion.Patch[] getRecords() {
@@ -257,12 +252,15 @@ public class PatchableUnion_PatchTest extends BaseTest {
 			return PatchableUnionPatchImpl.of(record);
 		}
 
+		static PatchableUnion.Patch build(PatchableUnionB.PatchBuilder builder) {
+			builder.key("b-key");
+			builder.version("b-version");
+
+			return builder.build();
+		}
+
 		static PatchableUnion.Patch createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.PatchableUnionBPatchImpl.builder();
-			return builder
-					.key("b-key")
-					.version("b-version")
-					.build();
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableUnionBPatchImpl.builder());
 		}
 
 		static PatchableUnion.Patch createJsonRecord() {
@@ -271,11 +269,7 @@ public class PatchableUnion_PatchTest extends BaseTest {
 		}
 
 		static PatchableUnion.Patch createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.PatchableUnionBPatchImpl.builder();
-			return builder
-					.key("b-key")
-					.version("b-version")
-					.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableUnionBPatchImpl.builder());
 		}
 
 		static PatchableUnion.Patch[] getRecords() {

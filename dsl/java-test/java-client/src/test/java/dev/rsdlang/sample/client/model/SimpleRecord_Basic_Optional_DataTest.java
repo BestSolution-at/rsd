@@ -19,14 +19,7 @@ public class SimpleRecord_Basic_Optional_DataTest extends BaseTest {
 
 	@Nested
 	class Filled {
-		static SimpleRecord_Basic_Optional.Data createAvroRecord() {
-			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.SimpleRecord_Basic_Optional);
-			var record = readAvroFile("SimpleRecord_Basic_Optional.Data.avro", schema);
-			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.of(record);
-		}
-
-		static SimpleRecord_Basic_Optional.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.builder();
+		static SimpleRecord_Basic_Optional.Data build(SimpleRecord_Basic_Optional.DataBuilder builder) {
 			builder.valueBoolean(false);
 			builder.valueDouble(Double.MAX_VALUE);
 			builder.valueFloat(Float.MAX_VALUE);
@@ -40,6 +33,17 @@ public class SimpleRecord_Basic_Optional_DataTest extends BaseTest {
 			builder.valueString("the string value");
 			builder.valueShort(Short.MAX_VALUE);
 			return builder.build();
+		}
+
+		static SimpleRecord_Basic_Optional.Data createAvroRecord() {
+			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.SimpleRecord_Basic_Optional);
+			var record = readAvroFile("SimpleRecord_Basic_Optional.Data.avro", schema);
+			return dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.of(record);
+		}
+
+		static SimpleRecord_Basic_Optional.Data createAvroRecordBuilder() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_Optional.Data createJsonRecord() {
@@ -48,20 +52,8 @@ public class SimpleRecord_Basic_Optional_DataTest extends BaseTest {
 		}
 
 		static SimpleRecord_Basic_Optional.Data createJsonRecordBuilderRecord() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_OptionalDataImpl.builder();
-			builder.valueBoolean(false);
-			builder.valueDouble(Double.MAX_VALUE);
-			builder.valueFloat(Float.MAX_VALUE);
-			builder.valueInt(Integer.MAX_VALUE);
-			builder.valueLocalDate(LocalDate.parse("2020-01-01"));
-			builder.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"));
-			builder.valueLocalTime(LocalTime.parse("10:00"));
-			builder.valueLong(Long.MAX_VALUE);
-			builder.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+01:00"));
-			builder.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"));
-			builder.valueString("the string value");
-			builder.valueShort(Short.MAX_VALUE);
-			return builder.build();
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_OptionalDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_Optional.Data[] getRecords() {
@@ -148,6 +140,10 @@ public class SimpleRecord_Basic_Optional_DataTest extends BaseTest {
 
 	@Nested
 	class Empty {
+		static SimpleRecord_Basic_Optional.Data build(SimpleRecord_Basic_Optional.DataBuilder builder) {
+			return builder.build();
+		}
+
 		static SimpleRecord_Basic_Optional.Data createAvroRecord() {
 			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.SimpleRecord_Basic_Optional);
 			var record = readAvroFile("SimpleRecord_Basic_Optional.Empty.Data.avro", schema);
@@ -155,8 +151,8 @@ public class SimpleRecord_Basic_Optional_DataTest extends BaseTest {
 		}
 
 		static SimpleRecord_Basic_Optional.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.builder();
-			return builder.build();
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_Basic_OptionalDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_Optional.Data createJsonRecord() {
@@ -165,8 +161,8 @@ public class SimpleRecord_Basic_Optional_DataTest extends BaseTest {
 		}
 
 		static SimpleRecord_Basic_Optional.Data createJsonRecordBuilderRecord() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_OptionalDataImpl.builder();
-			return builder.build();
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.SimpleRecord_Basic_OptionalDataImpl.builder());
 		}
 
 		static SimpleRecord_Basic_Optional.Data[] getRecords() {

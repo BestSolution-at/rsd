@@ -2,6 +2,9 @@ package dev.rsdlang.sample.client.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.function.Supplier;
+import java.util.List;
+
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,12 +14,59 @@ import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
 
 public class PatchableRecordWithUnion_PatchTest extends BaseTest {
+	static PatchableUnionA.Data unionA(PatchableUnionA.DataBuilder builder) {
+		return builder
+				.key("data-a")
+				.version("v-1")
+				.shared("shared-a")
+				.valueA("value-a")
+				.build();
+	}
+
+	static PatchableUnionB.Patch unionBPatch(PatchableUnionB.PatchBuilder builder) {
+		return builder
+				.key("patch-b")
+				.version("v-1")
+				.shared("shared-b")
+				.valueB("value-b")
+				.build();
+	}
+
 	@Nested
 	class ListReplace {
 		static PatchableRecordWithUnion.Patch createAvroRecord() {
 			var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.PatchableRecordWithUnionPatch);
 			var record = readAvroFile("PatchableRecordWithUnion.ListReplace.Patch.avro", schema);
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.of(record);
+		}
+
+		static PatchableRecordWithUnion.Patch build(
+				PatchableRecordWithUnion.PatchBuilder builder,
+				Supplier<PatchableUnionA.DataBuilder> unionA) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(unionA(unionA.get()))
+					.value_Null(unionA(unionA.get()))
+					.value_Opt(unionA(unionA.get()))
+					.value_Opt_Null(unionA(unionA.get()))
+					.list(List.of(unionA(unionA.get())))
+					.list_Null(List.of(unionA(unionA.get())))
+					.list_Opt(List.of(unionA(unionA.get())))
+					.list_Opt_Null(List.of(unionA(unionA.get())))
+					.build();
+		}
+
+		static PatchableRecordWithUnion.Patch createAvroBuilder() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.avro.PatchableUnionADataImpl::builder);
+		}
+
+		static PatchableRecordWithUnion.Patch createJsonBuilder() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.json.PatchableUnionADataImpl::builder);
 		}
 
 		static PatchableRecordWithUnion.Patch createJsonRecord() {
@@ -27,7 +77,9 @@ public class PatchableRecordWithUnion_PatchTest extends BaseTest {
 		static PatchableRecordWithUnion.Patch[] getRecords() {
 			return new PatchableRecordWithUnion.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createAvroBuilder(),
+					createJsonRecord(),
+					createJsonBuilder()
 			};
 		}
 
@@ -154,15 +206,61 @@ public class PatchableRecordWithUnion_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.of(record);
 		}
 
+		static PatchableRecordWithUnion.Patch build(
+				PatchableRecordWithUnion.PatchBuilder builder,
+				Supplier<PatchableUnionA.DataBuilder> unionA,
+				Supplier<PatchableUnionB.PatchBuilder> unionB) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(unionBPatch(unionB.get()))
+					.value_Null(unionBPatch(unionB.get()))
+					.value_Opt(unionBPatch(unionB.get()))
+					.value_Opt_Null(unionBPatch(unionB.get()))
+					.list(
+							List.of(unionA(unionA.get())),
+							List.of(unionBPatch(unionB.get())),
+							List.of("k-1:v1"))
+					.list_Null(
+							List.of(unionA(unionA.get())),
+							List.of(unionBPatch(unionB.get())),
+							List.of("k-1:v1"))
+					.list_Opt(
+							List.of(unionA(unionA.get())),
+							List.of(unionBPatch(unionB.get())),
+							List.of("k-1:v1"))
+					.list_Opt_Null(
+							List.of(unionA(unionA.get())),
+							List.of(unionBPatch(unionB.get())),
+							List.of("k-1:v1"))
+					.build();
+		}
+
+		static PatchableRecordWithUnion.Patch createAvroBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.avro.PatchableUnionADataImpl::builder,
+					dev.rsdlang.sample.client.model.impl.avro.PatchableUnionBPatchImpl::builder);
+		}
+
 		static PatchableRecordWithUnion.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableRecordWithUnion.ListMerge.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.of(record);
 		}
 
+		static PatchableRecordWithUnion.Patch createJsonBuilderRecord() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.json.PatchableUnionADataImpl::builder,
+					dev.rsdlang.sample.client.model.impl.json.PatchableUnionBPatchImpl::builder);
+		}
+
 		static PatchableRecordWithUnion.Patch[] getRecords() {
 			return new PatchableRecordWithUnion.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -357,15 +455,31 @@ public class PatchableRecordWithUnion_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.of(record);
 		}
 
+		static PatchableRecordWithUnion.Patch build(PatchableRecordWithUnion.PatchBuilder builder) {
+			return builder.key("k-1")
+					.version("v-1")
+					.build();
+		}
+
+		static PatchableRecordWithUnion.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.builder());
+		}
+
 		static PatchableRecordWithUnion.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableRecordWithUnion.Minimal.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.of(record);
 		}
 
+		static PatchableRecordWithUnion.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.builder());
+		}
+
 		static PatchableRecordWithUnion.Patch[] getRecords() {
 			return new PatchableRecordWithUnion.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -438,15 +552,38 @@ public class PatchableRecordWithUnion_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.of(record);
 		}
 
+		static PatchableRecordWithUnion.Patch build(PatchableRecordWithUnion.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value_NullNull()
+					.value_OptNull()
+					.value_Opt_NullNull()
+					.list_NullNull()
+					.list_OptNull()
+					.list_Opt_NullNull()
+					.build();
+		}
+
+		static PatchableRecordWithUnion.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableRecordWithUnionPatchImpl.builder());
+		}
+
 		static PatchableRecordWithUnion.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableRecordWithUnion.Null.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.of(record);
 		}
 
+		static PatchableRecordWithUnion.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableRecordWithUnionPatchImpl.builder());
+		}
+
 		static PatchableRecordWithUnion.Patch[] getRecords() {
 			return new PatchableRecordWithUnion.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 

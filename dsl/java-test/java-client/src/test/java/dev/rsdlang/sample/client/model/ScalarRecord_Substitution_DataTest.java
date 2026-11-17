@@ -20,8 +20,7 @@ public class ScalarRecord_Substitution_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.of(record);
 		}
 
-		static ScalarRecord_Substitution.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.builder();
+		static ScalarRecord_Substitution.Data build(ScalarRecord_Substitution.DataBuilder builder) {
 			builder.value(new MyRange(0, 1));
 			builder.value_Null(new MyRange(0, 1));
 			builder.value_Opt(new MyRange(0, 1));
@@ -31,6 +30,10 @@ public class ScalarRecord_Substitution_DataTest extends BaseTest {
 			builder.list_Opt(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
 			builder.list_Opt_Null(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
 			return builder.build();
+		}
+
+		static ScalarRecord_Substitution.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.builder());
 		}
 
 		static ScalarRecord_Substitution.Data createJsonRecord() {
@@ -39,16 +42,7 @@ public class ScalarRecord_Substitution_DataTest extends BaseTest {
 		}
 
 		static ScalarRecord_Substitution.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.ScalarRecord_SubstitutionDataImpl.builder();
-			builder.value(new MyRange(0, 1));
-			builder.value_Null(new MyRange(0, 1));
-			builder.value_Opt(new MyRange(0, 1));
-			builder.value_Opt_Null(new MyRange(0, 1));
-			builder.list(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
-			builder.list_Null(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
-			builder.list_Opt(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
-			builder.list_Opt_Null(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.ScalarRecord_SubstitutionDataImpl.builder());
 		}
 
 		static ScalarRecord_Substitution.Data[] getRecords() {
@@ -130,13 +124,16 @@ public class ScalarRecord_Substitution_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.of(record);
 		}
 
-		static ScalarRecord_Substitution.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.builder();
+		static ScalarRecord_Substitution.Data build(ScalarRecord_Substitution.DataBuilder builder) {
 			builder.value(new MyRange(0, 1));
 			builder.value_Null(null);
 			builder.list(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
 			builder.list_Null(null);
 			return builder.build();
+		}
+
+		static ScalarRecord_Substitution.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.builder());
 		}
 
 		static ScalarRecord_Substitution.Data createJsonRecord() {
@@ -145,12 +142,7 @@ public class ScalarRecord_Substitution_DataTest extends BaseTest {
 		}
 
 		static ScalarRecord_Substitution.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.ScalarRecord_SubstitutionDataImpl.builder();
-			builder.value(new MyRange(0, 1));
-			builder.value_Null(null);
-			builder.list(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
-			builder.list_Null(null);
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.ScalarRecord_SubstitutionDataImpl.builder());
 		}
 
 		static ScalarRecord_Substitution.Data[] getRecords() {
@@ -226,8 +218,7 @@ public class ScalarRecord_Substitution_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.of(record);
 		}
 
-		static ScalarRecord_Substitution.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.builder();
+		static ScalarRecord_Substitution.Data build(ScalarRecord_Substitution.DataBuilder builder) {
 			builder.value(new MyRange(0, 1));
 			builder.value_Null(null);
 			builder.value_Opt_Null(null);
@@ -235,6 +226,10 @@ public class ScalarRecord_Substitution_DataTest extends BaseTest {
 			builder.list_Null(null);
 			builder.list_Opt_Null(null);
 			return builder.build();
+		}
+
+		static ScalarRecord_Substitution.Data createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.ScalarRecord_SubstitutionDataImpl.builder());
 		}
 
 		static ScalarRecord_Substitution.Data createJsonRecord() {
@@ -243,14 +238,7 @@ public class ScalarRecord_Substitution_DataTest extends BaseTest {
 		}
 
 		static ScalarRecord_Substitution.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.ScalarRecord_SubstitutionDataImpl.builder();
-			builder.value(new MyRange(0, 1));
-			builder.value_Null(null);
-			builder.value_Opt_Null(null);
-			builder.list(java.util.List.of(new MyRange(0, 1), new MyRange(1, 2)));
-			builder.list_Null(null);
-			builder.list_Opt_Null(null);
-			return builder.build();
+			return build(dev.rsdlang.sample.client.model.impl.json.ScalarRecord_SubstitutionDataImpl.builder());
 		}
 
 		static ScalarRecord_Substitution.Data[] getRecords() {

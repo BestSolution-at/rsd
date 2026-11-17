@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.assertj.core.api.AbstractObjectAssert;
 import org.junit.jupiter.api.Nested;
@@ -72,26 +73,25 @@ public class RecordOfRecords_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.of(record);
 		}
 
-		static RecordOfRecords.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.builder();
-			builder.value(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder()));
-			builder.value_Opt(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder()));
-			builder.value_Null(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder()));
-			builder.value_Opt_Null(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder()));
-			builder.list(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder())));
-			builder.list_Opt(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder())));
-			builder.list_Null(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder())));
-			builder.list_Opt_Null(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder())));
+		static RecordOfRecords.Data build(
+				RecordOfRecords.DataBuilder builder,
+				Supplier<SimpleRecord_Basic.DataBuilder> simpleRecordBasic) {
+			builder.value(createDefaultRecord(simpleRecordBasic.get()));
+			builder.value_Opt(createDefaultRecord(simpleRecordBasic.get()));
+			builder.value_Null(createDefaultRecord(simpleRecordBasic.get()));
+			builder.value_Opt_Null(createDefaultRecord(simpleRecordBasic.get()));
+			builder.list(List.of(createDefaultRecord(simpleRecordBasic.get())));
+			builder.list_Opt(List.of(createDefaultRecord(simpleRecordBasic.get())));
+			builder.list_Null(List.of(createDefaultRecord(simpleRecordBasic.get())));
+			builder.list_Opt_Null(List.of(createDefaultRecord(simpleRecordBasic.get())));
 
 			return builder.build();
+		}
+
+		static RecordOfRecords.Data createAvroRecordBuilder() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl::builder);
 		}
 
 		static RecordOfRecords.Data createJsonRecord() {
@@ -100,25 +100,9 @@ public class RecordOfRecords_DataTest extends BaseTest {
 		}
 
 		static RecordOfRecords.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.RecordOfRecordsDataImpl.builder();
-			builder.value(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder()));
-			builder.value_Opt(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder()));
-			builder.value_Null(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder()));
-			builder.value_Opt_Null(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder()));
-			builder.list(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder())));
-			builder.list_Opt(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder())));
-			builder.list_Null(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder())));
-			builder.list_Opt_Null(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder())));
-
-			return builder.build();
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.RecordOfRecordsDataImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl::builder);
 		}
 
 		static RecordOfRecords.Data[] getRecords() {
@@ -190,16 +174,21 @@ public class RecordOfRecords_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.of(record);
 		}
 
-		static RecordOfRecords.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.builder();
-			builder.value(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder()));
+		static RecordOfRecords.Data build(
+				RecordOfRecords.DataBuilder builder,
+				Supplier<SimpleRecord_Basic.DataBuilder> simpleRecordBasic) {
+			builder.value(createDefaultRecord(simpleRecordBasic.get()));
 			builder.value_Null(null);
 			builder.list(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder())));
+					createDefaultRecord(simpleRecordBasic.get())));
 			builder.list_Null(null);
-
 			return builder.build();
+		}
+
+		static RecordOfRecords.Data createAvroRecordBuilder() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl::builder);
 		}
 
 		static RecordOfRecords.Data createJsonRecord() {
@@ -208,15 +197,9 @@ public class RecordOfRecords_DataTest extends BaseTest {
 		}
 
 		static RecordOfRecords.Data createJsonRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.json.RecordOfRecordsDataImpl.builder();
-			builder.value(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder()));
-			builder.value_Null(null);
-			builder.list(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl.builder())));
-			builder.list_Null(null);
-
-			return builder.build();
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.RecordOfRecordsDataImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl::builder);
 		}
 
 		static RecordOfRecords.Data[] getRecords() {
@@ -287,18 +270,24 @@ public class RecordOfRecords_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.of(record);
 		}
 
-		static RecordOfRecords.Data createAvroRecordBuilder() {
-			var builder = dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.builder();
-			builder.value(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder()));
+		static RecordOfRecords.Data build(
+				RecordOfRecords.DataBuilder builder,
+				Supplier<SimpleRecord_Basic.DataBuilder> simpleRecordBasic) {
+			builder.value(createDefaultRecord(simpleRecordBasic.get()));
 			builder.value_Null(null);
 			builder.value_Opt_Null(null);
 			builder.list(List.of(
-					createDefaultRecord(dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl.builder())));
+					createDefaultRecord(simpleRecordBasic.get())));
 			builder.list_Null(null);
 			builder.list_Opt_Null(null);
 
 			return builder.build();
+		}
+
+		static RecordOfRecords.Data createAvroRecordBuilder() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.avro.RecordOfRecordsDataImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_BasicDataImpl::builder);
 		}
 
 		static RecordOfRecords.Data createJsonRecord() {
@@ -306,11 +295,18 @@ public class RecordOfRecords_DataTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.json.RecordOfRecordsDataImpl.of(record);
 		}
 
+		static RecordOfRecords.Data createJsonRecordBuilder() {
+			return build(
+					dev.rsdlang.sample.client.model.impl.json.RecordOfRecordsDataImpl.builder(),
+					dev.rsdlang.sample.client.model.impl.json.SimpleRecord_BasicDataImpl::builder);
+		}
+
 		static RecordOfRecords.Data[] getRecords() {
 			return new RecordOfRecords.Data[] {
 					createAvroRecord(),
 					createJsonRecord(),
-					createAvroRecordBuilder()
+					createAvroRecordBuilder(),
+					createJsonRecordBuilder()
 			};
 		}
 

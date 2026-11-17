@@ -9,6 +9,13 @@ import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
 
 public class SimpleRecord_KeyVersion_Int_Int_DataTest extends BaseTest {
+
+	static SimpleRecord_KeyVersion_Int_Int.Data build(SimpleRecord_KeyVersion_Int_Int.DataBuilder builder) {
+		builder.key(1);
+		builder.version(1);
+		return builder.build();
+	}
+
 	static SimpleRecord_KeyVersion_Int_Int.Data createAvroRecord() {
 		var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.SimpleRecord_KeyVersion_Int_Int);
 		var record = readAvroFile("SimpleRecord_KeyVersion_Int_Int.Data.avro", schema);
@@ -16,10 +23,8 @@ public class SimpleRecord_KeyVersion_Int_Int_DataTest extends BaseTest {
 	}
 
 	static SimpleRecord_KeyVersion_Int_Int.Data createAvroRecordBuilder() {
-		var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_KeyVersion_Int_IntDataImpl.builder();
-		builder.key(1);
-		builder.version(1);
-		return builder.build();
+		return build(
+				dev.rsdlang.sample.client.model.impl.avro.SimpleRecord_KeyVersion_Int_IntDataImpl.builder());
 	}
 
 	static SimpleRecord_KeyVersion_Int_Int.Data createJsonRecord() {
@@ -28,10 +33,8 @@ public class SimpleRecord_KeyVersion_Int_Int_DataTest extends BaseTest {
 	}
 
 	static SimpleRecord_KeyVersion_Int_Int.Data createJsonRecordBuilder() {
-		var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecord_KeyVersion_Int_IntDataImpl.builder();
-		builder.key(1);
-		builder.version(1);
-		return builder.build();
+		return build(
+				dev.rsdlang.sample.client.model.impl.json.SimpleRecord_KeyVersion_Int_IntDataImpl.builder());
 	}
 
 	static SimpleRecord_KeyVersion_Int_Int.Data[] getRecords() {

@@ -1,5 +1,7 @@
 package dev.rsdlang.sample.client.model;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.InstanceOfAssertFactories;
@@ -19,15 +21,39 @@ public class PatchableScalarRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecordPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord.Patch build(PatchableScalarRecord.PatchBuilder builder) {
+			return builder.key("k-1")
+					.version("v-1")
+					.value(ZoneId.of("Europe/Paris"))
+					.value_Null(ZoneId.of("Europe/Paris"))
+					.value_Opt(ZoneId.of("Europe/Paris"))
+					.value_Opt_Null(ZoneId.of("Europe/Paris"))
+					.list(List.of(ZoneId.of("Europe/Paris")))
+					.list_Null(List.of(ZoneId.of("Europe/Paris")))
+					.list_Opt(List.of(ZoneId.of("Europe/Paris")))
+					.list_Opt_Null(List.of(ZoneId.of("Europe/Paris")))
+					.build();
+		}
+
+		static PatchableScalarRecord.Patch createAvroRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecordPatchImpl.builder());
+		}
+
 		static PatchableScalarRecord.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableScalarRecord.ListReplace.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecordPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord.Patch createJsonRecordBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecordPatchImpl.builder());
+		}
+
 		static PatchableScalarRecord.Patch[] getRecords() {
 			return new PatchableScalarRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createAvroRecordBuilder(),
+					createJsonRecord(),
+					createJsonRecordBuilder()
 			};
 		}
 
@@ -146,15 +172,48 @@ public class PatchableScalarRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecordPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord.Patch build(PatchableScalarRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(ZoneId.of("Europe/Paris"))
+					.value_Null(ZoneId.of("Europe/Paris"))
+					.value_Opt(ZoneId.of("Europe/Paris"))
+					.value_Opt_Null(ZoneId.of("Europe/Paris"))
+					.list(
+							List.of(ZoneId.of("Europe/Paris")),
+							List.of(ZoneId.of("Europe/Vienna")))
+					.list_Null(
+							List.of(ZoneId.of("Europe/Paris")),
+							List.of(ZoneId.of("Europe/Vienna")))
+					.list_Opt(
+							List.of(ZoneId.of("Europe/Paris")),
+							List.of(ZoneId.of("Europe/Vienna")))
+					.list_Opt_Null(
+							List.of(ZoneId.of("Europe/Paris")),
+							List.of(ZoneId.of("Europe/Vienna")))
+					.build();
+		}
+
+		static PatchableScalarRecord.Patch createAvroBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecordPatchImpl.builder());
+		}
+
 		static PatchableScalarRecord.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableScalarRecord.ListMerge.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecordPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord.Patch createJsonBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecordPatchImpl.builder());
+		}
+
 		static PatchableScalarRecord.Patch[] getRecords() {
 			return new PatchableScalarRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilder(),
+					createJsonBuilder()
 			};
 		}
 
@@ -309,9 +368,24 @@ public class PatchableScalarRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecordPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord.Patch build(PatchableScalarRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.build();
+		}
+
+		static PatchableScalarRecord.Patch createAvroBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecordPatchImpl.builder());
+		}
+
 		static PatchableScalarRecord.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableScalarRecord.Minimal.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecordPatchImpl.of(record);
+		}
+
+		static PatchableScalarRecord.Patch createJsonBuilder() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecordPatchImpl.builder());
 		}
 
 		static PatchableScalarRecord.Patch[] getRecords() {
@@ -390,6 +464,27 @@ public class PatchableScalarRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecordPatchImpl.of(record);
 		}
 
+		static PatchableScalarRecord.Patch build(PatchableScalarRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value_NullNull()
+					.value_OptNull()
+					.value_Opt_NullNull()
+					.list_NullNull()
+					.list_OptNull()
+					.list_Opt_NullNull()
+					.build();
+		}
+
+		static PatchableScalarRecord.Patch createBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableScalarRecordPatchImpl.builder());
+		}
+
+		static PatchableScalarRecord.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecordPatchImpl.builder());
+		}
+
 		static PatchableScalarRecord.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableScalarRecord.Null.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableScalarRecordPatchImpl.of(record);
@@ -398,7 +493,9 @@ public class PatchableScalarRecord_PatchTest extends BaseTest {
 		static PatchableScalarRecord.Patch[] getRecords() {
 			return new PatchableScalarRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 

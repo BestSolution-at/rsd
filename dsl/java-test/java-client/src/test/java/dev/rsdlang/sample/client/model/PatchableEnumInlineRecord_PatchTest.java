@@ -1,5 +1,6 @@
 package dev.rsdlang.sample.client.model;
 
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.core.api.InstanceOfAssertFactories;
@@ -24,10 +25,34 @@ public class PatchableEnumInlineRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.json.PatchableEnumInlineRecordPatchImpl.of(record);
 		}
 
+		static PatchableEnumInlineRecord.Patch build(PatchableEnumInlineRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value(PatchableEnumInlineRecord.Value$.A)
+					.value_Null(PatchableEnumInlineRecord.Value_Null$.C)
+					.value_Opt(PatchableEnumInlineRecord.Value_Opt$.E)
+					.value_Opt_Null(PatchableEnumInlineRecord.Value_Opt_Null$.G)
+					.list(List.of(PatchableEnumInlineRecord.List$.A))
+					.list_Null(List.of(PatchableEnumInlineRecord.List_Null$.C))
+					.list_Opt_Null(List.of(PatchableEnumInlineRecord.List_Opt_Null$.G))
+					.build();
+		}
+
+		static PatchableEnumInlineRecord.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableEnumInlineRecordPatchImpl.builder());
+		}
+
+		static PatchableEnumInlineRecord.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableEnumInlineRecordPatchImpl.builder());
+		}
+
 		static PatchableEnumInlineRecord.Patch[] getRecords() {
 			return new PatchableEnumInlineRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 

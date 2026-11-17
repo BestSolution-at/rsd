@@ -3,6 +3,7 @@ package dev.rsdlang.sample.client.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -17,26 +18,28 @@ public class TreeNode_DataTest extends BaseTest {
 		return dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.of(record);
 	}
 
-	static TreeNode.Data createAvroRecordBuilder() {
-		var builder = dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.builder();
+	static TreeNode.Data build(TreeNode.DataBuilder builder, Supplier<TreeNode.DataBuilder> factory) {
 		builder.value("Root");
-		var childA = dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.builder()
+		var childA = factory.get()
 				.children(List.of())
 				.value("Child A").build();
-		var childB = dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.builder()
+		var childB = factory.get()
 				.children(List.of())
 				.value("Child B").build();
 		builder.children(java.util.List.of(childA, childB));
 		return builder.build();
 	}
 
+	static TreeNode.Data createAvroRecordBuilder() {
+		return build(
+				dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl.builder(),
+				dev.rsdlang.sample.client.model.impl.avro.TreeNodeDataImpl::builder);
+	}
+
 	static TreeNode.Data createJsonRecordBuilder() {
-		var builder = dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl.builder();
-		builder.value("Root");
-		var childA = dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl.builder().value("Child A").build();
-		var childB = dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl.builder().value("Child B").build();
-		builder.children(java.util.List.of(childA, childB));
-		return builder.build();
+		return build(
+				dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl.builder(),
+				dev.rsdlang.sample.client.model.impl.json.TreeNodeDataImpl::builder);
 	}
 
 	static TreeNode.Data createJsonRecord() {

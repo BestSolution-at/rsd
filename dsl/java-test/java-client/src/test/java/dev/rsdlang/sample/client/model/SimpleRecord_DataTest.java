@@ -9,6 +9,13 @@ import dev.rsdlang.sample.client.model.impl.avro._AvroSchema;
 import dev.rsdlang.sample.client.model.impl.avro._AvroSchema.AvroTypes;
 
 public class SimpleRecord_DataTest extends BaseTest {
+	static SimpleRecord.Data build(SimpleRecord.DataBuilder builder) {
+		builder.key("1");
+		builder.value("the value");
+		builder.version("1");
+		return builder.build();
+	}
+
 	static SimpleRecord.Data createAvroRecord() {
 		var schema = _AvroSchema.getInstance().getTypeSchema(AvroTypes.SimpleRecord);
 		var record = readAvroFile("SimpleRecord.Data.avro", schema);
@@ -16,11 +23,8 @@ public class SimpleRecord_DataTest extends BaseTest {
 	}
 
 	static SimpleRecord.Data createAvroRecordBuilder() {
-		var builder = dev.rsdlang.sample.client.model.impl.avro.SimpleRecordDataImpl.builder();
-		builder.key("1");
-		builder.value("the value");
-		builder.version("1");
-		return builder.build();
+		return build(
+				dev.rsdlang.sample.client.model.impl.avro.SimpleRecordDataImpl.builder());
 	}
 
 	static SimpleRecord.Data createJsonRecord() {
@@ -29,11 +33,8 @@ public class SimpleRecord_DataTest extends BaseTest {
 	}
 
 	static SimpleRecord.Data createJsonRecordBuilder() {
-		var builder = dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl.builder();
-		builder.key("1");
-		builder.value("the value");
-		builder.version("1");
-		return builder.build();
+		return build(
+				dev.rsdlang.sample.client.model.impl.json.SimpleRecordDataImpl.builder());
 	}
 
 	static SimpleRecord.Data[] getRecords() {

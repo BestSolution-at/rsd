@@ -18,15 +18,33 @@ public class PatchableRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecordPatchImpl.of(record);
 		}
 
+		static PatchableRecord.Patch build(PatchableRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.value("a-value")
+					.build();
+		}
+
+		static PatchableRecord.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableRecordPatchImpl.builder());
+		}
+
 		static PatchableRecord.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableRecord.Full.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecordPatchImpl.of(record);
 		}
 
+		static PatchableRecord.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableRecordPatchImpl.builder());
+		}
+
 		static PatchableRecord.Patch[] getRecords() {
 			return new PatchableRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -60,15 +78,32 @@ public class PatchableRecord_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecordPatchImpl.of(record);
 		}
 
+		static PatchableRecord.Patch build(PatchableRecord.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.build();
+		}
+
+		static PatchableRecord.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableRecordPatchImpl.builder());
+		}
+
 		static PatchableRecord.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableRecord.Minimal.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecordPatchImpl.of(record);
 		}
 
+		static PatchableRecord.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableRecordPatchImpl.builder());
+		}
+
 		static PatchableRecord.Patch[] getRecords() {
 			return new PatchableRecord.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 

@@ -24,6 +24,33 @@ public class PatchableRecord_Basic_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_BasicPatchImpl.of(record);
 		}
 
+		static PatchableRecord_Basic.Patch build(PatchableRecord_Basic.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.valueBoolean(true)
+					.valueDouble(1.0)
+					.valueFloat(1.0f)
+					.valueInt(1)
+					.valueLocalDate(LocalDate.parse("2020-01-01"))
+					.valueLocalDateTime(LocalDateTime.parse("2020-01-01T00:00:00"))
+					.valueLocalTime(LocalTime.parse("10:00:00"))
+					.valueLong(1L)
+					.valueOffsetDateTime(OffsetDateTime.parse("2020-01-01T00:00:00+02:00"))
+					.valueShort((short) 1)
+					.valueString("patch-1")
+					.valueZonedDateTime(ZonedDateTime.parse("2020-01-01T00:00:00+01:00[Europe/Paris]"))
+					.build();
+		}
+
+		static PatchableRecord_Basic.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_BasicPatchImpl.builder());
+		}
+
+		static PatchableRecord_Basic.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableRecord_BasicPatchImpl.builder());
+		}
+
 		static PatchableRecord_Basic.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableRecord_Basic.Full.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecord_BasicPatchImpl.of(record);
@@ -32,7 +59,9 @@ public class PatchableRecord_Basic_PatchTest extends BaseTest {
 		static PatchableRecord_Basic.Patch[] getRecords() {
 			return new PatchableRecord_Basic.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
@@ -155,6 +184,21 @@ public class PatchableRecord_Basic_PatchTest extends BaseTest {
 			return dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_BasicPatchImpl.of(record);
 		}
 
+		static PatchableRecord_Basic.Patch build(PatchableRecord_Basic.PatchBuilder builder) {
+			return builder
+					.key("k-1")
+					.version("v-1")
+					.build();
+		}
+
+		static PatchableRecord_Basic.Patch createAvroBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.avro.PatchableRecord_BasicPatchImpl.builder());
+		}
+
+		static PatchableRecord_Basic.Patch createJsonBuilderRecord() {
+			return build(dev.rsdlang.sample.client.model.impl.json.PatchableRecord_BasicPatchImpl.builder());
+		}
+
 		static PatchableRecord_Basic.Patch createJsonRecord() {
 			var record = readJsonFile("PatchableRecord_Basic.Minimal.Patch.json");
 			return dev.rsdlang.sample.client.model.impl.json.PatchableRecord_BasicPatchImpl.of(record);
@@ -163,7 +207,9 @@ public class PatchableRecord_Basic_PatchTest extends BaseTest {
 		static PatchableRecord_Basic.Patch[] getRecords() {
 			return new PatchableRecord_Basic.Patch[] {
 					createAvroRecord(),
-					createJsonRecord()
+					createJsonRecord(),
+					createAvroBuilderRecord(),
+					createJsonBuilderRecord()
 			};
 		}
 
