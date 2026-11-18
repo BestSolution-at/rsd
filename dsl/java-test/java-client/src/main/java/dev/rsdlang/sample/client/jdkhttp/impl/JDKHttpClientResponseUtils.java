@@ -28,8 +28,8 @@ import java.util.List;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 
-import dev.rsdlang.sample.client.model.impl.json._BlobImpl;
-import dev.rsdlang.sample.client.model.impl.json._FileImpl;
+import dev.rsdlang.sample.client.model.impl._BlobImpl;
+import dev.rsdlang.sample.client.model.impl._FileImpl;
 import dev.rsdlang.sample.client.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.client.model.RSDBlob;
 import dev.rsdlang.sample.client.model.RSDFile;

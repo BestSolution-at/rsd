@@ -66,7 +66,7 @@ function generateDTOBuilderFactoryContent(
 				NL,
 			);
 			body.indent(mBody => {
-				const BlobImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.avro._BlobImpl`);
+				const BlobImpl = fqn(`${artifactConfig.rootPackageName}.model.impl._BlobImpl`);
 				mBody.append(`return ${BlobImpl}.of(file, mimeType);`, NL);
 			});
 			body.append('}', NL);
@@ -77,7 +77,7 @@ function generateDTOBuilderFactoryContent(
 				NL,
 			);
 			body.indent(mBody => {
-				const StreamBlobImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.avro._StreamBlobImpl`);
+				const StreamBlobImpl = fqn(`${artifactConfig.rootPackageName}.model.impl._StreamBlobImpl`);
 				mBody.append(`return ${StreamBlobImpl}.of(stream, mimeType);`, NL);
 			});
 			body.append('}', NL);
@@ -91,7 +91,7 @@ function generateDTOBuilderFactoryContent(
 					NL,
 				);
 				body.indent(mBody => {
-					const FileImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.avro._FileImpl`);
+					const FileImpl = fqn(`${artifactConfig.rootPackageName}.model.impl._FileImpl`);
 					mBody.append(`return ${FileImpl}.of(file, mimeType, filename);`, NL);
 				});
 				body.append('}', NL);
@@ -103,7 +103,7 @@ function generateDTOBuilderFactoryContent(
 					NL,
 				);
 				body.indent(mBody => {
-					const StreamFileImpl = fqn(`${artifactConfig.rootPackageName}.model.impl.avro._StreamFileImpl`);
+					const StreamFileImpl = fqn(`${artifactConfig.rootPackageName}.model.impl._StreamFileImpl`);
 					mBody.append(`return ${StreamFileImpl}.of(data, mimeType, filename);`, NL);
 				});
 				body.append('}', NL);
