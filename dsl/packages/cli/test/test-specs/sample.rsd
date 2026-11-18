@@ -523,7 +523,7 @@ patchable record PatchableUnionB {
 	valueB: string
 }
 
-union PatchableUnion = PatchableUnionA('union-a') | PatchableUnionB('union-b');
+patchable union PatchableUnion = PatchableUnionA('union-a') | PatchableUnionB('union-b');
 
 // TODO Mixed Union
 

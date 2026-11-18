@@ -1,0 +1,64 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"valueBoolean": {
+		"@type": "merge",
+		"additions": [true],
+		"removals": [false]
+	},
+	"valueDouble": {
+		"@type": "merge",
+		"additions": [1.0],
+		"removals": [2.0]
+	},
+	"valueFloat": {
+		"@type": "merge",
+		"additions": [1.0],
+		"removals": [2.0]
+	},
+	"valueInt": {
+		"@type": "merge",
+		"additions": [1],
+		"removals": [2]
+	},
+	"valueLocalDate": {
+		"@type": "merge",
+		"additions": ["2020-01-01"],
+		"removals": ["2020-01-02"]
+	},
+	"valueLocalDateTime": {
+		"@type": "merge",
+		"additions": ["2020-01-01T00:00:00"],
+		"removals": ["2020-01-02T00:00:00"]
+	},
+	"valueLocalTime": {
+		"@type": "merge",
+		"additions": ["00:00:00"],
+		"removals": ["01:00:00"]
+	},
+	"valueLong": {
+		"@type": "merge",
+		"additions": [1],
+		"removals": [2]
+	},
+	"valueOffsetDateTime": {
+		"@type": "merge",
+		"additions": ["2020-01-01T00:00:00+02:00"],
+		"removals": ["2020-01-02T00:00:00+02:00"]
+	},
+	"valueShort": {
+		"@type": "merge",
+		"additions": [1],
+		"removals": [2]
+	},
+	"valueString": {
+		"@type": "merge",
+		"additions": ["string"],
+		"removals": ["another string"]
+	},
+	"valueZonedDateTime": {
+		"@type": "merge",
+		"additions": ["2020-01-01T00:00:00+01:00[Europe/Berlin]"],
+		"removals": ["2020-01-02T00:00:00+01:00[Europe/Berlin]"]
+	}
+}

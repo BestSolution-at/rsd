@@ -21,16 +21,16 @@ import org.jboss.resteasy.reactive.RestForm;
 
 @ApplicationScoped
 @Path("/api/liststreaming")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class ListStreamingServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ListStreamingServiceService service;
 	private final ListStreamingServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListStreamingServiceResource(ListStreamingServiceService service, ListStreamingServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListStreamingServiceResource(ListStreamingServiceService service, ListStreamingServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -40,7 +40,7 @@ public class ListStreamingServiceResource {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -50,6 +50,7 @@ public class ListStreamingServiceResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
@@ -58,7 +59,7 @@ public class ListStreamingServiceResource {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/vnd.msgpack".equals(e) || "application/x-ndjson".equals(e))
+				.filter(e -> "application/vnd.msgpack".equals(e) || "application/avro".equals(e) || "application/x-ndjson".equals(e))
 				.findFirst()
 				.orElse("application/x-ndjson");
 	}

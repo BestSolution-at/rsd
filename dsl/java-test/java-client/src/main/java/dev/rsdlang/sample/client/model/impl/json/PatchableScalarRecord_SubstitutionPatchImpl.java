@@ -136,7 +136,10 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			$builder.add("value_Null", _ScalarSupport.RangeToJson(value_Null));
 			return this;
 		}
-
+		public PatchableScalarRecord_Substitution.PatchBuilder value_NullNull() {
+			$builder.addNull("value_Null");
+			return this;
+		}
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder value_Opt(MyRange value_Opt) {
 			if (value_Opt == null) {
@@ -146,7 +149,10 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			$builder.add("value_Opt", _ScalarSupport.RangeToJson(value_Opt));
 			return this;
 		}
-
+		public PatchableScalarRecord_Substitution.PatchBuilder value_OptNull() {
+			$builder.addNull("value_Opt");
+			return this;
+		}
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder value_Opt_Null(MyRange value_Opt_Null) {
 			if (value_Opt_Null == null) {
@@ -156,7 +162,10 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			$builder.add("value_Opt_Null", _ScalarSupport.RangeToJson(value_Opt_Null));
 			return this;
 		}
-
+		public PatchableScalarRecord_Substitution.PatchBuilder value_Opt_NullNull() {
+			$builder.addNull("value_Opt_Null");
+			return this;
+		}
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder list(ListChange list) {
 			$builder.add("list", ((_BaseDataImpl) list).data);
@@ -182,6 +191,10 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Null(List_NullChange list_Null) {
+			if (list_Null == null) {
+				$builder.addNull("list_Null");
+				return this;
+			}
 			$builder.add("list_Null", ((_BaseDataImpl) list_Null).data);
 			return this;
 		}
@@ -202,9 +215,16 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			$builder.add("list_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public PatchableScalarRecord_Substitution.PatchBuilder list_NullNull() {
+			$builder.addNull("list_Null");
+			return this;
+		}
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt(List_OptChange list_Opt) {
+			if (list_Opt == null) {
+				$builder.addNull("list_Opt");
+				return this;
+			}
 			$builder.add("list_Opt", ((_BaseDataImpl) list_Opt).data);
 			return this;
 		}
@@ -225,9 +245,16 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			$builder.add("list_Opt", $changeBuilder.build());
 			return this;
 		}
-
+		public PatchableScalarRecord_Substitution.PatchBuilder list_OptNull() {
+			$builder.addNull("list_Opt");
+			return this;
+		}
 		@Override
 		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt_Null(List_Opt_NullChange list_Opt_Null) {
+			if (list_Opt_Null == null) {
+				$builder.addNull("list_Opt_Null");
+				return this;
+			}
 			$builder.add("list_Opt_Null", ((_BaseDataImpl) list_Opt_Null).data);
 			return this;
 		}
@@ -248,7 +275,10 @@ public class PatchableScalarRecord_SubstitutionPatchImpl extends _BaseDataImpl i
 			$builder.add("list_Opt_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public PatchableScalarRecord_Substitution.PatchBuilder list_Opt_NullNull() {
+			$builder.addNull("list_Opt_Null");
+			return this;
+		}
 		@Override
 		public PatchableScalarRecord_Substitution.Patch build() {
 			return new PatchableScalarRecord_SubstitutionPatchImpl($builder.build());

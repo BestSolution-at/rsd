@@ -11,7 +11,7 @@ import {
 	generateFileImpl,
 	generateStreamBlobImpl,
 	generateStreamFileImpl,
-} from '../java-model-json/stream-impl.js';
+} from '../java-base/stream-impl.js';
 import { MResolvedRSDModel } from '../model.js';
 import { hasFileStream, hasStream } from '../util.js';
 
@@ -21,7 +21,7 @@ export function generateStreamImpls(
 ): Artifact[] {
 	const rv: Artifact[] = [];
 	if (hasStream(model)) {
-		const packageName = `${artifactConfig.rootPackageName}.model.impl.json`;
+		const packageName = `${artifactConfig.rootPackageName}.model.impl`;
 		{
 			const importCollector = new JavaImportsCollector(packageName);
 			const fqn = importCollector.importType.bind(importCollector);

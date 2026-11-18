@@ -1,0 +1,24 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"value": "[0,1]",
+	"value_Null": "[0,1]",
+	"value_Opt": "[0,1]",
+	"value_Opt_Null": "[0,1]",
+	"list": {
+		"@type": "replace",
+		"elements": ["[0,1]"]
+	},
+	"list_Null": {
+		"@type": "replace",
+		"elements": ["[0,1]"]
+	},
+	"list_Opt": {
+		"@type": "replace",
+		"elements": ["[0,1]"]
+	},
+	"list_Opt_Null": {
+		"@type": "replace",
+		"elements": ["[0,1]"]
+	}
+}

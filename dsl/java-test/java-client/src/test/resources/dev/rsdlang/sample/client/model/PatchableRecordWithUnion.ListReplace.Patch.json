@@ -1,0 +1,80 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"value": {
+		"@type": "union-a",
+		"key": "data-a",
+		"version": "v-1",
+		"shared": "shared-a",
+		"value": "value-a"
+	},
+	"value_Null": {
+		"@type": "union-a",
+		"key": "data-a",
+		"version": "v-1",
+		"shared": "shared-a",
+		"value": "value-a"
+	},
+	"value_Opt": {
+		"@type": "union-a",
+		"key": "data-a",
+		"version": "v-1",
+		"shared": "shared-a",
+		"value": "value-a"
+	},
+	"value_Opt_Null": {
+		"@type": "union-a",
+		"key": "data-a",
+		"version": "v-1",
+		"shared": "shared-a",
+		"value": "value-a"
+	},
+	"list": {
+		"@type": "replace",
+		"elements": [
+			{
+				"@type": "union-a",
+				"key": "data-a",
+				"version": "v-1",
+				"shared": "shared-a",
+				"value": "value-a"
+			}
+		]
+	},
+	"list_Null": {
+		"@type": "replace",
+		"elements": [
+			{
+				"@type": "union-a",
+				"key": "data-a",
+				"version": "v-1",
+				"shared": "shared-a",
+				"value": "value-a"
+			}
+		]
+	},
+	"list_Opt": {
+		"@type": "replace",
+		"elements": [
+			{
+				"@type": "union-a",
+				"key": "data-a",
+				"version": "v-1",
+				"shared": "shared-a",
+				"value": "value-a"
+			}
+		]
+	},
+	"list_Opt_Null": {
+		"@type": "replace",
+		"elements": [
+			{
+				"@type": "union-a",
+				"key": "data-a",
+				"version": "v-1",
+				"shared": "shared-a",
+				"value": "value-a"
+			}
+		]
+	}
+}

@@ -22,16 +22,16 @@ import dev.rsdlang.sample.server.service.QueryParameterTypesService;
 
 @ApplicationScoped
 @Path("/api/queryparametertypes")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class QueryParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final QueryParameterTypesService service;
 	private final QueryParameterTypesResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public QueryParameterTypesResource(QueryParameterTypesService service, QueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public QueryParameterTypesResource(QueryParameterTypesService service, QueryParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -41,7 +41,7 @@ public class QueryParameterTypesResource {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -51,13 +51,14 @@ public class QueryParameterTypesResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
 
 	@GET
 	@Path("simpleBooleanQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleBooleanQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -68,7 +69,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleBooleanQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleBooleanQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -79,7 +80,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleShortQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleShortQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -90,7 +91,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleShortQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleShortQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -101,7 +102,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleIntQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleIntQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -112,7 +113,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleIntQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleIntQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -123,7 +124,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleLongQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLongQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -134,7 +135,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleLongQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLongQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -145,7 +146,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleFloatQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleFloatQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -156,7 +157,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleFloatQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleFloatQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -167,7 +168,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleDoubleQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleDoubleQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -178,7 +179,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleDoubleQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleDoubleQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -189,7 +190,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleStringQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleStringQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -200,7 +201,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleStringQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleStringQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -211,7 +212,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -222,7 +223,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -233,7 +234,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateTimeQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -244,7 +245,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalDateTimeQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateTimeQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -255,7 +256,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalTimeQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -266,7 +267,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleLocalTimeQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalTimeQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -277,7 +278,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleOffsetDateTimeQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleOffsetDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -288,7 +289,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleOffsetDateTimeQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleOffsetDateTimeQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -299,7 +300,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleZonedDateTimeQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleZonedDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -310,7 +311,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleZonedDateTimeQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleZonedDateTimeQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -321,7 +322,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleScalarQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleScalarQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -332,7 +333,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleScalarQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleScalarQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -343,7 +344,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleEnumQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleEnumQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -354,7 +355,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("simpleEnumQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleEnumQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") String _queryValue) {
@@ -365,7 +366,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("multiQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("valueA") String _valueA,
@@ -380,7 +381,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("multiQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("valueA") String _valueA,
@@ -395,7 +396,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("recordQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response recordQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
@@ -407,7 +408,7 @@ public class QueryParameterTypesResource {
 
 	@GET
 	@Path("recordQueryParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response recordQueryParamOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,

@@ -377,10 +377,7 @@ export function generateClient(
 				NL,
 			);
 			clBody.indent(mBody => {
-				mBody.append(
-					`return ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._BlobImpl`)}.of(file, mimeType);`,
-					NL,
-				);
+				mBody.append(`return ${fqn(`${artifactConfig.rootPackageName}.model.impl._BlobImpl`)}.of(file, mimeType);`, NL);
 			});
 			clBody.append('}', NL);
 			if (hasFileStream(m)) {
@@ -393,7 +390,7 @@ export function generateClient(
 				);
 				clBody.indent(mBody => {
 					mBody.append(
-						`return ${fqn(`${artifactConfig.rootPackageName}.model.impl.json._FileImpl`)}.of(file, mimeType, filename);`,
+						`return ${fqn(`${artifactConfig.rootPackageName}.model.impl._FileImpl`)}.of(file, mimeType, filename);`,
 						NL,
 					);
 				});

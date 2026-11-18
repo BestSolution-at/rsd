@@ -650,6 +650,14 @@ function generatePatchBuilderPropertyAccessor_Array(
 		node.append('@Override', NL);
 		node.append(`public ${t.name}.PatchBuilder ${property.name}(${prefix}Change ${property.name}) {`, NL);
 		node.indent(mBody => {
+			if (property.optional || property.nullable) {
+				mBody.append(`if (${property.name} == null) {`, NL);
+				mBody.indent(block => {
+					block.append(`$builder.addNull("${property.name}");`, NL);
+					block.append('return this;', NL);
+				});
+				mBody.append('}', NL);
+			}
 			mBody.append(`$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`, NL);
 			mBody.append('return this;', NL);
 		});
@@ -731,6 +739,14 @@ function generatePatchBuilderPropertyAccessor_Array(
 		const prefix = toFirstUpper(property.name);
 		node.append(`public ${t.name}.PatchBuilder ${property.name}(${prefix}Change ${property.name}) {`, NL);
 		node.indent(mBody => {
+			if (property.optional || property.nullable) {
+				mBody.append(`if (${property.name} == null) {`, NL);
+				mBody.indent(block => {
+					block.append(`$builder.addNull("${property.name}");`, NL);
+					block.append('return this;', NL);
+				});
+				mBody.append('}', NL);
+			}
 			mBody.append(`$builder.add("${property.name}", ((_BaseDataImpl) ${property.name}).data);`, NL);
 			mBody.append('return this;', NL);
 		});
@@ -784,10 +800,32 @@ export function generatePatchBuilderPropertyAccessor(
 	fqn: (type: string) => string,
 ) {
 	if (property.array) {
-		return generatePatchBuilderPropertyAccessor_Array(t, property, nativeTypeSubstitutes, basePackageName, fqn);
+		const rv = generatePatchBuilderPropertyAccessor_Array(t, property, nativeTypeSubstitutes, basePackageName, fqn);
+		if (property.optional || property.nullable) {
+			rv.append(generatePatchBuilderNullAccessor(t, property));
+		}
+		return rv;
 	} else {
-		return generatePatchBuilderPropertyAccessor_Scalar(t, property, nativeTypeSubstitutes, basePackageName, fqn);
+		const rv = generatePatchBuilderPropertyAccessor_Scalar(t, property, nativeTypeSubstitutes, basePackageName, fqn);
+		if (property.optional || property.nullable) {
+			rv.append(generatePatchBuilderNullAccessor(t, property));
+		}
+		return rv;
 	}
+}
+
+function generatePatchBuilderNullAccessor(t: MResolvedRecordType, property: MResolvedPropery) {
+	const node = new CompositeGeneratorNode();
+	if (property.optional || property.nullable) {
+		node.append(
+			toNodeTree(`
+public ${t.name}.PatchBuilder ${property.name}Null() {
+	$builder.addNull("${property.name}");
+	return this;
+}`),
+		);
+	}
+	return node;
 }
 
 export function generatePatchBuilderPropertyAccessor_Scalar(

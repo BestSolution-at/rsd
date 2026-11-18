@@ -99,7 +99,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueBoolean", valueBoolean);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueBooleanNull() {
+			$builder.addNull("valueBoolean");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueShort(Short valueShort) {
 			if (valueShort == null) {
@@ -109,7 +112,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueShort", valueShort);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueShortNull() {
+			$builder.addNull("valueShort");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueInt(Integer valueInt) {
 			if (valueInt == null) {
@@ -119,7 +125,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueInt", valueInt);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueIntNull() {
+			$builder.addNull("valueInt");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueLong(Long valueLong) {
 			if (valueLong == null) {
@@ -129,7 +138,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueLong", valueLong);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueLongNull() {
+			$builder.addNull("valueLong");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueFloat(Float valueFloat) {
 			if (valueFloat == null) {
@@ -139,7 +151,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueFloat", valueFloat);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueFloatNull() {
+			$builder.addNull("valueFloat");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueDouble(Double valueDouble) {
 			if (valueDouble == null) {
@@ -149,7 +164,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueDouble", valueDouble);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueDoubleNull() {
+			$builder.addNull("valueDouble");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueString(String valueString) {
 			if (valueString == null) {
@@ -159,7 +177,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueString", valueString);
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueStringNull() {
+			$builder.addNull("valueString");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueLocalDate(LocalDate valueLocalDate) {
 			if (valueLocalDate == null) {
@@ -169,7 +190,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueLocalDate", valueLocalDate.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueLocalDateNull() {
+			$builder.addNull("valueLocalDate");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueLocalDateTime(LocalDateTime valueLocalDateTime) {
 			if (valueLocalDateTime == null) {
@@ -179,7 +203,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueLocalDateTime", valueLocalDateTime.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueLocalDateTimeNull() {
+			$builder.addNull("valueLocalDateTime");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueLocalTime(LocalTime valueLocalTime) {
 			if (valueLocalTime == null) {
@@ -189,7 +216,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueLocalTime", valueLocalTime.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueLocalTimeNull() {
+			$builder.addNull("valueLocalTime");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueOffsetDateTime(OffsetDateTime valueOffsetDateTime) {
 			if (valueOffsetDateTime == null) {
@@ -199,7 +229,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueOffsetDateTime", valueOffsetDateTime.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueOffsetDateTimeNull() {
+			$builder.addNull("valueOffsetDateTime");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.PatchBuilder valueZonedDateTime(ZonedDateTime valueZonedDateTime) {
 			if (valueZonedDateTime == null) {
@@ -209,7 +242,10 @@ public class PatchableRecord_Basic_NullPatchImpl extends _BaseDataImpl implement
 			$builder.add("valueZonedDateTime", valueZonedDateTime.toString());
 			return this;
 		}
-
+		public PatchableRecord_Basic_Null.PatchBuilder valueZonedDateTimeNull() {
+			$builder.addNull("valueZonedDateTime");
+			return this;
+		}
 		@Override
 		public PatchableRecord_Basic_Null.Patch build() {
 			return new PatchableRecord_Basic_NullPatchImpl($builder.build());

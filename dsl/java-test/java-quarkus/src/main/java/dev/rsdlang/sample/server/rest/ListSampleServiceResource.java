@@ -18,16 +18,16 @@ import dev.rsdlang.sample.server.service.SampleErrorException;
 
 @ApplicationScoped
 @Path("/api/listsamplerecords")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class ListSampleServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ListSampleServiceService service;
 	private final ListSampleServiceResourceResponseBuilder responseBuilder;
 
 	@Inject
-	public ListSampleServiceResource(ListSampleServiceService service, ListSampleServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListSampleServiceResource(ListSampleServiceService service, ListSampleServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
@@ -37,7 +37,7 @@ public class ListSampleServiceResource {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -47,13 +47,14 @@ public class ListSampleServiceResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
 
 	@GET
 	@Path("boolean")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listBoolean(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listBoolean(builderFactory);
 		return responseBuilder.listBoolean(result, computeResponseContentType($acceptHeaders)).build();
@@ -61,7 +62,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("short")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listShort(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listShort(builderFactory);
 		return responseBuilder.listShort(result, computeResponseContentType($acceptHeaders)).build();
@@ -69,7 +70,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("int")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listInt(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listInt(builderFactory);
 		return responseBuilder.listInt(result, computeResponseContentType($acceptHeaders)).build();
@@ -77,7 +78,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("long")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listLong(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listLong(builderFactory);
 		return responseBuilder.listLong(result, computeResponseContentType($acceptHeaders)).build();
@@ -85,7 +86,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("float")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listFloat(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listFloat(builderFactory);
 		return responseBuilder.listFloat(result, computeResponseContentType($acceptHeaders)).build();
@@ -93,7 +94,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("double")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listDouble(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listDouble(builderFactory);
 		return responseBuilder.listDouble(result, computeResponseContentType($acceptHeaders)).build();
@@ -101,7 +102,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("string")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listString(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listString(builderFactory);
 		return responseBuilder.listString(result, computeResponseContentType($acceptHeaders)).build();
@@ -109,7 +110,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("localdate")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listLocalDate(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listLocalDate(builderFactory);
 		return responseBuilder.listLocalDate(result, computeResponseContentType($acceptHeaders)).build();
@@ -117,7 +118,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("localdatetime")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listLocalDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listLocalDateTime(builderFactory);
 		return responseBuilder.listLocalDateTime(result, computeResponseContentType($acceptHeaders)).build();
@@ -125,7 +126,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("localtime")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listLocalTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listLocalTime(builderFactory);
 		return responseBuilder.listLocalTime(result, computeResponseContentType($acceptHeaders)).build();
@@ -133,7 +134,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("offsetdatetime")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listOffsetDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listOffsetDateTime(builderFactory);
 		return responseBuilder.listOffsetDateTime(result, computeResponseContentType($acceptHeaders)).build();
@@ -141,7 +142,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("zoneddatetime")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listZonedDateTime(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listZonedDateTime(builderFactory);
 		return responseBuilder.listZonedDateTime(result, computeResponseContentType($acceptHeaders)).build();
@@ -149,7 +150,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("scalar")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listScalar(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listScalar(builderFactory);
 		return responseBuilder.listScalar(result, computeResponseContentType($acceptHeaders)).build();
@@ -157,7 +158,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("enum")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listEnum(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listEnum(builderFactory);
 		return responseBuilder.listEnum(result, computeResponseContentType($acceptHeaders)).build();
@@ -165,7 +166,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("simplerecord")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listSimpleRecord(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.listSimpleRecord(builderFactory);
 		return responseBuilder.listSimpleRecord(result, computeResponseContentType($acceptHeaders)).build();
@@ -173,7 +174,7 @@ public class ListSampleServiceResource {
 
 	@GET
 	@Path("simplerecordwitherror")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listSimpleRecordWithError(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			var result = service.listSimpleRecordWithError(builderFactory);

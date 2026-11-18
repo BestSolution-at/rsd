@@ -43,10 +43,10 @@ export function generateJDKHttpClientResponseUtils(
 		importCollector.importType('java.nio.file.Files');
 		importCollector.importType('java.nio.file.Path');
 		importCollector.importType('java.nio.file.StandardCopyOption');
-		importCollector.importType(`${artifactConfig.rootPackageName}.model.impl.json._BlobImpl`);
+		importCollector.importType(`${artifactConfig.rootPackageName}.model.impl._BlobImpl`);
 		importCollector.importType(`${artifactConfig.rootPackageName}.model.RSDBlob`);
 		if (hasFileStreamResult(model)) {
-			importCollector.importType(`${artifactConfig.rootPackageName}.model.impl.json._FileImpl`);
+			importCollector.importType(`${artifactConfig.rootPackageName}.model.impl._FileImpl`);
 			importCollector.importType(`${artifactConfig.rootPackageName}.model.RSDFile`);
 		}
 	}

@@ -120,10 +120,13 @@ public interface PatchableScalarRecord {
 		public PatchBuilder value(ZoneId value);
 
 		public PatchBuilder value_Null(ZoneId value_Null);
+		public PatchBuilder value_NullNull();
 
 		public PatchBuilder value_Opt(ZoneId value_Opt);
+		public PatchBuilder value_OptNull();
 
 		public PatchBuilder value_Opt_Null(ZoneId value_Opt_Null);
+		public PatchBuilder value_Opt_NullNull();
 
 		public PatchBuilder list(Patch.ListChange list);
 		public PatchBuilder list(List<ZoneId> additions, List<ZoneId> removals);
@@ -132,14 +135,17 @@ public interface PatchableScalarRecord {
 		public PatchBuilder list_Null(Patch.List_NullChange list_Null);
 		public PatchBuilder list_Null(List<ZoneId> additions, List<ZoneId> removals);
 		public PatchBuilder list_Null(List<ZoneId> elements);
+		public PatchBuilder list_NullNull();
 
 		public PatchBuilder list_Opt(Patch.List_OptChange list_Opt);
 		public PatchBuilder list_Opt(List<ZoneId> additions, List<ZoneId> removals);
 		public PatchBuilder list_Opt(List<ZoneId> elements);
+		public PatchBuilder list_OptNull();
 
 		public PatchBuilder list_Opt_Null(Patch.List_Opt_NullChange list_Opt_Null);
 		public PatchBuilder list_Opt_Null(List<ZoneId> additions, List<ZoneId> removals);
 		public PatchBuilder list_Opt_Null(List<ZoneId> elements);
+		public PatchBuilder list_Opt_NullNull();
 
 	}
 }
