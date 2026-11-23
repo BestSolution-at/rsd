@@ -29,6 +29,7 @@ import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedNilDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedOptDataImpl;
 import dev.rsdlang.sample.server.rest.model.BinaryTypesUploadMixedOptNilDataImpl;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.BinaryTypesService;
 import dev.rsdlang.sample.server.service.SampleErrorWithValueException;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
@@ -43,12 +44,14 @@ public class BinaryTypesResource {
 	private final JsonBuilderFactory builderFactory;
 	private final BinaryTypesService service;
 	private final BinaryTypesResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public BinaryTypesResource(BinaryTypesService service, BinaryTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
+	public BinaryTypesResource(BinaryTypesService service, BinaryTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {

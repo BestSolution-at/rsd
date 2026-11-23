@@ -19,6 +19,7 @@ import jakarta.ws.rs.QueryParam;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.rest.model.ScalarSubstition_ServiceMultiBodyDataImpl;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.SampleErrorScalarSubException;
 import dev.rsdlang.sample.server.service.ScalarSubstition_ServiceService;
 
@@ -31,12 +32,14 @@ public class ScalarSubstition_ServiceResource {
 	private final JsonBuilderFactory builderFactory;
 	private final ScalarSubstition_ServiceService service;
 	private final ScalarSubstition_ServiceResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public ScalarSubstition_ServiceResource(ScalarSubstition_ServiceService service, ScalarSubstition_ServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
+	public ScalarSubstition_ServiceResource(ScalarSubstition_ServiceService service, ScalarSubstition_ServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {

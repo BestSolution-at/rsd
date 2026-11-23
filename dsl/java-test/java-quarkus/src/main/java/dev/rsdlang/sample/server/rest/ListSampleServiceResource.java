@@ -13,6 +13,7 @@ import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.ListSampleServiceService;
 import dev.rsdlang.sample.server.service.SampleErrorException;
 
@@ -25,12 +26,14 @@ public class ListSampleServiceResource {
 	private final JsonBuilderFactory builderFactory;
 	private final ListSampleServiceService service;
 	private final ListSampleServiceResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public ListSampleServiceResource(ListSampleServiceService service, ListSampleServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
+	public ListSampleServiceResource(ListSampleServiceService service, ListSampleServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {

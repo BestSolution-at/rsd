@@ -19,6 +19,7 @@ import jakarta.ws.rs.QueryParam;
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.rest.model.EnumSubstition_ServiceMultiBodyDataImpl;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.EnumSubstition_ServiceService;
 import dev.rsdlang.sample.server.service.SampleErrorEnumSubException;
 
@@ -31,12 +32,14 @@ public class EnumSubstition_ServiceResource {
 	private final JsonBuilderFactory builderFactory;
 	private final EnumSubstition_ServiceService service;
 	private final EnumSubstition_ServiceResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public EnumSubstition_ServiceResource(EnumSubstition_ServiceService service, EnumSubstition_ServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
+	public EnumSubstition_ServiceResource(EnumSubstition_ServiceService service, EnumSubstition_ServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {

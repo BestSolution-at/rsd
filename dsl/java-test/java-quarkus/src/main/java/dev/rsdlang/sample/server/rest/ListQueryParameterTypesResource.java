@@ -18,6 +18,7 @@ import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 
 @ApplicationScoped
@@ -29,12 +30,14 @@ public class ListQueryParameterTypesResource {
 	private final JsonBuilderFactory builderFactory;
 	private final ListQueryParameterTypesService service;
 	private final ListQueryParameterTypesResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public ListQueryParameterTypesResource(ListQueryParameterTypesService service, ListQueryParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
+	public ListQueryParameterTypesResource(ListQueryParameterTypesService service, ListQueryParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {

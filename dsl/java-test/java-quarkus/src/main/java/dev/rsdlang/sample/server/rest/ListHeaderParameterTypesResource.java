@@ -17,6 +17,7 @@ import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.ListHeaderParameterTypesService;
 
 @ApplicationScoped
@@ -28,12 +29,14 @@ public class ListHeaderParameterTypesResource {
 	private final JsonBuilderFactory builderFactory;
 	private final ListHeaderParameterTypesService service;
 	private final ListHeaderParameterTypesResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public ListHeaderParameterTypesResource(ListHeaderParameterTypesService service, ListHeaderParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory) {
+	public ListHeaderParameterTypesResource(ListHeaderParameterTypesService service, ListHeaderParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {
