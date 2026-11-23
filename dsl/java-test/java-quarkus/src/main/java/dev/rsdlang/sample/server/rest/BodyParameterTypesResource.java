@@ -750,7 +750,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseLiteral(_bodyEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.simpleEnumBodyParam(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -762,7 +763,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseOptLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseOptLiteral(_bodyEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.simpleEnumBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -774,7 +776,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNullLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseNullLiteral(_bodyEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleEnumBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -786,7 +789,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNilLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseNilLiteral(_bodyEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleEnumBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}

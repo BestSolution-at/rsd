@@ -84,7 +84,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseLiteral(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseLiteral(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.post(builderFactory, dayOfWeek);
 		return responseBuilder.post(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
@@ -96,7 +97,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseOptLiteral(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseOptLiteral(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postOpt(builderFactory, dayOfWeek);
 		return responseBuilder.postOpt(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
@@ -108,7 +110,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseNullLiteral(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseNullLiteral(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postNull(builderFactory, dayOfWeek);
 		return responseBuilder.postNull(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
@@ -120,7 +123,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseNilLiteral(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseNilLiteral(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postOptNull(builderFactory, dayOfWeek);
 		return responseBuilder.postOptNull(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
@@ -132,7 +136,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseLiterals(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseLiterals(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postList(builderFactory, dayOfWeek);
 		return responseBuilder.postList(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
@@ -144,7 +149,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseOptLiterals(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseOptLiterals(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postListOpt(builderFactory, dayOfWeek);
 		return responseBuilder.postListOpt(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
@@ -156,7 +162,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseNullLiterals(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseNullLiterals(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postListNull(builderFactory, dayOfWeek);
 		return responseBuilder.postListNull(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
@@ -168,7 +175,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseNilLiterals(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseNilLiterals(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postListOptNull(builderFactory, dayOfWeek);
 		return responseBuilder.postListOptNull(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
