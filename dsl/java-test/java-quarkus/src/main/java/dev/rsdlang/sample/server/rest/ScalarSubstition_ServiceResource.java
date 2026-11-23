@@ -84,7 +84,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.post(builderFactory, range);
 		return responseBuilder.post(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -96,7 +97,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseOptLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseOptLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postOpt(builderFactory, range);
 		return responseBuilder.postOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -108,7 +110,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNullLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseNullLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postNull(builderFactory, range);
 		return responseBuilder.postNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -120,7 +123,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNilLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseNilLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postOptNull(builderFactory, range);
 		return responseBuilder.postOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -132,7 +136,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postList(builderFactory, range);
 		return responseBuilder.postList(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -144,7 +149,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseOptLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseOptLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postListOpt(builderFactory, range);
 		return responseBuilder.postListOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -156,7 +162,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNullLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseNullLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postListNull(builderFactory, range);
 		return responseBuilder.postListNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
@@ -168,7 +175,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNilLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseNilLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postListOptNull(builderFactory, range);
 		return responseBuilder.postListOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}

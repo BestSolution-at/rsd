@@ -1080,84 +1080,86 @@ function scalarParameter(
 	contentTypeText: string,
 ) {
 	const ScalarSupport = fqn(`${artifactConfig.rootPackageName}.model.impl.json._ScalarSupport`);
-	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
+	// const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
+			node.append(`var $p = contentParserProvider.getParser(${contentTypeText});`, NL);
 			if (p.optional && p.nullable) {
-				node.append(
-					`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
-					NL,
-				);
+				node.append(`var ${p.name} = $p.parseNilLiterals(_${p.name}, ${ScalarSupport}::${p.type}FromJson);`, NL);
 			} else if (p.optional) {
-				node.append(
-					`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
-					NL,
-				);
+				node.append(`var ${p.name} = $p.parseOptLiterals(_${p.name}, ${ScalarSupport}::${p.type}FromJson);`, NL);
 			} else if (p.nullable) {
-				node.append(
-					`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
-					NL,
-				);
+				node.append(`var ${p.name} = $p.parseNullLiterals(_${p.name}, ${ScalarSupport}::${p.type}FromJson);`, NL);
 			} else {
-				node.append(
-					`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${contentTypeText}, ${ScalarSupport}::${p.type}FromJson);`,
-					NL,
-				);
+				node.append(`var ${p.name} = $p.parseLiterals(_${p.name}, ${ScalarSupport}::${p.type}FromJson);`, NL);
 			}
 		} else {
-			const transformerPre = p.meta?.rest?.source === 'header' ? `${_Util}.preprocessEscapedAscii(` : '';
+			const transformerPre = p.meta?.rest?.source === 'header' ? `_RestUtils.preprocessEscapedAscii(` : '';
 			const transformerPost = p.meta?.rest?.source === 'header' ? `)` : '';
 
 			if (p.optional && p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
+					`var ${p.name} = _RestUtils.mapNilLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else if (p.optional) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
+					`var ${p.name} = _RestUtils.mapOptLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else if (p.nullable) {
 				node.append(
-					`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
+					`var ${p.name} = _RestUtils.mapNullLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			} else {
 				node.append(
-					`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
+					`var ${p.name} = _RestUtils.mapLiterals(_${p.name}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
 					NL,
 				);
 			}
 		}
 	} else {
-		const transformerPre = p.meta?.rest?.source === 'header' ? `${_Util}.preprocessEscapedAscii(` : '';
-		const transformerPost = p.meta?.rest?.source === 'header' ? `)` : '';
-		const mimeType =
-			p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
-				? ''
-				: `, ${contentTypeText}`;
-		if (p.optional && p.nullable) {
-			node.append(
-				`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
-				NL,
-			);
-		} else if (p.optional) {
-			node.append(
-				`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
-				NL,
-			);
-		} else if (p.nullable) {
-			node.append(
-				`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
-				NL,
-			);
+		if (asJSON) {
+			node.append(`var $p = contentParserProvider.getParser(${contentTypeText});`, NL);
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = $p.parseNilLiteral(_${p.name}, ${ScalarSupport}::${p.type}FromJson);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = $p.parseOptLiteral(_${p.name}, ${ScalarSupport}::${p.type}FromJson);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = $p.parseNullLiteral(_${p.name}, ${ScalarSupport}::${p.type}FromJson);`, NL);
+			} else {
+				node.append(`var ${p.name} = $p.parseLiteral(_${p.name}, ${ScalarSupport}::${p.type}FromJson);`, NL);
+			}
 		} else {
-			node.append(
-				`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
-				NL,
-			);
+			const transformerPre = p.meta?.rest?.source === 'header' ? `_RestUtils.preprocessEscapedAscii(` : '';
+			const transformerPost = p.meta?.rest?.source === 'header' ? `)` : '';
+			const mimeType =
+				p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
+					? ''
+					: `, ${contentTypeText}`;
+			if (p.optional && p.nullable) {
+				node.append(
+					`var ${p.name} = _RestUtils.parseNilLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
+					NL,
+				);
+			} else if (p.optional) {
+				node.append(
+					`var ${p.name} = _RestUtils.parseOptLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
+					NL,
+				);
+			} else if (p.nullable) {
+				node.append(
+					`var ${p.name} = _RestUtils.parseNullLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
+					NL,
+				);
+			} else {
+				node.append(
+					`var ${p.name} = _RestUtils.parseLiteral(_${p.name}${mimeType}, ${transformerPre}${ScalarSupport}::${p.type}FromJson${transformerPost});`,
+					NL,
+				);
+			}
 		}
 	}
 	return node;

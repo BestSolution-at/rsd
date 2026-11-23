@@ -694,7 +694,8 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseLiterals(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyScalar = $p.parseLiterals(_bodyScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.listScalarBodyParam(builderFactory, bodyScalar);
 		return responseBuilder.listScalarBodyParam(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
@@ -706,7 +707,8 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseOptLiterals(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyScalar = $p.parseOptLiterals(_bodyScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.listScalarBodyParamOpt(builderFactory, bodyScalar);
 		return responseBuilder.listScalarBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
@@ -718,7 +720,8 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseNullLiterals(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyScalar = $p.parseNullLiterals(_bodyScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.listScalarBodyParamNil(builderFactory, bodyScalar);
 		return responseBuilder.listScalarBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
@@ -730,7 +733,8 @@ public class ListBodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseNilLiterals(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyScalar = $p.parseNilLiterals(_bodyScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.listScalarBodyParamOptNil(builderFactory, bodyScalar);
 		return responseBuilder.listScalarBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
