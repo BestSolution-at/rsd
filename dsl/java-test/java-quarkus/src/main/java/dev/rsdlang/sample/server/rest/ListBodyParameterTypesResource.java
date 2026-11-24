@@ -15,7 +15,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.PUT;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.rest.model.ListBodyParameterTypesListMultiBodyParamDataImpl;

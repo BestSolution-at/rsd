@@ -15,7 +15,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
@@ -236,7 +235,8 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("valueD") List<String> _valueD) {
 		var valueA = _RestUtils.mapStrings(_valueA);
 		var valueB = _RestUtils.mapInts(_valueB);
-		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pValueC = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var valueC = _RestUtils.mapObjects(_valueC, $o -> $pValueC.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var valueD = _RestUtils.mapLiterals(_valueD, _ScalarSupport::ZoneIdFromJson);
 		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC, valueD);
 		return responseBuilder.listMultiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
@@ -249,7 +249,8 @@ public class ListQueryParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pQueryValue = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> $pQueryValue.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.listRecordQueryParam(builderFactory, queryValue);
 		return responseBuilder.listRecordQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}

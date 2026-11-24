@@ -16,7 +16,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.PatchableRecord;
 import dev.rsdlang.sample.server.model.SimpleRecord;

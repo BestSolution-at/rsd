@@ -14,7 +14,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SimpleRecord;
 import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
@@ -730,7 +729,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueD") String _valueD) {
 		var valueA = _RestUtils.mapStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.mapInts(_valueB);
-		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pValueC = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var valueC = _RestUtils.mapObjects(_valueC, $o -> $pValueC.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var valueD = _RestUtils.mapLiterals(_valueD, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
 		var result = service.listMultiHeaderParam(builderFactory, valueA, valueB, valueC, valueD);
 		return responseBuilder.listMultiHeaderParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
@@ -748,7 +748,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueD") String _valueD) {
 		var valueA = _RestUtils.mapOptStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.mapOptInts(_valueB);
-		var valueC = _RestUtils.mapOptObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pValueC = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var valueC = _RestUtils.mapOptObjects(_valueC, $o -> $pValueC.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var valueD = _RestUtils.mapOptLiterals(_valueD, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
 		var result = service.listMultiHeaderParamOpt(builderFactory, valueA, valueB, valueC, valueD);
 		return responseBuilder.listMultiHeaderParamOpt(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
@@ -766,7 +767,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueD") String _valueD) {
 		var valueA = _RestUtils.mapNullStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.mapNullInts(_valueB);
-		var valueC = _RestUtils.mapNullObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pValueC = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var valueC = _RestUtils.mapNullObjects(_valueC, $o -> $pValueC.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var valueD = _RestUtils.mapNullLiterals(_valueD, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
 		var result = service.listMultiHeaderParamNil(builderFactory, valueA, valueB, valueC, valueD);
 		return responseBuilder.listMultiHeaderParamNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
@@ -784,7 +786,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("valueD") String _valueD) {
 		var valueA = _RestUtils.mapNilStrings(_valueA, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var valueB = _RestUtils.mapNilInts(_valueB);
-		var valueC = _RestUtils.mapNilObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pValueC = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var valueC = _RestUtils.mapNilObjects(_valueC, $o -> $pValueC.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var valueD = _RestUtils.mapNilLiterals(_valueD, _RestUtils.preprocessEscapedAscii(_ScalarSupport::ZoneIdFromJson));
 		var result = service.listMultiHeaderParamOptNil(builderFactory, valueA, valueB, valueC, valueD);
 		return responseBuilder.listMultiHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
@@ -797,7 +800,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pHeaderValue = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var headerValue = _RestUtils.mapObjects(_headerValue, $o -> $pHeaderValue.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.listRecordHeaderParam(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParam(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -809,7 +813,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapOptObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pHeaderValue = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var headerValue = _RestUtils.mapOptObjects(_headerValue, $o -> $pHeaderValue.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.listRecordHeaderParamOpt(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamOpt(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -821,7 +826,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapNullObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pHeaderValue = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var headerValue = _RestUtils.mapNullObjects(_headerValue, $o -> $pHeaderValue.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.listRecordHeaderParamNil(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
@@ -833,7 +839,8 @@ public class ListHeaderParameterTypesResource {
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@HeaderParam("headerValue") String _headerValue) {
-		var headerValue = _RestUtils.mapNilObjects(_headerValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pHeaderValue = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var headerValue = _RestUtils.mapNilObjects(_headerValue, $o -> $pHeaderValue.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.listRecordHeaderParamOptNil(builderFactory, headerValue);
 		return responseBuilder.listRecordHeaderParamOptNil(result, computeResponseContentType($acceptHeaders), headerValue).build();
 	}
