@@ -1030,43 +1030,57 @@ function inlineEnumParameter(
 	contentTypeText: string,
 ) {
 	const t = `${Service}.` + toFirstUpper(o.name) + '_' + toFirstUpper(p.name) + '_Param$';
-	const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
+	// const _Util = asJSON ? fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`) : '_RestUtils';
 	const node = new CompositeGeneratorNode();
 	if (p.array) {
 		if (asJSON) {
+			node.append(`var $p = contentParserProvider.getParser(${contentTypeText});`, NL);
 			if (p.optional && p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNilLiterals(_${p.name}, ${contentTypeText}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = $p.parseNilLiterals(_${p.name}, ${t}::valueOf);`, NL);
 			} else if (p.optional) {
-				node.append(`var ${p.name} = ${_Util}.parseOptLiterals(_${p.name}, ${contentTypeText}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = $p.parseOptLiterals(_${p.name}, ${t}::valueOf);`, NL);
 			} else if (p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.parseNullLiterals(_${p.name}, ${contentTypeText}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = $p.parseNullLiterals(_${p.name}, ${t}::valueOf);`, NL);
 			} else {
-				node.append(`var ${p.name} = ${_Util}.parseLiterals(_${p.name}, ${contentTypeText}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = $p.parseLiterals(_${p.name}, ${t}::valueOf);`, NL);
 			}
 		} else {
 			if (p.optional && p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.mapNilLiterals(_${p.name}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = _RestUtils.mapNilLiterals(_${p.name}, ${t}::valueOf);`, NL);
 			} else if (p.optional) {
-				node.append(`var ${p.name} = ${_Util}.mapOptLiterals(_${p.name}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = _RestUtils.mapOptLiterals(_${p.name}, ${t}::valueOf);`, NL);
 			} else if (p.nullable) {
-				node.append(`var ${p.name} = ${_Util}.mapNullLiterals(_${p.name}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = _RestUtils.mapNullLiterals(_${p.name}, ${t}::valueOf);`, NL);
 			} else {
-				node.append(`var ${p.name} = ${_Util}.mapLiterals(_${p.name}, ${t}::valueOf);`, NL);
+				node.append(`var ${p.name} = _RestUtils.mapLiterals(_${p.name}, ${t}::valueOf);`, NL);
 			}
 		}
 	} else {
-		const mimeType =
-			p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
-				? ''
-				: `, ${contentTypeText}`;
-		if (p.optional && p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNilLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
-		} else if (p.optional) {
-			node.append(`var ${p.name} = ${_Util}.parseOptLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
-		} else if (p.nullable) {
-			node.append(`var ${p.name} = ${_Util}.parseNullLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+		if (asJSON) {
+			node.append(`var $p = contentParserProvider.getParser(${contentTypeText});`, NL);
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = $p.parseNilLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = $p.parseOptLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = $p.parseNullLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			} else {
+				node.append(`var ${p.name} = $p.parseLiteral(_${p.name}, ${t}::valueOf);`, NL);
+			}
 		} else {
-			node.append(`var ${p.name} = ${_Util}.parseLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			const mimeType =
+				p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'path' || p.meta?.rest?.source === 'query'
+					? ''
+					: `, ${contentTypeText}`;
+			if (p.optional && p.nullable) {
+				node.append(`var ${p.name} = _RestUtils.parseNilLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			} else if (p.optional) {
+				node.append(`var ${p.name} = _RestUtils.parseOptLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			} else if (p.nullable) {
+				node.append(`var ${p.name} = _RestUtils.parseNullLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			} else {
+				node.append(`var ${p.name} = _RestUtils.parseLiteral(_${p.name}${mimeType}, ${t}::valueOf);`, NL);
+			}
 		}
 	}
 	return node;

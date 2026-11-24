@@ -802,7 +802,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$::valueOf);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseLiteral(_bodyEnum, BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParam(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -814,7 +815,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseOptLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseOptLiteral(_bodyEnum, BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -826,7 +828,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNullLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseNullLiteral(_bodyEnum, BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
@@ -838,7 +841,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNilLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseNilLiteral(_bodyEnum, BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
