@@ -16,7 +16,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.rest.model.ScalarSubstition_ServiceMultiBodyDataImpl;
 import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
@@ -364,7 +363,8 @@ public class ScalarSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), ScalarSubstition_ServiceMultiBodyDataImpl::new, ScalarSubstition_ServiceMultiBodyDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, ScalarSubstition_ServiceMultiBodyDataImpl::new, ScalarSubstition_ServiceMultiBodyDataImpl.class);
 		var result = service.multiBody(builderFactory, dto.valueA(), dto.valueB());
 		return responseBuilder.multiBody(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB()).build();
 	}

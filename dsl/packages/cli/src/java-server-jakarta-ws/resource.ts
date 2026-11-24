@@ -632,9 +632,9 @@ function generateResourceMethod(
 			}
 		});
 		if (multiBody) {
-			const _JsonUtils = fqn(`${artifactConfig.rootPackageName}.model.impl.json._JsonUtils`);
 			const Type = fqn(`${packageName}.model.${s.name}${toFirstUpper(o.name)}DataImpl`);
-			mBody.append(`var dto = ${_JsonUtils}.parseObject(data, ${contentTypeText}, ${Type}::new, ${Type}.class);`, NL);
+			mBody.append(`var $p = contentParserProvider.getParser(${contentTypeText});`, NL);
+			mBody.append(`var dto = $p.parseObject(data, ${Type}::new, ${Type}.class);`, NL);
 		}
 		if (artifactConfig.scopeValues) {
 			artifactConfig.scopeValues.forEach(v => {

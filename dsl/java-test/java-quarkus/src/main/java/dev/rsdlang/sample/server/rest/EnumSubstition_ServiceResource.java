@@ -17,7 +17,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.rest.model.EnumSubstition_ServiceMultiBodyDataImpl;
 import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.EnumSubstition_ServiceService;
@@ -364,7 +363,8 @@ public class EnumSubstition_ServiceResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), EnumSubstition_ServiceMultiBodyDataImpl::new, EnumSubstition_ServiceMultiBodyDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, EnumSubstition_ServiceMultiBodyDataImpl::new, EnumSubstition_ServiceMultiBodyDataImpl.class);
 		var result = service.multiBody(builderFactory, dto.valueA(), dto.valueB());
 		return responseBuilder.multiBody(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB()).build();
 	}

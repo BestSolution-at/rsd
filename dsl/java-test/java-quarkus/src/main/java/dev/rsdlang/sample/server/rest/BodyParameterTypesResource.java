@@ -854,7 +854,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamDataImpl::new, BodyParameterTypesMultiBodyParamDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamDataImpl::new, BodyParameterTypesMultiBodyParamDataImpl.class);
 		var result = service.multiBodyParam(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
 		return responseBuilder.multiBodyParam(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
@@ -866,7 +867,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamOptDataImpl::new, BodyParameterTypesMultiBodyParamOptDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamOptDataImpl::new, BodyParameterTypesMultiBodyParamOptDataImpl.class);
 		var result = service.multiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
 		return responseBuilder.multiBodyParamOpt(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
@@ -878,7 +880,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamNilDataImpl::new, BodyParameterTypesMultiBodyParamNilDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamNilDataImpl::new, BodyParameterTypesMultiBodyParamNilDataImpl.class);
 		var result = service.multiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
 		return responseBuilder.multiBodyParamNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
@@ -890,7 +893,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamOptNilDataImpl::new, BodyParameterTypesMultiBodyParamOptNilDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamOptNilDataImpl::new, BodyParameterTypesMultiBodyParamOptNilDataImpl.class);
 		var result = service.multiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
 		return responseBuilder.multiBodyParamOptNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
@@ -902,7 +906,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamFirstDataImpl::new, BodyParameterTypesMultiBodyParamFirstDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamFirstDataImpl::new, BodyParameterTypesMultiBodyParamFirstDataImpl.class);
 		var result = service.multiBodyParamFirst(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
 		return responseBuilder.multiBodyParamFirst(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
