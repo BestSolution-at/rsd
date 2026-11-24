@@ -28,6 +28,7 @@ import { generateStreamImpls } from './stream-impl.js';
 import { generateChangeSupport } from './listchange.js';
 import { generateScalarSupport } from './scalar-support.js';
 import { generateEnumSupport } from './enum-support.js';
+import { generateAvro } from './avro.js';
 
 export function generate(
 	model: MResolvedRSDModel,
@@ -71,6 +72,10 @@ export function generate(
 	result.push(...generateChangeSupport(artifactConfig));
 	result.push(...generateScalarSupport(model.elements.filter(isMScalarType), artifactConfig));
 	result.push(...generateEnumSupport(model.elements.filter(isMEnumType), artifactConfig));
+
+	if (artifactConfig.contentTypeEncodings?.includes('application/avro')) {
+		result.push(...generateAvro(model, generatorConfig, artifactConfig));
+	}
 
 	return result;
 }

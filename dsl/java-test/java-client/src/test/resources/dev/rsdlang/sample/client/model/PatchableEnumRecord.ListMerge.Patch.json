@@ -1,0 +1,28 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"value": "A",
+	"value_Null": "A",
+	"value_Opt": "A",
+	"value_Opt_Null": "A",
+	"list": {
+		"@type": "merge",
+		"additions": ["A"],
+		"removals": ["B"]
+	},
+	"list_Null": {
+		"@type": "merge",
+		"additions": ["A"],
+		"removals": ["B"]
+	},
+	"list_Opt": {
+		"@type": "merge",
+		"additions": ["A"],
+		"removals": ["B"]
+	},
+	"list_Opt_Null": {
+		"@type": "merge",
+		"additions": ["A"],
+		"removals": ["B"]
+	}
+}

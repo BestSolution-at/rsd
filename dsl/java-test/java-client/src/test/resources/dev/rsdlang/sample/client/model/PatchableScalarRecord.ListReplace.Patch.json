@@ -1,0 +1,24 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"value": "Europe/Paris",
+	"value_Null": "Europe/Paris",
+	"value_Opt": "Europe/Paris",
+	"value_Opt_Null": "Europe/Paris",
+	"list": {
+		"@type": "replace",
+		"elements": ["Europe/Paris"]
+	},
+	"list_Null": {
+		"@type": "replace",
+		"elements": ["Europe/Paris"]
+	},
+	"list_Opt": {
+		"@type": "replace",
+		"elements": ["Europe/Paris"]
+	},
+	"list_Opt_Null": {
+		"@type": "replace",
+		"elements": ["Europe/Paris"]
+	}
+}

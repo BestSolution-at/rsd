@@ -173,7 +173,10 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			}
 			return value_Null(block.apply(clazz.cast(b)));
 		}
-
+		public PatchableRecordOfRecords.PatchBuilder value_NullNull() {
+			$builder.addNull("value_Null");
+			return this;
+		}
 		@Override
 		public PatchableRecordOfRecords.PatchBuilder value_Opt(PatchableRecord_Basic value_Opt) {
 			if (value_Opt == null) {
@@ -201,7 +204,10 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			}
 			return value_Opt(block.apply(clazz.cast(b)));
 		}
-
+		public PatchableRecordOfRecords.PatchBuilder value_OptNull() {
+			$builder.addNull("value_Opt");
+			return this;
+		}
 		@Override
 		public PatchableRecordOfRecords.PatchBuilder value_Opt_Null(PatchableRecord_Basic value_Opt_Null) {
 			if (value_Opt_Null == null) {
@@ -229,7 +235,10 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			}
 			return value_Opt_Null(block.apply(clazz.cast(b)));
 		}
-
+		public PatchableRecordOfRecords.PatchBuilder value_Opt_NullNull() {
+			$builder.addNull("value_Opt_Null");
+			return this;
+		}
 		public PatchableRecordOfRecords.PatchBuilder list(ListChange list) {
 			$builder.add("list", ((_BaseDataImpl) list).data);
 			return this;
@@ -254,6 +263,10 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 		}
 
 		public PatchableRecordOfRecords.PatchBuilder list_Null(List_NullChange list_Null) {
+			if (list_Null == null) {
+				$builder.addNull("list_Null");
+				return this;
+			}
 			$builder.add("list_Null", ((_BaseDataImpl) list_Null).data);
 			return this;
 		}
@@ -275,8 +288,15 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			$builder.add("list_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public PatchableRecordOfRecords.PatchBuilder list_NullNull() {
+			$builder.addNull("list_Null");
+			return this;
+		}
 		public PatchableRecordOfRecords.PatchBuilder list_Opt(List_OptChange list_Opt) {
+			if (list_Opt == null) {
+				$builder.addNull("list_Opt");
+				return this;
+			}
 			$builder.add("list_Opt", ((_BaseDataImpl) list_Opt).data);
 			return this;
 		}
@@ -298,8 +318,15 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			$builder.add("list_Opt", $changeBuilder.build());
 			return this;
 		}
-
+		public PatchableRecordOfRecords.PatchBuilder list_OptNull() {
+			$builder.addNull("list_Opt");
+			return this;
+		}
 		public PatchableRecordOfRecords.PatchBuilder list_Opt_Null(List_Opt_NullChange list_Opt_Null) {
+			if (list_Opt_Null == null) {
+				$builder.addNull("list_Opt_Null");
+				return this;
+			}
 			$builder.add("list_Opt_Null", ((_BaseDataImpl) list_Opt_Null).data);
 			return this;
 		}
@@ -321,7 +348,10 @@ public class PatchableRecordOfRecordsPatchImpl extends _BaseDataImpl implements 
 			$builder.add("list_Opt_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public PatchableRecordOfRecords.PatchBuilder list_Opt_NullNull() {
+			$builder.addNull("list_Opt_Null");
+			return this;
+		}
 		@Override
 		public PatchableRecordOfRecords.Patch build() {
 			return new PatchableRecordOfRecordsPatchImpl($builder.build());

@@ -197,7 +197,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("month_Null", _EnumSupport.MonthToJson(month_Null));
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder month_NullNull() {
+			$builder.addNull("month_Null");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder month_Opt(Month month_Opt) {
 			if (month_Opt == null) {
@@ -207,7 +210,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("month_Opt", _EnumSupport.MonthToJson(month_Opt));
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder month_OptNull() {
+			$builder.addNull("month_Opt");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder month_Opt_Null(Month month_Opt_Null) {
 			if (month_Opt_Null == null) {
@@ -217,7 +223,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("month_Opt_Null", _EnumSupport.MonthToJson(month_Opt_Null));
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder month_Opt_NullNull() {
+			$builder.addNull("month_Opt_Null");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder monthList(MonthListChange monthList) {
 			$builder.add("monthList", ((_BaseDataImpl) monthList).data);
@@ -243,6 +252,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 
 		@Override
 		public EnumRecord_Substitution.PatchBuilder monthList_Null(MonthList_NullChange monthList_Null) {
+			if (monthList_Null == null) {
+				$builder.addNull("monthList_Null");
+				return this;
+			}
 			$builder.add("monthList_Null", ((_BaseDataImpl) monthList_Null).data);
 			return this;
 		}
@@ -263,9 +276,16 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("monthList_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder monthList_NullNull() {
+			$builder.addNull("monthList_Null");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder monthList_Opt(MonthList_OptChange monthList_Opt) {
+			if (monthList_Opt == null) {
+				$builder.addNull("monthList_Opt");
+				return this;
+			}
 			$builder.add("monthList_Opt", ((_BaseDataImpl) monthList_Opt).data);
 			return this;
 		}
@@ -286,9 +306,16 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("monthList_Opt", $changeBuilder.build());
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder monthList_OptNull() {
+			$builder.addNull("monthList_Opt");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder monthList_Opt_Null(MonthList_Opt_NullChange monthList_Opt_Null) {
+			if (monthList_Opt_Null == null) {
+				$builder.addNull("monthList_Opt_Null");
+				return this;
+			}
 			$builder.add("monthList_Opt_Null", ((_BaseDataImpl) monthList_Opt_Null).data);
 			return this;
 		}
@@ -309,7 +336,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("monthList_Opt_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder monthList_Opt_NullNull() {
+			$builder.addNull("monthList_Opt_Null");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeek(DayOfWeek dayOfWeek) {
 			$builder.add("dayOfWeek", _EnumSupport.DayOfWeekToJson(dayOfWeek));
@@ -325,7 +355,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("dayOfWeek_Null", _EnumSupport.DayOfWeekToJson(dayOfWeek_Null));
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_NullNull() {
+			$builder.addNull("dayOfWeek_Null");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Opt(DayOfWeek dayOfWeek_Opt) {
 			if (dayOfWeek_Opt == null) {
@@ -335,7 +368,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("dayOfWeek_Opt", _EnumSupport.DayOfWeekToJson(dayOfWeek_Opt));
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_OptNull() {
+			$builder.addNull("dayOfWeek_Opt");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Opt_Null(DayOfWeek dayOfWeek_Opt_Null) {
 			if (dayOfWeek_Opt_Null == null) {
@@ -345,7 +381,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("dayOfWeek_Opt_Null", _EnumSupport.DayOfWeekToJson(dayOfWeek_Opt_Null));
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder dayOfWeek_Opt_NullNull() {
+			$builder.addNull("dayOfWeek_Opt_Null");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList(DayOfWeekListChange dayOfWeekList) {
 			$builder.add("dayOfWeekList", ((_BaseDataImpl) dayOfWeekList).data);
@@ -371,6 +410,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Null(DayOfWeekList_NullChange dayOfWeekList_Null) {
+			if (dayOfWeekList_Null == null) {
+				$builder.addNull("dayOfWeekList_Null");
+				return this;
+			}
 			$builder.add("dayOfWeekList_Null", ((_BaseDataImpl) dayOfWeekList_Null).data);
 			return this;
 		}
@@ -391,9 +434,16 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("dayOfWeekList_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_NullNull() {
+			$builder.addNull("dayOfWeekList_Null");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt(DayOfWeekList_OptChange dayOfWeekList_Opt) {
+			if (dayOfWeekList_Opt == null) {
+				$builder.addNull("dayOfWeekList_Opt");
+				return this;
+			}
 			$builder.add("dayOfWeekList_Opt", ((_BaseDataImpl) dayOfWeekList_Opt).data);
 			return this;
 		}
@@ -414,9 +464,16 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("dayOfWeekList_Opt", $changeBuilder.build());
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_OptNull() {
+			$builder.addNull("dayOfWeekList_Opt");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt_Null(DayOfWeekList_Opt_NullChange dayOfWeekList_Opt_Null) {
+			if (dayOfWeekList_Opt_Null == null) {
+				$builder.addNull("dayOfWeekList_Opt_Null");
+				return this;
+			}
 			$builder.add("dayOfWeekList_Opt_Null", ((_BaseDataImpl) dayOfWeekList_Opt_Null).data);
 			return this;
 		}
@@ -437,7 +494,10 @@ public class EnumRecord_SubstitutionPatchImpl extends _BaseDataImpl implements E
 			$builder.add("dayOfWeekList_Opt_Null", $changeBuilder.build());
 			return this;
 		}
-
+		public EnumRecord_Substitution.PatchBuilder dayOfWeekList_Opt_NullNull() {
+			$builder.addNull("dayOfWeekList_Opt_Null");
+			return this;
+		}
 		@Override
 		public EnumRecord_Substitution.Patch build() {
 			return new EnumRecord_SubstitutionPatchImpl($builder.build());

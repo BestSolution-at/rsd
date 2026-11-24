@@ -16,30 +16,33 @@ import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.PathParameterTypeServiceService;
 
 @ApplicationScoped
 @Path("/api/pathparametertype")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class PathParameterTypeServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final PathParameterTypeServiceService service;
 	private final PathParameterTypeServiceResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public PathParameterTypeServiceResource(PathParameterTypeServiceService service, PathParameterTypeServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public PathParameterTypeServiceResource(PathParameterTypeServiceService service, PathParameterTypeServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -49,13 +52,14 @@ public class PathParameterTypeServiceResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
 
 	@GET
 	@Path("boolean/{pathBoolean}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleBooleanPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathBoolean") String _pathBoolean) {
@@ -66,7 +70,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("short/{pathShort}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleShortPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathShort") String _pathShort) {
@@ -77,7 +81,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("int/{pathInt}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleIntPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathInt") String _pathInt) {
@@ -88,7 +92,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("long/{pathLong}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLongPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathLong") String _pathLong) {
@@ -99,7 +103,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("float/{pathFloat}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleFloatPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathFloat") String _pathFloat) {
@@ -110,7 +114,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("double/{pathDouble}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleDoublePathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathDouble") String _pathDouble) {
@@ -121,7 +125,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("string/{pathString}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleStringPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathString") String _pathString) {
@@ -132,7 +136,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("localdate/{pathLocalDate}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDatePathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathLocalDate") String _pathLocalDate) {
@@ -143,7 +147,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("localdatetime/{pathLocalDateTime}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateTimePathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathLocalDateTime") String _pathLocalDateTime) {
@@ -154,7 +158,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("localtime/{pathLocalTime}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalTimePathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathLocalTime") String _pathLocalTime) {
@@ -165,7 +169,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("offsetdatetime/{pathOffsetDateTime}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleOffsetDateTimePathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathOffsetDateTime") String _pathOffsetDateTime) {
@@ -176,7 +180,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("zoneddatetime/{pathZonedDateTime}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleZonedDateTimePathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathZonedDateTime") String _pathZonedDateTime) {
@@ -187,7 +191,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("scalar/{pathScalar}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleScalarPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathScalar") String _pathScalar) {
@@ -198,7 +202,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("enum/{pathEnum}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleEnumPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("pathEnum") String _pathEnum) {
@@ -209,7 +213,7 @@ public class PathParameterTypeServiceResource {
 
 	@GET
 	@Path("multipathparam/{valueA}/{valueB}")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiPathParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@PathParam("valueA") String _valueA,

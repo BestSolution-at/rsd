@@ -42,8 +42,8 @@ import dev.rsdlang.sample.client.model.EnumInlineRecord;
 import dev.rsdlang.sample.client.model.EnumRecord;
 import dev.rsdlang.sample.client.model.EnumRecord_Substitution;
 import dev.rsdlang.sample.client.model.ErrorData;
-import dev.rsdlang.sample.client.model.impl.json._BlobImpl;
-import dev.rsdlang.sample.client.model.impl.json._FileImpl;
+import dev.rsdlang.sample.client.model.impl._BlobImpl;
+import dev.rsdlang.sample.client.model.impl._FileImpl;
 import dev.rsdlang.sample.client.model.impl.json.CyclicNodeADataImpl;
 import dev.rsdlang.sample.client.model.impl.json.CyclicNodeBDataImpl;
 import dev.rsdlang.sample.client.model.impl.json.EnumInlineRecordDataImpl;
@@ -156,7 +156,8 @@ import dev.rsdlang.sample.client.SpecSamplesClient;
 public class JDKSpecSamplesClient implements SpecSamplesClient {
 	public enum ContentTypeEncoding {
 		APPLICATION_JSON("application/json"),
-		APPLICATION_VND_MSGPACK("application/vnd.msgpack");
+		APPLICATION_VND_MSGPACK("application/vnd.msgpack"),
+		APPLICATION_AVRO("application/avro");
 
 		public final String contentType;
 

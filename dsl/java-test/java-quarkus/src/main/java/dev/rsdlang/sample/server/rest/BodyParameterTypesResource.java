@@ -16,7 +16,6 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.PatchableRecord;
 import dev.rsdlang.sample.server.model.SimpleRecord;
@@ -26,30 +25,33 @@ import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamFirs
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamNilDataImpl;
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamOptDataImpl;
 import dev.rsdlang.sample.server.rest.model.BodyParameterTypesMultiBodyParamOptNilDataImpl;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.BodyParameterTypesService;
 
 @ApplicationScoped
 @Path("/api/bodyparametertypes")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class BodyParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final BodyParameterTypesService service;
 	private final BodyParameterTypesResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public BodyParameterTypesResource(BodyParameterTypesService service, BodyParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public BodyParameterTypesResource(BodyParameterTypesService service, BodyParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -59,930 +61,1008 @@ public class BodyParameterTypesResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
 
 	@POST
 	@Path("simpleBooleanBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleBooleanBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.parseBoolean(_bodyBoolean, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyBoolean = $p.parseBoolean(_bodyBoolean);
 		var result = service.simpleBooleanBodyParam(builderFactory, bodyBoolean);
 		return responseBuilder.simpleBooleanBodyParam(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
 
 	@POST
 	@Path("simpleBooleanBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleBooleanBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.parseOptBoolean(_bodyBoolean, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyBoolean = $p.parseOptBoolean(_bodyBoolean);
 		var result = service.simpleBooleanBodyParamOpt(builderFactory, bodyBoolean);
 		return responseBuilder.simpleBooleanBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
 
 	@POST
 	@Path("simpleBooleanBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleBooleanBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.parseNullBoolean(_bodyBoolean, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyBoolean = $p.parseNullBoolean(_bodyBoolean);
 		var result = service.simpleBooleanBodyParamNil(builderFactory, bodyBoolean);
 		return responseBuilder.simpleBooleanBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
 
 	@POST
 	@Path("simpleBooleanBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleBooleanBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyBoolean) {
-		var bodyBoolean = _JsonUtils.parseNilBoolean(_bodyBoolean, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyBoolean = $p.parseNilBoolean(_bodyBoolean);
 		var result = service.simpleBooleanBodyParamOptNil(builderFactory, bodyBoolean);
 		return responseBuilder.simpleBooleanBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyBoolean).build();
 	}
 
 	@POST
 	@Path("simpleShortBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleShortBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyShort) {
-		var bodyShort = _JsonUtils.parseShort(_bodyShort, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyShort = $p.parseShort(_bodyShort);
 		var result = service.simpleShortBodyParam(builderFactory, bodyShort);
 		return responseBuilder.simpleShortBodyParam(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
 
 	@POST
 	@Path("simpleShortBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleShortBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyShort) {
-		var bodyShort = _JsonUtils.parseOptShort(_bodyShort, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyShort = $p.parseOptShort(_bodyShort);
 		var result = service.simpleShortBodyParamOpt(builderFactory, bodyShort);
 		return responseBuilder.simpleShortBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
 
 	@POST
 	@Path("simpleShortBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleShortBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyShort) {
-		var bodyShort = _JsonUtils.parseNullShort(_bodyShort, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyShort = $p.parseNullShort(_bodyShort);
 		var result = service.simpleShortBodyParamNil(builderFactory, bodyShort);
 		return responseBuilder.simpleShortBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
 
 	@POST
 	@Path("simpleShortBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleShortBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyShort) {
-		var bodyShort = _JsonUtils.parseNilShort(_bodyShort, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyShort = $p.parseNilShort(_bodyShort);
 		var result = service.simpleShortBodyParamOptNil(builderFactory, bodyShort);
 		return responseBuilder.simpleShortBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyShort).build();
 	}
 
 	@POST
 	@Path("simpleIntBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleIntBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyInt) {
-		var bodyInt = _JsonUtils.parseInt(_bodyInt, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyInt = $p.parseInt(_bodyInt);
 		var result = service.simpleIntBodyParam(builderFactory, bodyInt);
 		return responseBuilder.simpleIntBodyParam(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
 
 	@POST
 	@Path("simpleIntBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleIntBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyInt) {
-		var bodyInt = _JsonUtils.parseOptInt(_bodyInt, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyInt = $p.parseOptInt(_bodyInt);
 		var result = service.simpleIntBodyParamOpt(builderFactory, bodyInt);
 		return responseBuilder.simpleIntBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
 
 	@POST
 	@Path("simpleIntBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleIntBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyInt) {
-		var bodyInt = _JsonUtils.parseNullInt(_bodyInt, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyInt = $p.parseNullInt(_bodyInt);
 		var result = service.simpleIntBodyParamNil(builderFactory, bodyInt);
 		return responseBuilder.simpleIntBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
 
 	@POST
 	@Path("simpleIntBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleIntBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyInt) {
-		var bodyInt = _JsonUtils.parseNilInt(_bodyInt, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyInt = $p.parseNilInt(_bodyInt);
 		var result = service.simpleIntBodyParamOptNil(builderFactory, bodyInt);
 		return responseBuilder.simpleIntBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyInt).build();
 	}
 
 	@POST
 	@Path("simpleLongBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLongBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLong) {
-		var bodyLong = _JsonUtils.parseLong(_bodyLong, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLong = $p.parseLong(_bodyLong);
 		var result = service.simpleLongBodyParam(builderFactory, bodyLong);
 		return responseBuilder.simpleLongBodyParam(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
 
 	@POST
 	@Path("simpleLongBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLongBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLong) {
-		var bodyLong = _JsonUtils.parseOptLong(_bodyLong, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLong = $p.parseOptLong(_bodyLong);
 		var result = service.simpleLongBodyParamOpt(builderFactory, bodyLong);
 		return responseBuilder.simpleLongBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
 
 	@POST
 	@Path("simpleLongBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLongBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLong) {
-		var bodyLong = _JsonUtils.parseNullLong(_bodyLong, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLong = $p.parseNullLong(_bodyLong);
 		var result = service.simpleLongBodyParamNil(builderFactory, bodyLong);
 		return responseBuilder.simpleLongBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
 
 	@POST
 	@Path("simpleLongBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLongBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLong) {
-		var bodyLong = _JsonUtils.parseNilLong(_bodyLong, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLong = $p.parseNilLong(_bodyLong);
 		var result = service.simpleLongBodyParamOptNil(builderFactory, bodyLong);
 		return responseBuilder.simpleLongBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLong).build();
 	}
 
 	@POST
 	@Path("simpleFloatBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleFloatBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyFloat) {
-		var bodyFloat = _JsonUtils.parseFloat(_bodyFloat, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyFloat = $p.parseFloat(_bodyFloat);
 		var result = service.simpleFloatBodyParam(builderFactory, bodyFloat);
 		return responseBuilder.simpleFloatBodyParam(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
 
 	@POST
 	@Path("simpleFloatBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleFloatBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyFloat) {
-		var bodyFloat = _JsonUtils.parseOptFloat(_bodyFloat, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyFloat = $p.parseOptFloat(_bodyFloat);
 		var result = service.simpleFloatBodyParamOpt(builderFactory, bodyFloat);
 		return responseBuilder.simpleFloatBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
 
 	@POST
 	@Path("simpleFloatBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleFloatBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyFloat) {
-		var bodyFloat = _JsonUtils.parseNullFloat(_bodyFloat, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyFloat = $p.parseNullFloat(_bodyFloat);
 		var result = service.simpleFloatBodyParamNil(builderFactory, bodyFloat);
 		return responseBuilder.simpleFloatBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
 
 	@POST
 	@Path("simpleFloatBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleFloatBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyFloat) {
-		var bodyFloat = _JsonUtils.parseNilFloat(_bodyFloat, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyFloat = $p.parseNilFloat(_bodyFloat);
 		var result = service.simpleFloatBodyParamOptNil(builderFactory, bodyFloat);
 		return responseBuilder.simpleFloatBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyFloat).build();
 	}
 
 	@POST
 	@Path("simpleDoubleBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleDoubleBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyDouble) {
-		var bodyDouble = _JsonUtils.parseDouble(_bodyDouble, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyDouble = $p.parseDouble(_bodyDouble);
 		var result = service.simpleDoubleBodyParam(builderFactory, bodyDouble);
 		return responseBuilder.simpleDoubleBodyParam(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
 
 	@POST
 	@Path("simpleDoubleBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleDoubleBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyDouble) {
-		var bodyDouble = _JsonUtils.parseOptDouble(_bodyDouble, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyDouble = $p.parseOptDouble(_bodyDouble);
 		var result = service.simpleDoubleBodyParamOpt(builderFactory, bodyDouble);
 		return responseBuilder.simpleDoubleBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
 
 	@POST
 	@Path("simpleDoubleBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleDoubleBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyDouble) {
-		var bodyDouble = _JsonUtils.parseNullDouble(_bodyDouble, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyDouble = $p.parseNullDouble(_bodyDouble);
 		var result = service.simpleDoubleBodyParamNil(builderFactory, bodyDouble);
 		return responseBuilder.simpleDoubleBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
 
 	@POST
 	@Path("simpleDoubleBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleDoubleBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyDouble) {
-		var bodyDouble = _JsonUtils.parseNilDouble(_bodyDouble, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyDouble = $p.parseNilDouble(_bodyDouble);
 		var result = service.simpleDoubleBodyParamOptNil(builderFactory, bodyDouble);
 		return responseBuilder.simpleDoubleBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyDouble).build();
 	}
 
 	@POST
 	@Path("simpleStringBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleStringBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyString) {
-		var bodyString = _JsonUtils.parseString(_bodyString, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyString = $p.parseString(_bodyString);
 		var result = service.simpleStringBodyParam(builderFactory, bodyString);
 		return responseBuilder.simpleStringBodyParam(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
 
 	@POST
 	@Path("simpleStringBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleStringBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyString) {
-		var bodyString = _JsonUtils.parseOptString(_bodyString, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyString = $p.parseOptString(_bodyString);
 		var result = service.simpleStringBodyParamOpt(builderFactory, bodyString);
 		return responseBuilder.simpleStringBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
 
 	@POST
 	@Path("simpleStringBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleStringBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyString) {
-		var bodyString = _JsonUtils.parseNullString(_bodyString, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyString = $p.parseNullString(_bodyString);
 		var result = service.simpleStringBodyParamNil(builderFactory, bodyString);
 		return responseBuilder.simpleStringBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
 
 	@POST
 	@Path("simpleStringBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleStringBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyString) {
-		var bodyString = _JsonUtils.parseNilString(_bodyString, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyString = $p.parseNilString(_bodyString);
 		var result = service.simpleStringBodyParamOptNil(builderFactory, bodyString);
 		return responseBuilder.simpleStringBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyString).build();
 	}
 
 	@POST
 	@Path("simpleLocalDateBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.parseLocalDate(_bodyLocalDate, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalDate = $p.parseLocalDate(_bodyLocalDate);
 		var result = service.simpleLocalDateBodyParam(builderFactory, bodyLocalDate);
 		return responseBuilder.simpleLocalDateBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
 
 	@POST
 	@Path("simpleLocalDateBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.parseOptLocalDate(_bodyLocalDate, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalDate = $p.parseOptLocalDate(_bodyLocalDate);
 		var result = service.simpleLocalDateBodyParamOpt(builderFactory, bodyLocalDate);
 		return responseBuilder.simpleLocalDateBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
 
 	@POST
 	@Path("simpleLocalDateBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.parseNullLocalDate(_bodyLocalDate, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalDate = $p.parseNullLocalDate(_bodyLocalDate);
 		var result = service.simpleLocalDateBodyParamNil(builderFactory, bodyLocalDate);
 		return responseBuilder.simpleLocalDateBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
 
 	@POST
 	@Path("simpleLocalDateBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDate) {
-		var bodyLocalDate = _JsonUtils.parseNilLocalDate(_bodyLocalDate, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalDate = $p.parseNilLocalDate(_bodyLocalDate);
 		var result = service.simpleLocalDateBodyParamOptNil(builderFactory, bodyLocalDate);
 		return responseBuilder.simpleLocalDateBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalDate).build();
 	}
 
 	@POST
 	@Path("simpleLocalDateTimeBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.parseLocalDateTime(_bodyLocalDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalDateTime = $p.parseLocalDateTime(_bodyLocalDateTime);
 		var result = service.simpleLocalDateTimeBodyParam(builderFactory, bodyLocalDateTime);
 		return responseBuilder.simpleLocalDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
 
 	@POST
 	@Path("simpleLocalDateTimeBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateTimeBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.parseOptLocalDateTime(_bodyLocalDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalDateTime = $p.parseOptLocalDateTime(_bodyLocalDateTime);
 		var result = service.simpleLocalDateTimeBodyParamOpt(builderFactory, bodyLocalDateTime);
 		return responseBuilder.simpleLocalDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
 
 	@POST
 	@Path("simpleLocalDateTimeBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateTimeBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.parseNullLocalDateTime(_bodyLocalDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalDateTime = $p.parseNullLocalDateTime(_bodyLocalDateTime);
 		var result = service.simpleLocalDateTimeBodyParamNil(builderFactory, bodyLocalDateTime);
 		return responseBuilder.simpleLocalDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
 
 	@POST
 	@Path("simpleLocalDateTimeBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalDateTimeBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalDateTime) {
-		var bodyLocalDateTime = _JsonUtils.parseNilLocalDateTime(_bodyLocalDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalDateTime = $p.parseNilLocalDateTime(_bodyLocalDateTime);
 		var result = service.simpleLocalDateTimeBodyParamOptNil(builderFactory, bodyLocalDateTime);
 		return responseBuilder.simpleLocalDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalDateTime).build();
 	}
 
 	@POST
 	@Path("simpleLocalTimeBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalTime) {
-		var bodyLocalTime = _JsonUtils.parseLocalTime(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalTime = $p.parseLocalTime(_bodyLocalTime);
 		var result = service.simpleLocalTimeBodyParam(builderFactory, bodyLocalTime);
 		return responseBuilder.simpleLocalTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
 	}
 
 	@POST
 	@Path("simpleLocalTimeBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalTimeBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalTime) {
-		var bodyLocalTime = _JsonUtils.parseOptLocalTime(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalTime = $p.parseOptLocalTime(_bodyLocalTime);
 		var result = service.simpleLocalTimeBodyParamOpt(builderFactory, bodyLocalTime);
 		return responseBuilder.simpleLocalTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
 	}
 
 	@POST
 	@Path("simpleLocalTimeBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalTimeBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalTime) {
-		var bodyLocalTime = _JsonUtils.parseNullLocalTime(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalTime = $p.parseNullLocalTime(_bodyLocalTime);
 		var result = service.simpleLocalTimeBodyParamNil(builderFactory, bodyLocalTime);
 		return responseBuilder.simpleLocalTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
 	}
 
 	@POST
 	@Path("simpleLocalTimeBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleLocalTimeBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyLocalTime) {
-		var bodyLocalTime = _JsonUtils.parseNilLocalTime(_bodyLocalTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyLocalTime = $p.parseNilLocalTime(_bodyLocalTime);
 		var result = service.simpleLocalTimeBodyParamOptNil(builderFactory, bodyLocalTime);
 		return responseBuilder.simpleLocalTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyLocalTime).build();
 	}
 
 	@POST
 	@Path("simpleOffsetDateTimeBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleOffsetDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyOffsetDateTime) {
-		var bodyOffsetDateTime = _JsonUtils.parseOffsetDateTime(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyOffsetDateTime = $p.parseOffsetDateTime(_bodyOffsetDateTime);
 		var result = service.simpleOffsetDateTimeBodyParam(builderFactory, bodyOffsetDateTime);
 		return responseBuilder.simpleOffsetDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
 	}
 
 	@POST
 	@Path("simpleOffsetDateTimeBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleOffsetDateTimeBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyOffsetDateTime) {
-		var bodyOffsetDateTime = _JsonUtils.parseOptOffsetDateTime(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyOffsetDateTime = $p.parseOptOffsetDateTime(_bodyOffsetDateTime);
 		var result = service.simpleOffsetDateTimeBodyParamOpt(builderFactory, bodyOffsetDateTime);
 		return responseBuilder.simpleOffsetDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
 	}
 
 	@POST
 	@Path("simpleOffsetDateTimeBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleOffsetDateTimeBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyOffsetDateTime) {
-		var bodyOffsetDateTime = _JsonUtils.parseNullOffsetDateTime(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyOffsetDateTime = $p.parseNullOffsetDateTime(_bodyOffsetDateTime);
 		var result = service.simpleOffsetDateTimeBodyParamNil(builderFactory, bodyOffsetDateTime);
 		return responseBuilder.simpleOffsetDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
 	}
 
 	@POST
 	@Path("simpleOffsetDateTimeBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleOffsetDateTimeBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyOffsetDateTime) {
-		var bodyOffsetDateTime = _JsonUtils.parseNilOffsetDateTime(_bodyOffsetDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyOffsetDateTime = $p.parseNilOffsetDateTime(_bodyOffsetDateTime);
 		var result = service.simpleOffsetDateTimeBodyParamOptNil(builderFactory, bodyOffsetDateTime);
 		return responseBuilder.simpleOffsetDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyOffsetDateTime).build();
 	}
 
 	@POST
 	@Path("simpleZonedDateTimeBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleZonedDateTimeBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.parseZonedDateTime(_bodyZonedDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyZonedDateTime = $p.parseZonedDateTime(_bodyZonedDateTime);
 		var result = service.simpleZonedDateTimeBodyParam(builderFactory, bodyZonedDateTime);
 		return responseBuilder.simpleZonedDateTimeBodyParam(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
 
 	@POST
 	@Path("simpleZonedDateTimeBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleZonedDateTimeBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.parseOptZonedDateTime(_bodyZonedDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyZonedDateTime = $p.parseOptZonedDateTime(_bodyZonedDateTime);
 		var result = service.simpleZonedDateTimeBodyParamOpt(builderFactory, bodyZonedDateTime);
 		return responseBuilder.simpleZonedDateTimeBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
 
 	@POST
 	@Path("simpleZonedDateTimeBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleZonedDateTimeBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.parseNullZonedDateTime(_bodyZonedDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyZonedDateTime = $p.parseNullZonedDateTime(_bodyZonedDateTime);
 		var result = service.simpleZonedDateTimeBodyParamNil(builderFactory, bodyZonedDateTime);
 		return responseBuilder.simpleZonedDateTimeBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
 
 	@POST
 	@Path("simpleZonedDateTimeBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleZonedDateTimeBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyZonedDateTime) {
-		var bodyZonedDateTime = _JsonUtils.parseNilZonedDateTime(_bodyZonedDateTime, computeRequestContentType($contentTypeHeader));
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyZonedDateTime = $p.parseNilZonedDateTime(_bodyZonedDateTime);
 		var result = service.simpleZonedDateTimeBodyParamOptNil(builderFactory, bodyZonedDateTime);
 		return responseBuilder.simpleZonedDateTimeBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyZonedDateTime).build();
 	}
 
 	@POST
 	@Path("simpleScalarBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleScalarBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyScalar = $p.parseLiteral(_bodyScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarBodyParam(builderFactory, bodyScalar);
 		return responseBuilder.simpleScalarBodyParam(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
 
 	@POST
 	@Path("simpleScalarBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleScalarBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseOptLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyScalar = $p.parseOptLiteral(_bodyScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarBodyParamOpt(builderFactory, bodyScalar);
 		return responseBuilder.simpleScalarBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
 
 	@POST
 	@Path("simpleScalarBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleScalarBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseNullLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyScalar = $p.parseNullLiteral(_bodyScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarBodyParamNil(builderFactory, bodyScalar);
 		return responseBuilder.simpleScalarBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
 
 	@POST
 	@Path("simpleScalarBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleScalarBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyScalar) {
-		var bodyScalar = _JsonUtils.parseNilLiteral(_bodyScalar, computeRequestContentType($contentTypeHeader), _ScalarSupport::ZoneIdFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyScalar = $p.parseNilLiteral(_bodyScalar, _ScalarSupport::ZoneIdFromJson);
 		var result = service.simpleScalarBodyParamOptNil(builderFactory, bodyScalar);
 		return responseBuilder.simpleScalarBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyScalar).build();
 	}
 
 	@POST
 	@Path("simpleEnumBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleEnumBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseLiteral(_bodyEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.simpleEnumBodyParam(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@POST
 	@Path("simpleEnumBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleEnumBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseOptLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseOptLiteral(_bodyEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.simpleEnumBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@POST
 	@Path("simpleEnumBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleEnumBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNullLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseNullLiteral(_bodyEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleEnumBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@POST
 	@Path("simpleEnumBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleEnumBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNilLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), _EnumSupport::SampleEnumFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseNilLiteral(_bodyEnum, _EnumSupport::SampleEnumFromJson);
 		var result = service.simpleEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleEnumBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@POST
 	@Path("simpleInlineEnumBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleInlineEnumBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$::valueOf);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseLiteral(_bodyEnum, BodyParameterTypesService.SimpleInlineEnumBodyParam_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParam(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParam(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@POST
 	@Path("simpleInlineEnumBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleInlineEnumBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseOptLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseOptLiteral(_bodyEnum, BodyParameterTypesService.SimpleInlineEnumBodyParamOpt_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamOpt(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@POST
 	@Path("simpleInlineEnumBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleInlineEnumBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNullLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseNullLiteral(_bodyEnum, BodyParameterTypesService.SimpleInlineEnumBodyParamNil_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@POST
 	@Path("simpleInlineEnumBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response simpleInlineEnumBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyEnum) {
-		var bodyEnum = _JsonUtils.parseNilLiteral(_bodyEnum, computeRequestContentType($contentTypeHeader), BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyEnum = $p.parseNilLiteral(_bodyEnum, BodyParameterTypesService.SimpleInlineEnumBodyParamOptNil_BodyEnum_Param$::valueOf);
 		var result = service.simpleInlineEnumBodyParamOptNil(builderFactory, bodyEnum);
 		return responseBuilder.simpleInlineEnumBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyEnum).build();
 	}
 
 	@POST
 	@Path("multiBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamDataImpl::new, BodyParameterTypesMultiBodyParamDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamDataImpl::new, BodyParameterTypesMultiBodyParamDataImpl.class);
 		var result = service.multiBodyParam(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
 		return responseBuilder.multiBodyParam(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@POST
 	@Path("multiBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamOptDataImpl::new, BodyParameterTypesMultiBodyParamOptDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamOptDataImpl::new, BodyParameterTypesMultiBodyParamOptDataImpl.class);
 		var result = service.multiBodyParamOpt(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
 		return responseBuilder.multiBodyParamOpt(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@POST
 	@Path("multiBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamNilDataImpl::new, BodyParameterTypesMultiBodyParamNilDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamNilDataImpl::new, BodyParameterTypesMultiBodyParamNilDataImpl.class);
 		var result = service.multiBodyParamNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
 		return responseBuilder.multiBodyParamNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@POST
 	@Path("multiBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamOptNilDataImpl::new, BodyParameterTypesMultiBodyParamOptNilDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamOptNilDataImpl::new, BodyParameterTypesMultiBodyParamOptNilDataImpl.class);
 		var result = service.multiBodyParamOptNil(builderFactory, dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD());
 		return responseBuilder.multiBodyParamOptNil(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC(), dto.valueD()).build();
 	}
 
 	@POST
 	@Path("multiBodyParamFirst")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiBodyParamFirst(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), BodyParameterTypesMultiBodyParamFirstDataImpl::new, BodyParameterTypesMultiBodyParamFirstDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, BodyParameterTypesMultiBodyParamFirstDataImpl::new, BodyParameterTypesMultiBodyParamFirstDataImpl.class);
 		var result = service.multiBodyParamFirst(builderFactory, dto.valueA(), dto.valueB(), dto.valueC());
 		return responseBuilder.multiBodyParamFirst(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB(), dto.valueC()).build();
 	}
 
 	@POST
 	@Path("recordBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response recordBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var result = service.recordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParam(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@POST
 	@Path("recordBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response recordBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseOptObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var result = service.recordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@POST
 	@Path("recordBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response recordBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseNullObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var result = service.recordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@POST
 	@Path("recordBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response recordBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseNilObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var result = service.recordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@POST
 	@Path("unionBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response unionBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseObject(_bodyUnion, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyUnion = $p.parseObject(_bodyUnion, $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
 		var result = service.unionBodyParam(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParam(result, computeResponseContentType($acceptHeaders), bodyUnion).build();
 	}
 
 	@POST
 	@Path("unionBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response unionBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseOptObject(_bodyUnion, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyUnion = $p.parseOptObject(_bodyUnion, $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
 		var result = service.unionBodyParamOpt(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyUnion).build();
 	}
 
 	@POST
 	@Path("unionBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response unionBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseNullObject(_bodyUnion, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyUnion = $p.parseNullObject(_bodyUnion, $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
 		var result = service.unionBodyParamNil(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyUnion).build();
 	}
 
 	@POST
 	@Path("unionBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response unionBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseNilObject(_bodyUnion, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyUnion = $p.parseNilObject(_bodyUnion, $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
 		var result = service.unionBodyParamOptNil(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyUnion).build();
 	}
 
 	@PATCH
 	@Path("patchableRecordBodyParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response patchableRecordBodyParam(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseObject(_bodyRecord, $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
 		var result = service.patchableRecordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParam(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@PATCH
 	@Path("patchableRecordBodyParamOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response patchableRecordBodyParamOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseOptObject(_bodyRecord, $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
 		var result = service.patchableRecordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@PATCH
 	@Path("patchableRecordBodyParamNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response patchableRecordBodyParamNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseNullObject(_bodyRecord, $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
 		var result = service.patchableRecordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
 
 	@PATCH
 	@Path("patchableRecordBodyParamOptNil")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response patchableRecordBodyParamOptNil(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseNilObject(_bodyRecord, $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
 		var result = service.patchableRecordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}

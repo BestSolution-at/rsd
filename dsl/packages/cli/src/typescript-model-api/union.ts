@@ -11,7 +11,7 @@ export function generateUnionContent(u: MResolvedUnionType, fqn: (t: string, typ
 			.join(' | ')};`,
 		NL,
 	);
-	if (u.resolved.records.find(r => r.patchable)) {
+	if (u.patchable) {
 		node.append(
 			`export type ${u.name}Patch = ${u.resolved.records
 				.map(r => {
@@ -25,18 +25,6 @@ export function generateUnionContent(u: MResolvedUnionType, fqn: (t: string, typ
 	node.append(generateTypeguard(u, fqn));
 	node.append(generateFromJSON(u, fqn));
 	node.append(generateToJSON(u, fqn));
-
-	if (u.patchable) {
-		node.append(
-			`export type ${u.name}Patch = ${u.resolved.records
-				.map(r => {
-					return fqn(`${r.name}:./${r.name}.ts`, true);
-				})
-				.join(' | ')};`,
-			NL,
-			NL,
-		);
-	}
 
 	return node;
 }

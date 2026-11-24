@@ -17,33 +17,35 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.rest.model.EnumSubstition_ServiceMultiBodyDataImpl;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.EnumSubstition_ServiceService;
 import dev.rsdlang.sample.server.service.SampleErrorEnumSubException;
 
 @ApplicationScoped
 @Path("/api/enumsubstition")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class EnumSubstition_ServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final EnumSubstition_ServiceService service;
 	private final EnumSubstition_ServiceResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public EnumSubstition_ServiceResource(EnumSubstition_ServiceService service, EnumSubstition_ServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public EnumSubstition_ServiceResource(EnumSubstition_ServiceService service, EnumSubstition_ServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -53,13 +55,14 @@ public class EnumSubstition_ServiceResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
 
 	@GET
 	@Path("get")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response get(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.get(builderFactory);
 		return responseBuilder.get(result, computeResponseContentType($acceptHeaders)).build();
@@ -67,7 +70,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("list")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response list(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.list(builderFactory);
 		return responseBuilder.list(result, computeResponseContentType($acceptHeaders)).build();
@@ -75,103 +78,111 @@ public class EnumSubstition_ServiceResource {
 
 	@POST
 	@Path("post")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response post(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseLiteral(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseLiteral(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.post(builderFactory, dayOfWeek);
 		return responseBuilder.post(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
 
 	@POST
 	@Path("postOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseOptLiteral(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseOptLiteral(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postOpt(builderFactory, dayOfWeek);
 		return responseBuilder.postOpt(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
 
 	@POST
 	@Path("postNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postNull(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseNullLiteral(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseNullLiteral(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postNull(builderFactory, dayOfWeek);
 		return responseBuilder.postNull(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
 
 	@POST
 	@Path("postOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postOptNull(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseNilLiteral(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseNilLiteral(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postOptNull(builderFactory, dayOfWeek);
 		return responseBuilder.postOptNull(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
 
 	@POST
 	@Path("postList")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postList(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseLiterals(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseLiterals(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postList(builderFactory, dayOfWeek);
 		return responseBuilder.postList(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
 
 	@POST
 	@Path("postListOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postListOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseOptLiterals(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseOptLiterals(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postListOpt(builderFactory, dayOfWeek);
 		return responseBuilder.postListOpt(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
 
 	@POST
 	@Path("postListNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postListNull(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseNullLiterals(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseNullLiterals(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postListNull(builderFactory, dayOfWeek);
 		return responseBuilder.postListNull(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
 
 	@POST
 	@Path("postListOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postListOptNull(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _dayOfWeek) {
-		var dayOfWeek = _JsonUtils.parseNilLiterals(_dayOfWeek, computeRequestContentType($contentTypeHeader), _EnumSupport::DayOfWeekFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dayOfWeek = $p.parseNilLiterals(_dayOfWeek, _EnumSupport::DayOfWeekFromJson);
 		var result = service.postListOptNull(builderFactory, dayOfWeek);
 		return responseBuilder.postListOptNull(result, computeResponseContentType($acceptHeaders), dayOfWeek).build();
 	}
 
 	@GET
 	@Path("query")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response query(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("dayOfWeek") String _dayOfWeek) {
@@ -182,7 +193,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("queryOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("dayOfWeek") String _dayOfWeek) {
@@ -193,7 +204,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("queryNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("dayOfWeek") String _dayOfWeek) {
@@ -204,7 +215,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("queryOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("dayOfWeek") String _dayOfWeek) {
@@ -215,7 +226,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("queryList")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryList(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("dayOfWeek") List<String> _dayOfWeek) {
@@ -226,7 +237,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("queryListOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryListOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("dayOfWeek") List<String> _dayOfWeek) {
@@ -237,7 +248,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("queryListNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryListNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("dayOfWeek") List<String> _dayOfWeek) {
@@ -248,7 +259,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("queryListOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryListOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("dayOfWeek") List<String> _dayOfWeek) {
@@ -259,7 +270,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("header")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response header(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("dayOfWeek") String _dayOfWeek) {
@@ -270,7 +281,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("headerOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("dayOfWeek") String _dayOfWeek) {
@@ -281,7 +292,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("headerNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("dayOfWeek") String _dayOfWeek) {
@@ -292,7 +303,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("headerOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("dayOfWeek") String _dayOfWeek) {
@@ -303,7 +314,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("headerList")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerList(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("dayOfWeek") String _dayOfWeek) {
@@ -314,7 +325,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("headerListOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerListOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("dayOfWeek") String _dayOfWeek) {
@@ -325,7 +336,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("headerListNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerListNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("dayOfWeek") String _dayOfWeek) {
@@ -336,7 +347,7 @@ public class EnumSubstition_ServiceResource {
 
 	@GET
 	@Path("headerListOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerListOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("dayOfWeek") String _dayOfWeek) {
@@ -347,19 +358,20 @@ public class EnumSubstition_ServiceResource {
 
 	@POST
 	@Path("multiBody")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiBody(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), EnumSubstition_ServiceMultiBodyDataImpl::new, EnumSubstition_ServiceMultiBodyDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, EnumSubstition_ServiceMultiBodyDataImpl::new, EnumSubstition_ServiceMultiBodyDataImpl.class);
 		var result = service.multiBody(builderFactory, dto.valueA(), dto.valueB());
 		return responseBuilder.multiBody(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB()).build();
 	}
 
 	@POST
 	@Path("fail")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response fail(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.fail(builderFactory);

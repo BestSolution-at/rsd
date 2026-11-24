@@ -14,6 +14,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.ListStreamingServiceService;
 import io.smallrye.mutiny.Multi;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
@@ -21,26 +22,28 @@ import org.jboss.resteasy.reactive.RestForm;
 
 @ApplicationScoped
 @Path("/api/liststreaming")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class ListStreamingServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ListStreamingServiceService service;
 	private final ListStreamingServiceResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public ListStreamingServiceResource(ListStreamingServiceService service, ListStreamingServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListStreamingServiceResource(ListStreamingServiceService service, ListStreamingServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -50,6 +53,7 @@ public class ListStreamingServiceResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
@@ -58,7 +62,7 @@ public class ListStreamingServiceResource {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/vnd.msgpack".equals(e) || "application/x-ndjson".equals(e))
+				.filter(e -> "application/vnd.msgpack".equals(e) || "application/avro".equals(e) || "application/x-ndjson".equals(e))
 				.findFirst()
 				.orElse("application/x-ndjson");
 	}

@@ -1,0 +1,20 @@
+{
+	"key": "k-1",
+	"version": "v-1",
+	"value": "A",
+	"value_Null": "C",
+	"value_Opt": "E",
+	"value_Opt_Null": "G",
+	"list": {
+		"@type": "replace",
+		"elements": ["A"]
+	},
+	"list_Null": {
+		"@type": "replace",
+		"elements": ["C"]
+	},
+	"list_Opt_Null": {
+		"@type": "replace",
+		"elements": ["G"]
+	}
+}

@@ -113,28 +113,40 @@ public interface PatchableRecord_Basic_Null {
 		public PatchBuilder version(String version);
 
 		public PatchBuilder valueBoolean(Boolean valueBoolean);
+		public PatchBuilder valueBooleanNull();
 
 		public PatchBuilder valueShort(Short valueShort);
+		public PatchBuilder valueShortNull();
 
 		public PatchBuilder valueInt(Integer valueInt);
+		public PatchBuilder valueIntNull();
 
 		public PatchBuilder valueLong(Long valueLong);
+		public PatchBuilder valueLongNull();
 
 		public PatchBuilder valueFloat(Float valueFloat);
+		public PatchBuilder valueFloatNull();
 
 		public PatchBuilder valueDouble(Double valueDouble);
+		public PatchBuilder valueDoubleNull();
 
 		public PatchBuilder valueString(String valueString);
+		public PatchBuilder valueStringNull();
 
 		public PatchBuilder valueLocalDate(LocalDate valueLocalDate);
+		public PatchBuilder valueLocalDateNull();
 
 		public PatchBuilder valueLocalDateTime(LocalDateTime valueLocalDateTime);
+		public PatchBuilder valueLocalDateTimeNull();
 
 		public PatchBuilder valueLocalTime(LocalTime valueLocalTime);
+		public PatchBuilder valueLocalTimeNull();
 
 		public PatchBuilder valueOffsetDateTime(OffsetDateTime valueOffsetDateTime);
+		public PatchBuilder valueOffsetDateTimeNull();
 
 		public PatchBuilder valueZonedDateTime(ZonedDateTime valueZonedDateTime);
+		public PatchBuilder valueZonedDateTimeNull();
 
 	}
 }

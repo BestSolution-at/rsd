@@ -15,33 +15,35 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
 import dev.rsdlang.sample.server.model.impl.json._EnumSupport;
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.model.SimpleRecord;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.ListQueryParameterTypesService;
 
 @ApplicationScoped
 @Path("/api/listqueryparametertypes")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class ListQueryParameterTypesResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ListQueryParameterTypesService service;
 	private final ListQueryParameterTypesResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public ListQueryParameterTypesResource(ListQueryParameterTypesService service, ListQueryParameterTypesResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ListQueryParameterTypesResource(ListQueryParameterTypesService service, ListQueryParameterTypesResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -51,13 +53,14 @@ public class ListQueryParameterTypesResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
 
 	@GET
 	@Path("listBooleanQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listBooleanQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -68,7 +71,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listShortQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listShortQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -79,7 +82,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listIntQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listIntQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -90,7 +93,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listLongQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listLongQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -101,7 +104,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listFloatQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listFloatQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -112,7 +115,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listDoubleQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listDoubleQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -123,7 +126,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listStringQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listStringQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -134,7 +137,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listLocalDateQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listLocalDateQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -145,7 +148,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listLocalDateTimeQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listLocalDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -156,7 +159,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listLocalTimeQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listLocalTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -167,7 +170,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listOffsetDateTimeQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listOffsetDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -178,7 +181,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listZonedDateTimeQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listZonedDateTimeQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -189,7 +192,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listScalarQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listScalarQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -200,7 +203,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listEnumQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listEnumQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -211,7 +214,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listInlineEnumQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listInlineEnumQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("queryValue") List<String> _queryValue) {
@@ -222,7 +225,7 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listMultiQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listMultiQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
@@ -232,7 +235,8 @@ public class ListQueryParameterTypesResource {
 			@QueryParam("valueD") List<String> _valueD) {
 		var valueA = _RestUtils.mapStrings(_valueA);
 		var valueB = _RestUtils.mapInts(_valueB);
-		var valueC = _RestUtils.mapObjects(_valueC, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pValueC = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var valueC = _RestUtils.mapObjects(_valueC, $o -> $pValueC.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var valueD = _RestUtils.mapLiterals(_valueD, _ScalarSupport::ZoneIdFromJson);
 		var result = service.listMultiQueryParam(builderFactory, valueA, valueB, valueC, valueD);
 		return responseBuilder.listMultiQueryParam(result, computeResponseContentType($acceptHeaders), valueA, valueB, valueC, valueD).build();
@@ -240,12 +244,13 @@ public class ListQueryParameterTypesResource {
 
 	@GET
 	@Path("listRecordQueryParam")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response listRecordQueryParam(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("X-RSD-Param-Content-Type") String $headerQueryContentType,
 			@QueryParam("queryValue") List<String> _queryValue) {
-		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pQueryValue = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var queryValue = _RestUtils.mapObjects(_queryValue, $o -> $pQueryValue.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var result = service.listRecordQueryParam(builderFactory, queryValue);
 		return responseBuilder.listRecordQueryParam(result, computeResponseContentType($acceptHeaders), queryValue).build();
 	}

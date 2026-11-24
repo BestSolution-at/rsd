@@ -1,0 +1,5 @@
+{
+	"@type": "patch:union-a",
+	"key": "a-key",
+	"version": "a-version"
+}

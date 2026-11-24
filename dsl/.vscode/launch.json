@@ -7,6 +7,57 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GenerateTestFiles",
+            "request": "launch",
+            "mainClass": "dev.rsdlang.GenerateTestFiles",
+            "projectName": "java-avro",
+						"vmArgs": "-Dorg.apache.avro.SERIALIZABLE_PACKAGES=dev.rsdlang.sample.avro"
+        },
+        {
+            "type": "java",
+            "name": "EnumSample",
+            "request": "launch",
+            "mainClass": "dev.rsdlang.EnumSample",
+            "projectName": "java-avro"
+        },
+        {
+            "type": "java",
+            "name": "ParseSample",
+            "request": "launch",
+            "mainClass": "dev.rsdlang.ParseSample",
+            "projectName": "java-avro"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "dev.rsdlang.Main",
+            "projectName": "java-avro"
+        },
+        {
+            "type": "java",
+            "name": "AvroGeneric",
+            "request": "launch",
+            "mainClass": "at.bestsolution.AvroGeneric",
+            "projectName": "avro-playground"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "at.bestsolution.Main",
+            "projectName": "avro-playground",
+						"vmArgs": "-Dorg.apache.avro.SERIALIZABLE_PACKAGES=example.avro"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "at.bestsolution.Main",
+            "projectName": "hardwood-playground"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "at.bestsolution.Main",

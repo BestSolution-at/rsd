@@ -16,34 +16,36 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 
-import dev.rsdlang.sample.server.model.impl.json._JsonUtils;
 import dev.rsdlang.sample.server.model.impl.json._ScalarSupport;
 import dev.rsdlang.sample.server.rest.model.ScalarSubstition_ServiceMultiBodyDataImpl;
+import dev.rsdlang.sample.server.rest.utils.ContentParserProvider;
 import dev.rsdlang.sample.server.service.SampleErrorScalarSubException;
 import dev.rsdlang.sample.server.service.ScalarSubstition_ServiceService;
 
 @ApplicationScoped
 @Path("/api/scalarsubstitution")
-@Consumes({"application/json", "application/vnd.msgpack"})
+@Consumes({"application/json", "application/vnd.msgpack", "application/avro"})
 public class ScalarSubstition_ServiceResource {
 	private static final Pattern HEADER_SPLIT_PATTERN = Pattern.compile(",");
 
-	private final RestBuilderFactory builderFactory;
+	private final JsonBuilderFactory builderFactory;
 	private final ScalarSubstition_ServiceService service;
 	private final ScalarSubstition_ServiceResourceResponseBuilder responseBuilder;
+	private final ContentParserProvider contentParserProvider;
 
 	@Inject
-	public ScalarSubstition_ServiceResource(ScalarSubstition_ServiceService service, ScalarSubstition_ServiceResourceResponseBuilder responseBuilder, RestBuilderFactory builderFactory) {
+	public ScalarSubstition_ServiceResource(ScalarSubstition_ServiceService service, ScalarSubstition_ServiceResourceResponseBuilder responseBuilder, JsonBuilderFactory builderFactory, ContentParserProvider contentParserProvider) {
 		this.builderFactory = builderFactory;
 		this.service = service;
 		this.responseBuilder = responseBuilder;
+		this.contentParserProvider = contentParserProvider;
 	}
 
 	static String computeResponseContentType(List<String> acceptHeader) {
 		return acceptHeader.stream()
 				.flatMap(HEADER_SPLIT_PATTERN::splitAsStream)
 				.map(String::trim)
-				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e))
+				.filter(e -> "application/json".equals(e) || "application/vnd.msgpack".equals(e) || "application/avro".equals(e))
 				.findFirst()
 				.orElse("application/json");
 	}
@@ -53,13 +55,14 @@ public class ScalarSubstition_ServiceResource {
 			case null -> "application/json";
 			case "application/json" -> "application/json";
 			case "application/vnd.msgpack" -> "application/vnd.msgpack";
+			case "application/avro" -> "application/avro";
 			default -> "application/json";
 		};
 	}
 
 	@GET
 	@Path("get")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response get(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.get(builderFactory);
 		return responseBuilder.get(result, computeResponseContentType($acceptHeaders)).build();
@@ -67,7 +70,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("list")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response list(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		var result = service.list(builderFactory);
 		return responseBuilder.list(result, computeResponseContentType($acceptHeaders)).build();
@@ -75,103 +78,111 @@ public class ScalarSubstition_ServiceResource {
 
 	@POST
 	@Path("post")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response post(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.post(builderFactory, range);
 		return responseBuilder.post(result, computeResponseContentType($acceptHeaders), range).build();
 	}
 
 	@POST
 	@Path("postOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseOptLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseOptLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postOpt(builderFactory, range);
 		return responseBuilder.postOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
 
 	@POST
 	@Path("postNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postNull(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNullLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseNullLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postNull(builderFactory, range);
 		return responseBuilder.postNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
 
 	@POST
 	@Path("postOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postOptNull(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNilLiteral(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseNilLiteral(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postOptNull(builderFactory, range);
 		return responseBuilder.postOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
 
 	@POST
 	@Path("postList")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postList(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postList(builderFactory, range);
 		return responseBuilder.postList(result, computeResponseContentType($acceptHeaders), range).build();
 	}
 
 	@POST
 	@Path("postListOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postListOpt(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseOptLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseOptLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postListOpt(builderFactory, range);
 		return responseBuilder.postListOpt(result, computeResponseContentType($acceptHeaders), range).build();
 	}
 
 	@POST
 	@Path("postListNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postListNull(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNullLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseNullLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postListNull(builderFactory, range);
 		return responseBuilder.postListNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
 
 	@POST
 	@Path("postListOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response postListOptNull(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _range) {
-		var range = _JsonUtils.parseNilLiterals(_range, computeRequestContentType($contentTypeHeader), _ScalarSupport::RangeFromJson);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var range = $p.parseNilLiterals(_range, _ScalarSupport::RangeFromJson);
 		var result = service.postListOptNull(builderFactory, range);
 		return responseBuilder.postListOptNull(result, computeResponseContentType($acceptHeaders), range).build();
 	}
 
 	@GET
 	@Path("query")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response query(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") String _range) {
@@ -182,7 +193,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("queryOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") String _range) {
@@ -193,7 +204,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("queryNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") String _range) {
@@ -204,7 +215,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("queryOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") String _range) {
@@ -215,7 +226,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("queryList")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryList(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") List<String> _range) {
@@ -226,7 +237,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("queryListOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryListOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") List<String> _range) {
@@ -237,7 +248,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("queryListNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryListNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") List<String> _range) {
@@ -248,7 +259,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("queryListOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response queryListOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@QueryParam("range") List<String> _range) {
@@ -259,7 +270,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("header")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response header(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
@@ -270,7 +281,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("headerOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
@@ -281,7 +292,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("headerNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
@@ -292,7 +303,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("headerOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
@@ -303,7 +314,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("headerList")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerList(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
@@ -314,7 +325,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("headerListOpt")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerListOpt(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
@@ -325,7 +336,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("headerListNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerListNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
@@ -336,7 +347,7 @@ public class ScalarSubstition_ServiceResource {
 
 	@GET
 	@Path("headerListOptNull")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response headerListOptNull(
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			@HeaderParam("range") String _range) {
@@ -347,19 +358,20 @@ public class ScalarSubstition_ServiceResource {
 
 	@POST
 	@Path("multiBody")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response multiBody(
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream data) {
-		var dto = _JsonUtils.parseObject(data, computeRequestContentType($contentTypeHeader), ScalarSubstition_ServiceMultiBodyDataImpl::new, ScalarSubstition_ServiceMultiBodyDataImpl.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var dto = $p.parseObject(data, ScalarSubstition_ServiceMultiBodyDataImpl::new, ScalarSubstition_ServiceMultiBodyDataImpl.class);
 		var result = service.multiBody(builderFactory, dto.valueA(), dto.valueB());
 		return responseBuilder.multiBody(result, computeResponseContentType($acceptHeaders), dto.valueA(), dto.valueB()).build();
 	}
 
 	@POST
 	@Path("fail")
-	@Produces({"application/json", "application/vnd.msgpack"})
+	@Produces({"application/json", "application/vnd.msgpack", "application/avro"})
 	public Response fail(@HeaderParam("Accept") List<String> $acceptHeaders) {
 		try {
 			service.fail(builderFactory);
