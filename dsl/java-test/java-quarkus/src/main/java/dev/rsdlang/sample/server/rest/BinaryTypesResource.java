@@ -356,10 +356,12 @@ public class BinaryTypesResource {
 		var pathNumber = _RestUtils.parseInt(_pathNumber);
 		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var headerNumber = _RestUtils.parseInt(_headerNumber);
-		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pHeaderRecord = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> $pHeaderRecord.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var queryString = _RestUtils.parseString(_queryString);
 		var queryNumber = _RestUtils.parseInt(_queryNumber);
-		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
+		var $pQueryRecord = contentParserProvider.getParser(computeRequestContentType($headerQueryContentType));
+		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> $pQueryRecord.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
 		var dataBlob = builderFactory.createBlob(_dataBlob.filePath(), _dataBlob.contentType());
 		var result = service.mixed(builderFactory, pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob);
 		return responseBuilder.mixed(result, computeResponseContentType($acceptHeaders), pathString, pathNumber, headerString, headerNumber, headerRecord, queryString, queryNumber, queryRecord, dataBlob).build();

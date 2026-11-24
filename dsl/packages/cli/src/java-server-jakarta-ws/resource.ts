@@ -972,28 +972,30 @@ function recordUnionParameter(
 			}
 		} else {
 			if (p.meta?.rest?.source === 'header' || p.meta?.rest?.source === 'query') {
+				node.append(`var $p${toFirstUpper(p.name)} = contentParserProvider.getParser(${headerQueryContentType});`, NL);
 				if (p.optional && p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
+						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> $p${toFirstUpper(p.name)}.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.optional) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
+						`var ${p.name} = _RestUtils.parseOptObject(_${p.name}, $o -> $p${toFirstUpper(p.name)}.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else if (p.nullable) {
 					node.append(
-						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
+						`var ${p.name} = _RestUtils.parseNullObject(_${p.name}, $o -> $p${toFirstUpper(p.name)}.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				} else {
 					node.append(
-						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), ${headerQueryContentType}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
+						`var ${p.name} = _RestUtils.parseObject(_${p.name}, $o -> $p${toFirstUpper(p.name)}.parseObject(_RestUtils.decodeBase64($o), $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
 						NL,
 					);
 				}
 			} else {
+				// This a path parameter
 				if (p.optional && p.nullable) {
 					node.append(
 						`var ${p.name} = _RestUtils.parseNilObject(_${p.name}, $o -> _JsonUtils.parseObject($o, ${contentTypeText}, $j -> builderFactory.of(${type}.class, $j), ${type}.class));`,
