@@ -851,7 +851,8 @@ public class HeaderParameterTypesResource {
 		var headerString = _RestUtils.parseString(_headerString, $hv -> _RestUtils.fromEscapedAscii($hv));
 		var headerNumber = _RestUtils.parseInt(_headerNumber);
 		var headerRecord = _RestUtils.parseObject(_headerRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));
-		var body = _JsonUtils.parseObject(_body, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var body = $p.parseObject(_body, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var queryString = _RestUtils.parseString(_queryString);
 		var queryNumber = _RestUtils.parseDouble(_queryNumber);
 		var queryRecord = _RestUtils.parseObject(_queryRecord, $o -> _JsonUtils.parseObject(_RestUtils.decodeBase64($o), computeRequestContentType($headerQueryContentType), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class));

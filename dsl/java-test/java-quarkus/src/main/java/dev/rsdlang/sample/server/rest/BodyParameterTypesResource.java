@@ -914,7 +914,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var result = service.recordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParam(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
@@ -926,7 +927,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseOptObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var result = service.recordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
@@ -938,7 +940,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseNullObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var result = service.recordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
@@ -950,7 +953,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseNilObject(_bodyRecord, $j -> builderFactory.of(SimpleRecord.Data.class, $j), SimpleRecord.Data.class);
 		var result = service.recordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.recordBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
@@ -962,7 +966,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseObject(_bodyUnion, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyUnion = $p.parseObject(_bodyUnion, $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
 		var result = service.unionBodyParam(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParam(result, computeResponseContentType($acceptHeaders), bodyUnion).build();
 	}
@@ -974,7 +979,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseOptObject(_bodyUnion, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyUnion = $p.parseOptObject(_bodyUnion, $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
 		var result = service.unionBodyParamOpt(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyUnion).build();
 	}
@@ -986,7 +992,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseNullObject(_bodyUnion, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyUnion = $p.parseNullObject(_bodyUnion, $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
 		var result = service.unionBodyParamNil(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyUnion).build();
 	}
@@ -998,7 +1005,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyUnion) {
-		var bodyUnion = _JsonUtils.parseNilObject(_bodyUnion, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyUnion = $p.parseNilObject(_bodyUnion, $j -> builderFactory.of(Union.Data.class, $j), Union.Data.class);
 		var result = service.unionBodyParamOptNil(builderFactory, bodyUnion);
 		return responseBuilder.unionBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyUnion).build();
 	}
@@ -1010,7 +1018,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseObject(_bodyRecord, $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
 		var result = service.patchableRecordBodyParam(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParam(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
@@ -1022,7 +1031,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseOptObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseOptObject(_bodyRecord, $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
 		var result = service.patchableRecordBodyParamOpt(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamOpt(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
@@ -1034,7 +1044,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNullObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseNullObject(_bodyRecord, $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
 		var result = service.patchableRecordBodyParamNil(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
@@ -1046,7 +1057,8 @@ public class BodyParameterTypesResource {
 			@HeaderParam("Content-Type") String $contentTypeHeader,
 			@HeaderParam("Accept") List<String> $acceptHeaders,
 			InputStream _bodyRecord) {
-		var bodyRecord = _JsonUtils.parseNilObject(_bodyRecord, computeRequestContentType($contentTypeHeader), $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
+		var $p = contentParserProvider.getParser(computeRequestContentType($contentTypeHeader));
+		var bodyRecord = $p.parseNilObject(_bodyRecord, $j -> builderFactory.of(PatchableRecord.Patch.class, $j), PatchableRecord.Patch.class);
 		var result = service.patchableRecordBodyParamOptNil(builderFactory, bodyRecord);
 		return responseBuilder.patchableRecordBodyParamOptNil(result, computeResponseContentType($acceptHeaders), bodyRecord).build();
 	}
